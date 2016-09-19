@@ -1,5 +1,6 @@
 <h1>Veronica Playlist</h1>
-<% @plalists.each do |playlist| %>
+<% @playlists.each do |playlist| %>
+  <p><%= image_tag playlist.image %></p>
   <p>Artist: <%= playlist.artist %></p>
   <p>Title: <%= playlist.title %></p>
   <p>Counter: <%= playlist.counter %></p>
