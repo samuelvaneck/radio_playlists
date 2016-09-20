@@ -1,0 +1,13 @@
+body {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+img {
+  width: 76px;
+  max-width: 76px;
+  height: auto;
+}
+
+td {
+  padding: 5px;
+}
