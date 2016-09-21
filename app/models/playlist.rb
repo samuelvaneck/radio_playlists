@@ -32,15 +32,15 @@ class Playlist < ActiveRecord::Base
 
   def self.last_played
 
-    if @lastplayed_songs.where(fullname: @last_fullname) != []
+    if @lastplayed_songs.where(fullname: @last_fullname) != nil
       puts "#{@last_fullname} in last 3 songs"
     else
-      if @full_playlist.where(fullname: @last_fullname) != []
+      if @full_playlist.where(fullname: @last_fullname) != nil
         playlist = Playlist.find_by_fullname(@last_fullname)
         playlist.image = @last_image
         playlist.counter += 1
         playlist.save
-        puts "#{@last_fullname} + 1"
+        pputs "Allready added #{@third_last_fullname} to the database"uts "#{@last_fullname} + 1"
       else
         playlist = Playlist.new
         playlist.image = @last_image
@@ -56,10 +56,10 @@ class Playlist < ActiveRecord::Base
 
   def self.second_last_played
 
-    if @lastplayed_songs.where(fullname: @second_last_fullname) != []
+    if @lastplayed_songs.where(fullname: @second_last_fullname) != nil
       puts "#{@second_last_fullname} in last 3 songs"
     else
-      if @full_playlist.where(fullname: @second_last_fullname) != []
+      if @full_playlist.where(fullname: @second_last_fullname) != nil
         playlist = Playlist.find_by_fullname(@second_last_fullname)
         playlist.image = @second_last_image
         playlist.counter += 1
@@ -80,10 +80,10 @@ class Playlist < ActiveRecord::Base
 
   def self.third_last_played
 
-    if @lastplayed_songs.where(fullname: @third_last_fullname) != []
+    if @lastplayed_songs.where(fullname: @third_last_fullname) != nil
       puts "#{@third_last_fullname} in last 3 songs"
     else
-      if @full_playlist.where(fullname: @third_last_fullname) != []
+      if @full_playlist.where(fullname: @third_last_fullname) != nil
         playlist = Playlist.find_by_fullname(@third_last_fullname)
         playlist.image = @third_last_image
         playlist.counter += 1
