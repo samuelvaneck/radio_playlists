@@ -33,13 +33,14 @@ class Playlist < ActiveRecord::Base
   def self.last_played
 
     if @lastplayed_songs.where(fullname: @last_fullname) != []
-      puts "Allready added #{@last_fullname} to the database"
+      puts "#{@last_fullname} in last 3 songs"
     else
       if @full_playlist.where(fullname: @last_fullname) != []
         playlist = Playlist.find_by_fullname(@last_fullname)
         playlist.image = @last_image
         playlist.counter += 1
-        playlist.save!
+        playlist.save
+        puts "#{@last_fullname} + 1"
       else
         playlist = Playlist.new
         playlist.image = @last_image
@@ -48,6 +49,7 @@ class Playlist < ActiveRecord::Base
         playlist.fullname = @last_fullname
         playlist.counter = 1
         playlist.save
+        puts "#{@last_fullname} added to the database"
       end
     end
   end
@@ -61,7 +63,8 @@ class Playlist < ActiveRecord::Base
         playlist = Playlist.find_by_fullname(@second_last_fullname)
         playlist.image = @second_last_image
         playlist.counter += 1
-        playlist.save!
+        playlist.save
+        puts "#{@second_last_fullname} + 1"
       else
         playlist = Playlist.new
         playlist.image = @second_last_image
@@ -70,6 +73,7 @@ class Playlist < ActiveRecord::Base
         playlist.fullname = @second_last_fullname
         playlist.counter = 1
         playlist.save
+        puts "#{@second_last_fullname} added to the database"
       end
     end
   end
@@ -83,7 +87,8 @@ class Playlist < ActiveRecord::Base
         playlist = Playlist.find_by_fullname(@third_last_fullname)
         playlist.image = @third_last_image
         playlist.counter += 1
-        playlist.save!
+        playlist.save
+        puts "#{@third_last_fullname} + 1"
       else
         playlist = Playlist.new
         playlist.image = @third_last_image
@@ -92,6 +97,7 @@ class Playlist < ActiveRecord::Base
         playlist.fullname = @third_last_fullname
         playlist.counter = 1
         playlist.save
+        puts "#{@third_last_fullname} added to the database"
       end
     end
   end
