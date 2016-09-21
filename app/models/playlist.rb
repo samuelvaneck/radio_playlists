@@ -4,9 +4,6 @@ class Playlist < ActiveRecord::Base
   require 'nokogiri'
   require 'open-uri'
 
-  @lastplayed_songs = Playlist.order(updated_at: :desc).limit(3)
-  @full_playlist = Playlist.all
-
   def self.veronica
 
     url = "http://www.radioveronica.nl/gemist/playlist"
@@ -32,10 +29,10 @@ class Playlist < ActiveRecord::Base
 
   def self.last_played
 
-    if @lastplayed_songs.where(fullname: @last_fullname) != []
+    if Playlist.where(fullname: @last_fullname).order(updated_at: :desc).limit(3).exists?
       puts "#{@last_fullname} in last 3 songs"
     else
-      if @full_playlist.where(fullname: @last_fullname) != []
+      if Playlist.where(fullname: @last_fullname).exists?
         playlist = Playlist.find_by_fullname(@last_fullname)
         playlist.image = @last_image
         playlist.counter += 1
@@ -56,10 +53,10 @@ class Playlist < ActiveRecord::Base
 
   def self.second_last_played
 
-    if @lastplayed_songs.where(fullname: @second_last_fullname) != []
+    if Playlist.where(fullname: @second_last_fullname).order(updated_at: :desc).limit(3).exists?
       puts "#{@second_last_fullname} in last 3 songs"
     else
-      if @full_playlist.where(fullname: @second_last_fullname) != []
+      if Playlist.where(fullname: @second_last_fullname).exists?
         playlist = Playlist.find_by_fullname(@second_last_fullname)
         playlist.image = @second_last_image
         playlist.counter += 1
@@ -80,10 +77,10 @@ class Playlist < ActiveRecord::Base
 
   def self.third_last_played
 
-    if @lastplayed_songs.where(fullname: @third_last_fullname) != []
+    if Playlist.where(fullname: @third_last_fullname).order(updated_at: :desc).limit(3).exists?
       puts "#{@third_last_fullname} in last 3 songs"
     else
-      if @full_playlist.where(fullname: @third_last_fullname) != []
+      if Playlist.where(fullname: @third_last_fullname).exists?
         playlist = Playlist.find_by_fullname(@third_last_fullname)
         playlist.image = @third_last_image
         playlist.counter += 1
