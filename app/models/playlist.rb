@@ -5,6 +5,7 @@ class Playlist < ActiveRecord::Base
   require 'open-uri'
 
   @lastplayed_songs = Playlist.order(updated_at: :desc).limit(3)
+  @full_playlist = Playlist.all
 
   def self.veronica
 
@@ -34,9 +35,9 @@ class Playlist < ActiveRecord::Base
     if @lastplayed_songs.where(fullname: @last_fullname) != []
       return false
     else
-      playlist = Playlist.find_by_fullname(@last_fullname)
-
-      if playlist != nil
+      if @full_playlist.where(fullname: @last_fullname) != []
+        playlist = Playlist.find_by_fullname(@last_fullname)
+        playlist.image = @last_image
         playlist.counter += 1
         playlist.save
       else
@@ -56,9 +57,9 @@ class Playlist < ActiveRecord::Base
     if @lastplayed_songs.where(fullname: @second_last_fullname) != []
       return false
     else
-      playlist = Playlist.find_by_fullname(@second_last_fullname)
-
-      if playlist != nil
+      if @full_playlist.where(fullname: @second_last_fullname) != []
+        playlist = Playlist.find_by_fullname(@second_last_fullname)
+        playlist.image = @second_last_image
         playlist.counter += 1
         playlist.save
       else
@@ -78,9 +79,9 @@ class Playlist < ActiveRecord::Base
     if @lastplayed_songs.where(fullname: @third_last_fullname) != []
       return false
     else
-      playlist = Playlist.find_by_fullname(@third_last_fullname)
-
-      if playlist != nil
+      if @full_playlist.where(fullname: @third_last_fullname) != []
+        playlist = Playlist.find_by_fullname(@third_last_fullname)
+        playlist.image = @third_last_image
         playlist.counter += 1
         playlist.save
       else
