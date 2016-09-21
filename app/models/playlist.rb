@@ -29,7 +29,7 @@ class Playlist < ActiveRecord::Base
 
   def self.last_played
 
-    if Playlist.where(fullname: @last_fullname).order(updated_at: :desc).limit(3).exists?
+    if Playlist.order(updated_at: :desc).limit(3).any?{ |playlist| playlist.fullname == @last_fullname }
       puts "#{@last_fullname} in last 3 songs"
     else
       if Playlist.where(fullname: @last_fullname).exists?
@@ -53,7 +53,7 @@ class Playlist < ActiveRecord::Base
 
   def self.second_last_played
 
-    if Playlist.where(fullname: @second_last_fullname).order(updated_at: :desc).limit(3).exists?
+    if Playlist.order(updated_at: :desc).limit(3).any?{ |playlist| playlist.fullname == @second_last_fullname }
       puts "#{@second_last_fullname} in last 3 songs"
     else
       if Playlist.where(fullname: @second_last_fullname).exists?
@@ -77,7 +77,7 @@ class Playlist < ActiveRecord::Base
 
   def self.third_last_played
 
-    if Playlist.where(fullname: @third_last_fullname).order(updated_at: :desc).limit(3).exists?
+    if Playlist.order(updated_at: :desc).limit(3).any?{ |playlist| playlist.fullname == @third_last_fullname }
       puts "#{@third_last_fullname} in last 3 songs"
     else
       if Playlist.where(fullname: @third_last_fullname).exists?
