@@ -32,10 +32,10 @@ class Playlist < ActiveRecord::Base
 
   def self.last_played
 
-    if @lastplayed_songs.where(fullname: @last_fullname) != nil
+    if @lastplayed_songs.where(fullname: @last_fullname) != []
       puts "#{@last_fullname} in last 3 songs"
     else
-      if @full_playlist.where(fullname: @last_fullname) != nil
+      if @full_playlist.where(fullname: @last_fullname) != []
         playlist = Playlist.find_by_fullname(@last_fullname)
         playlist.image = @last_image
         playlist.counter += 1
@@ -56,10 +56,10 @@ class Playlist < ActiveRecord::Base
 
   def self.second_last_played
 
-    if @lastplayed_songs.where(fullname: @second_last_fullname) != nil
+    if @lastplayed_songs.where(fullname: @second_last_fullname) != []
       puts "#{@second_last_fullname} in last 3 songs"
     else
-      if @full_playlist.where(fullname: @second_last_fullname) != nil
+      if @full_playlist.where(fullname: @second_last_fullname) != []
         playlist = Playlist.find_by_fullname(@second_last_fullname)
         playlist.image = @second_last_image
         playlist.counter += 1
@@ -80,10 +80,10 @@ class Playlist < ActiveRecord::Base
 
   def self.third_last_played
 
-    if @lastplayed_songs.where(fullname: @third_last_fullname) != nil
+    if @lastplayed_songs.where(fullname: @third_last_fullname) != []
       puts "#{@third_last_fullname} in last 3 songs"
     else
-      if @full_playlist.where(fullname: @third_last_fullname) != nil
+      if @full_playlist.where(fullname: @third_last_fullname) != []
         playlist = Playlist.find_by_fullname(@third_last_fullname)
         playlist.image = @third_last_image
         playlist.counter += 1
