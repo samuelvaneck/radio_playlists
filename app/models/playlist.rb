@@ -33,7 +33,7 @@ class Playlist < ActiveRecord::Base
   def self.last_played
 
     if @lastplayed_songs.where(fullname: @last_fullname) != []
-      return false
+      puts "Allready added #{@last_fullname} to the database"
     else
       if @full_playlist.where(fullname: @last_fullname) != []
         playlist = Playlist.find_by_fullname(@last_fullname)
@@ -55,7 +55,7 @@ class Playlist < ActiveRecord::Base
   def self.second_last_played
 
     if @lastplayed_songs.where(fullname: @second_last_fullname) != []
-      return false
+      puts "Allready added #{@second_last_fullname} to the database"
     else
       if @full_playlist.where(fullname: @second_last_fullname) != []
         playlist = Playlist.find_by_fullname(@second_last_fullname)
@@ -77,7 +77,7 @@ class Playlist < ActiveRecord::Base
   def self.third_last_played
 
     if @lastplayed_songs.where(fullname: @third_last_fullname) != []
-      return false
+      puts "Allready added #{@third_last_fullname} to the database"
     else
       if @full_playlist.where(fullname: @third_last_fullname) != []
         playlist = Playlist.find_by_fullname(@third_last_fullname)
