@@ -40,7 +40,7 @@ class Playlist < ActiveRecord::Base
         playlist.image = @last_image
         playlist.counter += 1
         playlist.save
-        pputs "Allready added #{@third_last_fullname} to the database"uts "#{@last_fullname} + 1"
+        puts "Allready added #{@third_last_fullname} to the database"uts "#{@last_fullname} + 1"
       else
         playlist = Playlist.new
         playlist.image = @last_image
