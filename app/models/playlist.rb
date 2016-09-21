@@ -37,7 +37,6 @@ class Playlist < ActiveRecord::Base
       playlist = Playlist.find_by_fullname(@last_fullname)
 
       if playlist != nil
-        playlist.image = @last_image
         playlist.counter += 1
         playlist.save
       else
@@ -60,7 +59,6 @@ class Playlist < ActiveRecord::Base
       playlist = Playlist.find_by_fullname(@second_last_fullname)
 
       if playlist != nil
-        playlist.image = @second_last_image
         playlist.counter += 1
         playlist.save
       else
@@ -83,7 +81,6 @@ class Playlist < ActiveRecord::Base
       playlist = Playlist.find_by_fullname(@third_last_fullname)
 
       if playlist != nil
-        playlist.image = @third_last_image
         playlist.counter += 1
         playlist.save
       else
