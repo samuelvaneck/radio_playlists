@@ -26,8 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'nokogiri'
 gem 'whenever', :require => false
-
 gem 'rails_12factor'
+
+gem 'will_paginate', '~> 3.1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
