@@ -29,7 +29,7 @@ class Playlist < ActiveRecord::Base
 
   def self.last_played
 
-    if Playlist.order(updated_at: :desc).limit(3).any?{ |playlist| playlist.fullname == @last_fullname }
+    if Playlist.order(updated_at: :desc).limit(6).any?{ |playlist| playlist.fullname == @last_fullname }
       puts "#{@last_fullname} in last 3 songs"
     else
       if Playlist.where(fullname: @last_fullname).exists?
