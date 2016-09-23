@@ -32,7 +32,7 @@ class Playlist < ActiveRecord::Base
 
   def self.last_played
 
-    if (Time.now.strftime("%H") == 00) && (@last_time[0..-4].to_i == 23)
+    if (Time.now.strftime("%H").to_i == 00) && (@last_time[0..-4].to_i == 23)
       @date = Date.yesterday
       @date.strftime("%d %B %Y")
     else
@@ -67,7 +67,7 @@ class Playlist < ActiveRecord::Base
 
   def self.second_last_played
 
-    if (Time.now.strftime("%H") == 00) && (@second_last_time[0..-4].to_i == "23")
+    if (Time.now.strftime("%H").to_i == 00) && (@second_last_time[0..-4].to_i == "23")
       @date = Date.yesterday
       @date.strftime("%d %B %Y")
     else
@@ -102,7 +102,7 @@ class Playlist < ActiveRecord::Base
 
   def self.third_last_played
 
-    if (Time.now.strftime("%H") == 00) && (@thrid_last_time[0..-4].to_i == 23)
+    if (Time.now.strftime("%H").to_i == 00) && (@thrid_last_time[0..-4].to_i == 23)
       @date = Date.yesterday
       @date.strftime("%d %B %Y")
     else
