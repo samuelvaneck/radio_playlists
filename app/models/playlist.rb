@@ -32,11 +32,11 @@ class Playlist < ActiveRecord::Base
 
   def self.last_played
 
-    if (Time.now.strftime("%H").to_i == 00) && (@last_time[0..-4].to_i == 23)
+    if (Time.zone.now.strftime("%H").to_i == 00) && (@last_time[0..-4].to_i == 23)
       @date = Date.yesterday
       @date.strftime("%d %B %Y")
     else
-      @date = Time.now.strftime("%d %B %Y")
+      @date = Time.zone.now.strftime("%d %B %Y")
     end
 
     if (Playlist.order(updated_at: :desc).limit(6).any?{ |playlist| playlist.fullname == @last_fullname }) || (Playlist.order(created_at: :desc).limit(6).any?{ |playlist| playlist.fullname == @last_fullname })
@@ -67,11 +67,11 @@ class Playlist < ActiveRecord::Base
 
   def self.second_last_played
 
-    if (Time.now.strftime("%H").to_i == 00) && (@second_last_time[0..-4].to_i == "23")
+    if (Time.zone.now.strftime("%H").to_i == 00) && (@second_last_time[0..-4].to_i == "23")
       @date = Date.yesterday
       @date.strftime("%d %B %Y")
     else
-      @date = Time.now.strftime("%d %B %Y")
+      @date = Time.zone.now.strftime("%d %B %Y")
     end
 
     if Playlist.order(updated_at: :desc).limit(3).any?{ |playlist| playlist.fullname == @second_last_fullname } || (Playlist.order(created_at: :desc).limit(6).any?{ |playlist| playlist.fullname == @second_last_fullname })
@@ -102,11 +102,11 @@ class Playlist < ActiveRecord::Base
 
   def self.third_last_played
 
-    if (Time.now.strftime("%H").to_i == 00) && (@thrid_last_time[0..-4].to_i == 23)
+    if (Time.zone.now.strftime("%H").to_i == 00) && (@thrid_last_time[0..-4].to_i == 23)
       @date = Date.yesterday
       @date.strftime("%d %B %Y")
     else
-      @date = Time.now.strftime("%d %B %Y")
+      @date = Time.zone.now.strftime("%d %B %Y")
     end
 
     if Playlist.order(updated_at: :desc).limit(3).any?{ |playlist| playlist.fullname == @third_last_fullname } || (Playlist.order(created_at: :desc).limit(6).any?{ |playlist| playlist.fullname == @third_last_fullname })
