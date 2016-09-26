@@ -11,38 +11,21 @@ Songs are displayed from most played to least played
         <p><%= image_tag playlist.image %></p>
       </td>
       <td>
-        <table>
-          <thead>
-            <tr>
-              <th>
-                Artist
-              </th>
-              <th>
-                Title
-              </th>
-              <th>
-                Last time played
-              </th>
-              <th>
-                Last date played
-              </th>
-              <th>
-                Day Counter
-              </th>
-              <th>
-                Week Counter
-              </th>
-              <th>
-                Month Counter
-              </th>
-              <th>
-                Year Counter
-              </th>
-              <th>
-                Total Counter
-              </th>
-            </tr>
-          </thead>
+        <table class="name">
+          <tr>
+            <td id="artist">
+              Artist
+            </td>
+            <td id="title">
+              Title
+            </td>
+            <td id="last_time">
+              Last time played
+            </td>
+            <td id="last_date">
+              Last date played
+            </td>
+          </tr>
           <tr>
             <td>
               <%= playlist.artist %>
@@ -56,6 +39,27 @@ Songs are displayed from most played to least played
             <td>
               <%= playlist.date %>
             </td>
+          </tr>
+        </table>
+        <table class="counters">
+          <tr>
+            <td>
+              Day
+            </td>
+            <td>
+              Week
+            </td>
+            <td>
+              Month
+            </td>
+            <td>
+              Year
+            </td>
+            <td>
+              Total
+            </td>
+          </tr>
+          <tr>
             <td>
               <%= playlist.day_counter %>
             </td>

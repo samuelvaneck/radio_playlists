@@ -8,9 +8,34 @@ img {
   height: auto;
 }
 
+table.name {
+    float:left;
+}
+
+table.counters  {
+    float:right;
+}​
+
 td {
   padding: 5px;
 }
+
+td#artist {
+  width: 200px;
+}
+
+td#title {
+  width: 300px;
+}
+
+td#last_time {
+  width: 140px;
+}
+
+td#last_date {
+  width: 175px;
+}
+
 th {
   padding: 5px;
 }
