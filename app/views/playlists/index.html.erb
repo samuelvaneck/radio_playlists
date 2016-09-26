@@ -7,40 +7,45 @@ Songs are displayed from most played to least played
 <% @playlists.each do |playlist| %>
   <table>
     <tr>
-      <td>
+      <td id="artist_image">
         <p><%= image_tag playlist.image %></p>
       </td>
       <td>
         <table class="name">
           <tr>
             <td id="artist">
-              Artist
+              <b>Artist</b>
             </td>
-            <td id="title">
-              Title
-            </td>
-            <td id="last_time">
-              Last time played
-            </td>
-            <td id="last_date">
-              Last date played
+            <td id="details">
+              <%= playlist.artist %>
             </td>
           </tr>
           <tr>
-            <td>
-              <%= playlist.artist %>
+            <td id="title">
+              <b>Title</b>
             </td>
             <td>
               <%= playlist.title %>
             </td>
+          </tr>
+          <tr>
+            <td id="last_time">
+              <b>Last time played</b>
+            </td>
             <td>
               <%= playlist.time %>
+            </td>
+          </tr>
+          <tr>
+            <td id="last_date">
+              <b>Last date played</b>
             </td>
             <td>
               <%= playlist.date %>
             </td>
           </tr>
         </table>
+        <hr>
         <table class="counters">
           <tr>
             <td>
@@ -77,6 +82,7 @@ Songs are displayed from most played to least played
             </td>
           </tr>
         </table>
+        <hr>
       </td>
     </tr>
   </table>

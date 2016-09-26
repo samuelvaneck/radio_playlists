@@ -8,36 +8,22 @@ img {
   height: auto;
 }
 
-table.name {
-    float:left;
-}
-
-table.counters  {
-    float:right;
-}​
-
 td {
   padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+td#artist_image{
+    vertical-align: top;
 }
 
 td#artist {
-  width: 200px;
+  width: 150px;
 }
 
-td#title {
+td#details {
   width: 300px;
-}
-
-td#last_time {
-  width: 140px;
-}
-
-td#last_date {
-  width: 175px;
-}
-
-th {
-  padding: 5px;
 }
 
 .pagination {
