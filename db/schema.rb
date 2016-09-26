@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923162824) do
+ActiveRecord::Schema.define(version: 20160926172250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "playlists", force: :cascade do |t|
     t.integer  "radiostation_id"
-    t.integer  "counter"
+    t.integer  "total_counter"
     t.string   "artist"
     t.string   "title"
     t.string   "image"
@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(version: 20160923162824) do
     t.datetime "updated_at",      null: false
     t.string   "time"
     t.string   "date"
+    t.integer  "day_counter"
+    t.integer  "week_counter"
+    t.integer  "month_counter"
+    t.integer  "year_counter"
   end
 
   add_index "playlists", ["radiostation_id"], name: "index_playlists_on_radiostation_id", using: :btree
