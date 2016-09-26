@@ -159,7 +159,7 @@ class Playlist < ActiveRecord::Base
     end
   end
 
-  def self.reset_day_counter
+  def self.reset_day_counters
     songs = Playlist.all
     songs.each do |song|
       song.day_counter = 0
@@ -167,7 +167,7 @@ class Playlist < ActiveRecord::Base
     end
   end
 
-  def self.reset_week_counter
+  def self.reset_week_counters
     songs = Playlist.all
     songs.each do |song|
       song.week_counter = 0
@@ -175,7 +175,7 @@ class Playlist < ActiveRecord::Base
     end
   end
 
-  def self.reset_month_counter
+  def self.reset_month_counters
     songs = Playlist.all
     songs.each do |song|
       song.month_counter = 0
@@ -183,7 +183,7 @@ class Playlist < ActiveRecord::Base
     end
   end
 
-  def self.reset_year_counter
+  def self.reset_year_counters
     songs = Playlist.all
     songs.each do |song|
       song.year_counter = 0
