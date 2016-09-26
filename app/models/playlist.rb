@@ -3,6 +3,7 @@ class Playlist < ActiveRecord::Base
 
   require 'nokogiri'
   require 'open-uri'
+  require 'date'
 
   def self.veronica
 
@@ -168,26 +169,35 @@ class Playlist < ActiveRecord::Base
   end
 
   def self.reset_week_counters
-    songs = Playlist.all
-    songs.each do |song|
-      song.week_counter = 0
-      song.save
+    today = Date.today
+    if today.sunday?
+      songs = Playlist.all
+      songs.each do |song|
+        song.week_counter = 0
+        song.save
+      end
     end
   end
 
   def self.reset_month_counters
-    songs = Playlist.all
-    songs.each do |song|
-      song.month_counter = 0
-      song.save
+    today = Date.today
+    if today == Date.today.end_of_month
+      songs = Playlist.all
+      songs.each do |song|
+        song.month_counter = 0
+        song.save
+      end
     end
   end
 
   def self.reset_year_counters
-    songs = Playlist.all
-    songs.each do |song|
-      song.year_counter = 0
-      song.save
+    today = Date.today
+    if today == Date.today.end_of_year
+      songs = Playlist.all
+      songs.each do |song|
+        song.year_counter = 0
+        song.save
+      end
     end
   end
 
