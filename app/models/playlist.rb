@@ -47,7 +47,11 @@ class Playlist < ActiveRecord::Base
         playlist.image = @last_image
         playlist.time = @last_time
         playlist.date = @date
-        playlist.counter += 1
+        playlist.day_counter += 1
+        playlist.week_counter += 1
+        playlist.month_counter += 1
+        playlist.year_counter += 1
+        playlist.total_counter += 1
         playlist.save
         puts "#{@last_fullname} + 1"
       else
@@ -58,7 +62,11 @@ class Playlist < ActiveRecord::Base
         playlist.artist = @last_artist
         playlist.title = @last_title
         playlist.fullname = @last_fullname
-        playlist.counter = 1
+        playlist.day_counter = 1
+        playlist.week_counter = 1
+        playlist.month_counter = 1
+        playlist.year_counter = 1
+        playlist.total_counter = 1
         playlist.save
         puts "#{@last_fullname} added to the database"
       end
@@ -82,7 +90,11 @@ class Playlist < ActiveRecord::Base
         playlist.image = @second_last_image
         playlist.time = @second_last_time
         playlist.date = @date
-        playlist.counter += 1
+        playlist.day_counter += 1
+        playlist.week_counter += 1
+        playlist.month_counter += 1
+        playlist.year_counter += 1
+        playlist.total_counter += 1
         playlist.save
         puts "#{@second_last_fullname} + 1"
       else
@@ -93,7 +105,11 @@ class Playlist < ActiveRecord::Base
         playlist.artist = @second_last_artist
         playlist.title = @second_last_title
         playlist.fullname = @second_last_fullname
-        playlist.counter = 1
+        playlist.day_counter = 1
+        playlist.week_counter = 1
+        playlist.month_counter = 1
+        playlist.year_counter = 1
+        playlist.total_counter = 1
         playlist.save
         puts "#{@second_last_fullname} added to the database"
       end
@@ -117,7 +133,11 @@ class Playlist < ActiveRecord::Base
         playlist.image = @third_last_image
         playlist.time = @third_last_time
         playlist.date = @date
-        playlist.counter += 1
+        playlist.day_counter += 1
+        playlist.week_counter += 1
+        playlist.month_counter += 1
+        playlist.year_counter += 1
+        playlist.total_counter += 1
         playlist.save
         puts "#{@third_last_fullname} + 1"
       else
@@ -128,10 +148,46 @@ class Playlist < ActiveRecord::Base
         playlist.artist = @third_last_artist
         playlist.title = @third_last_title
         playlist.fullname = @third_last_fullname
-        playlist.counter = 1
+        playlist.day_counter = 1
+        playlist.week_counter = 1
+        playlist.month_counter = 1
+        playlist.year_counter = 1
+        playlist.total_counter = 1
         playlist.save
         puts "#{@third_last_fullname} added to the database"
       end
+    end
+  end
+
+  def self.reset_day_counter
+    songs = Playlist.all
+    songs.each do |song|
+      song.day_counter = 0
+      song.save
+    end
+  end
+
+  def self.reset_week_counter
+    songs = Playlist.all
+    songs.each do |song|
+      song.week_counter = 0
+      song.save
+    end
+  end
+
+  def self.reset_month_counter
+    songs = Playlist.all
+    songs.each do |song|
+      song.month_counter = 0
+      song.save
+    end
+  end
+
+  def self.reset_year_counter
+    songs = Playlist.all
+    songs.each do |song|
+      song.year_counter = 0
+      song.save
     end
   end
 
