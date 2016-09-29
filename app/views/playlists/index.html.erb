@@ -1,98 +1,107 @@
-<h1>Veronica Playlist Counter</h1>
-<h6>Since 23-9-2016 20:30u</h5>
-Songs are displayed from most played to least played
+<div class="center">
+  <h1>Veronica Playlist Counter</h1>
+  <h6>Since 23-9-2016 20:30u</h5>
+</div>
 
-<%= form_tag '/playlists', :method => 'get', role:"search" do %>
-  <p>
-    <%= text_field_tag :search, params[:search], placeholder: "Search artist or song..." %>
-    <%= submit_tag "Search", :name => nil %>
-  <p>
-<% end %>
 
-<p><%= will_paginate @playlists %></p>
+<div class="center">
 
-<% @playlists.each do |playlist| %>
+  <p><%= will_paginate @playlists %></p>
+
   <table>
     <tr>
-      <td id="artist_image">
-        <p><%= image_tag playlist.image %></p>
-      </td>
-      <td>
-        <table class="name">
-          <tr>
-            <td id="artist">
-              <b>Artist</b>
-            </td>
-            <td id="details">
-              <%= playlist.artist %>
-            </td>
-          </tr>
-          <tr>
-            <td id="title">
-              <b>Title</b>
-            </td>
-            <td>
-              <%= playlist.title %>
-            </td>
-          </tr>
-          <tr>
-            <td id="last_time">
-              <b>Last time played</b>
-            </td>
-            <td>
-              <%= playlist.time %>
-            </td>
-          </tr>
-          <tr>
-            <td id="last_date">
-              <b>Last date played</b>
-            </td>
-            <td>
-              <%= playlist.date %>
-            </td>
-          </tr>
-        </table>
-        <hr>
-        <table class="counters">
-          <tr>
-            <td>
-              Day
-            </td>
-            <td>
-              Week
-            </td>
-            <td>
-              Month
-            </td>
-            <td>
-              Year
-            </td>
-            <td>
-              Total
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%= playlist.day_counter %>
-            </td>
-            <td>
-              <%= playlist.week_counter %>
-            </td>
-            <td>
-              <%= playlist.month_counter %>
-            </td>
-            <td>
-              <%= playlist.year_counter %>
-            </td>
-            <td>
-              <%= playlist.total_counter %><br>
-            </td>
-          </tr>
-        </table>
-        <hr>
-      </td>
+      <%= form_tag '/playlists', :method => 'get', role:"search" do %>
+        <p>
+          <%= text_field_tag :search, params[:search], placeholder: "Search artist or song...", class: "input-field" %>
+          <%= submit_tag "Search", :name => nil, class: "search-button" %>
+        <p>
+      <% end %>
     </tr>
   </table>
-<% end %>
+  <% @playlists.each do |playlist| %>
+    <table>
+      <tr>
+        <td id="artist_image">
+          <p><%= image_tag playlist.image %></p>
+        </td>
+        <td>
+          <table class="name">
+            <tr>
+              <td id="artist">
+                <b>Artist</b>
+              </td>
+              <td id="details">
+                <%= playlist.artist %>
+              </td>
+            </tr>
+            <tr>
+              <td id="title">
+                <b>Title</b>
+              </td>
+              <td>
+                <%= playlist.title %>
+              </td>
+            </tr>
+            <tr>
+              <td id="last_time">
+                <b>Last time played</b>
+              </td>
+              <td>
+                <%= playlist.time %>
+              </td>
+            </tr>
+            <tr>
+              <td id="last_date">
+                <b>Last date played</b>
+              </td>
+              <td>
+                <%= playlist.date %>
+              </td>
+            </tr>
+          </table>
+          <hr>
+          <table class="counters">
+            <tr>
+              <td>
+                Day
+              </td>
+              <td>
+                Week
+              </td>
+              <td>
+                Month
+              </td>
+              <td>
+                Year
+              </td>
+              <td>
+                Total
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= playlist.day_counter %>
+              </td>
+              <td>
+                <%= playlist.week_counter %>
+              </td>
+              <td>
+                <%= playlist.month_counter %>
+              </td>
+              <td>
+                <%= playlist.year_counter %>
+              </td>
+              <td>
+                <%= playlist.total_counter %><br>
+              </td>
+            </tr>
+          </table>
+          <hr>
+        </td>
+      </tr>
+    </table>
+  <% end %>
 
-<p><%= will_paginate @playlists %></p>
+  <p><%= will_paginate @playlists %></p>
+
+</div>
