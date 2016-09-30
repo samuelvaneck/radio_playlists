@@ -1,7 +1,5 @@
 class PlaylistsController < ApplicationController
 
-
-
   def index
     if params[:search].present?
       @playlists = Playlist.where("fullname ILIKE ?", "%#{params[:search]}%").paginate(page: params[:page]).per_page(25)

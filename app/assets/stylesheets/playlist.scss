@@ -3,61 +3,8 @@ body {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 
-img {
-  width: 76px;
-  max-width: 76px;
-  height: auto;
-}ut
-
-.center {
-  margin: auto;
-  width: 98%;
-}
-
-table {
-  width: auto;
-}
-
-td {
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-td#artist_image{
-    vertical-align: top;
-}
-
-td#artist {
-  width: 150px;
-}
-
-td#details {
-  width: 450px;
-}
-
-.input-field {
-  width: 200px;
-  padding: 10px;
-  border-radius: 4px;
-  /*border-color: #00AEEF;*/
-}
-
-.search-button {
-  background-color: white;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 4px;
-  border-color: #00AEEF;
-  padding: 10px;
-  -webkit-appearance: none;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-}
-
-.search-button:hover {
-  background-color: #00AEEF;
-  color: white;
+h1 {
+  color: blue;
 }
 
 .pagination {
@@ -79,20 +26,20 @@ td#details {
 .pagination .current {
   font-style: normal;
   font-weight: bold;
-  background: #2e6ab1;
+  background: #00AEEF;
   color: white;
-  border: 1px solid #2e6ab1;
+  border: 1px solid #00AEEF;
 }
 
 .pagination a {
   text-decoration: none;
   color: #105cb6;
-  border: 1px solid #9aafe5;
+  border: 1px solid #00AEEF;
 }
 
 .pagination a:hover, .pagination a:focus {
-    color: #000033;
-    border-color: #000033;
+    color: #00AEEF;
+    border-color: #00AEEF;
 }
 
 .pagination .page_info {
