@@ -7,6 +7,7 @@ class Playlist < ActiveRecord::Base
 
   def self.veronica
 
+    # Fetching the data from the website and assinging them to variables
     url = "http://www.radioveronica.nl/gemist/playlist"
     doc = Nokogiri::HTML(open(url))
     @last_image = doc.xpath("//img[@class='playlistimg']/@src")[0].value
@@ -25,6 +26,7 @@ class Playlist < ActiveRecord::Base
     @third_last_title = doc.xpath("//tr[3]//td[4]").text
     @third_last_fullname = "#{@third_last_artist} #{@third_last_title}"
 
+    # Methodes for checking songs
     Playlist.last_played
     Playlist.second_last_played
     Playlist.third_last_played
@@ -33,42 +35,37 @@ class Playlist < ActiveRecord::Base
 
   def self.last_played
 
-    if (Time.zone.now.strftime("%H").to_i == 00) && (@last_time[0..-4].to_i == 23)
-      @date = Date.yesterday
-      @date.strftime("%d %B %Y")
-    else
-      @date = Time.zone.now.strftime("%d %B %Y")
-    end
+    time = @last_time
 
+    # Go to the methode for checking which date the song is played.
+    Playlist.check_date(time)
+
+    # Check if the song hasn't been played lately. It checks the last 6 database records that have been updated or have been created.
+    # If the fullname of the song matches a fullname of any of them it doesn't continue.
     if (Playlist.order(updated_at: :desc).limit(6).any?{ |playlist| playlist.fullname == @last_fullname }) || (Playlist.order(created_at: :desc).limit(6).any?{ |playlist| playlist.fullname == @last_fullname })
       puts "#{@last_fullname} in last 3 songs"
     else
+      # Checking if the song fullname is present in the database.
+      # If the song is present it increments the counters by one.
       if Playlist.where(fullname: @last_fullname).exists?
-        playlist = Playlist.find_by_fullname(@last_fullname)
-        playlist.image = @last_image
-        playlist.time = @last_time
-        playlist.date = @date
-        playlist.day_counter += 1
-        playlist.week_counter += 1
-        playlist.month_counter += 1
-        playlist.year_counter += 1
-        playlist.total_counter += 1
-        playlist.save
+        @playlist = Playlist.find_by_fullname(@last_fullname)
+        @playlist.image = @last_image
+        @playlist.time = @last_time
+        @playlist.date = @date
+        Playlist.increment_counters
+        @playlist.save
         puts "#{@last_fullname} + 1"
+      # If the song isn't present it creates a new record
       else
-        playlist = Playlist.new
-        playlist.image = @last_image
-        playlist.time = @last_time
-        playlist.date = @date
-        playlist.artist = @last_artist
-        playlist.title = @last_title
-        playlist.fullname = @last_fullname
-        playlist.day_counter = 1
-        playlist.week_counter = 1
-        playlist.month_counter = 1
-        playlist.year_counter = 1
-        playlist.total_counter = 1
-        playlist.save
+        @playlist = Playlist.new
+        @playlist.image = @last_image
+        @playlist.time = @last_time
+        @playlist.date = @date
+        @playlist.artist = @last_artist
+        @playlist.title = @last_title
+        @playlist.fullname = @last_fullname
+        Playlist.counters_equals_one
+        @playlist.save
         puts "#{@last_fullname} added to the database"
       end
     end
@@ -76,42 +73,35 @@ class Playlist < ActiveRecord::Base
 
   def self.second_last_played
 
-    if (Time.zone.now.strftime("%H").to_i == 00) && (@second_last_time[0..-4].to_i == "23")
-      @date = Date.yesterday
-      @date.strftime("%d %B %Y")
-    else
-      @date = Time.zone.now.strftime("%d %B %Y")
-    end
+    time = @second_last_time
 
+    # Go to the methode for checking which date the song is played.
+    Playlist.check_date(time)
+
+    # Check if the song hasn't been played lately. It checks the last 6 database records that have been updated or have been created.
+    # If the fullname of the song matches a fullname of any of them it doesn't continue.
     if Playlist.order(updated_at: :desc).limit(6).any?{ |playlist| playlist.fullname == @second_last_fullname } || (Playlist.order(created_at: :desc).limit(6).any?{ |playlist| playlist.fullname == @second_last_fullname })
       puts "#{@second_last_fullname} in last 3 songs"
     else
       if Playlist.where(fullname: @second_last_fullname).exists?
-        playlist = Playlist.find_by_fullname(@second_last_fullname)
-        playlist.image = @second_last_image
-        playlist.time = @second_last_time
-        playlist.date = @date
-        playlist.day_counter += 1
-        playlist.week_counter += 1
-        playlist.month_counter += 1
-        playlist.year_counter += 1
-        playlist.total_counter += 1
-        playlist.save
+        @playlist = Playlist.find_by_fullname(@second_last_fullname)
+        @playlist.image = @second_last_image
+        @playlist.time = @second_last_time
+        @playlist.date = @date
+        Playlist.increment_counters
+        @playlist.save
         puts "#{@second_last_fullname} + 1"
+      # If the song isn't present it creates a new record
       else
-        playlist = Playlist.new
-        playlist.image = @second_last_image
-        playlist.time = @second_last_time
-        playlist.date = @date
-        playlist.artist = @second_last_artist
-        playlist.title = @second_last_title
-        playlist.fullname = @second_last_fullname
-        playlist.day_counter = 1
-        playlist.week_counter = 1
-        playlist.month_counter = 1
-        playlist.year_counter = 1
-        playlist.total_counter = 1
-        playlist.save
+        @playlist = Playlist.new
+        @playlist.image = @second_last_image
+        @playlist.time = @second_last_time
+        @playlist.date = @date
+        @playlist.artist = @second_last_artist
+        @playlist.title = @second_last_title
+        @playlist.fullname = @second_last_fullname
+        Playlist.counters_equals_one
+        @playlist.save
         puts "#{@second_last_fullname} added to the database"
       end
     end
@@ -119,47 +109,72 @@ class Playlist < ActiveRecord::Base
 
   def self.third_last_played
 
-    if (Time.zone.now.strftime("%H").to_i == 00) && (@thrid_last_time[0..-4].to_i == 23)
-      @date = Date.yesterday
-      @date.strftime("%d %B %Y")
-    else
-      @date = Time.zone.now.strftime("%d %B %Y")
-    end
+    time = @third_last_time
 
+    # Go to the methode for checking which date the song is played.
+    Playlist.check_date(time)
+
+    # Check if the song hasn't been played lately. It checks the last 6 database records that have been updated or have been created.
+    # If the fullname of the song matches a fullname of any of them it doesn't continue.
     if Playlist.order(updated_at: :desc).limit(6).any?{ |playlist| playlist.fullname == @third_last_fullname } || (Playlist.order(created_at: :desc).limit(6).any?{ |playlist| playlist.fullname == @third_last_fullname })
       puts "#{@third_last_fullname} in last 3 songs"
     else
       if Playlist.where(fullname: @third_last_fullname).exists?
-        playlist = Playlist.find_by_fullname(@third_last_fullname)
-        playlist.image = @third_last_image
-        playlist.time = @third_last_time
-        playlist.date = @date
-        playlist.day_counter += 1
-        playlist.week_counter += 1
-        playlist.month_counter += 1
-        playlist.year_counter += 1
-        playlist.total_counter += 1
-        playlist.save
+        @playlist = Playlist.find_by_fullname(@third_last_fullname)
+        @playlist.image = @third_last_image
+        @playlist.time = @third_last_time
+        @playlist.date = @date
+        Playlist.increment_counters
+        @playlist.save
         puts "#{@third_last_fullname} + 1"
+      # If the song isn't present it creates a new record
       else
-        playlist = Playlist.new
-        playlist.image = @third_last_image
-        playlist.time = @third_last_time
-        playlist.date = @date
-        playlist.artist = @third_last_artist
-        playlist.title = @third_last_title
-        playlist.fullname = @third_last_fullname
-        playlist.day_counter = 1
-        playlist.week_counter = 1
-        playlist.month_counter = 1
-        playlist.year_counter = 1
-        playlist.total_counter = 1
-        playlist.save
+        @playlist = Playlist.new
+        @playlist.image = @third_last_image
+        @playlist.time = @third_last_time
+        @playlist.date = @date
+        @playlist.artist = @third_last_artist
+        @playlist.title = @third_last_title
+        @playlist.fullname = @third_last_fullname
+        Playlist.counters_equals_one
+        @playlist.save
         puts "#{@third_last_fullname} added to the database"
       end
     end
   end
 
+  # Methode for defining the date the song is played.
+  # if the time in current time zone (Amsterdam) is past midnight and the played song
+  # is played at 23h the date is set to yesterday.
+  def self.check_date(time)
+    if (Time.zone.now.strftime("%H").to_i == 0) && (time[0..-4].to_i == 23)
+      @date = Date.yesterday
+      @date.strftime("%d %B %Y")
+    # if not the current date is set as the date the song is played
+    else
+      @date = Time.zone.now.strftime("%d %B %Y")
+    end
+  end
+
+  # increment the counters by one. Methode for when the song is allready in the database.
+  def self.increment_counters
+    @playlist.day_counter += 1
+    @playlist.week_counter += 1
+    @playlist.month_counter += 1
+    @playlist.year_counter += 1
+    @playlist.total_counter += 1
+  end
+
+  # set the counter equal to one if a new record is made for the song.
+  def self.counters_equals_one
+    @playlist.day_counter = 1
+    @playlist.week_counter = 1
+    @playlist.month_counter = 1
+    @playlist.year_counter = 1
+    @playlist.total_counter = 1
+  end
+
+  # Reset the day counter. Runs everyday at midnight.
   def self.reset_day_counters
     songs = Playlist.all
     songs.each do |song|
@@ -168,6 +183,7 @@ class Playlist < ActiveRecord::Base
     end
   end
 
+  # Reset the week counter. Runs Monday at midnight.
   def self.reset_week_counters
     today = Date.today
     if today.sunday?
@@ -179,6 +195,7 @@ class Playlist < ActiveRecord::Base
     end
   end
 
+  # Reset the month counter. Runs at the end of the month.
   def self.reset_month_counters
     today = Date.today
     if today == Date.today.end_of_month
@@ -190,6 +207,7 @@ class Playlist < ActiveRecord::Base
     end
   end
 
+  # Reset the year counter. Runs at the end of the year.
   def self.reset_year_counters
     today = Date.today
     if today == Date.today.end_of_year
