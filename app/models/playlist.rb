@@ -200,4 +200,12 @@ class Playlist < ActiveRecord::Base
     end
   end
 
+  def search_fullname
+    Playlist.try(:fullname)
+  end
+
+  def search_fullname=(fullname)
+    self.search_fullname = Playlist.find_by_fullname(fullname) if fullname.present?
+  end
+
 end

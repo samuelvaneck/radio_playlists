@@ -1,6 +1,6 @@
 <div class="center">
   <span class="blue-text"><h1>Veronica Playlist Counter</h1></span>
-  <h6>Since 23-9-2016 20:30u | Total songs: <%= @playlists.count %></h5>
+  <p><h6>Since 23-9-2016 20:30u | Total songs: <%= @playlists.count %> | <a href="/radio538playlists">Radio 538 Playlist Counter</a></h6></p>
 </div>
 
 <div class="container">
@@ -12,9 +12,9 @@
 
   <div class="row">
     <div class="col s12 m12 l12">
-      <%= form_tag '/playlists', :method => 'get', role:"search" do %>
+      <%= form_tag '/playlists', :method => 'get', role:"search" do  %>
         <p>
-          <%= text_field_tag :search, params[:search], placeholder: "Search artist or song...", class: "input-field" %>
+          <%= text_field_tag :search_fullname, params[:search], placeholder: "Search artist or song...", data: { autocomplete_source: autocomplete_playlists_path } %>
           <%= submit_tag "Search", :name => nil, class: "waves-effect waves-light btn blue" %>
         <p>
       <% end %>
