@@ -202,5 +202,12 @@ class Radio538playlist < ActiveRecord::Base
     end
   end
 
+  def search_fullname
+    Radio538playlist.try(:fullname)
+  end
+
+  def search_fullname=(fullname)
+    self.search_fullname = Radio538playlist.find_by_fullname(fullname) if fullname.present?
+  end
 
 end
