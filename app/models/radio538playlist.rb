@@ -5,10 +5,10 @@ class Radio538playlist < ActiveRecord::Base
   require 'open-uri'
   require 'date'
 
-  def self.538
+  def self.radio538
 
     # Fetching the data from the website and assinging them to variables
-    url = "http://www.radioveronica.nl/gemist/playlist"
+    url = "https://www.relisten.nl/playlists/538.html"
     doc = Nokogiri::HTML(open(url))
     @last_image = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/a/img/@src').text
     @last_time = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4/small').text
@@ -40,7 +40,7 @@ class Radio538playlist < ActiveRecord::Base
     time = @last_time
 
     # Go to the methode for checking which date the song is played.
-    Playlist.check_date(time)
+    Radio538playlist.check_date(time)
 
     fullname = @last_fullname
     image = @last_image
@@ -50,7 +50,7 @@ class Radio538playlist < ActiveRecord::Base
     title = @last_title
 
     # Go to the methode for checking the song
-    Playlist.song_check(fullname, image, time, date, artist, title)
+    Radio538playlist.song_check(fullname, image, time, date, artist, title)
 
   end
 
@@ -59,7 +59,7 @@ class Radio538playlist < ActiveRecord::Base
     time = @second_last_time
 
     # Go to the methode for checking which date the song is played.
-    Playlist.check_date(time)
+    Radio538playlist.check_date(time)
 
     fullname = @second_last_fullname
     image = @second_last_image
@@ -69,7 +69,7 @@ class Radio538playlist < ActiveRecord::Base
     title = @second_last_title
 
     # Go to the methode for checking the song
-    Playlist.song_check(fullname, image, time, date, artist, title)
+    Radio538playlist.song_check(fullname, image, time, date, artist, title)
 
   end
 
@@ -78,7 +78,7 @@ class Radio538playlist < ActiveRecord::Base
     time = @third_last_time
 
     # Go to the methode for checking which date the song is played.
-    Playlist.check_date(time)
+    Radio538playlist.check_date(time)
 
     fullname = @third_last_fullname
     image = @third_last_image
@@ -88,7 +88,7 @@ class Radio538playlist < ActiveRecord::Base
     title = @third_last_title
 
     # Go to the methode for checking the song
-    Playlist.song_check(fullname, image, time, date, artist, title)
+    Radio538playlist.song_check(fullname, image, time, date, artist, title)
 
   end
 
@@ -96,29 +96,29 @@ class Radio538playlist < ActiveRecord::Base
 
     # Check if the song hasn't been played lately. It checks the last 6 database records that have been updated or have been created.
     # If the fullname of the song matches a fullname of any of them it doesn't continue.
-    if (Playlist.order(updated_at: :desc).limit(6).any?{ |playlist| playlist.fullname == fullname }) || (Playlist.order(created_at: :desc).limit(6).any?{ |playlist| playlist.fullname == fullname })
+    if (Radio538playlist.order(updated_at: :desc).limit(6).any?{ |playlist| playlist.fullname == fullname }) || (Radio538playlist.order(created_at: :desc).limit(6).any?{ |playlist| playlist.fullname == fullname })
       puts "#{fullname} in last 3 songs"
     else
       # Checking if the song fullname is present in the database.
       # If the song is present it increments the counters by one.
-      if Playlist.where(fullname: fullname).exists?
-        @playlist = Playlist.find_by_fullname(fullname)
+      if Radio538playlist.where(fullname: fullname).exists?
+        @playlist = Radio538playlist.find_by_fullname(fullname)
         @playlist.image = image
         @playlist.time = time
         @playlist.date = date
-        Playlist.increment_counters
+        Radio538playlist.increment_counters
         @playlist.save
         puts "#{fullname} + 1"
       # If the song isn't present it creates a new record
       else
-        @playlist = Playlist.new
+        @playlist = Radio538playlist.new
         @playlist.image = image
         @playlist.time = time
         @playlist.date = date
         @playlist.artist = artist
         @playlist.title = title
         @playlist.fullname = fullname
-        Playlist.counters_equals_one
+        Radio538playlist.counters_equals_one
         @playlist.save
         puts "#{fullname} added to the database"
       end
@@ -159,7 +159,7 @@ class Radio538playlist < ActiveRecord::Base
 
   # Reset the day counter. Runs everyday at midnight.
   def self.reset_day_counters
-    songs = Playlist.all
+    songs = Radio538playlist.all
     songs.each do |song|
       song.day_counter = 0
       song.save
@@ -170,7 +170,7 @@ class Radio538playlist < ActiveRecord::Base
   def self.reset_week_counters
     today = Date.today
     if today.sunday?
-      songs = Playlist.all
+      songs = Radio538playlist.all
       songs.each do |song|
         song.week_counter = 0
         song.save
@@ -182,7 +182,7 @@ class Radio538playlist < ActiveRecord::Base
   def self.reset_month_counters
     today = Date.today
     if today == Date.today.end_of_month
-      songs = Playlist.all
+      songs = Radio538playlist.all
       songs.each do |song|
         song.month_counter = 0
         song.save
@@ -194,7 +194,7 @@ class Radio538playlist < ActiveRecord::Base
   def self.reset_year_counters
     today = Date.today
     if today == Date.today.end_of_year
-      songs = Playlist.all
+      songs = Radio538playlist.all
       songs.each do |song|
         song.year_counter = 0
         song.save
