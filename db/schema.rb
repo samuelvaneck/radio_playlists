@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002130341) do
+ActiveRecord::Schema.define(version: 20161002132100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20161002130341) do
 
   add_index "playlists", ["radiostation_id"], name: "index_playlists_on_radiostation_id", using: :btree
 
-  create_table "radio_538_playlists", force: :cascade do |t|
+  create_table "radio538playlists", force: :cascade do |t|
     t.string   "artist"
     t.string   "title"
     t.string   "image"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20161002130341) do
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "radio_538_playlists", ["radiostation_id"], name: "index_radio_538_playlists_on_radiostation_id", using: :btree
+  add_index "radio538playlists", ["radiostation_id"], name: "index_radio538playlists_on_radiostation_id", using: :btree
 
   create_table "radiostations", force: :cascade do |t|
     t.string   "name"
@@ -62,5 +62,5 @@ ActiveRecord::Schema.define(version: 20161002130341) do
   end
 
   add_foreign_key "playlists", "radiostations"
-  add_foreign_key "radio_538_playlists", "radiostations"
+  add_foreign_key "radio538playlists", "radiostations"
 end

@@ -1,6 +1,6 @@
-class CreateRadio538Playlists < ActiveRecord::Migration
+class CreateRadio538playlists < ActiveRecord::Migration
   def change
-    create_table :radio_538_playlists do |t|
+    create_table :radio538playlists do |t|
       t.string :artist
       t.string :title
       t.string :image
