@@ -9,7 +9,7 @@ class PlaylistsController < ApplicationController
   end
 
   def autocomplete
-    @results = Playlist.order(:fullname).where("fullname ILIKE ?", "%#{params[:term]}%")
+    @results = Playlist.order(:fullname).where("fullname ILIKE ?", "%#{params[:term]}%").limit(10)
     render json: @results.map(&:fullname)
   end
 

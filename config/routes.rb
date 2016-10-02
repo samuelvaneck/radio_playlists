@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     collection { get :autocomplete }
   end
 
-  resources :radio538playlists
+  resources :radio538playlists do
+    collection { get :autocomplete }
+  end
 
   root 'playlists#index'
 
