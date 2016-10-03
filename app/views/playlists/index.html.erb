@@ -12,6 +12,27 @@
 
   <div class="row">
     <div class="col s12 m12 l12">
+      <table class="striped">
+        <tr>
+          <td>Unique tracks count</td>
+          <td>Today</td>
+          <td>Week</td>
+          <td>Month</th>
+          <td>Year</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= @uniq_tracks_day %></td>
+          <td><%= @uniq_tracks_week %></td>
+          <td><%= @uniq_tracks_month %></td>
+          <td><%= @uniq_tracks_year %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m12 l12">
       <%= form_tag '/playlists', :method => 'get', role:"search" do  %>
         <p>
           <%= text_field_tag :search_fullname, params[:search], placeholder: "Search artist or song...", data: { autocomplete_source: autocomplete_playlists_path } %>
@@ -63,7 +84,7 @@
         <table class="striped">
           <tr>
             <td>
-              <b>Day<b>
+              <b>Today<b>
             </td>
             <td>
               <b>Week<b>

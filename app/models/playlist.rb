@@ -200,6 +200,22 @@ class Playlist < ActiveRecord::Base
     end
   end
 
+  def self.uniq_tracks_day
+    where('updated_at >= ?', DateTime.now.beginning_of_day).count
+  end
+
+  def self.uniq_tracks_week
+    where('updated_at >= ?', 1.week.ago).count
+  end
+
+  def self.uniq_tracks_month
+    where('updated_at >= ?', 1.month.ago).count
+  end
+
+  def self.uniq_tracks_year
+    where('updated_at >= ?', 1.year.ago).count
+  end
+
   def search_fullname
     Playlist.try(:fullname)
   end
