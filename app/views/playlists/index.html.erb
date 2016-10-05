@@ -14,7 +14,7 @@
     <div class="col s12 m12 l12">
       <table class="striped">
         <tr>
-          <td>Unique tracks count</td>
+          <td>Unique songs</td>
           <td>Today</td>
           <td>Week</td>
           <td>Month</th>
@@ -42,89 +42,9 @@
     </div>
   </div>
 
-  <% @playlists.each do |playlist| %>
-    <div class="row">
-      <div class="col s12 m12 l6">
-        <table class="striped">
-          <tr>
-            <td id="playlist-variables">
-              <b>Artist</b>
-            </td>
-            <td>
-              <%= playlist.artist %><br>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <b>Title</b>
-            </td>
-            <td>
-              <%= playlist.title %><br>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <b>Last time played</b>
-            </td>
-            <td>
-              <%= playlist.time %><br>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <b>Last date played</b>
-            </td>
-            <td>
-              <%= playlist.date %><br>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class="col s12 m12 l6">
-        <table class="striped">
-          <tr>
-            <td>
-              <b>Today<b>
-            </td>
-            <td>
-              <b>Week<b>
-            </td>
-            <td>
-              <b>Month<b>
-            </td>
-            <td>
-              <b>Year<b>
-            </td>
-            <td>
-              <b>Total<b>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%= playlist.day_counter %>
-            </td>
-            <td>
-              <%= playlist.week_counter %>
-            </td>
-            <td>
-              <%= playlist.month_counter %>
-            </td>
-            <td>
-              <%= playlist.year_counter %><br>
-            </td>
-            <td>
-              <%= playlist.total_counter %><br>
-            </td>
-          </tr>
-          <tr>
-            <td class="center">
-              <%= image_tag playlist.image, class: "responsive-img z-depth-1", size: "76x76" %>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  <% end %>
+  <div  id="playlists">
+    <%= render 'playlist' %>
+  </div>
 
   <div class="row">
     <p><%= will_paginate @playlists %></p>
