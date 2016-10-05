@@ -4,7 +4,7 @@ class Radio538playlistsController < ApplicationController
     if params[:search_fullname].present?
       @radio538playlists = Radio538playlist.where("fullname ILIKE ?", "%#{params[:search_fullname]}%").paginate(page: params[:page]).per_page(25)
     else
-      @radio538playlists = Radio538playlist.order(total_counter: :desc).paginate(page: params[:page]).per_page(25)
+      @radio538playlists = Radio538playlist.order(updated_at: :desc).paginate(page: params[:page]).per_page(25)
     end
     @uniq_tracks_day = Radio538playlist.uniq_tracks_day
     @uniq_tracks_week = Radio538playlist.uniq_tracks_week
