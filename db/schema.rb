@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002132100) do
+ActiveRecord::Schema.define(version: 20161007185854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(version: 20161002132100) do
   end
 
   add_index "playlists", ["radiostation_id"], name: "index_playlists_on_radiostation_id", using: :btree
+
+  create_table "radio2playlists", force: :cascade do |t|
+    t.string   "artist"
+    t.string   "title"
+    t.string   "image"
+    t.string   "fullname"
+    t.string   "time"
+    t.string   "date"
+    t.integer  "day_counter",   default: 0
+    t.integer  "week_counter",  default: 0
+    t.integer  "month_counter", default: 0
+    t.integer  "year_counter",  default: 0
+    t.integer  "total_counter", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "radio538playlists", force: :cascade do |t|
     t.string   "artist"
@@ -59,6 +75,22 @@ ActiveRecord::Schema.define(version: 20161002132100) do
     t.string   "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sublimefmplaylists", force: :cascade do |t|
+    t.string   "artist"
+    t.string   "title"
+    t.string   "image"
+    t.string   "fullname"
+    t.string   "time"
+    t.string   "date"
+    t.integer  "day_counter",   default: 0
+    t.integer  "week_counter",  default: 0
+    t.integer  "month_counter", default: 0
+    t.integer  "year_counter",  default: 0
+    t.integer  "total_counter", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_foreign_key "playlists", "radiostations"
