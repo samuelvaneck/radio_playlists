@@ -5,7 +5,7 @@ class Radio2playlist < ActiveRecord::Base
   require 'open-uri'
   require 'date'
 
-  def self.veronica
+  def self.radio2
 
     # Fetching the data from the website and assinging them to variables
     url = "http://www.nporadio2.nl/playlist"
