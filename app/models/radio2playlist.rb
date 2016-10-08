@@ -25,7 +25,7 @@ class Radio2playlist < ActiveRecord::Base
     @third_last_image = list.xpath('//li[last()-2]/a/div/div/img/@src').first.text
     @third_last_time = list.xpath('//li[last()-2]/a/div[3]/div/p').first.text
     @third_last_artist = list.xpath('//li[last()-2]/a/div[2]/div/p[1]').first.text
-    @third_title = list.xpath('//li[last()-2]/a/div[2]/div/p[2]').first.text
+    @third_last_title = list.xpath('//li[last()-2]/a/div[2]/div/p[2]').first.text
     @third_last_fullname = "#{@third_last_artist} #{@third_last_title}"
 
     # Methodes for checking songs
