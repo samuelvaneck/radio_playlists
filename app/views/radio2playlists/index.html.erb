@@ -1,13 +1,13 @@
 <div class="center">
-  <span class="blue-text"><h1><a href="/playlists">Veronica Playlist Counter</a></h1></span>
-  <p><h6>Since 23-9-2016 20:30h</h6></p>
-  <p><h6><a href="/radio538playlists">Radio 538 Playlist Counter</a> | <a href="/radio2playlists">Radio 2 Playlist Counter</a></h6></p>
+  <span class="blue-text"><h1><a href="/radio2playlists">Radio 2 Playlist Counter</a></h1></span>
+  <p><h6>Since 8-10-2016 9:30h</h6></p>
+  <p><h6><a href="/playlists">Veronica Playlist Counter</a> | <a href="/radio538playlists">Radio 538 Playlist Counter</a></h6></p>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col s12 m12 l12">
-      <p><%= will_paginate @playlists %></p>
+      <p><%= will_paginate @radio2playlists %></p>
     </div>
   </div>
 
@@ -28,7 +28,7 @@
           <td><%= @uniq_tracks_week %></td>
           <td><%= @uniq_tracks_month %></td>
           <td><%= @uniq_tracks_year %></td>
-          <td><%= @playlists.count %></td>
+          <td><%= @radio2playlists.count %> </td>
         </tr>
       </table>
     </div>
@@ -50,7 +50,7 @@
   </div>
 
   <div class="row">
-    <p><%= will_paginate @playlists %></p>
+    <p><%= will_paginate @radio2playlists %></p>
   </div>
 
 </div>
