@@ -17,4 +17,33 @@ class SublimefmplaylistsController < ApplicationController
     render json: @results.map(&:fullname)
   end
 
+  def sort_today
+    @sublimefmplaylists = Sublimefmplaylist.sort_today.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_week
+    @sublimefmplaylists = Sublimefmplaylist.sort_week.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_month
+    @sublimefmplaylists = Sublimefmplaylist.sort_month.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_year
+    @sublimefmplaylists = Sublimefmplaylist.sort_year.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_total
+    @sublimefmplaylists = Sublimefmplaylist.sort_total.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_created
+    @sublimefmplaylists = Sublimefmplaylist.sort_created.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_updated
+    @sublimefmplaylists = Sublimefmplaylist.sort_updated.paginate(page: params[:page]).per_page(10)
+  end
+
+
 end

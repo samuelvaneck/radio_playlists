@@ -6,6 +6,34 @@ class Sublimefmplaylist < ActiveRecord::Base
 
   validates_presence_of :artist, :title, :time
 
+  def self.sort_today
+    order(day_counter: :desc)
+  end
+
+  def self.sort_week
+    order(week_counter: :desc)
+  end
+
+  def self.sort_month
+    order(month_counter: :desc)
+  end
+
+  def self.sort_year
+    order(year_counter: :desc)
+  end
+
+  def self.sort_total
+    order(total_counter: :desc)
+  end
+
+  def self.sort_created
+    order(created_at: :desc)
+  end
+
+  def self.sort_updated
+    order(updated_at: :desc)
+  end
+
   def self.sublime
 
     # Fetching the data from the website and assinging them to variables
