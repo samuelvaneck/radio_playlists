@@ -5,6 +5,8 @@ class Radio538playlist < ActiveRecord::Base
   require 'open-uri'
   require 'date'
 
+  validates_presence_of :artist, :title, :time
+
   def self.radio538
 
     # Fetching the data from the website and assinging them to variables
