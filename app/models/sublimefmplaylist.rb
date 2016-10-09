@@ -4,10 +4,12 @@ class Sublimefmplaylist < ActiveRecord::Base
   require 'open-uri'
   require 'date'
 
+  validates_presence_of :artist, :title, :time
+
   def self.sublime
 
     # Fetching the data from the website and assinging them to variables
-    url = "http://www.radioveronica.nl/gemist/playlist"
+    url = "http://playlist24.nl/sublime-fm-playlist/"
     doc = Nokogiri::HTML(open(url))
     @last_time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
     @last_artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text
@@ -97,7 +99,6 @@ class Sublimefmplaylist < ActiveRecord::Base
       # If the song is present it increments the counters by one.
       if Sublimefmplaylist.where(fullname: fullname).exists?
         @playlist = Sublimefmplaylist.find_by_fullname(fullname)
-        @playlist.image = image
         @playlist.time = time
         @playlist.date = date
         Sublimefmplaylist.increment_counters
@@ -106,7 +107,6 @@ class Sublimefmplaylist < ActiveRecord::Base
       # If the song isn't present it creates a new record
       else
         @playlist = Sublimefmplaylist.new
-        @playlist.image = image
         @playlist.time = time
         @playlist.date = date
         @playlist.artist = artist
