@@ -17,4 +17,32 @@ class PlaylistsController < ApplicationController
     render json: @results.map(&:fullname)
   end
 
+  def sort_today
+    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_week
+    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_month
+    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_year
+    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_total
+    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_created
+    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_updated
+    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+  end
+
 end
