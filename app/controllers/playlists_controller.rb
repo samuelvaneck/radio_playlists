@@ -22,27 +22,27 @@ class PlaylistsController < ApplicationController
   end
 
   def sort_week
-    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+    @playlists = Playlist.sort_week.paginate(page: params[:page]).per_page(10)
   end
 
   def sort_month
-    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+    @playlists = Playlist.sort_month.paginate(page: params[:page]).per_page(10)
   end
 
   def sort_year
-    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+    @playlists = Playlist.sort_year.paginate(page: params[:page]).per_page(10)
   end
 
   def sort_total
-    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+    @playlists = Playlist.sort_total.paginate(page: params[:page]).per_page(10)
   end
 
   def sort_created
-    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+    @playlists = Playlist.sort_created.paginate(page: params[:page]).per_page(10)
   end
 
   def sort_updated
-    @playlists = Playlist.sort_today.paginate(page: params[:page]).per_page(10)
+    @playlists = Playlist.sort_updated.paginate(page: params[:page]).per_page(10)
   end
 
 end
