@@ -1,0 +1,7 @@
+$('#playlists').append('<%= j render 'playlist' %>');
+<% if @sublimefmplaylists.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate (@sublimefmplaylists) %>')
+<% else %>
+  $('.pagination').remove();
+<% end %>
+<% sleep 1 %>

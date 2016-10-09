@@ -17,4 +17,33 @@ class Radio538playlistsController < ApplicationController
     render json: @results.map(&:fullname)
   end
 
+  def sort_today
+    @radio538playlists = Radio538playlist.sort_today.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_week
+    @radio538playlists = Radio538playlist.sort_week.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_month
+    @radio538playlists = Radio538playlist.sort_month.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_year
+    @radio538playlists = Radio538playlist.sort_year.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_total
+    @radio538playlists = Radio538playlist.sort_total.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_created
+    @radio538playlists = Radio538playlist.sort_created.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_updated
+    @radio538playlists = Radio538playlist.sort_updated.paginate(page: params[:page]).per_page(10)
+  end
+
+
 end

@@ -17,4 +17,33 @@ class Radio2playlistsController < ApplicationController
     render json: @results.map(&:fullname)
   end
 
+  def sort_today
+    @radio2playlists = Radio2playlist.sort_today.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_week
+    @radio2playlists = Radio2playlist.sort_week.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_month
+    @radio2playlists = Radio2playlist.sort_month.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_year
+    @radio2playlists = Radio2playlist.sort_year.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_total
+    @radio2playlists = Radio2playlist.sort_total.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_created
+    @radio2playlists = Radio2playlist.sort_created.paginate(page: params[:page]).per_page(10)
+  end
+
+  def sort_updated
+    @radio2playlists = Radio2playlist.sort_updated.paginate(page: params[:page]).per_page(10)
+  end
+
+
 end
