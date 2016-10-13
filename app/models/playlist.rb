@@ -38,22 +38,19 @@ class Playlist < ActiveRecord::Base
   def self.veronica
 
     # Fetching the data from the website and assinging them to variables
-    url = "http://www.radioveronica.nl/gemist/playlist"
+    url = "http://playlist24.nl/radio-veronica-playlist/"
     doc = Nokogiri::HTML(open(url))
-    @last_image = doc.xpath("//img[@class='playlistimg']/@src")[0].value
-    @last_time = doc.xpath("//tr[@class='active']//td[2]").text
-    @last_artist = doc.xpath("//tr[@class='active']//td[3]").text
-    @last_title = doc.xpath("//tr[@class='active']//td[4]").text
+    @last_time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
+    @last_artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text
+    @last_title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text
     @last_fullname = "#{@last_artist} #{@last_title}"
-    @second_last_image = doc.xpath("//img[@class='playlistimg']/@src")[1].value
-    @second_last_time = doc.xpath("//tr[2]//td[2]").text
-    @second_last_artist = doc.xpath("//tr[2]//td[3]").text
-    @second_last_title = doc.xpath("//tr[2]//td[4]").text
+    @second_last_time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[4]/div[1]').text.squish
+    @second_last_artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[4]/div[2]/span[2]/a').text
+    @second_last_title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[4]/div[2]/span[1]/a').text
     @second_last_fullname = "#{@second_last_artist} #{@second_last_title}"
-    @third_last_image = doc.xpath("//img[@class='playlistimg']/@src")[2].value
-    @third_last_time = doc.xpath("//tr[3]//td[2]").text
-    @third_last_artist = doc.xpath("//tr[3]//td[3]").text
-    @third_last_title = doc.xpath("//tr[3]//td[4]").text
+    @third_last_time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[5]/div[1]').text.squish
+    @third_last_artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[5]/div[2]/span[2]/a').text
+    @third_last_title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[5]/div[2]/span[1]/a').text
     @third_last_fullname = "#{@third_last_artist} #{@third_last_title}"
 
     # Methodes for checking songs
