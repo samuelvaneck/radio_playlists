@@ -52,7 +52,7 @@ class Grootnieuwsplaylist < ActiveRecord::Base
     @third_last_time = doc.xpath('//table[@id="iList1"]/tbody/tr[3]/td[1]').text.split.drop(1).join(" ")
     @third_last_artist = doc.xpath('//table[@id="iList1"]/tbody/tr[3]/td[2]').text
     @third_last_title = doc.xpath('//table[@id="iList1"]/tbody/tr[3]/td[3]').text
-    @thrid_last_fullname = "#{@third_last_artist} #{@third_last_title}"
+    @third_last_fullname = "#{@third_last_artist} #{@third_last_title}"
 
     # Methodes for checking songs
     Grootnieuwsplaylist.last_played
@@ -128,7 +128,7 @@ class Grootnieuwsplaylist < ActiveRecord::Base
         @playlist = Grootnieuwsplaylist.find_by_fullname(fullname)
         @playlist.time = time
         @playlist.date = date
-        Playlist.increment_counters
+        Grootnieuwsplaylist.increment_counters
         @playlist.save
         puts "#{fullname} + 1"
       # If the song isn't present it creates a new record
@@ -139,7 +139,7 @@ class Grootnieuwsplaylist < ActiveRecord::Base
         @playlist.artist = artist
         @playlist.title = title
         @playlist.fullname = fullname
-        Playlist.counters_equals_one
+        Grootnieuwsplaylist.counters_equals_one
         @playlist.save
         puts "#{fullname} added to the database"
       end

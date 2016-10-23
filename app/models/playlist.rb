@@ -243,6 +243,7 @@ class Playlist < ActiveRecord::Base
     where('updated_at >= ?', 1.year.ago).count
   end
 
+  # Methodes for autocomplete search function
   def search_fullname
     Playlist.try(:fullname)
   end

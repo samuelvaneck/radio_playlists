@@ -1,6 +1,6 @@
 $('#playlists').append('<%= j render 'playlist' %>');
-<% if @playlists.next_page %>
-  $('.pagination').replaceWith('<%= j will_paginate (@playlists) %>')
+<% if @grootnieuwsplaylists.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate (@grootnieuwsplaylists) %>')
 <% else %>
   $('.pagination').remove();
 <% end %>
