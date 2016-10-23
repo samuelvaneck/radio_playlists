@@ -1,0 +1,7 @@
+$('#playlists').append('<%= j render 'playlist' %>');
+<% if @playlists.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate (@playlists) %>')
+<% else %>
+  $('.pagination').remove();
+<% end %>
+<% sleep 1 %>

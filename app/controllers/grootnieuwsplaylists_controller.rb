@@ -1,0 +1,3 @@
+class GrootnieuwsplaylistsController < ApplicationController
+
+end
