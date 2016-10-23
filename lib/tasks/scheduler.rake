@@ -126,3 +126,35 @@ task :reset_year_counter_sublimefm => :environment do
   Sublimefmplaylist.reset_year_counters
   puts "done!"
 end
+
+# Groot Nieuws Radio checks and counter
+
+task :playlist_check_gnr => :environment do
+  puts "Checking current playing song Radio 2....."
+  Grootnieuwsplaylist.gnr
+  puts "done!"
+end
+
+task :reset_day_counter_gnr => :environment do
+  puts "Resetting day counters...."
+  Grootnieuwsplaylist.reset_day_counters
+  puts "done!"
+end
+
+task :reset_week_counter_gnr => :environment do
+  puts "Resetting week counters...."
+  Grootnieuwsplaylist.reset_week_counters
+  puts "done!"
+end
+
+task :reset_month_counter_gnr => :environment do
+  puts "Resetting month counters...."
+  Grootnieuwsplaylist.reset_month_counters
+  puts "done!"
+end
+
+task :reset_year_counter_gnr => :environment do
+  puts "Resetting year counters...."
+  Grootnieuwsplaylist.reset_year_counters
+  puts "done!"
+end
