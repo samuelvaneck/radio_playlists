@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007185854) do
+ActiveRecord::Schema.define(version: 20161023155240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "grootnieuwsplaylists", force: :cascade do |t|
+    t.string   "artist"
+    t.string   "title"
+    t.string   "image"
+    t.string   "fullname"
+    t.string   "time"
+    t.string   "date"
+    t.integer  "day_counter",   default: 0
+    t.integer  "week_counter",  default: 0
+    t.integer  "month_counter", default: 0
+    t.integer  "year_counter",  default: 0
+    t.integer  "total_counter", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "playlists", force: :cascade do |t|
     t.integer  "radiostation_id"
