@@ -129,7 +129,11 @@ class Sublimefmplaylist < ActiveRecord::Base
         @playlist = Sublimefmplaylist.find_by_fullname(fullname)
         @playlist.time = time
         @playlist.date = date
-        Sublimefmplaylist.increment_counters
+        @playlist.day_counter += 1
+        @playlist.week_counter += 1
+        @playlist.month_counter += 1
+        @playlist.year_counter += 1
+        @playlist.total_counter += 1
         @playlist.save
         puts "#{fullname} + 1"
       # If the song isn't present it creates a new record
@@ -140,7 +144,11 @@ class Sublimefmplaylist < ActiveRecord::Base
         @playlist.artist = artist
         @playlist.title = title
         @playlist.fullname = fullname
-        Sublimefmplaylist.counters_equals_one
+        @playlist.day_counter = 1
+        @playlist.week_counter = 1
+        @playlist.month_counter = 1
+        @playlist.year_counter = 1
+        @playlist.total_counter = 1
         @playlist.save
         puts "#{fullname} added to the database"
       end
@@ -161,62 +169,30 @@ class Sublimefmplaylist < ActiveRecord::Base
     end
   end
 
-  # increment the counters by one. Methode for when the song is allready in the database.
-  def self.increment_counters
-    @playlist.day_counter += 1
-    @playlist.week_counter += 1
-    @playlist.month_counter += 1
-    @playlist.year_counter += 1
-    @playlist.total_counter += 1
-  end
-
-  # set the counter equal to one if a new record is made for the song.
-  def self.counters_equals_one
-    @playlist.day_counter = 1
-    @playlist.week_counter = 1
-    @playlist.month_counter = 1
-    @playlist.year_counter = 1
-    @playlist.total_counter = 1
-  end
-
-  # Reset the day counter. Runs everyday at midnight.
-  def self.reset_day_counters
+  def self.reset_counters
     songs = Sublimefmplaylist.all
+    today = Date.today
+    # Reset the day counter. Runs everyday at midnight.
     songs.each do |song|
       song.day_counter = 0
       song.save
     end
-  end
-
-  # Reset the week counter. Runs Monday at midnight.
-  def self.reset_week_counters
-    today = Date.today
+    # Reset the week counter. Runs Monday at midnight.
     if today.sunday?
-      songs = Sublimefmplaylist.all
       songs.each do |song|
         song.week_counter = 0
         song.save
       end
     end
-  end
-
-  # Reset the month counter. Runs at the end of the month.
-  def self.reset_month_counters
-    today = Date.today
+    # Reset the month counter. Runs at the end of the month.
     if today == Date.today.end_of_month
-      songs = Sublimefmplaylist.all
       songs.each do |song|
         song.month_counter = 0
         song.save
       end
     end
-  end
-
-  # Reset the year counter. Runs at the end of the year.
-  def self.reset_year_counters
-    today = Date.today
+    # Reset the year counter. Runs at the end of the year.
     if today == Date.today.end_of_year
-      songs = Sublimefmplaylist.all
       songs.each do |song|
         song.year_counter = 0
         song.save
