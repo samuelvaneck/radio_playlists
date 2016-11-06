@@ -209,20 +209,19 @@ class Grootnieuwsplaylist < ActiveRecord::Base
   end
 
   def self.uniq_tracks_day
-    where('updated_at >= ?', DateTime.now.beginning_of_day).count
+    where('day_counter > ?', 0).count
   end
 
   def self.uniq_tracks_week
-
-    where('updated_at >= ?', DateTime.now.last_week).count
+    where('week_counter > ?', 0).count
   end
 
   def self.uniq_tracks_month
-    where('updated_at >= ?', DateTime.now.last_month).count
+    where('month_counter > ?', 0).count
   end
 
   def self.uniq_tracks_year
-    where('updated_at >= ?', DateTime.now.last_year).count
+    where('year_counter > ?', 0).count
   end
 
   # Methodes for autocomplete search function
