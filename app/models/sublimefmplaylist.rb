@@ -205,15 +205,15 @@ class Sublimefmplaylist < ActiveRecord::Base
   end
 
   def self.uniq_tracks_week
-    where('updated_at >= ?', 1.week.ago).count
+    where('updated_at >= ?', DateTime.now.last_week).count
   end
 
   def self.uniq_tracks_month
-    where('updated_at >= ?', 1.month.ago).count
+    where('updated_at >= ?', DateTime.now.last_month).count
   end
 
   def self.uniq_tracks_year
-    where('updated_at >= ?', 1.year.ago).count
+    where('updated_at >= ?', DateTime.now.last_year).count
   end
 
   def search_fullname
