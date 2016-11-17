@@ -9,7 +9,7 @@ every 1.day, at: '0:00 am' do
 end
 
 every 10.minutes do
-  runner "Radio538playlist.538"
+  runner "Radio538playlist.radio538"
 end
 
 every 1.day, at: '0:00 am' do
