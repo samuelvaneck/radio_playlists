@@ -1,7 +1,7 @@
 class GeneralplaylistsController < ApplicationController
 
   def index
-    @generaplaylists = Generplaylist.all
+    @generalplaylists = Generalplaylist.all
   end
 
 end
