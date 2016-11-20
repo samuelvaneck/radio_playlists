@@ -1,0 +1,10 @@
+<h1>General Playlist</h1>
+
+<% @generalplaylists.each do |generalplaylist| %>
+  <p>
+    <%= generalplaylist.time %>
+    <%= generalplaylist.radiostation_id %>
+    <%= generalplaylist.artist_id %>
+    <%= generalplaylist.song_id %>
+  </p>
+<% end %>

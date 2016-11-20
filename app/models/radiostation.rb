@@ -1,3 +1,3 @@
 class Radiostation < ActiveRecord::Base
-  has_one :playlist
+  has_many :generalplaylists
 end

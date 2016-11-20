@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023155240) do
+ActiveRecord::Schema.define(version: 20161120193444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artists", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image"
+    t.string   "genre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "generalplaylists", force: :cascade do |t|
+    t.string   "time"
+    t.integer  "song_id"
+    t.integer  "radiostation_id"
+    t.integer  "artist_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "generalplaylists", ["artist_id"], name: "index_generalplaylists_on_artist_id", using: :btree
+  add_index "generalplaylists", ["radiostation_id"], name: "index_generalplaylists_on_radiostation_id", using: :btree
+  add_index "generalplaylists", ["song_id"], name: "index_generalplaylists_on_song_id", using: :btree
 
   create_table "grootnieuwsplaylists", force: :cascade do |t|
     t.string   "artist"
@@ -93,6 +114,12 @@ ActiveRecord::Schema.define(version: 20161023155240) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "songs", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sublimefmplaylists", force: :cascade do |t|
     t.string   "artist"
     t.string   "title"
@@ -109,6 +136,9 @@ ActiveRecord::Schema.define(version: 20161023155240) do
     t.datetime "updated_at",                null: false
   end
 
+  add_foreign_key "generalplaylists", "artists"
+  add_foreign_key "generalplaylists", "radiostations"
+  add_foreign_key "generalplaylists", "songs"
   add_foreign_key "playlists", "radiostations"
   add_foreign_key "radio538playlists", "radiostations"
 end
