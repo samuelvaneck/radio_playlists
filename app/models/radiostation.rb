@@ -1,3 +1,4 @@
 class Radiostation < ActiveRecord::Base
-  has_and_belongs_to_many :generalplaylists
+  has_many :playedradiostations
+  has_many :generalplaylists, through: :playedradiostations
 end

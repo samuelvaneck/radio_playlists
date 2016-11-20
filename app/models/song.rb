@@ -1,4 +1,5 @@
 class Song < ActiveRecord::Base
   belongs_to :artist
-  has_and_belongs_to_many :generalplaylists
+  has_many :playedsongs
+  has_many :generalplaylists, through: :playedsongs
 end

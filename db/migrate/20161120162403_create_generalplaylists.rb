@@ -1,7 +1,7 @@
 class CreateGeneralplaylists < ActiveRecord::Migration
   def change
     create_table :generalplaylists do |t|
-      t.datetime :created_at
+      t.string :time
 
       t.timestamps null: false
     end

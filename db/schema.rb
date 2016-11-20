@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120150543) do
+ActiveRecord::Schema.define(version: 20161120162749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,39 +19,15 @@ ActiveRecord::Schema.define(version: 20161120150543) do
   create_table "artists", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
-    t.string   "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "artists_generalplaylists", force: :cascade do |t|
-    t.integer "artist_id"
-    t.integer "generalplaylist_id"
-  end
-
-  add_index "artists_generalplaylists", ["artist_id"], name: "index_artists_generalplaylists_on_artist_id", using: :btree
-  add_index "artists_generalplaylists", ["generalplaylist_id"], name: "index_artists_generalplaylists_on_generalplaylist_id", using: :btree
 
   create_table "generalplaylists", force: :cascade do |t|
+    t.string   "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "generalplaylists_radiostations", force: :cascade do |t|
-    t.integer "generalplaylist_id"
-    t.integer "radiostation_id"
-  end
-
-  add_index "generalplaylists_radiostations", ["generalplaylist_id"], name: "index_generalplaylists_radiostations_on_generalplaylist_id", using: :btree
-  add_index "generalplaylists_radiostations", ["radiostation_id"], name: "index_generalplaylists_radiostations_on_radiostation_id", using: :btree
-
-  create_table "generalplaylists_songs", force: :cascade do |t|
-    t.integer "generalplaylist_id"
-    t.integer "song_id"
-  end
-
-  add_index "generalplaylists_songs", ["generalplaylist_id"], name: "index_generalplaylists_songs_on_generalplaylist_id", using: :btree
-  add_index "generalplaylists_songs", ["song_id"], name: "index_generalplaylists_songs_on_song_id", using: :btree
 
   create_table "grootnieuwsplaylists", force: :cascade do |t|
     t.string   "artist"
@@ -67,6 +43,27 @@ ActiveRecord::Schema.define(version: 20161120150543) do
     t.integer  "total_counter", default: 0
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "playedartists", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "artist_id"
+    t.integer  "generalplaylist_id"
+  end
+
+  create_table "playedradiostations", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "generalplaylist_id"
+    t.integer  "radiostation_id"
+  end
+
+  create_table "playedsongs", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "generalplaylist_id"
+    t.integer  "song_id"
   end
 
   create_table "playlists", force: :cascade do |t|
@@ -132,8 +129,6 @@ ActiveRecord::Schema.define(version: 20161120150543) do
 
   create_table "songs", force: :cascade do |t|
     t.string   "title"
-    t.string   "album"
-    t.string   "image"
     t.integer  "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -157,12 +152,6 @@ ActiveRecord::Schema.define(version: 20161120150543) do
     t.datetime "updated_at",                null: false
   end
 
-  add_foreign_key "artists_generalplaylists", "artists"
-  add_foreign_key "artists_generalplaylists", "generalplaylists"
-  add_foreign_key "generalplaylists_radiostations", "generalplaylists"
-  add_foreign_key "generalplaylists_radiostations", "radiostations"
-  add_foreign_key "generalplaylists_songs", "generalplaylists"
-  add_foreign_key "generalplaylists_songs", "songs"
   add_foreign_key "playlists", "radiostations"
   add_foreign_key "radio538playlists", "radiostations"
   add_foreign_key "songs", "artists"
