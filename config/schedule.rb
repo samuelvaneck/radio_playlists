@@ -39,3 +39,23 @@ end
 every 1.day, at: '0:00 am' do
   runner "Grootnieuwsplaylist.reset_counters"
 end
+
+every 3.minutes do
+  runner "Generalplaylist.radio_veronica_check"
+end
+
+every 3.minutes do
+  runner "Generalplaylist.radio_538_check"
+end
+
+every 3.minutes do
+  runner "Generalplaylist.radio_2_check"
+end
+
+every 3.minutes do
+  runner "Generalplaylist.sublime_fm_check"
+end
+
+every 3.minutes do
+  runner "Generalplaylist.grootnieuws_radio_check"
+end
