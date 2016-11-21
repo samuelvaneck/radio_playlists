@@ -79,7 +79,7 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.create_generalplaylist(time, artist, song, radiostation)
-    if Generalplaylist.order(updated_at: :desc).limit(3).any?{ |generalplaylist| (generalplaylist.radiostation_id == radiostation.id) && (generalplaylist.song_id == song.id) }
+    if Generalplaylist.order(updated_at: :desc).limit(100).any?{ |generalplaylist| (generalplaylist.radiostation_id == radiostation.id) && (generalplaylist.song_id == song.id) }
       puts "#{song.title} from #{artist.name} in last 3 songs on #{radiostation.name}"
       return false
     else
