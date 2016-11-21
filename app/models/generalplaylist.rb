@@ -93,4 +93,11 @@ class Generalplaylist < ActiveRecord::Base
     end
   end
 
+  def self.destroy_all
+    generalplaylists = Generalplaylist.all
+    generalplaylists.each do |generalplaylist|
+      generalplaylist.destroy
+    end
+  end
+
 end

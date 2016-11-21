@@ -1,10 +1,23 @@
 <h1>General Playlist</h1>
 
 <% @generalplaylists.each do |generalplaylist| %>
-  <p>
-    <%= generalplaylist.time %>
-    <%= generalplaylist.radiostation_id %>
-    <%= generalplaylist.artist_id %>
-    <%= generalplaylist.song_id %>
-  </p>
+  <table class="striped">
+    <tr>
+      <td>
+        <%= date(generalplaylist.created_at) %>
+      </td>
+      <td>
+        <%= generalplaylist.time %>
+      </td>
+      <td>
+        <%= radiostation_name(generalplaylist.radiostation_id) %>
+      </td>
+      <td>
+        <%= artist_name(generalplaylist.artist_id) %>
+      </td>
+      <td>
+        <%= song_title(generalplaylist.song_id) %>
+      </td>
+    <tr>
+  </table>
 <% end %>
