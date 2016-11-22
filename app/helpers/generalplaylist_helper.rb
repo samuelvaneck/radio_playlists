@@ -16,7 +16,7 @@ module GeneralplaylistHelper
   end
 
   def date(created_at)
-    return created_at.strftime("%e-%b-%Y")
+    return created_at.strftime("%e %b %Y")
   end
 
 end
