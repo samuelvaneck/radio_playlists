@@ -7,6 +7,7 @@ class GeneralplaylistsController < ApplicationController
     @radio2playlists = Generalplaylist.where(radiostation_id: '3').order(created_at: :desc).limit(10)
     @sublimefmplaylists = Generalplaylist.where(radiostation_id: '4').order(created_at: :desc).limit(10)
     @gnrplaylists = Generalplaylist.where(radiostation_id: '5').order(created_at: :desc).limit(10)
+    @top10songsweek = Song.order(week_counter: :desc).limit(10)
   end
 
 end

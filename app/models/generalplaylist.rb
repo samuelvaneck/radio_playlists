@@ -107,6 +107,33 @@ class Generalplaylist < ActiveRecord::Base
     end
   end
 
+  def self.reset_counters
+    songs = Song.all
+    today = Date.today
+    song.each do |song|
+      song.day_counter = 0
+      song.save
+    end
+    if today.sunday?
+      song.each do |song|
+        song.week_counter = 0
+        song.save
+      end
+    end
+    if today == Date.today.end_of_month
+      song.each do |song|
+        song.month_counter = 0
+        song.save
+      end
+    end
+    if today == Date.today.end_of_year
+      song.each do |song|
+        song.year_counter
+        song.save
+      end
+    end
+  end
+
   def self.destroy_all
     generalplaylists = Generalplaylist.all
     generalplaylists.each do |generalplaylist|

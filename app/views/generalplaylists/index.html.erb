@@ -20,6 +20,21 @@
         <% end %>
       </table>
     </div>
+    <div class="col S12 M4 L4">
+      <table class="g-playlist-table striped">
+        <tr><h4 class="center">Top 10 songs</h4></tr>
+        <tr>
+          <th>Title</th>
+          <th>Played last week</th>
+        </tr>
+        <% @top10songsweek.each do |song| %>
+        <tr>
+          <td><%= song.title %></td>
+          <td><%= song.week_counter %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 </section>
 <section>
