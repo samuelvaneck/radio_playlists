@@ -89,6 +89,20 @@ class Generalplaylist < ActiveRecord::Base
       generalplaylist.song_id = song.id
       generalplaylist.radiostation_id = radiostation.id
       generalplaylist.save!
+      song = Song.find(generalplaylist.song_id)
+      song.day_counter += 1
+      song.week_counter += 1
+      song.month_counter += 1
+      song.year_counter += 1
+      song.total_counter += 1
+      song.save!
+      artist = Artist.find(generalplaylist.artist_id)
+      artist.day_counter += 1
+      artist.week_counter += 1
+      artist.month_counter += 1
+      artist.year_counter += 1
+      artist.total_counter += 1
+      artist.save!
       puts "Saved #{song.title} from #{artist.name} on #{radiostation.name}!"
     end
   end
