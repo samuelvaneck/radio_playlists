@@ -63,3 +63,7 @@ end
 every 1.day, at: '0:00 am' do
   runner "Generalplaylist.reset_counters"
 end
+
+every 1.day, at: "0.00 am" do
+  command "rm -rf #{path}/log/cron.log"
+end
