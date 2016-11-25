@@ -89,7 +89,49 @@ class Generalplaylist < ActiveRecord::Base
       generalplaylist.song_id = song.id
       generalplaylist.radiostation_id = radiostation.id
       generalplaylist.save!
+      song = Song.find(generalplaylist.song_id)
+      song.day_counter += 1
+      song.week_counter += 1
+      song.month_counter += 1
+      song.year_counter += 1
+      song.total_counter += 1
+      song.artist_id = artist.id
+      song.save!
+      artist = Artist.find(generalplaylist.artist_id)
+      artist.day_counter += 1
+      artist.week_counter += 1
+      artist.month_counter += 1
+      artist.year_counter += 1
+      artist.total_counter += 1
+      artist.save!
       puts "Saved #{song.title} from #{artist.name} on #{radiostation.name}!"
+    end
+  end
+
+  def self.reset_counters
+    songs = Song.all
+    today = Date.today
+    song.each do |song|
+      song.day_counter = 0
+      song.save
+    end
+    if today.sunday?
+      song.each do |song|
+        song.week_counter = 0
+        song.save
+      end
+    end
+    if today == Date.today.end_of_month
+      song.each do |song|
+        song.month_counter = 0
+        song.save
+      end
+    end
+    if today == Date.today.end_of_year
+      song.each do |song|
+        song.year_counter
+        song.save
+      end
     end
   end
 

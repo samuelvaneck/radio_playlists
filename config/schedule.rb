@@ -59,3 +59,7 @@ end
 every 3.minutes do
   runner "Generalplaylist.grootnieuws_radio_check"
 end
+
+every 1.day, at "0:00 am" do
+  runner "Generalplaylist.reset_counters"
+end
