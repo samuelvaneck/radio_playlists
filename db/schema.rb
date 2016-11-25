@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125102546) do
+ActiveRecord::Schema.define(version: 20161125111254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,7 +128,10 @@ ActiveRecord::Schema.define(version: 20161125102546) do
     t.integer  "month_counter", default: 0
     t.integer  "year_counter",  default: 0
     t.integer  "total_counter", default: 0
+    t.integer  "artist_id"
   end
+
+  add_index "songs", ["artist_id"], name: "index_songs_on_artist_id", using: :btree
 
   create_table "sublimefmplaylists", force: :cascade do |t|
     t.string   "artist"
@@ -151,4 +154,5 @@ ActiveRecord::Schema.define(version: 20161125102546) do
   add_foreign_key "generalplaylists", "songs"
   add_foreign_key "playlists", "radiostations"
   add_foreign_key "radio538playlists", "radiostations"
+  add_foreign_key "songs", "artists"
 end

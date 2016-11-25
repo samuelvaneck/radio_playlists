@@ -95,6 +95,7 @@ class Generalplaylist < ActiveRecord::Base
       song.month_counter += 1
       song.year_counter += 1
       song.total_counter += 1
+      song.artist_id = artist.id
       song.save!
       artist = Artist.find(generalplaylist.artist_id)
       artist.day_counter += 1

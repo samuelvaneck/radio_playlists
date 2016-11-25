@@ -24,11 +24,13 @@
       <table class="g-playlist-table striped">
         <tr><h4 class="center">Top 10 songs</h4></tr>
         <tr>
+          <th>Artist</th>
           <th>Title</th>
           <th>Played last week</th>
         </tr>
         <% @top10songsweek.each do |song| %>
         <tr>
+          <td><%= get_artist_name(song.artist_id) %></td>
           <td><%= song.title %></td>
           <td><%= song.week_counter %></td>
         </tr>
