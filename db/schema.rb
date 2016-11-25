@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120193444) do
+ActiveRecord::Schema.define(version: 20161125102546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,13 @@ ActiveRecord::Schema.define(version: 20161120193444) do
     t.string   "name"
     t.string   "image"
     t.string   "genre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "day_counter",   default: 0
+    t.integer  "week_counter",  default: 0
+    t.integer  "month_counter", default: 0
+    t.integer  "year_counter",  default: 0
+    t.integer  "total_counter", default: 0
   end
 
   create_table "generalplaylists", force: :cascade do |t|
@@ -116,8 +121,13 @@ ActiveRecord::Schema.define(version: 20161120193444) do
 
   create_table "songs", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "day_counter",   default: 0
+    t.integer  "week_counter",  default: 0
+    t.integer  "month_counter", default: 0
+    t.integer  "year_counter",  default: 0
+    t.integer  "total_counter", default: 0
   end
 
   create_table "sublimefmplaylists", force: :cascade do |t|
