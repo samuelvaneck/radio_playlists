@@ -1,39 +1,113 @@
-<h1>General Playlist</h1>
-  <table class="striped">
-    <tr>
-      <th>
-        Date
-      </th>
-      <th>
-        Time
-      </th>
-      <th>
-        Radiostation
-      </th>
-      <th>
-        Artist
-      </th>
-      <th>
-        Title
-      </th>
-    </tr>
-    <% @generalplaylists.each do |generalplaylist| %>
-    <tr>
-      <td>
-        <%= date(generalplaylist.created_at) %>
-      </td>
-      <td>
-        <%= generalplaylist.time %>
-      </td>
-      <td>
-        <%= radiostation_name(generalplaylist.radiostation_id) %>
-      </td>
-      <td>
-        <%= artist_name(generalplaylist.artist_id) %>
-      </td>
-      <td>
-        <%= song_title(generalplaylist.song_id) %>
-      </td>
-    <tr>
-    <% end %>
-  </table>
+<h1 class="center">General Playlist</h1>
+<section>
+  <div class="container row">
+    <div class="col S12 M4 L4">
+      <table class="g-playlist-table striped">
+        <tr><h4 class="center">All radiostations</h4></tr>
+        <tr>
+          <th>Time</th>
+          <th>Radiostation</th>
+          <th>Artist</th>
+          <th>Title</th>
+        </tr>
+        <% @generalplaylists.each do |generalplaylist| %>
+        <tr>
+          <td><%= generalplaylist.time %></td>
+          <td><%= generalplaylist.radiostation.name %></td>
+          <td><%= generalplaylist.artist.name %></td>
+          <td><%= generalplaylist.song.title %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container row">
+    <div class="col S12 M4 L4">
+      <table class="g-playlist-table striped">
+        <tr><h4 class="center">Radio Veronica</h4></tr>
+        <tr>
+          <th>Time</th>
+          <th>Artist</th>
+          <th>Title</th>
+        </tr>
+        <% @veronicaplaylists.each do |generalplaylist| %>
+        <tr>
+          <td><%= generalplaylist.time %></td>
+          <td><%= generalplaylist.artist.name %></td>
+          <td><%= generalplaylist.song.title %>                                                                                                            </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col S12 M4 L4">
+      <table class="g-playlist-table striped">
+        <tr><h4 class="center">Radio 538</h4></tr>
+        <tr>
+          <th>Time</th>
+          <th>Artist</th>
+          <th>Title</th>
+        </tr>
+        <% @radio538playlists.each do |generalplaylist| %>
+        <tr>
+          <td><%= generalplaylist.time %></td>
+          <td><%= generalplaylist.artist.name %></td>
+          <td><%= generalplaylist.song.title %>                                                                                                            </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col S12 M4 L4">
+      <table class="g-playlist-table striped">
+        <tr><h4 class="center">Radio 2</h4></tr>
+        <tr>
+          <th>Time</th>
+          <th>Artist</th>
+          <th>Title</th>
+        </tr>
+        <% @radio2playlists.each do |generalplaylist| %>
+        <tr>
+          <td><%= generalplaylist.time %></td>
+          <td><%= generalplaylist.artist.name %></td>
+          <td><%= generalplaylist.song.title %>                                                                                                            </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col S12 M4 L4">
+      <table class="g-playlist-table striped">
+        <tr><h4 class="center">Sublime FM</h4></tr>
+        <tr>
+          <th>Time</th>
+          <th>Artist</th>
+          <th>Title</th>
+        </tr>
+        <% @sublimefmplaylists.each do |generalplaylist| %>
+        <tr>
+          <td><%= generalplaylist.time %></td>
+          <td><%= generalplaylist.artist.name %></td>
+          <td><%= generalplaylist.song.title %>                                                                                                            </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col S12 M4 L4">
+      <table class="g-playlist-table striped">
+        <tr><h4 class="center">Groot Nieuws Radio</h4></tr>
+        <tr>
+          <th>Time</th>
+          <th>Artist</th>
+          <th>Title</th>
+        </tr>
+        <% @gnrplaylists.each do |generalplaylist| %>
+        <tr>
+          <td><%= generalplaylist.time %></td>
+          <td><%= generalplaylist.artist.name %></td>
+          <td><%= generalplaylist.song.title %>                                                                                                            </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</section>
