@@ -30,7 +30,11 @@
         </tr>
         <% @top10songsweek.each do |song| %>
         <tr>
-          <td><%= get_artist_name(song.artist_id) %></td>
+          <% if song.artist_id != nil %>
+            <td><%= song.artist.name %></td>
+            <% else %>
+              <td> - </td>
+          <% end %>
           <td><%= song.title %></td>
           <td><%= song.week_counter %></td>
         </tr>
