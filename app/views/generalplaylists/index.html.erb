@@ -1,9 +1,9 @@
-<h1 class="center">General Playlist</h1>
-<section>
+<section id="section-1">
+  <div id="head" class="center">General Playlist</div>
   <div class="container row">
     <div class="col S12 M4 L4">
-      <table class="g-playlist-table striped">
-        <tr><h4 class="center">All radiostations</h4></tr>
+      <h4 class="center">All radiostations</h4>
+      <table class="g-playlist-table">
         <tr>
           <th>Time</th>
           <th>Radiostation</th>
@@ -21,15 +21,17 @@
       </table>
     </div>
     <div class="col S12 M4 L4">
-      <table class="g-playlist-table striped">
-        <tr><h4 class="center">Top 10 songs</h4></tr>
+      <h4 class="center">Top 10 songs</h4>
+      <table class="g-playlist-table">
         <tr>
+          <th>Chart #</th>
           <th>Artist</th>
           <th>Title</th>
           <th>Total week</th>
         </tr>
         <% @top10songsweek.each do |song| %>
         <tr>
+          <td><%= @counter += 1 %></td>
           <% if song.artist_id != nil %>
             <td><%= song.artist.name %></td>
             <% else %>
@@ -43,11 +45,11 @@
     </div>
   </div>
 </section>
-<section>
+<section id="section-2" class="hard-light">
   <div class="container row">
     <div class="col S12 M4 L4">
-      <table class="g-playlist-table striped">
-        <tr><h4 class="center">Radio Veronica</h4></tr>
+      <h4 class="center">Radio Veronica</h4>
+      <table class="g-playlist-table">
         <tr>
           <th>Time</th>
           <th>Artist</th>
@@ -63,8 +65,8 @@
       </table>
     </div>
     <div class="col S12 M4 L4">
-      <table class="g-playlist-table striped">
-        <tr><h4 class="center">Radio 538</h4></tr>
+      <h4 class="center">Radio 538</h4>
+      <table class="g-playlist-table">
         <tr>
           <th>Time</th>
           <th>Artist</th>
@@ -80,8 +82,8 @@
       </table>
     </div>
     <div class="col S12 M4 L4">
-      <table class="g-playlist-table striped">
-        <tr><h4 class="center">Radio 2</h4></tr>
+      <h4 class="center">Radio 2</h4>
+      <table class="g-playlist-table">
         <tr>
           <th>Time</th>
           <th>Artist</th>
@@ -97,8 +99,8 @@
       </table>
     </div>
     <div class="col S12 M4 L4">
-      <table class="g-playlist-table striped">
-        <tr><h4 class="center">Sublime FM</h4></tr>
+      <h4 class="center">Sublime FM</h4>
+      <table class="g-playlist-table">
         <tr>
           <th>Time</th>
           <th>Artist</th>
@@ -114,8 +116,8 @@
       </table>
     </div>
     <div class="col S12 M4 L4">
-      <table class="g-playlist-table striped">
-        <tr><h4 class="center">Groot Nieuws Radio</h4></tr>
+      <h4 class="center">Groot Nieuws Radio</h4>
+      <table class="g-playlist-table">
         <tr>
           <th>Time</th>
           <th>Artist</th>

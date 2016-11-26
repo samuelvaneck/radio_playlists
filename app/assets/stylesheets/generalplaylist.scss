@@ -1,14 +1,49 @@
+#section-1 {
+  background: #de6e3d url("bg-casette.jpg") center center no-repeat;
+  color: white;
+}
+
+#section-2 {
+  background: #de6e3d url("bg-record-dark.jpg") center center no-repeat;
+  color: white;
+}
+
+.lighten {
+  background-blend-mode: lighten;
+}
+
+.hard-light {
+  background-blend-mode: hard-light;
+}
+
+#head {
+  font-size: 4.2rem;
+  line-height: 110%;
+  padding: 50px;
+}
+
 .container {
-  width: 100%;
+  // width: 100%;
 }
 
 .row {
-  width: 100%;
-  margin-left: 20px;
-  margin-right: 20px;
+  // width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  margin-bottom: 0px;
 }
 
 .g-playlist-table {
-  min-width: 500px;
-  max-width: 500px;
+
+  padding: 5px;
+  padding-bottom: 50px;
+
+  th, td {
+    // border-bottom: 1px solid #3C3F3D;
+  }
+  tr:hover {
+    background-color: #3C3F3D;
+  }
+
 }
