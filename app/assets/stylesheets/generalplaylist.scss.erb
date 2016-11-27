@@ -8,13 +8,21 @@
 }
 
 #section-2 {
+  background: #de6e3d url('<%= asset_path("bg-guitar-fire.jpg") %>') center center no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+}
+
+#section-3 {
   background: #de6e3d url('<%= asset_path("bg-record-dark.jpg") %>') center center no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   color: white;
-  height: 100%;
 }
 
 .lighten {
@@ -25,10 +33,18 @@
   background-blend-mode: hard-light;
 }
 
-#head {
+.head {
   font-size: 4.2rem;
-  line-height: 110%;
-  padding: 50px;
+  padding: 20px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #FFFFFF;
+}
+
+.vertical-center {
+  position: relative;
+  top: 40%;
+  transform: translateY(-50%);
 }
 
 .container {
