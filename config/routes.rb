@@ -67,6 +67,6 @@ Rails.application.routes.draw do
 
   resources :generalplaylists
 
-  root 'playlists#index'
+  root 'generalplaylists#index'
 
 end
