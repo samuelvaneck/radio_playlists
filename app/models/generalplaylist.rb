@@ -72,14 +72,14 @@ class Generalplaylist < ActiveRecord::Base
     title = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[3]').text
 
     artist = Artist.find_or_create_by(name: artist)
-    song = Song.find_or_create_by(title: title)
+    song = Song.find_or_create_by(title: title, artist_id: artist.id)
     radiostation = Radiostation.find_or_create_by(name: "Groot Nieuws Radio")
 
     Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
   end
 
   def self.create_generalplaylist(time, artist, song, radiostation)
-    if Generalplaylist.order(updated_at: :desc).limit(100).any?{ |generalplaylist| (generalplaylist.radiostation_id == radiostation.id) && (generalplaylist.song_id == song.id) }
+    if Generalplaylist.order(updated_at: :desc).limit(1).any?{ |generalplaylist| (generalplaylist.radiostation_id == radiostation.id) && (generalplaylist.song_id == song.id) }
       puts "#{song.title} from #{artist.name} in last 3 songs on #{radiostation.name}"
       return false
     else
@@ -89,14 +89,16 @@ class Generalplaylist < ActiveRecord::Base
       generalplaylist.song_id = song.id
       generalplaylist.radiostation_id = radiostation.id
       generalplaylist.save!
-      song = Song.find(generalplaylist.song_id)
-      song.day_counter += 1
-      song.week_counter += 1
-      song.month_counter += 1
-      song.year_counter += 1
-      song.total_counter += 1
-      song.artist_id = artist.id
-      song.save!
+      fullname = "#{artist.name} #{song.title}"
+      songdetails = Song.find(generalplaylist.song_id)
+      songdetails.day_counter += 1
+      songdetails.week_counter += 1
+      songdetails.month_counter += 1
+      songdetails.year_counter += 1
+      songdetails.total_counter += 1
+      songdetails.fullname = fullname
+      songdetails.artist_id = artist.id
+      songdetails.save!
       artist = Artist.find(generalplaylist.artist_id)
       artist.day_counter += 1
       artist.week_counter += 1
