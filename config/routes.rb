@@ -65,7 +65,11 @@ Rails.application.routes.draw do
     }
   end
 
-  resources :generalplaylists
+  resources :generalplaylists do
+    collection {
+      get :today_played_songs
+    }
+  end
 
   root 'generalplaylists#index'
 

@@ -79,7 +79,11 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.create_generalplaylist(time, artist, song, radiostation)
-    if Generalplaylist.order(updated_at: :desc).limit(1).any?{ |generalplaylist| (generalplaylist.radiostation_id == radiostation.id) && (generalplaylist.song_id == song.id) }
+    if Generalplaylist.order(created_at: :DESC).limit(100).any?{ |generalplaylist|
+          (generalplaylist.radiostation_id == radiostation.id) &&
+          (generalplaylist.song_id == song.id) &&
+          (generalplaylist.time == time)
+        }
       puts "#{song.title} from #{artist.name} in last 3 songs on #{radiostation.name}"
       return false
     else
@@ -142,6 +146,10 @@ class Generalplaylist < ActiveRecord::Base
     generalplaylists.each do |generalplaylist|
       generalplaylist.destroy
     end
+  end
+
+  def self.today_played_songs
+    where("created_at < ?", 1.day.ago).order(created_at: :desc)
   end
 
 end
