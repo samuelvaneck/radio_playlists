@@ -5,21 +5,20 @@
       <h4 class="center"><a href="generalplaylists/today_played_songs">Last played songs</a></h4>
       <table class="g-playlist-table">
         <tr>
-          <th>Time</th>
-          <th>Radiostation</th>
+          <th>Chart #</th>
           <th>Artist</th>
           <th>Title</th>
         </tr>
-        <% @todayplayedsongs.each do |todayplayedsong| %>
+        <% @topsongs.each do |topsong| %>
         <tr>
-          <td><%= todayplayedsong.time %></td>
-          <td><%= todayplayedsong.radiostation.name %></td>
-          <td><%= todayplayedsong.artist.name %></td>
-          <td><%= todayplayedsong.song.title %></td>
+          <td><%= @counter += 1 %>
+          <td><%= topsong.artist.name %></td>
+          <td><%= topsong.title %></td>
+          <td><%= topsong.total_counter %></td>
         </tr>
         <% end %>
       </table>
-      <p><%= will_paginate @todayplayedsongs %></p>
+      <p><%= will_paginate @topsongs %></p>
     </div>
   </div>
 </section>
