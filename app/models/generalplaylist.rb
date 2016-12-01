@@ -79,39 +79,44 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.create_generalplaylist(time, artist, song, radiostation)
-    if Generalplaylist.order(created_at: :DESC).limit(100).any?{ |generalplaylist|
-          (generalplaylist.radiostation_id == radiostation.id) &&
-          (generalplaylist.song_id == song.id) &&
-          (generalplaylist.time == time)
-        }
-      puts "#{song.title} from #{artist.name} in last 3 songs on #{radiostation.name}"
-      return false
+    @radiostationsongs = Generalplaylist.where("radiostation_id = ? AND created_at > ?", radiostation.id, 1.day.ago)
+    if @radiostationsongs == []
+      Generalplaylist.add_song(time, artist, song, radiostation)
     else
-      generalplaylist = Generalplaylist.new
-      generalplaylist.time = time
-      generalplaylist.artist_id = artist.id
-      generalplaylist.song_id = song.id
-      generalplaylist.radiostation_id = radiostation.id
-      generalplaylist.save!
-      fullname = "#{artist.name} #{song.title}"
-      songdetails = Song.find(generalplaylist.song_id)
-      songdetails.day_counter += 1
-      songdetails.week_counter += 1
-      songdetails.month_counter += 1
-      songdetails.year_counter += 1
-      songdetails.total_counter += 1
-      songdetails.fullname = fullname
-      songdetails.artist_id = artist.id
-      songdetails.save!
-      artist = Artist.find(generalplaylist.artist_id)
-      artist.day_counter += 1
-      artist.week_counter += 1
-      artist.month_counter += 1
-      artist.year_counter += 1
-      artist.total_counter += 1
-      artist.save!
-      puts "Saved #{song.title} from #{artist.name} on #{radiostation.name}!"
+      if (@radiostationsongs.last.time == time) && (@radiostationsongs.last.song_id == song.id) && (@radiostationsongs.last.artist_id == artist.id)
+        puts "#{song.title} from #{artist.name} in last 3 songs on #{radiostation.name}"
+        return false
+      else
+        Generalplaylist.add_song(time, artist, song, radiostation)
+      end
     end
+  end
+
+  def self.add_song(time, artist, song, radiostation)
+    generalplaylist = Generalplaylist.new
+    generalplaylist.time = time
+    generalplaylist.artist_id = artist.id
+    generalplaylist.song_id = song.id
+    generalplaylist.radiostation_id = radiostation.id
+    generalplaylist.save!
+    fullname = "#{artist.name} #{song.title}"
+    songdetails = Song.find(generalplaylist.song_id)
+    songdetails.day_counter += 1
+    songdetails.week_counter += 1
+    songdetails.month_counter += 1
+    songdetails.year_counter += 1
+    songdetails.total_counter += 1
+    songdetails.fullname = fullname
+    songdetails.artist_id = artist.id
+    songdetails.save!
+    artist = Artist.find(generalplaylist.artist_id)
+    artist.day_counter += 1
+    artist.week_counter += 1
+    artist.month_counter += 1
+    artist.year_counter += 1
+    artist.total_counter += 1
+    artist.save!
+    puts "Saved #{song.title} from #{artist.name} on #{radiostation.name}!"
   end
 
   def self.reset_counters
