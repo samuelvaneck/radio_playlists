@@ -149,7 +149,7 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.today_played_songs
-    where("created_at < ?", 1.day.ago).order(created_at: :desc)
+    where("created_at > ?", 1.day.ago).order(created_at: :desc)
   end
 
 end
