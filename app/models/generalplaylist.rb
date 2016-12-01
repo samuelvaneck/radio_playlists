@@ -97,12 +97,12 @@ class Generalplaylist < ActiveRecord::Base
     hi = "HI: "
     nieuwe_naam = "NIEUW NAAM: "
 
-    if title.include?(topsong)
-      title.slice!(topsong)
-    elsif title.include?(hi)
-      title.slice!(hi)
-    elsif title.include?(nieuwe_naam)
-      title.slice!(nieuwe_naam)
+    if song.title.include?(topsong)
+      song.title.slice!(topsong)
+    elsif song.title.include?(hi)
+      song.title.slice!(hi)
+    elsif song.title.include?(nieuwe_naam)
+      song.title.slice!(nieuwe_naam)
     end
 
     generalplaylist = Generalplaylist.new
