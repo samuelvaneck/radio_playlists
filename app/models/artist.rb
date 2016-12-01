@@ -3,7 +3,7 @@ class Artist < ActiveRecord::Base
   has_many :songs
 
   def self.destroy_all
-    artists = Artists.all
+    artists = Artist.all
     artists.each do |artist|
       artist.destroy
     end
