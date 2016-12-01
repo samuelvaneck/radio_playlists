@@ -68,6 +68,7 @@ Rails.application.routes.draw do
   resources :generalplaylists do
     collection {
       get :today_played_songs
+      get :top_songs
     }
   end
 

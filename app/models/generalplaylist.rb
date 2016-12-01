@@ -146,15 +146,19 @@ class Generalplaylist < ActiveRecord::Base
     end
   end
 
+  def self.today_played_songs
+    where("created_at > ?", 1.day.ago).order(created_at: :DESC)
+  end
+
+  def self.top_songs
+    Song.all.order(total_counter: :DESC)
+  end
+
   def self.destroy_all
     generalplaylists = Generalplaylist.all
     generalplaylists.each do |generalplaylist|
       generalplaylist.destroy
     end
-  end
-
-  def self.today_played_songs
-    where("created_at > ?", 1.day.ago).order(created_at: :desc)
   end
 
 end

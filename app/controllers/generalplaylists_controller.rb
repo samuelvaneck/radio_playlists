@@ -12,7 +12,12 @@ class GeneralplaylistsController < ApplicationController
   end
 
   def today_played_songs
-    @todayplayedsongs = Generalplaylist.today_played_songs
+    @todayplayedsongs = Generalplaylist.today_played_songs.paginate(page: params[:page]).per_page(8)
+  end
+
+  def top_songs
+    @topsongs = Generalplaylist.top_songs.paginate(page: params[:page]).per_page(8)
+    @counter = 0
   end
 
 end
