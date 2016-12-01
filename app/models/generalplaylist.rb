@@ -79,11 +79,11 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.create_generalplaylist(time, artist, song, radiostation)
-    @radiostationsongs = Generalplaylist.where("radiostation_id = ? AND created_at > ?", radiostation.id, 1.day.ago)
-    if @radiostationsongs == []
+    radiostationsongs = Generalplaylist.where("radiostation_id = ? AND created_at > ?", radiostation.id, 2.day.ago)
+    if radiostationsongs == []
       Generalplaylist.add_song(time, artist, song, radiostation)
     else
-      if (@radiostationsongs.last.time == time) && (@radiostationsongs.last.song_id == song.id) && (@radiostationsongs.last.artist_id == artist.id)
+      if (radiostationsongs.last.time == time) && (radiostationsongs.last.song_id == song.id) && (radiostationsongs.last.artist_id == artist.id)
         puts "#{song.title} from #{artist.name} in last 3 songs on #{radiostation.name}"
         return false
       else
