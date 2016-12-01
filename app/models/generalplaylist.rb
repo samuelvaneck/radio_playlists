@@ -93,6 +93,18 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.add_song(time, artist, song, radiostation)
+    topsong = "TOPSONG: "
+    hi = "HI: "
+    nieuwe_naam = "NIEUW NAAM: "
+
+    if title.include?(topsong)
+      title.slice!(topsong)
+    elsif title.include?(hi)
+      title.slice!(hi)
+    elsif title.include?(nieuwe_naam)
+      title.slice!(nieuwe_naam)
+    end
+
     generalplaylist = Generalplaylist.new
     generalplaylist.time = time
     generalplaylist.artist_id = artist.id
