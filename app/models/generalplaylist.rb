@@ -22,11 +22,11 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.radio_538_check
-    url = "http://playlist24.nl/radio-538-playlist/"
+    url = "https://www.relisten.nl/playlists/538.html"
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text
+    time = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4/small').text
+    artist = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/p/a').text
+    title = (doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4[@class="media-heading"]').text).split.reverse.drop(1).reverse.join(" ")
 
     artist = Artist.find_or_create_by(name: artist)
     song = Song.find_or_create_by(title: title)
@@ -97,12 +97,12 @@ class Generalplaylist < ActiveRecord::Base
     hi = "HI: "
     nieuwe_naam = "NIEUW NAAM: "
 
-    if title.include?(topsong)
-      title.slice!(topsong)
-    elsif title.include?(hi)
-      title.slice!(hi)
-    elsif title.include?(nieuwe_naam)
-      title.slice!(nieuwe_naam)
+    if song.title.include?(topsong)
+      song.title.slice!(topsong)
+    elsif song.title.include?(hi)
+      song.title.slice!(hi)
+    elsif song.title.include?(nieuwe_naam)
+      song.title.slice!(nieuwe_naam)
     end
 
     generalplaylist = Generalplaylist.new
