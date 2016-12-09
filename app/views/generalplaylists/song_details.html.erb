@@ -28,15 +28,15 @@
         </table>
         <h5>Played @</h5>
         <% @generalplaylist = Generalplaylist.where("song_id = ?", detail.id) %>
-        <% @generalplaylist.each do |generalplaylist| %>
-          <table class="songdetail-playlist-table">
-            <tr>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Radiostation</th>
-              <th>Artist</th>
-              <th>Title</th>
-            </tr>
+        <table class="songdetail-playlist-table">
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Radiostation</th>
+            <th>Artist</th>
+            <th>Title</th>
+          </tr>
+          <% @generalplaylist.each do |generalplaylist| %>
             <tr>
               <td><%= generalplaylist.created_at.strftime("%d %b %Y") %></td>
               <td><%= generalplaylist.time %></td>
@@ -44,8 +44,8 @@
               <td><%= generalplaylist.artist.name %></td>
               <td><%= generalplaylist.song.title %></td>
             </tr>
-          </table>
-        <% end %>
+          <% end %>
+        </table>
       <% end %>
     </div>
 </div>
