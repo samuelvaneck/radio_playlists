@@ -21,7 +21,7 @@ class GeneralplaylistsController < ApplicationController
   end
 
   def autocomplete
-    @songs = Songs.
+  
   end
 
 end
