@@ -14,33 +14,34 @@
           <th>Total</th>
         </tr>
         <% @details.each do |detail| %>
-        <tr>
-          <td><%= detail.artist.name %></td>
-          <td><%= detail.title %></td>
-          <td><%= detail.day_counter %></td>
-          <td><%= detail.week_counter %></td>
-          <td><%= detail.month_counter %></td>
-          <td><%= detail.year_counter %></td>
-          <td><%= detail.total_counter %></td>
-        </tr>
-        <% end %>
-      </table>
-      <table class="g-playlist-table">
-        <tr>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Radiostation</th>
-          <th>Artist</th>
-          <th>Title</th>
-        </tr>
-        <% @generalplaylist.each do |generalplaylist| %>
-        <tr>
-          <td><%= generalplaylist.created_at.strftime("%d %b %Y") %></td>
-          <td><%= generalplaylist.time %></td>
-          <td><%= generalplaylist.radiostation.name %></td>
-          <td><%= generalplaylist.artist.name %></td>
-          <td><%= generalplaylist.song.title %></td>
-        </tr>
+          <% @generalplaylist = Generalplaylist.where("song_id = ?", detail.id) %>
+          <tr>
+            <td><%= detail.artist.name %></td>
+            <td><%= detail.title %></td>
+            <td><%= detail.day_counter %></td>
+            <td><%= detail.week_counter %></td>
+            <td><%= detail.month_counter %></td>
+            <td><%= detail.year_counter %></td>
+            <td><%= detail.total_counter %></td>
+          </tr>
+        </table>
+        <table class="g-playlist-table">
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Radiostation</th>
+            <th>Artist</th>
+            <th>Title</th>
+          </tr>
+          <% @generalplaylist.each do |generalplaylist| %>
+          <tr>
+            <td><%= generalplaylist.created_at.strftime("%d %b %Y") %></td>
+            <td><%= generalplaylist.time %></td>
+            <td><%= generalplaylist.radiostation.name %></td>
+            <td><%= generalplaylist.artist.name %></td>
+            <td><%= generalplaylist.song.title %></td>
+          </tr>
+          <% end %>
         <% end %>
       </table>
     </div>
