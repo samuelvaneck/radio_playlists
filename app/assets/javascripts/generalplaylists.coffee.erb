@@ -2,3 +2,6 @@ jQuery ->
   vpw = $(window).width()
   vph = $(window).height()
   $('.full-window-height').height(vph)
+
+  $('#search_fullname').autocomplete
+    source: $('#search_fullname').data('autocomplete-source')

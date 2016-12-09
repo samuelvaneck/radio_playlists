@@ -11,6 +11,13 @@ class GeneralplaylistsController < ApplicationController
     @counter = 0
   end
 
+  def song_details
+    @details = Song.where("fullname ILIKE ?", "%#{params[:search_fullname]}%")
+    @details.each do |detail|
+      @generalplaylist = Generalplaylist.where("song_id = ?", detail.id)
+    end
+  end
+
   def today_played_songs
     @todayplayedsongs = Generalplaylist.today_played_songs.paginate(page: params[:page]).per_page(8)
   end
@@ -21,7 +28,8 @@ class GeneralplaylistsController < ApplicationController
   end
 
   def autocomplete
-  
+    @results = Song.order(:fullname).where("fullname ILIKE ?", "%#{params[:term]}%").limit(10)
+    render json: @results.map(&:fullname)
   end
 
 end

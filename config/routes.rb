@@ -70,6 +70,7 @@ Rails.application.routes.draw do
       get :today_played_songs
       get :top_songs
       get :autocomplete
+      get :song_details
     }
   end
 

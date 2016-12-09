@@ -51,6 +51,14 @@
     </div>
   </div>
   <div class="container row">
+    <%= form_tag '/generalplaylists/song_details', :method => 'get', role:"search" do  %>
+      <p>
+        <%= text_field_tag :search_fullname, params[:search], placeholder: "Search artist or song...", data: { autocomplete_source: autocomplete_generalplaylists_path } %>
+        <%= submit_tag "Search", :name => nil, class: "waves-effect waves-light btn grey" %>
+      <p>
+    <% end %>
+  </div>
+  <div class="container row">
     <div><a href="#section-1"><i class="material-icons md-48">expand_less</i></a></div>
   </div>
 </section>
