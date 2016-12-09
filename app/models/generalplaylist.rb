@@ -22,11 +22,11 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.radio_538_check
-    url = "https://www.relisten.nl/playlists/538.html"
+    url = "http://playlist24.nl/radio-538-playlist/"
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4/small').text
-    artist = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/p/a').text
-    title = (doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4[@class="media-heading"]').text).split.reverse.drop(1).reverse.join(" ")
+    time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
+    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text
+    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text
 
     artist = Artist.find_or_create_by(name: artist)
     song = Song.find_or_create_by(title: title)
@@ -36,12 +36,25 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.radio_2_check
+
+    topsong = "TOPSONG: "
+    hi = "HI: "
+    nieuwe_naam = "NIEUW NAAM: "
+
     url = "http://www.nporadio2.nl/playlist"
     doc = Nokogiri::HTML(open(url))
     list = doc.at('.columns-2')
     time = list.xpath('//li[last()]/a/div[3]/div/p').first.text
     artist = list.xpath('//li[last()]/a/div[2]/div/p[1]').first.text
     title = list.xpath('//li[last()]/a/div[2]/div/p[2]').first.text
+
+    if title.include?(topsong)
+      title.slice!(topsong)
+    elsif title.include?(hi)
+      title.slice!(hi)
+    elsif title.include?(nieuwe_naam)
+      title.slice!(nieuwe_naam)
+    end
 
     artist = Artist.find_or_create_by(name: artist)
     song = Song.find_or_create_by(title: title)
@@ -93,17 +106,6 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.add_song(time, artist, song, radiostation)
-    topsong = "TOPSONG: "
-    hi = "HI: "
-    nieuwe_naam = "NIEUW NAAM: "
-
-    if song.title.include?(topsong)
-      song.title.slice!(topsong)
-    elsif song.title.include?(hi)
-      song.title.slice!(hi)
-    elsif song.title.include?(nieuwe_naam)
-      song.title.slice!(nieuwe_naam)
-    end
 
     generalplaylist = Generalplaylist.new
     generalplaylist.time = time
@@ -164,6 +166,14 @@ class Generalplaylist < ActiveRecord::Base
 
   def self.top_songs
     Song.all.order(total_counter: :DESC)
+  end
+
+  def autocomplete
+    autocomplete.try(:fullname)
+  end
+
+  def autocomplete=(fullname)
+    self.autocomplete = Song.find_by_fullname(fullname, include: :id) if fullname.present?
   end
 
   def self.destroy_all

@@ -20,4 +20,8 @@ class GeneralplaylistsController < ApplicationController
     @counter = 0
   end
 
+  def autocomplete
+    @songs = Songs.
+  end
+
 end
