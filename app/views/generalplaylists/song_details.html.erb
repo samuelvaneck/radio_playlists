@@ -27,19 +27,21 @@
       </table>
       <table class="g-playlist-table">
         <tr>
+          <th>Date</th>
           <th>Time</th>
           <th>Radiostation</th>
           <th>Artist</th>
           <th>Title</th>
         </tr>
-        <tr>
         <% @generalplaylist.each do |generalplaylist| %>
+        <tr>
+          <td><%= generalplaylist.created_at.strftime("%d %b %Y") %></td>
           <td><%= generalplaylist.time %></td>
           <td><%= generalplaylist.radiostation.name %></td>
           <td><%= generalplaylist.artist.name %></td>
           <td><%= generalplaylist.song.title %></td>
-        <% end %>
         </tr>
+        <% end %>
       </table>
     </div>
   </div>
