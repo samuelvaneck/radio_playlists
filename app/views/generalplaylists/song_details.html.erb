@@ -2,11 +2,11 @@
   <div class="head center">Details for <%= params[:search_fullname] %></div>
   <div class="container row">
     <div class="col S12 M4 L4">
+      <% @details.each do |detail| %>
+      <hr>
+      <h4 class="center"><%= detail.artist.name %> - <%= detail.title %></a></h4>
       <table class="songdetail-playlist-table">
-        <% @details.each do |detail| %>
-        <% @generalplaylist = Generalplaylist.where("song_id = ?", detail.id) %>
-        <h4 class="center"><%= detail.artist.name %> - <%= detail.title %></a></h4>
-        <tr><h5 class="center">Counters</h5></tr>
+        <h5 class="center">Counters</h5>
         <tr>
           <th>Artist</th>
           <th>Title</th>
@@ -26,29 +26,29 @@
           <td><%= detail.total_counter %></td>
         </tr>
         </table>
-        <table class="songdetail-playlist-table">
-          <tr><h5 class="center">Played @</h5></tr>
-          <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Radiostation</th>
-            <th>Artist</th>
-            <th>Title</th>
-          </tr>
-          <% @generalplaylist.each do |generalplaylist| %>
-          <tr>
-            <td><%= generalplaylist.created_at.strftime("%d %b %Y") %></td>
-            <td><%= generalplaylist.time %></td>
-            <td><%= generalplaylist.radiostation.name %></td>
-            <td><%= generalplaylist.artist.name %></td>
-            <td><%= generalplaylist.song.title %></td>
-          </tr>
-          <% end %>
+        <h5 class="center">Played @</h5>
+        <% @generalplaylist = Generalplaylist.where("song_id = ?", detail.id) %>
+        <% @generalplaylist.each do |generalplaylist| %>
+          <table class="songdetail-playlist-table">
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Radiostation</th>
+              <th>Artist</th>
+              <th>Title</th>
+            </tr>
+            <tr>
+              <td><%= generalplaylist.created_at.strftime("%d %b %Y") %></td>
+              <td><%= generalplaylist.time %></td>
+              <td><%= generalplaylist.radiostation.name %></td>
+              <td><%= generalplaylist.artist.name %></td>
+              <td><%= generalplaylist.song.title %></td>
+            </tr>
+          </table>
         <% end %>
-      </table>
-      <hr>
+      <% end %>
     </div>
-  </div>
+</div>
   <div class="container row">
     <a href="/generalplaylists"><i class="material-icons md-48">chevron_left</i></a>
   </div>
