@@ -13,9 +13,6 @@ class GeneralplaylistsController < ApplicationController
 
   def song_details
     @details = Song.where("fullname ILIKE ?", "%#{params[:search_fullname]}%")
-    @details.each do |detail|
-      @generalplaylist = Generalplaylist.where("song_id = ?", detail.id)
-    end
   end
 
   def today_played_songs
