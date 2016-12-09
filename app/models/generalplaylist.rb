@@ -15,21 +15,21 @@ class Generalplaylist < ActiveRecord::Base
     title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text
 
     artist = Artist.find_or_create_by(name:artist)
-    song = Song.find_or_create_by(title: title)
+    song = Song.find_or_create_by(title: title, artist: artist)
     radiostation = Radiostation.find_or_create_by(name: "Radio Veronica")
 
     Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
   end
 
   def self.radio_538_check
-    url = "http://playlist24.nl/radio-538-playlist/"
+    url = "https://www.relisten.nl/playlists/538.html"
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text
+    time = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4/small').text
+    artist = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/p/a').text
+    title = (doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4[@class="media-heading"]').text).split.reverse.drop(1).reverse.join(" ")
 
     artist = Artist.find_or_create_by(name: artist)
-    song = Song.find_or_create_by(title: title)
+    song = Song.find_or_create_by(title: title, artist: artist)
     radiostation = Radiostation.find_or_create_by(name: "Radio 538")
 
     Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
@@ -57,7 +57,7 @@ class Generalplaylist < ActiveRecord::Base
     end
 
     artist = Artist.find_or_create_by(name: artist)
-    song = Song.find_or_create_by(title: title)
+    song = Song.find_or_create_by(title: title, artist: artist)
     radiostation = Radiostation.find_or_create_by(name: "Radio 2")
 
     Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
@@ -71,7 +71,7 @@ class Generalplaylist < ActiveRecord::Base
     title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text
 
     artist = Artist.find_or_create_by(name: artist)
-    song = Song.find_or_create_by(title: title)
+    song = Song.find_or_create_by(title: title, artist: artist)
     radiostation = Radiostation.find_or_create_by(name: "Sublime FM")
 
     Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
@@ -85,7 +85,7 @@ class Generalplaylist < ActiveRecord::Base
     title = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[3]').text
 
     artist = Artist.find_or_create_by(name: artist)
-    song = Song.find_or_create_by(title: title, artist_id: artist.id)
+    song = Song.find_or_create_by(title: title, artist: artist)
     radiostation = Radiostation.find_or_create_by(name: "Groot Nieuws Radio")
 
     Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
