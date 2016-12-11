@@ -69,6 +69,7 @@ Rails.application.routes.draw do
     collection {
       get :today_played_songs
       get :top_songs
+      get :top_artists
       get :autocomplete
       get :song_details
     }

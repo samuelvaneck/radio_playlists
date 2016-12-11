@@ -240,6 +240,10 @@ class Generalplaylist < ActiveRecord::Base
     Song.all.order(total_counter: :DESC)
   end
 
+  def self.top_artists
+    Artist.all.order(total_counter: :DESC)
+  end
+
   def autocomplete
     autocomplete.try(:fullname)
   end

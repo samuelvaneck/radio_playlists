@@ -8,7 +8,7 @@
   <div class="head center">Charts</div>
   <div class="container row">
     <div class="col S12 M4 L4">
-      <h4 class="center"><a href="generalplaylists/today_played_songs">Last played songs</a></h4>
+      <h4 class="center"><a href="/generalplaylists/today_played_songs">Last played songs</a></h4>
       <table class="g-playlist-table">
         <tr>
           <th>Time</th>
@@ -27,7 +27,7 @@
       </table>
     </div>
     <div class="col S12 M4 L4">
-      <h4 class="center"><a href="generalplaylists/top_songs">Top 10 songs</a></h4>
+      <h4 class="center"><a href="/generalplaylists/top_songs">Top 10 songs</a></h4>
       <table class="g-playlist-table">
         <tr>
           <th>Chart #</th>
@@ -35,9 +35,9 @@
           <th>Title</th>
           <th>Total week</th>
         </tr>
-        <% @top5songsweek.each do |song| %>
+        <% @top_10_songs_week.each do |song| %>
         <tr>
-          <td><%= @counter += 1 %></td>
+          <td><%= @counter_songs += 1 %></td>
           <% if song.artist_id != nil %>
             <td><%= song.artist.name %></td>
             <% else %>
@@ -45,6 +45,23 @@
           <% end %>
           <td><%= song.title %></td>
           <td><%= song.week_counter %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col S12 M4 L4">
+      <h4 class="center"><a href="/generalplaylists/top_artists">Top 10 artist</a></h4>
+      <table class="g-playlist-table">
+        <tr>
+          <th>Chart #</th>
+          <th>Artist</th>
+          <th>Total week</th>
+        </tr>
+        <% @top_10_artists_week.each do |artist| %>
+        <tr>
+          <td><%= @counter_artists += 1 %></td>
+          <td><%= artist.name %></td>
+          <td><%= artist.week_counter %></td>
         </tr>
         <% end %>
       </table>

@@ -2,24 +2,22 @@
   <div class="head center">Charts</div>
   <div class="container row">
     <div class="col S12 M4 L4">
-      <h4 class="center"><a href="generalplaylists/top_songs">Top played songs</a></h4>
+      <h4 class="center"><a href="generalplaylists/top_artists">Top played artists</a></h4>
       <table class="g-playlist-table">
         <tr>
           <th>Chart #</th>
           <th>Artist</th>
-          <th>Title</th>
           <th>Total</th>
         </tr>
-        <% @top_songs.each do |top_song| %>
+        <% @top_artists.each do |top_artist| %>
         <tr>
           <td><%= @counter += 1 %>
-          <td><%= top_song.artist.name %></td>
-          <td><%= top_song.title %></td>
-          <td><%= top_song.total_counter %></td>
+          <td><%= top_artist.name %></td>
+          <td><%= top_artist.total_counter %></td>
         </tr>
         <% end %>
       </table>
-      <p><%= will_paginate @top_songs %></p>
+      <p><%= will_paginate @top_artists %></p>
     </div>
   </div>
 </section>
