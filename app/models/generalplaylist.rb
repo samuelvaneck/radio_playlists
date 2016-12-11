@@ -207,27 +207,48 @@ class Generalplaylist < ActiveRecord::Base
   # Methode for resetting the day, week, month and year counters
   def self.reset_counters
     songs = Song.all
+    artists = Artists.all
     today = Date.today
+    # reset the day counter for songs and artists
     songs.each do |song|
       song.day_counter = 0
       song.save
     end
-    if today.sunday?
+    artists.each do |artist|
+      artist.day_counter = 0
+      artist.save
+    end
+    # reset the week counter if today is monday
+    if today.monday?
       songs.each do |song|
         song.week_counter = 0
         song.save
       end
+      artists.each do |artist|
+        artist.week_counter = 0
+        artist.save
+      end
     end
+    # reset the month counter at the end of the month
     if today == Date.today.end_of_month
       songs.each do |song|
         song.month_counter = 0
         song.save
       end
+      artists.each do |artist|
+        artist.month_counter = 0
+        artist.save
+      end
     end
+    # reset the year counter at the end of the year
     if today == Date.today.end_of_year
       songs.each do |song|
-        song.year_counter
+        song.year_counter = 0
         song.save
+      end
+      artists.each do |artist|
+        artist.year_counter = 0
+        artist.save
       end
     end
   end
