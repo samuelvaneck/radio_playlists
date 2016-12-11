@@ -10,6 +10,9 @@
           <th>Title</th>
           <th>Total</th>
         </tr>
+        <% if params[:page].present? %>
+          <% @counter = (params[:page].to_i * 10) -10 %>
+        <% end %>
         <% @top_songs.each do |top_song| %>
         <tr>
           <td><%= @counter += 1 %>
@@ -21,5 +24,8 @@
       </table>
       <p><%= will_paginate @top_songs %></p>
     </div>
+  </div>
+  <div class="container row">
+    <a href="/generalplaylists"><i class="material-icons md-48">chevron_left</i></a>
   </div>
 </section>
