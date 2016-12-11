@@ -12,8 +12,8 @@ class Generalplaylist < ActiveRecord::Base
     url = "http://playlist24.nl/radio-veronica-playlist/"
     doc = Nokogiri::HTML(open(url))
     time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text
+    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.camelcase
+    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text.camelcase
 
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name:artist)
@@ -33,8 +33,8 @@ class Generalplaylist < ActiveRecord::Base
     url = "https://www.relisten.nl/playlists/538.html"
     doc = Nokogiri::HTML(open(url))
     time = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4/small').text
-    artist = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/p/a').text
-    title = (doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4[@class="media-heading"]').text).split.reverse.drop(1).reverse.join(" ")
+    artist = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/p/a').text.camelcase
+    title = (doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4[@class="media-heading"]').text).split.reverse.drop(1).reverse.join(" ").camelcase
 
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist)
@@ -60,8 +60,8 @@ class Generalplaylist < ActiveRecord::Base
     doc = Nokogiri::HTML(open(url))
     list = doc.at('.columns-2')
     time = list.xpath('//li[last()]/a/div[3]/div/p').first.text
-    artist = list.xpath('//li[last()]/a/div[2]/div/p[1]').first.text
-    title = list.xpath('//li[last()]/a/div[2]/div/p[2]').first.text
+    artist = list.xpath('//li[last()]/a/div[2]/div/p[1]').first.text.camelcase
+    title = list.xpath('//li[last()]/a/div[2]/div/p[2]').first.text.camelcase
 
     # check if the variables topsong, hi or nieuwe_naam are in the title
     # if so they will be sliced off
@@ -91,8 +91,8 @@ class Generalplaylist < ActiveRecord::Base
     url = "http://playlist24.nl/sublime-fm-playlist/"
     doc = Nokogiri::HTML(open(url))
     time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text
+    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.camelcase
+    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text.camelcase
 
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist)
@@ -112,8 +112,8 @@ class Generalplaylist < ActiveRecord::Base
     url = "https://www.grootnieuwsradio.nl/muziek/playlist"
     doc = Nokogiri::HTML(open(url))
     time = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[1]').text.split.drop(1).join(" ")
-    artist = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[2]').text
-    title = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[3]').text
+    artist = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[2]').text.camelcase
+    title = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[3]').text.camelcase
 
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist)
@@ -238,6 +238,10 @@ class Generalplaylist < ActiveRecord::Base
 
   def self.top_songs
     Song.all.order(total_counter: :DESC)
+  end
+
+  def self.top_artists
+    Artist.all.order(total_counter: :DESC)
   end
 
   def autocomplete

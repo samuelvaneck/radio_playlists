@@ -10,16 +10,16 @@
           <th>Artist</th>
           <th>Title</th>
         </tr>
-        <% @todayplayedsongs.each do |todayplayedsong| %>
+        <% @today_played_songs.each do |today_played_song| %>
         <tr>
-          <td><%= todayplayedsong.time %></td>
-          <td><%= todayplayedsong.radiostation.name %></td>
-          <td><%= todayplayedsong.artist.name %></td>
-          <td><%= todayplayedsong.song.title %></td>
+          <td><%= today_played_song.time %></td>
+          <td><%= today_played_song.radiostation.name %></td>
+          <td><%= today_played_song.artist.name %></td>
+          <td><%= today_played_song.song.title %></td>
         </tr>
         <% end %>
       </table>
-      <p><%= will_paginate @todayplayedsongs %></p>
+      <p><%= will_paginate @today_played_songs %></p>
     </div>
   </div>
 </section>
