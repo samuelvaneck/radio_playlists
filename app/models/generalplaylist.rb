@@ -201,13 +201,13 @@ class Generalplaylist < ActiveRecord::Base
     artist.year_counter += 1
     artist.total_counter += 1
     artist.save!
-    puts "Saved #{song.title} from #{artist.name} on #{radiostation.name}!"
+    puts "Saved #{song.title} #{song.id} from #{artist.name} #{artist.id} on #{radiostation.name}!"
   end
 
   # Methode for resetting the day, week, month and year counters
   def self.reset_counters
     songs = Song.all
-    artists = Artists.all
+    artists = Artist.all
     today = Date.today
     # reset the day counter for songs and artists
     songs.each do |song|
