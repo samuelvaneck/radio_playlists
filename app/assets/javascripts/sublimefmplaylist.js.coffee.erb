@@ -2,8 +2,8 @@ jQuery ->
   $('#search_fullname').autocomplete
     source: $('#search_fullname').data('autocomplete-source')
 
-  $(window).scroll ->
-    url = $('.pagination .next_page').attr('href')
-    if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
-      $('.pagination').html('<img src="/assets/gears-197b8b2f5e009479f64311bbcb64087f0ab9da60aff8cba21f27d7efed278b11.gif" alt="Loading..." title="Loading..." width="30px" height="30px"/>' + ' ' + 'Loading more songs....')
-      $.getScript(url)
+  # $(window).scroll ->
+  #   url = $('.pagination .next_page').attr('href')
+  #   if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
+  #     $('.pagination').html('<img src="/assets/gears-197b8b2f5e009479f64311bbcb64087f0ab9da60aff8cba21f27d7efed278b11.gif" alt="Loading..." title="Loading..." width="30px" height="30px"/>' + ' ' + 'Loading more songs....')
+  #     $.getScript(url)
