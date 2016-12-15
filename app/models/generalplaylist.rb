@@ -7,6 +7,7 @@ class Generalplaylist < ActiveRecord::Base
   require 'open-uri'
   require 'date'
 
+
   # Check the Radio Veronica song
   def self.radio_veronica_check
     url = "http://playlist24.nl/radio-veronica-playlist/"
@@ -14,6 +15,8 @@ class Generalplaylist < ActiveRecord::Base
     time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
     artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.camelcase
     title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text.camelcase
+
+    Generalplaylist.title_check(title)
 
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name:artist)
@@ -35,6 +38,8 @@ class Generalplaylist < ActiveRecord::Base
     time = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4/small').text
     artist = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/p/a').text.camelcase
     title = (doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4[@class="media-heading"]').text).split.reverse.drop(1).reverse.join(" ").camelcase
+
+    Generalplaylist.title_check(title)
 
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist)
@@ -62,6 +67,8 @@ class Generalplaylist < ActiveRecord::Base
     time = list.xpath('//li[last()]/a/div[3]/div/p').first.text
     artist = list.xpath('//li[last()]/a/div[2]/div/p[1]').first.text.camelcase
     title = list.xpath('//li[last()]/a/div[2]/div/p[2]').first.text.camelcase
+
+    Generalplaylist.title_check(title)
 
     # check if the variables topsong, hi or nieuwe_naam are in the title
     # if so they will be sliced off
@@ -94,6 +101,8 @@ class Generalplaylist < ActiveRecord::Base
     artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.camelcase
     title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text.camelcase
 
+    Generalplaylist.title_check(title)
+
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist)
     # Search for all the songs with title
@@ -115,6 +124,8 @@ class Generalplaylist < ActiveRecord::Base
     artist = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[2]').text.camelcase
     title = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[3]').text.camelcase
 
+    Generalplaylist.title_check(title)
+
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist)
     # Search for all the songs with title
@@ -126,6 +137,26 @@ class Generalplaylist < ActiveRecord::Base
 
     # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
     Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+  end
+
+  # Methode for checking if the title of the song is OK
+  def self.title_check(title)
+    if title.count("0-9") > 2
+      puts "found #{title.count("0-9")} numbers in the title"
+      return false
+    elsif title.count("/") > 1
+      puts "found #{title.count("/") > 1} / in the title"
+      return false
+    elsif title.count("'") > 2
+      puts "found #{title.count("'") > 2} ' in the title"
+      return false
+    elsif title.count("-") > 0
+      puts "found #{title.count("-") > 0} - in the title"
+      return false
+    elsif title.count(".") > 1
+      puts "found #{title.count(".") > 1} . in the title"
+      return false
+    end
   end
 
   # Methode for checking if there are songs with the same title.

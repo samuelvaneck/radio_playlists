@@ -10,9 +10,6 @@
           <th>Title</th>
           <th>Total</th>
         </tr>
-        <% if params[:page].present? %>
-          <% @counter = (params[:page].to_i * 10) -10 %>
-        <% end %>
         <% @top_songs.each do |top_song| %>
         <tr>
           <td><%= @counter += 1 %>

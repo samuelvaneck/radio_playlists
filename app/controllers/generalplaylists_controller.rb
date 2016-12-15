@@ -22,13 +22,21 @@ class GeneralplaylistsController < ApplicationController
   end
 
   def top_songs
+    if params[:page].present?
+      @counter = (params[:page].to_i * 10) -10
+    else
+      @counter = 0
+    end
     @top_songs = Generalplaylist.top_songs.paginate(page: params[:page]).per_page(10)
-    @counter = 0
   end
 
   def top_artists
+    if params[:page].present?
+      @counter = (params[:page].to_i * 10) -10
+    else
+      @counter = 0
+    end
     @top_artists = Generalplaylist.top_artists.paginate(page: params[:page]).per_page(10)
-    @counter = 0
   end
 
   def autocomplete
