@@ -33,11 +33,11 @@ class Generalplaylist < ActiveRecord::Base
 
   # Check the Radio 538 song
   def self.radio_538_check
-    url = "https://www.relisten.nl/playlists/538.html"
+    url = "http://watiseropderadio.nl/playlist/radio/538/vandaag"
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4/small').text
-    artist = doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/p/a').text.camelcase
-    title = (doc.xpath('//*[@id="playlist"]/div[1]/ul/li[1]/div/h4[@class="media-heading"]').text).split.reverse.drop(1).reverse.join(" ").camelcase
+    time = time = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[1]').text.split.reverse.drop(1).reverse.join(" ")
+    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[3]/a').text.split.join(" ").camelcase
+    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[2]/a').text.split.join(" ").camelcase
 
     Generalplaylist.title_check(title)
 
@@ -141,7 +141,7 @@ class Generalplaylist < ActiveRecord::Base
 
   # Methode for checking if the title of the song is OK
   def self.title_check(title)
-    if title.count("0-9") > 2
+    if title.count("0-9") > 4
       puts "found #{title.count("0-9")} numbers in the title"
       return false
     elsif title.count("/") > 1
@@ -232,7 +232,7 @@ class Generalplaylist < ActiveRecord::Base
     artist.year_counter += 1
     artist.total_counter += 1
     artist.save!
-    puts "Saved #{song.title} #{song.id} from #{artist.name} #{artist.id} on #{radiostation.name}!"
+    puts "Saved #{song.title} (#{song.id}) from #{artist.name} (#{artist.id}) on #{radiostation.name}!"
   end
 
   # Methode for resetting the day, week, month and year counters
