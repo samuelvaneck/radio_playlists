@@ -139,6 +139,30 @@ class Generalplaylist < ActiveRecord::Base
     Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
   end
 
+  def self.sky_radio_check
+    url = "http://www.skyradio.nl/playlists/sky-radio"
+    img_addon = "http://www.skyradio.nl"
+    doc = Nokogiri::HTML(open(url))
+    time = doc.xpath('//tr[contains(@class, "now-playing")]/td[1]/time').text
+    artist = doc.xpath('//tr[contains(@class, "now-playing")]/td[2]/div[1]/div[2]/p[2]').text.camelcase
+    title = doc.xpath('//tr[contains(@class, "now-playing")]/td[2]/div[1]/div[2]/p[1]').text.camelcase
+    image = (img_addon) + (doc.xpath('//tr[contains(@class, "now-playing")]/td[2]/div[1]/div[1]/img/@src').text)
+
+    Generalplaylist.title_check(title)
+
+    # Find the artist name in the Artist database or create a new record
+    artist = Artist.find_or_create_by(name: artist)
+    # Search for all the songs with title
+    songs = Song.where("title = ?", title)
+    # Add the songs variable to the song_check methode. Returns @song variable
+    Generalplaylist.song_check(songs, artist, title)
+    # Find or create the Radiostation with name "Groot Nieuws Radio"
+    radiostation = Radiostation.find_or_create_by(name: "Sky Radio")
+
+    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
+    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+  end
+
   # Methode for checking if the title of the song is OK
   def self.title_check(title)
     if title.count("0-9") > 4
