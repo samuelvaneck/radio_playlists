@@ -143,10 +143,10 @@ class Generalplaylist < ActiveRecord::Base
     url = "http://www.skyradio.nl/playlists/sky-radio"
     img_addon = "http://www.skyradio.nl"
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//tr[contains(@class, "now-playing")]/td[1]/time').text
-    artist = doc.xpath('//tr[contains(@class, "now-playing")]/td[2]/div[1]/div[2]/p[2]').text.camelcase
-    title = doc.xpath('//tr[contains(@class, "now-playing")]/td[2]/div[1]/div[2]/p[1]').text.camelcase
-    image = (img_addon) + (doc.xpath('//tr[contains(@class, "now-playing")]/td[2]/div[1]/div[1]/img/@src').text)
+    time = doc.xpath('//table[contains(@class, "table-playlist")]//tr[last()]/td[1]/time').text
+    artist = doc.xpath('//table[contains(@class, "table-playlist")]//tr[last()]/td[2]/div[1]/div[2]/p[2]').text.camelcase
+    title = doc.xpath('//table[contains(@class, "table-playlist")]//tr[last()]/td[2]/div[1]/div[2]/p[1]').text.camelcase
+    image = (img_addon) + (doc.xpath('//table[contains(@class, "table-playlist")]//tr[last()]/td[2]/div[1]/div[1]/img/@src').text)
 
     Generalplaylist.title_check(title)
 
