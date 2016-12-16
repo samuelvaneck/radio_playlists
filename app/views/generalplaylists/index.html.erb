@@ -462,26 +462,26 @@
         <% end %>
       </table>
     </div>
-  </div>
-  <div class="col s12 m4 l4">
-    <h4 class="center">Top played artists</h4>
-    <table class="g-playlist-table">
-      <tr>
-        <th>Chart #</th>
-        <th>Artist</th>
-        <th>Count</th>
-      </tr>
-      <% @top_artists_sky_radio.each do |artist| %>
-        <% artist_id = artist[0] %>
-        <% artist_count = artist[1] %>
-        <% artist_name = Artist.find(artist_id) %>
-      <tr>
-        <td><%= @counter_top_artists_sky_radio += 1 %></td>
-        <td><%= artist_name.name %></td>
-        <td><%= artist_count %></td>
-      </tr>
-      <% end %>
-    </table>
+    <div class="col s12 m4 l4">
+      <h4 class="center">Top played artists</h4>
+      <table class="g-playlist-table">
+        <tr>
+          <th>Chart #</th>
+          <th>Artist</th>
+          <th>Count</th>
+        </tr>
+        <% @top_artists_sky_radio.each do |artist| %>
+          <% artist_id = artist[0] %>
+          <% artist_count = artist[1] %>
+          <% artist_name = Artist.find(artist_id) %>
+        <tr>
+          <td><%= @counter_top_artists_sky_radio += 1 %></td>
+          <td><%= artist_name.name %></td>
+          <td><%= artist_count %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
   <div class="container row">
     <div><a href="#section-1"><i class="material-icons md-48">expand_less</i></a></div>
