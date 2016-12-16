@@ -320,6 +320,22 @@ class Generalplaylist < ActiveRecord::Base
     Artist.all.order(total_counter: :DESC)
   end
 
+  # fetch the top 10 songs played from a radiostation
+  def self.top_songs_radiostation(radiostation_id)
+    # get all the songs played by the radiostation
+    all_songs_radiostation = Generalplaylist.where(radiostation_id: radiostation_id)
+    # group all the by song_id and count all the time the song_id is in the list. Returns a hash
+    top_songs_hash = all_songs_radiostation.group(:song_id).count
+    # Sort the hash by the value and reverse the order. Show only the first 10 results
+    top_songs = top_songs_hash.sort_by {|_key, value| value}.reverse[0 .. 9]
+    # resturn the array from song_id with counts
+    return top_songs
+  end
+
+  def top_artists_radiostation(radiostation_id)
+
+  end
+
   def autocomplete
     autocomplete.try(:fullname)
   end

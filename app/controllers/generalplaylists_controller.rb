@@ -2,15 +2,35 @@ class GeneralplaylistsController < ApplicationController
 
   def index
     @generalplaylists = Generalplaylist.order(created_at: :DESC).limit(10)
-    @veronicaplaylists = Generalplaylist.where(radiostation_id: '1').order(created_at: :DESC).limit(10)
-    @radio538playlists = Generalplaylist.where(radiostation_id: '2').order(created_at: :DESC).limit(10)
-    @sublimefmplaylists = Generalplaylist.where(radiostation_id: '3').order(created_at: :DESC).limit(10)
-    @radio2playlists = Generalplaylist.where(radiostation_id: '4').order(created_at: :DESC).limit(10)
-    @gnrplaylists = Generalplaylist.where(radiostation_id: '5').order(created_at: :DESC).limit(10)
     @top_10_songs_week = Song.order(week_counter: :DESC).limit(10)
     @top_10_artists_week = Artist.order(week_counter: :DESC).limit(10)
     @counter_songs = 0
     @counter_artists = 0
+
+    @veronicaplaylists = Generalplaylist.where(radiostation_id: '1').order(created_at: :DESC).limit(10)
+    @top_songs_radio_veronica = Generalplaylist.top_songs_radiostation(1)
+    @counter_top_songs_radio_veronica = 0
+
+    @radio538playlists = Generalplaylist.where(radiostation_id: '2').order(created_at: :DESC).limit(10)
+    @top_songs_radio_538 = Generalplaylist.top_songs_radiostation(2)
+    @counter_top_songs_radio_538 = 0
+
+    @sublimefmplaylists = Generalplaylist.where(radiostation_id: '3').order(created_at: :DESC).limit(10)
+    @top_songs_sublime_fm = Generalplaylist.top_songs_radiostation(3)
+    @counter_top_songs_sublime_fm = 0
+
+    @radio2playlists = Generalplaylist.where(radiostation_id: '4').order(created_at: :DESC).limit(10)
+    @top_songs_radio_2 = Generalplaylist.top_songs_radiostation(4)
+    @counter_top_songs_radio_2 = 0
+
+    @gnrplaylists = Generalplaylist.where(radiostation_id: '5').order(created_at: :DESC).limit(10)
+    @top_songs_groot_nieuws_radio = Generalplaylist.top_songs_radiostation(5)
+    @counter_top_songs_grootnieuws_radio = 0
+
+    @sky_radio_playlists = Generalplaylist.where(radiostation_id: '6').order(created_at: :DESC).limit(10)
+    @top_songs_sky_radio = Generalplaylist.top_songs_radiostation(6)
+    @counter_top_songs_sky_radio = 0
+
   end
 
   def song_details
