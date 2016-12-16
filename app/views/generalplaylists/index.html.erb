@@ -112,12 +112,32 @@
         <% @top_songs_radio_veronica.each do |song| %>
           <% song_id = song[0] %>
           <% song_count = song[1] %>
-          <% song_name = Song.find(song_id) %>
+          <% song_title = Song.find(song_id) %>
         <tr>
           <td><%= @counter_top_songs_radio_veronica += 1 %></td>
-          <td><%= song_name.artist.name %></td>
-          <td><%= song_name.title %></td>
+          <td><%= song_title.artist.name %></td>
+          <td><%= song_title.title %></td>
           <td><%= song_count %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col s12 m4 l4">
+      <h4 class="center">Top played artists</h4>
+      <table class="g-playlist-table">
+        <tr>
+          <th>Chart #</th>
+          <th>Artist</th>
+          <th>Count</th>
+        </tr>
+        <% @top_artists_radio_veronica.each do |artist| %>
+          <% artist_id = artist[0] %>
+          <% artist_count = artist[1] %>
+          <% artist_name = Artist.find(artist_id) %>
+        <tr>
+          <td><%= @counter_top_artists_radio_veronica += 1 %></td>
+          <td><%= artist_name.name %></td>
+          <td><%= artist_count %></td>
         </tr>
         <% end %>
       </table>
@@ -160,12 +180,32 @@
         <% @top_songs_radio_538.each do |song| %>
           <% song_id = song[0] %>
           <% song_count = song[1] %>
-          <% song_name = Song.find(song_id) %>
+          <% song_title = Song.find(song_id) %>
         <tr>
           <td><%= @counter_top_songs_radio_538 += 1 %></td>
-          <td><%= song_name.artist.name %></td>
-          <td><%= song_name.title %></td>
+          <td><%= song_title.artist.name %></td>
+          <td><%= song_title.title %></td>
           <td><%= song_count %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col s12 m4 l4">
+      <h4 class="center">Top played artists</h4>
+      <table class="g-playlist-table">
+        <tr>
+          <th>Chart #</th>
+          <th>Artist</th>
+          <th>Count</th>
+        </tr>
+        <% @top_artists_radio_538.each do |artist| %>
+          <% artist_id = artist[0] %>
+          <% artist_count = artist[1] %>
+          <% artist_name = Artist.find(artist_id) %>
+        <tr>
+          <td><%= @counter_top_artists_radio_538 += 1 %></td>
+          <td><%= artist_name.name %></td>
+          <td><%= artist_count %></td>
         </tr>
         <% end %>
       </table>
@@ -208,12 +248,32 @@
         <% @top_songs_radio_2.each do |song| %>
           <% song_id = song[0] %>
           <% song_count = song[1] %>
-          <% song_name = Song.find(song_id) %>
+          <% song_title = Song.find(song_id) %>
         <tr>
           <td><%= @counter_top_songs_radio_2 += 1 %></td>
-          <td><%= song_name.artist.name %></td>
-          <td><%= song_name.title %></td>
+          <td><%= song_title.artist.name %></td>
+          <td><%= song_title.title %></td>
           <td><%= song_count %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col s12 m4 l4">
+      <h4 class="center">Top played artists</h4>
+      <table class="g-playlist-table">
+        <tr>
+          <th>Chart #</th>
+          <th>Artist</th>
+          <th>Count</th>
+        </tr>
+        <% @top_artists_radio_2.each do |artist| %>
+          <% artist_id = artist[0] %>
+          <% artist_count = artist[1] %>
+          <% artist_name = Artist.find(artist_id) %>
+        <tr>
+          <td><%= @counter_top_artists_radio_2 += 1 %></td>
+          <td><%= artist_name.name %></td>
+          <td><%= artist_count %></td>
         </tr>
         <% end %>
       </table>
@@ -256,12 +316,32 @@
         <% @top_songs_sublime_fm.each do |song| %>
           <% song_id = song[0] %>
           <% song_count = song[1] %>
-          <% song_name = Song.find(song_id) %>
+          <% song_title = Song.find(song_id) %>
         <tr>
           <td><%= @counter_top_songs_sublime_fm += 1 %></td>
-          <td><%= song_name.artist.name %></td>
-          <td><%= song_name.title %></td>
+          <td><%= song_title.artist.name %></td>
+          <td><%= song_title.title %></td>
           <td><%= song_count %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col s12 m4 l4">
+      <h4 class="center">Top played artists</h4>
+      <table class="g-playlist-table">
+        <tr>
+          <th>Chart #</th>
+          <th>Artist</th>
+          <th>Count</th>
+        </tr>
+        <% @top_artists_sublime_fm.each do |artist| %>
+          <% artist_id = artist[0] %>
+          <% artist_count = artist[1] %>
+          <% artist_name = Artist.find(artist_id) %>
+        <tr>
+          <td><%= @counter_top_artists_sublime_fm += 1 %></td>
+          <td><%= artist_name.name %></td>
+          <td><%= artist_count %></td>
         </tr>
         <% end %>
       </table>
@@ -301,15 +381,35 @@
           <th>Title</th>
           <th>Count</th>
         </tr>
-        <% @top_songs_groot_nieuws_radio.each do |song| %>
+        <% @top_songs_grootnieuws_radio.each do |song| %>
           <% song_id = song[0] %>
           <% song_count = song[1] %>
-          <% song_name = Song.find(song_id) %>
+          <% song_title = Song.find(song_id) %>
         <tr>
           <td><%= @counter_top_songs_grootnieuws_radio += 1 %></td>
-          <td><%= song_name.artist.name %></td>
-          <td><%= song_name.title %></td>
+          <td><%= song_title.artist.name %></td>
+          <td><%= song_title.title %></td>
           <td><%= song_count %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col s12 m4 l4">
+      <h4 class="center">Top played artists</h4>
+      <table class="g-playlist-table">
+        <tr>
+          <th>Chart #</th>
+          <th>Artist</th>
+          <th>Count</th>
+        </tr>
+        <% @top_artists_grootnieuws_radio.each do |artist| %>
+          <% artist_id = artist[0] %>
+          <% artist_count = artist[1] %>
+          <% artist_name = Artist.find(artist_id) %>
+        <tr>
+          <td><%= @counter_top_artists_grootnieuws_radio += 1 %></td>
+          <td><%= artist_name.name %></td>
+          <td><%= artist_count %></td>
         </tr>
         <% end %>
       </table>
@@ -352,16 +452,36 @@
         <% @top_songs_sky_radio.each do |song| %>
           <% song_id = song[0] %>
           <% song_count = song[1] %>
-          <% song_name = Song.find(song_id) %>
+          <% song_title = Song.find(song_id) %>
         <tr>
           <td><%= @counter_top_songs_sky_radio += 1 %></td>
-          <td><%= song_name.artist.name %></td>
-          <td><%= song_name.title %></td>
+          <td><%= song_title.artist.name %></td>
+          <td><%= song_title.title %></td>
           <td><%= song_count %></td>
         </tr>
         <% end %>
       </table>
     </div>
+  </div>
+  <div class="col s12 m4 l4">
+    <h4 class="center">Top played artists</h4>
+    <table class="g-playlist-table">
+      <tr>
+        <th>Chart #</th>
+        <th>Artist</th>
+        <th>Count</th>
+      </tr>
+      <% @top_artists_sky_radio.each do |artist| %>
+        <% artist_id = artist[0] %>
+        <% artist_count = artist[1] %>
+        <% artist_name = Artist.find(artist_id) %>
+      <tr>
+        <td><%= @counter_top_artists_sky_radio += 1 %></td>
+        <td><%= artist_name.name %></td>
+        <td><%= artist_count %></td>
+      </tr>
+      <% end %>
+    </table>
   </div>
   <div class="container row">
     <div><a href="#section-1"><i class="material-icons md-48">expand_less</i></a></div>
