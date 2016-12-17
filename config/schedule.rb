@@ -20,7 +20,7 @@ every 3.minutes do
   runner "Generalplaylist.grootnieuws_radio_check"
 end
 
-every 3.minutes do
+every 1.hour do
   runner "Generalplaylist.sky_radio_check"
 end
 
