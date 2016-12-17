@@ -140,27 +140,71 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.sky_radio_check
+
+    tr_time = 0
+    tr_artist = 0
+    tr_title = 0
+    tr_image = 0
+
     url = "http://www.skyradio.nl/playlists/sky-radio"
     img_addon = "http://www.skyradio.nl"
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//table[contains(@class, "table-playlist")]//tr[last()]/td[1]/time').text
-    artist = doc.xpath('//table[contains(@class, "table-playlist")]//tr[last()]/td[2]/div[1]/div[2]/p[2]').text.camelcase
-    title = doc.xpath('//table[contains(@class, "table-playlist")]//tr[last()]/td[2]/div[1]/div[2]/p[1]').text.camelcase
-    image = (img_addon) + (doc.xpath('//table[contains(@class, "table-playlist")]//tr[last()]/td[2]/div[1]/div[1]/img/@src').text)
 
-    Generalplaylist.title_check(title)
+    time = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[1]/td[1]/time").text
 
-    # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist)
-    # Search for all the songs with title
-    songs = Song.where("title = ?", title)
-    # Add the songs variable to the song_check methode. Returns @song variable
-    Generalplaylist.song_check(songs, artist, title)
-    # Find or create the Radiostation with name "Groot Nieuws Radio"
-    radiostation = Radiostation.find_or_create_by(name: "Sky Radio")
+    until time == "" do
 
-    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+      time = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_time += 1}]/td[1]/time").text
+      artist = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_artist += 1}]/td[2]/div[1]/div[2]/p[2]").text.camelcase
+      title = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_title += 1}]/td[2]/div[1]/div[2]/p[1]").text.camelcase
+      image = (img_addon) + (doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_image += 1}]/td[2]/div[1]/div[1]/img/@src").text)
+
+      if title.count("0-9") > 4
+        puts "found #{title.count("0-9")} numbers in the title"
+        return false
+      elsif title.count("/") > 1
+        puts "found #{title.count("/") > 1} / in the title"
+        return false
+      elsif title.count("'") > 2
+        puts "found #{title.count("'") > 2} ' in the title"
+        return false
+      elsif title.count("-") > 0
+        puts "found #{title.count("-") > 0} - in the title"
+        return false
+      elsif title.count(".") > 1
+        puts "found #{title.count(".") > 1} . in the title"
+        return false
+      end
+
+      # Find the artist name in the Artist database or create a new record
+      artist = Artist.find_or_create_by(name: artist)
+      # Search for all the songs with title
+      songs = Song.where("title = ?", title)
+      # Add the songs variable to the song_check methode. Returns @song variable
+      if songs == []
+        song = Song.find_or_create_by(title: title, artist: artist)
+      # If the is a song with the same title check the artist
+      else
+        songs.each do |s|
+          artist_name = s.artist.name
+          check_artist = Artist.where("name = ?", artist_name)
+          # Ef there is no song title with the same artist create a new one
+          if check_artist == []
+            song = Song.find_or_create_by(title: title, artist: artist)
+          # Else grap the song record with the same title and artist id
+          else
+            song = Song.find_by_title_and_artist_id(title, artist.id)
+          end
+        end
+      end
+      # Find or create the Radiostation with name "Sky Radio"
+      radiostation = Radiostation.find_or_create_by(name: "Sky Radio")
+
+      # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
+      Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
+
+    end
+
   end
 
   # Methode for checking if the title of the song is OK
@@ -285,7 +329,7 @@ class Generalplaylist < ActiveRecord::Base
       end
     end
     # reset the month counter at the end of the month
-    if today == Date.today.end_of_month
+    if today == Date.today.beginning_of_month
       songs.each do |song|
         song.month_counter = 0
         song.save
@@ -296,7 +340,7 @@ class Generalplaylist < ActiveRecord::Base
       end
     end
     # reset the year counter at the end of the year
-    if today == Date.today.end_of_year
+    if today == Date.today.beginning_of_month
       songs.each do |song|
         song.year_counter = 0
         song.save
