@@ -159,6 +159,10 @@ class Generalplaylist < ActiveRecord::Base
       title = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_title += 1}]/td[2]/div[1]/div[2]/p[1]").text.camelcase
       image = (img_addon) + (doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_image += 1}]/td[2]/div[1]/div[1]/img/@src").text)
 
+      if time == ""
+        return false
+      end
+
       if title.count("0-9") > 4
         puts "found #{title.count("0-9")} numbers in the title"
         return false
@@ -168,9 +172,6 @@ class Generalplaylist < ActiveRecord::Base
       elsif title.count("'") > 2
         puts "found #{title.count("'") > 2} ' in the title"
         return false
-      elsif title.count("-") > 0
-        puts "found #{title.count("-") > 0} - in the title"
-        return false
       elsif title.count(".") > 1
         puts "found #{title.count(".") > 1} . in the title"
         return false
@@ -179,7 +180,7 @@ class Generalplaylist < ActiveRecord::Base
       # Find the artist name in the Artist database or create a new record
       artist = Artist.find_or_create_by(name: artist)
       # Search for all the songs with title
-      songs = Song.where("title = ?", title)
+      songs = Song.where("title = ?", "title")
       # Add the songs variable to the song_check methode. Returns @song variable
       if songs == []
         song = Song.find_or_create_by(title: title, artist: artist)
@@ -188,7 +189,7 @@ class Generalplaylist < ActiveRecord::Base
         songs.each do |s|
           artist_name = s.artist.name
           check_artist = Artist.where("name = ?", artist_name)
-          # Ef there is no song title with the same artist create a new one
+          # if there is no song title with the same artist create a new one
           if check_artist == []
             song = Song.find_or_create_by(title: title, artist: artist)
           # Else grap the song record with the same title and artist id
