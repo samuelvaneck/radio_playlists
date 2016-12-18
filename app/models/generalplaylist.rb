@@ -215,12 +215,10 @@ class Generalplaylist < ActiveRecord::Base
     artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[3]/a').text.split.join(" ").camelcase
     title = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[2]/a').text.split.join(" ").camelcase
 
-    Generalplaylist.title_check(title)
-
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist)
     # Search for all the songs with title
-    songs = Song.where("title = ?", title)
+    songs = Song.where("title = ?", "title")
     # Add the songs variable to the song_check methode. Returns @song variable
     Generalplaylist.song_check(songs, artist, title)
     # Find or create the Radiostation with name "Radio 3fm"
