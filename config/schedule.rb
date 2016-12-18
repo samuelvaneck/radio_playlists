@@ -28,6 +28,10 @@ every 3.minutes do
   runner "Generalplaylist.radio_3fm_check"
 end
 
+every 3.minutes do
+  runner "Generalplaylist.q_music_check"
+end
+
 every 1.day, at: '0:00 am' do
   runner "Generalplaylist.reset_counters"
 end
