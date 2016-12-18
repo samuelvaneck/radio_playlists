@@ -35,7 +35,7 @@ class Generalplaylist < ActiveRecord::Base
   def self.radio_538_check
     url = "http://watiseropderadio.nl/playlist/radio/538/vandaag"
     doc = Nokogiri::HTML(open(url))
-    time = time = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[1]').text.split.reverse.drop(1).reverse.join(" ")
+    time = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[1]').text.split.reverse.drop(1).reverse.join(" ")
     artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[3]/a').text.split.join(" ").camelcase
     title = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[2]/a').text.split.join(" ").camelcase
 
@@ -206,6 +206,50 @@ class Generalplaylist < ActiveRecord::Base
 
     end
 
+  end
+
+  def self.radio_3fm_check
+    url = "http://watiseropderadio.nl/playlist/radio/3fm/vandaag"
+    doc = Nokogiri::HTML(open(url))
+    time = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[1]').text.split.reverse.drop(1).reverse.join(" ")
+    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[3]/a').text.split.join(" ").camelcase
+    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[2]/a').text.split.join(" ").camelcase
+
+    Generalplaylist.title_check(title)
+
+    # Find the artist name in the Artist database or create a new record
+    artist = Artist.find_or_create_by(name: artist)
+    # Search for all the songs with title
+    songs = Song.where("title = ?", title)
+    # Add the songs variable to the song_check methode. Returns @song variable
+    Generalplaylist.song_check(songs, artist, title)
+    # Find or create the Radiostation with name "Radio 3fm"
+    radiostation = Radiostation.find_or_create_by(name: "Radio 3FM")
+
+    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
+    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+  end
+
+  def self.q_music_check
+    url = "http://qmusic.nl/playlist"
+    doc = Nokogiri::HTML(open(url))
+    time = doc.xpath("//div[contains(@id , 'audioplayer-content')]/div[1]/div[1]/div[1]/span[1]").text
+    artist = doc.xpath("//div[contains(@id , 'audioplayer-content')]/div[1]/div[1]/div[1]/span[2]/span[2]").text.split.map(&:capitalize).join(' ')
+    title = doc.xpath("//div[contains(@id , 'audioplayer-content')]/div[1]/div[1]/div[1]/span[2]/span[1]").text.split.map(&:capitalize).join(' ')
+
+    Generalplaylist.title_check(title)
+
+    # Find the artist name in the Artist database or create a new record
+    artist = Artist.find_or_create_by(name: artist)
+    # Search for all the songs with title
+    songs = Song.where("title = ?", title)
+    # Add the songs variable to the song_check methode. Returns @song variable
+    Generalplaylist.song_check(songs, artist, title)
+    # Find or create the Radiostation with name "Qmusic"
+    radiostation = Radiostation.find_or_create_by(name: "Qmusic")
+
+    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
+    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
   end
 
   # Methode for checking if the title of the song is OK

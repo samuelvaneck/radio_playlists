@@ -43,6 +43,18 @@ class GeneralplaylistsController < ApplicationController
     @counter_top_songs_sky_radio = 0
     @counter_top_artists_sky_radio = 0
 
+    @radio_3fm_playlists = Generalplaylist.where(radiostation_id: '7').order(created_at: :DESC).limit(10)
+    @top_songs_radio_3fm = Generalplaylist.top_songs_radiostation(7)
+    @top_artists_radio_3fm = Generalplaylist.top_artists_radiostation(7)
+    @counter_top_songs_radio_3fm = 0
+    @counter_top_artists_radio_3fm = 0
+
+    @q_music_playlists = Generalplaylist.where(radiostation_id: '8').order(created_at: :DESC).limit(10)
+    @top_songs_q_music = Generalplaylist.top_songs_radiostation(8)
+    @top_artists_q_music = Generalplaylist.top_artists_radiostation(8)
+    @counter_top_songs_q_music = 0
+    @counter_top_artists_q_music = 0
+
   end
 
   def song_details
