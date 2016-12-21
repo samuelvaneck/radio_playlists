@@ -13,13 +13,13 @@ class Generalplaylist < ActiveRecord::Base
     url = "https://playlist24.nl/radio-veronica-playlist/"
     doc = Nokogiri::HTML(open(url))
     time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.camelcase
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text.camelcase
+    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.split.map(&:capitalize).join(" ")
+    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text.split.map(&:capitalize).join(" ")
 
     Generalplaylist.title_check(title)
 
     # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name:artist)
+    artist = Artist.find_or_create_by(name: "#{artist}")
     # Search for all the songs with title
     songs = Song.where("title = ?", title)
     # Add the songs variable to the song_check methode. Return @song variable
@@ -36,13 +36,13 @@ class Generalplaylist < ActiveRecord::Base
     url = "http://watiseropderadio.nl/playlist/radio/538/vandaag"
     doc = Nokogiri::HTML(open(url))
     time = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[1]').text.split.reverse.drop(1).reverse.join(" ")
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[3]/a').text.split.join(" ").camelcase
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[2]/a').text.split.join(" ").camelcase
+    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[3]/a').text.split.map(&:capitalize).join(" ")
+    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[2]/a').text.split.map(&:capitalize).join(" ")
 
     Generalplaylist.title_check(title)
 
     # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist)
+    artist = Artist.find_or_create_by(name: "#{artist}")
     # Search for all the songs with title
     songs = Song.where("title = ?", title)
     # Add the songs variable to the song_check methode. Returns @song variable
@@ -65,8 +65,8 @@ class Generalplaylist < ActiveRecord::Base
     doc = Nokogiri::HTML(open(url))
     list = doc.at('.columns-2')
     time = list.xpath('//li[last()]/a/div[3]/div/p').first.text
-    artist = list.xpath('//li[last()]/a/div[2]/div/p[1]').first.text.camelcase
-    title = list.xpath('//li[last()]/a/div[2]/div/p[2]').first.text.camelcase
+    artist = list.xpath('//li[last()]/a/div[2]/div/p[1]').first.text.split.map(&:capitalize).join(" ")
+    title = list.xpath('//li[last()]/a/div[2]/div/p[2]').first.text.split.map(&:capitalize).join(" ")
 
     Generalplaylist.title_check(title)
 
@@ -81,7 +81,7 @@ class Generalplaylist < ActiveRecord::Base
     end
 
     # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist)
+    artist = Artist.find_or_create_by(name: "#{artist}")
     # Search for all the songs with title
     songs = Song.where("title = ?", title)
     # Add the songs variable to the song_check methode. Returns @song variable
@@ -98,13 +98,13 @@ class Generalplaylist < ActiveRecord::Base
     url = "https://playlist24.nl/sublime-fm-playlist/"
     doc = Nokogiri::HTML(open(url))
     time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.camelcase
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text.camelcase
+    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.split.map(&:capitalize).join(" ")
+    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text.split.map(&:capitalize).join(" ")
 
     Generalplaylist.title_check(title)
 
     # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist)
+    artist = Artist.find_or_create_by(name: "#{artist}")
     # Search for all the songs with title
     songs = Song.where("title = ?", title)
     # Add the songs variable to the song_check methode. Returns @song variable
@@ -121,13 +121,13 @@ class Generalplaylist < ActiveRecord::Base
     url = "https://www.grootnieuwsradio.nl/muziek/playlist"
     doc = Nokogiri::HTML(open(url))
     time = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[1]').text.split.drop(1).join(" ")
-    artist = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[2]').text.camelcase
-    title = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[3]').text.camelcase
+    artist = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[2]').text.split.map(&:capitalize).join(" ")
+    title = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[3]').text.split.map(&:capitalize).join(" ")
 
     Generalplaylist.title_check(title)
 
     # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist)
+    artist = Artist.find_or_create_by(name: "#{artist}")
     # Search for all the songs with title
     songs = Song.where("title = ?", title)
     # Add the songs variable to the song_check methode. Returns @song variable
@@ -155,8 +155,8 @@ class Generalplaylist < ActiveRecord::Base
     until time == "" do
 
       time = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_time += 1}]/td[1]/time").text
-      artist = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_artist += 1}]/td[2]/div[1]/div[2]/p[2]").text.camelcase
-      title = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_title += 1}]/td[2]/div[1]/div[2]/p[1]").text.camelcase
+      artist = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_artist += 1}]/td[2]/div[1]/div[2]/p[2]").text.split.map(&:capitalize).join(" ")
+      title = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_title += 1}]/td[2]/div[1]/div[2]/p[1]").text.split.map(&:capitalize).join(" ")
       image = (img_addon) + (doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_image += 1}]/td[2]/div[1]/div[1]/img/@src").text)
 
       if time == ""
@@ -178,7 +178,7 @@ class Generalplaylist < ActiveRecord::Base
       end
 
       # Find the artist name in the Artist database or create a new record
-      artist = Artist.find_or_create_by(name: artist)
+      artist = Artist.find_or_create_by(name: "#{artist}")
       # Search for all the songs with title
       songs = Song.where("title = ?", "title")
       # Add the songs variable to the song_check methode. Returns @song variable
@@ -212,11 +212,11 @@ class Generalplaylist < ActiveRecord::Base
     url = "http://watiseropderadio.nl/playlist/radio/3fm/vandaag"
     doc = Nokogiri::HTML(open(url))
     time = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[1]').text.split.reverse.drop(1).reverse.join(" ")
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[3]/a').text.split.join(" ").camelcase
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[2]/a').text.split.join(" ").camelcase
+    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[3]/a').text.split.map(&:capitalize).join(" ")
+    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[2]/a').text.split.map(&:capitalize).join(" ")
 
     # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist)
+    artist = Artist.find_or_create_by(name: "#{artist}")
     # Search for all the songs with title
     songs = Song.where("title = ?", "title")
     # Add the songs variable to the song_check methode. Returns @song variable
@@ -238,7 +238,7 @@ class Generalplaylist < ActiveRecord::Base
     Generalplaylist.title_check(title)
 
     # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist)
+    artist = Artist.find_or_create_by(name: "#{artist}")
     # Search for all the songs with title
     songs = Song.where("title = ?", title)
     # Add the songs variable to the song_check methode. Returns @song variable
