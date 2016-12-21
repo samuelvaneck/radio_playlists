@@ -10,7 +10,7 @@ class Generalplaylist < ActiveRecord::Base
 
   # Check the Radio Veronica song
   def self.radio_veronica_check
-    url = "http://playlist24.nl/radio-veronica-playlist/"
+    url = "https://playlist24.nl/radio-veronica-playlist/"
     doc = Nokogiri::HTML(open(url))
     time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
     artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.camelcase
@@ -95,7 +95,7 @@ class Generalplaylist < ActiveRecord::Base
 
   # Check Sublime FM songs
   def self.sublime_fm_check
-    url = "http://playlist24.nl/sublime-fm-playlist/"
+    url = "https://playlist24.nl/sublime-fm-playlist/"
     doc = Nokogiri::HTML(open(url))
     time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
     artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.camelcase
