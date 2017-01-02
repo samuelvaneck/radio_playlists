@@ -23,8 +23,7 @@ $primary-color: color("blue", "lighten-2") !default;
   display: inline-block;
   transition: all 0.5s;
   width: 100%;
-  a {
-    width: 25%;
+  li {
     padding: 15px;
     border-style: solid;
     border-radius: 4px;
@@ -34,16 +33,14 @@ $primary-color: color("blue", "lighten-2") !default;
     text-decoration: none;
     margin: 2px;
     font-size: 1em;
+    margin-bottom: 10px;
+    display: inline-block;
   }
-  a:hover {
+  li:hover {
     -webkit-transition-duration: 0.5s; /* Safari */
     transition-duration: 0.5s;
     background-color: #FFFFFF;
     color: #3E5563;
-  }
-  li {
-    margin-bottom: 40px;
-    display: inline-block;
   }
 }
 
@@ -51,8 +48,8 @@ $primary-color: color("blue", "lighten-2") !default;
 
   #navgp {
     width: 90%;
-    a {
-      padding: 10px;
+    li {
+      padding: 15px;
     }
   }
 
