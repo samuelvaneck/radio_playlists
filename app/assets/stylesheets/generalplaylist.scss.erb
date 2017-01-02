@@ -159,7 +159,7 @@
 
 .vertical-bottom {
   position: relative;
-  top: 70%;
+  top: 60%;
   -webkit-transform: translateY(-70%);
   -ms-transform: translateY(-70%);
   transform: translateY(-70%);
@@ -261,4 +261,29 @@
 
 *:first-child + html .pagination {
   overflow: hidden;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .g-playlist-table {
+      min-width: 95%;
+      max-width: 95%;
+      font-size: 1em;
+    }
+    table {
+      width: 80%;
+    }
+    [class*="col"] {
+      width: 80%;
+    }
+    .row {
+      padding: 0px;
+    }
+    .row .col {
+      padding: 0px;
+    }
+    .head {
+      padding: 0px;
+      font-size: 2.5em;
+    }
 }

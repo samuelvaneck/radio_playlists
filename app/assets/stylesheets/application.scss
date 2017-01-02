@@ -19,51 +19,7 @@
 $primary-color: color("blue", "lighten-2") !default;
 @import 'materialize';
 
-.nav {
-  display: inline-block;
-  transition: all 0.5s;
-  width: 100%;
-  a {
-    width: 25%;
-    padding: 20px;
-    border-style: solid;
-    border-radius: 4px;
-    border-width: 1px;
-    border-color: #00AEEF;
-    text-decoration: none;
-    margin: 2px;
-    font-size: 16px;
-  }
-  a:hover {
-    -webkit-transition-duration: 0.5s; /* Safari */
-    transition-duration: 0.5s;
-    background-color: #00AEEF;
-    color: white;
-  }
-  a span {
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-  }
-  a span:after {
-    content: ' >>';
-    color: white;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-    position: absolute;
-  }
-  a:hover span {
-    padding-right: 25px;
-  }
-  a:hover span:after {
-    opacity: 1;
-    right: 0;
-  }
-}
-
-.navgp {
+#navgp {
   display: inline-block;
   transition: all 0.5s;
   width: 100%;
@@ -85,4 +41,19 @@ $primary-color: color("blue", "lighten-2") !default;
     background-color: #FFFFFF;
     color: #3E5563;
   }
+  li {
+    margin-bottom: 40px;
+    display: inline-block;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  #navgp {
+    width: 90%;
+    a {
+      padding: 10px;
+    }
+  }
+
 }
