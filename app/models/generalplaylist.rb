@@ -438,7 +438,55 @@ class Generalplaylist < ActiveRecord::Base
   def self.destroy_all
     generalplaylists = Generalplaylist.all
     generalplaylists.each do |generalplaylist|
-      generalplaylist.destroy
+      generalplaylist.dest
+    end
+  end
+
+  def self.monthly_cleanup
+    songs_played_this_month = Generalplaylist.where("created_at < ? AND created_at > ?", DateTime.now, 1.month.ago)
+    @played_songs = []
+    grouped_songs = songs_played_this_month.group(:song_id).count
+    grouped_songs.each  do |song, counts|
+      song = Song.find(song)
+      @played_songs << song
+      counter = Counter.new
+      counter.month = counts
+      counter.song = song
+      counter.save
+    end
+    songs_older_then_one_month = Generalplaylist.where("created_at < ?", 1.month.ago)
+    songs_older_then_one_month.each do |song|
+      song.delete
+    end
+    @not_played_songs = Song.where.not(id: @played_songs)
+    @not_played_songs.each do |song|
+      song = Song.find(song)
+      counter = Counter.new
+      counter.month = 0
+      counter.song = song
+      counter.save
+    end
+  end
+
+  def self.weekly_count
+    songs_played_this_week = Generalplaylist.where("created_at < ? AND created_at > ?", DateTime.now, 1.week.ago)
+    @played_songs = []
+    grouped_songs = songs_played_this_week.group(:song_id).count
+    grouped_songs.each  do |song, counts|
+      song = Song.find(song)
+      @played_songs << song
+      counter = Counter.new
+      counter.week = counts
+      counter.song = song
+      counter.save
+    end
+    @not_played_songs = Song.where.not(id: @played_songs)
+    @not_played_songs.each do |song|
+      song = Song.find(song)
+      counter = Counter.new
+      counter.week = 0
+      counter.song = song
+      counter.save
     end
   end
 

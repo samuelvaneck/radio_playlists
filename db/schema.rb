@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218124846) do
+ActiveRecord::Schema.define(version: 20170308194818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +28,15 @@ ActiveRecord::Schema.define(version: 20161218124846) do
     t.integer  "total_counter", default: 0
   end
 
+  create_table "counters", force: :cascade do |t|
+    t.integer  "week"
+    t.integer  "month"
+    t.integer  "song_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["song_id"], name: "index_counters_on_song_id", using: :btree
+  end
+
   create_table "generalplaylists", force: :cascade do |t|
     t.string   "time"
     t.integer  "song_id"
@@ -36,11 +44,10 @@ ActiveRecord::Schema.define(version: 20161218124846) do
     t.integer  "artist_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["artist_id"], name: "index_generalplaylists_on_artist_id", using: :btree
+    t.index ["radiostation_id"], name: "index_generalplaylists_on_radiostation_id", using: :btree
+    t.index ["song_id"], name: "index_generalplaylists_on_song_id", using: :btree
   end
-
-  add_index "generalplaylists", ["artist_id"], name: "index_generalplaylists_on_artist_id", using: :btree
-  add_index "generalplaylists", ["radiostation_id"], name: "index_generalplaylists_on_radiostation_id", using: :btree
-  add_index "generalplaylists", ["song_id"], name: "index_generalplaylists_on_song_id", using: :btree
 
   create_table "radiostations", force: :cascade do |t|
     t.string   "name"
@@ -60,10 +67,10 @@ ActiveRecord::Schema.define(version: 20161218124846) do
     t.integer  "total_counter", default: 0
     t.integer  "artist_id"
     t.text     "fullname"
+    t.index ["artist_id"], name: "index_songs_on_artist_id", using: :btree
   end
 
-  add_index "songs", ["artist_id"], name: "index_songs_on_artist_id", using: :btree
-
+  add_foreign_key "counters", "songs"
   add_foreign_key "generalplaylists", "artists"
   add_foreign_key "generalplaylists", "radiostations"
   add_foreign_key "generalplaylists", "songs"
