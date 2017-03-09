@@ -40,7 +40,7 @@ every 1.day, at: "0.00 am" do
   command "rm -rf #{path}/log/cron.log"
 end
 
-every :sunday at: "0.00 am" do
+every :sunday, at: "0.00 am" do
   runner "Generalplaylist.weekly_count"
 end
 
