@@ -1,0 +1,15 @@
+<% @top_songs.each do |top_song| %>
+  <tr>
+    <td>
+      <% if top_song.artist != nil %>
+        <%= top_song.artist.name %>
+      <% end %>
+    </td>
+    <td>
+      <%= top_song.title %>
+    </td>
+    <td>
+      <%= top_song.total_counter %>
+    </td>
+  </tr>
+<% end %>
