@@ -1,60 +1,23 @@
 class GeneralplaylistsController < ApplicationController
 
   def index
-    @generalplaylists = Generalplaylist.order(created_at: :DESC).limit(10)
-    @top_10_songs_week = Song.order(week_counter: :DESC).limit(10)
-    @top_10_artists_week = Artist.order(week_counter: :DESC).limit(10)
-    @counter_songs = 0
-    @counter_artists = 0
+    if params[:search_top_song].present?
+      @top_songs = Song.joins(:artist).where("songs.title ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").limit(5)
+    else
+      @top_songs = Song.order(week_counter: :DESC).limit(5)
+    end
+    @top_songs.order!(week_counter: :DESC)
+    @top_songs = @top_songs.reorder!("#{params[:set_counter_top_songs]} DESC") if params[:set_counter_top_songs]
 
-    @veronicaplaylists = Generalplaylist.where(radiostation_id: '1').order(created_at: :DESC).limit(10)
-    @top_songs_radio_veronica = Generalplaylist.top_songs_radiostation(1)
-    @top_artists_radio_veronica = Generalplaylist.top_artists_radiostation(1)
-    @counter_top_songs_radio_veronica = 0
-    @counter_top_artists_radio_veronica = 0
+    if params[:search_top_artist].present?
+      @top_artists = Artist.where("name ILIKE ?", "%#{params[:search_top_artist]}%").limit(5)
+    else
+      @top_artists = Artist.order(week_counter: :DESC).limit(5)
+    end
+    @top_artists.order!(week_counter: :DESC)
+    @top_artists.reorder!("#{params[:set_counter_top_artists]} DESC") if params[:set_counter_top_artists]
 
-    @radio538playlists = Generalplaylist.where(radiostation_id: '2').order(created_at: :DESC).limit(10)
-    @top_songs_radio_538 = Generalplaylist.top_songs_radiostation(2)
-    @top_artists_radio_538 = Generalplaylist.top_artists_radiostation(2)
-    @counter_top_songs_radio_538 = 0
-    @counter_top_artists_radio_538 = 0
-
-    @sublimefmplaylists = Generalplaylist.where(radiostation_id: '3').order(created_at: :DESC).limit(10)
-    @top_songs_sublime_fm = Generalplaylist.top_songs_radiostation(3)
-    @top_artists_sublime_fm = Generalplaylist.top_artists_radiostation(3)
-    @counter_top_songs_sublime_fm = 0
-    @counter_top_artists_sublime_fm = 0
-
-    @radio2playlists = Generalplaylist.where(radiostation_id: '4').order(created_at: :DESC).limit(10)
-    @top_songs_radio_2 = Generalplaylist.top_songs_radiostation(4)
-    @top_artists_radio_2 = Generalplaylist.top_artists_radiostation(4)
-    @counter_top_songs_radio_2 = 0
-    @counter_top_artists_radio_2 = 0
-
-    @gnrplaylists = Generalplaylist.where(radiostation_id: '5').order(created_at: :DESC).limit(10)
-    @top_songs_grootnieuws_radio = Generalplaylist.top_songs_radiostation(5)
-    @top_artists_grootnieuws_radio = Generalplaylist.top_artists_radiostation(5)
-    @counter_top_songs_grootnieuws_radio = 0
-    @counter_top_artists_grootnieuws_radio = 0
-
-    @sky_radio_playlists = Generalplaylist.where(radiostation_id: '6').order(created_at: :DESC).limit(10)
-    @top_songs_sky_radio = Generalplaylist.top_songs_radiostation(6)
-    @top_artists_sky_radio = Generalplaylist.top_artists_radiostation(6)
-    @counter_top_songs_sky_radio = 0
-    @counter_top_artists_sky_radio = 0
-
-    @radio_3fm_playlists = Generalplaylist.where(radiostation_id: '7').order(created_at: :DESC).limit(10)
-    @top_songs_radio_3fm = Generalplaylist.top_songs_radiostation(7)
-    @top_artists_radio_3fm = Generalplaylist.top_artists_radiostation(7)
-    @counter_top_songs_radio_3fm = 0
-    @counter_top_artists_radio_3fm = 0
-
-    @q_music_playlists = Generalplaylist.where(radiostation_id: '8').order(created_at: :DESC).limit(10)
-    @top_songs_q_music = Generalplaylist.top_songs_radiostation(8)
-    @top_artists_q_music = Generalplaylist.top_artists_radiostation(8)
-    @counter_top_songs_q_music = 0
-    @counter_top_artists_q_music = 0
-
+    @target = params[:target]
   end
 
   def song_details

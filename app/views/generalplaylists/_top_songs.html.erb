@@ -1,0 +1,29 @@
+<% @top_songs.each_with_index do |top_song, idx_song| %>
+  <tr>
+    <td>
+      <% case(idx_song) %>
+      <% when 0 %>
+        <i class="material-icons md-24">looks_one</i>
+      <% when 1 %>
+        <i class="material-icons">looks_two</i>
+      <% when 2 %>
+        <i class="material-icons">looks_3</i>
+      <% when 3 %>
+        <i class="material-icons">looks_4</i>
+      <% when 4 %>
+        <i class="material-icons">looks_5</i>
+      <% end %>
+    </td>
+    <td>
+      <% if top_song.artist != nil %>
+        <%= top_song.artist.name %>
+      <% end %>
+    </td>
+    <td>
+      <%= top_song.title %>
+    </td>
+    <td>
+      <%= top_song.total_counter %>
+    </td>
+  </tr>
+<% end %>
