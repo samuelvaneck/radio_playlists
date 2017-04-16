@@ -5,14 +5,31 @@
 
   <div class="container row">
     <div class="col s12 m12 l6">
-      <h3 class="center">Top 3 songs</h3>
+      <h3 class="center">Top 5 songs</h3>
       <%= form_tag("/generalplaylists", method: :get, id: "search_top_song_form" ) do %>
-        <label for="search_top_song">Search song title</label>
-        <%= text_field_tag "search_top_song", nil, placeholder: "Search for song...", class: "materialize-textarea", autocomplete: "off" %>
+        <p>
+          <!-- <label for="search_top_song">Search song title</label>
+          <input id="search_top_song" name="" type="text" placeholder="Search for song..." class="col s12 m6"/> -->
+          <%= label_tag(:search_top_song, "Search for song") %>
+          <%= text_field_tag "search_top_song", nil, placeholder: "Search for song...", class: "materialize-textarea", autocomplete: "off" %>
+          <div  class="input-field">
+            <select id="set_counter_top_songs">
+              <option value="" disabled selected>Counter time</option>
+              <option value="day_counter">Day</option>
+              <option value="week_counter">Week</option>
+              <option value="month_counter">Month</option>
+              <option value="year_counter">Year</option>
+              <option value="total_counter">Total</option>
+            </select>
+          </div>
+        </p>
       <% end %>
       <table>
         <thead>
           <tr>
+            <th>
+              #
+            </th>
             <th>
               Artist
             </th>
@@ -31,14 +48,27 @@
     </div>
 
     <div class="col s12 m12 l6">
-      <h3 class="center">Top 3 artist</h3>
+      <h3 class="center">Top 5 artist</h3>
       <%= form_tag("/generalplaylists", method: :get, id: "search_top_artist_form" ) do %>
         <label for="search_top_artist">Search artist name</label>
         <%= text_field_tag "search_top_artist", nil, placeholder: "Search for artist...", class: "materialize-textarea", autocomplete: "off" %>
+        <div  class="input-field">
+          <select id="set_counter_top_artists">
+            <option value="" disabled selected>Counter time</option>
+            <option value="day_counter">Day</option>
+            <option value="week_counter">Week</option>
+            <option value="month_counter">Month</option>
+            <option value="year_counter">Year</option>
+            <option value="total_counter">Total</option>
+          </select>
+        </div>
       <% end %>
       <table>
         <thead>
           <tr>
+            <th>
+              #
+            </th>
             <th>
               Artist
             </th>
@@ -57,10 +87,22 @@
 
 <script>
   $("#search_top_song_form input").keyup(function(){
-    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), target: 'top-songs-table'}, null, "script");
+    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set-counter-top-songs").val(), target: 'top-songs-table'}, null, "script");
   });
 
   $("#search_top_artist_form input").keyup(function() {
-    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), target: 'top-artists-table'}, null, "script");
+    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), target: 'top-artists-table'}, null, "script");
   })
+
+  $("#set_counter_top_songs").change(function(){
+    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), target: 'top-songs-table'}, null, "script");
+  });
+
+  $("#set_counter_top_artists").change(function(){
+    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), target: 'top-songs-table'}, null, "script");
+  });
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
 </script>
