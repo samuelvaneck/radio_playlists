@@ -11,5 +11,4 @@ class Song < ActiveRecord::Base
       song.destroy
     end
   end
-
 end

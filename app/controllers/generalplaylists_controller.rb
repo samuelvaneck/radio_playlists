@@ -6,6 +6,20 @@ class GeneralplaylistsController < ApplicationController
     else
       @top_songs = Song.order(week_counter: :DESC).limit(5)
     end
+    # if params[:set_counter_top_songs].present?
+    #   case params[:set_counter_top_songs]
+    #   when "day_counter" then
+    #     @top_songs = @top_songs.where("created_at > ?", Date.today)
+    #   when "week_counter" then
+    #     puts "week_counter"
+    #   when "month_counter" then
+    #     puts "month_counter"
+    #   when "year_counter" then
+    #     puts "year_counter"
+    #   when "total_counter" then
+    #     puts "total_counter"
+    #   end
+    # end
     @top_songs.order!(week_counter: :DESC)
     @top_songs = @top_songs.reorder!("#{params[:set_counter_top_songs]} DESC") if params[:set_counter_top_songs]
 

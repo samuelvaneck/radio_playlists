@@ -4,11 +4,11 @@
   </div>
 
   <div class="container">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col s12 m12 l12 center" id="menu">
         <%= render 'layouts/navgp' %>
       </div>
-    </div>
+    </div> -->
     <div class="row">
       <div class="col s12 m12 l6">
         <h3 class="center">Top 5 songs</h3>
@@ -42,7 +42,7 @@
               <th>
                 Title
               </th>
-              <th>
+              <th id="counter-type-song">
                 Total
               </th>
             </tr>
@@ -78,7 +78,7 @@
               <th>
                 Artist
               </th>
-              <th>
+              <th id="counter-type-artist">
                 Total
               </th>
             </tr>
@@ -97,19 +97,75 @@
     $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set-counter-top-songs").val(), target: 'top-songs-table'}, null, "script");
   });
 
+  $("#set_counter_top_songs").change(function(){
+    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), target: 'top-songs-table'}, null, "script");
+
+  });
+
   $("#search_top_artist_form input").keyup(function() {
     $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), target: 'top-artists-table'}, null, "script");
   })
 
-  $("#set_counter_top_songs").change(function(){
-    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), target: 'top-songs-table'}, null, "script");
-  });
-
   $("#set_counter_top_artists").change(function(){
-    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), target: 'top-songs-table'}, null, "script");
+    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_artists: $("#set_counter_top_artists").val(), target: 'top-songs-table'}, null, "script");
   });
 
   $(document).ready(function() {
     $('select').material_select();
   });
+
+  $(document).ajaxComplete(function() {
+    counterOnSong = $("#set_counter_top_songs").val();
+    counterOnArtist = $("#set_counter_top_artists").val();
+    if (counterOnSong != null) {
+      setCounter(counterOnSong, "song");
+    } else if (counterOnArtist != null) {
+      setCounter(counterOnArtist, "artist");
+    }
+  });
+
+  function setCounter(counterOn, table) {
+    switch (counterOn) {
+      case "day_counter":
+      $(".top-" + table + "-day").show();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Day");
+      break;
+      case "week_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").show();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Week");
+      break;
+      case "month_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").show();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Month");
+      break;
+      case "year_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").show();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Year");
+      break;
+      case "total_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").show();
+      $("#counter-type-" + table).text("Total");
+      break;
+    }
+  };
 </script>
