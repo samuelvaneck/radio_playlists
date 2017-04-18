@@ -11,7 +11,7 @@
     </div> -->
     <div class="row">
       <div class="col s12 m12 l6">
-        <h3 class="center">Top 5 songs</h3>
+        <h3 class="center">Top songs</h3>
         <%= form_tag("/generalplaylists", method: :get, id: "search_top_song_form" ) do %>
           <p>
             <!-- <label for="search_top_song">Search song title</label>
@@ -54,7 +54,7 @@
       </div>
 
       <div class="col s12 m12 l6">
-        <h3 class="center">Top 5 artist</h3>
+        <h3 class="center">Top artist</h3>
         <%= form_tag("/generalplaylists", method: :get, id: "search_top_artist_form" ) do %>
           <label for="search_top_artist">Search artist name</label>
           <%= text_field_tag "search_top_artist", nil, placeholder: "Search for artist...", class: "materialize-textarea", autocomplete: "off" %>
