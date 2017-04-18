@@ -117,14 +117,58 @@
   $(document).ajaxComplete(function() {
     counterOnSong = $("#set_counter_top_songs").val();
     counterOnArtist = $("#set_counter_top_artists").val();
-    if (counterOnSong != null) {
-      setCounter(counterOnSong, "song");
-    } else if (counterOnArtist != null) {
-      setCounter(counterOnArtist, "artist");
-    }
+    setCounterSong(counterOnSong, "song");
+    setCounterArtist(counterOnArtist, "artist");
   });
 
-  function setCounter(counterOn, table) {
+  function setCounterSong(counterOn, table) {
+    console.log(table);
+    switch (counterOn) {
+      case "day_counter":
+      $(".top-" + table + "-day").show();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Day");
+      break;
+      case "week_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").show();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Week");
+      break;
+      case "month_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").show();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Month");
+      break;
+      case "year_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").show();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Year");
+      break;
+      case "total_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").show();
+      $("#counter-type-" + table).text("Total");
+      break;
+    }
+  };
+
+  function setCounterArtist(counterOn, table) {
+    console.log(table)
     switch (counterOn) {
       case "day_counter":
       $(".top-" + table + "-day").show();
