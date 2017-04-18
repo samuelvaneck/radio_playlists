@@ -2,29 +2,15 @@ class GeneralplaylistsController < ApplicationController
 
   def index
     if params[:search_top_song].present?
-      @top_songs = Song.joins(:artist).where("songs.title ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%")
+      @top_songs = Song.joins(:artist).where("songs.title ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").limit(50)
     else
       @top_songs = Song.order(total_counter: :DESC).limit(5)
     end
-    # if params[:set_counter_top_songs].present?
-    #   case params[:set_counter_top_songs]
-    #   when "day_counter" then
-    #     @top_songs = @top_songs.where("created_at > ?", Date.today)
-    #   when "week_counter" then
-    #     puts "week_counter"
-    #   when "month_counter" then
-    #     puts "month_counter"
-    #   when "year_counter" then
-    #     puts "year_counter"
-    #   when "total_counter" then
-    #     puts "total_counter"
-    #   end
-    # end
     @top_songs.order!(total_counter: :DESC)
     @top_songs = @top_songs.reorder!("#{params[:set_counter_top_songs]} DESC") if params[:set_counter_top_songs]
 
     if params[:search_top_artist].present?
-      @top_artists = Artist.where("name ILIKE ?", "%#{params[:search_top_artist]}%")
+      @top_artists = Artist.where("name ILIKE ?", "%#{params[:search_top_artist]}%").limit(50)
     else
       @top_artists = Artist.order(total_counter: :DESC).limit(5)
     end
