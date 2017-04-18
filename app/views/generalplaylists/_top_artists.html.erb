@@ -1,18 +1,8 @@
 <% @top_artists.each_with_index do |top_artist, idx_artist| %>
+  <% idx_artist += 1 %>
   <tr>
-    <td>
-      <% case(idx_artist) %>
-      <% when 0 %>
-        <i class="material-icons md-24">looks_one</i>
-      <% when 1 %>
-        <i class="material-icons">looks_two</i>
-      <% when 2 %>
-        <i class="material-icons">looks_3</i>
-      <% when 3 %>
-        <i class="material-icons">looks_4</i>
-      <% when 4 %>
-        <i class="material-icons">looks_5</i>
-      <% end %>
+    <td class="bungee-font">
+      <%= idx_artist %>
     </td>
     <td>
       <%= top_artist.name %>
