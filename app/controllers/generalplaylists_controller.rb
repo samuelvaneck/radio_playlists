@@ -8,7 +8,7 @@ class GeneralplaylistsController < ApplicationController
     end
     if params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
-      @top_songs = @top_songs.joins(:radiostations).where("radiostations.name LIKE ?", radiostation.name)
+      @top_songs = @top_songs.joins(:radiostations).where!("radiostations.name LIKE ?", radiostation.name)
     end
     @top_songs.order!(total_counter: :DESC)
     if params[:set_counter_top_songs].present?
@@ -22,7 +22,7 @@ class GeneralplaylistsController < ApplicationController
     end
     if params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
-      @top_artists = @top_artists.joins(:radiostations).where("radiostations.name LIKE ?", radiostation.name)
+      @top_artists = @top_artists.joins(:radiostations).where!("radiostations.name LIKE ?", radiostation.name)
     end
     @top_artists.order!(total_counter: :DESC)
     if params[:set_counter_top_artists].present?
