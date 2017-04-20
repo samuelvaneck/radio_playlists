@@ -18,7 +18,7 @@
             <input id="search_top_song" name="" type="text" placeholder="Search for song..." class="col s12 m6"/> -->
             <%= label_tag(:search_top_song, "Search for song") %>
             <%= text_field_tag "search_top_song", nil, placeholder: "Search for song...", class: "materialize-textarea", autocomplete: "off" %>
-            <div  class="input-field">
+            <div class="input-field col s6 m6 l6">
               <select id="set_counter_top_songs">
                 <option value="" disabled selected>Counter time</option>
                 <option value="day_counter">Day</option>
@@ -27,6 +27,9 @@
                 <option value="year_counter">Year</option>
                 <option value="total_counter">Total</option>
               </select>
+            </div>
+            <div class="input-field col s6 m6 l6">
+              <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { include_blank: true, prompt: "Radiostation"}, html_options = { id: "top_songs_radiostation" }) %>
             </div>
           </p>
         <% end %>
@@ -54,11 +57,11 @@
       </div>
 
       <div class="col s12 m12 l6">
-        <h3 class="center">Top artist</h3>
+        <h3 class="center">Top artists</h3>
         <%= form_tag("/generalplaylists", method: :get, id: "search_top_artist_form" ) do %>
           <label for="search_top_artist">Search artist name</label>
           <%= text_field_tag "search_top_artist", nil, placeholder: "Search for artist...", class: "materialize-textarea", autocomplete: "off" %>
-          <div  class="input-field">
+          <div  class="input-field col s6 m6 l6">
             <select id="set_counter_top_artists">
               <option value="" disabled selected>Counter time</option>
               <option value="day_counter">Day</option>
@@ -67,6 +70,9 @@
               <option value="year_counter">Year</option>
               <option value="total_counter">Total</option>
             </select>
+          </div>
+          <div class="input-field col s6 m6 l6">
+            <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { include_blank: true, prompt: "Radiostation" }, html_options = { id: "top_artists_radiostation" }) %>
           </div>
         <% end %>
         <table>
@@ -94,20 +100,27 @@
 
 <script>
   $("#search_top_song_form input").keyup(function(){
-    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set-counter-top-songs").val(), target: 'top-songs-table'}, null, "script");
+    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set-counter-top-songs").val(), radiostation_id: $("#top_songs_radiostation").val(), target: 'top-songs-table'}, null, "script");
   });
 
   $("#set_counter_top_songs").change(function(){
-    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), target: 'top-songs-table'}, null, "script");
+    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), radiostation_id: $("#top_songs_radiostation").val(), target: 'top-songs-table'}, null, "script");
+  });
 
+  $("#top_songs_radiostation").change(function(){
+    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), radiostation_id: $("#top_songs_radiostation").val(), target: 'top-songs-table'}, null, "script");
   });
 
   $("#search_top_artist_form input").keyup(function() {
-    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), target: 'top-artists-table'}, null, "script");
+    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
   })
 
   $("#set_counter_top_artists").change(function(){
-    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_artists: $("#set_counter_top_artists").val(), target: 'top-songs-table'}, null, "script");
+    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
+  });
+
+  $("#top_artists_radiostation").change(function(){
+    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
   });
 
   $(document).ready(function() {
