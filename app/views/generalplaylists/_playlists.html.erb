@@ -1,0 +1,17 @@
+<% @playlists.each_with_index do |playlist, idx_playlist| %>
+  <% idx_playlist + 1 %>
+  <tr>
+    <td class="bungee-font">
+      <%= playlist.time %>
+    </td>
+    <td>
+      <%= playlist.radiostation.name %>
+    </td>
+    <td>
+      <%= playlist.artist.name %>
+    </td>
+    <td>
+      <%= playlist.song.title %>
+    </td>
+  </tr>
+<% end %>

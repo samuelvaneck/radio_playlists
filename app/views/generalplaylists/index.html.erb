@@ -5,17 +5,56 @@
 
   <div class="container">
     <div class="row">
+      <div col="col s12 m12 l12">
+        <h3>Playlists</h3>
+        <%= form_tag("/generalplaylists", method: :get, id: "search_playlists_form") do %>
+          <%= label_tag(:search_playlists, "Search for song or artist") %>
+          <%= text_field_tag "search_playlists", nil, placeholder: "Search for song or artist...", class: "materialize-textarea", autocomplete: "off" %>
+          <div class="input-field col s6 m6 l6">
+            <select id="set_counter_playlists">
+              <option value="">Counter time</option>
+              <option value="day">Day</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+              <option value="year">Year</option>
+              <option value="total">Total</option>
+            </select>
+          </div>
+          <div class="input-field col s6 m6 l6">
+            <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "playlists_radiostation" }) %>
+          </div>
+        <% end %>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Time
+              </th>
+              <th>
+                Radiostation
+              </th>
+              <th>
+                Artist
+              </th>
+              <th>
+                Title
+              </th>
+            </tr>
+          </thead>
+          <tbody id="playlists-table">
+            <%= render partial: 'playlists' %>
+          </tbody>
+        </table>
+      </div>
       <div class="col s12 m12 l6">
         <h3 class="center">Top songs</h3>
         <%= form_tag("/generalplaylists", method: :get, id: "search_top_song_form" ) do %>
           <p>
-            <!-- <label for="search_top_song">Search song title</label>
-            <input id="search_top_song" name="" type="text" placeholder="Search for song..." class="col s12 m6"/> -->
-            <%= label_tag(:search_top_song, "Search for song") %>
-            <%= text_field_tag "search_top_song", nil, placeholder: "Search for song...", class: "materialize-textarea", autocomplete: "off" %>
+            <%= label_tag(:search_top_song, "Search for song or artist") %>
+            <%= text_field_tag "search_top_song", nil, placeholder: "Search for song or artist...", class: "materialize-textarea", autocomplete: "off" %>
             <div class="input-field col s6 m6 l6">
               <select id="set_counter_top_songs">
-                <option value="" disabled selected>Counter time</option>
+                <option value="">Counter time</option>
                 <option value="day">Day</option>
                 <option value="week">Week</option>
                 <option value="month">Month</option>
@@ -61,7 +100,7 @@
           <%= text_field_tag "search_top_artist", nil, placeholder: "Search for artist...", class: "materialize-textarea", autocomplete: "off" %>
           <div  class="input-field col s6 m6 l6">
             <select id="set_counter_top_artists">
-              <option value="" disabled selected>Counter time</option>
+              <option value="">Counter time</option>
               <option value="day">Day</option>
               <option value="week">Week</option>
               <option value="month">Month</option>
@@ -100,128 +139,141 @@
 </section>
 
 <script>
+  // AJAX requests playlists
+  $("#search_playlists_form input").keyup(function(){
+    $.get($("#search_playlists_form").attr("action"), {search_playlists: $("#search_playlists").val(), set_counter_playlists: $("#set_counter_playlists").val(), radiostation_id: $("#playlists_radiostation").val(), target: 'playlists-table' }, null, "script" );
+  });
+  $("#set_counter_playlists").change(function(){
+    $.get($("#search_playlists_form").attr("action"), {search_playlists: $("#search_playlists").val(), set_counter_playlists: $("#set_counter_playlists").val(), radiostation_id: $("#playlists_radiostation").val(), target: 'playlists-table' }, null, "script" );
+  });
+  $("#playlists_radiostation").change(function(){
+    $.get($("#search_playlists_form").attr("action"), {search_playlists: $("#search_playlists").val(), set_counter_playlists: $("#set_counter_playlists").val(), radiostation_id: $("#playlists_radiostation").val(), target: 'playlists-table' }, null, "script" );
+  });
+
+  // AJAX request top songs
   $("#search_top_song_form input").keyup(function(){
     $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set-counter-top-songs").val(), radiostation_id: $("#top_songs_radiostation").val(), target: 'top-songs-table'}, null, "script");
   });
-
   $("#set_counter_top_songs").change(function(){
     $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), radiostation_id: $("#top_songs_radiostation").val(), target: 'top-songs-table'}, null, "script");
   });
-
   $("#top_songs_radiostation").change(function(){
     $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), radiostation_id: $("#top_songs_radiostation").val(), target: 'top-songs-table'}, null, "script");
   });
 
+  // AJAX requests artists
   $("#search_top_artist_form input").keyup(function() {
     $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
   })
-
   $("#set_counter_top_artists").change(function(){
     $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set_counter_top_artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
   });
-
   $("#top_artists_radiostation").change(function(){
     $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
   });
+</script>
 
+<script>
   $(document).ready(function() {
     $('select').material_select();
   });
-
-  // $(document).ajaxComplete(function() {
-  //   counterOnSong = $("#set_counter_top_songs").val();
-  //   counterOnArtist = $("#set_counter_top_artists").val();
-  //   setCounterSong(counterOnSong, "song");
-  //   setCounterArtist(counterOnArtist, "artist");
-  // });
-
-  // function setCounterSong(counterOn, table) {
-  //   switch (counterOn) {
-  //     case "day_counter":
-  //     $(".top-" + table + "-day").show();
-  //     $(".top-" + table + "-week").hide();
-  //     $(".top-" + table + "-month").hide();
-  //     $(".top-" + table + "-year").hide();
-  //     $(".top-" + table + "-total").hide();
-  //     $("#counter-type-" + table).text("Day");
-  //     break;
-  //     case "week_counter":
-  //     $(".top-" + table + "-day").hide();
-  //     $(".top-" + table + "-week").show();
-  //     $(".top-" + table + "-month").hide();
-  //     $(".top-" + table + "-year").hide();
-  //     $(".top-" + table + "-total").hide();
-  //     $("#counter-type-" + table).text("Week");
-  //     break;
-  //     case "month_counter":
-  //     $(".top-" + table + "-day").hide();
-  //     $(".top-" + table + "-week").hide();
-  //     $(".top-" + table + "-month").show();
-  //     $(".top-" + table + "-year").hide();
-  //     $(".top-" + table + "-total").hide();
-  //     $("#counter-type-" + table).text("Month");
-  //     break;
-  //     case "year_counter":
-  //     $(".top-" + table + "-day").hide();
-  //     $(".top-" + table + "-week").hide();
-  //     $(".top-" + table + "-month").hide();
-  //     $(".top-" + table + "-year").show();
-  //     $(".top-" + table + "-total").hide();
-  //     $("#counter-type-" + table).text("Year");
-  //     break;
-  //     case "total_counter":
-  //     $(".top-" + table + "-day").hide();
-  //     $(".top-" + table + "-week").hide();
-  //     $(".top-" + table + "-month").hide();
-  //     $(".top-" + table + "-year").hide();
-  //     $(".top-" + table + "-total").show();
-  //     $("#counter-type-" + table).text("Total");
-  //     break;
-  //   }
-  // };
-  //
-  // function setCounterArtist(counterOn, table) {
-  //   switch (counterOn) {
-  //     case "day_counter":
-  //     $(".top-" + table + "-day").show();
-  //     $(".top-" + table + "-week").hide();
-  //     $(".top-" + table + "-month").hide();
-  //     $(".top-" + table + "-year").hide();
-  //     $(".top-" + table + "-total").hide();
-  //     $("#counter-type-" + table).text("Day");
-  //     break;
-  //     case "week_counter":
-  //     $(".top-" + table + "-day").hide();
-  //     $(".top-" + table + "-week").show();
-  //     $(".top-" + table + "-month").hide();
-  //     $(".top-" + table + "-year").hide();
-  //     $(".top-" + table + "-total").hide();
-  //     $("#counter-type-" + table).text("Week");
-  //     break;
-  //     case "month_counter":
-  //     $(".top-" + table + "-day").hide();
-  //     $(".top-" + table + "-week").hide();
-  //     $(".top-" + table + "-month").show();
-  //     $(".top-" + table + "-year").hide();
-  //     $(".top-" + table + "-total").hide();
-  //     $("#counter-type-" + table).text("Month");
-  //     break;
-  //     case "year_counter":
-  //     $(".top-" + table + "-day").hide();
-  //     $(".top-" + table + "-week").hide();
-  //     $(".top-" + table + "-month").hide();
-  //     $(".top-" + table + "-year").show();
-  //     $(".top-" + table + "-total").hide();
-  //     $("#counter-type-" + table).text("Year");
-  //     break;
-  //     case "total_counter":
-  //     $(".top-" + table + "-day").hide();
-  //     $(".top-" + table + "-week").hide();
-  //     $(".top-" + table + "-month").hide();
-  //     $(".top-" + table + "-year").hide();
-  //     $(".top-" + table + "-total").show();
-  //     $("#counter-type-" + table).text("Total");
-  //     break;
-  //   }
-  // };
 </script>
+
+<!-- <script>
+  $(document).ajaxComplete(function() {
+    counterOnSong = $("#set_counter_top_songs").val();
+    counterOnArtist = $("#set_counter_top_artists").val();
+    setCounterSong(counterOnSong, "song");
+    setCounterArtist(counterOnArtist, "artist");
+  });
+
+  function setCounterSong(counterOn, table) {
+    switch (counterOn) {
+      case "day_counter":
+      $(".top-" + table + "-day").show();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Day");
+      break;
+      case "week_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").show();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Week");
+      break;
+      case "month_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").show();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Month");
+      break;
+      case "year_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").show();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Year");
+      break;
+      case "total_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").show();
+      $("#counter-type-" + table).text("Total");
+      break;
+    }
+  };
+
+  function setCounterArtist(counterOn, table) {
+    switch (counterOn) {
+      case "day_counter":
+      $(".top-" + table + "-day").show();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Day");
+      break;
+      case "week_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").show();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Week");
+      break;
+      case "month_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").show();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Month");
+      break;
+      case "year_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").show();
+      $(".top-" + table + "-total").hide();
+      $("#counter-type-" + table).text("Year");
+      break;
+      case "total_counter":
+      $(".top-" + table + "-day").hide();
+      $(".top-" + table + "-week").hide();
+      $(".top-" + table + "-month").hide();
+      $(".top-" + table + "-year").hide();
+      $(".top-" + table + "-total").show();
+      $("#counter-type-" + table).text("Total");
+      break;
+    }
+  };
+</script> -->

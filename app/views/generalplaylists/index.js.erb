@@ -1,4 +1,6 @@
 <% case @target %>
+  <% when 'playlists-table' %>
+  $("#playlists-table").html("<%= j render 'playlists' %>")
   <% when 'top-songs-table' %>
     $("#top-songs-table").html("<%= j render 'top_songs' %>");
   <% when 'top-artists-table' %>
