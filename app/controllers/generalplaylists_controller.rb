@@ -8,7 +8,7 @@ class GeneralplaylistsController < ApplicationController
     end
     if params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
-      @top_songs = @top_songs.joins(:radiostations).where!("radiostations.name = ?", radiostation.name).limit(50)
+      @top_songs = @top_songs.joins(:radiostations).where!("radiostations.name = ?", radiostation.name).limit(50).uniq
       @songs_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:song_id).count
     end
 
@@ -34,10 +34,6 @@ class GeneralplaylistsController < ApplicationController
         @top_songs.reorder!(total_counter: :DESC)
       end
     end
-    # if params[:set_counter_top_songs].present?
-    #   @top_songs = @top_songs.reorder!("#{params[:set_counter_top_songs]} DESC")
-    # end
-
 
     if params[:search_top_artist].present?
       @top_artists = Artist.where("name ILIKE ?", "%#{params[:search_top_artist]}%").limit(50)
