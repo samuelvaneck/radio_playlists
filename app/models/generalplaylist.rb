@@ -12,9 +12,9 @@ class Generalplaylist < ActiveRecord::Base
   def self.radio_veronica_check
     url = "https://playlist24.nl/radio-veronica-playlist/"
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.split.map(&:capitalize).join(" ")
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text.split.map(&:capitalize).join(" ")
+    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
+    artist = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]").text.strip
+    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
 
     Generalplaylist.title_check(title)
 
@@ -97,9 +97,9 @@ class Generalplaylist < ActiveRecord::Base
   def self.sublime_fm_check
     url = "https://playlist24.nl/sublime-fm-playlist/"
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[1]').text.squish
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[2]/a').text.split.map(&:capitalize).join(" ")
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/div[3]/div[2]/span[1]/a').text.split.map(&:capitalize).join(" ")
+    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
+    artist = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a").text.strip
+    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
 
     Generalplaylist.title_check(title)
 
@@ -141,79 +141,47 @@ class Generalplaylist < ActiveRecord::Base
 
   def self.sky_radio_check
 
-    tr_time = 0
-    tr_artist = 0
-    tr_title = 0
-    tr_image = 0
-
-    url = "http://www.skyradio.nl/playlists/sky-radio"
-    img_addon = "http://www.skyradio.nl"
+    url = "https://playlist24.nl/skyradio-playlist/"
     doc = Nokogiri::HTML(open(url))
+    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
+    artist = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]").text.strip
+    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
 
-    time = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[1]/td[1]/time").text
-
-    until time == "" do
-
-      time = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_time += 1}]/td[1]/time").text
-      artist = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_artist += 1}]/td[2]/div[1]/div[2]/p[2]").text.split.map(&:capitalize).join(" ")
-      title = doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_title += 1}]/td[2]/div[1]/div[2]/p[1]").text.split.map(&:capitalize).join(" ")
-      image = (img_addon) + (doc.xpath("//table[contains(@class, 'table-playlist')]//tr[#{tr_image += 1}]/td[2]/div[1]/div[1]/img/@src").text)
-
-      if time == ""
-        return false
-      end
-
-      if title.count("0-9") > 4
-        puts "found #{title.count("0-9")} numbers in the title"
-        return false
-      elsif title.count("/") > 1
-        puts "found #{title.count("/") > 1} / in the title"
-        return false
-      elsif title.count("'") > 2
-        puts "found #{title.count("'") > 2} ' in the title"
-        return false
-      elsif title.count(".") > 1
-        puts "found #{title.count(".") > 1} . in the title"
-        return false
-      end
-
-      # Find the artist name in the Artist database or create a new record
-      artist = Artist.find_or_create_by(name: "#{artist}")
-      # Search for all the songs with title
-      songs = Song.where("title = ?", "title")
-      # Add the songs variable to the song_check methode. Returns @song variable
-      if songs == []
-        song = Song.find_or_create_by(title: title, artist: artist)
-      # If the is a song with the same title check the artist
-      else
-        songs.each do |s|
-          artist_name = s.artist.name
-          check_artist = Artist.where("name = ?", artist_name)
-          # if there is no song title with the same artist create a new one
-          if check_artist == []
-            song = Song.find_or_create_by(title: title, artist: artist)
-          # Else grap the song record with the same title and artist id
-          else
-            song = Song.find_by_title_and_artist_id(title, artist.id)
-          end
+    # Find the artist name in the Artist database or create a new record
+    artist = Artist.find_or_create_by(name: "#{artist}")
+    # Search for all the songs with title
+    songs = Song.where("title = ?", "title")
+    # Add the songs variable to the song_check methode. Returns @song variable
+    if songs == []
+      song = Song.find_or_create_by(title: title, artist: artist)
+    # If the is a song with the same title check the artist
+    else
+      songs.each do |s|
+        artist_name = s.artist.name
+        check_artist = Artist.where("name = ?", artist_name)
+        # if there is no song title with the same artist create a new one
+        if check_artist == []
+          song = Song.find_or_create_by(title: title, artist: artist)
+        # Else grap the song record with the same title and artist id
+        else
+          song = Song.find_by_title_and_artist_id(title, artist.id)
         end
       end
-      # Find or create the Radiostation with name "Sky Radio"
-      radiostation = Radiostation.find_or_create_by(name: "Sky Radio")
-
-      # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-      Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
-
     end
+    # Find or create the Radiostation with name "Sky Radio"
+    radiostation = Radiostation.find_or_create_by(name: "Sky Radio")
+
+    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
+    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
 
   end
 
   def self.radio_3fm_check
-    url = "http://watiseropderadio.nl/playlist/radio/3fm/vandaag"
+    url = "https://playlist24.nl/3fm-playlist/"
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[1]').text.split.reverse.drop(1).reverse.join(" ")
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[3]/a').text.split.map(&:capitalize).join(" ")
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[2]/a').text.split.map(&:capitalize).join(" ")
+    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
+    artist = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a").text.strip
+    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
 
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: "#{artist}")
