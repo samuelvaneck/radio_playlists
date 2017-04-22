@@ -6,7 +6,7 @@
   <div class="container">
     <div class="row">
       <div col="col s12 m12 l12">
-        <h3>Playlists</h3>
+        <h3 class="center">Playlists</h3>
         <%= form_tag("/generalplaylists", method: :get, id: "search_playlists_form") do %>
           <%= label_tag(:search_playlists, "Search for song or artist") %>
           <%= text_field_tag "search_playlists", nil, placeholder: "Search for song or artist...", class: "materialize-textarea", autocomplete: "off" %>
@@ -29,6 +29,9 @@
             <tr>
               <th>
                 Time
+              </th>
+              <th>
+                Date
               </th>
               <th>
                 Radiostation
