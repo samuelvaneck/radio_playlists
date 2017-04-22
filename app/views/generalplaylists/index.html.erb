@@ -44,7 +44,7 @@
                 Total
               </th>
               <th>
-                Counts
+                Counter
               </th>
             </tr>
           </thead>
@@ -62,11 +62,11 @@
           <div  class="input-field col s6 m6 l6">
             <select id="set_counter_top_artists">
               <option value="" disabled selected>Counter time</option>
-              <option value="day_counter">Day</option>
-              <option value="week_counter">Week</option>
-              <option value="month_counter">Month</option>
-              <option value="year_counter">Year</option>
-              <!-- <option value="total_counter">Total</option> -->
+              <option value="day">Day</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+              <option value="year">Year</option>
+              <option value="total">Total</option>
             </select>
           </div>
           <div class="input-field col s6 m6 l6">
@@ -82,8 +82,11 @@
               <th>
                 Artist
               </th>
-              <th id="counter-type-artist">
+              <th id="counter-type-artist" style="display:none">
                 Total
+              </th>
+              <th>
+                Counter
               </th>
             </tr>
           </thead>
