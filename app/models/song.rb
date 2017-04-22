@@ -6,6 +6,10 @@ class Song < ActiveRecord::Base
 
   validates :artist, presence: true
 
+  def self.search_title(title)
+    where("title ILIKE ?", "%#{title}%")
+  end
+
   def self.destroy_all
     songs = Song.all
     songs.each do |song|
