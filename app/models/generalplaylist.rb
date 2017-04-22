@@ -33,11 +33,11 @@ class Generalplaylist < ActiveRecord::Base
 
   # Check the Radio 538 song
   def self.radio_538_check
-    url = "http://watiseropderadio.nl/playlist/radio/538/vandaag"
+    url = "https://playlist24.nl/radio-538-playlist/"
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[1]').text.split.reverse.drop(1).reverse.join(" ")
-    artist = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[3]/a').text.split.map(&:capitalize).join(" ")
-    title = doc.xpath('/html/body/div[3]/div[2]/div[1]/table/tbody/tr[1]/td[2]/a').text.split.map(&:capitalize).join(" ")
+    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
+    artist = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]").text.strip
+    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
 
     Generalplaylist.title_check(title)
 
