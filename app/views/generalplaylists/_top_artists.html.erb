@@ -19,8 +19,17 @@
     <td class="top-artist-year" style="display:none">
       <%= top_artist.year_counter %>
     </td>
-    <td class="top-artist-total">
+    <td class="top-artist-total" style="display:none">
       <%= top_artist.total_counter %>
     </td>
+    <% if @artists_counter.present? %>
+      <% @artists_counter.each do |artist_id, counter| %>
+        <% if artist_id == top_artist.id %>
+          <td>
+            <%= counter %>
+          </td>
+        <% end %>
+      <% end %>
+    <% end %>
   </tr>
 <% end %>

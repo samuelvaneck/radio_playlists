@@ -12,23 +12,21 @@
     <td>
       <%= top_song.title %>
     </td>
-    <div class="hidden">
-      <td class="top-song-day" style="display:none">
-        <%= top_song.day_counter %>
-      </td>
-      <td class="top-song-week"  style="display:none">
-        <%= top_song.week_counter %>
-      </td>
-      <td class="top-song-month" style="display:none">
-        <%= top_song.month_counter %>
-      </td>
-      <td class="top-song-year" style="display:none">
-        <%= top_song.year_counter %>
-      </td>
-      <td class="top-song-total" style="display:none">
-        <%= top_song.total_counter %>
-      </td>
-    </div>
+    <td class="top-song-day" style="display:none">
+      <%= top_song.day_counter %>
+    </td>
+    <td class="top-song-week"  style="display:none">
+      <%= top_song.week_counter %>
+    </td>
+    <td class="top-song-month" style="display:none">
+      <%= top_song.month_counter %>
+    </td>
+    <td class="top-song-year" style="display:none">
+      <%= top_song.year_counter %>
+    </td>
+    <td class="top-song-total" style="display:none">
+      <%= top_song.total_counter %>
+    </td>
     <% if @songs_counter.present? %>
       <% @songs_counter.each do |song_id, counter| %>
         <% if song_id == top_song.id %>
