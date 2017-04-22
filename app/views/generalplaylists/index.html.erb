@@ -4,11 +4,6 @@
   </div>
 
   <div class="container">
-    <!-- <div class="row">
-      <div class="col s12 m12 l12 center" id="menu">
-        <%= render 'layouts/navgp' %>
-      </div>
-    </div> -->
     <div class="row">
       <div class="col s12 m12 l6">
         <h3 class="center">Top songs</h3>
@@ -21,11 +16,11 @@
             <div class="input-field col s6 m6 l6">
               <select id="set_counter_top_songs">
                 <option value="" disabled selected>Counter time</option>
-                <option value="day_counter">Day</option>
-                <option value="week_counter">Week</option>
-                <option value="month_counter">Month</option>
-                <option value="year_counter">Year</option>
-                <option value="total_counter">Total</option>
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+                <option value="total">Total</option>
               </select>
             </div>
             <div class="input-field col s6 m6 l6">
@@ -45,8 +40,11 @@
               <th>
                 Title
               </th>
-              <th id="counter-type-song">
+              <th id="counter-type-song" style="display:none">
                 Total
+              </th>
+              <th>
+                Counts
               </th>
             </tr>
           </thead>
@@ -68,7 +66,7 @@
               <option value="week_counter">Week</option>
               <option value="month_counter">Month</option>
               <option value="year_counter">Year</option>
-              <option value="total_counter">Total</option>
+              <!-- <option value="total_counter">Total</option> -->
             </select>
           </div>
           <div class="input-field col s6 m6 l6">
@@ -127,100 +125,100 @@
     $('select').material_select();
   });
 
-  $(document).ajaxComplete(function() {
-    counterOnSong = $("#set_counter_top_songs").val();
-    counterOnArtist = $("#set_counter_top_artists").val();
-    setCounterSong(counterOnSong, "song");
-    setCounterArtist(counterOnArtist, "artist");
-  });
+  // $(document).ajaxComplete(function() {
+  //   counterOnSong = $("#set_counter_top_songs").val();
+  //   counterOnArtist = $("#set_counter_top_artists").val();
+  //   setCounterSong(counterOnSong, "song");
+  //   setCounterArtist(counterOnArtist, "artist");
+  // });
 
-  function setCounterSong(counterOn, table) {
-    switch (counterOn) {
-      case "day_counter":
-      $(".top-" + table + "-day").show();
-      $(".top-" + table + "-week").hide();
-      $(".top-" + table + "-month").hide();
-      $(".top-" + table + "-year").hide();
-      $(".top-" + table + "-total").hide();
-      $("#counter-type-" + table).text("Day");
-      break;
-      case "week_counter":
-      $(".top-" + table + "-day").hide();
-      $(".top-" + table + "-week").show();
-      $(".top-" + table + "-month").hide();
-      $(".top-" + table + "-year").hide();
-      $(".top-" + table + "-total").hide();
-      $("#counter-type-" + table).text("Week");
-      break;
-      case "month_counter":
-      $(".top-" + table + "-day").hide();
-      $(".top-" + table + "-week").hide();
-      $(".top-" + table + "-month").show();
-      $(".top-" + table + "-year").hide();
-      $(".top-" + table + "-total").hide();
-      $("#counter-type-" + table).text("Month");
-      break;
-      case "year_counter":
-      $(".top-" + table + "-day").hide();
-      $(".top-" + table + "-week").hide();
-      $(".top-" + table + "-month").hide();
-      $(".top-" + table + "-year").show();
-      $(".top-" + table + "-total").hide();
-      $("#counter-type-" + table).text("Year");
-      break;
-      case "total_counter":
-      $(".top-" + table + "-day").hide();
-      $(".top-" + table + "-week").hide();
-      $(".top-" + table + "-month").hide();
-      $(".top-" + table + "-year").hide();
-      $(".top-" + table + "-total").show();
-      $("#counter-type-" + table).text("Total");
-      break;
-    }
-  };
-
-  function setCounterArtist(counterOn, table) {
-    switch (counterOn) {
-      case "day_counter":
-      $(".top-" + table + "-day").show();
-      $(".top-" + table + "-week").hide();
-      $(".top-" + table + "-month").hide();
-      $(".top-" + table + "-year").hide();
-      $(".top-" + table + "-total").hide();
-      $("#counter-type-" + table).text("Day");
-      break;
-      case "week_counter":
-      $(".top-" + table + "-day").hide();
-      $(".top-" + table + "-week").show();
-      $(".top-" + table + "-month").hide();
-      $(".top-" + table + "-year").hide();
-      $(".top-" + table + "-total").hide();
-      $("#counter-type-" + table).text("Week");
-      break;
-      case "month_counter":
-      $(".top-" + table + "-day").hide();
-      $(".top-" + table + "-week").hide();
-      $(".top-" + table + "-month").show();
-      $(".top-" + table + "-year").hide();
-      $(".top-" + table + "-total").hide();
-      $("#counter-type-" + table).text("Month");
-      break;
-      case "year_counter":
-      $(".top-" + table + "-day").hide();
-      $(".top-" + table + "-week").hide();
-      $(".top-" + table + "-month").hide();
-      $(".top-" + table + "-year").show();
-      $(".top-" + table + "-total").hide();
-      $("#counter-type-" + table).text("Year");
-      break;
-      case "total_counter":
-      $(".top-" + table + "-day").hide();
-      $(".top-" + table + "-week").hide();
-      $(".top-" + table + "-month").hide();
-      $(".top-" + table + "-year").hide();
-      $(".top-" + table + "-total").show();
-      $("#counter-type-" + table).text("Total");
-      break;
-    }
-  };
+  // function setCounterSong(counterOn, table) {
+  //   switch (counterOn) {
+  //     case "day_counter":
+  //     $(".top-" + table + "-day").show();
+  //     $(".top-" + table + "-week").hide();
+  //     $(".top-" + table + "-month").hide();
+  //     $(".top-" + table + "-year").hide();
+  //     $(".top-" + table + "-total").hide();
+  //     $("#counter-type-" + table).text("Day");
+  //     break;
+  //     case "week_counter":
+  //     $(".top-" + table + "-day").hide();
+  //     $(".top-" + table + "-week").show();
+  //     $(".top-" + table + "-month").hide();
+  //     $(".top-" + table + "-year").hide();
+  //     $(".top-" + table + "-total").hide();
+  //     $("#counter-type-" + table).text("Week");
+  //     break;
+  //     case "month_counter":
+  //     $(".top-" + table + "-day").hide();
+  //     $(".top-" + table + "-week").hide();
+  //     $(".top-" + table + "-month").show();
+  //     $(".top-" + table + "-year").hide();
+  //     $(".top-" + table + "-total").hide();
+  //     $("#counter-type-" + table).text("Month");
+  //     break;
+  //     case "year_counter":
+  //     $(".top-" + table + "-day").hide();
+  //     $(".top-" + table + "-week").hide();
+  //     $(".top-" + table + "-month").hide();
+  //     $(".top-" + table + "-year").show();
+  //     $(".top-" + table + "-total").hide();
+  //     $("#counter-type-" + table).text("Year");
+  //     break;
+  //     case "total_counter":
+  //     $(".top-" + table + "-day").hide();
+  //     $(".top-" + table + "-week").hide();
+  //     $(".top-" + table + "-month").hide();
+  //     $(".top-" + table + "-year").hide();
+  //     $(".top-" + table + "-total").show();
+  //     $("#counter-type-" + table).text("Total");
+  //     break;
+  //   }
+  // };
+  //
+  // function setCounterArtist(counterOn, table) {
+  //   switch (counterOn) {
+  //     case "day_counter":
+  //     $(".top-" + table + "-day").show();
+  //     $(".top-" + table + "-week").hide();
+  //     $(".top-" + table + "-month").hide();
+  //     $(".top-" + table + "-year").hide();
+  //     $(".top-" + table + "-total").hide();
+  //     $("#counter-type-" + table).text("Day");
+  //     break;
+  //     case "week_counter":
+  //     $(".top-" + table + "-day").hide();
+  //     $(".top-" + table + "-week").show();
+  //     $(".top-" + table + "-month").hide();
+  //     $(".top-" + table + "-year").hide();
+  //     $(".top-" + table + "-total").hide();
+  //     $("#counter-type-" + table).text("Week");
+  //     break;
+  //     case "month_counter":
+  //     $(".top-" + table + "-day").hide();
+  //     $(".top-" + table + "-week").hide();
+  //     $(".top-" + table + "-month").show();
+  //     $(".top-" + table + "-year").hide();
+  //     $(".top-" + table + "-total").hide();
+  //     $("#counter-type-" + table).text("Month");
+  //     break;
+  //     case "year_counter":
+  //     $(".top-" + table + "-day").hide();
+  //     $(".top-" + table + "-week").hide();
+  //     $(".top-" + table + "-month").hide();
+  //     $(".top-" + table + "-year").show();
+  //     $(".top-" + table + "-total").hide();
+  //     $("#counter-type-" + table).text("Year");
+  //     break;
+  //     case "total_counter":
+  //     $(".top-" + table + "-day").hide();
+  //     $(".top-" + table + "-week").hide();
+  //     $(".top-" + table + "-month").hide();
+  //     $(".top-" + table + "-year").hide();
+  //     $(".top-" + table + "-total").show();
+  //     $("#counter-type-" + table).text("Total");
+  //     break;
+  //   }
+  // };
 </script>
