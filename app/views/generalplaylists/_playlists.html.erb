@@ -5,6 +5,9 @@
       <%= playlist.time %>
     </td>
     <td>
+      <%= playlist.created_at.strftime("%e-%-m-%Y") %>
+    </td>
+    <td>
       <%= playlist.radiostation.name %>
     </td>
     <td>
