@@ -117,7 +117,7 @@
   })
 
   $("#set_counter_top_artists").change(function(){
-    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
+    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set_counter_top_artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
   });
 
   $("#top_artists_radiostation").change(function(){
