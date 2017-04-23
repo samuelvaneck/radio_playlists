@@ -1,16 +1,16 @@
 <section id="section-1" class="full-window-height">
-  <div class="head center">
+  <div class="head center bungee-shade">
     Radio Playlists
   </div>
 
   <div class="container">
     <div class="row">
       <div col="col s12 m12 l12">
-        <h3 class="center">
+        <h3 class="center bungee-inline">
           Playlists
-          <i class="material-icons md-48 right toggle-table-icon" id="0">details</i>
+          <i class="material-icons md-48 right toggle-table-icon-90" id="0">details</i>
         </h3>
-        <div class="content">
+        <div class="content" style="display:none">
           <%= form_tag("/generalplaylists", method: :get, id: "search_playlists_form") do %>
             <%= label_tag(:search_playlists, "Search for song or artist") %>
             <%= text_field_tag "search_playlists", nil, placeholder: "Search for song or artist...", class: "materialize-textarea", autocomplete: "off" %>
@@ -56,11 +56,11 @@
       </div>
 
       <div class="col s12 m12 l6">
-        <h3 class="center">
+        <h3 class="center bungee-inline">
           Top songs
-          <i class="material-icons md-48 right toggle-table-icon">details</i>
+          <i class="material-icons md-48 right toggle-table-icon-90">details</i>
         </h3>
-        <div class="content">
+        <div class="content" style="display:none">
           <%= form_tag("/generalplaylists", method: :get, id: "search_top_song_form" ) do %>
             <p>
               <%= label_tag(:search_top_song, "Search for song or artist") %>
@@ -108,11 +108,11 @@
       </div>
 
       <div class="col s12 m12 l6">
-        <h3 class="center">
+        <h3 class="center bungee-inline">
           Top artists
-          <i class="material-icons md-48 right toggle-table-icon">details</i>
+          <i class="material-icons md-48 right toggle-table-icon-90">details</i>
         </h3>
-        <div class="content">
+        <div class="content" style="display:none">
           <%= form_tag("/generalplaylists", method: :get, id: "search_top_artist_form" ) do %>
             <label for="search_top_artist">Search artist name</label>
             <%= text_field_tag "search_top_artist", nil, placeholder: "Search for artist...", class: "materialize-textarea", autocomplete: "off" %>
@@ -199,10 +199,25 @@
 </script>
 
 <script>
-  $(".toggle-table-icon").click(function() {
+  $(".toggle-table-icon-90").click(function() {
     $(this).parent().next("div.content").slideToggle();
     $(this).toggleClass("toggle-table-icon");
     $(this).toggleClass("toggle-table-icon-90");
+  });
+
+  $('.toggle-table-icon-90').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    $(this).removeClass("animated tada");
+    $(this).animate({
+      '-webkit-transform': 'rotate(90deg)',
+      '-moz-transform': 'rotate(90deg)',
+      '-ms-transform': 'rotate(90deg)',
+      '-o-transform': 'rotate(90deg)',
+      'transform': 'rotate(90deg)',
+    });
+  });
+
+  $(document).ready(function() {
+    $(".toggle-table-icon-90").addClass("animated tada");
   });
 </script>
 
