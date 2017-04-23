@@ -6,57 +6,16 @@
   <div class="container">
     <div class="row">
       <div col="col s12 m12 l12">
-        <h3 class="center">Playlists</h3>
-        <%= form_tag("/generalplaylists", method: :get, id: "search_playlists_form") do %>
-          <%= label_tag(:search_playlists, "Search for song or artist") %>
-          <%= text_field_tag "search_playlists", nil, placeholder: "Search for song or artist...", class: "materialize-textarea", autocomplete: "off" %>
-          <div class="input-field col s6 m6 l6">
-            <select id="set_counter_playlists">
-              <option value="">Counter time</option>
-              <option value="day">Day</option>
-              <option value="week">Week</option>
-              <option value="month">Month</option>
-              <option value="year">Year</option>
-              <option value="total">Total</option>
-            </select>
-          </div>
-          <div class="input-field col s6 m6 l6">
-            <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "playlists_radiostation" }) %>
-          </div>
-        <% end %>
-        <table>
-          <thead>
-            <tr>
-              <th>
-                Time
-              </th>
-              <th>
-                Date
-              </th>
-              <th>
-                Radiostation
-              </th>
-              <th>
-                Artist
-              </th>
-              <th>
-                Title
-              </th>
-            </tr>
-          </thead>
-          <tbody id="playlists-table">
-            <%= render partial: 'playlists' %>
-          </tbody>
-        </table>
-      </div>
-      <div class="col s12 m12 l6">
-        <h3 class="center">Top songs</h3>
-        <%= form_tag("/generalplaylists", method: :get, id: "search_top_song_form" ) do %>
-          <p>
-            <%= label_tag(:search_top_song, "Search for song or artist") %>
-            <%= text_field_tag "search_top_song", nil, placeholder: "Search for song or artist...", class: "materialize-textarea", autocomplete: "off" %>
+        <h3 class="center">
+          Playlists
+          <i class="material-icons md-48 right toggle-table-icon" id="0">details</i>
+        </h3>
+        <div class="content">
+          <%= form_tag("/generalplaylists", method: :get, id: "search_playlists_form") do %>
+            <%= label_tag(:search_playlists, "Search for song or artist") %>
+            <%= text_field_tag "search_playlists", nil, placeholder: "Search for song or artist...", class: "materialize-textarea", autocomplete: "off" %>
             <div class="input-field col s6 m6 l6">
-              <select id="set_counter_top_songs">
+              <select id="set_counter_playlists">
                 <option value="">Counter time</option>
                 <option value="day">Day</option>
                 <option value="week">Week</option>
@@ -66,76 +25,133 @@
               </select>
             </div>
             <div class="input-field col s6 m6 l6">
-              <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "top_songs_radiostation" }) %>
+              <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "playlists_radiostation" }) %>
             </div>
-          </p>
-        <% end %>
-        <table>
-          <thead>
-            <tr>
-              <th>
-                #
-              </th>
-              <th>
-                Artist
-              </th>
-              <th>
-                Title
-              </th>
-              <th id="counter-type-song" style="display:none">
-                Total
-              </th>
-              <th>
-                Counter
-              </th>
-            </tr>
-          </thead>
-          <tbody id="top-songs-table">
-              <%= render partial: 'top_songs' %>
-          </tbody>
-        </table>
+          <% end %>
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Time
+                </th>
+                <th>
+                  Date
+                </th>
+                <th>
+                  Radiostation
+                </th>
+                <th>
+                  Artist
+                </th>
+                <th>
+                  Title
+                </th>
+              </tr>
+            </thead>
+            <tbody id="playlists-table">
+              <%= render partial: 'playlists' %>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div class="col s12 m12 l6">
-        <h3 class="center">Top artists</h3>
-        <%= form_tag("/generalplaylists", method: :get, id: "search_top_artist_form" ) do %>
-          <label for="search_top_artist">Search artist name</label>
-          <%= text_field_tag "search_top_artist", nil, placeholder: "Search for artist...", class: "materialize-textarea", autocomplete: "off" %>
-          <div  class="input-field col s6 m6 l6">
-            <select id="set_counter_top_artists">
-              <option value="">Counter time</option>
-              <option value="day">Day</option>
-              <option value="week">Week</option>
-              <option value="month">Month</option>
-              <option value="year">Year</option>
-              <option value="total">Total</option>
-            </select>
-          </div>
-          <div class="input-field col s6 m6 l6">
-            <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation" }, html_options = { id: "top_artists_radiostation" }) %>
-          </div>
-        <% end %>
-        <table>
-          <thead>
-            <tr>
-              <th>
-                #
-              </th>
-              <th>
-                Artist
-              </th>
-              <th id="counter-type-artist" style="display:none">
-                Total
-              </th>
-              <th>
-                Counter
-              </th>
-            </tr>
-          </thead>
-          <tbody id="top-artists-table">
-              <%= render partial: 'top_artists' %>
-          </tbody>
-        </table>
+        <h3 class="center">
+          Top songs
+          <i class="material-icons md-48 right toggle-table-icon">details</i>
+        </h3>
+        <div class="content">
+          <%= form_tag("/generalplaylists", method: :get, id: "search_top_song_form" ) do %>
+            <p>
+              <%= label_tag(:search_top_song, "Search for song or artist") %>
+              <%= text_field_tag "search_top_song", nil, placeholder: "Search for song or artist...", class: "materialize-textarea", autocomplete: "off" %>
+              <div class="input-field col s6 m6 l6">
+                <select id="set_counter_top_songs">
+                  <option value="">Counter time</option>
+                  <option value="day">Day</option>
+                  <option value="week">Week</option>
+                  <option value="month">Month</option>
+                  <option value="year">Year</option>
+                  <option value="total">Total</option>
+                </select>
+              </div>
+              <div class="input-field col s6 m6 l6">
+                <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "top_songs_radiostation" }) %>
+              </div>
+            </p>
+          <% end %>
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Artist
+                </th>
+                <th>
+                  Title
+                </th>
+                <th id="counter-type-song" style="display:none">
+                  Total
+                </th>
+                <th>
+                  Counter
+                </th>
+              </tr>
+            </thead>
+            <tbody id="top-songs-table">
+                <%= render partial: 'top_songs' %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col s12 m12 l6">
+        <h3 class="center">
+          Top artists
+          <i class="material-icons md-48 right toggle-table-icon">details</i>
+        </h3>
+        <div class="content">
+          <%= form_tag("/generalplaylists", method: :get, id: "search_top_artist_form" ) do %>
+            <label for="search_top_artist">Search artist name</label>
+            <%= text_field_tag "search_top_artist", nil, placeholder: "Search for artist...", class: "materialize-textarea", autocomplete: "off" %>
+            <div  class="input-field col s6 m6 l6">
+              <select id="set_counter_top_artists">
+                <option value="">Counter time</option>
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+                <option value="total">Total</option>
+              </select>
+            </div>
+            <div class="input-field col s6 m6 l6">
+              <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation" }, html_options = { id: "top_artists_radiostation" }) %>
+            </div>
+          <% end %>
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Artist
+                </th>
+                <th id="counter-type-artist" style="display:none">
+                  Total
+                </th>
+                <th>
+                  Counter
+                </th>
+              </tr>
+            </thead>
+            <tbody id="top-artists-table">
+                <%= render partial: 'top_artists' %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -179,6 +195,14 @@
 <script>
   $(document).ready(function() {
     $('select').material_select();
+  });
+</script>
+
+<script>
+  $(".toggle-table-icon").click(function() {
+    $(this).parent().next("div.content").slideToggle();
+    $(this).toggleClass("toggle-table-icon");
+    $(this).toggleClass("toggle-table-icon-90");
   });
 </script>
 

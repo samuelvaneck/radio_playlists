@@ -22,6 +22,20 @@ $secondary-color: color("amber", "accent-4") !default;
 
 #menu {
   margin: 20px;
+  top: 20px;
+}
+
+.toggle-table-icon {
+  transition: .3s all;
+}
+
+.toggle-table-icon-90 {
+  transition: .3s all;
+  -webkit-transform: rotateZ(90deg);
+  -moz-transform: rotateZ(90deg);
+  -o-transform: rotateZ(90deg);
+  -ms-transform: rotateZ(90deg);
+  transform: rotateZ(90deg);
 }
 
 #navgp {
