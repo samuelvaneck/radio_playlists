@@ -63,8 +63,11 @@ $secondary-color: color("amber", "accent-4") !default;
   }
 }
 
-.bungee-font {
+.bungee-inline {
   font-family: 'Bungee Inline', cursive;
+}
+.bungee-shade {
+  font-family: 'Bungee Shade', cursive;
 }
 
 /* Rules for sizing the icon. */
