@@ -8,7 +8,7 @@ class GeneralplaylistsController < ApplicationController
       @playlists = Generalplaylist.order(created_at: :DESC).limit(5)
     end
 
-    @playlists.order(created_at: :DESC)
+    @playlists.order!(created_at: :DESC)
 
     if params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
