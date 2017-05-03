@@ -13,6 +13,8 @@
             <% if (playlist.song.song_preview != nil) %>
               <%= audio_tag(playlist.song.song_preview, class: "audio-play") %>
               <i class="material-icons md-36 audioButton">play_circle_outline</i>
+            <% else %>
+              <i class="material-icons md-36">remove</i>
             <% end %>
           </td>
           <td>
@@ -30,10 +32,6 @@
               <%= playlist.radiostation.name %>
             </div>
           </td>
-        </tr>
-        <tr>
-
-
         </tr>
       </table>
     </td>
