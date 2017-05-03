@@ -5,8 +5,8 @@ class Generalplaylist < ActiveRecord::Base
 
   require 'nokogiri'
   require 'open-uri'
+  require 'json'
   require 'date'
-
 
   # Check the Radio Veronica song
   def self.radio_veronica_check
@@ -73,11 +73,11 @@ class Generalplaylist < ActiveRecord::Base
     # check if the variables topsong, hi or nieuwe_naam are in the title
     # if so they will be sliced off
     if title.include?(topsong)
-      title.slice!(topsong)
+      title.replace("TOPSONG: ", "")
     elsif title.include?(hi)
-      title.slice!(hi)
+      title.replace("HI: ", "")
     elsif title.include?(nieuwe_naam)
-      title.slice!(nieuwe_naam)
+      title.replace("NIEUW NAAM: ", "")
     end
 
     # Find the artist name in the Artist database or create a new record
@@ -259,6 +259,16 @@ class Generalplaylist < ActiveRecord::Base
         end
       end
     end
+    # Apple Music lookup image and song preview
+    title_plussed = title.gsub(/\s|\W/, "+")
+    artist_plussed = artist.name.gsub(/\s|\W/, "+")
+    search_term = "#{title_plussed}+" + "#{artist_plussed}"
+    url = "https://itunes.apple.com/search?term=#{search_term}&media=music&limit=1&country=NL"
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    json = JSON.parse(response)
+    @song.song_preview = json["results"][0]["previewUrl"]
+    @song.artwork_url = json["results"][0]["artworkUrl100"]
     # Return @song variable
     return @song
   end
@@ -302,6 +312,8 @@ class Generalplaylist < ActiveRecord::Base
     songdetails.total_counter += 1
     songdetails.fullname = fullname
     songdetails.artist_id = artist.id
+    songdetails.song_preview = song.song_preview
+    songdetails.artwork_url = song.artwork_url
     songdetails.save!
     # Add 1 to the artist counters
     artist = Artist.find(generalplaylist.artist_id)
