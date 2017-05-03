@@ -29,28 +29,6 @@
             </div>
           <% end %>
           <table>
-            <!-- <thead>
-              <tr>
-                <th>
-
-                </th>
-                <th>
-                  Time
-                </th>
-                <th>
-                  Date
-                </th>
-                <th>
-                  Radiostation
-                </th>
-                <th>
-                  Artist
-                </th>
-                <th>
-                  Title
-                </th>
-              </tr>
-            </thead> -->
             <tbody id="playlists-table">
               <%= render partial: 'playlists' %>
             </tbody>
@@ -84,25 +62,6 @@
             </p>
           <% end %>
           <table>
-            <thead>
-              <tr>
-                <th>
-                  #
-                </th>
-                <th>
-                  Artist
-                </th>
-                <th>
-                  Title
-                </th>
-                <th id="counter-type-song" style="display:none">
-                  Total
-                </th>
-                <th>
-                  Counter
-                </th>
-              </tr>
-            </thead>
             <tbody id="top-songs-table">
                 <%= render partial: 'top_songs' %>
             </tbody>
