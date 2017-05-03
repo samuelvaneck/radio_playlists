@@ -267,8 +267,10 @@ class Generalplaylist < ActiveRecord::Base
     uri = URI(url)
     response = Net::HTTP.get(uri)
     json = JSON.parse(response)
-    @song.song_preview = json["results"][0]["previewUrl"]
-    @song.artwork_url = json["results"][0]["artworkUrl100"]
+    if (json["resultCount"] > 0)
+      @song.song_preview = json["results"][0]["previewUrl"]
+      @song.artwork_url = json["results"][0]["artworkUrl100"]
+    end
     # Return @song variable
     return @song
   end
