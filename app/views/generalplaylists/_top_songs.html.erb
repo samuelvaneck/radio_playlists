@@ -9,16 +9,22 @@
     <td>
       <table>
         <tr>
+          <td>
+            <% if (top_song.song_preview != nil) %>
+              <%= audio_tag(top_song.song_preview, class: "audio-play") %>
+              <i class="material-icons md-36 audioButton">play_circle_outline</i>
+            <% end %>
+          </td>
           <td class="bungee-inline">
             # <%= idx_song %>
           </td>
           <td>
+            <%= top_song.title %><br />
             <% if top_song.artist != nil %>
-              <%= top_song.artist.name %>
+              <div style="font-style:italic; font-size: 12px">
+                <%= top_song.artist.name %>
+              </div>
             <% end %>
-          </td>
-          <td>
-            <%= top_song.title %>
           </td>
           <% if @songs_counter.present? %>
             <% @songs_counter.each do |song_id, counter| %>
@@ -34,3 +40,18 @@
     </td>
   </tr>
 <% end %>
+
+<script>
+  $(".audioButton").click(function() {
+    if ($(this).text() == "play_circle_outline") {
+      $(this).text("pause_circle_outline");
+      $(this).prev("audio")[0].play();
+    } else {
+      $(this).text("play_circle_outline");
+      $(this).prev("audio")[0].pause();
+    }
+  });
+  $(".audio-play").on("ended", function() {
+    $(this).next("i").text("play_circle_outline");
+  });
+</script>

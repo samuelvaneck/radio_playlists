@@ -9,17 +9,6 @@
     <td>
       <table>
         <tr>
-          <td class="bungee-inline">
-            <%= playlist.time %>
-          </td>
-          <td>
-            <%= playlist.created_at.strftime("%e-%-m-%Y") %>
-          </td>
-          <td>
-            <%= playlist.radiostation.name %>
-          </td>
-        </tr>
-        <tr>
           <td>
             <% if (playlist.song.song_preview != nil) %>
               <%= audio_tag(playlist.song.song_preview, class: "audio-play") %>
@@ -27,28 +16,26 @@
             <% end %>
           </td>
           <td>
-            <%= playlist.artist.name %>
+            <div class="bungee-inline">
+              <%= playlist.time %>
+            </div>
+            <div style="font-style:italic; font-size: 12px">
+              <%= playlist.created_at.strftime("%e-%-m-%Y") %>
+            </div>
           </td>
           <td>
             <%= playlist.song.title %>
+            <div style="font-style:italic; font-size: 12px">
+              <%= playlist.artist.name %><br/>
+              <%= playlist.radiostation.name %>
+            </div>
           </td>
+        </tr>
+        <tr>
+
+
         </tr>
       </table>
     </td>
   </tr>
 <% end %>
-
-<script>
-  $(".audioButton").click(function() {
-    if ($(this).text() == "play_circle_outline") {
-      $(this).text("pause_circle_outline");
-      $(this).prev("audio")[0].play();
-    } else {
-      $(this).text("play_circle_outline");
-      $(this).prev("audio")[0].pause();
-    }
-  });
-  $(".audio-play").on("ended", function() {
-    $(this).next("i").text("play_circle_outline");
-  });
-</script>

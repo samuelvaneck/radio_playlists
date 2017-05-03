@@ -2,25 +2,10 @@
   <% idx_artist += 1 %>
   <tr>
     <td class="bungee-inline">
-      <%= idx_artist %>
+      # <%= idx_artist %>
     </td>
     <td>
       <%= top_artist.name %>
-    </td>
-    <td class="top-artist-day" style="display:none">
-      <%= top_artist.day_counter %>
-    </td>
-    <td class="top-artist-week" style="display:none">
-      <%= top_artist.week_counter %>
-    </td>
-    <td class="top-artist-month" style="display:none">
-      <%= top_artist.month_counter %>
-    </td>
-    <td class="top-artist-year" style="display:none">
-      <%= top_artist.year_counter %>
-    </td>
-    <td class="top-artist-total" style="display:none">
-      <%= top_artist.total_counter %>
     </td>
     <% if @artists_counter.present? %>
       <% @artists_counter.each do |artist_id, counter| %>
