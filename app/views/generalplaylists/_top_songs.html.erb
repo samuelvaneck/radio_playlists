@@ -1,40 +1,36 @@
 <% @top_songs.each_with_index do |top_song, idx_song| %>
   <% idx_song += 1 %>
   <tr>
-    <td class="bungee-inline">
-      <%= idx_song %>
-    </td>
     <td>
-      <% if top_song.artist != nil %>
-        <%= top_song.artist.name %>
+      <% if (top_song.artwork_url != nil) %>
+        <%= image_tag(top_song.artwork_url, class: "song-image") %>
       <% end %>
     </td>
     <td>
-      <%= top_song.title %>
-    </td>
-    <td class="top-song-day" style="display:none">
-      <%= top_song.day_counter %>
-    </td>
-    <td class="top-song-week"  style="display:none">
-      <%= top_song.week_counter %>
-    </td>
-    <td class="top-song-month" style="display:none">
-      <%= top_song.month_counter %>
-    </td>
-    <td class="top-song-year" style="display:none">
-      <%= top_song.year_counter %>
-    </td>
-    <td class="top-song-total" style="display:none">
-      <%= top_song.total_counter %>
-    </td>
-    <% if @songs_counter.present? %>
-      <% @songs_counter.each do |song_id, counter| %>
-        <% if song_id == top_song.id %>
-          <td>
-            <%= counter %>
+      <table>
+        <tr>
+          <td class="bungee-inline">
+            # <%= idx_song %>
           </td>
-        <% end %>
-      <% end %>
-    <% end %>
+          <td>
+            <% if top_song.artist != nil %>
+              <%= top_song.artist.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= top_song.title %>
+          </td>
+          <% if @songs_counter.present? %>
+            <% @songs_counter.each do |song_id, counter| %>
+            <% if song_id == top_song.id %>
+              <td>
+                <%= counter %>
+              </td>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      </table>
+    </td>
   </tr>
 <% end %>
