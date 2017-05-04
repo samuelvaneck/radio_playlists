@@ -63,11 +63,12 @@ $secondary-color: color("amber", "accent-4") !default;
   }
 }
 
+.rubik {
+  font-family: 'Rubik', sans-serif;
+}
+
 .bungee-inline {
   font-family: 'Bungee Inline', cursive;
-}
-.bungee-shade {
-  font-family: 'Bungee Shade', cursive;
 }
 
 /* Rules for sizing the icon. */

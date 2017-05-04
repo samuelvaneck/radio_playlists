@@ -263,16 +263,22 @@ class Generalplaylist < ActiveRecord::Base
     title_plussed = title.gsub(/\s|\W/, "+")
     artist_plussed = artist.name.gsub(/\s|\W/, "+")
     search_term = "#{title_plussed}+" + "#{artist_plussed}"
-    url = "https://itunes.apple.com/search?term=#{search_term}&media=music&limit=1&country=NL"
+    url = "https://itunes.apple.com/search?term=#{search_term}&media=music&limit=5&country=NL"
     uri = URI(url)
     response = Net::HTTP.get(uri)
     json = JSON.parse(response)
-    if (json["resultCount"] > 0)
-      if (json["results"][0]["previewUrl"] != nil)
-        @song.song_preview = json["results"][0]["previewUrl"]
-      end
-      if (json["results"][0]["artworkUrl100"] != nil)
-        @song.artwork_url = json["results"][0]["artworkUrl100"]
+    counter = 0
+    while counter < 5
+      if (json["results"][counter]["collectionName"].include?("Hitzone") || json["results"][counter]["collectionName"].include?("The Definitive") || json["results"][counter]["collectionName"].include?("Back To the 80's")) 
+        counter += 1
+      else
+        if (json["results"][counter]["previewUrl"] != nil)
+          @song.song_preview = json["results"][counter]["previewUrl"]
+        end
+        if (json["results"][counter]["artworkUrl100"] != nil)
+          @song.artwork_url = json["results"][counter]["artworkUrl100"]
+        end
+        break
       end
     end
     # Return @song variable
