@@ -107,35 +107,35 @@ class GeneralplaylistsController < ApplicationController
       case params[:set_counter_top_artists]
       when "day"
         if params[:radiostation_id].present?
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_day).group(:artists_id).counter
+          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_day).group(:artists_id).count
         else
           @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_day).group(:artist_id).count
         end
         @top_artists.reorder!(day_counter: :DESC)
       when "week"
         if params[:radiostation_id].present?
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_week).group(:artists_id).counter
+          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_week).group(:artists_id).count
         else
           @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_week).group(:artist_id).count
         end
         @top_artists.reorder!(week_counter: :DESC)
       when "month"
         if params[:radiostation_id].present?
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_month).group(:artists_id).counter
+          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_month).group(:artists_id).count
         else
           @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_month).group(:artist_id).count
         end
         @top_artists.reorder!(month_counter: :DESC)
       when "year"
         if params[:radiostation_id].present?
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_year).group(:artists_id).counter
+          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_year).group(:artists_id).count
         else
           @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_year).group(:artist_id).count
         end
         @top_artists.reorder!(year_counter: :DESC)
       when "total"
         if params[:radiostation_id].present?
-          @artists_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:artists_id).counter
+          @artists_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:artists_id).count
         else
           @artists_counter = Generalplaylist.group(:artist_id).count
         end
