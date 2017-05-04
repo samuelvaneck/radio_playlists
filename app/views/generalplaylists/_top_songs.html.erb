@@ -9,7 +9,7 @@
     <td>
       <table>
         <tr>
-          <td class="play">
+          <td class="play" id="song-play">
             <% if (top_song.song_preview != nil) %>
               <%= audio_tag(top_song.song_preview, class: "audio-play") %>
               <i class="material-icons md-36 audioButton">play_circle_outline</i>
@@ -42,3 +42,18 @@
     </td>
   </tr>
 <% end %>
+
+<script>
+  $("td#song-play").on("click", ".audioButton", function() {
+    if ($(this).text() == "play_circle_outline") {
+      $(this).text("pause_circle_outline");
+      $(this).prev("audio")[0].play();
+    } else {
+      $(this).text("play_circle_outline");
+      $(this).prev("audio")[0].pause();
+    }
+  });
+  $(".audio-play").on("ended", function() {
+    $(this).next("i").text("play_circle_outline");
+  });
+</script>
