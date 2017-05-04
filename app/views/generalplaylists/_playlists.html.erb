@@ -1,7 +1,7 @@
 <% @playlists.each_with_index do |playlist, idx_playlist| %>
   <% idx_playlist + 1 %>
   <tr>
-    <td>
+    <td class="image">
       <% if (playlist.song.artwork_url != nil) %>
         <%= image_tag(playlist.song.artwork_url, class: "song-image") %>
       <% end %>
@@ -9,7 +9,7 @@
     <td>
       <table>
         <tr>
-          <td>
+          <td class="play">
             <% if (playlist.song.song_preview != nil) %>
               <%= audio_tag(playlist.song.song_preview, class: "audio-play") %>
               <i class="material-icons md-36 audioButton">play_circle_outline</i>
@@ -17,7 +17,7 @@
               <i class="material-icons md-36">remove</i>
             <% end %>
           </td>
-          <td>
+          <td class="time">
             <div class="bungee-inline">
               <%= playlist.time %>
             </div>
@@ -25,7 +25,7 @@
               <%= playlist.created_at.strftime("%e-%-m-%Y") %>
             </div>
           </td>
-          <td>
+          <td class="song">
             <%= playlist.song.title %>
             <div style="font-style:italic; font-size: 12px">
               <%= playlist.artist.name %><br/>
