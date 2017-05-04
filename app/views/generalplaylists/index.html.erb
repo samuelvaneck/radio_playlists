@@ -1,12 +1,12 @@
 <section id="section-1" class="full-window-height">
-  <div class="head center bungee-shade">
+  <div class="head center rubik">
     Radio Playlists
   </div>
 
   <div class="container">
     <div class="row">
       <div col="col s12 m12 l12">
-        <h3 class="center bungee-inline">
+        <h3 class="rubik">
           Playlists
           <i class="material-icons md-48 right toggle-table-icon-90" id="0">details</i>
         </h3>
@@ -17,11 +17,11 @@
             <div class="input-field col s6 m6 l6">
               <select id="set_counter_playlists">
                 <option value="">Counter time</option>
-                <option value="day">Day</option>
-                <option value="week">Week</option>
-                <option value="month">Month</option>
-                <option value="year">Year</option>
-                <option value="total">Total</option>
+                <option value="day">Today (<%= Date.today.beginning_of_day.strftime("%e %b %Y") %>)</option>
+                <option value="week">This week (<%= Date.today.beginning_of_week.strftime("%e %b %Y") %>)</option>
+                <option value="month">This month (<%= Date.today.beginning_of_month.strftime("%e %b %Y") %>)</option>
+                <option value="year">This year (<%= Date.today.beginning_of_year.strftime("%e %b %Y") %>)</option>
+                <option value="total">All Time</option>
               </select>
             </div>
             <div class="input-field col s6 m6 l6">
@@ -37,7 +37,7 @@
       </div>
 
       <div class="col s12 m12 l6">
-        <h3 class="center bungee-inline">
+        <h3 class="rubik">
           Top songs
           <i class="material-icons md-48 right toggle-table-icon-90">details</i>
         </h3>
@@ -49,11 +49,11 @@
               <div class="input-field col s6 m6 l6">
                 <select id="set_counter_top_songs">
                   <option value="">Counter time</option>
-                  <option value="day">Day</option>
-                  <option value="week">Week</option>
-                  <option value="month">Month</option>
-                  <option value="year">Year</option>
-                  <option value="total">Total</option>
+                  <option value="day">Today (<%= Date.today.beginning_of_day.strftime("%e %b %Y") %>)</option>
+                  <option value="week">This week (<%= Date.today.beginning_of_week.strftime("%e %b %Y") %>)</option>
+                  <option value="month">This month (<%= Date.today.beginning_of_month.strftime("%e %b %Y") %>)</option>
+                  <option value="year">This year (<%= Date.today.beginning_of_year.strftime("%e %b% Y") %>)</option>
+                  <option value="total">All Time</option>
                 </select>
               </div>
               <div class="input-field col s6 m6 l6">
@@ -70,7 +70,7 @@
       </div>
 
       <div class="col s12 m12 l6">
-        <h3 class="center bungee-inline">
+        <h3 class="rubik">
           Top artists
           <i class="material-icons md-48 right toggle-table-icon-90">details</i>
         </h3>
@@ -81,11 +81,11 @@
             <div  class="input-field col s6 m6 l6">
               <select id="set_counter_top_artists">
                 <option value="">Counter time</option>
-                <option value="day">Day</option>
-                <option value="week">Week</option>
-                <option value="month">Month</option>
-                <option value="year">Year</option>
-                <option value="total">Total</option>
+                <option value="day">Today (<%= Date.today.beginning_of_day.strftime("%e %b %Y") %>)</option>
+                <option value="week">This week (<%= Date.today.beginning_of_week.strftime("%e %b %Y") %>)</option>
+                <option value="month">This month (<%= Date.today.beginning_of_month.strftime("%e %b %Y") %>)</option>
+                <option value="year">This year (<%= Date.today.beginning_of_year.strftime("%e %b %Y") %>)</option>
+                <option value="total">All Time</option>
               </select>
             </div>
             <div class="input-field col s6 m6 l6">
