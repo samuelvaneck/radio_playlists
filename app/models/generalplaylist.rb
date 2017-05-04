@@ -261,7 +261,7 @@ class Generalplaylist < ActiveRecord::Base
     end
     # Apple Music lookup image and song preview
     title_plussed = title.gsub(/\s|\W/, "+")
-    artist_plussed = artist.name.gsub(/\s|\W/, "+")
+    artist_plussed = artist.name.gsub(/\s|\W|ft|vs|feat/i, "+")
     search_term = "#{title_plussed}+" + "#{artist_plussed}"
     url = "https://itunes.apple.com/search?term=#{search_term}&media=music&limit=5&country=NL"
     uri = URI(url)
@@ -269,7 +269,7 @@ class Generalplaylist < ActiveRecord::Base
     json = JSON.parse(response)
     counter = 0
     while counter < 5
-      if (json["results"][counter]["collectionName"].include?("Hitzone") || json["results"][counter]["collectionName"].include?("The Definitive") || json["results"][counter]["collectionName"].include?("Back To the 80's")) 
+      if (json["results"][counter]["collectionName"].include?("Hitzone") || json["results"][counter]["collectionName"].include?("The Definitive") || json["results"][counter]["collectionName"].include?("Back To the 80's"))
         counter += 1
       else
         if (json["results"][counter]["previewUrl"] != nil)
