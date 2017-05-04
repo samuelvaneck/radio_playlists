@@ -1,0 +1,153 @@
+/* line 1, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+#section-1 {
+  background: url("/assets/bg-record-light-transparent-81f4d7b6227e8496a04705e9751b92da325c244ed8ddf8fd7b17fad1e55e18d7.png") center center no-repeat;
+  color: #3E5563;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-size: cover;
+}
+/* line 9, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+#section-1 a {
+  text-decoration: none;
+  color: #3E5563;
+}
+
+/* line 15, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.head {
+  font-size: 4.2rem;
+  padding: 20px;
+}
+
+/* line 20, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.vertical-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* line 31, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+}
+
+/* line 39, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.g-playlist-table {
+  background-color: rgba(96, 125, 139, 0.3);
+  padding: 5px;
+  padding-bottom: 50px;
+  font-size: 0.875em;
+  min-width: 400px;
+  max-width: 400px;
+}
+/* line 51, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.g-playlist-table tr:hover {
+  background-color: #3C3F3D;
+}
+
+/* line 57, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.pagination {
+  cursor: default;
+  /* self-clearing method: */
+}
+
+/* line 61, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.pagination a, .pagination span, .pagination em {
+  padding: 0.2em 0.5em;
+  display: block;
+  float: left;
+  margin-right: 1px;
+}
+
+/* line 68, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.pagination .disabled {
+  display: none;
+}
+
+/* line 72, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  color: #455D6B;
+  border: 1px solid #455D6B;
+}
+
+/* line 79, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.pagination a {
+  text-decoration: none;
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+}
+
+/* line 85, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.pagination a:hover, .pagination a:focus {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+/* line 90, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.pagination .page_info {
+  background: #2e6ab1;
+  color: white;
+  padding: 0.4em 0.6em;
+  width: 22em;
+  margin-bottom: 0.3em;
+  text-align: center;
+}
+
+/* line 99, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.pagination .page_info b {
+  color: #000033;
+  background: #6aa6ed;
+  padding: 0.1em 0.25em;
+}
+
+/* line 105, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+.pagination:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+/* line 113, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+* html .pagination {
+  height: 1%;
+}
+
+/* line 117, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+*:first-child + html .pagination {
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  /* line 123, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+  table {
+    width: 95%;
+  }
+
+  /* line 126, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+  [class*="col"] {
+    width: 95%;
+  }
+
+  /* line 129, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+  .head {
+    padding: 0px;
+    padding-top: 20px;
+    font-size: 2.5em;
+  }
+
+  /* line 134, /home/samuel/Code/Rails/radio_playlists/app/assets/stylesheets/generalplaylist.scss.erb */
+  .song-image {
+    width: 50px;
+    height: 50px;
+  }
+}
