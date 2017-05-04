@@ -42,18 +42,3 @@
     </td>
   </tr>
 <% end %>
-
-<script>
-  $(".audioButton").click(function() {
-    if ($(this).text() == "play_circle_outline") {
-      $(this).text("pause_circle_outline");
-      $(this).prev("audio")[0].play();
-    } else {
-      $(this).text("play_circle_outline");
-      $(this).prev("audio")[0].pause();
-    }
-  });
-  $(".audio-play").on("ended", function() {
-    $(this).next("i").text("play_circle_outline");
-  });
-</script>
