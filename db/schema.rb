@@ -28,15 +28,6 @@ ActiveRecord::Schema.define(version: 20170503095740) do
     t.integer  "total_counter", default: 0
   end
 
-  create_table "counters", force: :cascade do |t|
-    t.integer  "week"
-    t.integer  "month"
-    t.integer  "song_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["song_id"], name: "index_counters_on_song_id", using: :btree
-  end
-
   create_table "generalplaylists", force: :cascade do |t|
     t.string   "time"
     t.integer  "song_id"
@@ -72,7 +63,6 @@ ActiveRecord::Schema.define(version: 20170503095740) do
     t.index ["artist_id"], name: "index_songs_on_artist_id", using: :btree
   end
 
-  add_foreign_key "counters", "songs"
   add_foreign_key "generalplaylists", "artists"
   add_foreign_key "generalplaylists", "radiostations"
   add_foreign_key "generalplaylists", "songs"

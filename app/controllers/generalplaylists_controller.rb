@@ -3,7 +3,7 @@ class GeneralplaylistsController < ApplicationController
   def index
   # Playlist search options
     if params[:search_playlists].present?
-      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.title ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").limit(50)
+      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.title ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").limit(15)
     else
       @playlists = Generalplaylist.order(created_at: :DESC).limit(5)
     end
@@ -12,7 +12,7 @@ class GeneralplaylistsController < ApplicationController
 
     if params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
-      @playlists = @playlists.where!("radiostation_id = ?", params[:radiostation_id]).limit(50).uniq
+      @playlists = @playlists.where!("radiostation_id = ?", params[:radiostation_id]).limit(15).uniq
     end
 
     if params[:set_counter_playlists].present?
@@ -33,7 +33,7 @@ class GeneralplaylistsController < ApplicationController
 
   # Song search options
     if params[:search_top_song].present?
-      @top_songs = Song.joins(:artist).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").limit(50)
+      @top_songs = Song.joins(:artist).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").limit(15)
     else
       @top_songs = Song.order(total_counter: :DESC).limit(5)
     end
@@ -43,7 +43,7 @@ class GeneralplaylistsController < ApplicationController
 
     if params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
-      @top_songs = @top_songs.joins(:radiostations).where!("radiostations.name = ?", radiostation.name).limit(50).uniq
+      @top_songs = @top_songs.joins(:radiostations).where!("radiostations.name = ?", radiostation.name).limit(15).uniq
       @songs_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:song_id).count
     end
 
@@ -89,7 +89,7 @@ class GeneralplaylistsController < ApplicationController
 
   # Artist search options
     if params[:search_top_artist].present?
-      @top_artists = Artist.where("name ILIKE ?", "%#{params[:search_top_artist]}%").limit(50)
+      @top_artists = Artist.where("name ILIKE ?", "%#{params[:search_top_artist]}%").limit(15)
     else
       @top_artists = Artist.order(total_counter: :DESC).limit(5)
     end
@@ -99,7 +99,7 @@ class GeneralplaylistsController < ApplicationController
 
     if params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
-      @top_artists = @top_artists.joins(:radiostations).where!("radiostations.name LIKE ?", radiostation.name).uniq
+      @top_artists = @top_artists.joins(:radiostations).where!("radiostations.name LIKE ?", radiostation.name).limit(15).uniq
       @artists_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:artist_id).count
     end
 
