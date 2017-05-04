@@ -28,7 +28,7 @@
               <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "playlists_radiostation" }) %>
             </div>
           <% end %>
-          <table>
+          <table class="striped">
             <tbody id="playlists-table">
               <%= render partial: 'playlists' %>
             </tbody>
@@ -61,7 +61,7 @@
               </div>
             </p>
           <% end %>
-          <table>
+          <table class="striped">
             <tbody id="top-songs-table">
                 <%= render partial: 'top_songs' %>
             </tbody>
@@ -92,7 +92,7 @@
               <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation" }, html_options = { id: "top_artists_radiostation" }) %>
             </div>
           <% end %>
-          <table>
+          <table class="striped">
             <tbody id="top-artists-table">
                 <%= render partial: 'top_artists' %>
             </tbody>

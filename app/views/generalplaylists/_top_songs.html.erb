@@ -1,7 +1,7 @@
 <% @top_songs.each_with_index do |top_song, idx_song| %>
   <% idx_song += 1 %>
   <tr>
-    <td>
+    <td class="image">
       <% if (top_song.artwork_url != nil) %>
         <%= image_tag(top_song.artwork_url, class: "song-image") %>
       <% end %>
@@ -9,7 +9,7 @@
     <td>
       <table>
         <tr>
-          <td>
+          <td class="play">
             <% if (top_song.song_preview != nil) %>
               <%= audio_tag(top_song.song_preview, class: "audio-play") %>
               <i class="material-icons md-36 audioButton">play_circle_outline</i>
@@ -17,10 +17,10 @@
               <i class="material-icons md-36">remove</i>
             <% end %>
           </td>
-          <td class="bungee-inline">
+          <td class="bungee-inline time">
             # <%= idx_song %>
           </td>
-          <td>
+          <td class="song">
             <%= top_song.title %><br />
             <% if top_song.artist != nil %>
               <div style="font-style:italic; font-size: 12px">
