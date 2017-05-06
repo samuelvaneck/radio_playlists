@@ -8,12 +8,12 @@ class GeneralplaylistsController < ApplicationController
       @playlists = Generalplaylist.order(created_at: :DESC).limit(5)
     end
 
-    @playlists.order!(created_at: :DESC)
-
     if params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
       @playlists = @playlists.where!("radiostation_id = ?", params[:radiostation_id]).limit(15).uniq
     end
+
+    @playlists.order!(created_at: :DESC)
 
     if params[:set_counter_playlists].present?
       case params[:set_counter_playlists]
@@ -38,14 +38,14 @@ class GeneralplaylistsController < ApplicationController
       @top_songs = Song.order(total_counter: :DESC).limit(5)
     end
 
-    @top_songs.order!(total_counter: :DESC)
-    @songs_counter = Generalplaylist.group(:song_id).count
-
     if params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
       @top_songs = @top_songs.joins(:radiostations).where!("radiostations.name = ?", radiostation.name).limit(15).uniq
       @songs_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:song_id).count
     end
+
+    @top_songs.order!(total_counter: :DESC)
+    @songs_counter = Generalplaylist.group(:song_id).count
 
     if params[:set_counter_top_songs].present?
       case params[:set_counter_top_songs]
@@ -94,14 +94,14 @@ class GeneralplaylistsController < ApplicationController
       @top_artists = Artist.order(total_counter: :DESC).limit(5)
     end
 
-    @top_artists.order!(total_counter: :DESC)
-    @artists_counter = Generalplaylist.group(:artist_id).count
-
     if params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
       @top_artists = @top_artists.joins(:radiostations).where!("radiostations.name LIKE ?", radiostation.name).limit(15).uniq
       @artists_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:artist_id).count
     end
+
+    @top_artists.order!(total_counter: :DESC)
+    @artists_counter = Generalplaylist.group(:artist_id).count
 
     if params[:set_counter_top_artists].present?
       case params[:set_counter_top_artists]
