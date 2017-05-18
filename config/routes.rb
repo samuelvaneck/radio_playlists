@@ -1,15 +1,8 @@
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :generalplaylists do
-    collection {
-      get :today_played_songs
-      get :top_songs
-      get :top_artists
-      get :autocomplete
-      get :song_details
-    }
-  end
+  resources :generalplaylists
 
   root 'generalplaylists#index'
-
+  
 end
