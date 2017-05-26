@@ -2,6 +2,11 @@
 <% @artists_counter.each do |artist_id, counter| %>
   <% top_artist = Artist.find(artist_id) %>
   <tr>
+    <td>
+      <% if top_artist.songs.last.artwork_url != nil %>
+        <%= image_tag(top_artist.songs.last.artwork_url, class: "song-image") %>
+      <% end %>
+    </td>
     <td class="bungee-inline">
       # <%= idx_artist %>
     </td>
