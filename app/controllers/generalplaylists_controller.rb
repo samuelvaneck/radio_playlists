@@ -5,30 +5,30 @@ class GeneralplaylistsController < ApplicationController
     if params[:search_playlists].present? && params[:radiostation_id].present? && params[:set_counter_playlists].present?
       case params[:set_counter_playlists]
         when "day"
-          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(25)
+          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(15)
         when "week"
-          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(25)
+          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(15)
         when "month"
-          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(25)
+          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(15)
         when "year"
-          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(25)
+          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(15)
         when "total"
-          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").limit(25)
+          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").limit(15)
       end
 
     elsif params[:search_playlists].present? && params[:radiostation_id].present?
-      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.title ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").limit(25)
+      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.title ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").limit(15)
 
     elsif params[:search_playlists].present? && params[:set_counter_playlists].present?
       case params[:set_counter_playlists]
         when "day"
-          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(25)
+          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(15)
         when "week"
-          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(25)
+          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(15)
         when "month"
-          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(25)
+          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(15)
         when "year"
-          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(25)
+          @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(15)
         when "total"
           @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%")
       end
@@ -36,39 +36,39 @@ class GeneralplaylistsController < ApplicationController
     elsif params[:radiostation_id].present? && params[:set_counter_playlists].present?
       case params[:set_counter_playlists]
         when "day"
-          @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:radiostation_id]}").where("created_at > ?", Date.today.beginning_of_day).limit(25)
+          @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:radiostation_id]}").where("created_at > ?", Date.today.beginning_of_day).limit(15)
         when "week"
-          @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:radiostation_id]}").where("created_at > ?", Date.today.beginning_of_week).limit(25)
+          @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:radiostation_id]}").where("created_at > ?", Date.today.beginning_of_week).limit(15)
         when "month"
-          @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:radiostation_id]}").where("created_at > ?", Date.today.beginning_of_month).limit(25)
+          @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:radiostation_id]}").where("created_at > ?", Date.today.beginning_of_month).limit(15)
         when "year"
-          @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:radiostation_id]}").where("created_at > ?", Date.today.beginning_of_year).limit(25)
+          @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:radiostation_id]}").where("created_at > ?", Date.today.beginning_of_year).limit(15)
         when "total"
           @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:radiostation_id]}")
       end
 
     elsif params[:search_playlists].present?
-      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").limit(25)
+      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").limit(15)
 
     elsif params[:radiostation_id].present?
-      @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:radiostation_id]}").limit(25)
+      @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:radiostation_id]}").limit(15)
 
     elsif params[:set_counter_playlists].present?
       case params[:set_counter_playlists]
         when "day"
-          @playlists = Generalplaylist.where("created_at > ?", Date.today.beginning_of_day).limit(25)
+          @playlists = Generalplaylist.where("created_at > ?", Date.today.beginning_of_day).limit(15)
         when "week"
-          @playlists = Generalplaylist.where("created_at > ?", Date.today.beginning_of_week).limit(25)
+          @playlists = Generalplaylist.where("created_at > ?", Date.today.beginning_of_week).limit(15)
         when "month"
-          @playlists = Generalplaylist.where("created_at > ?", Date.today.beginning_of_month).limit(25)
+          @playlists = Generalplaylist.where("created_at > ?", Date.today.beginning_of_month).limit(15)
         when "year"
-          @playlists = Generalplaylist.where("created_at > ?", Date.today.beginning_of_year).limit(25)
+          @playlists = Generalplaylist.where("created_at > ?", Date.today.beginning_of_year).limit(15)
         when "total"
-          @playlists = Generalplaylist.all.limit(25)
+          @playlists = Generalplaylist.all.limit(15)
       end
 
     else
-      @playlists = Generalplaylist.order(created_at: :DESC).limit(25)
+      @playlists = Generalplaylist.order(created_at: :DESC).limit(15)
     end
 
     @playlists.order!(created_at: :DESC)
@@ -78,196 +78,143 @@ class GeneralplaylistsController < ApplicationController
       radiostation = Radiostation.find(params[:radiostation_id])
       case params[:set_counter_top_songs]
         when "day"
-          @top_songs = Song.joins(:artist, :radiostations, :generalplaylists).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(25).distinct.order(day_counter: :DESC)
-          @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_day).group(:song_id).count
+          @songs_counter = Generalplaylist.joins(:song).where("radiostation_id = ? AND generalplaylists.created_at > ? AND songs.fullname ILIKE ?", params[:radiostation_id], Date.today.beginning_of_day, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "week"
-          @top_songs = Song.joins(:artist, :radiostations, :generalplaylists).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").where("radiostations.name = ?", radiostation.name)..where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(25).distinct.order(week_counter: :DESC)
-          @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_week).group(:song_id).count
+          @songs_counter = Generalplaylist.joins(:song).where("radiostation_id = ? AND generalplaylists.created_at > ? AND song.fullname ILIKE ?", params[:radiostation_id], Date.today.beginning_of_week, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "month"
-          @top_songs = Song.joins(:artist, :radiostations, :generalplaylists).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(25).distinct.order(month_counter: :DESC)
-          @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_month).group(:song_id).count
+          @songs_counter = Generalplaylist.joins(:song).where("radiostation_id = ? AND generalplaylists.created_at > ? AND song.fullname ILIKE ?", params[:radiostation_id], Date.today.beginning_of_month, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "year"
-          @top_songs = Song.joins(:artist, :radiostations, :generalplaylists).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").where("radiostations.name = ?", radiostation.name)..where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(25).distinct.order(year_counter: :DESC)
-          @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_year).group(:song_id).count
+          @songs_counter = Generalplaylist.joins(:song).where("radiostation_id = ? AND generalplaylists.created_at > ? AND song.fullname ILKE ?", params[:radiostation_id], Date.today.beginning_of_year, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "total"
-          @top_songs = Song.joins(:artist, :radiostations).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").where("radiostations.name = ?", radiostation.name).limit(25).distinct.order(total_counter: :DESC)
-          @songs_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:song_id).count
-          @top_songs.reorder!(total_counter: :DESC)
+          @songs_counter = Generalplaylist.joins(:song).where("radiostation_id = ?", params[:radiostation_id], "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
       end
 
     elsif params[:search_top_song].present? && params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
-      @top_songs = Song.joins(:artist, :radiostations).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").where("radiostations.name = ?", radiostation.name).limit(25).distinct.order(total_counter: :DESC)
-      @songs_counter = Generalplaylist.where("radiostation_id = ?", radiostation.id).group(:song_id).count
+      @songs_counter = Generalplaylist.joins(:song).where("radiostation_id = ? AND songs.fullname ILIKE ?", radiostation.id, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
 
     elsif params[:search_top_song].present? && params[:set_counter_top_songs].present?
       case params[:set_counter_top_songs]
         when "day"
-          @top_songs = Song.joins(:artist, :generalplaylists).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(25).distinct.order(day_counter: :DESC)
-          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_day).group(:song_id).count
+          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ?", Date.today.beginning_of_day, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "week"
-          @top_songs = Song.joins(:artist, :generalplaylists).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(25).distinct.order(week_counter: :DESC)
-          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_week).group(:song_id).count
+          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ?", Date.today.beginning_of_week, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "month"
-          @top_songs = Song.joins(:artist, :generalplaylists).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(25).distinct.order(month_counter: :DESC)
-          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_month).group(:song_id).count
+          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ?", Date.today.beginning_of_month, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "year"
-          @top_songs = Song.joins(:artist, :generalplaylists).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(25).distinct.order(year_counter: :DESC)
-          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_year).group(:song_id).count
+          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ?", Date.today.beginning_of_year, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "total"
-          @top_songs = Song.joins(:artist).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").limit(25).distinct.order(total_counter: :DESC)
-          @songs_counter = Generalplaylist.group(:song_id).count
+          @songs_counter = Generalplaylist.joins(:song).where("songs.fullname ILIKE ?", "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
       end
 
     elsif params[:radiostation_id].present? && params[:set_counter_top_songs].present?
       radiostation = Radiostation.find(params[:radiostation_id])
       case params[:set_counter_top_songs]
       when "day"
-        @top_songs = Song.joins(:radiostations, :generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(25).distinct.order(day_counter: :DESC)
-        @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_day).group(:song_id).count
+        @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_day).group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
       when "week"
-        @top_songs = Song.joins(:radiostations, :generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(25).distinct.order(week_counter: :DESC)
-        @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_week).group(:song_id).count
+        @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_week).group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
       when "month"
-        @top_songs = Song.joins(:radiostations, :generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(25).distinct.order(month_counter: :DESC)
-        @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_month).group(:song_id).count
+        @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_month).group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
       when "year"
-        @top_songs = Song.joins(:radiostations, :generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(25).distinct.order(year_counter: :DESC)
-        @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_year).group(:song_id).count
+        @songs_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_year).group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
       when "total"
-        @top_songs = Song.joins(:radiostations, :generalplaylists).where("radiostations.name = ?", radiostation.name).limit(25).distinct.order(total_counter: :DESC)
-        @songs_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:song_id).count
+        @songs_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
       end
 
     elsif params[:search_top_song].present?
-      @top_songs = Song.joins(:artist).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").limit(25).distinct.order(total_counter: :DESC)
-      @songs_counter = Generalplaylist.group(:song_id).count
+      @songs_counter = Generalplaylist.joins(:song).where("songs.fullname ILIKE ?", "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
 
     elsif params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
-      @top_songs = Song.joins(:radiostations).where("radiostations.name = ?", radiostation.name).limit(25).distinct.order(total_counter: :DESC)
-      @songs_counter = Generalplaylist.where("radiostation_id = ?", radiostation.id).group(:song_id).count
+      @songs_counter = Generalplaylist.where("radiostation_id = ?", radiostation.id).group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
 
     elsif params[:set_counter_top_songs].present?
       case params[:set_counter_top_songs]
         when "day"
-          @top_songs = Song.joins(:generalplaylists).where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(25).distinct.order(day_counter: :DESC)
-          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_day).group(:song_id).count
+          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_day).group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "week"
-          @top_songs = Song.joins(:generalplaylists).where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(25).distinct.order(week_counter: :DESC)
-          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_week).group(:song_id).count
+          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_week).group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "month"
-          @top_songs = Song.joins(:generalplaylists).where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(25).distinct.order(month_counter: :DESC)
-          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_month).group(:song_id).count
+          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_month).group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "year"
-          @top_songs = Song.joins(:generalplaylists).where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(25).distinct.order(year_counter: :DESC)
-          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_year).group(:song_id).count
+          @songs_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_year).group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
         when "total"
-          @top_songs = Song.all.order(total_counter: :DESC).limit(25).distinct.order(total_counter: :DESC)
-          @songs_counter = Generalplaylist.group(:song_id).count
+          @songs_counter = Generalplaylist.group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
       end
 
     else
-      @top_songs = Song.order(total_counter: :DESC).limit(25).distinct
-      @songs_counter = Generalplaylist.group(:song_id).count
+      @songs_counter = Generalplaylist.group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(15)
     end
 
 
   # Artist search options
     if params[:search_top_artist].present? && params[:radiostation_id].present? && params[:set_counter_top_artists].present?
-      radiostation = Radiostation.find(params[:radiostation_id])
       case params[:set_counter_top_artists]
         when "day"
-          @top_artists = Artist.joins(:radiostations, :generalplaylists).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(25).distinct.order(day_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_day).group(:artist_id).count
+          @artists_counter = Generalplaylist.joins(:artist).where("radiostation_id = ? AND generalplaylists.created_at > ? AND artists.name ILIKE ?", params[:radiostation_id], Date.today.beginning_of_day, "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "week"
-          @top_artists = Artist.joins(:radiostations, :generalplaylists).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(25).distinct.order(week_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_week).group(:artist_id).count
+          @artists_counter = Generalplaylist.joins(:artist).where("radiostation_id = ? AND generalplaylists.created_at > ? AND artists.name ILIKE ?", params[:radiostation_id], Date.today.beginning_of_week, "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "month"
-          @top_artists = Artist.joins(:radiostations, :generalplaylists).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(25).distinct.order(month_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_month).group(:artist_id).count
+          @artists_counter = Generalplaylist.joins(:artist).where("radiostation_id = ? AND generalplaylists.created_at > ? AND artists.name ILIKE ?", params[:radiostation_id], Date.today.beginning_of_month, "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "year"
-          @top_artists = Artist.joins(:radiostations, :generalplaylists).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(25).distinct.order(year_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_year).group(:artist_id).count
+          @artists_counter = Generalplaylist.joins(:artist).where("radiostation_id = ? AND generalplaylists.created_at > ? AND artists.name ILIKE ?", params[:radiostation_id], Date.today.beginning_of_year, "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "total"
-          @top_artists = Artist.joins(:radiostations).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").where("radiostations.name = ?", radiostation.name).limit(25).distinct.order(total_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:artist_id).count
+          @artists_counter = Generalplaylist.joins(:artist).where("radiostation_id = ? AND artists.name ILIKE ?", params[:radiostation_id], "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         end
 
     elsif params[:search_top_artist].present? && params[:radiostation_id].present?
-      radiostation = Radiostation.find(params[:radiostation_id])
-      @top_artists = Artist.joins(:radiostations, :generalplaylists).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").where("radiostations.name = ?", radiostation.name).limit(25).distinct.order(total_counter: :DESC)
-      @artists_counter = Generalplaylist.where("radiostation_id = ?", radiostation.id).group(:artist_id).count
+      @artists_counter = Generalplaylist.joins(:artist).where("radiostation_id = ? AND artists.name ILIKE ?", params[:radiostation_id], "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
 
     elsif params[:search_top_artist].present? && params[:set_counter_top_artists].present?
       case params[:set_counter_top_artists]
         when "day"
-          @top_artists = Artist.joins(:generalplaylists).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(25).distinct.order(day_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_day).group(:artist_id).count
+          @artists_counter = Generalplaylist.joins(:artist).where("generalplaylists.created_at > ? AND artists.name ILIKE ?", Date.today.beginning_of_day, "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "week"
-          @top_artists = Artist.joins(:generalplaylists).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(25).distinct.order(week_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_week).group(:artist_id).count
+          @artists_counter = Generalplaylist.joins(:artist).where("generalplaylists.created_at > ? AND artists.name ILIKE ?", Date.today.beginning_of_week, "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "month"
-          @top_artists = Artist.joins(:generalplaylists).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(25).distinct.order(month_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_month).group(:artist_id).count
+          @artists_counter = Generalplaylist.joins(:artist).where("generalplaylists.created_at > ? AND artists.name ILIKE ?", Date.today.beginning_of_month, "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "year"
-          @top_artists = Artist.joins(:generalplaylists).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(25).distinct.order(year_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_year).group(:artist_id).count
+          @artists_counter = Generalplaylist.joins(:artist).where("generalplaylists.created_at > ? AND artists.name ILIKE ?", Date.today.beginning_of_year, "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "total"
-          @top_artists = Artist.where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").limit(25).distinct.order(total_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:artist_id).count
+          @artists_counter = Generalplaylist.joins(:artist).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         end
 
     elsif params[:radiostation_id].present? && params[:set_counter_top_artists].present?
-      radiostation = Radiostation.find(params[:radiostation_id])
       case params[:set_counter_top_artists]
         when "day"
-          @top_artists = Artist.joins(:radiostations, :generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(25).distinct.order(day_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_day).group(:artist_id).count
+          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_day).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "week"
-          @top_artists = Artist.joins(:radiostations, :generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(25).distinct.order(week_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_week).group(:artist_id).count
+          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_week).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "month"
-          @top_artists = Artist.joins(:radiostations, :generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(25).distinct.order(month_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_month).group(:artist_id).count
+          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_month).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "year"
-          @top_artists = Artist.joins(:radiostations, :generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(25).distinct.order(year_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_year).group(:artist_id).count
+          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_year).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "total"
-          @top_artists = Artist.joins(:radiostations).where("radiostations.name = ?", radiostation.name).limit(25).distinct.order(total_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:artist_id).count
+          @artists_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         end
 
     elsif params[:search_top_artist].present?
-      @top_artists = Artist.where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").limit(25).distinct.order(total_counter: :DESC)
-      @artists_counter = Generalplaylist.group(:artist_id).count
+      @artists_counter = Generalplaylist.joins(:artist).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
 
     elsif params[:radiostation_id].present?
-      radiostation = Radiostation.find(params[:radiostation_id])
-      @top_artists = Artist.joins(:radiostations).where("radiostations.name = ?", radiostation.name).limit(25).distinct.order(total_counter: :DESC)
-      @artists_counter = Generalplaylist.where("radiostation_id = ?", radiostation.id).group(:artist_id).count
+      @artists_counter = Generalplaylist.where("radiostation_id = ?", radiostation.id).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
 
     elsif params[:set_counter_top_artists].present?
       case params[:set_counter_top_artists]
         when "day"
-          @top_artists = Artist.joins(:generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_day).limit(25).distinct.order(day_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_day).group(:artist_id).count
+          @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_day).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "week"
-          @top_artists = Artist.joins(:generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_week).limit(25).distinct.order(week_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_week).group(:artist_id).count
+          @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_week).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "month"
-          @top_artists = Artist.joins(:generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_month).limit(25).distinct.order(month_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_month).group(:artist_id).count
+          @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_month).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "year"
-          @top_artists = Artist.joins(:generalplaylists).where("radiostations.name = ?", radiostation.name).where("generalplaylists.created_at > ?", Date.today.beginning_of_year).limit(25).distinct.order(year_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ? AND created_at > ?", params[:radiostation_id], Date.today.beginning_of_year).group(:artist_id).count
+          @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_year).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         when "total"
-          @top_artists = Artist.order(total_counter: :DESC).limit(25).distinct.order(total_counter: :DESC)
-          @artists_counter = Generalplaylist.where("radiostation_id = ?", params[:radiostation_id]).group(:artist_id).count
+          @artists_counter = Generalplaylist.group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
         end
     else
-      @top_artists = Artist.order(total_counter: :DESC).limit(25)
-      @artists_counter = Generalplaylist.group(:artist_id).count
+      @artists_counter = Generalplaylist.group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(15)
     end
 
     @target = params[:target]

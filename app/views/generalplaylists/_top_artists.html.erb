@@ -1,5 +1,6 @@
-<% @top_artists.each_with_index do |top_artist, idx_artist| %>
-  <% idx_artist += 1 %>
+<% idx_artist = 1 %>
+<% @artists_counter.each do |artist_id, counter| %>
+  <% top_artist = Artist.find(artist_id) %>
   <tr>
     <td class="bungee-inline">
       # <%= idx_artist %>
@@ -17,4 +18,5 @@
       <% end %>
     <% end %>
   </tr>
+  <% idx_artist += 1 %>
 <% end %>

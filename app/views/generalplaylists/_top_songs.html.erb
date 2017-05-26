@@ -1,46 +1,42 @@
-<% @top_songs.each_with_index do |top_song, idx_song| %>
-  <% idx_song += 1 %>
-  <tr>
-    <td class="image">
-      <% if (top_song.artwork_url != nil) %>
-        <%= image_tag(top_song.artwork_url, class: "song-image") %>
-      <% end %>
-    </td>
-    <td>
-      <table>
-        <tr>
-          <td class="play" id="song-play">
-            <% if (top_song.song_preview != nil) %>
-              <%= audio_tag(top_song.song_preview, class: "audio-play") %>
-              <i class="material-icons md-36 audioButton">play_circle_outline</i>
-            <% else %>
-              <i class="material-icons md-36">remove</i>
-            <% end %>
-          </td>
-          <td class="bungee-inline time">
-            # <%= idx_song %>
-          </td>
-          <td class="song">
-            <%= top_song.title %><br />
-            <% if top_song.artist != nil %>
-              <div style="font-style:italic; font-size: 12px">
-                <%= top_song.artist.name %>
-              </div>
-            <% end %>
-          </td>
-          <% if @songs_counter.present? %>
-            <% @songs_counter.each do |song_id, counter| %>
-            <% if song_id == top_song.id %>
-              <td>
-                <%= counter %>
-              </td>
+<% idx_song = 1 %>
+<% @songs_counter.each do |song_id, counter| %>
+  <% top_song = Song.find(song_id) %>
+    <tr>
+      <td class="image">
+        <% if (top_song.artwork_url != nil) %>
+          <%= image_tag(top_song.artwork_url, class: "song-image") %>
+        <% end %>
+      </td>
+      <td>
+        <table>
+          <tr>
+            <td class="play" id="song-play">
+              <% if (top_song.song_preview != nil) %>
+                <%= audio_tag(top_song.song_preview, class: "audio-play") %>
+                <i class="material-icons md-36 audioButton">play_circle_outline</i>
+              <% else %>
+                <i class="material-icons md-36">remove</i>
               <% end %>
-            <% end %>
-          <% end %>
-        </tr>
-      </table>
-    </td>
-  </tr>
+            </td>
+            <td class="bungee-inline time">
+              # <%= idx_song %>
+            </td>
+            <td class="song">
+              <%= top_song.title %><br />
+              <% if top_song.artist != nil %>
+                <div style="font-style:italic; font-size: 12px">
+                  <%= top_song.artist.name %>
+                </div>
+              <% end %>
+            </td>
+            <td>
+              <%= counter %>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  <% idx_song += 1 %>
 <% end %>
 
 <script>
