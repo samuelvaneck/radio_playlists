@@ -104,9 +104,20 @@
 </section>
 
 <script>
+  // delay input for search fields with 500ms for better preformance AJAX requests
+  var delay = (function() {
+    var timer = 0;
+    return function(callback, ms) {
+      clearTimeout (timer);
+      timer = setTimeout(callback, ms);
+    };
+  })();
+
   // AJAX requests playlists
   $("#search_playlists_form input").keyup(function(){
-    $.get($("#search_playlists_form").attr("action"), {search_playlists: $("#search_playlists").val(), set_counter_playlists: $("#set_counter_playlists").val(), radiostation_id: $("#playlists_radiostation").val(), target: 'playlists-table' }, null, "script" );
+    delay(function() {
+      $.get($("#search_playlists_form").attr("action"), {search_playlists: $("#search_playlists").val(), set_counter_playlists: $("#set_counter_playlists").val(), radiostation_id: $("#playlists_radiostation").val(), target: 'playlists-table' }, null, "script" );
+    }, 500);
   });
   $("#set_counter_playlists").change(function(){
     $.get($("#search_playlists_form").attr("action"), {search_playlists: $("#search_playlists").val(), set_counter_playlists: $("#set_counter_playlists").val(), radiostation_id: $("#playlists_radiostation").val(), target: 'playlists-table' }, null, "script" );
@@ -117,7 +128,9 @@
 
   // AJAX request top songs
   $("#search_top_song_form input").keyup(function(){
-    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set-counter-top-songs").val(), radiostation_id: $("#top_songs_radiostation").val(), target: 'top-songs-table'}, null, "script");
+    delay(function() {
+      $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set-counter-top-songs").val(), radiostation_id: $("#top_songs_radiostation").val(), target: 'top-songs-table'}, null, "script");
+    }, 500);
   });
   $("#set_counter_top_songs").change(function(){
     $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), radiostation_id: $("#top_songs_radiostation").val(), target: 'top-songs-table'}, null, "script");
@@ -128,7 +141,9 @@
 
   // AJAX requests artists
   $("#search_top_artist_form input").keyup(function() {
-    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
+    delay(function() {
+      $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
+    }, 500);
   })
   $("#set_counter_top_artists").change(function(){
     $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set_counter_top_artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
@@ -136,6 +151,7 @@
   $("#top_artists_radiostation").change(function(){
     $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set-counter-top-artists").val(), radiostation_id: $("#top_artists_radiostation").val(), target: 'top-artists-table'}, null, "script");
   });
+
 </script>
 
 <script>
