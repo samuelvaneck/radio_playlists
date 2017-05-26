@@ -74,7 +74,6 @@ class GeneralplaylistsController < ApplicationController
     @playlists.order!(created_at: :DESC)
 
   # Song search options
-    @songs_counter = Generalplaylist.group(:song_id).count
     if params[:search_top_song].present? && params[:radiostation_id].present? && params[:set_counter_top_songs].present?
       radiostation = Radiostation.find(params[:radiostation_id])
       case params[:set_counter_top_songs]
@@ -99,6 +98,7 @@ class GeneralplaylistsController < ApplicationController
     elsif params[:search_top_song].present? && params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
       @top_songs = Song.joins(:artist, :radiostations).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").where("radiostations.name = ?", radiostation.name).limit(25)
+      @songs_counter = Generalplaylist.where("radiostation_id = ?", radiostation.id).group(:song_id).count
 
     elsif params[:search_top_song].present? && params[:set_counter_top_songs].present?
       case params[:set_counter_top_songs]
@@ -141,10 +141,12 @@ class GeneralplaylistsController < ApplicationController
 
     elsif params[:search_top_song].present?
       @top_songs = Song.joins(:artist).where("songs.fullname ILIKE ? OR artists.name ILIKE ?", "%#{params[:search_top_song]}%", "%#{params[:search_top_song]}%").order(total_counter: :DESC).limit(25).distinct
+      @songs_counter = Generalplaylist.group(:song_id).count
 
     elsif params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
       @top_songs = Song.joins(:radiostations).where("radiostations.name = ?", radiostation.name).order(total_counter: :DESC).limit(25).distinct
+      @songs_counter = Generalplaylist.where("radiostation_id = ?", radiostation.id).group(:song_id).count
 
     elsif params[:set_counter_top_songs].present?
       case params[:set_counter_top_songs]
@@ -167,12 +169,11 @@ class GeneralplaylistsController < ApplicationController
 
     else
       @top_songs = Song.order(total_counter: :DESC).limit(25).distinct
+      @songs_counter = Generalplaylist.group(:song_id).count
     end
 
 
   # Artist search options
-    @artists_counter = Generalplaylist.group(:artist_id).count
-
     if params[:search_top_artist].present? && params[:radiostation_id].present? && params[:set_counter_top_artists].present?
       radiostation = Radiostation.find(params[:radiostation_id])
       case params[:set_counter_top_artists]
@@ -196,6 +197,7 @@ class GeneralplaylistsController < ApplicationController
     elsif params[:search_top_artist].present? && params[:radiostation_id].present?
       radiostation = Radiostation.find(params[:radiostation_id])
       @top_artists = Artist.joins(:radiostations, :generalplaylists).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").where("radiostations.name = ?", radiostation.name).order(total_counter: :DESC).limit(25)
+      @artists_counter = Generalplaylist.where("radiostation_id = ?", radiostation.id).group(:artist_id).count
 
     elsif params[:search_top_artist].present? && params[:set_counter_top_artists].present?
       case params[:set_counter_top_artists]
@@ -238,9 +240,12 @@ class GeneralplaylistsController < ApplicationController
 
     elsif params[:search_top_artist].present?
       @top_artists = Artist.where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").order(total_counter: :DESC).limit(25).distinct
+      @artists_counter = Generalplaylist.group(:artist_id).count
 
     elsif params[:radiostation_id].present?
+      radiostation = Radiostation.find(params[:radiostation_id])
       @top_artists = Artist.joins(:radiostations).where("radiostations.name = ?", radiostation.name).order(total_counter: :DESC).limit(25).distinct
+      @artists_counter = Generalplaylist.where("radiostation_id = ?", radiostation.id).group(:artist_id).count
 
     elsif params[:set_counter_top_artists].present?
       case params[:set_counter_top_artists]
@@ -262,6 +267,7 @@ class GeneralplaylistsController < ApplicationController
         end
     else
       @top_artists = Artist.order(total_counter: :DESC).limit(25)
+      @artists_counter = Generalplaylist.group(:artist_id).count
     end
 
     @target = params[:target]
