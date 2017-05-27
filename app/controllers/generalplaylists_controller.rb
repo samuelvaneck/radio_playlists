@@ -209,16 +209,22 @@ class GeneralplaylistsController < ApplicationController
       @artists_counter = Generalplaylist.where("radiostation_id = ?", radiostation.id).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(params[:set_limit_artists].to_i)
 
     elsif params[:set_counter_top_artists].present?
+      logger.debug 1
       case params[:set_counter_top_artists]
         when "day"
+          logger.debug 2
           @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_day).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(params[:set_limit_artists].to_i)
         when "week"
+          logger.debug 3
           @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_week).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(params[:set_limit_artists].to_i)
         when "month"
+          logger.debug 4
           @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_month).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(params[:set_limit_artists].to_i)
         when "year"
+          logger.debug 5
           @artists_counter = Generalplaylist.where("created_at > ?", Date.today.beginning_of_year).group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(params[:set_limit_artists].to_i)
         when "total"
+          logger.debug 6
           @artists_counter = Generalplaylist.group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(params[:set_limit_artists].to_i)
         end
     else
