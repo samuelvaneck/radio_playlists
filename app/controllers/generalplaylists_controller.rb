@@ -100,13 +100,13 @@ class GeneralplaylistsController < ApplicationController
     elsif params[:search_top_song].present? && params[:set_counter_top_songs].present?
       case params[:set_counter_top_songs]
         when "day"
-          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ? AND songs.fullname = ?", Date.today.beginning_of_day, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
+          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ? AND songs.fullname ILIKE ?", Date.today.beginning_of_day, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
         when "week"
-          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ? AND songs.fullname = ?", Date.today.beginning_of_week, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
+          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ? AND songs.fullname ILIKE ?", Date.today.beginning_of_week, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
         when "month"
-          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ? AND songs.fullname = ?", Date.today.beginning_of_month, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
+          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ? AND songs.fullname ILIKE ?", Date.today.beginning_of_month, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
         when "year"
-          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ? AND songs.fullname = ?", Date.today.beginning_of_year, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
+          @songs_counter = Generalplaylist.joins(:song).where("generalplaylists.created_at > ? AND songs.fullname ILIKE ?", Date.today.beginning_of_year, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
         when "total"
           @songs_counter = Generalplaylist.joins(:song).where("songs.fullname ILIKE ?", "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
       end
