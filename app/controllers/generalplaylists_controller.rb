@@ -17,7 +17,7 @@ class GeneralplaylistsController < ApplicationController
       end
 
     elsif params[:search_playlists].present? && params[:radiostation_id].present?
-      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.title ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").limit(params[:set_limit_playlists])
+      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").limit(params[:set_limit_playlists])
 
     elsif params[:search_playlists].present? && params[:set_counter_playlists].present?
       case params[:set_counter_playlists]
@@ -90,8 +90,7 @@ class GeneralplaylistsController < ApplicationController
         when "year"
           @songs_counter = Generalplaylist.joins(:song).where("radiostation_id = ? AND generalplaylists.created_at > ? AND songs.fullname ILIKE ?", params[:radiostation_id], Date.today.beginning_of_year, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
         when "total"
-          @songs_counter = Generalplaylist.joins(:song).where("radiostation_id = ? AND songs.fullname ILIKE ?", params[:radiostation_id], "%#{params[:search_top_ss
-          ong]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
+          @songs_counter = Generalplaylist.joins(:song).where("radiostation_id = ? AND songs.fullname ILIKE ?", params[:radiostation_id], "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
       end
 
     elsif params[:search_top_song].present? && params[:radiostation_id].present?
