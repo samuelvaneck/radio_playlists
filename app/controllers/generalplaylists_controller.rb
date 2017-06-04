@@ -1,6 +1,12 @@
 class GeneralplaylistsController < ApplicationController
 
   def index
+
+  if (request.path != "/")
+    @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+    @hash = @spotify_user.to_hash
+  end  
+
   # Playlist search options
     if params[:search_playlists].present? && params[:radiostation_id].present? && params[:set_counter_playlists].present?
       case params[:set_counter_playlists]
@@ -236,6 +242,7 @@ class GeneralplaylistsController < ApplicationController
     end
 
     @target = params[:target]
+
   end
 
   # def autocomplete
