@@ -34,6 +34,8 @@ gem 'materialize-sass'
 
 gem 'whenever', require: false
 
+gem 'rspotify'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
