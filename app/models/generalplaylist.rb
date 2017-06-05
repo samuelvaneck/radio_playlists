@@ -283,7 +283,6 @@ class Generalplaylist < ActiveRecord::Base
       end
     end
     #Spotify lookup image and song
-    debugger
     if RSpotify::Track.search("#{artist.name} #{title}").present?
       @song.spotify_song_url = RSpotify::Track.search("#{artist.name} #{title}").first.external_urls["spotify"]
       @song.spotify_artwork_url = @track_album = RSpotify::Track.search("#{artist.name} #{title}").first.album.images[1]["url"]
