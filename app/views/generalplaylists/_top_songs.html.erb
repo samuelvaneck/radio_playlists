@@ -3,7 +3,9 @@
   <% top_song = Song.find(song_id) %>
     <tr>
       <td class="image">
-        <% if (top_song.artwork_url != nil) %>
+        <% if user_signed_in? && top_song.spotify_artwork_url.present? %>
+          <%= image_tag(top_song.spotify_artwork_url, class:"song-image", size: '100x100') %>
+        <% elsif top_song.artwork_url.present? %>
           <%= image_tag(top_song.artwork_url, class: "song-image") %>
         <% end %>
       </td>
@@ -11,7 +13,11 @@
         <table>
           <tr>
             <td class="play" id="song-play">
-              <% if (top_song.song_preview != nil) %>
+              <% if user_signed_in? && top_song.spotify_song_url.present? %>
+                <a href="<%= top_song.spotify_song_url %>" target="_blank">
+                  <%= image_tag('Spotify_Icon_RGB_Green.png', size: '35') %>
+                </a>
+              <% elsif top_song.song_preview.present? %>
                 <%= audio_tag(top_song.song_preview, class: "audio-play") %>
                 <i class="material-icons md-36 audioButton">play_circle_outline</i>
               <% else %>
@@ -23,7 +29,7 @@
             </td>
             <td class="song">
               <%= top_song.title %><br />
-              <% if top_song.artist != nil %>
+              <% if top_song.artist.present? %>
                 <div style="font-style:italic; font-size: 12px">
                   <%= top_song.artist.name %>
                 </div>

@@ -2,7 +2,9 @@
   <% idx_playlist + 1 %>
   <tr>
     <td class="image">
-      <% if (playlist.song.artwork_url != nil) %>
+      <% if user_signed_in? && playlist.song.spotify_artwork_url.present? %>
+        <%= image_tag(playlist.song.spotify_artwork_url, class: "song-image", size: '100x100') %>
+      <% elsif playlist.song.artwork_url.present? %>
         <%= image_tag(playlist.song.artwork_url, class: "song-image") %>
       <% end %>
     </td>
@@ -10,7 +12,11 @@
       <table>
         <tr>
           <td class="play" id="playlist-play">
-            <% if (playlist.song.song_preview != nil) %>
+            <% if user_signed_in? && playlist.song.spotify_song_url.present? %>
+              <a href="<%= playlist.song.spotify_song_url %>" target="_blank">
+                <%= image_tag('Spotify_Icon_RGB_Green.png', size: '35') %>
+              </a>
+            <% elsif playlist.song.song_preview.present? %>
               <%= audio_tag(playlist.song.song_preview, class: "audio-play") %>
               <i class="material-icons md-36 audioButton">play_circle_outline</i>
             <% else %>

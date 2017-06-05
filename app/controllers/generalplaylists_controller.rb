@@ -2,10 +2,12 @@ class GeneralplaylistsController < ApplicationController
 
   def index
 
-  if (request.path != "/")
-    @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-    @hash = @spotify_user.to_hash
-  end  
+  if user_signed_in?
+    # @me = RSpotify::User.find(current_user.uid)
+    # @spotify_user_playlists = @me.playlists.map { |p| p.name }
+    # @track = RSpotify::Track.search("There's Nothing Holdin' Me Back Shawn Mendes").first.external_urls["spotify"]
+    # @track_album = RSpotify::Track.search("There's Nothing Holdin' Me Back Shawn Mendes").first.album.images[1]["url"]
+  end
 
   # Playlist search options
     if params[:search_playlists].present? && params[:radiostation_id].present? && params[:set_counter_playlists].present?

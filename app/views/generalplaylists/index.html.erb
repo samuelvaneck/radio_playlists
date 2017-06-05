@@ -6,6 +6,16 @@
   <div class="container">
     <div class="row">
       <div col="col s12 m12 l12">
+        <div class="right-align">
+          <% if user_signed_in? %>
+              Welcome <%= current_user.display_name %><br>
+              <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
+          <% else %>
+            <%= link_to user_spotify_omniauth_authorize_path  do %>
+              <%= image_tag("Spotify_Icon_RGB_Green.png", size: "50") %><br/>
+            <% end %>
+          <% end %>
+        </div>
         <h3 class="rubik">
           Playlists
           <i class="material-icons md-48 right toggle-table-icon-90" id="0">details</i>
@@ -144,17 +154,6 @@
       </div>
     </div>
   </div>
-  <div class="center">
-    <% if user_signed_in? %>
-      Welcome <%= current_user.email %>!<br>
-      <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
-    <% else %>
-      <%= link_to user_spotify_omniauth_authorize_path do %>
-        Sign up/in with 
-        <%= image_tag('Spotify_Logo_RGB_White.png', size: '59x17', alt: 'Login with Spotify') %>
-      <% end %>
-    <% end %>
-  </div>
 </section>
 
 <script>
@@ -218,8 +217,20 @@
 </script>
 
 <script>
-  $(document).ready(function() {
+  $(document).on("turbo-links:load", function() {
+  // $(document).ready(function() {
     $('select').material_select();
+    $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false // Stops event propagation
+    }
+  );
   });
 </script>
 
