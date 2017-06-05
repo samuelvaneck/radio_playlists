@@ -5,7 +5,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
     @spotify_user = User.from_omniauth(request.env['omniauth.auth'])
 
-
     if @spotify_user.persisted?
       sign_in_and_redirect @spotify_user, :event => :authentication #this will throw if @user is not activated
       set_flash_message(:notice, :success, :kind => "Spotify") if is_navigational_format?

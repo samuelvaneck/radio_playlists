@@ -7,6 +7,7 @@ class Generalplaylist < ActiveRecord::Base
   require 'open-uri'
   require 'json'
   require 'date'
+  require 'rspotify'
 
   # Check the Radio Veronica song
   def self.radio_veronica_check
@@ -269,17 +270,23 @@ class Generalplaylist < ActiveRecord::Base
     json = JSON.parse(response)
     counter = 0
     while counter < 5
-      if (json["results"][counter]["collectionName"].include?("Hitzone") || json["results"][counter]["collectionName"].include?("The Definitive") || json["results"][counter]["collectionName"].include?("Back To the 80's"))
+      if (json["results"] != []) && (json["results"][counter]["collectionName"].include?("Hitzone") || json["results"][counter]["collectionName"].include?("The Definitive") || json["results"][counter]["collectionName"].include?("Back To the 80's"))
         counter += 1
       else
-        if (json["results"][counter]["previewUrl"] != nil)
+        if (json["results"] != []) && (json["results"][counter]["previewUrl"] != nil)
           @song.song_preview = json["results"][counter]["previewUrl"]
         end
-        if (json["results"][counter]["artworkUrl100"] != nil)
+        if (json["results"] != []) && (json["results"][counter]["artworkUrl100"] != nil)
           @song.artwork_url = json["results"][counter]["artworkUrl100"]
         end
         break
       end
+    end
+    #Spotify lookup image and song
+    debugger
+    if RSpotify::Track.search("#{artist.name} #{title}").present?
+      @song.spotify_song_url = RSpotify::Track.search("#{artist.name} #{title}").first.external_urls["spotify"]
+      @song.spotify_artwork_url = @track_album = RSpotify::Track.search("#{artist.name} #{title}").first.album.images[1]["url"]
     end
     # Return @song variable
     return @song
@@ -326,6 +333,8 @@ class Generalplaylist < ActiveRecord::Base
     songdetails.artist_id = artist.id
     songdetails.song_preview = song.song_preview
     songdetails.artwork_url = song.artwork_url
+    songdetails.spotify_song_url = song.spotify_song_url
+    songdetails.spotify_artwork_url = song.spotify_artwork_url
     songdetails.save!
     # Add 1 to the artist counters
     artist = Artist.find(generalplaylist.artist_id)
