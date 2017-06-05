@@ -153,27 +153,12 @@ class Generalplaylist < ActiveRecord::Base
     # Search for all the songs with title
     songs = Song.where("title = ?", "title")
     # Add the songs variable to the song_check methode. Returns @song variable
-    if songs == []
-      song = Song.find_or_create_by(title: title, artist: artist)
-    # If the is a song with the same title check the artist
-    else
-      songs.each do |s|
-        artist_name = s.artist.name
-        check_artist = Artist.where("name = ?", artist_name)
-        # if there is no song title with the same artist create a new one
-        if check_artist == []
-          song = Song.find_or_create_by(title: title, artist: artist)
-        # Else grap the song record with the same title and artist id
-        else
-          song = Song.find_by_title_and_artist_id(title, artist.id)
-        end
-      end
-    end
+    Generalplaylist.song_check(songs, artist, title)
     # Find or create the Radiostation with name "Sky Radio"
     radiostation = Radiostation.find_or_create_by(name: "Sky Radio")
 
     # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
+    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
 
   end
 
