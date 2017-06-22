@@ -1,34 +1,34 @@
 set :output, "#{path}/log/cron.log"
 
-every 3.minutes do
+every '1-59/3 * * * *' do
   runner "Generalplaylist.radio_veronica_check"
 end
 
-every 3.minutes do
+every '2-59/3 * * * *' do
   runner "Generalplaylist.radio_538_check"
 end
 
-every 3.minutes do
+every '1-59/3 * * * *' do
   runner "Generalplaylist.radio_2_check"
 end
 
-every 3.minutes do
+every '2-59/3 * * * *' do
   runner "Generalplaylist.sublime_fm_check"
 end
 
-every 3.minutes do
+every '1-59/3 * * * *' do
   runner "Generalplaylist.grootnieuws_radio_check"
 end
 
-every 3.minutes do
+every '2-59/3 * * * *' do
   runner "Generalplaylist.sky_radio_check"
 end
 
-every 3.minutes do
+every '1-59/3 * * * *' do
   runner "Generalplaylist.radio_3fm_check"
 end
 
-every 3.minutes do
+every '2-59/3 * * * *' do
   runner "Generalplaylist.q_music_check"
 end
 
