@@ -1,4 +1,4 @@
-class AddCoutersToArtist < ActiveRecord::Migration
+class AddCoutersToArtist < ActiveRecord::Migration[5.1]
   def change
     add_column :artists, :day_counter, :integer, :default => 0
     add_column :artists, :week_counter, :integer, :default => 0

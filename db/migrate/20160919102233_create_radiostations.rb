@@ -1,4 +1,4 @@
-class CreateRadiostations < ActiveRecord::Migration
+class CreateRadiostations < ActiveRecord::Migration[5.1]
   def change
     create_table :radiostations do |t|
       t.string :name

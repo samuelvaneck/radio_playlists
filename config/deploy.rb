@@ -1,6 +1,3 @@
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
-
 set :application, "radio_playlists"
 set :repo_url, "git@github.com:sam365/radio_playlists.git"
 
