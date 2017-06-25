@@ -1,3 +1,5 @@
+env :PATH, ENV['PATH']
+
 set :output, "#{path}/log/cron.log"
 
 every '1-59/3 * * * *' do
