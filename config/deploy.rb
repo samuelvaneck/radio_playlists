@@ -1,3 +1,5 @@
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
 set :application, "radio_playlists"
 set :repo_url, "git@github.com:sam365/radio_playlists.git"
 
