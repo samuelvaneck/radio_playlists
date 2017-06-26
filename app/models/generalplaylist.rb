@@ -58,9 +58,9 @@ class Generalplaylist < ActiveRecord::Base
   # Check Radio 2 song
   def self.radio_2_check
 
-    topsong = "TOPSONG: "
-    hi = "HI: "
-    nieuwe_naam = "NIEUW NAAM: "
+    topsong = "Topsong: "
+    hi = "Hi: "
+    nieuwe_naam = "Nieuwe Naam: "
 
     url = "http://www.nporadio2.nl/playlist"
     doc = Nokogiri::HTML(open(url))
@@ -74,11 +74,11 @@ class Generalplaylist < ActiveRecord::Base
     # check if the variables topsong, hi or nieuwe_naam are in the title
     # if so they will be sliced off
     if title.include?(topsong)
-      title.replace("TOPSONG: ", "")
+      title.replace(topsong, "")
     elsif title.include?(hi)
-      title.replace("HI: ", "")
+      title.replace(hi, "")
     elsif title.include?(nieuwe_naam)
-      title.replace("NIEUW NAAM: ", "")
+      title.replace(nieuwe_naam, "")
     end
 
     # Find the artist name in the Artist database or create a new record
@@ -124,6 +124,10 @@ class Generalplaylist < ActiveRecord::Base
     time = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[1]').text.split.drop(1).join(" ")
     artist = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[2]').text.split.map(&:capitalize).join(" ")
     title = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[3]').text.split.map(&:capitalize).join(" ")
+
+    if artist == nil
+      return false
+    end
 
     Generalplaylist.title_check(title)
 
