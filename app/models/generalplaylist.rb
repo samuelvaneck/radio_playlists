@@ -125,7 +125,7 @@ class Generalplaylist < ActiveRecord::Base
     artist = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[2]').text.split.map(&:capitalize).join(" ")
     title = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[3]').text.split.map(&:capitalize).join(" ")
 
-    if artist == nil
+    if artist.blank?
       return false
     end
 

@@ -67,4 +67,5 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-passenger'
   gem 'capistrano-rbenv'
+  gem 'capistrano-rails-console', require: false
 end
