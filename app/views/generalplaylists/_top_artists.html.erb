@@ -3,8 +3,10 @@
   <% top_artist = Artist.find(artist_id) %>
   <tr>
     <td>
-      <% if top_artist.songs.last.artwork_url != nil %>
-        <%= image_tag(top_artist.songs.last.artwork_url, class: "song-image") %>
+      <% if random_album_image(top_artist) %>
+        <%= image_tag(random_album_image(top_artist), class: 'song-image') %>
+      <% else %>
+        <i class="material-icons md-48">album</i>
       <% end %>
     </td>
     <td class="bungee-inline">
