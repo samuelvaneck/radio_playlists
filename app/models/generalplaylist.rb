@@ -74,11 +74,14 @@ class Generalplaylist < ActiveRecord::Base
     # check if the variables topsong, hi or nieuwe_naam are in the title
     # if so they will be sliced off
     if title.include?(topsong)
-      title.replace(topsong, "")
+      title.gsub!(/\:/, "")
+      title.remove!("Topsong ")
     elsif title.include?(hi)
-      title.replace(hi, "")
+      title.gsub!(/\:/, "")
+      title.remove!("Hi ")
     elsif title.include?(nieuwe_naam)
-      title.replace(nieuwe_naam, "")
+      title.gsub!(/\:/, "")
+      title.remove!("Nieuwe Naam ")
     end
 
     # Find the artist name in the Artist database or create a new record
