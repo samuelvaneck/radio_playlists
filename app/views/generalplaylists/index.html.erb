@@ -49,7 +49,7 @@
                 </select>
               </div>
               <div class="input-field col s6 m6 l6">
-                <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "playlists_radiostation" }) %>
+                <%= collection_select(:radiostation, :id, Radiostation.order(name: :ASC), :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "playlists_radiostation" }) %>
               </div>
             </div>
           <% end %>
@@ -96,7 +96,7 @@
                   </select>
                 </div>
                 <div class="input-field col s6 m6 l6">
-                  <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "top_songs_radiostation" }) %>
+                  <%= collection_select(:radiostation, :id, Radiostation.order(name: :ASC), :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "top_songs_radiostation" }) %>
                 </div>
               </div>
             </p>
@@ -142,7 +142,7 @@
               </select>
             </div>
             <div class="input-field col s6 m6 l6">
-              <%= collection_select(:radiostation, :id, Radiostation.all, :id, :name, options = { prompt: "Radiostation" }, html_options = { id: "top_artists_radiostation" }) %>
+              <%= collection_select(:radiostation, :id, Radiostation.order(name: :ASC), :id, :name, options = { prompt: "Radiostation" }, html_options = { id: "top_artists_radiostation" }) %>
             </div>
           <% end %>
           <table class="striped">
