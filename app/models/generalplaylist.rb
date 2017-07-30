@@ -64,7 +64,7 @@ class Generalplaylist < ActiveRecord::Base
 
     url = "http://www.nporadio2.nl/playlist"
     doc = Nokogiri::HTML(open(url))
-    list = doc.at('.columns-2')
+    list = doc.at('.columns-2.playlist')
     time = list.xpath('//li[last()]/a/div[3]/div/p').first.text
     artist_name = list.xpath('//li[last()]/a/div[2]/div/p[1]').first.text.split.map(&:capitalize).join(" ")
     title = list.xpath('//li[last()]/a/div[2]/div/p[2]').first.text.split.map(&:capitalize).join(" ")
