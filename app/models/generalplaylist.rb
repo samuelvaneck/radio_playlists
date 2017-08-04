@@ -286,19 +286,22 @@ class Generalplaylist < ActiveRecord::Base
   # Methode for creating the Generalplaylist record
   def self.create_generalplaylist(time, artist, song, radiostation)
     # Take all the songs that are played on the same radiostation the last 2 days
-    radiostationsongs = Generalplaylist.where("radiostation_id = ? AND created_at > ?", radiostation.id, 2.day.ago).order(id: :ASC)
+    radiostationsongs = Generalplaylist.where("radiostation_id = ? AND created_at > ?", radiostation.id, 4.hours.ago).order(id: :ASC)
     # If the is no song played the last 2 days create a new one
     if radiostationsongs.blank?
       Generalplaylist.add_song(time, artist, song, radiostation)
     # Else check if the last played song = the same as the song we want to check
     else
-      if (radiostationsongs.last.time == time) && (radiostationsongs.last.song_id == song.id) && (radiostationsongs.last.artist_id == artist.id)
-        puts "#{song.title} from #{artist.name} in last 3 songs on #{radiostation.name}"
-        return false
-      else
-        # add the song to the song to the database
-        Generalplaylist.add_song(time, artist, song, radiostation)
+      @songs_recently_played = []
+      radiostationsongs.each do |radiostationsong|
+        if radiostationsong.time == time && radiostationsong.song_id == song.id && radiostationsong.artist_id == artist.id
+          puts "#{song.title} from #{artist.name} in last songs on #{radiostation.name}"
+          @songs_recently_played << true
+        else
+          @songs_recently_played << false
+        end
       end
+      Generalplaylist.add_song(time, artist, song, radiostation) if @songs_recently_played.exclude? true
     end
   end
 
