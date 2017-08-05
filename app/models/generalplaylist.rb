@@ -286,7 +286,7 @@ class Generalplaylist < ActiveRecord::Base
   # Methode for creating the Generalplaylist record
   def self.create_generalplaylist(time, artist, song, radiostation)
     # Take all the songs that are played on the same radiostation the last 2 days
-    radiostationsongs = Generalplaylist.where("radiostation_id = ? AND created_at > ?", radiostation.id, 4.hours.ago).order(id: :ASC)
+    radiostationsongs = Generalplaylist.where("radiostation_id = ? AND created_at > ?", radiostation.id, 1.day.ago).order(id: :ASC)
     # If the is no song played the last 2 days create a new one
     if radiostationsongs.blank?
       Generalplaylist.add_song(time, artist, song, radiostation)
