@@ -245,6 +245,8 @@ class GeneralplaylistsController < ApplicationController
       end
     end
 
+    @set_counter_top_artists = params[:set_counter_top_artists]
+
     @target = params[:target]
 
   end
