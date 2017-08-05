@@ -41,10 +41,10 @@
               <div class="input-field col s6 m6 l6">
                 <select id="set_counter_playlists">
                   <option value="">Counter time</option>
-                  <option value="day">Today (<%= Date.today.beginning_of_day.strftime("%e %b %Y") %>)</option>
-                  <option value="week">This week (<%= Date.today.beginning_of_week.strftime("%e %b %Y") %>)</option>
-                  <option value="month">This month (<%= Date.today.beginning_of_month.strftime("%e %b %Y") %>)</option>
-                  <option value="year">This year (<%= Date.today.beginning_of_year.strftime("%e %b %Y") %>)</option>
+                  <option value="day">Last day (<%= 1.day.ago.strftime("%a %a %e %b %Y %H:%M %H:%M") %>)</option>
+                  <option value="week">Last week (<%= 1.week.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
+                  <option value="month">Last month (<%= 1.month.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
+                  <option value="year">Last year (<%= 1.year.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
                   <option value="total">All Time</option>
                 </select>
               </div>
@@ -88,10 +88,10 @@
                 <div class="input-field col s6 m6 l6">
                   <select id="set_counter_top_songs">
                     <option value="">Counter time</option>
-                    <option value="day">Today (<%= Date.today.beginning_of_day.strftime("%e %b %Y") %>)</option>
-                    <option value="week">This week (<%= Date.today.beginning_of_week.strftime("%e %b %Y") %>)</option>
-                    <option value="month">This month (<%= Date.today.beginning_of_month.strftime("%e %b %Y") %>)</option>
-                    <option value="year">This year (<%= Date.today.beginning_of_year.strftime("%e %b %Y") %>)</option>
+                    <option value="day">Last day (<%= 1.day.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
+                    <option value="week">Last week (<%= 1.week.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
+                    <option value="month">Last month (<%= 1.month.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
+                    <option value="year">Last year (<%= 1.year.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
                     <option value="total">All Time</option>
                   </select>
                 </div>
@@ -134,10 +134,10 @@
             <div  class="input-field col s6 m6 l6">
               <select id="set_counter_top_artists">
                 <option value="">Counter time</option>
-                <option value="day">Today (<%= Date.today.beginning_of_day.strftime("%e %b %Y") %>)</option>
-                <option value="week">This week (<%= Date.today.beginning_of_week.strftime("%e %b %Y") %>)</option>
-                <option value="month">This month (<%= Date.today.beginning_of_month.strftime("%e %b %Y") %>)</option>
-                <option value="year">This year (<%= Date.today.beginning_of_year.strftime("%e %b %Y") %>)</option>
+                <option value="day">Last day (<%= 1.day.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
+                <option value="week">Last week (<%= 1.week.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
+                <option value="month">Last month (<%= 1.month.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
+                <option value="year">Last year (<%= 1.year.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
                 <option value="total">All Time</option>
               </select>
             </div>
