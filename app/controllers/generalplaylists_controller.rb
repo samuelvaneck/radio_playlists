@@ -163,6 +163,8 @@ class GeneralplaylistsController < ApplicationController
       end
     end
 
+    @set_counter_top_songs = params[:set_counter_top_songs]
+
 
   # Artist search options
     if params[:search_top_artist].present? && params[:radiostation_id].present? && params[:set_counter_top_artists].present?

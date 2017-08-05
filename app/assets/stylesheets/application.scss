@@ -87,3 +87,35 @@ $secondary-color: color("amber", "accent-4") !default;
   }
 
 }
+
+.delay-0 {
+  animation-delay: 0s;
+}
+
+.delay-1 {
+  animation-delay: .15s;
+}
+
+.delay-2 {
+  animation-delay: .3s;
+}
+
+.delay-3 {
+  animation-delay: .45s;
+}
+
+.delay-4 {
+  animation-delay: .6s;
+}
+
+.delay-5 {
+  animation-delay: .75s;
+}
+
+.delay-6 {
+  animation-delay: .9s;
+}
+
+.delay-7 {
+  animation-delay: 1.05s;
+}

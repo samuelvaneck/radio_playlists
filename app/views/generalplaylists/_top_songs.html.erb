@@ -11,7 +11,7 @@
       </td>
       <td>
         <table>
-          <tr>
+          <tr class="top-song-details">
             <td class="play" id="song-play">
               <% if user_signed_in? && top_song.spotify_song_url.present? %>
                 <a href="<%= top_song.spotify_song_url %>" target="_blank">
@@ -39,8 +39,67 @@
               <%= counter %>
             </td>
           </tr>
+          <tr style="display:none" class="radiostation-song-counter">
+            <td>
+              <p class="radiostation-song-counter delay-0">
+                Radio 2:<br/>
+              </p>
+              <p class="radiostation-song-counter delay-1">
+                Radio 3FM
+              </p>
+              <p class="radiostation-song-counter delay-2">
+                Sky Radio: <br/>
+              </p>
+              <p class="radiostation-song-counter delay-3">
+                Radio 538: <br/>
+              </p>
+              <p class="radiostation-song-counter delay-4">
+                Qmusic: <br/>
+              </p>
+              <p class="radiostation-song-counter delay-5">
+                Radio Veronica:<br/>
+              </p>
+              <p class="radiostation-song-counter delay-6">
+                Sublime FM: <br/>
+              </p>
+              <p class="radiostation-song-counter delay-7">
+                Groot Nieuws Radio: <br/>
+              </p>
+            </td>
+            <td>
+              <p class="radiostation-song-counter delay-0">
+                <%= radio_2_top_song_count(top_song.id, @set_counter_top_songs) %><br />
+              </p>
+              <p class="radiostation-song-counter delay-1">
+                <%= radio_3fm_top_song_count(top_song.id, @set_counter_top_songs) %><br />
+              </p>
+              <p class="radiostation-song-counter delay-2">
+                <%= sky_radio_top_song_count(top_song.id, @set_counter_top_songs) %><br />
+              </p>
+              <p class="radiostation-song-counter delay-3">
+                <%= radio_538_top_song_count(top_song.id, @set_counter_top_songs) %><br />
+              </p>
+              <p class="radiostation-song-counter delay-4">
+                <%= q_music_top_song_count(top_song.id, @set_counter_top_songs) %><br />
+              </p>
+              <p class="radiostation-song-counter delay-5">
+                <%= radio_veronica_top_song_count(top_song.id, @set_counter_top_songs) %><br />
+              </p>
+              <p class="radiostation-song-counter delay-6">
+                <%= sublime_fm_top_song_count(top_song.id, @set_counter_top_songs) %><br />
+              </p>
+              <p class="radiostation-song-counter delay-7">
+                <%= grootnieuws_radio_top_song_count(top_song.id, @set_counter_top_songs) %><br />
+              </p>
+            </td>
+          </tr>
         </table>
       </td>
+      <!-- <table class="table table-striped">
+        <tr>
+
+        </tr>
+      </table> -->
     </tr>
   <% idx_song += 1 %>
 <% end %>
@@ -58,4 +117,9 @@
   $(".audio-play").on("ended", function() {
     $(this).next("i").text("play_circle_outline");
   });
+
+  $(".top-song-details").click(function() {
+    $(this).next("tr").fadeToggle();
+    $(this).next("tr").find("p.radiostation-song-counter").toggleClass("animated fadeInUp")
+  })
 </script>
