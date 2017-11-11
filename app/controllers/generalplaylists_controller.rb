@@ -139,19 +139,19 @@ class GeneralplaylistsController < ApplicationController
         if @songs_counter.present?
           @songs_counter = @songs_counter.where("generalplaylists.created_at > ?", 1.day.ago)
         elsif @songs_counter.nil?
-          @songs_counter = Generalplaylist.where("created_at > ?", 1.day.ago) unless @songs_counter.empty?
+          @songs_counter = Generalplaylist.where("created_at > ?", 1.day.ago)
         end
       when "week"
         if @songs_counter.present?
           @songs_counter = @songs_counter.where("generalplaylists.created_at > ?", 1.week.ago)
         elsif @songs_counter.nil?
-          @songs_counter = Generalplaylist.where("created_at > ?", 1.week.ago) unless @songs_counter.empty?
+          @songs_counter = Generalplaylist.where("created_at > ?", 1.week.ago)
         end
       when "month"
         if @songs_counter.present?
           @songs_counter = @songs_counter.where("generalplaylists.created_at > ?", 1.month.ago)
         elsif @songs_counter.nil?
-          @songs_counter = Generalplaylist.where("created_at > ?", 1.month.ago) unless @songs_counter.empty?
+          @songs_counter = Generalplaylist.where("created_at > ?", 1.month.ago)
         end
       when "year"
         if @songs_counter.present?
@@ -170,25 +170,25 @@ class GeneralplaylistsController < ApplicationController
         if @artists_counter.present?
           @artists_counter = @artists_counter.where("generalplaylists.created_at > ?", 1.day.ago)
         else @artists_counter.nil?
-          @artists_counter = Generalplaylist.where("created_at > ?", 1.day.ago) unless @artists_counter.empty?
+          @artists_counter = Generalplaylist.where("created_at > ?", 1.day.ago)
         end
       when "week"
         if @artists_counter.present?
           @artists_counter = @artists_counter.where("generalplaylists.created_at > ?", 1.week.ago)
         else @artists_counter.nil?
-          @artists_counter = Generalplaylist.where("created_at > ?", 1.week.ago) unless @artists_counter.empty?
+          @artists_counter = Generalplaylist.where("created_at > ?", 1.week.ago)
         end
       when "month"
         if @artists_counter.present?
           @artists_counter = @artists_counter.where("generalplaylists.created_at > ?", 1.month.ago)
         else @artists_counter.nil?
-          @artists_counter = Generalplaylist.where("created_at > ?", 1.month.ago) unless @artists_counter.empty?
+          @artists_counter = Generalplaylist.where("created_at > ?", 1.month.ago)
         end
       when "year"
         if @artists_counter.present?
           @artists_counter = @artists_counter.where("generalplaylists.created_at > ?", 1.year.ago)
         else @artists_counter.nil?
-          @artists_counter = Generalplaylist.where("created_at > ?", 1.year.ago) unless @artists_counter.empty?
+          @artists_counter = Generalplaylist.where("created_at > ?", 1.year.ago)
         end
       when "total"
         @artists_counter
