@@ -167,53 +167,61 @@
   })();
 
   // AJAX requests playlists
-  $("#search_playlists_form input").keyup(function() {
+  $("#search_playlists_form input").keyup(function() { searchPlaylists(500); });
+  $("#set_counter_playlists").change(function() { searchPlaylists(0); });
+  $("#playlists_radiostation").change(function() { searchPlaylists(0); });
+  $("#set_limit_playlists").change(function() { searchPlaylists(0); });
+
+  function searchPlaylists(delayTime) {
+    var data = {};
+    data.search_playlists = $("#search_playlists").val();
+    data.set_counter_playlists = $("#set_counter_playlists").val();
+    data.playlists_radiostation_id = $("#playlists_radiostation").val();
+    data.set_limit_playlists = $("#set_limit_playlists").val();
+    data.target = 'playlists-table';
+
     delay(function() {
-      $.get($("#search_playlists_form").attr("action"), {search_playlists: $("#search_playlists").val(), set_counter_playlists: $("#set_counter_playlists").val(), radiostation_id: $("#playlists_radiostation").val(), set_limit_playlists: $("#set_limit_playlists").val(), target: 'playlists-table' }, null, "script" );
-    }, 500);
-  });
-  $("#set_counter_playlists").change(function() {
-    $.get($("#search_playlists_form").attr("action"), {search_playlists: $("#search_playlists").val(), set_counter_playlists: $("#set_counter_playlists").val(), radiostation_id: $("#playlists_radiostation").val(), set_limit_playlists: $("#set_limit_playlists").val(), target: 'playlists-table' }, null, "script" );
-  });
-  $("#playlists_radiostation").change(function() {
-    $.get($("#search_playlists_form").attr("action"), {search_playlists: $("#search_playlists").val(), set_counter_playlists: $("#set_counter_playlists").val(), radiostation_id: $("#playlists_radiostation").val(), set_limit_playlists: $("#set_limit_playlists").val(), target: 'playlists-table' }, null, "script" );
-  });
-  $("#set_limit_playlists").change(function() {
-    $.get($("#search_playlists_form").attr("action"), {search_playlists: $("#search_playlists").val(), set_counter_playlists: $("#set_counter_playlists").val(), radiostation_id: $("#playlists_radiostation").val(), set_limit_playlists: $("#set_limit_playlists").val(), target: 'playlists-table' }, null, "script" );
-  });
+      $.get("<%= generalplaylists_path %>", data, null, "script" );
+    }, delayTime);
+  }
 
   // AJAX request top songs
-  $("#search_top_song_form input").keyup(function() {
+  $("#search_top_song_form input").keyup(function() { searchSongs(500); });
+  $("#set_counter_top_songs").change(function() { searchSongs(0); });
+  $("#top_songs_radiostation").change(function() { searchSongs(0); });
+  $("#set_limit_songs").change(function() { searchSongs(0); });
+
+  function searchSongs(delayTime) {
+    var data = {};
+    data.search_top_song = $("#search_top_song").val();
+    data.set_counter_top_songs = $("#set_counter_top_songs").val();
+    data.songs_radiostation_id = $("#top_songs_radiostation").val();
+    data.set_limit_songs = $("#set_limit_songs").val();
+    data.target = 'top-songs-table';
+
     delay(function() {
-      $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), radiostation_id: $("#top_songs_radiostation").val(), set_limit_songs: $("#set_limit_songs").val(), target: 'top-songs-table'}, null, "script");
-    }, 500);
-  });
-  $("#set_counter_top_songs").change(function() {
-    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), radiostation_id: $("#top_songs_radiostation").val(), set_limit_songs: $("#set_limit_songs").val(), target: 'top-songs-table'}, null, "script");
-  });
-  $("#top_songs_radiostation").change(function() {
-    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), radiostation_id: $("#top_songs_radiostation").val(), set_limit_songs: $("#set_limit_songs").val(), target: 'top-songs-table'}, null, "script");
-  });
-  $("#set_limit_songs").change(function() {
-    $.get($("#search_top_song_form").attr("action"), {search_top_song: $("#search_top_song").val(), set_counter_top_songs: $("#set_counter_top_songs").val(), radiostation_id: $("#top_songs_radiostation").val(), set_limit_songs: $("#set_limit_songs").val(), target: 'top-songs-table'}, null, "script");
-  });
+      $.get("<%= generalplaylists_path %>", data, null, "script");
+    }, delayTime);
+  }
 
   // AJAX requests artists
-  $("#search_top_artist_form input").keyup(function() {
-    delay(function() {
-      $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set_counter_top_artists").val(), radiostation_id: $("#top_artists_radiostation").val(), set_limit_artists: $("#set_limit_artists").val(), target: 'top-artists-table'}, null, "script");
-    }, 500);
-  })
-  $("#set_counter_top_artists").change(function() {
-    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set_counter_top_artists").val(), radiostation_id: $("#top_artists_radiostation").val(), set_limit_artists: $("#set_limit_artists").val(), target: 'top-artists-table'}, null, "script");
-  });
-  $("#top_artists_radiostation").change(function() {
-    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set_counter_top_artists").val(), radiostation_id: $("#top_artists_radiostation").val(), set_limit_artists: $("#set_limit_artists").val(), target: 'top-artists-table'}, null, "script");
-  });
-  $("#set_limit_artists").change(function() {
-    $.get($("#search_top_artist_form").attr("action"), {search_top_artist: $("#search_top_artist").val(), set_counter_top_artists: $("#set_counter_top_artists").val(), radiostation_id: $("#top_artists_radiostation").val(), set_limit_artists: $("#set_limit_artists").val(), target: 'top-artists-table'}, null, "script");
-  });
+  $("#search_top_artist_form input").keyup(function() { searchArtists(500); });
+  $("#set_counter_top_artists").change(function() { searchArtists(0); });
+  $("#top_artists_radiostation").change(function() { searchArtists(0); });
+  $("#set_limit_artists").change(function() { searchArtists(0); });
 
+  function searchArtists(delayTime) {
+    var data = {};
+    data.search_top_artist = $("#search_top_artist").val();
+    data.set_counter_top_artists = $("#set_counter_top_artists").val();
+    data.artists_radiostation_id = $("#top_artists_radiostation").val();
+    data.set_limit_artists = $("#set_limit_artists").val();
+    data.target = 'top-artists-table';
+
+    delay(function() {
+      $.get($("#search_top_artist_form").attr("action"), data, null, "script");
+    }, delayTime);
+  }
 </script>
 
 <script>
