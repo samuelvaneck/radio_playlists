@@ -2,13 +2,6 @@ class GeneralplaylistsController < ApplicationController
 
   def index
 
-  if user_signed_in?
-    # @me = RSpotify::User.find(current_user.uid)
-    # @spotify_user_playlists = @me.playlists.map { |p| p.name }
-    # @track = RSpotify::Track.search("There's Nothing Holdin' Me Back Shawn Mendes").first.external_urls["spotify"]
-    # @track_album = RSpotify::Track.search("There's Nothing Holdin' Me Back Shawn Mendes").first.album.images[1]["url"]
-  end
-
   # Playlist search options
     if params[:search_playlists].present? && params[:playlists_radiostation_id].present? && params[:set_counter_playlists].present?
       @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:playlists_radiostation_id]}").limit(params[:set_limit_playlists])
@@ -83,7 +76,6 @@ class GeneralplaylistsController < ApplicationController
 
     @set_counter_top_songs = params[:set_counter_top_songs]
 
-
   # Artist search options
     if params[:search_top_artist].present? && params[:artists_radiostation_id].present? && params[:set_counter_top_artists].present?
       @artists_counter = Generalplaylist.joins(:artist).where("radiostation_id = ? AND artists.name ILIKE ?", params[:artists_radiostation_id], "%#{params[:search_top_artist]}%").limit(params[:set_limit_artists])
@@ -144,39 +136,71 @@ class GeneralplaylistsController < ApplicationController
   def set_time_songs
     case params[:set_counter_top_songs]
       when "day"
-        @songs_counter = @songs_counter.present? || @songs_counter.empty? ? @songs_counter.where("generalplaylists.created_at > ?", 1.day.ago) : @songs_counter = Generalplaylist.where("created_at > ?", 1.day.ago)
+        if @songs_counter.present?
+          @songs_counter = @songs_counter.where("generalplaylists.created_at > ?", 1.day.ago)
+        elsif @songs_counter.nil?
+          @songs_counter = Generalplaylist.where("created_at > ?", 1.day.ago) unless @songs_counter.empty?
+        end
       when "week"
-        @songs_counter = @songs_counter.present? || @songs_counter.empty? ? @songs_counter.where("generalplaylists.created_at > ?", 1.week.ago) : Generalplaylist.where("created_at > ?", 1.week.ago)
+        if @songs_counter.present?
+          @songs_counter = @songs_counter.where("generalplaylists.created_at > ?", 1.week.ago)
+        elsif @songs_counter.nil?
+          @songs_counter = Generalplaylist.where("created_at > ?", 1.week.ago) unless @songs_counter.empty?
+        end
       when "month"
-        @songs_counter = @songs_counter.present? || @songs_counter.empty? ? @songs_counter.where("generalplaylists.created_at > ?", 1.month.ago) : Generalplaylist.where("created_at > ?", 1.month.ago)
+        if @songs_counter.present?
+          @songs_counter = @songs_counter.where("generalplaylists.created_at > ?", 1.month.ago)
+        elsif @songs_counter.nil?
+          @songs_counter = Generalplaylist.where("created_at > ?", 1.month.ago) unless @songs_counter.empty?
+        end
       when "year"
-        @songs_counter = @songs_counter.present? || @songs_counter.empty? ? @songs_counter.where("generalplaylists.created_at > ?", 1.year.ago) : Generalplaylist.where("created_at > ?", 1.year.ago)
+        if @songs_counter.present?
+          @songs_counter = @songs_counter.where("generalplaylists.created_at > ?", 1.year.ago)
+        elsif @songs_counter.nil?
+          @songs_counter = Generalplaylist.where("created_at > ?", 1.year.ago)
+        end
       when "total"
         @songs_counter
     end
   end
 
-  def group_songs
-    @songs_counter = @songs_counter.group_by(&:song_id).map { |id, song| [id, song.count] }.take(params[:set_limit_songs].to_i)
-  end
-
   def set_time_artists
     case params[:set_counter_top_artists]
       when "day"
-        @artists_counter = @artists_counter.present? || @artists_counter.empty? ? @artists_counter.where("generalplaylists.created_at > ?", 1.day.ago) : Generalplaylist.where("created_at > ?", 1.day.ago)
+        if @artists_counter.present?
+          @artists_counter = @artists_counter.where("generalplaylists.created_at > ?", 1.day.ago)
+        else @artists_counter.nil?
+          @artists_counter = Generalplaylist.where("created_at > ?", 1.day.ago) unless @artists_counter.empty?
+        end
       when "week"
-        @artists_counter = @artists_counter.present? || @artists_counter.empty? ? @artists_counter.where("generalplaylists.created_at > ?", 1.week.ago) : Generalplaylist.where("created_at > ?", 1.week.ago)
+        if @artists_counter.present?
+          @artists_counter = @artists_counter.where("generalplaylists.created_at > ?", 1.week.ago)
+        else @artists_counter.nil?
+          @artists_counter = Generalplaylist.where("created_at > ?", 1.week.ago) unless @artists_counter.empty?
+        end
       when "month"
-        @artists_counter = @artists_counter.present? || @artists_counter.empty? ? @artists_counter.where("generalplaylists.created_at > ?", 1.month.ago) : Generalplaylist.where("created_at > ?", 1.month.ago)
+        if @artists_counter.present?
+          @artists_counter = @artists_counter.where("generalplaylists.created_at > ?", 1.month.ago)
+        else @artists_counter.nil?
+          @artists_counter = Generalplaylist.where("created_at > ?", 1.month.ago) unless @artists_counter.empty?
+        end
       when "year"
-        @artists_counter = @artists_counter.present? || @artists_counter.empty? ? @artists_counter.where("generalplaylists.created_at > ?", 1.year.ago) : Generalplaylist.where("created_at > ?", 1.year.ago)
+        if @artists_counter.present?
+          @artists_counter = @artists_counter.where("generalplaylists.created_at > ?", 1.year.ago)
+        else @artists_counter.nil?
+          @artists_counter = Generalplaylist.where("created_at > ?", 1.year.ago) unless @artists_counter.empty?
+        end
       when "total"
         @artists_counter
       end
   end
 
+  def group_songs
+    @songs_counter = @songs_counter.group_by(&:song_id).map { |id, song| [id, song.count] }.sort_by { |song_id, counter| counter }.reverse.take(params[:set_limit_songs].to_i)
+  end
+
   def group_artists
-    @artists_counter = @artists_counter.group_by(&:artist_id).map {|id, artist| [id, artist.count]}.take(params[:set_limit_artists].to_i)
+    @artists_counter = @artists_counter.group_by(&:artist_id).map {|id, artist| [id, artist.count]}.sort_by { |artist_id, counter| counter }.reverse.take(params[:set_limit_artists].to_i)
   end
 
 end

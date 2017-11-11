@@ -219,7 +219,7 @@
     data.target = 'top-artists-table';
 
     delay(function() {
-      $.get($("#search_top_artist_form").attr("action"), data, null, "script");
+      $.get($("<%= generalplaylists_path %>").attr("action"), data, null, "script");
     }, delayTime);
   }
 </script>
