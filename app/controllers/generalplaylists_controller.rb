@@ -40,21 +40,24 @@ class GeneralplaylistsController < ApplicationController
 
   # Song search options
     if params[:search_top_song].present? && params[:songs_radiostation_id].present? && params[:set_counter_top_songs].present?
-      @songs_counter = Generalplaylist.joins(:song).where("radiostation_id = ? AND songs.fullname ILIKE ?", params[:songs_radiostation_id], "%#{params[:search_top_song]}%").limit(params[:set_limit_songs].to_i)
-      set_time_songs and group_songs
+      set_time_songs
+      @songs_counter = @songs_counter.joins(:song).where("radiostation_id = ? AND songs.fullname ILIKE ?", params[:songs_radiostation_id], "%#{params[:search_top_song]}%").limit(params[:set_limit_songs].to_i)
+      group_songs
 
     elsif params[:search_top_song].present? && params[:songs_radiostation_id].present?
       radiostation = Radiostation.find(params[:songs_radiostation_id])
       @songs_counter = Generalplaylist.joins(:song).where("radiostation_id = ? AND songs.fullname ILIKE ?", radiostation.id, "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
 
     elsif params[:search_top_song].present? && params[:set_counter_top_songs].present?
-      @songs_counter = Generalplaylist.joins(:song).where("songs.fullname ILIKE ?", "%#{params[:search_top_song]}%").limit(params[:set_limit_songs].to_i)
-      set_time_songs and group_songs
+      set_time_songs
+      @songs_counter = @songs_counter.joins(:song).where("songs.fullname ILIKE ?", "%#{params[:search_top_song]}%").limit(params[:set_limit_songs].to_i)
+      group_songs
 
     elsif params[:songs_radiostation_id].present? && params[:set_counter_top_songs].present?
       radiostation = Radiostation.find(params[:songs_radiostation_id])
-      @songs_counter = Generalplaylist.where("radiostation_id = ?", params[:songs_radiostation_id]).limit(params[:set_limit_songs].to_i)
-      set_time_songs and group_songs
+      set_time_songs
+      @songs_counter = @songs_counter.where("radiostation_id = ?", params[:songs_radiostation_id]).limit(params[:set_limit_songs].to_i)
+      group_songs
 
     elsif params[:search_top_song].present?
       @songs_counter = Generalplaylist.joins(:song).where("songs.fullname ILIKE ?", "%#{params[:search_top_song]}%").group(:song_id).count.sort_by{|song_id, counter| counter}.reverse.take(params[:set_limit_songs].to_i)
@@ -78,21 +81,25 @@ class GeneralplaylistsController < ApplicationController
 
   # Artist search options
     if params[:search_top_artist].present? && params[:artists_radiostation_id].present? && params[:set_counter_top_artists].present?
-      @artists_counter = Generalplaylist.joins(:artist).where("radiostation_id = ? AND artists.name ILIKE ?", params[:artists_radiostation_id], "%#{params[:search_top_artist]}%").limit(params[:set_limit_artists])
-      set_time_artists and group_artists
+      set_time_artists
+      @artists_counter = @artists_counter.joins(:artist).where("radiostation_id = ? AND artists.name ILIKE ?", params[:artists_radiostation_id], "%#{params[:search_top_artist]}%").limit(params[:set_limit_artists])
+      group_artists
 
 
     elsif params[:search_top_artist].present? && params[:artists_radiostation_id].present?
-      @artists_counter = Generalplaylist.joins(:artist).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").limit(params[:set_limit_artists].to_i)
-      set_time_artists and group_artists
+      set_time_artists
+      @artists_counter = @artists_counter.joins(:artist).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").limit(params[:set_limit_artists].to_i)
+      group_artists
 
     elsif params[:search_top_artist].present? && params[:set_counter_top_artists].present?
-      @artists_counter = Generalplaylist.joins(:artist).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").limit(params[:set_limit_artists])
-      set_time_artists and group_artists
+      set_time_artists
+      @artists_counter = @artists_counter.joins(:artist).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").limit(params[:set_limit_artists])
+      group_artists
 
     elsif params[:artists_radiostation_id].present? && params[:set_counter_top_artists].present?
-      @artists_counter = Generalplaylist.where("radiostation_id = ?", params[:artists_radiostation_id]).limit(params[:set_limit_artists].to_i)
-      set_limit_artists and group_artists
+      set_time_artists
+      @artists_counter = @artists_counter.where("radiostation_id = ?", params[:artists_radiostation_id]).limit(params[:set_limit_artists].to_i)
+      group_artists
 
     elsif params[:search_top_artist].present?
       @artists_counter = Generalplaylist.joins(:artist).where("artists.name ILIKE ?", "%#{params[:search_top_artist]}%").group(:artist_id).count.sort_by{|artist_id, counter| counter}.reverse.take(params[:set_limit_artists].to_i)

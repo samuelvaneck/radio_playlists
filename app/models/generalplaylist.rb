@@ -402,6 +402,17 @@ class Generalplaylist < ActiveRecord::Base
     Artist.all.order(total_counter: :DESC)
   end
 
+  def self.check_all_radiostations
+    radio_veronica_check
+    radio_538_check
+    radio_2_check
+    radio_3fm_check
+    sky_radio_check
+    q_music_check
+    sublime_fm_check
+    grootnieuws_radio_check
+  end
+
   # fetch the top 10 songs played from a radiostation
   def self.top_songs_radiostation(radiostation_id)
     # get all the songs played by the radiostation
