@@ -217,9 +217,10 @@
     data.artists_radiostation_id = $("#top_artists_radiostation").val();
     data.set_limit_artists = $("#set_limit_artists").val();
     data.target = 'top-artists-table';
+    console.log(data);
 
     delay(function() {
-      $.get($("<%= generalplaylists_path %>").attr("action"), data, null, "script");
+      $.get("<%= generalplaylists_path %>", data, null, "script");
     }, delayTime);
   }
 </script>
