@@ -51,6 +51,22 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'listen'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+  gem 'launchy'
+  gem 'guard-rspec'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'timecop'
+  gem 'rubocop'
+  gem 'brakeman'
+  gem 'simplecov'
 end
 
 group :development do
