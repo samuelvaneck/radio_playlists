@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     parallelism: 3
-    working_directory: ~/circleci-demo-ruby-rails
+    working_directory: ~/circleci-radio-playlists
     docker:
       - image: circleci/ruby:2.4.1-node
         environment:
@@ -10,12 +10,12 @@ jobs:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           PGHOST: 127.0.0.1
-          PGUSER: circleci-demo-ruby
+          PGUSER: circleci-radio-playlists
           RAILS_ENV: test
       - image: circleci/postgres:9.5-alpine
         environment:
-          POSTGRES_USER: circleci-demo-ruby
-          POSTGRES_DB: rails_blog
+          POSTGRES_USER: circleci-radio-playlists
+          POSTGRES_DB: radio_playlists_test
           POSTGRES_PASSWORD: ""
     steps:
       - checkout
