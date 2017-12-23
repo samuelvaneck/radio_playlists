@@ -4,7 +4,7 @@ jobs:
     parallelism: 3
     working_directory: ~/circleci-demo-ruby-rails
     docker:
-      - image: circleci/ruby:2.4-node
+      - image: circleci/ruby:2.4.1-node
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
