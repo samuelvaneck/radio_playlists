@@ -11,8 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
-||||||| merged common ancestors
-=======
 *.rbc
 capybara-*.html
 .rspec
@@ -58,5 +56,4 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
-config/database.yml
 config/secrets.yml
