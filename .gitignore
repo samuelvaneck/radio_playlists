@@ -32,11 +32,10 @@ config/secrets.yml
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
 .env
-.env.devlopment
-.env.test
+.env.development
 
 ## Environment normalization:
-/.bundle
+/.bundle.env.test
 /vendor/bundle
 
 # these should all be checked in to normalize the environment:
