@@ -59,6 +59,7 @@ group :development, :test do
   gem 'chromedriver-helper'
   gem 'launchy'
   gem 'guard-rspec'
+  gem 'dotenv-rails'
 end
 
 group :test do
