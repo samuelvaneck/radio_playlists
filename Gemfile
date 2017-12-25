@@ -60,6 +60,7 @@ group :development, :test do
   gem 'launchy'
   gem 'guard-rspec'
   gem 'dotenv-rails'
+  gem 'rspec_junit_formatter'
 end
 
 group :test do
