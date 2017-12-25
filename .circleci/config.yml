@@ -78,3 +78,7 @@ jobs:
       # Save test results for timing analysis
       - store_test_results:
           path: test_results
+
+test:
+  override:
+    - RAILS_ENV=test bundle exec rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
