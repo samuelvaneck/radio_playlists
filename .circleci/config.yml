@@ -17,6 +17,7 @@ jobs:
           POSTGRES_USER: circleci-radio-playlists
           POSTGRES_DB: radio_playlists_test
           POSTGRES_PASSWORD: ""
+      - image: selenium/standalone-chrome:3.1.0
     steps:
       - checkout
 
