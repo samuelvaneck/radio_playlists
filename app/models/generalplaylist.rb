@@ -192,11 +192,14 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.q_music_check
-    url = "http://qmusic.nl/playlist"
+    url = "https://playlist24.nl/qmusic-playlist/"
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath("//div[contains(@id , 'audioplayer-content')]/div[1]/div[1]/div[1]/span[1]").text
-    artist_name = doc.xpath("//div[contains(@id , 'audioplayer-content')]/div[1]/div[1]/div[1]/span[2]/span[2]").text.split.map(&:capitalize).join(' ')
-    title = doc.xpath("//div[contains(@id , 'audioplayer-content')]/div[1]/div[1]/div[1]/span[2]/span[1]").text.split.map(&:capitalize).join(' ')
+    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
+    artist_name = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a").text.strip
+    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
+    # time = doc.xpath("//div[contains(@id , 'audioplayer-content')]/div[1]/div[1]/div[1]/span[1]").text
+    # artist_name = doc.xpath("//div[contains(@id , 'audioplayer-content')]/div[1]/div[1]/div[1]/span[2]/span[2]").text.split.map(&:capitalize).join(' ')
+    # title = doc.xpath("//div[contains(@id , 'audioplayer-content')]/div[1]/div[1]/div[1]/span[2]/span[1]").text.split.map(&:capitalize).join(' ')
 
     Generalplaylist.title_check(title)
 
