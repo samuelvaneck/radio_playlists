@@ -3,14 +3,17 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server "radioplaylists.samuelvaneck.com", user: "deploy", roles: %w{app db web}
+server "radioplaylists.samuelvaneck.com",
+    user: "deploy",
+    roles: %w{app db web}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 
 
 # role-based syntax
-# ==================
+# ==================     forward_agent: false,
+#     auth_methods: %w(publickey password)
 
 # Defines a role with one or multiple servers. The primary server in each
 # group is considered to be the first unless any hosts have the primary
