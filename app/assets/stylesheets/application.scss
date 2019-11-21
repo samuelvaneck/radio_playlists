@@ -15,7 +15,7 @@
  *= require jquery-ui
  */
 
-@import "materialize/components/color";
+@import "materialize/components/color-variables";
 $primary-color: color("blue", "lighten-2") !default;
 $secondary-color: color("amber", "accent-4") !default;
 @import 'materialize';

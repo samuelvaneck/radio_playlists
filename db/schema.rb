@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605140254) do
+ActiveRecord::Schema.define(version: 2017_06_05_140254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "artists", id: :serial, force: :cascade do |t|
+  create_table "artists", force: :cascade do |t|
     t.string "name"
     t.string "image"
     t.string "genre"
@@ -28,20 +28,11 @@ ActiveRecord::Schema.define(version: 20170605140254) do
     t.integer "total_counter", default: 0
   end
 
-  create_table "counters", id: :serial, force: :cascade do |t|
-    t.integer "week"
-    t.integer "month"
-    t.integer "song_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["song_id"], name: "index_counters_on_song_id"
-  end
-
-  create_table "generalplaylists", id: :serial, force: :cascade do |t|
+  create_table "generalplaylists", force: :cascade do |t|
     t.string "time"
-    t.integer "song_id"
-    t.integer "radiostation_id"
-    t.integer "artist_id"
+    t.bigint "song_id"
+    t.bigint "radiostation_id"
+    t.bigint "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_generalplaylists_on_artist_id"
@@ -49,14 +40,14 @@ ActiveRecord::Schema.define(version: 20170605140254) do
     t.index ["song_id"], name: "index_generalplaylists_on_song_id"
   end
 
-  create_table "radiostations", id: :serial, force: :cascade do |t|
+  create_table "radiostations", force: :cascade do |t|
     t.string "name"
     t.string "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "songs", id: :serial, force: :cascade do |t|
+  create_table "songs", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -65,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170605140254) do
     t.integer "month_counter", default: 0
     t.integer "year_counter", default: 0
     t.integer "total_counter", default: 0
-    t.integer "artist_id"
+    t.bigint "artist_id"
     t.text "fullname"
     t.text "song_preview"
     t.text "artwork_url"
@@ -97,7 +88,6 @@ ActiveRecord::Schema.define(version: 20170605140254) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "counters", "songs"
   add_foreign_key "generalplaylists", "artists"
   add_foreign_key "generalplaylists", "radiostations"
   add_foreign_key "generalplaylists", "songs"
