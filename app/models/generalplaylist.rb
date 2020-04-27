@@ -5,223 +5,132 @@ class Generalplaylist < ActiveRecord::Base
 
   require 'nokogiri'
   require 'open-uri'
-  # require 'json'
-  # require 'date'
-  # require 'rspotify'
 
   # Check the Radio Veronica song
   def self.radio_veronica_check
     url = 'https://playlist24.nl/radio-veronica-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
-    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]').text.strip
-    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
+    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
+    return unless Generalplaylist.title_check(title)
 
-    Generalplaylist.title_check(title)
+    song = Generalplaylist.song_check(songs, artist, title)
+    radiostation = Radiostation.find_or_create_by(name: 'Radio Veronica')
 
-    # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist_name)
-    # Search for all the songs with title
-    songs = Song.where(title: title)
-    # Add the songs variable to the song_check methode. Return @song variable
-    Generalplaylist.song_check(songs, artist, title)
-    # Find or create the Radiostation with name "Radio Veronica"
-    radiostation = Radiostation.find_or_create_by(name: "Radio Veronica")
-
-    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
   end
 
   # Check the Radio 538 song
   def self.radio_538_check
     url = 'https://playlist24.nl/radio-538-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
-    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]').text.strip
-    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
+    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
+    return unless Generalplaylist.title_check(title)
 
-    Generalplaylist.title_check(title)
-
-    # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist_name)
-    # Search for all the songs with title
-    songs = Song.where(title: title)
-    # Add the songs variable to the song_check methode. Returns @song variable
-    Generalplaylist.song_check(songs, artist, title)
-    # Find or create the Radiostation with name "Radio 538"
+    song = Generalplaylist.song_check(songs, artist, title)
     radiostation = Radiostation.find_or_create_by(name: 'Radio 538')
 
-    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
   end
 
   # Check Radio 2 song
   def self.radio_2_check
-    topsong = 'Topsong: '
-    hi = 'Hi: '
-    nieuwe_naam = 'Nieuwe Naam: '
-
     url = 'https://playlist24.nl/radio-2-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
-    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a').text.strip
-    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
+    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
+    return unless Generalplaylist.title_check(title)
 
-    Generalplaylist.title_check(title)
+    song = Generalplaylist.song_check(songs, artist, title)
+    radiostation = Radiostation.find_or_create_by(name: 'Radio 2')
 
-    # check if the variables topsong, hi or nieuwe_naam are in the title
-    # if so they will be sliced off
-    if title.include?(topsong)
-      title.gsub!(/\:/, "")
-      title.remove!('Topsong ')
-    elsif title.include?(hi)
-      title.gsub!(/\:/, '')
-      title.remove!('Hi ')
-    elsif title.include?(nieuwe_naam)
-      title.gsub!(/\:/, '')
-      title.remove!('Nieuwe Naam ')
-    end
-
-    # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist_name)
-    # Search for all the songs with title
-    songs = Song.where(title: title)
-    # Add the songs variable to the song_check methode. Returns @song variable
-    Generalplaylist.song_check(songs, artist, title)
-    # Find or create the Radiostation with name "Radio 2"
-    radiostation = Radiostation.find_or_create_by(name: "Radio 2")
-
-    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
   end
 
   # Check Sublime FM songs
   def self.sublime_fm_check
     url = 'https://playlist24.nl/sublime-fm-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
-    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a').text.strip
-    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
+    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
+    return unless Generalplaylist.title_check(title)
 
-    Generalplaylist.title_check(title)
+    song = Generalplaylist.song_check(songs, artist, title)
+    radiostation = Radiostation.find_or_create_by(name: 'Sublime FM')
 
-    # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist_name)
-    # Search for all the songs with title
-    songs = Song.where(title: title)
-    # Add the songs variable to the song_check methode. Returns @song variable
-    Generalplaylist.song_check(songs, artist, title)
-    # Find or create the Radiostation with name "Sublime FM"
-    radiostation = Radiostation.find_or_create_by(name: "Sublime FM")
-
-    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
   end
 
   # Check Groot Nieuws Radio songs
   def self.grootnieuws_radio_check
     url = 'https://www.grootnieuwsradio.nl/muziek/playlist'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[1]/span').text.split.drop(1).join(" ")
+    time = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[1]/span').text
     artist_name = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[3]').text.split.map(&:capitalize).join(" ")
     title = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[2]').text.split.map(&:capitalize).join(" ")
     return false if artist_name.blank?
 
     Generalplaylist.title_check(title)
 
-    # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist_name)
-    # Search for all the songs with title
     songs = Song.where(title: title)
-    # Add the songs variable to the song_check methode. Returns @song variable
-    Generalplaylist.song_check(songs, artist, title)
-    # Find or create the Radiostation with name "Groot Nieuws Radio"
-    radiostation = Radiostation.find_or_create_by(name: "Groot Nieuws Radio")
+    song = Generalplaylist.song_check(songs, artist, title)
+    radiostation = Radiostation.find_or_create_by(name: 'Groot Nieuws Radio')
 
-    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
   end
 
   def self.sky_radio_check
     url = 'https://playlist24.nl/skyradio-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
-    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]').text.strip
-    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
+    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
+    return unless Generalplaylist.title_check(title)
 
-    # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist_name)
-    # Search for all the songs with title
-    songs = Song.where(title: title)
-    # Add the songs variable to the song_check methode. Returns @song variable
-    Generalplaylist.song_check(songs, artist, title)
-    # Find or create the Radiostation with name "Sky Radio"
-    radiostation = Radiostation.find_or_create_by(name: "Sky Radio")
+    song = Generalplaylist.song_check(songs, artist, title)
+    radiostation = Radiostation.find_or_create_by(name: 'Sky Radio')
 
-    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
-
+    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
   end
 
   def self.radio_3fm_check
     url = 'https://playlist24.nl/3fm-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
-    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a').text.strip
-    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
+    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
+    return unless Generalplaylist.title_check(title)
 
-    # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist_name)
-    # Search for all the songs with title
-    songs = Song.where(title: title)
-    # Add the songs variable to the song_check methode. Returns @song variable
-    Generalplaylist.song_check(songs, artist, title)
-    # Find or create the Radiostation with name "Radio 3fm"
+    song = Generalplaylist.song_check(songs, artist, title)
     radiostation = Radiostation.find_or_create_by(name: 'Radio 3FM')
 
-    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
   end
 
   def self.q_music_check
     url = 'https://playlist24.nl/qmusic-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
-    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a').text.strip
-    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
+    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
+    return unless Generalplaylist.title_check(title)
 
-    Generalplaylist.title_check(title)
+    song = Generalplaylist.song_check(songs, artist, title)
+    radiostation = Radiostation.find_or_create_by(name: 'Qmusic')
 
-    # Find the artist name in the Artist database or create a new record
-    artist = Artist.find_or_create_by(name: artist_name)
-    # Search for all the songs with title
-    songs = Song.where(title: title)
-    # Add the songs variable to the song_check methode. Returns @song variable
-    Generalplaylist.song_check(songs, artist, title)
-    # Find or create the Radiostation with name "Qmusic"
-    radiostation = Radiostation.find_or_create_by(name: "Qmusic")
-
-    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
   end
 
   # Methode for checking if the title of the song is OK
   def self.title_check(title)
-    if title.count("0-9") > 4
-      puts "found #{title.count("0-9")} numbers in the title"
-      return false
-    elsif title.count("/") > 1
-      puts "found #{title.count("/") > 1} / in the title"
-      return false
+    if title.count('0-9') > 4
+      Rails.logger.info "found #{title.count('0-9')} numbers in the title"
+      false
+    elsif title.count('/') > 1
+      Rails.logger.info "found #{title.count('/')} / in the title"
+      false
     elsif title.count("'") > 2
-      puts "found #{title.count("'") > 2} ' in the title"
-      return false
-    elsif title.count("-") > 0
-      puts "found #{title.count("-") > 0} - in the title"
-      return false
-    elsif title.count(".") > 1
-      puts "found #{title.count(".") > 1} . in the title"
-      return false
+      Rails.logger.info "found #{title.count("'")} ' in the title"
+      false
+    elsif title.count('-').positive?
+      Rails.logger.info "found #{title.count('-')} - in the title"
+      false
+    elsif title.count('.') > 1
+      Rails.logger.info "found #{title.count('.')} . in the title"
+    else
+      true
     end
   end
 
@@ -230,22 +139,24 @@ class Generalplaylist < ActiveRecord::Base
   # if the artist with the some song is not in the database the song with artist Id must be added
   def self.song_check(songs, artist, title)
     # If there is no song with the same title create a new one
-    if songs.blank?
-      @song = Song.find_or_create_by(title: title, artist: artist)
-    # If the is a song with the same title check the artist
-    else
-      songs.each do |s|
-        artist_name = s.artist.name
-        check_artist = Artist.where("name = ?", artist_name)
-        # Ef there is no song title with the same artist create a new one
-        if check_artist.blank?
-          @song = Song.find_or_create_by(title: title, artist: artist)
-        # Else grap the song record with the same title and artist id
-        else
-          @song = Song.find_by_title_and_artist_id(title, artist.id)
-        end
-      end
-    end
+    song = if songs.blank?
+             Song.find_or_create_by(title: title, artist: artist)
+           # If the is a song with the same title check the artist
+           else
+             songs.each do |s|
+               artist_name = s.artist.name
+               check_artist = Artist.where(name: artist_name)
+               if check_artist.blank?
+                 # If there is no song title with the same artist create a new one
+                 Song.find_or_create_by(title: title, artist: artist)
+               else
+                 # Else grap the song record with the same title and artist id
+                 Song.find_by(title: title, artist: artist)
+               end
+             end
+           end
+
+    song = song.first if song.is_a?(Array)
 
     # Apple Music lookup image and song preview
     title_plussed = title.gsub(/\s|\W/, '+')
@@ -262,10 +173,10 @@ class Generalplaylist < ActiveRecord::Base
         counter += 1
       else
         if json["results"].present? && json["results"][counter]["previewUrl"].present?
-          @song.song_preview = json["results"][counter]["previewUrl"]
+          song.song_preview = json["results"][counter]["previewUrl"]
         end
         if json["results"].present? && json["results"][counter]["artworkUrl100"].present?
-          @song.artwork_url = json["results"][counter]["artworkUrl100"]
+          song.artwork_url = json["results"][counter]["artworkUrl100"]
         end
         break
       end
@@ -273,11 +184,11 @@ class Generalplaylist < ActiveRecord::Base
 
     #Spotify lookup image and song
     if RSpotify::Track.search("#{artist.name} #{title}").present?
-      @song.spotify_song_url = RSpotify::Track.search("#{artist.name} #{title}").first.external_urls["spotify"]
-      @song.spotify_artwork_url = @track_album = RSpotify::Track.search("#{artist.name} #{title}").first.album.images[1]["url"]
+      song.spotify_song_url = RSpotify::Track.search("#{artist.name} #{title}").first.external_urls["spotify"]
+      song.spotify_artwork_url = @track_album = RSpotify::Track.search("#{artist.name} #{title}").first.album.images[1]["url"]
     end
 
-    @song
+    song
   end
 
   # Methode for creating the Generalplaylist record
@@ -442,4 +353,16 @@ class Generalplaylist < ActiveRecord::Base
     generalplaylists.each(&:destroy)
   end
 
+  def self.get_artist_songs_title_time(doc)
+    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
+    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]').text.strip
+    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
+
+    # Find the artist name in the Artist database or create a new record
+    artist = Artist.find_or_create_by(name: artist_name)
+    # Search for all the songs with title
+    songs = Song.where(title: title)
+
+    [artist, songs, title, time]
+  end
 end
