@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  redis:
+    image: redis:latest
+    command: redis-server
+    hostname: redis
+    volumes:
+      - ./tmp/redis:/var/lib/redis/data
+
+  radio_web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    hostname: bumblebee-web
+    depends_on:
+      - postgres
+      - redis
+    ports: 
+      - 3000:3000
+    volumes:
+      - .:/app
+      - ~/.aws/:/root/.aws:ro
+    environment:
+      - RAILS_LOG_TO_STDOUT=true
+      - DOCKER_COMPOSE=true
+    tty: true
+    stdin_open: true
+
+  sidekiq:
+    depends_on:
+      - postgres
+      - redis
+    build: .
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    volumes:
+      - .:/app
+
+  selenium:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - 4444:4444
+      - 5900:5900
+    environment:
+      SCREEN_WIDTH: 1920
+      SCREEN_HEIGHT: 1080
+    #logging:
+     # driver: none
