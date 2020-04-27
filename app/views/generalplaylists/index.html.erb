@@ -40,12 +40,12 @@
             <div class="row">
               <div class="input-field col s6 m6 l6">
                 <select id="set_counter_playlists">
-                  <option value="">Counter time</option>
-                  <option value="day">Last day (<%= 1.day.ago.strftime("%a %a %e %b %Y %H:%M %H:%M") %>)</option>
-                  <option value="week">Last week (<%= 1.week.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
-                  <option value="month">Last month (<%= 1.month.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
-                  <option value="year">Last year (<%= 1.year.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
-                  <option value="total">All Time</option>
+                  <option value="">Time</option>
+                  <option value="day">Day</option>
+                  <option value="week">Week</option>
+                  <option value="month">Month</option>
+                  <option value="year">Year</option>
+                  <option value="total">All</option>
                 </select>
               </div>
               <div class="input-field col s6 m6 l6">
@@ -87,12 +87,12 @@
               <div class="row">
                 <div class="input-field col s6 m6 l6">
                   <select id="set_counter_top_songs">
-                    <option value="">Counter time</option>
-                    <option value="day">Last day (<%= 1.day.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
-                    <option value="week">Last week (<%= 1.week.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
-                    <option value="month">Last month (<%= 1.month.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
-                    <option value="year">Last year (<%= 1.year.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
-                    <option value="total">All Time</option>
+                    <option value="">Time</option>
+                    <option value="day">Day</option>
+                    <option value="week">Week</option>
+                    <option value="month">Month</option>
+                    <option value="year">Year</option>
+                    <option value="total">All</option>
                   </select>
                 </div>
                 <div class="input-field col s6 m6 l6">
@@ -133,12 +133,12 @@
             </div>
             <div  class="input-field col s6 m6 l6">
               <select id="set_counter_top_artists">
-                <option value="">Counter time</option>
-                <option value="day">Last day (<%= 1.day.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
-                <option value="week">Last week (<%= 1.week.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
-                <option value="month">Last month (<%= 1.month.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
-                <option value="year">Last year (<%= 1.year.ago.strftime("%a %e %b %Y %H:%M") %>)</option>
-                <option value="total">All Time</option>
+                <option value="">Time</option>
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+                <option value="total">All</option>
               </select>
             </div>
             <div class="input-field col s6 m6 l6">
@@ -217,7 +217,6 @@
     data.artists_radiostation_id = $("#top_artists_radiostation").val();
     data.set_limit_artists = $("#set_limit_artists").val();
     data.target = 'top-artists-table';
-    console.log(data);
 
     delay(function() {
       $.get("<%= generalplaylists_path %>", data, null, "script");
@@ -226,9 +225,7 @@
 </script>
 
 <script>
-  $(document).ready(function() {
-    $('select').material_select();
-  });
+  $(document).ready(() => { $('select').formSelect(); });
 </script>
 
 <script>
