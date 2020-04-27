@@ -5,17 +5,17 @@ class Generalplaylist < ActiveRecord::Base
 
   require 'nokogiri'
   require 'open-uri'
-  require 'json'
-  require 'date'
-  require 'rspotify'
+  # require 'json'
+  # require 'date'
+  # require 'rspotify'
 
   # Check the Radio Veronica song
   def self.radio_veronica_check
-    url = "https://playlist24.nl/radio-veronica-playlist/"
+    url = 'https://playlist24.nl/radio-veronica-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
-    artist_name = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]").text.strip
-    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
+    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
+    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]').text.strip
+    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
 
     Generalplaylist.title_check(title)
 
@@ -34,11 +34,11 @@ class Generalplaylist < ActiveRecord::Base
 
   # Check the Radio 538 song
   def self.radio_538_check
-    url = "https://playlist24.nl/radio-538-playlist/"
+    url = 'https://playlist24.nl/radio-538-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
-    artist_name = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]").text.strip
-    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
+    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
+    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]').text.strip
+    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
 
     Generalplaylist.title_check(title)
 
@@ -49,7 +49,7 @@ class Generalplaylist < ActiveRecord::Base
     # Add the songs variable to the song_check methode. Returns @song variable
     Generalplaylist.song_check(songs, artist, title)
     # Find or create the Radiostation with name "Radio 538"
-    radiostation = Radiostation.find_or_create_by(name: "Radio 538")
+    radiostation = Radiostation.find_or_create_by(name: 'Radio 538')
 
     # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
     Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
@@ -57,55 +57,51 @@ class Generalplaylist < ActiveRecord::Base
 
   # Check Radio 2 song
   def self.radio_2_check
+    topsong = 'Topsong: '
+    hi = 'Hi: '
+    nieuwe_naam = 'Nieuwe Naam: '
 
-    topsong = "Topsong: "
-    hi = "Hi: "
-    nieuwe_naam = "Nieuwe Naam: "
-
-    url = "http://www.nporadio2.nl/playlist"
+    url = 'https://playlist24.nl/radio-2-playlist/'
     doc = Nokogiri::HTML(open(url))
-    list = doc.at('.columns-2.playlist')
-    if list.present?
-      time = list.xpath('//li[last()]/a/div[3]/div/p').first.text
-      artist_name = list.xpath('//li[last()]/a/div[2]/div/p[1]').first.text.split.map(&:capitalize).join(" ")
-      title = list.xpath('//li[last()]/a/div[2]/div/p[2]').first.text.split.map(&:capitalize).join(" ")
+    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
+    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a').text.strip
+    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
 
-      Generalplaylist.title_check(title)
+    Generalplaylist.title_check(title)
 
-      # check if the variables topsong, hi or nieuwe_naam are in the title
-      # if so they will be sliced off
-      if title.include?(topsong)
-        title.gsub!(/\:/, "")
-        title.remove!("Topsong ")
-      elsif title.include?(hi)
-        title.gsub!(/\:/, "")
-        title.remove!("Hi ")
-      elsif title.include?(nieuwe_naam)
-        title.gsub!(/\:/, "")
-        title.remove!("Nieuwe Naam ")
-      end
-
-      # Find the artist name in the Artist database or create a new record
-      artist = Artist.find_or_create_by(name: artist_name)
-      # Search for all the songs with title
-      songs = Song.where(title: title)
-      # Add the songs variable to the song_check methode. Returns @song variable
-      Generalplaylist.song_check(songs, artist, title)
-      # Find or create the Radiostation with name "Radio 2"
-      radiostation = Radiostation.find_or_create_by(name: "Radio 2")
-
-      # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
-      Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
+    # check if the variables topsong, hi or nieuwe_naam are in the title
+    # if so they will be sliced off
+    if title.include?(topsong)
+      title.gsub!(/\:/, "")
+      title.remove!('Topsong ')
+    elsif title.include?(hi)
+      title.gsub!(/\:/, '')
+      title.remove!('Hi ')
+    elsif title.include?(nieuwe_naam)
+      title.gsub!(/\:/, '')
+      title.remove!('Nieuwe Naam ')
     end
+
+    # Find the artist name in the Artist database or create a new record
+    artist = Artist.find_or_create_by(name: artist_name)
+    # Search for all the songs with title
+    songs = Song.where(title: title)
+    # Add the songs variable to the song_check methode. Returns @song variable
+    Generalplaylist.song_check(songs, artist, title)
+    # Find or create the Radiostation with name "Radio 2"
+    radiostation = Radiostation.find_or_create_by(name: "Radio 2")
+
+    # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
+    Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
   end
 
   # Check Sublime FM songs
   def self.sublime_fm_check
-    url = "https://playlist24.nl/sublime-fm-playlist/"
+    url = 'https://playlist24.nl/sublime-fm-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
-    artist_name = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a").text.strip
-    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
+    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
+    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a').text.strip
+    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
 
     Generalplaylist.title_check(title)
 
@@ -124,15 +120,12 @@ class Generalplaylist < ActiveRecord::Base
 
   # Check Groot Nieuws Radio songs
   def self.grootnieuws_radio_check
-    url = "https://www.grootnieuwsradio.nl/muziek/playlist"
+    url = 'https://www.grootnieuwsradio.nl/muziek/playlist'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[1]').text.split.drop(1).join(" ")
-    artist_name = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[2]').text.split.map(&:capitalize).join(" ")
-    title = doc.xpath('//table[@id="iList1"]/tbody/tr[1]/td[3]').text.split.map(&:capitalize).join(" ")
-
-    if artist_name.blank?
-      return false
-    end
+    time = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[1]/span').text.split.drop(1).join(" ")
+    artist_name = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[3]').text.split.map(&:capitalize).join(" ")
+    title = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[2]').text.split.map(&:capitalize).join(" ")
+    return false if artist_name.blank?
 
     Generalplaylist.title_check(title)
 
@@ -150,12 +143,11 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.sky_radio_check
-
-    url = "https://playlist24.nl/skyradio-playlist/"
+    url = 'https://playlist24.nl/skyradio-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
-    artist_name = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]").text.strip
-    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
+    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
+    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]').text.strip
+    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
 
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist_name)
@@ -172,11 +164,11 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.radio_3fm_check
-    url = "https://playlist24.nl/3fm-playlist/"
+    url = 'https://playlist24.nl/3fm-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
-    artist_name = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a").text.strip
-    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
+    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
+    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a').text.strip
+    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
 
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist_name)
@@ -185,18 +177,18 @@ class Generalplaylist < ActiveRecord::Base
     # Add the songs variable to the song_check methode. Returns @song variable
     Generalplaylist.song_check(songs, artist, title)
     # Find or create the Radiostation with name "Radio 3fm"
-    radiostation = Radiostation.find_or_create_by(name: "Radio 3FM")
+    radiostation = Radiostation.find_or_create_by(name: 'Radio 3FM')
 
     # Create a item in the Generalplaylist model with time, artist, @song and radiostation variable
     Generalplaylist.create_generalplaylist(time, artist, @song, radiostation)
   end
 
   def self.q_music_check
-    url = "https://playlist24.nl/qmusic-playlist/"
+    url = 'https://playlist24.nl/qmusic-playlist/'
     doc = Nokogiri::HTML(open(url))
-    time = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]").text.strip
-    artist_name = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a").text.strip
-    title = doc.xpath("//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]").text.strip
+    time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
+    artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]/a').text.strip
+    title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
 
     Generalplaylist.title_check(title)
 
@@ -254,17 +246,19 @@ class Generalplaylist < ActiveRecord::Base
         end
       end
     end
+
     # Apple Music lookup image and song preview
-    title_plussed = title.gsub(/\s|\W/, "+")
-    artist_plussed = artist.name.gsub(/\s|\W|ft|vs|feat/i, "+")
-    search_term = "#{title_plussed}+" + "#{artist_plussed}"
+    title_plussed = title.gsub(/\s|\W/, '+')
+    artist_plussed = artist.name.gsub(/\s|\W|ft|vs|feat/i, '+')
+    search_term = "#{title_plussed}" + "#{artist_plussed}"
     url = "https://itunes.apple.com/search?term=#{search_term}&media=music&limit=5&country=NL"
     uri = URI(url)
     response = Net::HTTP.get(uri)
     json = JSON.parse(response)
     counter = 0
+
     while counter < 5
-      if json["results"].present? && (json["results"][counter]["collectionName"].include?("Hitzone") || json["results"][counter]["collectionName"].include?("The Definitive") || json["results"][counter]["collectionName"].include?("Back To the 80's"))
+      if json['results'].present? && (json['results'][counter]["collectionName"].include?("Hitzone") || json["results"][counter]["collectionName"].include?("The Definitive") || json["results"][counter]["collectionName"].include?("Back To the 80's"))
         counter += 1
       else
         if json["results"].present? && json["results"][counter]["previewUrl"].present?
@@ -276,13 +270,14 @@ class Generalplaylist < ActiveRecord::Base
         break
       end
     end
+
     #Spotify lookup image and song
     if RSpotify::Track.search("#{artist.name} #{title}").present?
       @song.spotify_song_url = RSpotify::Track.search("#{artist.name} #{title}").first.external_urls["spotify"]
       @song.spotify_artwork_url = @track_album = RSpotify::Track.search("#{artist.name} #{title}").first.album.images[1]["url"]
     end
-    # Return @song variable
-    return @song
+
+    @song
   end
 
   # Methode for creating the Generalplaylist record
@@ -309,7 +304,6 @@ class Generalplaylist < ActiveRecord::Base
 
   # Methode for adding the song to the database
   def self.add_song(time, artist, song, radiostation)
-
     # Create a new Generalplaylist record
     generalplaylist = Generalplaylist.new
     generalplaylist.time = time
@@ -393,7 +387,7 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.today_played_songs
-    where("created_at > ?", 1.day.ago).order(created_at: :DESC)
+    where('created_at > ?', 1.day.ago).order(created_at: :DESC)
   end
 
   def self.top_songs
@@ -422,16 +416,16 @@ class Generalplaylist < ActiveRecord::Base
     # group all the by song_id and count all the time the song_id is in the list. Returns a hash
     top_songs_hash = all_from_radiostation.group(:song_id).count
     # Sort the hash by the value and reverse the order. Show only the first 10 results
-    top_songs = top_songs_hash.sort_by {|_key, value| value}.reverse[0 .. 9]
+    top_songs = top_songs_hash.sort_by { |_key, value| value }.reverse[0 .. 9]
     # resturn the array from song_id with counts
-    return top_songs
+    top_songs
   end
 
   def self.top_artists_radiostation(radiostation_id)
     all_from_radiostation = Generalplaylist.where(radiostation_id: radiostation_id)
     top_artists_hash = all_from_radiostation.group(:artist_id).count
-    top_artists = top_artists_hash.sort_by{|_key, value| value}.reverse[0 .. 9]
-    return top_artists
+    top_artists = top_artists_hash.sort_by{ |_key, value| value }.reverse[0 .. 9]
+    top_artists
   end
 
   def autocomplete
@@ -445,9 +439,7 @@ class Generalplaylist < ActiveRecord::Base
   # Methode for destoring all the records in the Generalplaylist model
   def self.destroy_all
     generalplaylists = Generalplaylist.all
-    generalplaylists.each do |generalplaylist|
-      generalplaylist.dest
-    end
+    generalplaylists.each(&:destroy)
   end
 
 end
