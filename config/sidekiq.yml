@@ -3,5 +3,5 @@
   :schedule:
     CheckRadioStationsJob:
       cron: '*/3 * * * *'
-      queue: scheduler
+      queue: default
       enabled: true
