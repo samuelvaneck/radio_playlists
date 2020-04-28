@@ -18,9 +18,9 @@ gem 'rspotify'
 gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sidekiq'
+gem 'sidekiq-scheduler', '~> 3.0', '>= 3.0.1'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug'
@@ -46,11 +46,11 @@ end
 
 group :development do
   # adding Capertino to deploy rails app
-  gem 'capistrano-rails'
   gem 'capistrano'
-  gem 'capistrano-passenger'
-  gem 'capistrano-rbenv'
+  gem 'capistrano-apache'
+  gem 'capistrano-rails'
   gem 'capistrano-rails-console', require: false
+  gem 'capistrano-rbenv'
   gem 'spring'
   gem 'web-console'
 end
