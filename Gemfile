@@ -45,9 +45,7 @@ group :test do
 end
 
 group :development do
-  # adding Capertino to deploy rails app
   gem 'capistrano'
-  gem 'capistrano-apache'
   gem 'capistrano-rails'
   gem 'capistrano-rails-console', require: false
   gem 'capistrano-rbenv'
