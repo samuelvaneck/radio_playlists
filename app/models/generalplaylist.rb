@@ -137,31 +137,7 @@ class Generalplaylist < ActiveRecord::Base
 
     song = song.first if song.is_a?(Array)
 
-    # Apple Music lookup image and song preview
-    title_plussed = title.gsub(/\s|\W/, '+')
-    artist_plussed = artist.name.gsub(/\s|\W|ft|vs|feat/i, '+')
-    search_term = "#{title_plussed}" + "#{artist_plussed}"
-    url = "https://itunes.apple.com/search?term=#{search_term}&media=music&limit=5&country=NL"
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    json = JSON.parse(response)
-    counter = 0
-
-    while counter < 5
-      if json['results'].present? && (json['results'][counter]["collectionName"].include?("Hitzone") || json["results"][counter]["collectionName"].include?("The Definitive") || json["results"][counter]["collectionName"].include?("Back To the 80's"))
-        counter += 1
-      else
-        if json["results"].present? && json["results"][counter]["previewUrl"].present?
-          song.song_preview = json["results"][counter]["previewUrl"]
-        end
-        if json["results"].present? && json["results"][counter]["artworkUrl100"].present?
-          song.artwork_url = json["results"][counter]["artworkUrl100"]
-        end
-        break
-      end
-    end
-
-    #Spotify lookup image and song
+    # Spotify lookup image and song
     if RSpotify::Track.search("#{artist.name} #{title}").present?
       song.spotify_song_url = RSpotify::Track.search("#{artist.name} #{title}").first.external_urls["spotify"]
       song.spotify_artwork_url = @track_album = RSpotify::Track.search("#{artist.name} #{title}").first.album.images[1]["url"]

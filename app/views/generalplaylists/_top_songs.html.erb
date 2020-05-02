@@ -4,9 +4,7 @@
     <tr>
       <td class="image">
         <% if top_song.spotify_artwork_url.present? %>
-          <%= image_tag(top_song.spotify_artwork_url, class:"song-image", size: '100x100') %>
-        <% elsif top_song.artwork_url.present? %>
-          <%= image_tag(top_song.artwork_url, class: "song-image") %>
+          <%= image_tag top_song.spotify_artwork_url, class:"song-image" %>
         <% end %>
       </td>
       <td>
@@ -15,7 +13,7 @@
             <td class="play" id="song-play">
               <% if top_song.spotify_song_url.present? %>
                 <%= link_to top_song.spotify_song_url, target: '_blank' do %>
-                  <%= image_tag('Spotify_Icon_RGB_Green.png', size: '35') %>
+                  <%= image_tag 'Spotify_Icon_RGB_Green.png', size: '35' %>
                 <% end %>
               <% else %>
                 <i class="material-icons md-36">remove</i>

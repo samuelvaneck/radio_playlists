@@ -2,12 +2,12 @@ module GeneralplaylistHelper
 
   def random_album_image(top_artist)
     image = nil
-    if top_artist.songs.map {|song| song.artwork_url}.any?
+    if top_artist.songs.map {|song| song.spotify_artwork_url}.any?
       while image == nil do
-        image = top_artist.songs.map { |song| song.artwork_url }.sample
+        image = top_artist.songs.map { |song| song.spotify_artwork_url }.sample
       end
     end
-    return image
+    image
   end
 
   def radio_veronica_top_song_count(top_song, time)
