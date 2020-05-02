@@ -8,8 +8,6 @@ class Generalplaylist < ActiveRecord::Base
   require 'nokogiri'
   require 'open-uri'
 
-  scope :today_played_songs, -> { where('created_at > ?', 1.day.ago).order(created_at: :DESC) }
-
   def self.check_song_radio_station(url, radio_station)
     doc = Nokogiri::HTML open(url)
     artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
@@ -92,28 +90,10 @@ class Generalplaylist < ActiveRecord::Base
     Generalplaylist.check_song_radio_station(url, radio_station)
   end
 
-  # Methode for checking if the title of the song is OK
   def self.title_check(title)
-    if title.count('0-9') > 4
-      Rails.logger.info "found #{title.count('0-9')} numbers in the title"
-      false
-    elsif title.count('/') > 1
-      Rails.logger.info "found #{title.count('/')} / in the title"
-      false
-    elsif title.count("'") > 2
-      Rails.logger.info "found #{title.count("'")} ' in the title"
-      false
-    elsif title.count('-').positive?
-      Rails.logger.info "found #{title.count('-')} - in the title"
-      false
-    elsif title.count('.') > 1
-      Rails.logger.info "found #{title.count('.')} . in the title"
-    elsif title.match(/\A(reklame)/i)
-      Rails.logger.info "found 'Reklame' in the title"
-      false
-    else
-      true
-    end
+    # catch more then 4 digits, forward slashes, 2 single qoutes,
+    # reklame/reclame, 2 dots and dash
+    !title.match(/\d{4,}|\/|\'{2,}|(reklame|reclame)|\.{2,}|-/)
   end
 
   # Methode for checking if there are songs with the same title.
@@ -139,13 +119,16 @@ class Generalplaylist < ActiveRecord::Base
            end
 
     song = song.first if song.is_a?(Array)
+    song = Generalplaylist.find_spotify_links(song, artist, title)
+    song
+  end
 
+  def self.find_spotify_links(song, artist, title)
     # Spotify lookup image and song
     if RSpotify::Track.search("#{artist.name} #{title}").present?
       song.spotify_song_url = RSpotify::Track.search("#{artist.name} #{title}").first.external_urls["spotify"]
       song.spotify_artwork_url = @track_album = RSpotify::Track.search("#{artist.name} #{title}").first.album.images[1]["url"]
     end
-
     song
   end
 
@@ -226,12 +209,6 @@ class Generalplaylist < ActiveRecord::Base
 
   def autocomplete=(fullname)
     self.autocomplete = Song.find_by_fullname(fullname, include: :id) if fullname.present?
-  end
-
-  # Methode for destoring all the records in the Generalplaylist model
-  def self.destroy_all
-    generalplaylists = Generalplaylist.all
-    generalplaylists.each(&:destroy)
   end
 
   def self.get_artist_songs_title_time(doc)
