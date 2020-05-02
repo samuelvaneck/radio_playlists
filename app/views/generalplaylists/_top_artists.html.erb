@@ -28,7 +28,7 @@
             <% end %>
           <% end %>
         </tr>
-        <tr style="display:none" class="radiostation-artist-counter">
+        <tr class="radiostation-artist-counter">
           <td></td>
           <td>
             <p class="radiostation-artist-counter delay-0">
@@ -88,10 +88,3 @@
   </tr>
   <% idx_artist += 1 %>
 <% end %>
-
-<script>
-  $(".top-artist-details").click(function() {
-    $(this).next("tr").fadeToggle();
-    $(this).next("tr").find("p.radiostation-artist-counter").toggleClass("animated fadeInUp");
-  });
-</script>
