@@ -7,14 +7,9 @@
     <div class="row">
       <div col="col s12 m12 l12">
         <div class="right-align">
-          <% if user_signed_in? %>
-              Welcome <%= current_user.display_name %><br>
-              <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
-          <% else %>
-            <%= link_to user_spotify_omniauth_authorize_path  do %>
-              <%= image_tag("Spotify_Icon_RGB_Green.png", size: "50") %><br/>
-            <% end %>
-          <% end %>
+          <%#= link_to user_spotify_omniauth_authorize_path  do %>
+            <%#= image_tag("Spotify_Icon_RGB_Green.png", size: "50") %><br/>
+          <%# end %>
         </div>
         <h3 class="rubik">
           Playlists

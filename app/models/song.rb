@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Song < ActiveRecord::Base
   has_many :generalplaylists
   has_many :counters
@@ -7,13 +9,6 @@ class Song < ActiveRecord::Base
   validates :artist, presence: true
 
   def self.search_title(title)
-    where("title ILIKE ?", "%#{title}%")
-  end
-
-  def self.destroy_all
-    songs = Song.all
-    songs.each do |song|
-      song.destroy
-    end
+    where('title ILIKE ?', "%#{title}%")
   end
 end
