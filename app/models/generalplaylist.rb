@@ -6,62 +6,52 @@ class Generalplaylist < ActiveRecord::Base
   require 'nokogiri'
   require 'open-uri'
 
-  # Check the Radio Veronica song
-  def self.radio_veronica_check
-    url = 'https://playlist24.nl/radio-veronica-playlist/'
-    doc = Nokogiri::HTML(open(url))
+  def self.check_song_radio_station(url, radio_station)
+    doc = Nokogiri::HTML open(url)
     artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
     return unless Generalplaylist.title_check(title)
 
     song = Generalplaylist.song_check(songs, artist, title)
-    radiostation = Radiostation.find_or_create_by(name: 'Radio Veronica')
 
-    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
+    Generalplaylist.create_generalplaylist(time, artist, song, radio_station)
+  end
+
+  # Check the Radio Veronica song
+  def self.radio_veronica_check
+    url = 'https://playlist24.nl/radio-veronica-playlist/'
+    radio_station = Radiostation.find_or_create_by(name: 'Radio Veronica')
+
+    Generalplaylist.check_song_radio_station(url, radio_station)
   end
 
   # Check the Radio 538 song
   def self.radio_538_check
     url = 'https://playlist24.nl/radio-538-playlist/'
-    doc = Nokogiri::HTML(open(url))
-    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
-    return unless Generalplaylist.title_check(title)
+    radio_station = Radiostation.find_or_create_by(name: 'Radio 538')
 
-    song = Generalplaylist.song_check(songs, artist, title)
-    radiostation = Radiostation.find_or_create_by(name: 'Radio 538')
-
-    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
+    Generalplaylist.check_song_radio_station(url, radio_station)
   end
 
   # Check Radio 2 song
   def self.radio_2_check
     url = 'https://playlist24.nl/radio-2-playlist/'
-    doc = Nokogiri::HTML(open(url))
-    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
-    return unless Generalplaylist.title_check(title)
+    radio_station = Radiostation.find_or_create_by(name: 'Radio 2')
 
-    song = Generalplaylist.song_check(songs, artist, title)
-    radiostation = Radiostation.find_or_create_by(name: 'Radio 2')
-
-    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
+    Generalplaylist.check_song_radio_station(url, radio_station)
   end
 
   # Check Sublime FM songs
   def self.sublime_fm_check
     url = 'https://playlist24.nl/sublime-fm-playlist/'
-    doc = Nokogiri::HTML(open(url))
-    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
-    return unless Generalplaylist.title_check(title)
+    radio_station = Radiostation.find_or_create_by(name: 'Sublime FM')
 
-    song = Generalplaylist.song_check(songs, artist, title)
-    radiostation = Radiostation.find_or_create_by(name: 'Sublime FM')
-
-    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
+    Generalplaylist.check_song_radio_station(url, radio_station)
   end
 
   # Check Groot Nieuws Radio songs
   def self.grootnieuws_radio_check
     url = 'https://www.grootnieuwsradio.nl/muziek/playlist'
-    doc = Nokogiri::HTML(open(url))
+    doc = Nokogiri::HTML open(url)
     time = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[1]/span').text
     artist_name = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[3]').text.split.map(&:capitalize).join(" ")
     title = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[2]').text.split.map(&:capitalize).join(" ")
@@ -79,38 +69,23 @@ class Generalplaylist < ActiveRecord::Base
 
   def self.sky_radio_check
     url = 'https://playlist24.nl/skyradio-playlist/'
-    doc = Nokogiri::HTML(open(url))
-    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
-    return unless Generalplaylist.title_check(title)
+    radio_station = Radiostation.find_or_create_by(name: 'Sky Radio')
 
-    song = Generalplaylist.song_check(songs, artist, title)
-    radiostation = Radiostation.find_or_create_by(name: 'Sky Radio')
-
-    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
+    Generalplaylist.check_song_radio_station(url, radio_station)
   end
 
   def self.radio_3fm_check
     url = 'https://playlist24.nl/3fm-playlist/'
-    doc = Nokogiri::HTML(open(url))
-    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
-    return unless Generalplaylist.title_check(title)
+    radio_station = Radiostation.find_or_create_by(name: 'Radio 3FM')
 
-    song = Generalplaylist.song_check(songs, artist, title)
-    radiostation = Radiostation.find_or_create_by(name: 'Radio 3FM')
-
-    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
+    Generalplaylist.check_song_radio_station(url, radio_station)
   end
 
   def self.q_music_check
     url = 'https://playlist24.nl/qmusic-playlist/'
-    doc = Nokogiri::HTML(open(url))
-    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
-    return unless Generalplaylist.title_check(title)
+    radio_station = Radiostation.find_or_create_by(name: 'Qmusic')
 
-    song = Generalplaylist.song_check(songs, artist, title)
-    radiostation = Radiostation.find_or_create_by(name: 'Qmusic')
-
-    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
+    Generalplaylist.check_song_radio_station(url, radio_station)
   end
 
   # Methode for checking if the title of the song is OK
@@ -192,109 +167,52 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   # Methode for creating the Generalplaylist record
-  def self.create_generalplaylist(time, artist, song, radiostation)
+  def self.create_generalplaylist(time, artist, song, radio_station)
     # Take all the songs that are played on the same radiostation the last 2 days
-    radiostationsongs = Generalplaylist.where("radiostation_id = ? AND created_at > ?", radiostation.id, 1.day.ago).order(id: :ASC)
+    radio_station_songs = Generalplaylist.where(radiostation: radio_station,
+                                                created_at: 1.day.ago..Time.now)
+                                         .order(id: :ASC)
     # If the is no song played the last 2 days create a new one
-    if radiostationsongs.blank?
-      Generalplaylist.add_song(time, artist, song, radiostation)
+    if radio_station_songs.blank?
+      Generalplaylist.add_song(time, artist, song, radio_station)
     # Else check if the last played song = the same as the song we want to check
     else
       @songs_recently_played = []
-      radiostationsongs.each do |radiostationsong|
-        if radiostationsong.time == time && radiostationsong.song_id == song.id && radiostationsong.artist_id == artist.id
-          puts "#{song.title} from #{artist.name} in last songs on #{radiostation.name}"
+      radio_station_songs.each do |radio_station_song|
+        if radio_station_song.time == time && radio_station_song.song == song && radio_station_song.artist == artist
+          Rails.logger.info "#{song.title} from #{artist.name} in last songs on #{radio_station.name}"
           @songs_recently_played << true
         else
           @songs_recently_played << false
         end
       end
-      Generalplaylist.add_song(time, artist, song, radiostation) if @songs_recently_played.exclude? true
+      if @songs_recently_played.exclude? true
+        Generalplaylist.add_song(time, artist, song, radio_station)
+      end
     end
   end
 
   # Methode for adding the song to the database
-  def self.add_song(time, artist, song, radiostation)
+  def self.add_song(time, artist, song, radio_station)
     # Create a new Generalplaylist record
     generalplaylist = Generalplaylist.new
     generalplaylist.time = time
-    generalplaylist.artist_id = artist.id
-    generalplaylist.song_id = song.id
-    generalplaylist.radiostation_id = radiostation.id
+    generalplaylist.artist = artist
+    generalplaylist.song = song
+    generalplaylist.radiostation = radio_station
     generalplaylist.save!
     fullname = "#{artist.name} #{song.title}"
-    # Add 1 to the song total counters
+
     songdetails = Song.find(generalplaylist.song_id)
-    songdetails.day_counter += 1
-    songdetails.week_counter += 1
-    songdetails.month_counter += 1
-    songdetails.year_counter += 1
-    songdetails.total_counter += 1
     songdetails.fullname = fullname
-    songdetails.artist_id = artist.id
+    songdetails.artist = artist
     songdetails.song_preview = song.song_preview
     songdetails.artwork_url = song.artwork_url
     songdetails.spotify_song_url = song.spotify_song_url
     songdetails.spotify_artwork_url = song.spotify_artwork_url
     songdetails.save!
-    # Add 1 to the artist counters
-    artist = Artist.find(generalplaylist.artist_id)
-    artist.day_counter += 1
-    artist.week_counter += 1
-    artist.month_counter += 1
-    artist.year_counter += 1
-    artist.total_counter += 1
-    artist.save!
-    puts "Saved #{song.title} (#{song.id}) from #{artist.name} (#{artist.id}) on #{radiostation.name}!"
-  end
 
-  # Methode for resetting the day, week, month and year counters
-  def self.reset_counters
-    songs = Song.all
-    artists = Artist.all
-    today = Date.today
-    # reset the day counter for songs and artists
-    songs.each do |song|
-      song.day_counter = 0
-      song.save
-    end
-    artists.each do |artist|
-      artist.day_counter = 0
-      artist.save
-    end
-    # reset the week counter if today is monday
-    if today.monday?
-      songs.each do |song|
-        song.week_counter = 0
-        song.save
-      end
-      artists.each do |artist|
-        artist.week_counter = 0
-        artist.save
-      end
-    end
-    # reset the month counter at the end of the month
-    if today == Date.today.beginning_of_month
-      songs.each do |song|
-        song.month_counter = 0
-        song.save
-      end
-      artists.each do |artist|
-        artist.month_counter = 0
-        artist.save
-      end
-    end
-    # reset the year counter at the end of the year
-    if today == Date.today.beginning_of_month
-      songs.each do |song|
-        song.year_counter = 0
-        song.save
-      end
-      artists.each do |artist|
-        artist.year_counter = 0
-        artist.save
-      end
-    end
+    Rails.logger.info "Saved #{song.title} (#{song.id}) from #{artist.name} (#{artist.id}) on #{radio_station.name}!"
   end
 
   def self.today_played_songs
@@ -357,7 +275,9 @@ class Generalplaylist < ActiveRecord::Base
     time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
     artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]').text.strip
     title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
-
+    
+    # 
+    title = title.gsub(/\A(Hi:|Topsong:|Nieuwe Naam:)/, '').strip
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist_name)
     # Search for all the songs with title
