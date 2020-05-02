@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Generalplaylist < ActiveRecord::Base
   belongs_to :song
   belongs_to :radiostation
@@ -5,6 +7,8 @@ class Generalplaylist < ActiveRecord::Base
 
   require 'nokogiri'
   require 'open-uri'
+
+  scope :today_played_songs, -> { where('created_at > ?', 1.day.ago).order(created_at: :DESC) }
 
   def self.check_song_radio_station(url, radio_station)
     doc = Nokogiri::HTML open(url)
@@ -194,37 +198,17 @@ class Generalplaylist < ActiveRecord::Base
 
   # Methode for adding the song to the database
   def self.add_song(time, artist, song, radio_station)
-    # Create a new Generalplaylist record
-    generalplaylist = Generalplaylist.new
-    generalplaylist.time = time
-    generalplaylist.artist = artist
-    generalplaylist.song = song
-    generalplaylist.radiostation = radio_station
-    generalplaylist.save!
     fullname = "#{artist.name} #{song.title}"
-
-    songdetails = Song.find(generalplaylist.song_id)
-    songdetails.fullname = fullname
-    songdetails.artist = artist
-    songdetails.song_preview = song.song_preview
-    songdetails.artwork_url = song.artwork_url
-    songdetails.spotify_song_url = song.spotify_song_url
-    songdetails.spotify_artwork_url = song.spotify_artwork_url
-    songdetails.save!
+    # Create a new Generalplaylist record
+    Generalplaylist.create(
+      time: time,
+      artist: artist,
+      song: song,
+      radiostation: radio_station
+    )
+    song.update(fullname: fullname, artist: artist)
 
     Rails.logger.info "Saved #{song.title} (#{song.id}) from #{artist.name} (#{artist.id}) on #{radio_station.name}!"
-  end
-
-  def self.today_played_songs
-    where('created_at > ?', 1.day.ago).order(created_at: :DESC)
-  end
-
-  def self.top_songs
-    Song.all.order(total_counter: :DESC)
-  end
-
-  def self.top_artists
-    Artist.all.order(total_counter: :DESC)
   end
 
   def self.check_all_radiostations
@@ -275,8 +259,7 @@ class Generalplaylist < ActiveRecord::Base
     time = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[1]').text.strip
     artist_name = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[2]').text.strip
     title = doc.xpath('//html/body/div[3]/div[2]/div[1]/div[1]/div[3]/div[2]/span[1]').text.strip
-    
-    # 
+ 
     title = title.gsub(/\A(Hi:|Topsong:|Nieuwe Naam:)/, '').strip
     # Find the artist name in the Artist database or create a new record
     artist = Artist.find_or_create_by(name: artist_name)
