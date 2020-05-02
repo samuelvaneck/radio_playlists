@@ -108,6 +108,9 @@ class Generalplaylist < ActiveRecord::Base
       false
     elsif title.count('.') > 1
       Rails.logger.info "found #{title.count('.')} . in the title"
+    elsif title.match(/\A(reklame)/i)
+      Rails.logger.info "found 'Reklame' in the title"
+      false
     else
       true
     end
