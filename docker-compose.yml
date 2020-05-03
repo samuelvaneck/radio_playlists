@@ -15,6 +15,15 @@ services:
     volumes:
       - ./tmp/redis:/var/lib/redis/data
 
+  sidekiq:
+    depends_on:
+      - postgres
+      - redis
+    build: .
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    volumes:
+      - .:/app
+
   radio_web:
     build: .
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
@@ -30,17 +39,21 @@ services:
     environment:
       - RAILS_LOG_TO_STDOUT=true
       - DOCKER_COMPOSE=true
+      - WEBPACKER_DEV_SERVER_HOST=webpacker
     tty: true
     stdin_open: true
 
-  sidekiq:
+  webpacker:
+    build: .
+    command: ./bin/webpack-dev-server
     depends_on:
       - postgres
-      - redis
-    build: .
-    command: bundle exec sidekiq -C config/sidekiq.yml
     volumes:
       - .:/app
+    ports:
+      - 3085:3085
+    environment: 
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
 
   selenium:
     image: selenium/standalone-chrome-debug
