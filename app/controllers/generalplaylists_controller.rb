@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class GeneralplaylistsController < ApplicationController
+  respond_to :json, :html, :js
 
   def index
-
-  # Playlist search options
+    # Playlist search options
     if params[:search_playlists].present? && params[:playlists_radiostation_id].present? && params[:set_counter_playlists].present?
       @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:playlists_radiostation_id]}").limit(params[:set_limit_playlists])
       set_time_playlists
@@ -124,6 +124,11 @@ class GeneralplaylistsController < ApplicationController
 
     @target = params[:target]
 
+    return unless request.xhr?
+
+    options = {}
+    options[:include] = %i[song artist radiostation]
+    respond_with GeneralplaylistSerializer.new(@playlists, options).serialized_json
   end
 
   def set_time_playlists
