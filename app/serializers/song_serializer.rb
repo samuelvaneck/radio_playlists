@@ -4,9 +4,10 @@
 class SongSerializer
   include FastJsonapi::ObjectSerializer
 
-  attributes :id, :title, :artist_id, :fullname
-
-  belongs_to :artist
-  has_many :generalplaylists
-  has_many :radiostations
+  attributes :id,
+             :title,
+             :artist_id,
+             :fullname,
+             :spotify_song_url,
+             :spotify_artwork_url
 end

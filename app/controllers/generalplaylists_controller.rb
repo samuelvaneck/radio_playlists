@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GeneralplaylistsController < ApplicationController
-  respond_to :json, :html, :js
+  respond_to :html, :js
 
   def index
     # Playlist search options
@@ -124,11 +124,7 @@ class GeneralplaylistsController < ApplicationController
 
     @target = params[:target]
 
-    return unless request.xhr?
-
-    options = {}
-    options[:include] = %i[song artist radiostation]
-    respond_with GeneralplaylistSerializer.new(@playlists, options).serialized_json
+    respond_with GeneralplaylistSerializer.new(@playlists).serializable_hash.to_json
   end
 
   def set_time_playlists

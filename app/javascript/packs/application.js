@@ -9,6 +9,9 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import Vue from 'vue/dist/vue.esm'
+import PlaylistGroup from 'components/general_playlists/playlist_group.vue'
+
+Vue.component('playlistGroup', PlaylistGroup)
 
 document.addEventListener('DOMContentLoaded', () => {
   let elements = document.querySelectorAll('[data-behaviour="vue"]')
