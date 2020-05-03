@@ -2,7 +2,7 @@
   <li class='collection-item'>
     <div class='row'>
       <div class='col s12'>
-        {{ song }}
+        <span v-if='!!song'><img :src='song.data.attributes.spotify_artwork_url' class='song-image' /></span>
       </div>
       <div class='col s12'>
         {{ item.attributes.time }}
@@ -23,6 +23,7 @@
       return {
         artist: null,
         song: null,
+        songArtworkUrl: null,
         radioStation: null
       }
     },
@@ -42,8 +43,8 @@
       fetch(artistUrl, options).then(res => res.json())
         .then(d => this.artist = d)
 
-      // fetch(songUrl, options).then(res => res.json())
-      //   .then(d => this.song = d)
+      fetch(songUrl, options).then(res => res.json())
+        .then(d => { this.song = d })
 
       fetch(radioStationUrl, options).then(res => res.json())
         .then(d => this.radioStation = d)
