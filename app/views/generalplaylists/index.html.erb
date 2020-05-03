@@ -15,6 +15,9 @@
           Playlists
           <i class="material-icons md-48 right toggle-table-icon-90" id="0">details</i>
         </h3>
+        <div data-behaviour="vue">
+          
+        </div>
         <div class="content" style="display:none">
           <%= form_tag("/generalplaylists", method: :get, id: "search_playlists_form") do %>
             <div class="row">
@@ -150,6 +153,7 @@
     </div>
   </div>
 </section>
+
 
 <script>
   // delay input for search fields with 500ms for better preformance AJAX requests
