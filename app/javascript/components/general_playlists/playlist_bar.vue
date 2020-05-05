@@ -1,8 +1,6 @@
 <template>
   <div class='d-flex flex-row'>
-    <NavArrow v-bind:direction="'left'" />
     <PlaylistGroup />
-    <NavArrow v-bind:direction="'right'" />
   </div>
 </template>
 

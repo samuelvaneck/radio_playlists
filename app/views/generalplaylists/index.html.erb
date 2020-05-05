@@ -7,6 +7,9 @@
     <h3>Playlists</h3>
     <div data-behaviour="vue">
       <playlist-bar></playlist-bar>
+      <div id="playlist-pagination" style='display:none'>
+        <%= will_paginate @playlists %>
+      </div>
     </div>
     <div class="row">
       <div class="col s12 m12 l6">

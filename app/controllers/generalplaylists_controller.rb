@@ -124,6 +124,8 @@ class GeneralplaylistsController < ApplicationController
 
     @target = params[:target]
 
+    @playlists = @playlists.paginate(page: params[:page], per_page: 10)
+
     respond_with GeneralplaylistSerializer.new(@playlists).serializable_hash.to_json
   end
 

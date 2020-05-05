@@ -1,5 +1,5 @@
 <template>
-  <div class='card mx-1' style='width:18rem;'>
+  <div class='card mx-1 playlist-card' v-on:click='handleClickPlaylistItem'>
     <span v-if='!!song'><img :src='song.data.attributes.spotify_artwork_url' class='card-img-top' /></span>
     <div class='card-body'>
       <div class='d-flex flex-column'>
@@ -28,6 +28,13 @@
         radioStation: null
       }
     },
+    methods: {
+      handleClickPlaylistItem() {
+        if (!!this.song.data.attributes.spotify_song_url) {
+          window.open(this.song.data.attributes.spotify_song_url, '_blank')
+        }
+      } 
+    },
     created: function() {
       const attributes = this.item.attributes
       const artistUrl = '/artists/' + attributes.artist_id
@@ -45,7 +52,7 @@
         .then(d => this.artist = d)
 
       fetch(songUrl, options).then(res => res.json())
-        .then(d => { this.song = d })
+        .then(d => this.song = d)
 
       fetch(radioStationUrl, options).then(res => res.json())
         .then(d => this.radioStation = d)
