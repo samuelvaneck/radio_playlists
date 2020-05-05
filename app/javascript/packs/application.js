@@ -8,7 +8,17 @@
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
+import '../stylesheets/application.scss'
+import './bootstrap_custom.js'
+
 import Vue from 'vue/dist/vue.esm'
+import PlaylistBar from 'components/general_playlists/playlist_bar.vue'
+import TopSongBar from 'components/top_songs/top_song_bar.vue'
+import TopArtistBar from 'components/top_artists/top_artist_bar.vue'
+
+Vue.component('playlistBar', PlaylistBar)
+Vue.component('topSongBar', TopSongBar)
+Vue.component('topArtistBar', TopArtistBar)
 
 document.addEventListener('DOMContentLoaded', () => {
   let elements = document.querySelectorAll('[data-behaviour="vue"]')

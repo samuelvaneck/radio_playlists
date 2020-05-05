@@ -23,6 +23,7 @@ gem 'sidekiq-scheduler', '~> 3.0', '>= 3.0.1'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'webpacker', '~> 5.1', '>= 5.1.1'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'byebug'

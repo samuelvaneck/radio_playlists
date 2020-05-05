@@ -7,6 +7,4 @@ class ArtistSerializer
   attributes :id, :name, :image
 
   has_many :songs
-  has_many :generalplaylists
-  has_many :radiostations
 end
