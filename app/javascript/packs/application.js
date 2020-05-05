@@ -13,8 +13,10 @@ import './bootstrap_custom.js'
 
 import Vue from 'vue/dist/vue.esm'
 import PlaylistBar from 'components/general_playlists/playlist_bar.vue'
+import TopSongBar from 'components/top_songs/top_song_bar.vue'
 
 Vue.component('playlistBar', PlaylistBar)
+Vue.component('topSongBar', TopSongBar)
 
 document.addEventListener('DOMContentLoaded', () => {
   let elements = document.querySelectorAll('[data-behaviour="vue"]')

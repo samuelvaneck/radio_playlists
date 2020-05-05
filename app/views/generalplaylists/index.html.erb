@@ -1,62 +1,18 @@
 <section id="section-1" class="full-window-height">
-  <div class="head center rubik">
-    Radio Playlists
-  </div>
+  <h2 class='text-center'>Radio Playlists</h2>
 
   <div class="container">
     <h3>Playlists</h3>
     <div data-behaviour="vue">
       <playlist-bar></playlist-bar>
-      <div id="playlist-pagination" style='display:none'>
-        <%= will_paginate @playlists %>
-      </div>
     </div>
-    <div class="row">
-      <div class="col s12 m12 l6">
-        <h3>Top songs</h3>
-        <div class="content" style="display:none">
-          <%= form_tag("/generalplaylists", method: :get, id: "search_top_song_form" ) do %>
-            <p>
-              <div class="row">
-                <div class="col s9 m9 l9">
-                  <%= label_tag(:search_top_song, "Search for song or artist") %>
-                  <%= text_field_tag "search_top_song", nil, placeholder: "Search for song or artist...", class: "materialize-textarea", autocomplete: "off" %>
-                </div>
-                <div class="input-field col s3 m3 l3">
-                  <select id="set_limit_songs" value="5">
-                    <option value="5">Top 5</option>
-                    <option value="10">Top 10</option>
-                    <option value="25">Top 25</option>
-                    <option value="50">Top 50</option>
-                    <option value="100">Top 100</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s6 m6 l6">
-                  <select id="set_counter_top_songs">
-                    <option value="">Time</option>
-                    <option value="day">Day</option>
-                    <option value="week">Week</option>
-                    <option value="month">Month</option>
-                    <option value="year">Year</option>
-                    <option value="total">All</option>
-                  </select>
-                </div>
-                <div class="input-field col s6 m6 l6">
-                  <%= collection_select(:radiostation, :id, Radiostation.order(name: :ASC), :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "top_songs_radiostation" }) %>
-                </div>
-              </div>
-            </p>
-          <% end %>
-          <table class="striped">
-            <tbody id="top-songs-table">
-                <%= render partial: 'top_songs' %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
+    
+    <h3>Top songs</h3>
+    <div data-behaviour='vue'>
+      <top-song-bar></top-song-bar>
+    </div>
+    
+    <div class='row'>
       <div class="col s12 m12 l6">
         <h3 class="rubik">
           Top artists
