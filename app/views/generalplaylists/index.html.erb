@@ -1,14 +1,26 @@
 <section id="section-1" class="full-window-height">
-  <h2 class='text-center'>Radio Playlists</h2>
-
-  <div class="container mb-5">
+  <div class="container mt-2 mb-5">
     <div data-behaviour="vue">
-      <h3>Playlists</h3>
-      <playlist-bar></playlist-bar>
-      <h3>Top songs</h3>
-      <top-song-bar></top-song-bar>
-      <h3>Top artists</h3>
-      <top-artist-bar></top-artist-bar>
+      <ul class="list-group">
+        <h2 class='text-center'>
+          <span>
+            <%= image_tag 'radio.png' %>
+          <span>
+          Radio Playlists
+        </h2>
+        <li class="list-group-item">
+          <h3>Playlists</h3>
+          <playlist-bar></playlist-bar>
+        </li>
+        <li class="list-group-item">
+          <h3>Top songs</h3>
+          <top-song-bar></top-song-bar>
+        </li>
+        <li class="list-group-item">
+          <h3>Top artists</h3>
+          <top-artist-bar></top-artist-bar>
+        </li>
+      </ul>
     </div>
   </div>
 </section>

@@ -5,7 +5,7 @@
       <div class='d-flex flex-column'>
         <div class='d-flex d-flex-row'>
           <div class='bungee-inline'>
-            # {{ chartIdx }}
+            # {{ chartIdx + 1 }}
           </div>
           <div class='ml-auto'>
             <span class='badge badge-secondary'>{{ counter }} x</span>

@@ -17,32 +17,28 @@ class GeneralplaylistsController < ApplicationController
       set_time_playlists
 
     elsif params[:playlists_radiostation_id].present? && params[:set_counter_playlists].present?
-      @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:playlists_radiostation_id]}").limit(params[:set_limit_playlists])
+      @playlists = Generalplaylist.where('radiostation_id = ?', "#{params[:playlists_radiostation_id]}").limit(params[:set_limit_playlists])
       set_time_playlists
 
     elsif params[:search_playlists].present?
-      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").limit(params[:set_limit_playlists])
+      @playlists = Generalplaylist.joins(:artist, :song).where('artists.name ILIKE ? OR songs.fullname ILIKE ?', "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").limit(params[:set_limit_playlists])
 
     elsif params[:playlists_radiostation_id].present?
-      @playlists = Generalplaylist.where("radiostation_id = ?", "#{params[:playlists_radiostation_id]}").limit(params[:set_limit_playlists])
+      @playlists = Generalplaylist.where('radiostation_id = ?', "#{params[:playlists_radiostation_id]}").limit(params[:set_limit_playlists])
 
     elsif params[:set_counter_playlists].present?
       set_time_playlists
       @playlists = Generalplaylist.order(created_at: :DESC).limit(params[:set_limit_playlists])
 
     else
-      if params[:set_limit_playlists].present?
-        @playlists = Generalplaylist.order(created_at: :DESC).limit(params[:set_limit_playlists])
-      else
-        @playlists = Generalplaylist.order(created_at: :DESC).limit(5)
-      end
+      @playlists = if params[:set_limit_playlists].present?
+                     Generalplaylist.order(created_at: :DESC).limit(params[:set_limit_playlists])
+                   else
+                     Generalplaylist.order(created_at: :DESC).limit(5)
+                   end
     end
 
     @playlists.order!(created_at: :DESC)
-
-  
-
-    @target = params[:target]
 
     @playlists = @playlists.paginate(page: params[:page], per_page: 10)
 

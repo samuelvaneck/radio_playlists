@@ -1,5 +1,5 @@
 <template>
-  <div class='row flex-nowrap overflow-x-auto' style='postion:relative'>
+  <div class='row flex-nowrap overflow-x-auto py-2' style='postion:relative'>
     <div class='d-flex flex-row' v-for='item in items'>
       <Playlist v-bind:item='item' />
     </div>

@@ -1,11 +1,11 @@
 <template>
-  <div class='card mx-1 playlist-card' v-on:click='handleClickPlaylistItem'>
+  <div class='card mx-1 playlist-card'>
     <span><img :src='spotifyArtworkUrl' class='card-img-top' /></span>
     <div class='card-body'>
       <div class='d-flex flex-column'>
         <div class='d-flex d-flex-row'>
           <div class='bungee-inline'>
-            # {{ chartIdx }}
+            # {{ chartIdx + 1 }}
           </div>
           <div class='ml-auto'>
             <span class='badge badge-secondary'>{{ counter }} x</span>
@@ -27,13 +27,6 @@
         artist: null,
         spotifyArtworkUrl: null,
       }
-    },
-    methods: {
-      handleClickPlaylistItem() {
-        // if (!!this.song.data.attributes.spotify_song_url) {
-        //   window.open(this.song.data.attributes.spotify_song_url, '_blank')
-        // }
-      } 
     },
     created: function() {
       const songUrl = '/artists/' + this.id
