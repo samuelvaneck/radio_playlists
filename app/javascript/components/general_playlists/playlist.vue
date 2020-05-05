@@ -1,19 +1,20 @@
 <template>
-  <li class='collection-item'>
-    <div class='row'>
-      <div class='col s12'>
-        <span v-if='!!song'><img :src='song.data.attributes.spotify_artwork_url' class='song-image' /></span>
-      </div>
-      <div class='col s12'>
-        {{ item.attributes.time }}
-        {{ artist }}
-        {{ radioStation }}
-      </div>
-      <div class='col s12'>
-        {{ item }}
+  <div class='card mx-1' style='width:18rem;'>
+    <span v-if='!!song'><img :src='song.data.attributes.spotify_artwork_url' class='card-img-top' /></span>
+    <div class='card-body'>
+      <div class='d-flex flex-column'>
+        <div class='d-flex d-flex-row'>
+          <div class='rubik'>{{ item.attributes.time }}</div>
+          <div v-if='!!radioStation' class='ml-auto'>
+            <span class='badge badge-secondary'>{{ radioStation.data.attributes.name }}</span>
+          </div>
+        </div>
+        <div v-if='!!song && !!artist' class='my-2'>
+          <span>{{ artist.data.attributes.name }} -  {{ song.data.attributes.title }}</span>
+        </div>
       </div>
     </div>
-  </li>
+  </div>
 </template>
 
 <script>

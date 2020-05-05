@@ -1,0 +1,30 @@
+.rubik {
+  font-family: 'Rubik', sans-serif;
+}
+
+.bungee-inline {
+  font-family: 'Bungee Inline', cursive;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.nav-arrow {
+  opacity: 0;
+  z-index: 10;
+  font-size: 12em;
+  background-color: #eeeeee;
+  position: absolute;
+  transition-duration: 0.1s;
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.left-arrow{
+    transform: translate(-5%, 0%);
+  }
+  &.right-arrow {
+    transform: translate(-90%, 0%);
+  }
+}

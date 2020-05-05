@@ -4,66 +4,13 @@
   </div>
 
   <div class="container">
+    <h3>Playlists</h3>
+    <div data-behaviour="vue">
+      <playlist-bar></playlist-bar>
+    </div>
     <div class="row">
-      <div col="col s12 m12 l12">
-        <div class="right-align">
-          <%#= link_to user_spotify_omniauth_authorize_path  do %>
-            <%#= image_tag("Spotify_Icon_RGB_Green.png", size: "50") %><br/>
-          <%# end %>
-        </div>
-        <h3 class="rubik">
-          Playlists
-          <i class="material-icons md-48 right toggle-table-icon-90" id="0">details</i>
-        </h3>
-        <div data-behaviour="vue">
-          <playlist-group></playlist-group>
-        </div>
-        <div class="content" style="display:none">
-          <%= form_tag("/generalplaylists", method: :get, id: "search_playlists_form") do %>
-            <div class="row">
-              <div class="col s9 m9 l9">
-                <%= label_tag(:search_playlists, "Search for song or artist") %>
-                <%= text_field_tag "search_playlists", nil, placeholder: "Search for song or artist...", class: "materialize-textarea", autocomplete: "off" %>
-              </div>
-              <div class="input-field col s3 m3 l3">
-                <select id="set_limit_playlists" value="5">
-                  <option value="5">Last 5</option>
-                  <option value="10">Last 10</option>
-                  <option value="25">Last 25</option>
-                  <option value="50">Last 50</option>
-                  <option value="100">Last 100</option>
-                </select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s6 m6 l6">
-                <select id="set_counter_playlists">
-                  <option value="">Time</option>
-                  <option value="day">Day</option>
-                  <option value="week">Week</option>
-                  <option value="month">Month</option>
-                  <option value="year">Year</option>
-                  <option value="total">All</option>
-                </select>
-              </div>
-              <div class="input-field col s6 m6 l6">
-                <%= collection_select(:radiostation, :id, Radiostation.order(name: :ASC), :id, :name, options = { prompt: "Radiostation"}, html_options = { id: "playlists_radiostation" }) %>
-              </div>
-            </div>
-          <% end %>
-          <table class="striped">
-            <tbody id="playlists-table">
-              <%= render partial: 'playlists' %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
       <div class="col s12 m12 l6">
-        <h3 class="rubik">
-          Top songs
-          <i class="material-icons md-48 right toggle-table-icon-90">details</i>
-        </h3>
+        <h3>Top songs</h3>
         <div class="content" style="display:none">
           <%= form_tag("/generalplaylists", method: :get, id: "search_top_song_form" ) do %>
             <p>
@@ -153,99 +100,3 @@
     </div>
   </div>
 </section>
-
-
-<script>
-  // delay input for search fields with 500ms for better preformance AJAX requests
-  var delay = (function() {
-    var timer = 0;
-    return function(callback, ms) {
-      clearTimeout (timer);
-      timer = setTimeout(callback, ms);
-    };
-  })();
-
-  // AJAX requests playlists
-  $("#search_playlists_form input").keyup(function() { searchPlaylists(500); });
-  $("#set_counter_playlists").change(function() { searchPlaylists(0); });
-  $("#playlists_radiostation").change(function() { searchPlaylists(0); });
-  $("#set_limit_playlists").change(function() { searchPlaylists(0); });
-
-  function searchPlaylists(delayTime) {
-    var data = {};
-    data.search_playlists = $("#search_playlists").val();
-    data.set_counter_playlists = $("#set_counter_playlists").val();
-    data.playlists_radiostation_id = $("#playlists_radiostation").val();
-    data.set_limit_playlists = $("#set_limit_playlists").val();
-    data.target = 'playlists-table';
-
-    delay(function() {
-      $.get("<%= generalplaylists_path %>", data, null, "script" );
-    }, delayTime);
-  }
-
-  // AJAX request top songs
-  $("#search_top_song_form input").keyup(function() { searchSongs(500); });
-  $("#set_counter_top_songs").change(function() { searchSongs(0); });
-  $("#top_songs_radiostation").change(function() { searchSongs(0); });
-  $("#set_limit_songs").change(function() { searchSongs(0); });
-
-  function searchSongs(delayTime) {
-    var data = {};
-    data.search_top_song = $("#search_top_song").val();
-    data.set_counter_top_songs = $("#set_counter_top_songs").val();
-    data.songs_radiostation_id = $("#top_songs_radiostation").val();
-    data.set_limit_songs = $("#set_limit_songs").val();
-    data.target = 'top-songs-table';
-
-    delay(function() {
-      $.get("<%= generalplaylists_path %>", data, null, "script");
-    }, delayTime);
-  }
-
-  // AJAX requests artists
-  $("#search_top_artist_form input").keyup(function() { searchArtists(500); });
-  $("#set_counter_top_artists").change(function() { searchArtists(0); });
-  $("#top_artists_radiostation").change(function() { searchArtists(0); });
-  $("#set_limit_artists").change(function() { searchArtists(0); });
-
-  function searchArtists(delayTime) {
-    var data = {};
-    data.search_top_artist = $("#search_top_artist").val();
-    data.set_counter_top_artists = $("#set_counter_top_artists").val();
-    data.artists_radiostation_id = $("#top_artists_radiostation").val();
-    data.set_limit_artists = $("#set_limit_artists").val();
-    data.target = 'top-artists-table';
-
-    delay(function() {
-      $.get("<%= generalplaylists_path %>", data, null, "script");
-    }, delayTime);
-  }
-</script>
-
-<script>
-  $(document).ready(() => { $('select').formSelect(); });
-</script>
-
-<script>
-  $(".toggle-table-icon-90").click(function() {
-    $(this).parent().next("div.content").slideToggle();
-    $(this).toggleClass("toggle-table-icon");
-    $(this).toggleClass("toggle-table-icon-90");
-  });
-
-  $('.toggle-table-icon-90').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-    $(this).removeClass("animated tada");
-    $(this).animate({
-      '-webkit-transform': 'rotate(90deg)',
-      '-moz-transform': 'rotate(90deg)',
-      '-ms-transform': 'rotate(90deg)',
-      '-o-transform': 'rotate(90deg)',
-      'transform': 'rotate(90deg)',
-    });
-  });
-
-  $(document).ready(function() {
-    $(".toggle-table-icon-90").addClass("animated tada");
-  });
-</script>
