@@ -71,7 +71,6 @@
     },
     mounted: function() {
       this.getValue()
-      // this.playedDate = this.convertTime(attributes.created_at)
     }
   }
 </script>

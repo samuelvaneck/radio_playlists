@@ -51,8 +51,8 @@
       },
       onKeyUpSearch(value) {
         if (this.timer) {
-            clearTimeout(this.timer);
-            this.timer = null;
+          clearTimeout(this.timer);
+          this.timer = null;
         }
         this.timer = setTimeout(() => {
           this.term = value
