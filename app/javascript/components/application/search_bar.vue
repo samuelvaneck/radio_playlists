@@ -2,7 +2,7 @@
   <div class='d-flex flex-row'>
     <div>
       <select class='form-control' v-on:change='onChangeRadioStation'>
-        <option>Radio station</option>
+        <option value=''>All station</option>
         <option v-for='radioStation in radioStations' :value='radioStation.attributes.id'>{{ radioStation.attributes.name }}</option>
       </select>
     </div>
