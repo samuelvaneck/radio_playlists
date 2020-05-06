@@ -5,26 +5,26 @@ class GeneralplaylistsController < ApplicationController
 
   def index
     # Playlist search options
-    if params[:search_playlists].present? && params[:playlists_radiostation_id].present? && params[:set_counter_playlists].present?
-      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:playlists_radiostation_id]}").limit(params[:set_limit_playlists])
+    if params[:search_term].present? && params[:radiostation_id].present? && params[:set_counter_playlists].present?
+      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_term]}%", "%#{params[:search_term]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").limit(params[:set_limit_playlists])
       set_time_playlists
 
-    elsif params[:search_playlists].present? && params[:playlists_radiostation_id].present?
-      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").where("radiostation_id = ?", "#{params[:playlists_radiostation_id]}").limit(params[:set_limit_playlists])
+    elsif params[:search_term].present? && params[:radiostation_id].present?
+      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_term]}%", "%#{params[:search_term]}%").where("radiostation_id = ?", "#{params[:radiostation_id]}").limit(params[:set_limit_playlists])
 
-    elsif params[:search_playlists].present? && params[:set_counter_playlists].present?
-      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").limit(params[:set_limit_playlists])
+    elsif params[:search_term].present? && params[:set_counter_playlists].present?
+      @playlists = Generalplaylist.joins(:artist, :song).where("artists.name ILIKE ? OR songs.fullname ILIKE ?", "%#{params[:search_term]}%", "%#{params[:search_term]}%").limit(params[:set_limit_playlists])
       set_time_playlists
 
-    elsif params[:playlists_radiostation_id].present? && params[:set_counter_playlists].present?
-      @playlists = Generalplaylist.where('radiostation_id = ?', "#{params[:playlists_radiostation_id]}").limit(params[:set_limit_playlists])
+    elsif params[:radiostation_id].present? && params[:set_counter_playlists].present?
+      @playlists = Generalplaylist.where('radiostation_id = ?', "#{params[:radiostation_id]}").limit(params[:set_limit_playlists])
       set_time_playlists
 
-    elsif params[:search_playlists].present?
-      @playlists = Generalplaylist.joins(:artist, :song).where('artists.name ILIKE ? OR songs.fullname ILIKE ?', "%#{params[:search_playlists]}%", "%#{params[:search_playlists]}%").limit(params[:set_limit_playlists])
+    elsif params[:search_term].present?
+      @playlists = Generalplaylist.joins(:artist, :song).where('artists.name ILIKE ? OR songs.fullname ILIKE ?', "%#{params[:search_term]}%", "%#{params[:search_term]}%").limit(params[:set_limit_playlists])
 
-    elsif params[:playlists_radiostation_id].present?
-      @playlists = Generalplaylist.where('radiostation_id = ?', "#{params[:playlists_radiostation_id]}").limit(params[:set_limit_playlists])
+    elsif params[:radiostation_id].present?
+      @playlists = Generalplaylist.where('radiostation_id = ?', "#{params[:radiostation_id]}").limit(params[:set_limit_playlists])
 
     elsif params[:set_counter_playlists].present?
       set_time_playlists
