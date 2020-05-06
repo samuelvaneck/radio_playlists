@@ -4,13 +4,17 @@
     <div class='card-body'>
       <div class='d-flex flex-column'>
         <div class='d-flex d-flex-row'>
-          <div class='rubik'>{{ item.attributes.time }}</div>
+          <div class='rubik mr-2'>
+            <div>{{ item.attributes.time }}</div>
+            <div><small><i>{{ playedDate() }}</i></small></div>
+          </div>
           <div v-if='!!radioStation' class='ml-auto'>
             <span class='badge badge-secondary'>{{ radioStation.data.attributes.name }}</span>
           </div>
         </div>
         <div v-if='!!song && !!artist' class='my-2'>
-          <span>{{ artist.data.attributes.name }} -  {{ song.data.attributes.title }}</span>
+          <span>{{ song.data.attributes.title }}</span>
+          <div><small><i>{{ artist.data.attributes.name }}</i></small></div>
         </div>
       </div>
     </div>
@@ -25,7 +29,7 @@
         artist: null,
         song: null,
         songArtworkUrl: null,
-        radioStation: null
+        radioStation: null,
       }
     },
     methods: {
@@ -33,6 +37,14 @@
         if (!!this.song.data.attributes.spotify_song_url) {
           window.open(this.song.data.attributes.spotify_song_url, '_blank')
         }
+      },
+      playedDate() {
+        const date = new Date(this.item.attributes.created_at)
+        const dd = date.getDate()
+        const mm = date.getMonth()+1
+        const yyyy = date.getFullYear()
+
+        return dd + '-' + mm + '-' + yyyy
       },
       getValue() {
         const attributes = this.item.attributes
@@ -59,6 +71,7 @@
     },
     mounted: function() {
       this.getValue()
+      // this.playedDate = this.convertTime(attributes.created_at)
     }
   }
 </script>

@@ -29,7 +29,6 @@
     methods: {
       getItems: function(append = false) {
         const url = '/generalplaylists?radiostation_id=' + this.radioStationFilter + '&search_term=' + this.term + '&page=' + this.page
-        console.log({ append, url })
         const options = {
           method: 'GET',
           headers: {
@@ -70,7 +69,7 @@
         this.getItems(true)
       },
       onRadioStationSelect(value) {
-        this.radioStationFilter = value
+        this.radioStationFilter = value || ''
         this.page = 1
         this.lastPage = false
         this.getItems()
