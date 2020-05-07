@@ -124,6 +124,7 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.find_spotify_links(song, artist, title)
+    title = title.gsub(/\A\d{3}/, '').strip # opwekking songs
     # Spotify lookup image and song
     if RSpotify::Track.search("#{artist.name} #{title}").present?
       song.spotify_song_url = RSpotify::Track.search("#{artist.name} #{title}").first.external_urls["spotify"]

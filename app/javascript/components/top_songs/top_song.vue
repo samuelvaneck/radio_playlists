@@ -12,7 +12,8 @@
           </div>
         </div>
         <div v-if='!!song && !!artist' class='my-2'>
-          <span>{{ artist.data.attributes.name }} - {{ song.data.attributes.title }}</span>
+          <div>{{ song.data.attributes.title }}</div>
+          <div><small><i>{{ artist.data.attributes.name }}</i></small></div>
         </div>
       </div>
     </div>
