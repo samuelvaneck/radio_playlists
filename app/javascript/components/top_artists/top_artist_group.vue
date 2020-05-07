@@ -9,52 +9,16 @@
 <script>
   import TopArtist from './top_artist.vue'
   export default {
-    data() {
-      return {
-        items: [],
-        page: 1,
-        requestInProgress: false
-      }
-    },
+    props: ['items'],
     components: { TopArtist },
     methods: {
       handleScroll(event) {
         const row = event.target
-        const rightEdgeOfRow = (row.scrollLeft + row.offsetWidth) >= (row.scrollWidth - 50)
-        if (!rightEdgeOfRow || this.requestInProgress) return
-        
-        this.page++
-        this.requestInProgress = true
-
-        const url = '/artists?page=' + this.page
-        const options = {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json;charset=UTF-8'
-          },
-        }
-
-        fetch(url, options).then(response => response.json())
-          .then(d => {
-            this.items = this.items.concat(d)
-            this.requestInProgress = false
-          })
+        this.$emit('scroll', row)
       }
-    },
-    created() {
-      const url = '/artists'
-      const options = {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json;charset=UTF-8'
-        }
-      }
-      fetch(url, options).then(res => res.json())
-        .then(d => this.items = d)
     },
     mounted() {
+      console.log(this.items)
       this.$el.addEventListener('scroll', this.handleScroll)
     }
   }
