@@ -2,7 +2,8 @@
 
 class Artist < ActiveRecord::Base
   has_many :generalplaylists
-  has_many :songs
+  has_many :artists_songs
+  has_many :songs, through: :artists_songs
   has_many :radiostations, through: :generalplaylists
 
   def self.search(params)

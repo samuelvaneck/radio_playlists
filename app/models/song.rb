@@ -4,9 +4,10 @@ class Song < ActiveRecord::Base
   has_many :generalplaylists
   has_many :counters
   has_many :radiostations, through: :generalplaylists
-  belongs_to :artist
+  has_many :artists_songs
+  has_many :artists, through: :artists_songs
 
-  validates :artist, presence: true
+  # validates :artist, presence: true
 
   def self.search_title(title)
     where('title ILIKE ?', "%#{title}%")
