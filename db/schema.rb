@@ -34,10 +34,8 @@ ActiveRecord::Schema.define(version: 2020_05_10_150550) do
     t.string "time"
     t.bigint "song_id"
     t.bigint "radiostation_id"
-    t.bigint "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artist_id"], name: "index_generalplaylists_on_artist_id"
     t.index ["radiostation_id"], name: "index_generalplaylists_on_radiostation_id"
     t.index ["song_id"], name: "index_generalplaylists_on_song_id"
   end
@@ -81,7 +79,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_150550) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "generalplaylists", "artists"
   add_foreign_key "generalplaylists", "radiostations"
   add_foreign_key "generalplaylists", "songs"
 end

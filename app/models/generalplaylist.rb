@@ -2,8 +2,8 @@
 
 class Generalplaylist < ActiveRecord::Base
   belongs_to :song
+  has_many :artists, through: :song
   belongs_to :radiostation
-  belongs_to :artist
 
   require 'nokogiri'
   require 'open-uri'

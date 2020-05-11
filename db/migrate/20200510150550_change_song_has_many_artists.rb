@@ -13,23 +13,22 @@ class ChangeSongHasManyArtists < ActiveRecord::Migration[6.0]
 
     old_artists = []
     Song.all.each do |song|
-      regex = Regexp.new('\b\s(;|feat|ft|&|vs|versus|and|met)\s\b', Regexp::IGNORECASE)
-      next if regex.match? song.artist.name
+      regex = Regexp.new('\b(feat.|feat|ft.|ft|vs.|vs|versus|,|and|met)\s|(\b;|&)', Regexp::IGNORECASE)
+      next unless regex.match?(song.artist.name)
 
       old_artists << song.artist
-      artist_array = song.artist.name.split(regex)
+      artist_array = song.artist.name.split(regex).map(&:strip)
       artist_array.each do |name|
-        # skip the split value to add as new artist
-        next if regex.match?(name)
-
         new_artist = Artist.find_or_create_by(name: name)
         song.artists << new_artist
       end
     end
 
+    # remove reference from song and generalplaylists
     remove_reference :songs, :artist, index: true, foreign_key: true
+    remove_reference :generalplaylists, :artist, index: true, foreign_key: true
 
-    old_artists.each(&:destroy)
+    old_artists.each(&:delete)
   end
 
   def down

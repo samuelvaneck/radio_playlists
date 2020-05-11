@@ -10,4 +10,6 @@ class SongSerializer
              :fullname,
              :spotify_song_url,
              :spotify_artwork_url
+
+  has_many :songs
 end
