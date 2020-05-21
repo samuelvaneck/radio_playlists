@@ -1,6 +1,6 @@
 <template>
   <div class='card mx-1 playlist-card' v-on:click='handleClickPlaylistItem'>
-    <span v-if='!!song'><img :src='song.data.attributes.spotify_artwork_url' class='card-img-top' /></span>
+    <span><img :src='song.spotify_artwork_url' class='card-img-top' /></span>
     <div class='card-body'>
       <div class='d-flex flex-column'>
         <div class='d-flex d-flex-row'>
@@ -11,8 +11,8 @@
             <span class='badge badge-secondary'>{{ counter }} x</span>
           </div>
         </div>
-        <div v-if='!!song && !!artist' class='my-2'>
-          <div>{{ song.data.attributes.title }}</div>
+        <div>{{ song.title }}</div>
+        <div v-if='!!artist' class='my-2'>
           <div><small><i>{{ artist.data.attributes.name }}</i></small></div>
         </div>
       </div>
@@ -22,23 +22,22 @@
 
 <script>
   export default {
-    props: ['id', 'counter', 'chartIdx'],
+    props: ['song', 'counter', 'chartIdx'],
     data () {
       return {
         artist: null,
-        song: null,
         songArtworkUrl: null,
         radioStation: null
       }
     },
     methods: {
       handleClickPlaylistItem() {
-        if (!!this.song.data.attributes.spotify_song_url) {
-          window.open(this.song.data.attributes.spotify_song_url, '_blank')
+        if (!!this.song.spotify_song_url) {
+          window.open(this.song.spotify_song_url, '_blank')
         }
       },
       getValues() {
-        const songUrl = '/songs/' + this.id
+        const artistUrl = '/artists/' + this.song.artist_id
         const options = {
           method: 'GET',
           headers: {
@@ -47,14 +46,8 @@
           }
         }
 
-        fetch(songUrl, options).then(res => res.json())
-          .then(d => { 
-            this.song = d
-            
-            const artistUrl = '/artists/' + this.song.data.attributes.artist_id
-            fetch(artistUrl, options).then(res => res.json())
-              .then(d => this.artist = d)
-          })
+        fetch(artistUrl, options).then(res => res.json())
+          .then(d => this.artist = d)
       } 
     },
     mounted: function() {
