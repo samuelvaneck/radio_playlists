@@ -12,8 +12,8 @@
           </div>
         </div>
         <div>{{ song.title }}</div>
-        <div v-if='!!artist' class='my-2'>
-          <div><small><i>{{ artist.data.attributes.name }}</i></small></div>
+        <div class='my-2'>
+          <div><small><i>{{ song.artist_name }}</i></small></div>
         </div>
       </div>
     </div>
@@ -35,23 +35,7 @@
         if (!!this.song.spotify_song_url) {
           window.open(this.song.spotify_song_url, '_blank')
         }
-      },
-      getValues() {
-        const artistUrl = '/artists/' + this.song.artist_id
-        const options = {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json;charset=UTF-8'
-          }
-        }
-
-        fetch(artistUrl, options).then(res => res.json())
-          .then(d => this.artist = d)
       } 
-    },
-    mounted: function() {
-      this.getValues()
     }
   }
 </script>

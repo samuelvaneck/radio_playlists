@@ -15,11 +15,13 @@ class Song < ActiveRecord::Base
 
   def self.build_sql_query(search_term = nil, radiostation_id = nil, time = nil)
     sql = "
-      SELECT COUNT(songs.id), songs.id, songs.title, songs.artist_id, 
-        songs.spotify_song_url, songs.spotify_artwork_url
+      SELECT COUNT(songs.id), songs.id, songs.title, songs.spotify_song_url, 
+        songs.spotify_artwork_url, artists.name AS artist_name
       FROM songs
-      JOIN generalplaylists
-      ON generalplaylists.song_id = songs.id
+      INNER JOIN generalplaylists
+        ON generalplaylists.song_id = songs.id
+      INNER JOIN artists
+        ON artists.id = songs.artist_id 
     "
 
     if search_term.present? && radiostation_id.present?
@@ -31,7 +33,7 @@ class Song < ActiveRecord::Base
       sql += "WHERE generalplaylists.radiostation_id = :radiostation_id "
     end
 
-    sql += "GROUP BY generalplaylists.song_id, songs.id
+    sql += "GROUP BY generalplaylists.song_id, songs.id, artists.name
             ORDER BY COUNT(songs.id) DESC"
 
     sql
