@@ -1,6 +1,12 @@
 <template>
   <div class='card mx-1 playlist-card' v-on:click='handleClickPlaylistItem'>
-    <span v-if='!!song'><img :src='song.data.attributes.spotify_artwork_url' class='card-img-top' /></span>
+    <span v-if='loading'>
+      <LoadingBar class='card-img-top' v-bind:height='"190px"' v-bind:width='"90%"' />
+    </span>
+    <span v-else-if='!!song'>
+      <img :src='song.data.attributes.spotify_artwork_url' class='card-img-top' />
+    </span>
+
     <div class='card-body'>
       <div class='d-flex flex-column'>
         <div class='d-flex d-flex-row'>
@@ -8,13 +14,29 @@
             <div>{{ item.attributes.time }}</div>
             <div><small><i>{{ playedDate() }}</i></small></div>
           </div>
-          <div v-if='!!radioStation' class='ml-auto'>
+          <!-- Radio station label -->
+          <div v-if='loading'>
+            <LoadingBar />
+          </div>
+          <div v-else-if='!!radioStation' class='ml-auto'>
             <span class='badge badge-secondary'>{{ radioStation.data.attributes.name }}</span>
           </div>
         </div>
-        <div v-if='!!song && !!artist' class='my-2'>
-          <span>{{ song.data.attributes.title }}</span>
-          <div><small><i>{{ artist.data.attributes.name }}</i></small></div>
+        <div class='my-2'>
+          <!-- Song -->
+          <div v-if='loading'>
+            <LoadingBar />
+          </div>
+          <div v-else-if='!!song'>
+            <span>{{ song.data.attributes.title }}</span>
+          </div>
+          <!-- Artist -->
+          <div v-if='loading'>
+            <LoadingBar />
+          </div>
+          <div v-else-if='!!artist'>
+            <small><i>{{ artist.data.attributes.name }}</i></small>
+          </div>
         </div>
       </div>
     </div>
@@ -22,14 +44,18 @@
 </template>
 
 <script>
+  import LoadingBar from '../application/loading_bar.vue'
+
   export default {
     props: ['item'],
+    components: { LoadingBar },
     data () {
       return {
         artist: null,
         song: null,
         songArtworkUrl: null,
         radioStation: null,
+        loading: true,
       }
     },
     methods: {
@@ -63,7 +89,10 @@
           .then(d => this.artist = d)
 
         fetch(songUrl, options).then(res => res.json())
-          .then(d => this.song = d)
+          .then(d => { 
+            this.song = d
+            this.loading = false
+          })
 
         fetch(radioStationUrl, options).then(res => res.json())
           .then(d => this.radioStation = d)

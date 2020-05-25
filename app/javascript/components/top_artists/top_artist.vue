@@ -1,6 +1,9 @@
 <template>
   <div class='card mx-1 playlist-card'>
-    <span><img :src='spotifyArtworkUrl' class='card-img-top' /></span>
+    <span v-if='loading'>
+      <LoadingBar v-bind:height='"190px"' v-bind:width='"90%"' />
+    </span>
+    <span v-else><img :src='spotifyArtworkUrl' class='card-img-top' /></span>
     <div class='card-body'>
       <div class='d-flex flex-column'>
         <div class='d-flex d-flex-row'>
@@ -11,8 +14,13 @@
             <span class='badge badge-secondary'>{{ counter }} x</span>
           </div>
         </div>
-        <div v-if='!!artist' class='my-2'>
-          <span>{{ artist.data.attributes.name }}</span>
+        <div class='my-2'>
+          <div v-if='loading'>
+            <LoadingBar />
+          </div>
+          <div v-else-if='!!artist'>
+            <span>{{ artist.data.attributes.name }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -20,12 +28,16 @@
 </template>
 
 <script>
+  import LoadingBar from '../application/loading_bar.vue'
+
   export default {
     props: ['id', 'counter', 'chartIdx'],
+    components: { LoadingBar },
     data () {
       return {
         artist: null,
         spotifyArtworkUrl: null,
+        loading: true,
       }
     },
     methods: {
@@ -55,7 +67,10 @@
               }
             }
             fetch(url, options).then(res => res.json())
-              .then(d => this.spotifyArtworkUrl = d.data.attributes.spotify_artwork_url)
+              .then(d => { 
+                this.spotifyArtworkUrl = d.data.attributes.spotify_artwork_url
+                this.loading = false
+              })
           })
       }
     },
