@@ -225,4 +225,11 @@ class Generalplaylist < ActiveRecord::Base
 
     [artist, songs, title, time]
   end
+
+  def self.search(params)
+    playlists = Generalplaylist.joins(:artist, :song).order(created_at: :DESC)
+    playlists.where!('artists.name ILIKE ? OR songs.fullname ILIKE ?', "%#{params[:search_term]}%", "%#{params[:search_term]}%") if params[:search_term].present?
+    playlists.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
+    playlists
+  end
 end
