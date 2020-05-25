@@ -14,10 +14,8 @@ class Song < ActiveRecord::Base
 
   def self.search(params)
     songs = Generalplaylist.joins(:song).all
-    if params[:search_term].present? || params[:radiostation_id].present?
-      songs.where!('songs.fullname ILIKE ?', "%#{params[:search_term]}%") if params[:search_term].present?
-      songs.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
-    end
+    songs.where!('songs.fullname ILIKE ?', "%#{params[:search_term]}%") if params[:search_term].present?
+    songs.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
     songs
   end
 
