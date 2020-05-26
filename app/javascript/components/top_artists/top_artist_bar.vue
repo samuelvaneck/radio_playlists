@@ -6,7 +6,14 @@
         <SearchBar @search='onSearch' @filter='onRadioStationSelect' />
       </div>
     </div>
-    <TopArtistGroup v-bind:items='items' @scroll='onScroll' />
+    <div v-if='loading'>
+      <div class='row flex-nowrap overflow-x-auto py-2'>
+        <LoadingCard v-for='n in 10' />
+      </div>
+    </div>
+    <div v-else>
+      <TopArtistGroup v-bind:items='items' @scroll='onScroll' />
+    </div>
   </div>
 </template>
 
@@ -14,6 +21,7 @@
   import SearchBar from '../application/search_bar.vue'
   import NavArrow from '../application/slider_button.vue'
   import TopArtistGroup from './top_artist_group.vue'
+  import LoadingCard from '../application/loading_card.vue'
 
   export default {
     data() {
@@ -23,10 +31,11 @@
         page: 1,
         requestInProgress: false,
         lastPage: false,
-        radioStationFilter: ''
+        radioStationFilter: '',
+        loading: true
       }
     },
-    components: { SearchBar, NavArrow, TopArtistGroup },
+    components: { SearchBar, NavArrow, TopArtistGroup, LoadingCard },
     methods: {
       getItems: function(append = false) {
         const url = '/artists?radiostation_id=' + this.radioStationFilter + '&search_term=' + this.term + '&page=' + this.page
@@ -48,12 +57,14 @@
             this.requestInProgress = false
             // dont make new request if there are no more entries
             this.lastPage = d < 10
+            this.loading = false
           })
       },
       onSearch: function(value) {
         if (this.timer) {
           clearTimeout(this.timer);
           this.timer = null;
+          this.loading = true
         }
         this.timer = setTimeout(() => {
           this.term = value
