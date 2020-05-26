@@ -6,7 +6,14 @@
         <SearchBar @search='onKeyUpSearch' @filter='onRadioStationSelect' />
       </div>
     </div>
-    <PlaylistGroup v-bind:items='items' @scroll='onScroll' />
+    <div v-if='loading'>
+      <div class='row flex-nowrap overflow-x-auto py-2'>
+        <LoadingCard v-for='n in 10' />
+      </div>
+    </div>
+    <div v-else>
+      <PlaylistGroup v-bind:items='items' @scroll='onScroll' />
+    </div>
   </div>
 </template>
 
@@ -14,6 +21,7 @@
   import SearchBar from '../application/search_bar.vue'
   import NavArrow from '../application/slider_button.vue'
   import PlaylistGroup from './playlist_group.vue'
+  import LoadingCard from '../application/loading_card.vue'
 
   export default {
     data() {
@@ -24,6 +32,7 @@
         requestInProgress: false,
         lastPage: false,
         radioStationFilter: '',
+        loading: true,
       }
     },
     methods: {
@@ -47,12 +56,14 @@
             this.requestInProgress = false
             // dont make new request if there are no more entries
             this.lastPage = d.data.length < 10
+            this.loading = false
           })
       },
       onKeyUpSearch(value) {
         if (this.timer) {
           clearTimeout(this.timer);
           this.timer = null;
+          this.loading = true
         }
         this.timer = setTimeout(() => {
           this.term = value
@@ -79,6 +90,6 @@
       const url = '/generalplaylists'
       this.getItems(url);
     },
-    components: { SearchBar, NavArrow, PlaylistGroup }
+    components: { SearchBar, NavArrow, PlaylistGroup, LoadingCard }
   }
 </script>
