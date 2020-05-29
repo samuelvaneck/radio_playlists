@@ -20,8 +20,10 @@ gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sidekiq'
 gem 'sidekiq-scheduler', '~> 3.0', '>= 3.0.1'
+gem 'taglib-ruby'
 gem 'turbolinks'
 gem 'uglifier'
+gem 'uri'
 gem 'webpacker', '~> 5.1', '>= 5.1.1'
 gem 'will_paginate'
 
