@@ -378,7 +378,6 @@ GEM
       net-ssh (>= 2.8.0)
     sshkit-interactive (0.3.0)
       sshkit (~> 1.12)
-    taglib-ruby (1.0.1)
     thor (1.0.1)
     thread_safe (0.3.6)
     thwait (0.1.0)
@@ -461,7 +460,6 @@ DEPENDENCIES
   sidekiq-scheduler (~> 3.0, >= 3.0.1)
   simplecov
   spring
-  taglib-ruby
   timecop
   turbolinks
   uglifier

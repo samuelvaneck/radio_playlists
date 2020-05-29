@@ -20,7 +20,6 @@ gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sidekiq'
 gem 'sidekiq-scheduler', '~> 3.0', '>= 3.0.1'
-gem 'taglib-ruby'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'uri'
