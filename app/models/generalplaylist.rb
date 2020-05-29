@@ -34,9 +34,9 @@ class Generalplaylist < ActiveRecord::Base
       request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
       response = http.request(request)
       track = JSON.parse(response.body)['data']['getStation']['playouts'][0]
-      time = Time.parse(track['broadcastDate']).strftime('%H:%M')
       artist = find_or_create_artist(track['track']['artistName'])
       title = track['track']['title']
+      time = Time.parse(track['broadcastDate']).in_time_zone('Amsterdam').strftime('%H:%M')
 
       return unless title_check(title)
 
