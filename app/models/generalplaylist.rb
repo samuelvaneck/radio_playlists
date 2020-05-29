@@ -7,47 +7,152 @@ class Generalplaylist < ActiveRecord::Base
 
   require 'nokogiri'
   require 'open-uri'
+  require 'net/http'
 
-  def self.check_song_radio_station(url, radio_station)
-    doc = Nokogiri::HTML open(url)
-    artist, songs, title, time = Generalplaylist.get_artist_songs_title_time(doc)
-    return unless Generalplaylist.title_check(title)
+  def self.check_npo_radio(address, radio_station)
+    uri = URI address
+    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+      request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
+      response = http.request(request)
+      track = JSON.parse(response.body)['data'][0]
+      artist = find_or_create_artist(track['artist'])
+      title = track['title']
+      time = Time.parse(track['startdatetime']).strftime('%H:%M')
 
-    song = Generalplaylist.song_check(songs, artist, title)
+      return unless title_check(title)
 
-    Generalplaylist.create_generalplaylist(time, artist, song, radio_station)
+      songs = Song.where('lower(title) = ?', title.downcase)
+      song = song_check(songs, artist, title)
+
+      create_generalplaylist(time, artist, song, radio_station)
+    end
   end
 
-  # Check the Radio Veronica song
-  def self.radio_veronica_check
-    url = 'https://playlist24.nl/radio-veronica-playlist/'
-    radio_station = Radiostation.find_or_create_by(name: 'Radio Veronica')
+  def self.check_talpa_radio(address, radio_station)
+    uri = URI address
+    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+      request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
+      response = http.request(request)
+      track = JSON.parse(response.body)['data']['getStation']['playouts'][0]
+      time = Time.parse(track['broadcastDate']).strftime('%H:%M')
+      artist = find_or_create_artist(track['track']['artistName'])
+      title = track['track']['title']
 
-    Generalplaylist.check_song_radio_station(url, radio_station)
+      return unless title_check(title)
+
+      songs = Song.where('lower(title) = ?', title.downcase)
+      song = song_check(songs, artist, title)
+      create_generalplaylist(time, artist, song, radio_station)
+    end
   end
 
-  # Check the Radio 538 song
-  def self.radio_538_check
-    url = 'https://playlist24.nl/radio-538-playlist/'
-    radio_station = Radiostation.find_or_create_by(name: 'Radio 538')
+  ###########
+  ### NPO ###
+  ###########
 
-    Generalplaylist.check_song_radio_station(url, radio_station)
+  def self.radio_1_check
+    address = 'https://www.nporadio1.nl/api/tracks'
+    radio_station = Radiostation.find_or_create_by(name: 'Radio 1')
+    Generalplaylist.check_npo_radio(address, radio_station)
   end
 
   # Check Radio 2 song
   def self.radio_2_check
-    url = 'https://playlist24.nl/radio-2-playlist/'
+    address = 'https://www.nporadio2.nl/api/tracks'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 2')
+    Generalplaylist.check_npo_radio(address, radio_station)
+  end
 
-    Generalplaylist.check_song_radio_station(url, radio_station)
+  def self.radio_3fm_check
+    address = 'https://www.npo3fm.nl/api/tracks'
+    radio_station = Radiostation.find_or_create_by(name: 'Radio 3FM')
+    Generalplaylist.check_npo_radio(address, radio_station)
+  end
+
+  def self.radio_4_check
+    address = 'https://www.nporadio4.nl/api/tracks'
+    radio_station = Radiostation.find_or_create_by(name: 'Radio 4')
+    Generalplaylist.check_npo_radio(address, radio_station)
+  end
+
+  def self.radio_5_check
+    address = 'https://www.nporadio5.nl/api/tracks'
+    radio_station = Radiostation.find_or_create_by(name: 'Radio 5')
+    Generalplaylist.check_npo_radio(address, radio_station)
+  end
+
+  #############
+  ### TALPA ###
+  #############
+
+  def self.sky_radio_check
+    address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22sky-radio%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
+    radio_station = Radiostation.find_or_create_by(name: 'Sky Radio')
+    Generalplaylist.check_talpa_radio(address, radio_station)
+  end
+
+  # Check the Radio Veronica song
+  def self.radio_veronica_check
+    address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22radio-veronica%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
+    radio_station = Radiostation.find_or_create_by(name: 'Radio Veronica')
+    Generalplaylist.check_talpa_radio(address, radio_station)
+  end
+
+  # Check the Radio 538 song
+  def self.radio_538_check
+    address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22radio-538%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
+    radio_station = Radiostation.find_or_create_by(name: 'Radio 538')
+    Generalplaylist.check_talpa_radio(address, radio_station)
+  end
+
+  def self.radio_10_check
+    address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22radio-10%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
+    radio_station = Radiostation.find_or_create_by(name: 'Radio 10')
+    Generalplaylist.check_talpa_radio(address, radio_station)
+  end
+
+  #############
+  ### OTHER ###
+  #############
+
+  def self.q_music_check
+    address = 'https://api.qmusic.nl/2.4/tracks/plays?limit=1&next=true'
+    radio_station = Radiostation.find_or_create_by(name: 'Qmusic')
+
+    uri = URI address
+    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+      request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
+      response = http.request(request)
+      track = JSON.parse(response.body)['played_tracks'][0]
+      time = Time.parse(track['played_at']).strftime('%H:%M')
+      artist = find_or_create_artist(track['artist']['name'].titleize)
+      title = track['title']
+
+      return unless title_check(title)
+
+      songs = Song.where('lower(title) = ?', title.downcase)
+      song = song_check(songs, artist, title)
+      create_generalplaylist(time, artist, song, radio_station)
+    end
   end
 
   # Check Sublime FM songs
   def self.sublime_fm_check
-    url = 'https://playlist24.nl/sublime-fm-playlist/'
+    # https://sublime.nl/
+    url = 'https://sublime.nl/muziek/'
+    doc = Nokogiri::HTML open(url)
     radio_station = Radiostation.find_or_create_by(name: 'Sublime FM')
+    artist_name = doc.css('span.title')[0].text.strip
+    artist = find_or_create_artist(artist_name)
+    # gsub to remove any text between parentenses
+    title = doc.css('span.title')[1].text.strip.gsub(/\(.*?\)/, '')
+    time = doc.at_css('span.date').text.split(':').take(2).join(':')
 
-    Generalplaylist.check_song_radio_station(url, radio_station)
+    return unless title_check(title)
+
+    songs = Song.where('lower(title) = ?', title.downcase)
+    song = song_check(songs, artist, title)
+    create_generalplaylist(time, artist, song, radio_station)
   end
 
   # Check Groot Nieuws Radio songs
@@ -59,35 +164,14 @@ class Generalplaylist < ActiveRecord::Base
     title = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[3]').text.split.map(&:capitalize).join(" ")
     return false if artist_name.blank?
 
-    Generalplaylist.title_check(title)
+    return unless title_check(title)
 
     artist = Artist.find_or_create_by(name: artist_name)
     songs = Song.where(title: title)
-    song = Generalplaylist.song_check(songs, artist, title)
+    song = song_check(songs, artist, title)
     radiostation = Radiostation.find_or_create_by(name: 'Groot Nieuws Radio')
 
-    Generalplaylist.create_generalplaylist(time, artist, song, radiostation)
-  end
-
-  def self.sky_radio_check
-    url = 'https://playlist24.nl/skyradio-playlist/'
-    radio_station = Radiostation.find_or_create_by(name: 'Sky Radio')
-
-    Generalplaylist.check_song_radio_station(url, radio_station)
-  end
-
-  def self.radio_3fm_check
-    url = 'https://playlist24.nl/3fm-playlist/'
-    radio_station = Radiostation.find_or_create_by(name: 'Radio 3FM')
-
-    Generalplaylist.check_song_radio_station(url, radio_station)
-  end
-
-  def self.q_music_check
-    url = 'https://playlist24.nl/qmusic-playlist/'
-    radio_station = Radiostation.find_or_create_by(name: 'Qmusic')
-
-    Generalplaylist.check_song_radio_station(url, radio_station)
+    create_generalplaylist(time, artist, song, radiostation)
   end
 
   def self.title_check(title)
@@ -121,6 +205,26 @@ class Generalplaylist < ActiveRecord::Base
     song = song.first if song.is_a?(Array)
     song = Generalplaylist.find_spotify_links(song, artist, title)
     song
+  end
+
+  def self.find_or_create_artist(name)
+    artists = Artist.where('lower(name) = ?', name.downcase)
+
+    if artists.present?
+      # select artist with the most common
+      highest_count = 0
+      selected = nil
+      artists.each do |artist|
+        counts = Generalplaylist.joins(:artist)
+                                .where('artists.id = ?', artist.id)
+                                .group(:artist_id)
+                                .count[artist.id]
+        selected = artist if counts.nil? || counts > highest_count
+      end
+      selected
+    else
+      Artist.create(name: name)
+    end
   end
 
   def self.find_spotify_links(song, artist, title)
@@ -175,11 +279,18 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.check_all_radiostations
-    radio_veronica_check
-    radio_538_check
+    # npo stations
+    radio_1_check
     radio_2_check
     radio_3fm_check
+    radio_4_check
+    radio_5_check
+    # talpa station
+    radio_538_check
     sky_radio_check
+    radio_veronica_check
+    radio_10_check
+    # other stations
     q_music_check
     sublime_fm_check
     grootnieuws_radio_check
