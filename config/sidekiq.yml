@@ -1,7 +1,52 @@
 ---
   :concurrency: 5
+  :max_retries: 3
   :schedule:
-    CheckRadioStationsJob:
+    CheckRadio1:
+      cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    CheckRadio2:
+      cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    CheckRadio3:
+      cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    CheckRadio4:
+      cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    CheckRadio5:
+      cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    CheckRadio10:
+      cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    CheckRadio538:
+      cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    CheckRadioVeronica:
+      cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    CheckSkyRadio:
+      cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    CheckQmusic:
+      cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    CheckGrootNieuwsRadio:
+      cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    CheckSublimeFm:
       cron: '*/3 * * * *'
       queue: default
       enabled: true
