@@ -37,12 +37,7 @@
         - run: bundle install --path vendor/bundle
 
         # add yarn
-        - run:
-          name: Install dependencies
-          command: |
-            apt update -qq && 
-            apt install nodejs yarn &&
-            yarn install
+        - run: apt update -qq && apt install nodejs yarn && yarn install
   
         # Cache Dependencies
         - type: cache-save
