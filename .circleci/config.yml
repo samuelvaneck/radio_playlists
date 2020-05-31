@@ -24,12 +24,20 @@
         - type: cache-restore
           name: Restore bundle cache
           key: radio_playlists-{{ checksum "Gemfile.lock" }}
+
+        - restore_cache:
+          name: Restore Yarn Package Cache
+          keys: yarn-packages-{{ checksum "yarn.lock" }}
         
         # install bundler
         - run: gem install bundler:2.1.4
   
         # Bundle install dependencies
         - run: bundle install --path vendor/bundle
+
+        # add yarn
+        - run: curl -o- -L https://yarnpkg.com/install.sh | bash
+        - run: yarn install
   
         # Cache Dependencies
         - type: cache-save
@@ -37,6 +45,12 @@
           key: radio_playlists-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+
+        - type: cache-save
+          name: Store yarn cache
+          key: myapp-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.yarn-cache
   
         # Wait for DB
         - run: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -45,7 +59,7 @@
         - run: cp .env.test .env
   
         # Setup the database
-        - run: bundle exec rake db:test:prepare
+        - run: bundle exec rails db:test:prepare
   
         # Run the tests
         - run: bundle exec rspec
