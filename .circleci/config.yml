@@ -57,7 +57,7 @@
         - run: dockerize -wait tcp://localhost:5432 -timeout 1m
   
         # Setup the environment
-        - run: cp .env.test .env
+        - run: cp .env.circle-ci .env
   
         # Setup the database
         - run: bundle exec rails db:test:prepare
