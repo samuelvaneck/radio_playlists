@@ -64,3 +64,4 @@
   
         # Run the tests
         - run: bundle exec rspec
+        - run: bundle exec rubocop
