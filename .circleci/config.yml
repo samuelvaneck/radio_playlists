@@ -14,7 +14,7 @@
             POSTGRES_USER: radio_playlists
             POSTGRES_DB: radio_playlists_test
             POSTGRES_PASSWORD: "Super-C0mpl3X"
-        - image: circleci/node:latest
+
       steps:
         - checkout
         - add_ssh_keys:
@@ -37,8 +37,14 @@
         - run: bundle install --path vendor/bundle
 
         # add yarn
-        - run: curl -o- -L https://yarnpkg.com/install.sh | bash
-        - run: yarn install
+        - run:
+          name: Install dependencies
+          command: |
+            curl -sL https://deb.nodesource.com/setup_12.x | bash -
+            curl -o- -L https://yarnpkg.com/install.sh | bash
+            apt update -qq && 
+            apt install nodejs yarn &&
+            yarn install
   
         # Cache Dependencies
         - type: cache-save
