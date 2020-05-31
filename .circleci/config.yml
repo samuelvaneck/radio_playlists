@@ -7,7 +7,7 @@
         - image: circleci/ruby:2.6.5-node-browsers
           environment:
             DATABASE_HOST: localhost
-            DATABASE_USER: postgres
+            DATABASE_USER: radio_playlists
             RAILS_ENV: test
         - image: postgres:latest
           environment:
