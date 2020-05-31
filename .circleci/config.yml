@@ -25,7 +25,7 @@
           name: Restore bundle cache
           key: radio_playlists-{{ checksum "Gemfile.lock" }}
 
-        - restore_cache:
+        - type: cache-restore
           name: Restore Yarn Package Cache
           key: yarn-packages-{{ checksum "yarn.lock" }}
         
