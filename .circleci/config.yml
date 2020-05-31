@@ -16,6 +16,9 @@
             POSTGRES_PASSWORD: "Super-C0mpl3X"
       steps:
         - checkout
+        - add_ssh_keys:
+          fingerprints:
+            - "0d:3b:3a:6e:fb:ba:86:a9:9d:fa:41:ab:bc:3b:56:31"
   
         # Restore Cached Dependencies
         - type: cache-restore
