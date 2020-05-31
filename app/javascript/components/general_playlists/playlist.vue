@@ -1,5 +1,5 @@
 <template>
-  <div class='card mx-1 playlist-card' v-on:click='handleClickPlaylistItem'>
+  <div class='card mx-1 playlist-card'>
     <span v-if='loading'>
       <LoadingBar class='card-img-top' v-bind:height='"190px"' v-bind:width='"90%"' />
     </span>
@@ -38,6 +38,11 @@
             <small><i>{{ artist.data.attributes.name }}</i></small>
           </div>
         </div>
+        <div v-if='!!song.data.attributes.spotify_song_url' class='mt-2 d-flex flex-row'>
+          <div class='ml-auto'>
+            <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -45,6 +50,7 @@
 
 <script>
   import LoadingBar from '../application/loading_bar.vue'
+  import SpotifyLogo from 'images/Spotify_Icon_RGB_Green.png'
 
   export default {
     props: ['item'],
@@ -56,13 +62,12 @@
         songArtworkUrl: null,
         radioStation: null,
         loading: true,
+        spotifyLogo: SpotifyLogo
       }
     },
     methods: {
-      handleClickPlaylistItem() {
-        if (!!this.song.data.attributes.spotify_song_url) {
-          window.open(this.song.data.attributes.spotify_song_url, '_blank')
-        }
+      handleClickSpotifyBtn() {
+        window.open(this.song.data.attributes.spotify_song_url, '_blank')
       },
       playedDate() {
         const date = new Date(this.item.attributes.created_at)

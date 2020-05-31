@@ -36,3 +36,12 @@
 .fixed-list-height {
   min-height: 250px;
 }
+
+.spotify-btn {
+  width: 30px;
+  height: auto;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
