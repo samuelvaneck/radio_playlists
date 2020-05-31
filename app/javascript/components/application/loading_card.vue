@@ -10,6 +10,11 @@
       </div>
       <div><LoadingBar /></div>
       <div><LoadingBar /></div>
+      <div class='d-flex flex-row'>
+        <div class='ml-auto'>
+          <LoadingBar v-bind:width='"30px"' />
+        </div>
+      </div>
     </div>
   </div>
 </template>
