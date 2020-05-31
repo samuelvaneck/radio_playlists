@@ -2,7 +2,7 @@
   version: 2
   jobs:
     build:
-      working_directory: ~/your-app-name
+      working_directory: ~/radio_playlists
       docker:
         - image: circleci/ruby:2.6.5
           environment:
@@ -14,17 +14,6 @@
             POSTGRES_USER: radio_playlists
             POSTGRES_DB: radio_playlists_test
             POSTGRES_PASSWORD: "Super-C0mpl3X"
-        - image: selenium/standalone-chrome-debug
-            ports:
-              - 4444:4444
-              - 5900:5900
-            environment:
-              SCREEN_WIDTH: 1920
-              SCREEN_HEIGHT: 1080
-        - image: redis:latest
-            command: redis-server
-            hostname: redis
-        - image: 
       steps:
         - checkout
   
@@ -47,7 +36,7 @@
         - run: dockerize -wait tcp://localhost:5432 -timeout 1m
   
         # Setup the environment
-        - run: cp .sample.env .env
+        - run: cp .env.test .env
   
         # Setup the database
         - run: bundle exec rake db:test:prepare
