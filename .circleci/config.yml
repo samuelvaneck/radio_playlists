@@ -1,0 +1,56 @@
+---
+  version: 2
+  jobs:
+    build:
+      working_directory: ~/your-app-name
+      docker:
+        - image: circleci/ruby:2.6.5
+          environment:
+            PGHOST: localhost
+            PGUSER: radio_playlists
+            RAILS_ENV: test
+        - image: postgres:latest
+          environment:
+            POSTGRES_USER: radio_playlists
+            POSTGRES_DB: radio_playlists_test
+            POSTGRES_PASSWORD: "Super-C0mpl3X"
+        - image: selenium/standalone-chrome-debug
+            ports:
+              - 4444:4444
+              - 5900:5900
+            environment:
+              SCREEN_WIDTH: 1920
+              SCREEN_HEIGHT: 1080
+        - image: redis:latest
+            command: redis-server
+            hostname: redis
+        - image: 
+      steps:
+        - checkout
+  
+        # Restore Cached Dependencies
+        - type: cache-restore
+          name: Restore bundle cache
+          key: radio_playlists-{{ checksum "Gemfile.lock" }}
+  
+        # Bundle install dependencies
+        - run: bundle install --path vendor/bundle
+  
+        # Cache Dependencies
+        - type: cache-save
+          name: Store bundle cache
+          key: radio_playlists-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+  
+        # Wait for DB
+        - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+  
+        # Setup the environment
+        - run: cp .sample.env .env
+  
+        # Setup the database
+        - run: bundle exec rake db:test:prepare
+  
+        # Run the tests
+        - run: bundle exec rspec
