@@ -14,6 +14,7 @@
             POSTGRES_USER: radio_playlists
             POSTGRES_DB: radio_playlists_test
             POSTGRES_PASSWORD: "Super-C0mpl3X"
+        - image: circleci/node:latest
       steps:
         - checkout
         - add_ssh_keys:
