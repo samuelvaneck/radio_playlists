@@ -40,8 +40,6 @@
         - run:
           name: Install dependencies
           command: |
-            curl -sL https://deb.nodesource.com/setup_12.x | bash -
-            curl -o- -L https://yarnpkg.com/install.sh | bash
             apt update -qq && 
             apt install nodejs yarn &&
             yarn install
