@@ -27,7 +27,7 @@
 
         - restore_cache:
           name: Restore Yarn Package Cache
-          keys: yarn-packages-{{ checksum "yarn.lock" }}
+          key: yarn-packages-{{ checksum "yarn.lock" }}
         
         # install bundler
         - run: gem install bundler:2.1.4
@@ -48,7 +48,7 @@
 
         - type: cache-save
           name: Store yarn cache
-          key: myapp-yarn-{{ checksum "yarn.lock" }}
+          key: radio_playlists-yarn-{{ checksum "yarn.lock" }}
           paths:
             - ~/.yarn-cache
   
