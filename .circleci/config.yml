@@ -26,12 +26,7 @@
           key: radio_playlists-{{ checksum "Gemfile.lock" }}
         
         # install bundler
-        - run:
-          name: Configure bundler
-          command: |
-            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
-            source $BASH_ENV
-            gem install bundler
+        - run: gem install bundler:2.1.4
   
         # Bundle install dependencies
         - run: bundle install --path vendor/bundle
