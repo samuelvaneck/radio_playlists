@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe ArtistsController do
@@ -20,15 +21,10 @@ describe ArtistsController do
       end
 
       it 'returns all the playlists artists' do
-        json = JSON.parse(response.body).sort_by { |artist_id, counter| artist_id }
-        expected = [[artist.id, 2], 
-                    [playlists[0].artist.id, 1], 
-                    [playlists[1].artist.id, 1], 
-                    [playlists[2].artist.id, 1], 
-                    [playlists[3].artist.id, 1], 
-                    [playlists[4].artist.id, 1]]
+        json = JSON.parse(response.body).sort_by { |artist_id, _counter| artist_id }
+        expected = [[artist.id, 2], [playlists[0].artist.id, 1], [playlists[1].artist.id, 1], [playlists[2].artist.id, 1], [playlists[3].artist.id, 1], [playlists[4].artist.id, 1]]
 
-         expect(json).to eq expected
+         expect(json).to eq(expected)
       end
     end
 
