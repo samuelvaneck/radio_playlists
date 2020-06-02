@@ -9,7 +9,7 @@ class Generalplaylist < ActiveRecord::Base
   require 'open-uri'
   require 'net/http'
 
-  def self.check_npo_radio(address, radio_station)
+  def self.check_npo_radio(address)
     retries ||= 0
     uri = URI address
 
@@ -21,11 +21,7 @@ class Generalplaylist < ActiveRecord::Base
       title = track['title']
       time = Time.parse(track['startdatetime']).strftime('%H:%M')
 
-      return false unless title_check(title)
-
-      songs = Song.where('lower(title) = ?', title.downcase)
-      song = song_check(songs, artist, title)
-      create_generalplaylist(time, artist, song, radio_station)
+      [artist, title, time]
     end
   rescue Net::ReadTimeout => _e
     sleep 1
@@ -40,7 +36,7 @@ class Generalplaylist < ActiveRecord::Base
     retry if (retries += 1) < 3
   end
 
-  def self.check_talpa_radio(address, radio_station)
+  def self.check_talpa_radio(address)
     retries ||= 0
     uri = URI address
 
@@ -52,11 +48,7 @@ class Generalplaylist < ActiveRecord::Base
       title = track['track']['title']
       time = Time.parse(track['broadcastDate']).in_time_zone('Amsterdam').strftime('%H:%M')
 
-      return unless title_check(title)
-
-      songs = Song.where('lower(title) = ?', title.downcase)
-      song = song_check(songs, artist, title)
-      create_generalplaylist(time, artist, song, radio_station)
+      [artist, title, time]
     end
   rescue Net::ReadTimeout => _e
     sleep 1
@@ -78,32 +70,52 @@ class Generalplaylist < ActiveRecord::Base
   def self.radio_1_check
     address = 'https://www.nporadio1.nl/api/tracks'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 1')
-    Generalplaylist.check_npo_radio(address, radio_station)
+    artist, title, time = check_npo_radio address
+    artist, song = process_track_data(artist, title)
+    return false unless artist
+
+    create_generalplaylist(time, artist, song, radio_station)
   end
 
   # Check Radio 2 song
   def self.radio_2_check
     address = 'https://www.nporadio2.nl/api/tracks'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 2')
-    Generalplaylist.check_npo_radio(address, radio_station)
+    artist, title, time = check_npo_radio address
+    artist, song = process_track_data(artist, title)
+    return false unless artist
+
+    create_generalplaylist(time, artist, song, radio_station)
   end
 
   def self.radio_3fm_check
     address = 'https://www.npo3fm.nl/api/tracks'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 3FM')
-    Generalplaylist.check_npo_radio(address, radio_station)
+    artist, title, time = check_npo_radio address
+    artist, song = process_track_data(artist, title)
+    return false unless artist
+
+    create_generalplaylist(time, artist, song, radio_station)
   end
 
   def self.radio_4_check
     address = 'https://www.nporadio4.nl/api/tracks'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 4')
-    Generalplaylist.check_npo_radio(address, radio_station)
+    artist, title, time = check_npo_radio address
+    artist, song = process_track_data(artist, title)
+    return false unless artist
+
+    create_generalplaylist(time, artist, song, radio_station)
   end
 
   def self.radio_5_check
     address = 'https://www.nporadio5.nl/api/tracks'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 5')
-    Generalplaylist.check_npo_radio(address, radio_station)
+    artist, title, time = check_npo_radio address
+    artist, song = process_track_data(artist, title)
+    return false unless artist
+
+    create_generalplaylist(time, artist, song, radio_station)
   end
 
   #############
@@ -113,27 +125,43 @@ class Generalplaylist < ActiveRecord::Base
   def self.sky_radio_check
     address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22sky-radio%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
     radio_station = Radiostation.find_or_create_by(name: 'Sky Radio')
-    Generalplaylist.check_talpa_radio(address, radio_station)
+    artist, title, time = check_talpa_radio address
+    artist, song = process_track_data(artist, title)
+    return false unless artist
+
+    create_generalplaylist(time, artist, song, radio_station)
   end
 
   # Check the Radio Veronica song
   def self.radio_veronica_check
     address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22radio-veronica%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
     radio_station = Radiostation.find_or_create_by(name: 'Radio Veronica')
-    Generalplaylist.check_talpa_radio(address, radio_station)
+    artist, title, time = check_talpa_radio address
+    artist, song = process_track_data(artist, title)
+    return false unless artist
+
+    create_generalplaylist(time, artist, song, radio_station)
   end
 
   # Check the Radio 538 song
   def self.radio_538_check
     address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22radio-538%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 538')
-    Generalplaylist.check_talpa_radio(address, radio_station)
+    artist, title, time = check_talpa_radio address
+    artist, song = process_track_data(artist, title)
+    return false unless artist
+
+    create_generalplaylist(time, artist, song, radio_station)
   end
 
   def self.radio_10_check
     address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22radio-10%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 10')
-    Generalplaylist.check_talpa_radio(address, radio_station)
+    artist, title, time = check_talpa_radio address
+    artist, song = process_track_data(artist, title)
+    return false unless artist
+
+    create_generalplaylist(time, artist, song, radio_station)
   end
 
   #############
@@ -197,6 +225,18 @@ class Generalplaylist < ActiveRecord::Base
     radiostation = Radiostation.find_or_create_by(name: 'Groot Nieuws Radio')
 
     create_generalplaylist(time, artist, song, radiostation)
+  end
+
+  ##########################
+  ### processing methods ###
+  ##########################
+
+  def self.process_track_data(artist, title)
+    return false unless title_check(title)
+
+    songs = Song.where('lower(title) = ?', title.downcase)
+    song = song_check(songs, artist, title)
+    [artist, song]
   end
 
   def self.title_check(title)
