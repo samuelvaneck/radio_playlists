@@ -10,8 +10,10 @@ class Generalplaylist < ActiveRecord::Base
   require 'net/http'
 
   def self.check_npo_radio(address, radio_station)
+    retries ||= 0
     uri = URI address
-    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+
+    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', open_timeout: 3, read_timeout: 3) do |http|
       request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
       response = http.request(request)
       track = JSON.parse(response.body)['data'][0]
@@ -19,18 +21,30 @@ class Generalplaylist < ActiveRecord::Base
       title = track['title']
       time = Time.parse(track['startdatetime']).strftime('%H:%M')
 
-      return unless title_check(title)
+      return false unless title_check(title)
 
       songs = Song.where('lower(title) = ?', title.downcase)
       song = song_check(songs, artist, title)
-
       create_generalplaylist(time, artist, song, radio_station)
     end
+  rescue Net::ReadTimeout => _e
+    sleep 1
+    retry if (retries += 1) < 3
+    Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
+  rescue Net::OpenTimeout => _e
+    sleep 1
+    retry if (retries += 1) < 3
+    Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
+  rescue StandardError
+    sleep 1
+    retry if (retries += 1) < 3
   end
 
   def self.check_talpa_radio(address, radio_station)
+    retries ||= 0
     uri = URI address
-    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+
+    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', open_timeout: 3, read_timeout: 3) do |http|
       request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
       response = http.request(request)
       track = JSON.parse(response.body)['data']['getStation']['playouts'][0]
@@ -44,6 +58,17 @@ class Generalplaylist < ActiveRecord::Base
       song = song_check(songs, artist, title)
       create_generalplaylist(time, artist, song, radio_station)
     end
+  rescue Net::ReadTimeout => _e
+    sleep 1
+    retry if (retries += 1) < 3
+    Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
+  rescue Net::OpenTimeout => _e
+    sleep 1
+    retry if (retries += 1) < 3
+    Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
+  rescue StandardError
+    sleep 1
+    retry if (retries += 1) < 3
   end
 
   ###########
@@ -148,7 +173,7 @@ class Generalplaylist < ActiveRecord::Base
     title = doc.css('span.title')[1].text.strip.gsub(/\(.*?\)/, '')
     time = doc.at_css('span.date').text.split(':').take(2).join(':')
 
-    return unless title_check(title)
+    return false unless title_check(title)
 
     songs = Song.where('lower(title) = ?', title.downcase)
     song = song_check(songs, artist, title)
@@ -176,8 +201,8 @@ class Generalplaylist < ActiveRecord::Base
 
   def self.title_check(title)
     # catch more then 4 digits, forward slashes, 2 single qoutes,
-    # reklame/reclame, 2 dots and dash
-    !title.match(/\d{4,}|\/|\'{2,}|(reklame|reclame)|\.{2,}|-/)
+    # reklame/reclame and 2 dots
+    !title.match(/\d{4,}|\/|\'{2,}|(reklame|reclame)|\.{2,}/)
   end
 
   # Methode for checking if there are songs with the same title.
