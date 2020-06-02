@@ -23,7 +23,7 @@ RSpec.describe Generalplaylist do
     end
   end
 
-  describe '#check_talpa_station' do
+  describe '#check_talpa_radio' do
     context 'given an address and radiostation' do
       it 'creates an new playlist item' do
         address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22sky-radio%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
@@ -36,6 +36,7 @@ RSpec.describe Generalplaylist do
 
   describe '#radio_1_check' do
     it 'creates a new playlist item' do
+      allow(Generalplaylist).to receive(:check_npo_radio).and_return(["Chef's Special", 'Mayby This Is Love', '19:51'])
       expect {
         Generalplaylist.radio_1_check
       }.to change(Generalplaylist, :count).by(1)
@@ -44,6 +45,7 @@ RSpec.describe Generalplaylist do
 
   describe '#radio_2_check' do
     it 'creates a new playlist item' do
+      allow(Generalplaylist).to receive(:check_npo_radio).and_return(['Goldkimono', 'To Tomorrow', '20:13'])
       expect {
         Generalplaylist.radio_2_check
       }.to change(Generalplaylist, :count).by(1)
@@ -52,6 +54,7 @@ RSpec.describe Generalplaylist do
 
   describe '#radio_3fm_check' do
     it 'creates a new playlist item' do
+      allow(Generalplaylist).to receive(:check_npo_radio).and_return(['Haim', 'The Steps', '19:16'])
       expect {
         Generalplaylist.radio_3fm_check
       }.to change(Generalplaylist, :count).by(1)
@@ -60,6 +63,7 @@ RSpec.describe Generalplaylist do
 
   describe '#radio_4_check' do
     it 'creates a new playlist item' do
+      allow(Generalplaylist).to receive(:check_npo_radio).and_return(['Cappella Amsterdam', 'O mors quam amara', '17:20'])
       expect {
         Generalplaylist.radio_4_check
       }.to change(Generalplaylist, :count).by(1)
@@ -68,6 +72,7 @@ RSpec.describe Generalplaylist do
 
   describe '#radio_5_check' do
     it 'creates a new playlist item' do
+      allow(Generalplaylist).to receive(:check_npo_radio).and_return(['Fleetwood Mac', 'Everywhere', '19:05'])
       expect {
         Generalplaylist.radio_5_check
       }.to change(Generalplaylist, :count).by(1)
@@ -76,6 +81,7 @@ RSpec.describe Generalplaylist do
 
   describe '#sky_radio_check' do
     it 'creates a new playlist item' do
+      allow(Generalplaylist).to receive(:check_talpa_radio).and_return(['Billy Ocean', 'When The Going Gets Tough', '13:17'])
       expect {
         Generalplaylist.sky_radio_check
       }.to change(Generalplaylist, :count).by(1)
@@ -84,6 +90,7 @@ RSpec.describe Generalplaylist do
 
   describe '#radio_veronica_check' do
     it 'creates a new playlist item' do
+      allow(Generalplaylist).to receive(:check_talpa_radio).and_return(['Earth, Wind & Fire', "Let's Groove", '20:16'])
       expect {
         Generalplaylist.radio_veronica_check
       }.to change(Generalplaylist, :count).by(1)
@@ -92,6 +99,7 @@ RSpec.describe Generalplaylist do
 
   describe '#radio_538_check' do
     it 'creates a new playlist item' do
+      allow(Generalplaylist).to receive(:check_talpa_radio).and_return(['Steve Lucas', "Love Letters", '16:44'])
       expect {
         Generalplaylist.radio_538_check
       }.to change(Generalplaylist, :count).by(1)
@@ -100,6 +108,7 @@ RSpec.describe Generalplaylist do
 
   describe '#radio_10_check' do
     it 'creates a new playlist item' do
+      allow(Generalplaylist).to receive(:check_talpa_radio).and_return(['The Farm', 'All Together Now', '13:39'])
       expect {
         Generalplaylist.radio_10_check
       }.to change(Generalplaylist, :count).by(1)
