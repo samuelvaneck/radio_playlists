@@ -16,6 +16,9 @@ class Generalplaylist < ActiveRecord::Base
     Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', open_timeout: 3, read_timeout: 3) do |http|
       request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
       response = http.request(request)
+      json = JSON.parse(response.body)
+      raise StandardError if json.blank?
+
       track = JSON.parse(response.body)['data'][0]
       artist_name = track['artist']
       title = track['title']
@@ -34,6 +37,7 @@ class Generalplaylist < ActiveRecord::Base
   rescue StandardError
     sleep 1
     retry if (retries += 1) < 3
+    false
   end
 
   def self.check_talpa_radio(address)
@@ -43,7 +47,11 @@ class Generalplaylist < ActiveRecord::Base
     Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', open_timeout: 3, read_timeout: 3) do |http|
       request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
       response = http.request(request)
-      track = JSON.parse(response.body)['data']['getStation']['playouts'][0]
+      json = JSON.parse(response.body)
+      raise StandardError if json.blank?
+      raise StandardError if json['errors'].present?
+
+      track = json['data']['getStation']['playouts'][0]
       artist_name = track['track']['artistName']
       title = track['track']['title']
       time = Time.parse(track['broadcastDate']).in_time_zone('Amsterdam').strftime('%H:%M')
@@ -58,9 +66,10 @@ class Generalplaylist < ActiveRecord::Base
     sleep 1
     retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
-  rescue StandardError
+  rescue StandardError => e
     sleep 1
     retry if (retries += 1) < 3
+    false
   end
 
   ###########
@@ -126,6 +135,8 @@ class Generalplaylist < ActiveRecord::Base
     address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22sky-radio%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
     radio_station = Radiostation.find_or_create_by(name: 'Sky Radio')
     artist_name, title, time = check_talpa_radio address
+    return false unless artist_name
+
     artist, song = process_track_data(artist_name, title)
     return false unless artist
 
@@ -137,6 +148,8 @@ class Generalplaylist < ActiveRecord::Base
     address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22radio-veronica%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
     radio_station = Radiostation.find_or_create_by(name: 'Radio Veronica')
     artist_name, title, time = check_talpa_radio address
+    return false unless artist_name
+    
     artist, song = process_track_data(artist_name, title)
     return false unless artist
 
@@ -181,7 +194,7 @@ class Generalplaylist < ActiveRecord::Base
       artist_name = track['artist']['name'].titleize
       title = track['title']
 
-      return unless title_check(title)
+      return false unless title_check(title)
 
       artist = find_or_create_artist(artist_name)
       songs = Song.where('lower(title) = ?', title.downcase)
