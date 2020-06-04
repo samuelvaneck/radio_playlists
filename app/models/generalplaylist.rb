@@ -34,7 +34,7 @@ class Generalplaylist < ActiveRecord::Base
     sleep 1
     retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
-  rescue StandardError
+  rescue StandardError => _e
     sleep 1
     retry if (retries += 1) < 3
     false
@@ -66,7 +66,7 @@ class Generalplaylist < ActiveRecord::Base
     sleep 1
     retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
-  rescue StandardError => e
+  rescue StandardError => _e
     sleep 1
     retry if (retries += 1) < 3
     false

@@ -109,7 +109,7 @@ RSpec.describe Generalplaylist do
 
   describe '#radio_538_check' do
     it 'creates a new playlist item' do
-      allow(Generalplaylist).to receive(:check_talpa_radio).and_return(['Steve Lucas', "Love Letters", '16:44'])
+      allow(Generalplaylist).to receive(:check_talpa_radio).and_return(['Steve Lucas', 'Love Letters', '16:44'])
       expect {
         Generalplaylist.radio_538_check
       }.to change(Generalplaylist, :count).by(1)
