@@ -13,14 +13,15 @@ set :ssh_options, { forward_agent: true }
 set :sidekiq_role, :app
 set :sidekiq_config, -> { File.join(shared_path, 'config', 'sidekiq.yml') }
 set :sidekiq_env, 'production'
+set :nginx_sudo_tasks, ['nginx:restart']
 
 append :linked_files, 'config/database.yml', 'config/secrets.yml'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', "public/uploads"
 
-namespace :deploy do
-  after :finishing, 'apache:reload'
-  after :rollback, 'apache:reload'
-end
+# namespace :deploy do
+#   after :finishing, 'nginx:reload'
+#   after :rollback, 'nginx:reload'
+# end
 
 task :add_default_hooks do
   after 'deploy:updated', 'sidekiq:stop'
@@ -28,13 +29,13 @@ task :add_default_hooks do
   after 'deploy:published', 'sidekiq:start'
 end
 
-namespace :apache do
-  task :reload do
-    on roles(:app) do
-      execute :sudo, :systemctl, :restart, :apache2
-    end
-  end
-end
+# namespace :apache do
+#   task :reload do
+#     on roles(:app) do
+#       execute :sudo, :systemctl, :restart, :apache2
+#     end
+#   end
+# end
 
 namespace :sidekiq do
   task :start do
