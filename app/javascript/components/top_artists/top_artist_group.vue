@@ -18,7 +18,6 @@
       }
     },
     mounted() {
-      console.log(this.items)
       this.$el.addEventListener('scroll', this.handleScroll)
     }
   }
