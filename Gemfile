@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.6.5'
+ruby '2.7.1'
 
 gem 'coffee-rails'
 gem 'devise', '>= 4.7.1'
@@ -12,7 +12,7 @@ gem 'jquery-ui-rails'
 gem 'materialize-sass'
 gem 'nokogiri', '>= 1.10.9'
 gem 'pg'
-gem 'rails', '~> 6.0', '>= 6.0.2.2'
+gem 'rails', '~> 6.0', '>= 6.0.3.1'
 gem 'rails_12factor', group: :production
 gem 'rspotify'
 gem 'sass-rails'
