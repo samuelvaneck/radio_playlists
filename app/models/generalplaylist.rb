@@ -423,4 +423,8 @@ class Generalplaylist < ActiveRecord::Base
     playlists.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
     playlists
   end
+
+  def self.radio_station_status(radio_station)
+    Generalplaylist.where(radiostation: radio_station).order(created_at: :desc).first.created_at
+  end
 end
