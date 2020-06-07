@@ -319,27 +319,13 @@ class Generalplaylist < ActiveRecord::Base
 
   # Methode for creating the Generalplaylist record
   def self.create_generalplaylist(time, artist, song, radio_station)
-    # Take all the songs that are played on the same radiostation the last 2 days
-    radio_station_songs = Generalplaylist.where(radiostation: radio_station,
-                                                created_at: 1.day.ago..Time.now)
-                                         .order(id: :ASC)
-    # If the is no song played the last 2 days create a new one
-    if radio_station_songs.blank?
+    last_played_song = Generalplaylist.where(radiostation: radio_station).order(created_at: :desc).first
+    if last_played_song.blank?
       Generalplaylist.add_song(time, artist, song, radio_station)
-    # Else check if the last played song = the same as the song we want to check
+    elsif last_played_song.time == time && last_played_song.song == song && last_played_song.artist == artist
+      Rails.logger.info "#{song.title} from #{artist.name} last song on #{radio_station.name}"
     else
-      @songs_recently_played = []
-      radio_station_songs.each do |radio_station_song|
-        if radio_station_song.time == time && radio_station_song.song == song && radio_station_song.artist == artist
-          Rails.logger.info "#{song.title} from #{artist.name} in last songs on #{radio_station.name}"
-          @songs_recently_played << true
-        else
-          @songs_recently_played << false
-        end
-      end
-      if @songs_recently_played.exclude? true
-        Generalplaylist.add_song(time, artist, song, radio_station)
-      end
+      Generalplaylist.add_song(time, artist, song, radio_station)
     end
   end
 
