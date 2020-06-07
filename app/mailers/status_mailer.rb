@@ -1,7 +1,7 @@
 class StatusMailer < ApplicationMailer
-  def send_email(receiver, results)
-    mail(to: receiver, subject: 'Status radiostation playlists') do
-      results
-    end
+  default template_path: 'status_mailer'
+  def status_mail(receiver, results)
+    @results = results
+    mail(to: receiver, subject: 'Status radiostation playlists')
   end
 end

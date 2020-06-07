@@ -3,7 +3,7 @@
   :max_retries: 3
   :schedule:
     CheckRadio1:
-      cron: '*/3 * * * *'
+      cron: '*/3 * * * *' # every 3 minutes
       queue: default
       enabled: true
     CheckRadio2:
@@ -48,6 +48,10 @@
       enabled: true
     CheckSublimeFm:
       cron: '*/3 * * * *'
+      queue: default
+      enabled: true
+    SendStatusEmail:
+      cron: '0 2 * * *' # at 2am
       queue: default
       enabled: true
   :sidekiq_default_hooks: true

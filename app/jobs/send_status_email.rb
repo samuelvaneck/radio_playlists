@@ -5,20 +5,20 @@ class SendStatusEmail < ApplicationJob
 
   def perform
     results = {
-      radio_1: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Radio 1')),
-      radio_2: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Radio 2')),
-      radio_3fm: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Radio 3FM')),
-      radio_4: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Radio 4')),
-      radio_5: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Radio 5')),
-      sky_radio: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Sky Radio')),
-      radio_veronica: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Radio Veronica')),
-      radio_538: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Radio 538')),
-      radio_10: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Radio 10')),
-      q_music: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Qmusic')),
-      sublime_fm: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Sublime FM')),
-      groot_nieuw_radio: Generalplaylist.radio_station_status(Radiostation.find_by(name: 'Groot Nieuws Radio')),
+      radio_1: Radiostation.find_by(name: 'Radio 1').status,
+      radio_2: Radiostation.find_by(name: 'Radio 2').status,
+      radio_3fm: Radiostation.find_by(name: 'Radio 3FM').status,
+      radio_4: Radiostation.find_by(name: 'Radio 4').status,
+      radio_5: Radiostation.find_by(name: 'Radio 5').status,
+      sky_radio: Radiostation.find_by(name: 'Sky Radio').status,
+      radio_veronica: Radiostation.find_by(name: 'Radio Veronica').status,
+      radio_538: Radiostation.find_by(name: 'Radio 538').status,
+      radio_10: Radiostation.find_by(name: 'Radio 10').status,
+      q_music: Radiostation.find_by(name: 'Qmusic').status,
+      sublime_fm: Radiostation.find_by(name: 'Sublime FM').status,
+      groot_nieuw_radio: Radiostation.find_by(name: 'Groot Nieuws Radio').status
     }
 
-    StatusMailer.send_email('samuelvaneck@gmail.com', results).deliver
+    StatusMailer.status_mail('samuelvaneck@gmail.com', results).deliver
   end
 end
