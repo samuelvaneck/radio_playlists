@@ -2,4 +2,13 @@ class Radiostation < ActiveRecord::Base
   has_many :generalplaylists
   has_many :songs, through: :generalplaylists
   has_many :artists, through: :generalplaylists
+
+  def status
+    last_created = Generalplaylist.where(radiostation: self).order(created_at: :desc).first
+    {
+      last_created_at: last_created.created_at,
+      track_info: "#{last_created.time} - #{last_created.artist.name} - #{last_created.song.title}",
+      status: last_created.created_at > 1.hour.ago ? 'OK' : 'Warning'
+    }
+  end
 end
