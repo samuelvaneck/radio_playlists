@@ -5,7 +5,7 @@ class SendStatusEmail < ApplicationJob
 
   def perform
     results = {}
-    Radiostation.each do |radio_station|
+    Radiostation.all.each do |radio_station|
       results[radio_station.name.to_s] = radio_station.status
     end
 
