@@ -45,3 +45,19 @@
     cursor: pointer;
   }
 }
+
+.time-filters {
+  padding: 5px;
+  padding-right: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+}
+
+// VUE transition name='fade'
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .15s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
