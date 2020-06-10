@@ -3,7 +3,7 @@
     <div class='d-flex flex-row'>
       <h3>Top artists</h3>
       <div class='ml-auto'>
-        <SearchBar @search='onSearch' @filter='onRadioStationSelect' />
+        <SearchBar @search='onSearch' @filter='onRadioStationSelect' @filterTime='onChangeTimeFilter' />
       </div>
     </div>
     <div v-if='loading'>
@@ -32,13 +32,15 @@
         requestInProgress: false,
         lastPage: false,
         radioStationFilter: '',
-        loading: true
+        loading: true,
+        startTimeFilter: '',
+        endTimeFilter: ''
       }
     },
     components: { SearchBar, NavArrow, TopArtistGroup, LoadingCard },
     methods: {
       getItems: function(append = false) {
-        const url = '/artists?radiostation_id=' + this.radioStationFilter + '&search_term=' + this.term + '&page=' + this.page
+        const url = '/artists?radiostation_id=' + this.radioStationFilter + '&search_term=' + this.term + '&page=' + this.page + '&start_time=' + this.startTimeFilter + '&end_time=' + this.endTimeFilter
         const options = {
           method: 'GET',
           headers: {
@@ -84,6 +86,12 @@
         this.radioStationFilter = value || ''
         this.page = 1
         this.lastPage = false
+        this.getItems()
+      },
+      onChangeTimeFilter(value, type) {
+        this.page = 1
+        this.lastPage = false
+        this[type + 'TimeFilter'] = value
         this.getItems()
       }
     },
