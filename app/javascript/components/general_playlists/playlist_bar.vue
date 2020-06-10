@@ -3,7 +3,7 @@
     <div class='d-flex flex-row'>
       <h3>Playlists</h3>
       <div class='ml-auto'>
-        <SearchBar @search='onKeyUpSearch' @filter='onRadioStationSelect' />
+        <SearchBar @search='onKeyUpSearch' @filter='onRadioStationSelect' @filterTime='onChangeFilterTime' />
       </div>
     </div>
     <div v-if='loading'>
@@ -33,11 +33,13 @@
         lastPage: false,
         radioStationFilter: '',
         loading: true,
+        startTimeFilter: '',
+        endTimeFilter: ''
       }
     },
     methods: {
       getItems: function(append = false) {
-        const url = '/generalplaylists?radiostation_id=' + this.radioStationFilter + '&search_term=' + this.term + '&page=' + this.page
+        const url = '/generalplaylists?radiostation_id=' + this.radioStationFilter + '&search_term=' + this.term + '&page=' + this.page + '&start_time=' + this.startTimeFilter + '&end_time=' + this.endTimeFilter
         const options = {
           method: 'GET',
           headers: {
@@ -83,6 +85,12 @@
         this.radioStationFilter = value || ''
         this.page = 1
         this.lastPage = false
+        this.getItems()
+      },
+      onChangeFilterTime(value, type) {
+        this.page = 1
+        this.lastPage = false
+        this[type + 'TimeFilter'] = value
         this.getItems()
       }
     },
