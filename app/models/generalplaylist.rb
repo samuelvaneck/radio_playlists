@@ -407,6 +407,8 @@ class Generalplaylist < ActiveRecord::Base
     playlists = Generalplaylist.joins(:artist, :song).order(created_at: :DESC)
     playlists.where!('artists.name ILIKE ? OR songs.fullname ILIKE ?', "%#{params[:search_term]}%", "%#{params[:search_term]}%") if params[:search_term].present?
     playlists.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
+    playlists.where!('generalplaylists.created_at > ?', Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R')) if params[:start_time].present?
+    playlists.where!('generalplaylists.created_at < ?', Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R')) if params[:end_time].present?
     playlists
   end
 end

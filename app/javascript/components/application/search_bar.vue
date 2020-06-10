@@ -24,11 +24,21 @@
       <div v-if='showTimeFilters' class='time-filters d-flex flex-row justify-content-end mt-1'>
         <div>
           Start date
-          <input type='datetime-local' name='start_date' class='form-control' :value='startDateFilter' />
+          <input type='datetime-local' 
+                 name='start_date' 
+                 class='form-control' 
+                 :value='startDateFilter' 
+                 v-on:change='onChangeStartTime'
+                 :max='setMaxTimeFilter' />
         </div>
         <div>
           End date
-          <input type='datetime-local' name='end_date' class='form-control ml-1' :value='endDateFilter' />
+          <input type='datetime-local' 
+                 name='end_date' 
+                 class='form-control ml-1' 
+                 :value='endDateFilter' 
+                 v-on:change='onChangeEndtTime'
+                 :max='setMaxTimeFilter' />
         </div>
       </div>
     </transition>
@@ -51,6 +61,7 @@
       startDateFilter() {
         // return format: "YYYY-MM-DDTHH:MM"
         let startDate = new Date()
+        startDate.setTime(startDate.getTime() - startDate.getTimezoneOffset()*60*1000)
         startDate.setDate(startDate.getDate() - 7)
         const startDateStr = startDate.toISOString()
         return startDateStr.substring(0, startDateStr.length-8)
@@ -58,8 +69,14 @@
       endDateFilter() {
         // return format: "YYYY-MM-DDTHH:MM"
         const endDate = new Date()
+        endDate.setTime(endDate.getTime() - endDate.getTimezoneOffset()*60*1000)
         const endDateStr = endDate.toISOString()
         return endDateStr.substring(0, endDateStr.length-8)
+      },
+      setMaxTimeFilter() {
+        const maxDate = new Date()
+        const maxDateStr = maxDate.toISOString()
+        return maxDateStr.substring(0, maxDateStr.length-8)
       }
     },
     methods: {
@@ -71,6 +88,12 @@
       },
       onClickTimeFilterBtn(event) {
         this.showTimeFilters = !this.showTimeFilters
+      },
+      onChangeStartTime(event) {
+        this.$emit('filterTime', event.target.value, 'start')
+      },
+      onChangeEndtTime(envet) {
+        this.$emit('filterTime', event.target.value, 'end')
       }
     },
     created() {
