@@ -8,7 +8,7 @@
     </div>
     <div v-if='loading'>
       <div class='row flex-nowrap overflow-x-auto py-2'>
-        <LoadingCard v-for='n in 10' />
+        <LoadingCard v-for='n in 10' :key="n" />
       </div>
     </div>
     <div v-else>
