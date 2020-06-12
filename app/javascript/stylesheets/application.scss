@@ -1,6 +1,38 @@
 @import './boostrap_custom.scss';
 @import './general_playlist.scss';
 
+@font-face {
+  font-family: 'Rubik';
+  font-weight: regular;
+  font-style: 'normal';
+  src: url('../fonts/Rubik-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Bungee';
+  font-weight: regular;
+  font-style: 'normal';
+  src: url('../fonts/Bungee-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Bungee Inline';
+  font-weight: regular;
+  font-style: 'normal';
+  src: url('../fonts/BungeeInline-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: regular;
+  font-style: 'normal';
+  src: url('../fonts/Roboto-Regular.ttf');
+}
+
+body {
+  font-family: 'Roboto';
+}
+
 // custom scrollbar
 ::-webkit-scrollbar {
   width: 6px;
