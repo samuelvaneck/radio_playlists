@@ -9,7 +9,7 @@
     <div class='card-body'>
       <div class='d-flex flex-column'>
         <div class='d-flex d-flex-row'>
-          <div class='bungee-inline'>
+          <div class='bungee'>
             # {{ chartIdx + 1 }}
           </div>
           <div class='ml-auto'>
