@@ -28,7 +28,7 @@ describe GeneralplaylistsController do
 
     context 'with search param' do
       it 'only fetches the playlists that matches the song title or artitst name' do
-        get :index, params: { format: :json, search_term: playlist.artist.name }
+        get :index, params: { format: :json, search_term: playlist.song.title }
 
         expect(JSON.parse(response.body)['data'][0]['id']).to eq playlist.id.to_s
       end

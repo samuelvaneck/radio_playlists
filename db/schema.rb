@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_02_150815) do
+ActiveRecord::Schema.define(version: 2020_05_10_150550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,14 +23,19 @@ ActiveRecord::Schema.define(version: 2020_05_02_150815) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "artists_songs", id: false, force: :cascade do |t|
+    t.bigint "song_id", null: false
+    t.bigint "artist_id", null: false
+    t.index ["artist_id"], name: "index_artists_songs_on_artist_id"
+    t.index ["song_id"], name: "index_artists_songs_on_song_id"
+  end
+
   create_table "generalplaylists", force: :cascade do |t|
     t.string "time"
     t.bigint "song_id"
     t.bigint "radiostation_id"
-    t.bigint "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artist_id"], name: "index_generalplaylists_on_artist_id"
     t.index ["radiostation_id"], name: "index_generalplaylists_on_radiostation_id"
     t.index ["song_id"], name: "index_generalplaylists_on_song_id"
   end
@@ -46,11 +51,9 @@ ActiveRecord::Schema.define(version: 2020_05_02_150815) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "artist_id"
     t.text "fullname"
     t.string "spotify_song_url"
     t.string "spotify_artwork_url"
-    t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,8 +79,6 @@ ActiveRecord::Schema.define(version: 2020_05_02_150815) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "generalplaylists", "artists"
   add_foreign_key "generalplaylists", "radiostations"
   add_foreign_key "generalplaylists", "songs"
-  add_foreign_key "songs", "artists"
 end
