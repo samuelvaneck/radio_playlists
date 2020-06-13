@@ -28,11 +28,11 @@
           <div v-if='loading'>
             <LoadingBar />
           </div>
-          <div v-else-if='!!artist'>
-            <div><small><i>{{ artist.data.attributes.name }}</i></small></div>
+          <div v-else-if='!!artists'>
+            <div><small><i>{{ artistsNames() }}</i></small></div>
           </div>
         </div>
-        <div v-if='!!song.data.attributes.spotify_song_url' class='mt-2 d-flex flex-row'>
+        <div v-if='!!song && !!song.data.attributes.spotify_song_url' class='mt-2 d-flex flex-row'>
           <div class='ml-auto'>
             <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
           </div>
@@ -50,7 +50,7 @@
     props: ['id', 'counter', 'chartIdx'],
     data () {
       return {
-        artist: null,
+        artists: [],
         song: null,
         songArtworkUrl: null,
         radioStation: null,
@@ -77,15 +77,24 @@
         fetch(songUrl, options).then(res => res.json())
           .then(d => { 
             this.song = d
-            
-            const artistUrl = '/artists/' + this.song.data.attributes.artist_id
+
+            const artistUrl = '/artists/' + this.song.data.attributes.artist_ids
             fetch(artistUrl, options).then(res => res.json())
               .then(d => { 
                 this.artist = d
                 this.loading = false
+
+                for(let artist of this.song.data.relationships.artists.data) {
+                  const artistUrl = '/artists/' + artist.id
+                  fetch(artistUrl, options).then(res => res.json())
+                    .then(d => this.artists.push(d))
+                }
               })
           })
-      } 
+      },
+      artistsNames() {
+        return this.artists.map(artist => artist.data.attributes.name ).join(' - ')
+      }
     },
     mounted: function() {
       this.getValues()

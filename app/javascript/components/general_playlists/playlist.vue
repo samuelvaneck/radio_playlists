@@ -38,7 +38,7 @@
             <small><i>{{ artistName() }}</i></small>
           </div>
         </div>
-        <div v-if='!!song.data.attributes.spotify_song_url' class='mt-2 d-flex flex-row'>
+        <div v-if='!!song && !!song.data.attributes.spotify_song_url' class='mt-2 d-flex flex-row'>
           <div class='ml-auto'>
             <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
           </div>
@@ -94,12 +94,11 @@
           .then(d => { 
             this.song = d
             this.loading = false
+
             for(let artist of this.song.data.relationships.artists.data) {
               const artistUrl = '/artists/' + artist.id
               fetch(artistUrl, options).then(res => res.json())
-                .then(d => { 
-                  this.artists.push(d) 
-                })
+                .then(d => this.artists.push(d))
             }
           })
 
