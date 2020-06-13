@@ -6,10 +6,9 @@ class SongSerializer
 
   attributes :id,
              :title,
-             :artist_id,
              :fullname,
              :spotify_song_url,
              :spotify_artwork_url
 
-  has_many :songs
+  has_many :artists
 end

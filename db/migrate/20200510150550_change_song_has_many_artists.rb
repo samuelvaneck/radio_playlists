@@ -11,24 +11,24 @@ class ChangeSongHasManyArtists < ActiveRecord::Migration[6.0]
       belongs_to :artist, class_name: 'Artist', foreign_key: 'artist_id'
     end
 
-    old_artists = []
     Song.all.each do |song|
-      regex = Regexp.new('\b(feat.|feat|ft.|ft|vs.|vs|versus|,|and|met)\s|(\b;|&)', Regexp::IGNORECASE)
-      next unless regex.match?(song.artist.name)
+      track = RSpotify::Track.search(song.fullname || "#{song.artist&.name} #{song.title}").sort_by(&:popularity).reverse.first
+      next if track.blank?
 
-      old_artists << song.artist
-      artist_array = song.artist.name.split(regex).map(&:strip)
-      artist_array.each do |name|
-        new_artist = Artist.find_or_create_by(name: name)
-        song.artists << new_artist
+      artist_names = track&.artists&.map(&:name)
+      next if artist_names.blank?
+
+      artist_names.each do |name|
+        artist = Artist.find_or_create_by(name: name)
+        next if song.artists.include? artist
+
+        song.artists << artist
       end
     end
 
     # remove reference from song and generalplaylists
     remove_reference :songs, :artist, index: true, foreign_key: true
     remove_reference :generalplaylists, :artist, index: true, foreign_key: true
-
-    old_artists.each(&:delete)
   end
 
   def down

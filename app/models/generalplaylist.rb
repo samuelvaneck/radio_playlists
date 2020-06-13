@@ -80,10 +80,10 @@ class Generalplaylist < ActiveRecord::Base
     address = 'https://www.nporadio1.nl/api/tracks'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 1')
     artist_name, title, time = check_npo_radio address
-    artist, song = process_track_data(artist_name, title)
-    return false unless artist
+    artists, song = process_track_data(artist_name, title)
+    return false if artists.blank?
 
-    create_generalplaylist(time, artist, song, radio_station)
+    create_generalplaylist(time, artists, song, radio_station)
   end
 
   # Check Radio 2 song
@@ -91,40 +91,40 @@ class Generalplaylist < ActiveRecord::Base
     address = 'https://www.nporadio2.nl/api/tracks'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 2')
     artist_name, title, time = check_npo_radio address
-    artist, song = process_track_data(artist_name, title)
-    return false unless artist
+    artists, song = process_track_data(artist_name, title)
+    return false if artists.blank?
 
-    create_generalplaylist(time, artist, song, radio_station)
+    create_generalplaylist(time, artists, song, radio_station)
   end
 
   def self.radio_3fm_check
     address = 'https://www.npo3fm.nl/api/tracks'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 3FM')
     artist_name, title, time = check_npo_radio address
-    artist, song = process_track_data(artist_name, title)
-    return false unless artist
+    artists, song = process_track_data(artist_name, title)
+    return false if artists.blank?
 
-    create_generalplaylist(time, artist, song, radio_station)
+    create_generalplaylist(time, artists, song, radio_station)
   end
 
   def self.radio_4_check
     address = 'https://www.nporadio4.nl/api/tracks'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 4')
     artist_name, title, time = check_npo_radio address
-    artist, song = process_track_data(artist_name, title)
-    return false unless artist
+    artists, song = process_track_data(artist_name, title)
+    return false if artists.blank?
 
-    create_generalplaylist(time, artist, song, radio_station)
+    create_generalplaylist(time, artists, song, radio_station)
   end
 
   def self.radio_5_check
     address = 'https://www.nporadio5.nl/api/tracks'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 5')
     artist_name, title, time = check_npo_radio address
-    artist, song = process_track_data(artist_name, title)
-    return false unless artist
+    artists, song = process_track_data(artist_name, title)
+    return false if artists.blank?
 
-    create_generalplaylist(time, artist, song, radio_station)
+    create_generalplaylist(time, artists, song, radio_station)
   end
 
   #############
@@ -137,10 +137,10 @@ class Generalplaylist < ActiveRecord::Base
     artist_name, title, time = check_talpa_radio address
     return false unless artist_name
 
-    artist, song = process_track_data(artist_name, title)
-    return false unless artist
+    artists, song = process_track_data(artist_name, title)
+    return false if artists.blank?
 
-    create_generalplaylist(time, artist, song, radio_station)
+    create_generalplaylist(time, artists, song, radio_station)
   end
 
   # Check the Radio Veronica song
@@ -150,10 +150,10 @@ class Generalplaylist < ActiveRecord::Base
     artist_name, title, time = check_talpa_radio address
     return false unless artist_name
     
-    artist, song = process_track_data(artist_name, title)
-    return false unless artist
+    artists, song = process_track_data(artist_name, title)
+    return false if artists.blank?
 
-    create_generalplaylist(time, artist, song, radio_station)
+    create_generalplaylist(time, artists, song, radio_station)
   end
 
   # Check the Radio 538 song
@@ -161,20 +161,20 @@ class Generalplaylist < ActiveRecord::Base
     address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22radio-538%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 538')
     artist_name, title, time = check_talpa_radio address
-    artist, song = process_track_data(artist_name, title)
-    return false unless artist
+    artists, song = process_track_data(artist_name, title)
+    return false if artists.blank?
 
-    create_generalplaylist(time, artist, song, radio_station)
+    create_generalplaylist(time, artists, song, radio_station)
   end
 
   def self.radio_10_check
     address = 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22radio-10%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D'
     radio_station = Radiostation.find_or_create_by(name: 'Radio 10')
     artist_name, title, time = check_talpa_radio address
-    artist, song = process_track_data(artist_name, title)
-    return false unless artist
+    artists, song = process_track_data(artist_name, title)
+    return false if artists.blank?
 
-    create_generalplaylist(time, artist, song, radio_station)
+    create_generalplaylist(time, artists, song, radio_station)
   end
 
   #############
@@ -196,10 +196,10 @@ class Generalplaylist < ActiveRecord::Base
 
       return false unless title_check(title)
 
-      artist = find_or_create_artist(artist_name)
+      artists = find_or_create_artist(artist_name, title)
       songs = Song.where('lower(title) = ?', title.downcase)
-      song = song_check(songs, artist, title)
-      create_generalplaylist(time, artist, song, radio_station)
+      song = song_check(songs, artists, title)
+      create_generalplaylist(time, artists, song, radio_station)
     end
   end
 
@@ -216,10 +216,10 @@ class Generalplaylist < ActiveRecord::Base
 
     return false unless title_check(title)
 
-    artist = find_or_create_artist(artist_name)
+    artists = find_or_create_artist(artist_name, title)
     songs = Song.where('lower(title) = ?', title.downcase)
-    song = song_check(songs, artist, title)
-    create_generalplaylist(time, artist, song, radio_station)
+    song = song_check(songs, artists, title)
+    create_generalplaylist(time, artists, song, radio_station)
   end
 
   # Check Groot Nieuws Radio songs
@@ -233,12 +233,12 @@ class Generalplaylist < ActiveRecord::Base
 
     return unless title_check(title)
 
-    artist = Artist.find_or_create_by(name: artist_name)
+    artists = find_or_create_artist(artist_name, title)
     songs = Song.where(title: title)
-    song = song_check(songs, artist, title)
+    song = song_check(songs, artists, title)
     radiostation = Radiostation.find_or_create_by(name: 'Groot Nieuws Radio')
 
-    create_generalplaylist(time, artist, song, radiostation)
+    create_generalplaylist(time, artists, song, radiostation)
   end
 
   ##########################
@@ -248,10 +248,10 @@ class Generalplaylist < ActiveRecord::Base
   def self.process_track_data(artist_name, title)
     return false unless title_check(title)
 
-    artist = find_or_create_artist(artist_name)
+    artists = find_or_create_artist(artist_name, title)
     songs = Song.where('lower(title) = ?', title.downcase)
-    song = song_check(songs, artist, title)
-    [artist, song]
+    song = song_check(songs, artists, title)
+    [artists, song]
   end
 
   def self.title_check(title)
@@ -263,85 +263,82 @@ class Generalplaylist < ActiveRecord::Base
   # Methode for checking if there are songs with the same title.
   # if so the artist id must be check
   # if the artist with the some song is not in the database the song with artist Id must be added
-  def self.song_check(songs, artist, title)
+  def self.song_check(songs, artists, title)
     # If there is no song with the same title create a new one
     song = if songs.blank?
-             Song.find_or_create_by(title: title, artist: artist)
+             Song.find_or_create_by(title: title)
            # If the is a song with the same title check the artist
            else
-             songs.each do |s|
-               artist_name = s.artist.name
-               check_artist = Artist.where(name: artist_name)
-               if check_artist.blank?
+             songs.each do |_s|
+               if artists.blank?
                  # If there is no song title with the same artist create a new one
-                 Song.find_or_create_by(title: title, artist: artist)
+                 Song.find_or_create_by(title: title)
                else
+                 artist_names = artists.map(&:name).join(' ')
                  # Else grap the song record with the same title and artist id
-                 Song.find_by(title: title, artist: artist)
+                 Song.find_by(title: title, fullname: "#{artist_names} #{title}")
                end
              end
            end
 
     song = song.first if song.is_a?(Array)
-    song = Generalplaylist.find_spotify_links(song, artist, title)
+    song = Generalplaylist.find_spotify_links(song, artists, title)
     song
   end
 
-  def self.find_or_create_artist(name)
-    artists = Artist.where('lower(name) = ?', name.downcase)
+  def self.find_or_create_artist(name, song_title)
+    track = RSpotify::Track.search("#{name} #{song_title}").sort_by(&:popularity).reverse.first
 
-    if artists.present?
-      # select artist with the most common
-      highest_count = 0
-      selected = nil
-      artists.each do |artist|
-        counts = Generalplaylist.joins(:artist)
-                                .where('artists.id = ?', artist.id)
-                                .group(:artist_id)
-                                .count[artist.id]
-        selected = artist if counts.nil? || counts > highest_count
+    if track.present?
+      track.artists.map(&:name).map do |artist_name|
+        Artist.find_or_create_by(name: artist_name)
       end
-      selected
     else
-      Artist.create(name: name)
+      name
     end
   end
 
-  def self.find_spotify_links(song, artist, title)
+  def self.find_spotify_links(song, artists, title)
     title = title.gsub(/\A\d{3}/, '').strip # opwekking songs
+    artist_names = artists.map(&:name).join(' ')
+    tracks = RSpotify::Track.search("#{artist_names} #{title}").sort_by(&:popularity).reverse
     # Spotify lookup image and song
-    if RSpotify::Track.search("#{artist.name} #{title}").present?
-      song.spotify_song_url = RSpotify::Track.search("#{artist.name} #{title}").first.external_urls["spotify"]
-      song.spotify_artwork_url = @track_album = RSpotify::Track.search("#{artist.name} #{title}").first.album.images[1]["url"]
+    if tracks.present?
+      song.spotify_song_url = tracks.first.external_urls["spotify"]
+      song.spotify_artwork_url = tracks.first.album.images[1]["url"]
     end
     song
   end
 
   # Methode for creating the Generalplaylist record
-  def self.create_generalplaylist(time, artist, song, radio_station)
+  def self.create_generalplaylist(time, artists, song, radio_station)
     last_played_song = Generalplaylist.where(radiostation: radio_station).order(created_at: :desc).first
     if last_played_song.blank?
-      Generalplaylist.add_song(time, artist, song, radio_station)
-    elsif last_played_song.time == time && last_played_song.song == song && last_played_song.artist == artist
-      Rails.logger.info "#{song.title} from #{artist.name} last song on #{radio_station.name}"
+      Generalplaylist.add_song(time, artists, song, radio_station)
+    elsif last_played_song.time == time && last_played_song.song == song
+      Rails.logger.info "#{song.title} from #{artists.map(&:name).join(', ')} last song on #{radio_station.name}"
     else
-      Generalplaylist.add_song(time, artist, song, radio_station)
+      Generalplaylist.add_song(time, artists, song, radio_station)
     end
   end
 
   # Methode for adding the song to the database
-  def self.add_song(time, artist, song, radio_station)
-    fullname = "#{artist.name} #{song.title}"
+  def self.add_song(time, artists, song, radio_station)
+    fullname = "#{artists.map(&:name).join(' ')} #{song.title}"
     # Create a new Generalplaylist record
     Generalplaylist.create(
       time: time,
-      artist: artist,
       song: song,
       radiostation: radio_station
     )
-    song.update(fullname: fullname, artist: artist)
+    song.update(fullname: fullname)
+    Array.wrap(artists).each do |artist|
+      next if song.artists.include? artists
 
-    Rails.logger.info "Saved #{song.title} (#{song.id}) from #{artist.name} (#{artist.id}) on #{radio_station.name}!"
+      song.artists << artist
+    end
+
+    Rails.logger.info "Saved #{song.title} (#{song.id}) from #{artists.map(&:name).join(', ')} (#{artist.map(&:id).join(' ')}) on #{radio_station.name}!"
   end
 
   def self.check_all_radiostations
@@ -407,8 +404,8 @@ class Generalplaylist < ActiveRecord::Base
     start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
     end_time =  params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
 
-    playlists = Generalplaylist.joins(:artist, :song).order(created_at: :DESC)
-    playlists.where!('artists.name ILIKE ? OR songs.fullname ILIKE ?', "%#{params[:search_term]}%", "%#{params[:search_term]}%") if params[:search_term].present?
+    playlists = Generalplaylist.joins(:song).order(created_at: :DESC)
+    playlists.where!('songs.artists.name ILIKE ? OR songs.fullname ILIKE ?', "%#{params[:search_term]}%", "%#{params[:search_term]}%") if params[:search_term].present?
     playlists.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
     playlists.where!('generalplaylists.created_at > ?', start_time)
     playlists.where!('generalplaylists.created_at < ?', end_time)
