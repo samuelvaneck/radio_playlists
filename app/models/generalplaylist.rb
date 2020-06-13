@@ -67,8 +67,6 @@ class Generalplaylist < ActiveRecord::Base
     retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
   rescue StandardError => _e
-    sleep 5
-    retry if (retries += 1) < 3
     false
   end
 
