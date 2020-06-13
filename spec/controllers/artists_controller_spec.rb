@@ -4,8 +4,9 @@ require 'rails_helper'
 
 describe ArtistsController do
   let(:artist) { FactoryBot.create :artist }
-  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, artist: artist }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, artist: artist }
+  let(:song) { FactoryBot.create :song, artists: [artist] }
+  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song }
+  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song }
   let(:playlists) { FactoryBot.create_list :generalplaylist, 5, :filled }
   
   describe 'GET #index' do
@@ -22,7 +23,7 @@ describe ArtistsController do
 
       it 'returns all the playlists artists' do
         json = JSON.parse(response.body).sort_by { |artist_id, _counter| artist_id }
-        expected = [[artist.id, 2], [playlists[0].artist.id, 1], [playlists[1].artist.id, 1], [playlists[2].artist.id, 1], [playlists[3].artist.id, 1], [playlists[4].artist.id, 1]]
+        expected = [[artist.id, 2], [playlists[0].artists.first.id, 1], [playlists[1].artists.first.id, 1], [playlists[2].artists.first.id, 1], [playlists[3].artists.first.id, 1], [playlists[4].artists.first.id, 1]]
 
          expect(json).to eq(expected)
       end

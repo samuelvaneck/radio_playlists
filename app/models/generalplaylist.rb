@@ -27,15 +27,15 @@ class Generalplaylist < ActiveRecord::Base
       [artist_name, title, time]
     end
   rescue Net::ReadTimeout => _e
-    sleep 1
+    sleep 5
     retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
   rescue Net::OpenTimeout => _e
-    sleep 1
+    sleep 5
     retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
   rescue StandardError => _e
-    sleep 1
+    sleep 5
     retry if (retries += 1) < 3
     false
   end
@@ -59,15 +59,15 @@ class Generalplaylist < ActiveRecord::Base
       [artist_name, title, time]
     end
   rescue Net::ReadTimeout => _e
-    sleep 1
+    sleep 5
     retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
   rescue Net::OpenTimeout => _e
-    sleep 1
+    sleep 5
     retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
   rescue StandardError => _e
-    sleep 1
+    sleep 5
     retry if (retries += 1) < 3
     false
   end
@@ -274,7 +274,7 @@ class Generalplaylist < ActiveRecord::Base
                  # If there is no song title with the same artist create a new one
                  Song.find_or_create_by(title: title)
                else
-                 artist_names = artists.map(&:name).join(' ')
+                 artist_names = Array.wrap(artists).map(&:name).join(' ')
                  # Else grap the song record with the same title and artist id
                  Song.find_by(title: title, fullname: "#{artist_names} #{title}")
                end
@@ -294,13 +294,13 @@ class Generalplaylist < ActiveRecord::Base
         Artist.find_or_create_by(name: artist_name)
       end
     else
-      name
+      Artist.find_or_create_by(name: name)
     end
   end
 
   def self.find_spotify_links(song, artists, title)
     title = title.gsub(/\A\d{3}/, '').strip # opwekking songs
-    artist_names = artists.map(&:name).join(' ')
+    artist_names = Array.wrap(artists).map(&:name).join(' ')
     tracks = RSpotify::Track.search("#{artist_names} #{title}").sort_by(&:popularity).reverse
     # Spotify lookup image and song
     if tracks.present?
@@ -316,7 +316,7 @@ class Generalplaylist < ActiveRecord::Base
     if last_played_song.blank?
       Generalplaylist.add_song(time, artists, song, radio_station)
     elsif last_played_song.time == time && last_played_song.song == song
-      Rails.logger.info "#{song.title} from #{artists.map(&:name).join(', ')} last song on #{radio_station.name}"
+      Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{radio_station.name}"
     else
       Generalplaylist.add_song(time, artists, song, radio_station)
     end
@@ -324,7 +324,7 @@ class Generalplaylist < ActiveRecord::Base
 
   # Methode for adding the song to the database
   def self.add_song(time, artists, song, radio_station)
-    fullname = "#{artists.map(&:name).join(' ')} #{song.title}"
+    fullname = "#{Array.wrap(artists).map(&:name).join(' ')} #{song.title}"
     # Create a new Generalplaylist record
     Generalplaylist.create(
       time: time,
@@ -332,13 +332,14 @@ class Generalplaylist < ActiveRecord::Base
       radiostation: radio_station
     )
     song.update(fullname: fullname)
+
     Array.wrap(artists).each do |artist|
-      next if song.artists.include? artists
+      next if song.artists.include? artist
 
       song.artists << artist
     end
 
-    Rails.logger.info "Saved #{song.title} (#{song.id}) from #{artists.map(&:name).join(', ')} (#{artist.map(&:id).join(' ')}) on #{radio_station.name}!"
+    Rails.logger.info "Saved #{song.title} (#{song.id}) from #{Array.wrap(artists).map(&:name).join(', ')} (#{Array.wrap(artists).map(&:id).join(' ')}) on #{radio_station.name}!"
   end
 
   def self.check_all_radiostations
@@ -404,8 +405,8 @@ class Generalplaylist < ActiveRecord::Base
     start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
     end_time =  params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
 
-    playlists = Generalplaylist.joins(:song).order(created_at: :DESC)
-    playlists.where!('songs.artists.name ILIKE ? OR songs.fullname ILIKE ?', "%#{params[:search_term]}%", "%#{params[:search_term]}%") if params[:search_term].present?
+    playlists = Generalplaylist.joins(:song, :artists).order(created_at: :DESC)
+    playlists.where!('artists.name ILIKE ? OR songs.title ILIKE ?', "%#{params[:search_term]}%", "%#{params[:search_term]}%") if params[:search_term].present?
     playlists.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
     playlists.where!('generalplaylists.created_at > ?', start_time)
     playlists.where!('generalplaylists.created_at < ?', end_time)

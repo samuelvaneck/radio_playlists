@@ -4,13 +4,13 @@ require 'rails_helper'
 
 RSpec.describe Generalplaylist do
   let(:artist_1) { FactoryBot.create :artist }
-  let(:song_1) { FactoryBot.create :song, artist: artist_1 }
+  let(:song_1) { FactoryBot.create :song, artists: [artist_1] }
   let(:artist_2) { FactoryBot.create :artist }
-  let(:song_2) { FactoryBot.create :song, artist: artist_2 }
+  let(:song_2) { FactoryBot.create :song, artists: [artist_2] }
   let(:radiostation) { FactoryBot.create :radiostation }
-  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1, artist: artist_1 }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, artist: artist_2, radiostation: radiostation }
-  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, artist: artist_2, radiostation: radiostation }
+  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1 }
+  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
+  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
 
   describe '#check_npo_radio' do
     context 'given an address and radiostation' do
@@ -197,7 +197,7 @@ RSpec.describe Generalplaylist do
       it 'returns the playlists artist name or song title that matches the search terms' do
         expected = [playlist_1]
 
-        expect(Generalplaylist.search({ search_term: song_1.fullname })).to eq expected
+        expect(Generalplaylist.search({ search_term: song_1.title })).to eq expected
       end
     end
 

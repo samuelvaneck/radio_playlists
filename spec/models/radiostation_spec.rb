@@ -37,7 +37,7 @@ RSpec.describe Radiostation do
       playlist_1_minute_ago
       status = radio_station.status
 
-      expect(status[:track_info]).to eq "#{playlist_1_minute_ago.time} - #{playlist_1_minute_ago.artist.name} - #{playlist_1_minute_ago.song.title}"
+      expect(status[:track_info]).to eq "#{playlist_1_minute_ago.time} - #{playlist_1_minute_ago.artists.map(&:name).join(' - ')} - #{playlist_1_minute_ago.song.title}"
     end
   end
 end

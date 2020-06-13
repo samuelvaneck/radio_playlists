@@ -8,8 +8,7 @@ FactoryBot.define do
   trait :filled do
     after(:build) do |generalplaylist|
       generalplaylist.radiostation ||= FactoryBot.build(:radiostation)
-      generalplaylist.artist ||= FactoryBot.create(:artist)
-      generalplaylist.song ||= FactoryBot.create(:song, artist: generalplaylist.artist)
+      generalplaylist.song ||= FactoryBot.create(:song, :filled)
     end
   end
 end
