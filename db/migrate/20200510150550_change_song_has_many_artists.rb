@@ -24,7 +24,8 @@ class ChangeSongHasManyArtists < ActiveRecord::Migration[6.0]
 
         song.artists << artist
       end
-      sleep 1 # fix to many requests error during migration
+      # fix to many requests error during migration
+      sleep 1
     end
 
     # remove reference from song and generalplaylists
