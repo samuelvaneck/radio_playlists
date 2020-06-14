@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/fast-jsonapi/fast_jsonapi
-  revision: 18196294081e34cc065b67013a64dd524ff2c310
+  revision: 3ff69ccce1a75fb0210874dba1b77f05a79ec8f2
   specs:
-    fast_jsonapi (1.7.2)
+    fast_jsonapi (2.0.0)
       activesupport (>= 4.2)
 
 GEM
@@ -63,11 +63,11 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
-    addressable (2.7.0)
-      public_suffix (>= 2.0.2, < 5.0)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    ast (2.4.0)
+    ast (2.4.1)
     autoprefixer-rails (9.7.6)
       execjs
     bcrypt (3.1.13)
@@ -75,7 +75,7 @@ GEM
     brakeman (4.8.2)
     builder (3.2.4)
     byebug (11.1.3)
-    capistrano (3.14.0)
+    capistrano (3.14.1)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -116,7 +116,7 @@ GEM
     connection_pool (2.2.3)
     crass (1.0.6)
     database_cleaner (1.8.5)
-    devise (4.7.1)
+    devise (4.7.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -144,7 +144,7 @@ GEM
       i18n (>= 1.6, < 2)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
-    ffi (1.13.0)
+    ffi (1.13.1)
     formatador (0.2.5)
     fugit (1.3.6)
       et-orbi (~> 1.1, >= 1.1.8)
@@ -180,8 +180,8 @@ GEM
       railties (>= 3.2.16)
     json (1.8.6)
     jwt (2.2.1)
-    launchy (2.5.0)
-      addressable (~> 2.7)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -209,7 +209,7 @@ GEM
     nenv (0.3.0)
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
-    net-ssh (6.0.2)
+    net-ssh (6.1.0)
     netrc (0.11.0)
     nio4r (2.5.2)
     nokogiri (1.10.9)
@@ -226,8 +226,8 @@ GEM
     omniauth (1.9.1)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
-    omniauth-oauth2 (1.3.1)
-      oauth2 (~> 1.0)
+    omniauth-oauth2 (1.5.0)
+      oauth2 (~> 1.1)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     parallel (1.19.1)
@@ -237,7 +237,7 @@ GEM
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    public_suffix (4.0.5)
+    public_suffix (3.1.1)
     raabro (1.3.1)
     rack (2.2.2)
     rack-protection (2.0.8.1)
@@ -287,8 +287,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rdoc (4.3.0)
-    redis (4.1.4)
-    regexp_parser (1.7.0)
+    redis (4.2.1)
+    regexp_parser (1.7.1)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -318,10 +318,11 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.3)
-    rspotify (2.4.0)
-      omniauth-oauth2 (~> 1.3.1)
+    rspotify (2.8.0)
+      addressable (~> 2.5.2)
+      omniauth-oauth2 (~> 1.5.0)
       rest-client (~> 2.0.2)
-    rubocop (0.85.0)
+    rubocop (0.85.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
@@ -443,7 +444,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
-  fast_jsonapi (~> 1.7.1)!
+  fast_jsonapi (~> 2.0.0)!
   guard-rspec
   jbuilder
   jquery-rails
@@ -457,7 +458,7 @@ DEPENDENCIES
   rails-controller-testing
   rails_12factor
   rspec-rails
-  rspotify
+  rspotify (~> 2.8)
   rubocop
   sass-rails
   sdoc (~> 0.4.0)
