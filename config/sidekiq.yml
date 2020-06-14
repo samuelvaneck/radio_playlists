@@ -1,7 +1,11 @@
 ---
-  :concurrency: 5
+  :concurrency: 1
   :max_retries: 3
   :schedule:
+    CheckAllRadioStations:
+      cron: '*/3 * * * *' # every 3 minutes
+      queue: default
+      enabled: false
     CheckRadio1:
       cron: '*/3 * * * *' # every 3 minutes
       queue: default
