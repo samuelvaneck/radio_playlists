@@ -12,6 +12,7 @@ class ChangeSongHasManyArtists < ActiveRecord::Migration[6.0]
     end
 
     Song.all.each do |song|
+      retries ||= 0
       track = RSpotify::Track.search(song.fullname || "#{song.artist&.name} #{song.title}").sort_by(&:popularity).reverse.first
       next if track.blank?
 
@@ -26,6 +27,9 @@ class ChangeSongHasManyArtists < ActiveRecord::Migration[6.0]
       end
       # fix to many requests error during migration
       sleep 1
+    rescue StandardError => e
+      Rails.logger.info e
+      retry if (retries += 1) < 3
     end
 
     # remove reference from song and generalplaylists
