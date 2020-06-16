@@ -27,16 +27,10 @@ class Generalplaylist < ActiveRecord::Base
       [artist_name, title, time]
     end
   rescue Net::ReadTimeout => _e
-    sleep 5
-    retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
   rescue Net::OpenTimeout => _e
-    sleep 5
-    retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
   rescue StandardError => _e
-    sleep 5
-    retry if (retries += 1) < 3
     false
   end
 
@@ -59,12 +53,8 @@ class Generalplaylist < ActiveRecord::Base
       [artist_name, title, time]
     end
   rescue Net::ReadTimeout => _e
-    sleep 5
-    retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
   rescue Net::OpenTimeout => _e
-    sleep 5
-    retry if (retries += 1) < 3
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
   rescue StandardError => _e
     false
@@ -272,9 +262,8 @@ class Generalplaylist < ActiveRecord::Base
                  # If there is no song title with the same artist create a new one
                  Song.find_or_create_by(title: title)
                else
-                 artist_names = Array.wrap(artists).map(&:name).join(' ')
                  # Else grap the song record with the same title and artist id
-                 Song.find_by(title: title, fullname: "#{artist_names} #{title}")
+                 songs = Song.joins(:artists).where(artists: { id: Array.wrap(artists).map(&:id) })
                end
              end
            end
@@ -310,13 +299,11 @@ class Generalplaylist < ActiveRecord::Base
 
   # Methode for creating the Generalplaylist record
   def self.create_generalplaylist(time, artists, song, radio_station)
-    last_played_song = Generalplaylist.where(radiostation: radio_station).order(created_at: :desc).first
+    last_played_song = Generalplaylist.where(radiostation: radio_station, song: song, time: time).order(created_at: :desc).first
     if last_played_song.blank?
       Generalplaylist.add_song(time, artists, song, radio_station)
     elsif last_played_song.time == time && last_played_song.song == song
       Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{radio_station.name}"
-    else
-      Generalplaylist.add_song(time, artists, song, radio_station)
     end
   end
 
@@ -331,6 +318,8 @@ class Generalplaylist < ActiveRecord::Base
     )
     song.update(fullname: fullname)
 
+    # cleaning up artists
+    song.artists.delete_all
     Array.wrap(artists).each do |artist|
       next if song.artists.include? artist
 
