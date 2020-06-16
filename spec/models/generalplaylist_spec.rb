@@ -7,6 +7,10 @@ RSpec.describe Generalplaylist do
   let(:song_1) { FactoryBot.create :song, artists: [artist_1] }
   let(:artist_2) { FactoryBot.create :artist }
   let(:song_2) { FactoryBot.create :song, artists: [artist_2] }
+  let(:artist_3) { FactoryBot.create :artist, name: 'Robin Schulz' }
+  let(:song_3) { FactoryBot.create :song, artists: [artist_3] }
+  let(:artist_4) { FactoryBot.create :artist, name: 'Erika Sirola' }
+  let(:song_4) { FactoryBot.create :song, artists: [artist_4] }
   let(:radiostation) { FactoryBot.create :radiostation }
   let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1 }
   let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
@@ -108,11 +112,22 @@ RSpec.describe Generalplaylist do
   end
 
   describe '#radio_538_check' do
+    before do
+      allow(Generalplaylist).to receive(:check_talpa_radio).and_return(['Robin Schulz, Erika Sirola', 'Speechless', '19:20'])
+    end
     it 'creates a new playlist item' do
-      allow(Generalplaylist).to receive(:check_talpa_radio).and_return(['Steve Lucas', 'Love Letters', '16:44'])
       expect {
         Generalplaylist.radio_538_check
       }.to change(Generalplaylist, :count).by(1)
+    end
+    context 'with two artist' do
+      it 'sets both artists to the song' do
+        Generalplaylist.radio_538_check
+
+        song = Song.find_by(title: 'Speechless')
+        expect(song.artists.count).to eq 2
+        expect(song.artists.map(&:name)).to include 'Robin Schulz', 'Erika Sirola'
+      end
     end
   end
 
@@ -210,6 +225,38 @@ RSpec.describe Generalplaylist do
     context 'with no params' do
       it 'returns all the playlists' do
         expect(Generalplaylist.search({})).to include playlist_1, playlist_2, playlist_3
+      end
+    end
+  end
+
+  describe '#today_unique_playlist_item' do
+    before { playlist_1 }
+    context 'with an already playlist existing item' do
+      it 'fails validation' do
+        new_playlist_item = Generalplaylist.new(time: playlist_1.time, song: playlist_1.song, radiostation: playlist_1.radiostation)
+
+        expect(new_playlist_item.valid?).to eq false
+      end
+    end
+
+    context 'with an existing playlist item created 2 days ago' do
+      before do
+        playlist_1.created_at = 2.days.ago
+        playlist_1.save!(validate: false)
+        playlist_1.reload
+      end
+      it 'does not fail validation' do
+        new_playlist_item = Generalplaylist.new(time: playlist_1.time, song: playlist_1.song, radiostation: playlist_1.radiostation)
+
+        expect(new_playlist_item.valid?).to eq true
+      end
+    end
+
+    context 'with a unique playlist item' do
+      it 'does not fail validation' do
+        new_playlist_item = FactoryBot.build :generalplaylist, :filled
+
+        expect(new_playlist_item.valid?).to eq true
       end
     end
   end
