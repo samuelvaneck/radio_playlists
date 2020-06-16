@@ -10,7 +10,6 @@ class Generalplaylist < ActiveRecord::Base
   require 'net/http'
 
   def self.check_npo_radio(address)
-    retries ||= 0
     uri = URI address
 
     Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', open_timeout: 3, read_timeout: 3) do |http|
@@ -35,7 +34,6 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.check_talpa_radio(address)
-    retries ||= 0
     uri = URI address
 
     Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', open_timeout: 3, read_timeout: 3) do |http|
