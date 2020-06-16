@@ -4,6 +4,7 @@ class Generalplaylist < ActiveRecord::Base
   belongs_to :song
   has_many :artists, through: :song
   belongs_to :radiostation
+  validate :today_unique_playlist_item
 
   require 'nokogiri'
   require 'open-uri'
@@ -396,5 +397,12 @@ class Generalplaylist < ActiveRecord::Base
     playlists.where!('generalplaylists.created_at > ?', start_time)
     playlists.where!('generalplaylists.created_at < ?', end_time)
     playlists
+  end
+
+  private
+
+  def today_unique_playlist_item
+    exisiting_record = Generalplaylist.joins(:song, :radiostation).where('songs.id = ? AND time = ? AND radiostations.id = ? AND generalplaylists.created_at > ?', song_id, time, radiostation_id, 1.day.ago).present?
+    errors.add(:base, 'none unique playlist') if exisiting_record
   end
 end
