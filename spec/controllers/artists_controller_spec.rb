@@ -23,7 +23,7 @@ describe ArtistsController do
 
       it 'returns all the playlists artists' do
         json = JSON.parse(response.body).sort_by { |artist_id, _counter| artist_id }
-        expected = [[artist.id, 2], [playlists[0].artists.first.id, 1], [playlists[1].artists.first.id, 1], [playlists[2].artists.first.id, 1], [playlists[3].artists.first.id, 1], [playlists[4].artists.first.id, 1]]
+        expected = [[artist.id, 2], [playlists[0].song.artists.first.id, 1], [playlists[1].song.artists.first.id, 1], [playlists[2].song.artists.first.id, 1], [playlists[3].song.artists.first.id, 1], [playlists[4].song.artists.first.id, 1]]
 
          expect(json).to eq(expected)
       end
@@ -52,6 +52,8 @@ describe ArtistsController do
       it 'only returns the artists that are played by the radiostation' do
         get :index, params: { format: :json, radiostation_id: playlist_1.radiostation.id }
         json = JSON.parse(response.body)
+
+        debugger
 
         expect(json).to eq [[artist.id, 1]]
       end
