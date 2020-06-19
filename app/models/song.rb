@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 class Song < ActiveRecord::Base
-  has_many :generalplaylists
-  has_many :counters
-  has_many :radiostations, through: :generalplaylists
   has_many :artists_songs
   has_many :artists, through: :artists_songs
+  has_many :generalplaylists
+  has_many :radiostations, through: :generalplaylists
 
   # validates :artist, presence: true
 
@@ -17,8 +16,8 @@ class Song < ActiveRecord::Base
     start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
     end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
 
-    songs = Generalplaylist.joins(:song, :artists).all
-    songs.where!('songs.title ILIKE ? OR artists.name ILIKE ?', "%#{params[:search_term]}%", "%#{params[:search_term]}%") if params[:search_term].present?
+    songs = Generalplaylist.joins(:song).all
+    songs.where!('songs.fullname ILIKE ?', "%#{params[:search_term]}%") if params[:search_term].present?
     songs.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
     songs.where!('generalplaylists.created_at > ?', start_time)
     songs.where!('generalplaylists.created_at < ?', end_time)

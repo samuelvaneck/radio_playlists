@@ -212,7 +212,7 @@ RSpec.describe Generalplaylist do
       it 'returns the playlists artist name or song title that matches the search terms' do
         expected = [playlist_1]
 
-        expect(Generalplaylist.search({ search_term: song_1.title })).to eq expected
+        expect(Generalplaylist.search({ search_term: song_1.fullname })).to eq expected
       end
     end
 
