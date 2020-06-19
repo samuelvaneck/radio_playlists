@@ -125,8 +125,7 @@ RSpec.describe Generalplaylist do
         Generalplaylist.radio_538_check
 
         song = Song.find_by(title: 'Speechless')
-        expect(song.artists.count).to eq 2
-        expect(song.artists.map(&:name)).to include 'Robin Schulz', 'Erika Sirola'
+        expect(song.artists.map(&:name)).to include 'Robin Schulz, Erika Sirola'
       end
     end
   end

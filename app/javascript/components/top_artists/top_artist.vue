@@ -22,6 +22,11 @@
             <span>{{ artist.data.attributes.name }}</span>
           </div>
         </div>
+        <div v-if='!!artist && !!artist.data.attributes.spotify_artist_url' class='mt-2 d-flex flex-row'>
+          <div class='ml-auto'>
+            <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -29,18 +34,25 @@
 
 <script>
   import LoadingBar from '../application/loading_bar.vue'
+  import SpotifyLogo from 'images/Spotify_Icon_RGB_Green.png'
 
   export default {
     props: ['id', 'counter', 'chartIdx'],
-    components: { LoadingBar },
+    components: { LoadingBar, SpotifyLogo },
     data () {
       return {
         artist: null,
         spotifyArtworkUrl: null,
         loading: true,
+        spotifyLogo: SpotifyLogo
       }
     },
     methods: {
+      handleClickSpotifyBtn() {
+        if (!!this.artist.data.attributes.spotify_artist_url) {
+          window.open(this.artist.data.attributes.spotify_artist_url, '_blank')
+        }
+      },
       getValues: function() {
         const songUrl = '/artists/' + this.id
         const options = {
@@ -54,23 +66,27 @@
         fetch(songUrl, options).then(res => res.json())
           .then(d => {
             this.artist = d
-            const songs = this.artist.data.relationships.songs.data;
-            if (songs.length === 0) return;
-            
-            const song = songs[Math.floor(Math.random()*songs.length)]
-            const url = '/songs/' + song.id
-            const options = {
-              method: 'GET',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json;charset=UTF-8'
-              }
+            if (!!this.artist.data.attributes.spotify_artwork_url) {
+              this.spotifyArtworkUrl = this.artist.data.attributes.spotify_artwork_url
             }
-            fetch(url, options).then(res => res.json())
-              .then(d => { 
-                this.spotifyArtworkUrl = d.data.attributes.spotify_artwork_url
-                this.loading = false
-              })
+            this.loading = false
+            // const songs = this.artist.data.relationships.songs.data;
+            // if (songs.length === 0) return;
+            
+            // const song = songs[Math.floor(Math.random()*songs.length)]
+            // const url = '/songs/' + song.id
+            // const options = {
+            //   method: 'GET',
+            //   headers: {
+            //     'Accept': 'application/json',
+            //     'Content-Type': 'application/json;charset=UTF-8'
+            //   }
+            // }
+            // fetch(url, options).then(res => res.json())
+            //   .then(d => { 
+            //     this.spotifyArtworkUrl = d.data.attributes.spotify_artwork_url
+            //     this.loading = false
+            //   })
           })
       }
     },

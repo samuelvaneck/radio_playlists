@@ -272,11 +272,22 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.find_or_create_artist(name, song_title)
-    track = RSpotify::Track.search("#{name} #{song_title}").sort_by(&:popularity).reverse.first
+    # getting spotify track / filter out the aritst / get the track that is most popular
+    tracks = RSpotify::Track.search("#{name} #{song_title}").sort_by(&:popularity).reverse
+    tracks = tracks.filter { |t| t.artists.map { |artist| artist.name.downcase }.include? name.downcase }
+    track = tracks.first
+    tracks.each { |t| track = t if t.popularity > track.popularity }
 
     if track.present?
-      track.artists.map(&:name).map do |artist_name|
-        Artist.find_or_create_by(name: artist_name)
+      track.artists.map do |track_artist|
+        artist = Artist.find_or_create_by(name: track_artist.name)
+        # set Spotify links
+        spotify_artist = RSpotify::Artist.find(track_artist.id)
+        artist.spotify_artist_url = spotify_artist.external_urls['spotify']
+        artist.spotify_artwork_url = spotify_artist.images.first['url']
+        artist.save
+        
+        artist
       end
     else
       Artist.find_or_create_by(name: name)
