@@ -42,9 +42,9 @@ RSpec.describe Artist do
 
   describe '#group_and_count' do
     it 'groups and counts the artist' do
-      results = Artist.group_and_count(Artist.joins(:generalplaylists, :radiostations).all)
+      results = Artist.group_and_count(Artist.joins(:generalplaylists).all, { radiostation_id: radiostation.id })
 
-      expect(results).to eq [[artist_3.id, 2], [artist_2.id, 1], [artist_1.id, 1]]
+      expect(results).to eq [[artist_3.id, 2], [artist_2.id, 1]]
     end
   end
 end

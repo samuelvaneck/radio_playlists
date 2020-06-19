@@ -53,8 +53,6 @@ describe ArtistsController do
         get :index, params: { format: :json, radiostation_id: playlist_1.radiostation.id }
         json = JSON.parse(response.body)
 
-        debugger
-
         expect(json).to eq [[artist.id, 1]]
       end
     end
