@@ -275,8 +275,15 @@ class Generalplaylist < ActiveRecord::Base
     track = RSpotify::Track.search("#{name} #{song_title}").sort_by(&:popularity).reverse.first
 
     if track.present?
-      track.artists.map(&:name).map do |artist_name|
-        Artist.find_or_create_by(name: artist_name)
+      track.artists.map do |track_artist|
+        artist = Artist.find_or_create_by(name: track_artist.name)
+        # set Spotify links
+        spotify_artist = RSpotify::Artist.find(track_artist.id)
+        artist.spotify_artist_url = spotify_artist.external_urls['spotify']
+        artist.spotify_artwork_url = spotify_artist.images.first['url']
+        artist.save
+        
+        artist
       end
     else
       Artist.find_or_create_by(name: name)
