@@ -328,7 +328,7 @@ class Generalplaylist < ActiveRecord::Base
     song.update(fullname: fullname)
 
     # cleaning up artists
-    song.artists.delete_all
+    song.artists.clear
     Array.wrap(artists).each do |artist|
       next if song.artists.include? artist
 
