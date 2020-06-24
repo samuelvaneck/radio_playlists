@@ -1,7 +1,7 @@
 class AddIndexGeneralPlaylists < ActiveRecord::Migration[6.0]
   def up
     add_column :generalplaylists, :broadcast_timestamp, :datetime
-    
+
     Generalplaylist.all.each do |playlist|
       playlist.update(broadcast_timestamp: Time.parse(playlist.created_at.strftime('%F') + ' ' + playlist.time))
     end
