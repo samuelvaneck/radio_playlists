@@ -232,22 +232,9 @@ RSpec.describe Generalplaylist do
     before { playlist_1 }
     context 'with an already playlist existing item' do
       it 'fails validation' do
-        new_playlist_item = Generalplaylist.new(time: playlist_1.time, song: playlist_1.song, radiostation: playlist_1.radiostation)
+        new_playlist_item = Generalplaylist.new(broadcast_timestamp: playlist_1.broadcast_timestamp, song: playlist_1.song, radiostation: playlist_1.radiostation)
 
         expect(new_playlist_item.valid?).to eq false
-      end
-    end
-
-    context 'with an existing playlist item created 2 days ago' do
-      before do
-        playlist_1.created_at = 2.days.ago
-        playlist_1.save!(validate: false)
-        playlist_1.reload
-      end
-      it 'does not fail validation' do
-        new_playlist_item = Generalplaylist.new(time: playlist_1.time, song: playlist_1.song, radiostation: playlist_1.radiostation)
-
-        expect(new_playlist_item.valid?).to eq true
       end
     end
 

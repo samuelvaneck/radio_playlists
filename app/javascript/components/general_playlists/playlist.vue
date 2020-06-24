@@ -11,7 +11,7 @@
       <div class='d-flex flex-column'>
         <div class='d-flex d-flex-row'>
           <div class='rubik mr-2'>
-            <div>{{ item.attributes.time }}</div>
+            <div>{{ playedTime() }}</div>
             <div><small><i>{{ playedDate() }}</i></small></div>
           </div>
           <!-- Radio station label -->
@@ -68,6 +68,13 @@
     methods: {
       handleClickSpotifyBtn() {
         window.open(this.song.data.attributes.spotify_song_url, '_blank')
+      },
+      playedTime() {
+        const date = new Date(this.item.attributes.broadcast_timestamp)
+        const hh = (date.getHours() < 10 ? '0' : '') + date.getHours()
+        const mm = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes()
+        
+        return hh + ':' + mm
       },
       playedDate() {
         const date = new Date(this.item.attributes.created_at)
