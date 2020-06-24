@@ -1,5 +1,5 @@
 ---
-  :concurrency: 1
+  :concurrency: 2
   :max_retries: 3
   :schedule:
     CheckAllRadioStations:
@@ -59,7 +59,7 @@
       queue: default
       enabled: true
     MigratePlaylistTimeJob:
-      cron: '0 16 * * 3' # at 16pm on Wednesday
+      cron: '15 16 * * 3' # at 16pm on Wednesday
       queue: default
       enabled: true
   :sidekiq_default_hooks: true
