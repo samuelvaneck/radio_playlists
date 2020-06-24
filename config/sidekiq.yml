@@ -58,6 +58,10 @@
       cron: '0 2 * * *' # at 2am
       queue: default
       enabled: true
+    MigratePlaylistTimeJob:
+      cron: '0 16 * * 3' # at 16pm on Wednesday
+      queue: default
+      enabled: true
   :sidekiq_default_hooks: true
   :sidekiq_pid: File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid')
   :sidekiq_env: fetch(:rack_env, fetch(:rails_env, fetch(:stage)))
