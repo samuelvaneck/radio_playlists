@@ -6,8 +6,11 @@ class AddIndexGeneralPlaylists < ActiveRecord::Migration[6.0]
       group.each do |playlist|
         next if playlist.broadcast_timestamp.present?
 
-        time_stamp = Time.parse(playlist.created_at.strftime('%F') + ' ' + playlist.time) rescue playlist.created_at
-        playlist.update(broadcast_timestamp: time_stamp)
+        begin
+          playlist.update(broadcast_timestamp: Time.parse(playlist.created_at.strftime('%F') + ' ' + playlist.time))
+        rescue StandardError => _e
+          playlist.update(broadcast_timestamp: playlist.created_at)
+        end
       end
     end
 
