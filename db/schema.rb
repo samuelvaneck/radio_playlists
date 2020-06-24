@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_124007) do
+ActiveRecord::Schema.define(version: 2020_06_24_050809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,12 +33,13 @@ ActiveRecord::Schema.define(version: 2020_06_19_124007) do
   end
 
   create_table "generalplaylists", force: :cascade do |t|
-    t.string "time"
     t.bigint "song_id"
     t.bigint "radiostation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "broadcast_timestamp"
     t.index ["radiostation_id"], name: "index_generalplaylists_on_radiostation_id"
+    t.index ["song_id", "radiostation_id", "broadcast_timestamp"], name: "playlist_radio_song_time", unique: true
     t.index ["song_id"], name: "index_generalplaylists_on_song_id"
   end
 
