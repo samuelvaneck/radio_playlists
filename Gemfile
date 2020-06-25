@@ -12,7 +12,7 @@ gem 'jquery-ui-rails'
 gem 'materialize-sass'
 gem 'nokogiri', '>= 1.10.9'
 gem 'pg'
-gem 'rails', '~> 6.0', '>= 6.0.3.1'
+gem 'rails', '~> 6.0', '>= 6.0.3.2'
 gem 'rails_12factor', group: :production
 gem 'rspotify', '~> 2.8'
 gem 'sass-rails'
