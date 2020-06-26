@@ -70,23 +70,6 @@
               this.spotifyArtworkUrl = this.artist.data.attributes.spotify_artwork_url
             }
             this.loading = false
-            // const songs = this.artist.data.relationships.songs.data;
-            // if (songs.length === 0) return;
-            
-            // const song = songs[Math.floor(Math.random()*songs.length)]
-            // const url = '/songs/' + song.id
-            // const options = {
-            //   method: 'GET',
-            //   headers: {
-            //     'Accept': 'application/json',
-            //     'Content-Type': 'application/json;charset=UTF-8'
-            //   }
-            // }
-            // fetch(url, options).then(res => res.json())
-            //   .then(d => { 
-            //     this.spotifyArtworkUrl = d.data.attributes.spotify_artwork_url
-            //     this.loading = false
-            //   })
           })
       }
     },

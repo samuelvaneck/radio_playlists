@@ -27,7 +27,7 @@ RSpec.describe Artist do
       it 'only returns the artists matching the search term' do
         results = Artist.search({ search_term: artist_1.name })
 
-        expect(results).to eq [artist_1]
+        expect(results).to include artist_1
       end
     end
 
@@ -42,9 +42,9 @@ RSpec.describe Artist do
 
   describe '#group_and_count' do
     it 'groups and counts the artist' do
-      results = Artist.group_and_count(Artist.joins(:generalplaylists).all, { radiostation_id: radiostation.id })
+      results = Artist.group_and_count(Artist.joins(:generalplaylists).all)
 
-      expect(results).to eq [[artist_3.id, 2], [artist_2.id, 1]]
+      expect(results).to include [artist_3.id, 2], [artist_2.id, 1], [artist_1.id, 1]
     end
   end
 end
