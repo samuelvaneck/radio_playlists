@@ -203,7 +203,7 @@ Lint/NumberConversion:
 # Offense count: 16
 # Configuration parameters: IgnoredMethods.
 Metrics/AbcSize:
-  Max: 52
+  Max: 61
 
 # Offense count: 13
 # Configuration parameters: CountComments, ExcludedMethods.

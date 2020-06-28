@@ -19,7 +19,7 @@ class Song < ActiveRecord::Base
     songs.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
     songs.where!('generalplaylists.created_at > ?', start_time)
     songs.where!('generalplaylists.created_at < ?', end_time)
-    songs.uniq
+    songs
   end
 
   def self.group_and_count(songs)
