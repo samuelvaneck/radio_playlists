@@ -21,7 +21,7 @@ RSpec.describe Song do
   describe '#search' do
     context 'with search term params present' do
       it 'only returns the songs matching the search term' do
-        results = Song.search({ search_term: song_1.fullname })
+        results = Song.search({ search_term: song_1.title })
 
         expect(results).to eq [playlist_1]
       end

@@ -23,4 +23,11 @@ class Artist < ActiveRecord::Base
   def self.group_and_count(artists)
     artists.group(:artist_id).count.sort_by { |_artist_id, counter| counter }.reverse
   end
+
+  def reload_artist_songs
+    songs.each(&:set_song_artists)
+    songs.reload
+
+    destroy if songs.count.zero?
+  end
 end
