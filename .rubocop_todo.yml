@@ -108,6 +108,7 @@ Layout/MultilineAssignmentLayout:
   Exclude:
     - 'app/models/artist.rb'
     - 'app/models/generalplaylist.rb'
+    - 'app/models/song.rb'
 
 # Offense count: 6
 # Cop supports --auto-correct.
@@ -202,7 +203,7 @@ Lint/NumberConversion:
 # Offense count: 16
 # Configuration parameters: IgnoredMethods.
 Metrics/AbcSize:
-  Max: 36
+  Max: 52
 
 # Offense count: 13
 # Configuration parameters: CountComments, ExcludedMethods.
@@ -223,7 +224,7 @@ Metrics/CyclomaticComplexity:
 # Offense count: 14
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/MethodLength:
-  Max: 25
+  Max: 30
 
 # Offense count: 1
 # Configuration parameters: CountComments.
