@@ -41,7 +41,7 @@ describe SongsController do
         playlists
       end
       it 'only returns the search song' do
-        get :index, params: { format: :json, search_term: song.fullname }
+        get :index, params: { format: :json, search_term: song.title }
         json = JSON.parse(response.body)
 
         expect(json).to eq [[song.id, 2]]

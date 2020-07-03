@@ -48,7 +48,7 @@ class Song < ActiveRecord::Base
     update!(
       spotify_song_url: track.external_urls['spotify'],
       spotify_artwork_url: track.album.images[1]['url'],
-      fullname: "#{artists.map { artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '') }.join(' ')} #{title}"
+      fullname: "#{artists.map { |artist| artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '') }.join(' ')} #{title}"
     )
   end
 
