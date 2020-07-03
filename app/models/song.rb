@@ -26,32 +26,8 @@ class Song < ActiveRecord::Base
     songs.group(:song_id).count.sort_by { |_song_id, counter| counter }.reverse
   end
 
-  def set_song_artists
-    # find all possible tracks on spotify
-    tracks = RSpotify::Track.search("#{artists.map { |artist| artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '') }.join(' ')} #{title}").sort_by(&:popularity).reverse
-    # filter all tracks that only have th artist name
-    tracks = tracks.filter do |t|
-      # e.g. ['martin, 'garrix', 'clinton', 'kane']
-      track_artists_names = t.artists.map { |artist| artist.name.downcase.split(' ') }
-      song_artists_names = artists.map do |artist|
-        if artist.name.match?(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/)
-          artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '').downcase.split(' ')
-        else
-          artist.name.downcase.split(' ')
-        end
-      end
-
-      # compare artists from track and artists from song. If they match the difference array wil be empty and return true
-      same_artists = (track_artists_names.flatten - song_artists_names.flatten).empty?
-      same_artists && track_artists_names.exclude?('karaoke')
-    end
-    # set the trackt to first
-    track = tracks.first
-    # replace track with most popular track
-    tracks.each do |t|
-      track = t if t.popularity > track.popularity
-    end
-
+  def reload_artists(requested_artist = nil)
+    track = spotify_search(Array.wrap(requested_artist) || artists)
     # do nothing if no track is present
     return false unless track.present?
 
@@ -69,6 +45,38 @@ class Song < ActiveRecord::Base
       artists << artist
     end
 
-    update!(spotify_song_url: track.external_urls['spotify'], spotify_artwork_url: track.album.images[1]['url'])
+    update!(
+      spotify_song_url: track.external_urls['spotify'],
+      spotify_artwork_url: track.album.images[1]['url'],
+      fullname: "#{artists.map { artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '') }.join(' ')} #{title}"
+    )
+  end
+
+  def spotify_search(search_artists)
+    # find all possible tracks on spotify
+    tracks = RSpotify::Track.search("#{search_artists.map { |artist| artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '') }.join(' ')} #{title}").sort_by(&:popularity).reverse
+    # filter all tracks that only have th artist name
+    tracks = tracks.filter do |t|
+      # e.g. ['martin, 'garrix', 'clinton', 'kane']
+      track_artists_names = t.artists.map { |artist| artist.name.downcase.split(' ') }
+      song_artists_names = search_artists.map do |artist|
+        if artist.name.match?(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/)
+          artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '').downcase.split(' ')
+        else
+          artist.name.downcase.split(' ')
+        end
+      end
+
+      # compare artists from track and artists from song. If they match the difference array wil be empty and return true
+      same_artists = (track_artists_names.flatten - song_artists_names.flatten).empty?
+      same_artists && track_artists_names.exclude?('karaoke')
+    end
+    # set the trackt to first
+    track = tracks.first
+    # replace track with most popular track
+    tracks.each do |t|
+      track = t if t.popularity > track.popularity
+    end
+    track
   end
 end

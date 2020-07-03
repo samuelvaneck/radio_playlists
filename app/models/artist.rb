@@ -25,7 +25,7 @@ class Artist < ActiveRecord::Base
   end
 
   def reload_artist_songs
-    songs.each(&:set_song_artists)
+    songs.each(&:reload_artists)
     songs.reload
 
     destroy if songs.count.zero?
