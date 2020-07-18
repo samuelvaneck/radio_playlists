@@ -300,7 +300,12 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.find_spotify_links(song, artists)
-    song.spotify_search(artists)
+    spotify_song = song.spotify_search(artists)
+    if spotify_song.present?
+      song.spotify_song_url = spotify_song.external_urls['spotify']
+      song.spotify_artwork_url = spotify_song.album.images[0]['url']
+      song.save
+    end
   end
 
   # Methode for creating the Generalplaylist record
