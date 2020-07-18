@@ -54,12 +54,12 @@ class Song < ActiveRecord::Base
 
   def spotify_search(search_artists)
     # find all possible tracks on spotify
-    tracks = RSpotify::Track.search("#{search_artists.map { |artist| artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '') }.join(' ')} #{title}").sort_by(&:popularity).reverse
+    tracks = RSpotify::Track.search("#{Array.wrap(search_artists).map { |artist| artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '') }.join(' ')} #{title}").sort_by(&:popularity).reverse
     # filter all tracks that only have th artist name
     tracks = tracks.filter do |t|
       # e.g. ['martin, 'garrix', 'clinton', 'kane']
       track_artists_names = t.artists.map { |artist| artist.name.downcase.split(' ') }
-      song_artists_names = search_artists.map do |artist|
+      song_artists_names = Array.wrap(search_artists).map do |artist|
         if artist.name.match?(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/)
           artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '').downcase.split(' ')
         else

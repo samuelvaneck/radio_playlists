@@ -263,13 +263,14 @@ class Generalplaylist < ActiveRecord::Base
                  Song.find_or_create_by(title: title)
                else
                  # Else grap the song record with the same title and artist id
-                 songs = Song.joins(:artists).where(artists: { id: Array.wrap(artists).map(&:id) })
+                 songs = Song.joins(:artists).where(artists: { id: Array.wrap(artists).map(&:id) }, title: title)
                end
              end
            end
 
     song = song.first if song.is_a?(Array)
-    song = Generalplaylist.find_spotify_links(song, artists, title)
+    # set spotify song links
+    find_spotify_links(song, artists)
     song
   end
 
@@ -282,9 +283,11 @@ class Generalplaylist < ActiveRecord::Base
 
     if track.present?
       track.artists.map do |track_artist|
-        artist = Artist.find_or_create_by(name: track_artist.name)
+        artist = Artist.find_or_initialize_by(name: track_artist.name)
+        # sanitizing artist
+        spotify_artist = artist.spotify_search(artist.name)
+        artist.name = spotify_artist.name
         # set Spotify links
-        spotify_artist = RSpotify::Artist.find(track_artist.id)
         artist.spotify_artist_url = spotify_artist.external_urls['spotify']
         artist.spotify_artwork_url = spotify_artist.images.first['url']
         artist.save
@@ -296,16 +299,8 @@ class Generalplaylist < ActiveRecord::Base
     end
   end
 
-  def self.find_spotify_links(song, artists, title)
-    title = title.gsub(/\A\d{3}/, '').strip # opwekking songs
-    artist_names = Array.wrap(artists).map(&:name).join(' ')
-    tracks = RSpotify::Track.search("#{artist_names} #{title}").sort_by(&:popularity).reverse
-    # Spotify lookup image and song
-    if tracks.present?
-      song.spotify_song_url = tracks.first.external_urls["spotify"]
-      song.spotify_artwork_url = tracks.first.album.images[1]["url"]
-    end
-    song
+  def self.find_spotify_links(song, artists)
+    song.spotify_search(artists)
   end
 
   # Methode for creating the Generalplaylist record
