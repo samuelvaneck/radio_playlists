@@ -289,6 +289,7 @@ class Generalplaylist < ActiveRecord::Base
     filtered_tracks = []
     tracks.each do |track|
       next if filter_array.include? track.artists.map(&:name).join(' ').downcase
+      
       filtered_tracks << track
     end
     

@@ -215,18 +215,18 @@ Lint/NumberConversion:
 # Offense count: 16
 # Configuration parameters: IgnoredMethods.
 Metrics/AbcSize:
-  Max: 37
+  Max: 40
 
 # Offense count: 13
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods.
 # ExcludedMethods: refine
 Metrics/BlockLength:
-  Max: 212
+  Max: 220
 
 # Offense count: 1
 # Configuration parameters: CountComments, CountAsOne.
 Metrics/ClassLength:
-  Max: 299
+  Max: 310
 
 # Offense count: 3
 # Configuration parameters: IgnoredMethods.
@@ -236,7 +236,7 @@ Metrics/CyclomaticComplexity:
 # Offense count: 16
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods.
 Metrics/MethodLength:
-  Max: 25
+  Max: 30
 
 # Offense count: 1
 # Configuration parameters: CountComments, CountAsOne.
