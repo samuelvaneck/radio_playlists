@@ -253,22 +253,29 @@ class Generalplaylist < ActiveRecord::Base
   # if the artist with the some song is not in the database the song with artist Id must be added
   def self.song_check(songs, artists, title)
     # If there is no song with the same title create a new one
-    song = if songs.blank?
-             Song.find_or_create_by(title: title)
-           # If the is a song with the same title check the artist
-           else
-             songs.each do |_s|
-               if artists.blank?
-                 # If there is no song title with the same artist create a new one
-                 Song.find_or_create_by(title: title)
-               else
-                 # Else grap the song record with the same title and artist id
-                 songs = Song.joins(:artists).where(artists: { id: Array.wrap(artists).map(&:id) }, title: title)
-               end
-             end
-           end
-
-    song = song.first if song.is_a?(Array)
+    result = nil
+    if songs.blank?
+      result = Song.find_or_create_by(title: title)
+    # If the is a song with the same title check the artist
+    else
+      if artists.blank?
+        # If there is no song title with the same artist create a new one
+        results = Song.find_or_create_by(title: title)
+      else
+        # Else grap the song record with the same title and artist id
+        artist_ids = Array.wrap(artists.map(&:id))
+        query_songs = Song.joins(:artists).where(artists: { id: artist_ids }, title: title)
+        if query_songs.present?
+          result = query_songs
+        else
+          song = Song.new(title: title)
+          song.artists << artists
+          result = song
+        end
+      end
+    end
+    
+    song = result.is_a?(Song) ? result : result.first
     # set spotify song links
     find_spotify_links(song, artists)
     song

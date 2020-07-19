@@ -16,6 +16,12 @@ RSpec.describe Generalplaylist do
   let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
   let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
 
+  let(:song_in_your_eyes_weekend) { FactoryBot.create :song, title: 'In Your Eyes', artists: [artist_the_weeknd] }
+  let(:artist_the_weeknd) { FactoryBot.create :artist, name: 'The Weeknd' }
+  let(:song_in_your_eyes_robin_schulz) { FactoryBot.create :song, title: 'In Your Eyes', artists: [artist_robin_schulz, artist_alida] }
+  let(:artist_robin_schulz) { FactoryBot.create :artist, name: 'Robin Schulz' }
+  let(:artist_alida) { FactoryBot.create :artist, name: 'Alida' }
+
   describe '#check_npo_radio' do
     context 'given an address and radiostation' do
       it 'creates a new playlist item' do
@@ -265,6 +271,36 @@ RSpec.describe Generalplaylist do
         result = Generalplaylist.find_or_create_artist('Martin Garrix & Clinton Kane', 'Drown')
 
         expect(result.map(&:name)).to contain_exactly 'Martin Garrix', 'Clinton Kane'
+      end
+    end
+  end
+
+  describe '#song_check' do
+    before { song_in_your_eyes_robin_schulz }
+    context 'with a song present with the same name but different artist(s)' do
+      it 'creates a new artist' do
+        song = Generalplaylist.song_check([song_in_your_eyes_robin_schulz], [artist_the_weeknd], 'In Your Eyes')
+
+        expect(song.artists).to contain_exactly artist_the_weeknd
+      end
+    end
+
+    context 'when the song is present with the same artist(s)' do
+      it 'doesnt create a new artist' do
+        song = Generalplaylist.song_check([song_in_your_eyes_weekend], [artist_the_weeknd], 'In Your Eyes')
+
+        expect(song.artists).to contain_exactly artist_the_weeknd
+      end
+    end
+
+    context 'when the title is differently capitalized' do
+      it 'it doesnt create a new song but finds the existing one' do
+        song = nil
+        expect {
+          song = Generalplaylist.song_check([song_in_your_eyes_weekend], [artist_the_weeknd], 'In your eyes')
+        }.to change(Generalplaylist, :count).by(0)
+
+        expect(song.title).to eq 'In Your Eyes'
       end
     end
   end
