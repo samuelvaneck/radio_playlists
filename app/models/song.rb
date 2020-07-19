@@ -6,7 +6,7 @@ class Song < ActiveRecord::Base
   has_many :generalplaylists
   has_many :radiostations, through: :generalplaylists
 
-  MULTIPLE_ARTIST_REGEX = ';|feat.|ft.|feat|ft|&|vs.|vs|versus|and'
+  MULTIPLE_ARTIST_REGEX = ';|feat.|ft.|feat|\bft\b|&|vs.|\bvs\b|versus|\band\b|\bmet\b'
   private_constant :MULTIPLE_ARTIST_REGEX
 
   def self.search_title(title)

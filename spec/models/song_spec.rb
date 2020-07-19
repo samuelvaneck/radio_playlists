@@ -11,11 +11,15 @@ RSpec.describe Song do
   let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1 }
   let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
   let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
+
   let(:song_drown) { FactoryBot.create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
   let(:artist_martin_garrix) { FactoryBot.create :artist, name: 'Martin Garrix' }
   let(:artist_clinton_kane) { FactoryBot.create :artist, name: 'Clinton Kane' }
   let(:song_breaking_me) { FactoryBot.create :song, title: 'Breaking Me Ft A7s', artists: [artist_topic] }
   let(:artist_topic) { FactoryBot.create :artist, name: 'Topic' }
+  let(:song_stuck_with_u) { FactoryBot.create :song, title: 'Stuck With U', artists: [artist_justin_bieber, artist_ariana_grande] }
+  let(:artist_justin_bieber) { FactoryBot.create :artist, name: 'Justin Bieber' }
+  let(:artist_ariana_grande) { FactoryBot.create :artist, name: 'Ariana Grande' }
 
   before do
     playlist_1
@@ -53,14 +57,14 @@ RSpec.describe Song do
     context 'when having multiple song hits' do
       it 'returns the song single and not karaoke version' do
         result = song_drown.spotify_search([artist_martin_garrix, artist_clinton_kane])
-
         expect(result.album.album_type).to eq 'single'
-      end
 
-      it 'retruns the song single' do
         result = song_breaking_me.spotify_search([artist_topic])
-
         expect(result.album.album_type).to eq 'single'
+
+        result = song_stuck_with_u.spotify_search([artist_justin_bieber, artist_ariana_grande])
+        expect(result.album.album_type).to eq 'single'
+        expect(result.artists.map(&:name)).to contain_exactly 'Justin Bieber', 'Ariana Grande'
       end
     end
   end
