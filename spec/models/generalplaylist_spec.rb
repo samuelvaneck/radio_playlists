@@ -124,7 +124,7 @@ RSpec.describe Generalplaylist do
       it 'sets both artists to the song' do
         Generalplaylist.radio_538_check
 
-        song = Song.find_by(title: 'Speechless')
+        song = Song.find_by(title: 'Speechless (feat. Erika Sirola)')
         expect(song.artists.map(&:name)).to contain_exactly 'Robin Schulz', 'Erika Sirola'
       end
     end

@@ -317,6 +317,7 @@ class Generalplaylist < ActiveRecord::Base
   def self.find_spotify_links(song, artists)
     spotify_song = song.spotify_search(artists)
     if spotify_song.present?
+      song.title = spotify_song.name
       song.spotify_song_url = spotify_song.external_urls['spotify']
       song.spotify_artwork_url = spotify_song.album.images[0]['url']
       song.save
