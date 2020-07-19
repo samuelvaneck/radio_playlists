@@ -11,6 +11,9 @@ RSpec.describe Song do
   let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1 }
   let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
   let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
+  let(:song_drown) { FactoryBot.create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
+  let(:artist_martin_garrix) { FactoryBot.create :artist, name: 'Martin Garrix' }
+  let(:artist_clinton_kane) { FactoryBot.create :artist, name: 'Clinton Kane' }
 
   before do
     playlist_1
@@ -41,6 +44,16 @@ RSpec.describe Song do
       results = Song.group_and_count(Generalplaylist.all)
 
       expect(results).to eq [[song_2.id, 2], [song_1.id, 1]]
+    end
+  end
+
+  describe '#spotify_search' do
+    context 'when having multiple song hits' do
+      it 'returns the song single and not karaoke version' do
+        result = song_drown.spotify_search([artist_martin_garrix, artist_clinton_kane])
+
+        expect(result.album.album_type).to eq 'single'
+      end
     end
   end
 end

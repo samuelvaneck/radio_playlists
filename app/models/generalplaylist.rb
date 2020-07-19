@@ -275,11 +275,26 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def self.find_or_create_artist(name, song_title)
+    search_term = if name.match?(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/)
+                    name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '').downcase.split(' ')
+                  else
+                    name.downcase.split(' ')
+                  end
+  
     # getting spotify track / filter out the aritst / get the track that is most popular
-    tracks = RSpotify::Track.search("#{name} #{song_title}").sort_by(&:popularity).reverse
-    tracks = tracks.filter { |t| t.artists.map { |artist| artist.name.downcase }.include? name.downcase }
+    tracks = RSpotify::Track.search("#{search_term.join(' ')} #{song_title}").sort_by(&:popularity).reverse
+
+    # filter tracks
+    filter_array = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit']
+    filtered_tracks = []
+    tracks.each do |track|
+      next if filter_array.include? track.artists.map(&:name).join(' ').downcase
+      filtered_tracks << track
+    end
+    
+    # get most popular track
     track = tracks.first
-    tracks.each { |t| track = t if t.popularity > track.popularity }
+    filtered_tracks.each { |t| track = t if t.popularity > track.popularity }
 
     if track.present?
       track.artists.map do |track_artist|
@@ -295,7 +310,7 @@ class Generalplaylist < ActiveRecord::Base
         artist
       end
     else
-      Artist.find_or_create_by(name: name)
+      Artist.find_or_initialize_by(name: name)
     end
   end
 

@@ -125,7 +125,7 @@ RSpec.describe Generalplaylist do
         Generalplaylist.radio_538_check
 
         song = Song.find_by(title: 'Speechless')
-        expect(song.artists.map(&:name)).to include 'Robin Schulz, Erika Sirola'
+        expect(song.artists.map(&:name)).to contain_exactly 'Robin Schulz', 'Erika Sirola'
       end
     end
   end
@@ -243,6 +243,16 @@ RSpec.describe Generalplaylist do
         new_playlist_item = FactoryBot.build :generalplaylist, :filled
 
         expect(new_playlist_item.valid?).to eq true
+      end
+    end
+  end
+
+  describe '#find_or_create_artist' do
+    context 'with multiple name' do
+      it 'returns the artists and not a karaoke version' do
+        result = Generalplaylist.find_or_create_artist('Martin Garrix & Clinton Kane', 'Drown')
+
+        expect(result.map(&:name)).to contain_exactly 'Martin Garrix', 'Clinton Kane'
       end
     end
   end
