@@ -244,8 +244,8 @@ class Generalplaylist < ActiveRecord::Base
 
   def self.title_check(title)
     # catch more then 4 digits, forward slashes, 2 single qoutes,
-    # reklame/reclame and 2 dots
-    !title.match(/\d{4,}|\/|'{2,}|(reklame|reclame|nieuws)|\.{2,}/)
+    # reklame/reclame/nieuws/pingel and 2 dots
+    !title.match(/\d{4,}|\/|'{2,}|(reklame|reclame|nieuws|pingel)|\.{2,}/i)
   end
 
   # Methode for checking if there are songs with the same title.

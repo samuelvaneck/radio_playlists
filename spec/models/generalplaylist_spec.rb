@@ -194,6 +194,18 @@ RSpec.describe Generalplaylist do
       end
     end
 
+    context 'when the title contains "nieuws"' do
+      it 'returns false' do
+        expect(Generalplaylist.title_check('ANP NIEUWS')).to eq false
+      end
+    end
+
+    context 'when the title contains "pingel"' do
+      it 'returns false' do
+        expect(Generalplaylist.title_check('Kerst pingel')).to eq false
+      end
+    end
+
     context 'any other title' do
       it 'returns true' do
         expect(Generalplaylist.title_check('Liquid Spirit')).to eq true
