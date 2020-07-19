@@ -40,8 +40,6 @@ class Artist < ActiveRecord::Base
 
       artists << artist
     end
-    artist = artists.first
-    artists.each { |a| artist = a if a.popularity > artist.popularity }
-    artist
+    artists.max_by(&:popularity)
   end
 end

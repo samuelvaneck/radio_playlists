@@ -6,6 +6,9 @@ class Song < ActiveRecord::Base
   has_many :generalplaylists
   has_many :radiostations, through: :generalplaylists
 
+  MULTIPLE_ARTIST_REGEX = ';|feat.|ft.|feat|ft|&|vs.|vs|versus|and'
+  private_constant :MULTIPLE_ARTIST_REGEX
+
   def self.search_title(title)
     where('title ILIKE ?', "%#{title}%")
   end
@@ -19,7 +22,7 @@ class Song < ActiveRecord::Base
     songs.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
     songs.where!('generalplaylists.created_at > ?', start_time)
     songs.where!('generalplaylists.created_at < ?', end_time)
-    songs
+    songs.distinct
   end
 
   def self.group_and_count(songs)
@@ -53,30 +56,36 @@ class Song < ActiveRecord::Base
   end
 
   def spotify_search(search_artists)
-    # find all possible tracks on spotify
-    tracks = RSpotify::Track.search("#{Array.wrap(search_artists).map { |artist| artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '') }.join(' ')} #{title}").sort_by(&:popularity).reverse
-    # filter all tracks that only have th artist name
-    tracks = tracks.filter do |t|
+    search_artists, search_title = parse_search_terms(search_artists)
+    tracks = RSpotify::Track.search("#{search_artists} #{search_title}").sort_by(&:popularity).reverse
+    tracks = filter_tracks(tracks, search_artists)
+
+    # return most popular track
+    tracks.max_by(&:popularity)
+  end
+
+  # set correct search value for Spotify
+  # E.g. 'Topic - Breaking Me Ft. A7s' returns [Topic A7s, Breaking Me]
+  def parse_search_terms(search_artists)
+    regex = Regexp.new(MULTIPLE_ARTIST_REGEX, Regexp::IGNORECASE)
+    if title.match?(regex)
+      [Array.wrap(search_artists).map { |artist| artist.name.gsub(regex, '') }.join(' ') + ' ' + title.split(regex)[1], title.split(regex)[0].strip]
+    else
+      [Array.wrap(search_artists).map { |artist| artist.name.gsub(regex, '') }.join(' '), title]
+    end
+  end
+
+  # filter all tracks that only have th artist name
+  def filter_tracks(tracks, search_artists)
+    regex = Regexp.new(MULTIPLE_ARTIST_REGEX, Regexp::IGNORECASE)
+    tracks.filter do |t|
       # e.g. ['martin, 'garrix', 'clinton', 'kane']
       track_artists_names = t.artists.map { |artist| artist.name.downcase.split(' ') }
-      song_artists_names = Array.wrap(search_artists).map do |artist|
-        if artist.name.match?(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/)
-          artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '').downcase.split(' ')
-        else
-          artist.name.downcase.split(' ')
-        end
-      end
+      song_artists_names = search_artists.gsub(regex, '').downcase.split(' ')
 
       # compare artists from track and artists from song. If they match the difference array wil be empty and return true
       same_artists = (track_artists_names.flatten - song_artists_names.flatten).empty?
       same_artists && track_artists_names.exclude?('karaoke')
     end
-    # set the trackt to first
-    track = tracks.first
-    # replace track with most popular track
-    tracks.each do |t|
-      track = t if t.popularity > track.popularity
-    end
-    track
   end
 end

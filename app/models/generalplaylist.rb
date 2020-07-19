@@ -245,7 +245,7 @@ class Generalplaylist < ActiveRecord::Base
   def self.title_check(title)
     # catch more then 4 digits, forward slashes, 2 single qoutes,
     # reklame/reclame and 2 dots
-    !title.match(/\d{4,}|\/|'{2,}|(reklame|reclame)|\.{2,}/)
+    !title.match(/\d{4,}|\/|'{2,}|(reklame|reclame|nieuws)|\.{2,}/)
   end
 
   # Methode for checking if there are songs with the same title.
@@ -294,8 +294,7 @@ class Generalplaylist < ActiveRecord::Base
     end
     
     # get most popular track
-    track = tracks.first
-    filtered_tracks.each { |t| track = t if t.popularity > track.popularity }
+    track = filtered_tracks.max_by(&:popularity)
 
     if track.present?
       track.artists.map do |track_artist|

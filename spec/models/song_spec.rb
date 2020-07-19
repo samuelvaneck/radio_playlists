@@ -14,6 +14,8 @@ RSpec.describe Song do
   let(:song_drown) { FactoryBot.create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
   let(:artist_martin_garrix) { FactoryBot.create :artist, name: 'Martin Garrix' }
   let(:artist_clinton_kane) { FactoryBot.create :artist, name: 'Clinton Kane' }
+  let(:song_breaking_me) { FactoryBot.create :song, title: 'Breaking Me Ft A7s', artists: [artist_topic] }
+  let(:artist_topic) { FactoryBot.create :artist, name: 'Topic' }
 
   before do
     playlist_1
@@ -51,6 +53,12 @@ RSpec.describe Song do
     context 'when having multiple song hits' do
       it 'returns the song single and not karaoke version' do
         result = song_drown.spotify_search([artist_martin_garrix, artist_clinton_kane])
+
+        expect(result.album.album_type).to eq 'single'
+      end
+
+      it 'retruns the song single' do
+        result = song_breaking_me.spotify_search([artist_topic])
 
         expect(result.album.album_type).to eq 'single'
       end
