@@ -4,22 +4,22 @@ require 'rails_helper'
 
 RSpec.describe Song do
   let(:artist_1) { FactoryBot.create :artist }
-  let(:song_1) { FactoryBot.create :song, artists: [artist_1] }
+  let(:song_1) { FactoryBot.create :song, :artists => [artist_1] }
   let(:artist_2) { FactoryBot.create :artist }
-  let(:song_2) { FactoryBot.create :song, artists: [artist_2] }
+  let(:song_2) { FactoryBot.create :song, :artists => [artist_2] }
   let(:radiostation) { FactoryBot.create :radiostation }
-  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1 }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
-  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
+  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, :song => song_1 }
+  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, :song => song_2, :radiostation => radiostation }
+  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, :song => song_2, :radiostation => radiostation }
 
-  let(:song_drown) { FactoryBot.create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
-  let(:artist_martin_garrix) { FactoryBot.create :artist, name: 'Martin Garrix' }
-  let(:artist_clinton_kane) { FactoryBot.create :artist, name: 'Clinton Kane' }
-  let(:song_breaking_me) { FactoryBot.create :song, title: 'Breaking Me Ft A7s', artists: [artist_topic] }
-  let(:artist_topic) { FactoryBot.create :artist, name: 'Topic' }
-  let(:song_stuck_with_u) { FactoryBot.create :song, title: 'Stuck With U', artists: [artist_justin_bieber, artist_ariana_grande] }
-  let(:artist_justin_bieber) { FactoryBot.create :artist, name: 'Justin Bieber' }
-  let(:artist_ariana_grande) { FactoryBot.create :artist, name: 'Ariana Grande' }
+  let(:song_drown) { FactoryBot.create :song, :title => 'Drown', :artists => [artist_martin_garrix, artist_clinton_kane] }
+  let(:artist_martin_garrix) { FactoryBot.create :artist, :name => 'Martin Garrix' }
+  let(:artist_clinton_kane) { FactoryBot.create :artist, :name => 'Clinton Kane' }
+  let(:song_breaking_me) { FactoryBot.create :song, :title => 'Breaking Me Ft A7s', :artists => [artist_topic] }
+  let(:artist_topic) { FactoryBot.create :artist, :name => 'Topic' }
+  let(:song_stuck_with_u) { FactoryBot.create :song, :title => 'Stuck With U', :artists => [artist_justin_bieber, artist_ariana_grande] }
+  let(:artist_justin_bieber) { FactoryBot.create :artist, :name => 'Justin Bieber' }
+  let(:artist_ariana_grande) { FactoryBot.create :artist, :name => 'Ariana Grande' }
 
   before do
     playlist_1
@@ -30,7 +30,7 @@ RSpec.describe Song do
   describe '#search' do
     context 'with search term params present' do
       it 'only returns the songs matching the search term' do
-        results = Song.search({ search_term: song_1.title })
+        results = Song.search({ :search_term => song_1.title })
 
         expect(results).to eq [playlist_1]
       end
@@ -38,7 +38,7 @@ RSpec.describe Song do
 
     context 'with radiostation_id params present' do
       it 'only returns the songs played on the radiostation' do
-        results = Song.search({ radiostation_id: radiostation.id })
+        results = Song.search({ :radiostation_id => radiostation.id })
 
         expect(results).to include playlist_2, playlist_3
       end

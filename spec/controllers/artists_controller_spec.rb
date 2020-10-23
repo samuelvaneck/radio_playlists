@@ -4,9 +4,9 @@ require 'rails_helper'
 
 describe ArtistsController do
   let(:artist) { FactoryBot.create :artist }
-  let(:song) { FactoryBot.create :song, artists: [artist] }
-  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song }
+  let(:song) { FactoryBot.create :song, :artists => [artist] }
+  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, :song => song }
+  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, :song => song }
   let(:playlists) { FactoryBot.create_list :generalplaylist, 5, :filled }
   
   describe 'GET #index' do
@@ -15,7 +15,7 @@ describe ArtistsController do
         playlist_1
         playlist_2
         playlists
-        get :index, params: { format: :json } 
+        get :index, :params => { :format => :json } 
       end
       it 'returns status OK/200' do
         expect(response.status).to eq 200
@@ -36,7 +36,7 @@ describe ArtistsController do
         playlists
       end
       it 'only returns the search artist' do
-        get :index, params: { format: :json, search_term: artist.name }
+        get :index, :params => { :format => :json, :search_term => artist.name }
         json = JSON.parse(response.body)
 
         expect(json).to eq [[artist.id, 2]]
@@ -50,7 +50,7 @@ describe ArtistsController do
         playlists
       end
       it 'only returns the artists that are played by the radiostation' do
-        get :index, params: { format: :json, radiostation_id: playlist_1.radiostation.id }
+        get :index, :params => { :format => :json, :radiostation_id => playlist_1.radiostation.id }
         json = JSON.parse(response.body)
 
         expect(json).to eq [[artist.id, 1]]

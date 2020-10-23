@@ -14,10 +14,10 @@ gem 'materialize-sass'
 gem 'nokogiri', '>= 1.10.9'
 gem 'pg'
 gem 'rails', '~> 6.0', '>= 6.0.3.2'
-gem 'rails_12factor', group: :production
+gem 'rails_12factor', :group => :production
 gem 'rspotify', '~> 2.8'
 gem 'sass-rails'
-gem 'sdoc', '~> 1.1', group: :doc
+gem 'sdoc', '~> 1.1', :group => :doc
 gem 'sidekiq'
 gem 'sidekiq-scheduler', '~> 3.0', '>= 3.0.1'
 gem 'turbolinks'
@@ -52,7 +52,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
-  gem 'capistrano-rails-console', require: false
+  gem 'capistrano-rails-console', :require => false
   gem 'capistrano-rbenv'
   gem 'capistrano3-nginx', '~> 2.0'
   gem 'spring'

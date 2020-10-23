@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe StatusMailer, type: :mailer do
+RSpec.describe StatusMailer, :type => :mailer do
   let(:radio_station) { FactoryBot.create :radiostation }
-  let(:playlist) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station }
+  let(:playlist) { FactoryBot.create :generalplaylist, :filled, :radiostation => radio_station }
   let(:status_mail) { StatusMailer.status_mail('test@test.com', results) }
-  let(:results) { { "#{radio_station.name}": radio_station.status } }
+  let(:results) { { :"#{radio_station.name}" => radio_station.status } }
 
   before { playlist }
 

@@ -252,7 +252,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   require 'rspotify/oauth'
-  config.omniauth :spotify, 'ff70df650ee14a1fad4aed3b533e8ea4', '9899f570bc3e4781b9373e60d6f37095', scope: 'user-read-email playlist-modify-public user-library-read user-library-modify'
+  config.omniauth :spotify, 'ff70df650ee14a1fad4aed3b533e8ea4', '9899f570bc3e4781b9373e60d6f37095', :scope => 'user-read-email playlist-modify-public user-library-read user-library-modify'
 
 
   # ==> Warden configuration

@@ -5,7 +5,6 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-require 'spec_helper'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'capybara/rspec'
 require 'capybara/rails'
@@ -60,7 +59,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   # Use the following instead if you are on Devise >= 4.1.1
-  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, :type => :controller
 
 end
 
@@ -70,13 +69,13 @@ end
 
 Capybara.register_driver(:headless_chrome) do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: %w[headless disable-gpu] }
+    :chromeOptions => { :args => %w[headless disable-gpu] }
   )
 
   Capybara::Selenium::Driver.new(
     app,
-    browser: :chrome,
-    desired_capabilities: capabilities
+    :browser => :chrome,
+    :desired_capabilities => capabilities
   )
 end
 

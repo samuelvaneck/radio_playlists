@@ -3,7 +3,7 @@ class CreateSongs < ActiveRecord::Migration[5.1]
     create_table :songs do |t|
       t.string :title
 
-      t.timestamps null: false
+      t.timestamps :null => false
     end
   end
 end
