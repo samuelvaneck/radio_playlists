@@ -4,16 +4,16 @@ require 'rails_helper'
 
 RSpec.describe Artist do
   let(:artist_1) { FactoryBot.create :artist }
-  let(:song_1) { FactoryBot.create :song, artists: [artist_1] }
+  let(:song_1) { FactoryBot.create :song, :artists => [artist_1] }
   let(:artist_2) { FactoryBot.create :artist }
-  let(:song_2) { FactoryBot.create :song, artists: [artist_2] }
+  let(:song_2) { FactoryBot.create :song, :artists => [artist_2] }
   let(:artist_3) { FactoryBot.create :artist }
-  let(:song_3) { FactoryBot.create :song, artists: [artist_3] }
+  let(:song_3) { FactoryBot.create :song, :artists => [artist_3] }
   let(:radiostation) { FactoryBot.create :radiostation }
-  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1 }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
-  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_3, radiostation: radiostation }
-  let(:playlist_4) { FactoryBot.create :generalplaylist, :filled, song: song_3, radiostation: radiostation }
+  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, :song => song_1 }
+  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, :song => song_2, :radiostation => radiostation }
+  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, :song => song_3, :radiostation => radiostation }
+  let(:playlist_4) { FactoryBot.create :generalplaylist, :filled, :song => song_3, :radiostation => radiostation }
 
   before do
     playlist_1
@@ -25,7 +25,7 @@ RSpec.describe Artist do
   describe '#search' do
     context 'with search term params present' do
       it 'only returns the artists matching the search term' do
-        results = Artist.search({ search_term: artist_1.name })
+        results = Artist.search({ :search_term => artist_1.name })
 
         expect(results).to include artist_1
       end
@@ -33,7 +33,7 @@ RSpec.describe Artist do
 
     context 'with radiostation_id params present' do
       it 'only returns the artists played on the radiostation' do
-        results = Artist.search({ radiostation_id: radiostation.id })
+        results = Artist.search({ :radiostation_id => radiostation.id })
 
         expect(results).to include artist_2, artist_3
       end

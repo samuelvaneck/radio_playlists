@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :generalplaylist do
-    broadcast_timestamp { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now) }
+    broadcast_timestamp { Faker::Time.between(:from => DateTime.now - 1, :to => DateTime.now) }
   end
 
   trait :filled do

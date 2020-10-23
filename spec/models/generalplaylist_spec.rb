@@ -4,23 +4,23 @@ require 'rails_helper'
 
 RSpec.describe Generalplaylist do
   let(:artist_1) { FactoryBot.create :artist }
-  let(:song_1) { FactoryBot.create :song, artists: [artist_1] }
+  let(:song_1) { FactoryBot.create :song, :artists => [artist_1] }
   let(:artist_2) { FactoryBot.create :artist }
-  let(:song_2) { FactoryBot.create :song, artists: [artist_2] }
-  let(:artist_3) { FactoryBot.create :artist, name: 'Robin Schulz' }
-  let(:song_3) { FactoryBot.create :song, artists: [artist_3] }
-  let(:artist_4) { FactoryBot.create :artist, name: 'Erika Sirola' }
-  let(:song_4) { FactoryBot.create :song, artists: [artist_4] }
+  let(:song_2) { FactoryBot.create :song, :artists => [artist_2] }
+  let(:artist_3) { FactoryBot.create :artist, :name => 'Robin Schulz' }
+  let(:song_3) { FactoryBot.create :song, :artists => [artist_3] }
+  let(:artist_4) { FactoryBot.create :artist, :name => 'Erika Sirola' }
+  let(:song_4) { FactoryBot.create :song, :artists => [artist_4] }
   let(:radiostation) { FactoryBot.create :radiostation }
-  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1 }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
-  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
+  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, :song => song_1 }
+  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, :song => song_2, :radiostation => radiostation }
+  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, :song => song_2, :radiostation => radiostation }
 
-  let(:song_in_your_eyes_weekend) { FactoryBot.create :song, title: 'In Your Eyes', artists: [artist_the_weeknd] }
-  let(:artist_the_weeknd) { FactoryBot.create :artist, name: 'The Weeknd' }
-  let(:song_in_your_eyes_robin_schulz) { FactoryBot.create :song, title: 'In Your Eyes', artists: [artist_robin_schulz, artist_alida] }
-  let(:artist_robin_schulz) { FactoryBot.create :artist, name: 'Robin Schulz' }
-  let(:artist_alida) { FactoryBot.create :artist, name: 'Alida' }
+  let(:song_in_your_eyes_weekend) { FactoryBot.create :song, :title => 'In Your Eyes', :artists => [artist_the_weeknd] }
+  let(:artist_the_weeknd) { FactoryBot.create :artist, :name => 'The Weeknd' }
+  let(:song_in_your_eyes_robin_schulz) { FactoryBot.create :song, :title => 'In Your Eyes', :artists => [artist_robin_schulz, artist_alida] }
+  let(:artist_robin_schulz) { FactoryBot.create :artist, :name => 'Robin Schulz' }
+  let(:artist_alida) { FactoryBot.create :artist, :name => 'Alida' }
 
   describe '#check_npo_radio' do
     context 'given an address and radiostation' do
@@ -130,7 +130,7 @@ RSpec.describe Generalplaylist do
       it 'sets both artists to the song' do
         Generalplaylist.radio_538_check
 
-        song = Song.find_by(title: 'Speechless (feat. Erika Sirola)')
+        song = Song.find_by(:title => 'Speechless (feat. Erika Sirola)')
         expect(song.artists.map(&:name)).to contain_exactly 'Robin Schulz', 'Erika Sirola'
       end
     end
@@ -229,13 +229,13 @@ RSpec.describe Generalplaylist do
       it 'returns the playlists artist name or song title that matches the search terms' do
         expected = [playlist_1]
 
-        expect(Generalplaylist.search({ search_term: song_1.title })).to eq expected
+        expect(Generalplaylist.search({ :search_term => song_1.title })).to eq expected
       end
     end
 
     context 'with radiostations params' do
       it 'returns the playlist played on the radiostation' do
-        expect(Generalplaylist.search({ radiostation_id: radiostation.id })).to include playlist_2, playlist_3
+        expect(Generalplaylist.search({ :radiostation_id => radiostation.id })).to include playlist_2, playlist_3
       end
     end
 
@@ -250,7 +250,7 @@ RSpec.describe Generalplaylist do
     before { playlist_1 }
     context 'with an already playlist existing item' do
       it 'fails validation' do
-        new_playlist_item = Generalplaylist.new(broadcast_timestamp: playlist_1.broadcast_timestamp, song: playlist_1.song, radiostation: playlist_1.radiostation)
+        new_playlist_item = Generalplaylist.new(:broadcast_timestamp => playlist_1.broadcast_timestamp, :song => playlist_1.song, :radiostation => playlist_1.radiostation)
 
         expect(new_playlist_item.valid?).to eq false
       end

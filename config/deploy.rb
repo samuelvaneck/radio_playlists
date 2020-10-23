@@ -9,7 +9,7 @@ set :passenger_restart_with_touch, false
 
 # sidekiq config
 set :pty, true
-set :ssh_options, { forward_agent: true }
+set :ssh_options, { :forward_agent => true }
 set :sidekiq_role, :app
 set :sidekiq_config, -> { File.join(shared_path, 'config', 'sidekiq.yml') }
 set :sidekiq_env, 'production'

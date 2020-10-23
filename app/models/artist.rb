@@ -2,10 +2,10 @@
 
 class Artist < ActiveRecord::Base
   has_many :artists_songs
-  has_many :songs, through: :artists_songs
-  has_many :generalplaylists, through: :songs
+  has_many :songs, :through => :artists_songs
+  has_many :generalplaylists, :through => :songs
 
-  validates :name, presence: true
+  validates :name, :presence => true
 
   def self.search(params)
     start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago

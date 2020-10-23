@@ -2,9 +2,9 @@
 
 class Song < ActiveRecord::Base
   has_many :artists_songs
-  has_many :artists, through: :artists_songs
+  has_many :artists, :through => :artists_songs
   has_many :generalplaylists
-  has_many :radiostations, through: :generalplaylists
+  has_many :radiostations, :through => :generalplaylists
 
   MULTIPLE_ARTIST_REGEX = ';|feat.|ft.|feat|\bft\b|&|vs.|\bvs\b|versus|\band\b|\bmet\b'
   private_constant :MULTIPLE_ARTIST_REGEX
@@ -37,7 +37,7 @@ class Song < ActiveRecord::Base
     # remove all song artists
     artists.clear
     track.artists.each do |track_artist|
-      artist = Artist.find_or_create_by(name: track_artist.name)
+      artist = Artist.find_or_create_by(:name => track_artist.name)
       # set Spotify links
       spotify_artist = RSpotify::Artist.find(track_artist.id)
 
@@ -49,9 +49,9 @@ class Song < ActiveRecord::Base
     end
 
     update!(
-      spotify_song_url: track.external_urls['spotify'],
-      spotify_artwork_url: track.album.images[1]['url'],
-      fullname: "#{artists.map { |artist| artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '') }.join(' ')} #{title}"
+      :spotify_song_url => track.external_urls['spotify'],
+      :spotify_artwork_url => track.album.images[1]['url'],
+      :fullname => "#{artists.map { |artist| artist.name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '') }.join(' ')} #{title}"
     )
   end
 

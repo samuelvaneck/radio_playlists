@@ -6,6 +6,6 @@ class GeneralplaylistsController < ApplicationController
   def index
     playlists = Generalplaylist.search(params)
 
-    respond_with GeneralplaylistSerializer.new(playlists.paginate(page: params[:page], per_page: 10)).serializable_hash.to_json
+    respond_with GeneralplaylistSerializer.new(playlists.paginate(:page => params[:page], :per_page => 10)).serializable_hash.to_json
   end
 end

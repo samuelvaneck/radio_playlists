@@ -8,7 +8,7 @@ class ChangeSongHasManyArtists < ActiveRecord::Migration[6.0]
     end
 
     Song.class_eval do
-      belongs_to :artist, class_name: 'Artist', foreign_key: 'artist_id'
+      belongs_to :artist, :class_name => 'Artist', :foreign_key => 'artist_id'
     end
 
     Song.all.each do |song|
@@ -20,7 +20,7 @@ class ChangeSongHasManyArtists < ActiveRecord::Migration[6.0]
       next if artist_names.blank?
 
       artist_names.each do |name|
-        artist = Artist.find_or_create_by(name: name)
+        artist = Artist.find_or_create_by(:name => name)
         next if song.artists.include? artist
 
         song.artists << artist
@@ -33,17 +33,17 @@ class ChangeSongHasManyArtists < ActiveRecord::Migration[6.0]
     end
 
     # remove reference from song and generalplaylists
-    remove_reference :songs, :artist, index: true, foreign_key: true
-    remove_reference :generalplaylists, :artist, index: true, foreign_key: true
+    remove_reference :songs, :artist, :index => true, :foreign_key => true
+    remove_reference :generalplaylists, :artist, :index => true, :foreign_key => true
   end
 
   def down
-    add_references :songs, :artist, index: true, foreign_key: true
+    add_references :songs, :artist, :index => true, :foreign_key => true
 
     Song.all.each do |song|
       songs.artist = song.artists.join(' ft ')
     end
 
-    drop_join_table :songs, :artists, table_name: artists_songs
+    drop_join_table :songs, :artists, :table_name => artists_songs
   end
 end
