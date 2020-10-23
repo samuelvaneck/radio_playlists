@@ -59,7 +59,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   # Use the following instead if you are on Devise >= 4.1.1
-  config.include Devise::Test::ControllerHelpers, :type => :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
 end
 
@@ -69,13 +69,13 @@ end
 
 Capybara.register_driver(:headless_chrome) do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    :chromeOptions => { :args => %w[headless disable-gpu] }
+    chromeOptions: { args: %w[headless disable-gpu] }
   )
 
   Capybara::Selenium::Driver.new(
     app,
-    :browser => :chrome,
-    :desired_capabilities => capabilities
+    browser: :chrome,
+    desired_capabilities: capabilities
   )
 end
 

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe SendStatusEmail do
   include ActiveJob::TestHelper
   let(:radiostation) { FactoryBot.create :radiostation }
-  let(:playlist) { FactoryBot.create :generalplaylists, :radiostation => radiostation }
+  let(:playlist) { FactoryBot.create :generalplaylists, radiostation: radiostation }
 
   describe '#perform' do
     it 'creates a job' do

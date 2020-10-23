@@ -3,7 +3,7 @@ class AddIndexGeneralPlaylists < ActiveRecord::Migration[6.0]
     add_column :generalplaylists, :broadcast_timestamp, :datetime
 
     remove_column :generalplaylists, :time, :string
-    add_index :generalplaylists, [:song_id, :radiostation_id, :broadcast_timestamp], :unique => true, :name => 'playlist_radio_song_time'
+    add_index :generalplaylists, [:song_id, :radiostation_id, :broadcast_timestamp], unique: true, name: 'playlist_radio_song_time'
   end
 
   def down
@@ -14,7 +14,7 @@ class AddIndexGeneralPlaylists < ActiveRecord::Migration[6.0]
       group.each do |playlist|
         next if playlist.time.present?
 
-        playlist.update(:time => playlist.created_at.strftime('%H:%M'))
+        playlist.update(time: playlist.created_at.strftime('%H:%M'))
       end
     end
 
