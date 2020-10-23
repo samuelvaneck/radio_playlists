@@ -193,14 +193,13 @@ class Generalplaylist < ActiveRecord::Base
 
   # Check Sublime FM songs
   def self.sublime_fm_check
-    # https://sublime.nl/
-    url = 'https://sublime.nl/muziek/'
+    url = 'https://sublime.nl/sublime-playlist/'
     doc = Nokogiri::HTML open(url)
     radio_station = Radiostation.find_or_create_by(name: 'Sublime FM')
-    artist_name = doc.css('span.title')[0].text.strip
+    artist_name = doc.xpath('//*[@id="qtmainmenucontainer"]/div/div[2]/div[1]/div/div/div[1]/span[2]').text
     # gsub to remove any text between parentenses
-    title = doc.css('span.title')[1].text.strip.gsub(/\(.*?\)/, '')
-    broadcast_timestamp = Time.parse(Time.zone.now.strftime('%F') + ' ' + doc.at_css('span.date').text.split(':').take(2).join(':'))
+    title = doc.xpath('//*[@id="qtmainmenucontainer"]/div/div[2]/div[1]/div/div/div[1]/span[3]').text
+    broadcast_timestamp = Time.zone.now
 
     return false unless title_check(title)
 
