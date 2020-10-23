@@ -256,21 +256,19 @@ class Generalplaylist < ActiveRecord::Base
     if songs.blank?
       result = Song.find_or_create_by(title: title)
     # If the is a song with the same title check the artist
+    elsif artists.blank?
+      # If there is no song title with the same artist create a new one
+      result = Song.find_or_create_by(title: title)
     else
-      if artists.blank?
-        # If there is no song title with the same artist create a new one
-        results = Song.find_or_create_by(title: title)
+      # Else grap the song record with the same title and artist id
+      artist_ids = Array.wrap(artists.map(&:id))
+      query_songs = Song.joins(:artists).where(artists: { id: artist_ids }, title: title)
+      if query_songs.present?
+        result = query_songs
       else
-        # Else grap the song record with the same title and artist id
-        artist_ids = Array.wrap(artists.map(&:id))
-        query_songs = Song.joins(:artists).where(artists: { id: artist_ids }, title: title)
-        if query_songs.present?
-          result = query_songs
-        else
-          song = Song.new(title: title)
-          song.artists << artists
-          result = song
-        end
+        song = Song.new(title: title)
+        song.artists << artists
+        result = song
       end
     end
     
