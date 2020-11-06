@@ -29,7 +29,7 @@
                 <%= status[:status] %>
               </td>
               <td>
-                <%= status[:last_created_at] %>
+                <%= time_ago_in_words(status[:last_created_at]) %>
               </td>
               <td>
                 <%= status[:track_info] %>
