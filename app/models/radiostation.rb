@@ -8,7 +8,7 @@ class Radiostation < ActiveRecord::Base
     {
       last_created_at: last_created.created_at,
       track_info: "#{last_created.broadcast_timestamp} - #{last_created.song.artists.map(&:name).join(' - ')} - #{last_created.song.title}",
-      status: last_created.created_at > 1.hour.ago ? 'OK' : 'Warning'
+      status: last_created.created_at > 3.hour.ago ? 'OK' : 'Warning'
     }
   end
 end

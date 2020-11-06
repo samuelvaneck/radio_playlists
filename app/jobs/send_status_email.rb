@@ -6,6 +6,8 @@ class SendStatusEmail < ApplicationJob
   def perform
     results = {}
     Radiostation.all.each do |radio_station|
+      next if radio_station.status[:last_created_at] > 3.hours.ago
+
       results[radio_station.name.to_s] = radio_station.status
     end
 
