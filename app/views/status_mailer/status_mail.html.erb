@@ -8,6 +8,9 @@
         padding: 20px;
         text-align: justify;
       }
+      th, td {
+        padding: 10px;
+      }
     </style>
   </head>
   <body>
@@ -15,22 +18,19 @@
       <table>
         <thead>
           <th>Name</th>
-          <th>Status</th>
-          <th>Last added</th>
-          <th>Song</th>
+          <th>Last added song</th>
         </thead>
         <tbody>
           <% @results.each do |name, status| %>
             <tr>
-              <td>
+              <td rowspan='2'>
                 <%= name.to_s.humanize %>
-              </td>
-              <td>
-                <%= status[:status] %>
               </td>
               <td>
                 <%= time_ago_in_words(status[:last_created_at]) %>
               </td>
+            </tr>
+            <tr>
               <td>
                 <%= status[:track_info] %>
               </td>
