@@ -15,6 +15,9 @@ class AddUrlToRadiostation < ActiveRecord::Migration[6.0]
       when 'Radio 3FM'
         rs.url = 'https://www.npo3fm.nl/api/tracks'
         rs.processor = 'npo_api_processor'
+      when 'Radio 4'
+        rs.url = 'https://www.nporadio4.nl/api/tracks'
+        rs.processor = 'npo_api_processor'
       when 'Radio 5'
         rs.url = 'https://www.nporadio5.nl/api/tracks'
         rs.processor = 'npo_api_processor'
@@ -44,7 +47,6 @@ class AddUrlToRadiostation < ActiveRecord::Migration[6.0]
       end
 
       rs.save!
-      
       Rails.logger.info '.... done!'
     end
   end
