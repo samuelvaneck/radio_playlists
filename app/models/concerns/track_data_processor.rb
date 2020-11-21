@@ -33,7 +33,7 @@ module TrackDataProcessor
       # get most popular track
       track = filtered_tracks.max_by(&:popularity)
 
-      if track.present?
+      if track.present? && track.artists.present?
         track.artists.map do |track_artist|
           artist = Artist.find_or_initialize_by(name: track_artist.name)
           # sanitizing artist
@@ -65,7 +65,7 @@ module TrackDataProcessor
         result = Song.find_or_create_by(title: title)
       else
         # Else grap the song record with the same title and artist id
-        artist_ids = Array.wrap(artists.map(&:id))
+        artist_ids = Array.wrap(artists&.map(&:id) || artists&.id)
         query_songs = Song.joins(:artists).where(artists: { id: artist_ids }, title: title)
         if query_songs.present?
           result = query_songs
