@@ -3,6 +3,8 @@ class Radiostation < ActiveRecord::Base
   has_many :songs, through: :generalplaylists
   has_many :artists, through: :songs
 
+  validates :url, :processor, presence: true
+
   def status
     last_created = Generalplaylist.where(radiostation: self).order(created_at: :desc).first
     {

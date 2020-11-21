@@ -66,3 +66,4 @@ bower.json
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+spec/examples.txt
