@@ -11,7 +11,7 @@ module Importable
   module ClassMethods
     def import_song(radio_station)
       unless radio_station
-        Rails.logger.info "No radio station present"
+        Rails.logger.info 'No radio station present'
         return false
       end
 
@@ -51,7 +51,7 @@ module Importable
     def talpa_api_processor(radio_station)
       uri = URI radio_station.url
       Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', open_timeout: 3, read_timeout: 3) do |http|
-        request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
+        request = Net::HTTP::Get.new(uri, 'Content-Type': 'application/json')
         response = http.request(request)
         json = JSON.parse(response.body)
         raise StandardError if json.blank?
@@ -75,7 +75,7 @@ module Importable
     def qmusic_api_processor(radio_station)
       uri = URI radio_station.url
       Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
-        request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
+        request = Net::HTTP::Get.new(uri, 'Content-Type': 'application/json')
         response = http.request(request)
         track = JSON.parse(response.body)['played_tracks'][0]
         broadcast_timestamp = Time.parse(track['played_at'])
@@ -96,7 +96,7 @@ module Importable
         # gsub to remove any text between parentenses
         title = doc.xpath('//*[@id="qtmainmenucontainer"]/div/div[2]/div[1]/div/div/div[1]/span[3]').text
       when 'Groot Nieuws Radio'
-        artist_name = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[2]').text.split.map(&:capitalize).join(" ")
+        artist_name = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[2]').text.split.map(&:capitalize).join(' ')
         title = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[3]').text.split.map(&:capitalize).join(' ')
       else
         Rails.logger.info "Radio station #{radio_station.name} not found in SCRAPER"
@@ -112,7 +112,9 @@ module Importable
       if last_played_song.blank?
         add_song(broadcast_timestamp, artists, song, radio_station)
       elsif last_played_song.broadcast_timestamp == broadcast_timestamp && last_played_song.song == song
-        Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{radio_station.name}"
+        Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{radio_station.name}"  
+      else
+        Rails.logger.info 'No song added'
       end
     end
 
