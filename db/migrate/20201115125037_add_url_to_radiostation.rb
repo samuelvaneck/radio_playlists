@@ -4,6 +4,7 @@ class AddUrlToRadiostation < ActiveRecord::Migration[6.0]
     add_column :radiostations, :processor, :string
 
     Radiostation.all.each do |rs|
+      Rails.logger.info "Editing #{rs.name}.... "
       case rs.name
       when 'Radio 1'
         rs.url = 'https://www.nporadio1.nl/api/tracks'
@@ -43,6 +44,8 @@ class AddUrlToRadiostation < ActiveRecord::Migration[6.0]
       end
 
       rs.save!
+      
+      Rails.logger.info '.... done!'
     end
   end
 end
