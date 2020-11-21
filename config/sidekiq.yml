@@ -18,10 +18,6 @@
       cron: '*/3 * * * *'
       queue: default
       enabled: true
-    CheckRadio4:
-      cron: '*/3 * * * *'
-      queue: default
-      enabled: true
     CheckRadio5:
       cron: '*/3 * * * *'
       queue: default

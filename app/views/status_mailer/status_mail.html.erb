@@ -11,6 +11,7 @@
       th, td {
         padding: 10px;
       }
+      .
     </style>
   </head>
   <body>
@@ -27,7 +28,7 @@
                 <%= name.to_s.humanize %>
               </td>
               <td>
-                <%= time_ago_in_words(status[:last_created_at]) %>
+                Last added: <%= time_ago_in_words(status[:last_created_at]) %>
               </td>
             </tr>
             <tr>

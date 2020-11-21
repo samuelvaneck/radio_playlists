@@ -7,6 +7,11 @@ RSpec.describe Radiostation do
   let(:playlist_4_hours_ago) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station, created_at: 4.hours.ago }
   let(:playlist_1_minute_ago) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station, created_at: 1.minute.ago }
 
+  describe '#validations' do
+    it { is_expected.to validate_presence_of(:url) }
+    it { is_expected.to validate_presence_of(:processor) }
+  end
+
   describe '#status' do
     context 'with a last playlist created 2 hours ago' do
       it 'has status warning' do
@@ -37,7 +42,7 @@ RSpec.describe Radiostation do
       playlist_1_minute_ago
       status = radio_station.status
 
-      expect(status[:track_info]).to eq "#{playlist_1_minute_ago.broadcast_timestamp} - #{playlist_1_minute_ago.song.artists.map(&:name).join(' - ')} - #{playlist_1_minute_ago.song.title}"
+      expect(status[:track_info]).to eq "#{playlist_1_minute_ago.song.artists.map(&:name).join(' & ')} - #{playlist_1_minute_ago.song.title}"
     end
   end
 end

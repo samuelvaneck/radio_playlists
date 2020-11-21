@@ -44,6 +44,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'rubocop'
+  gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'timecop'
 end
