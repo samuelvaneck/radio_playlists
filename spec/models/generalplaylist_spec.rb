@@ -54,6 +54,27 @@ RSpec.describe Generalplaylist do
     end
   end
 
+  describe '#scraper' do
+    context 'if radio_station is Sublime FM' do
+      let(:sublime_fm) { FactoryBot.create(:sublime_fm) }
+      it 'returns an artist_name, title and time' do
+        track_data = Generalplaylist.scraper(sublime_fm)
+
+        expect(track_data.count).to eq 3
+      end
+    end
+
+    context 'if radio_station is Groot Nieuws RAdio' do
+      let(:groot_nieuws_radio) { FactoryBot.create(:groot_nieuws_radio) }
+      it 'returns an artist_name, titile and time' do
+        track_data = Generalplaylist.scraper(groot_nieuws_radio)
+
+        expect(track_data.count).to eq 3
+      end
+    end
+  end
+
+
   describe '#radio_1_check' do
     let!(:radio_1) { FactoryBot.create(:radio_1) }
     it 'creates a new playlist item' do
