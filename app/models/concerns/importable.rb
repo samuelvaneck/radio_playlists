@@ -87,10 +87,11 @@ module Importable
     end
 
     def scraper(radio_station)
+      date_string = Time.zone.now.strftime('%F')
       case radio_station.name
       when 'Sublime FM'
-        last_hour = "#{Time.zone.now.strftime('%F')} #{Time.zone.now.hour}:00:00"
-        next_hour = "#{Time.zone.now.strftime('%F')} #{Time.zone.now.hour == 23 ? '00' : Time.zone.now.hour + 1}:00:00"
+        last_hour = "#{date_string} #{Time.zone.now.hour}:00:00"
+        next_hour = "#{date_string} #{Time.zone.now.hour == 23 ? '00' : Time.zone.now.hour + 1}:00:00"
         data = `curl 'https://sublime.nl/wp-content/themes/OnAir2ChildTheme/phpincludes/sublime-playlist-query.php' \
                 -H 'authority: sublime.nl' \
                 -H 'accept: */*' \
@@ -103,10 +104,9 @@ module Importable
                 -H 'sec-fetch-dest: empty' \
                 -H 'referer: https://sublime.nl/sublime-playlist/' \
                 -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8,nl;q=0.7' \
-                -H 'cookie: _gcl_au=1.1.1212470413.1602485820; _ga=GA1.2.971901252.1602485820; sdk_cid=b5849bee-5937-4840-e28c-27e51f04cf0a; _fbp=fb.1.1602485820169.1313290207; _hjid=36b895a3-1f56-4f13-b203-787d6bf3f1fa; wpca_consent=1; wpca_cc=functional,analytical,social-media,advertising,other; _pk_id.1007.19e6=e9aaca32220119ca.1602485820.1.1602485853.1602485820.; cookielawinfo-checkbox-necessary=yes; cookielawinfo-checkbox-non-necessary=yes; CookieLawInfoConsent=eyJuZWNlc3NhcnkiOnRydWUsIm5vbi1uZWNlc3NhcnkiOnRydWV9; viewed_cookie_policy=yes; _gid=GA1.2.1676211182.1606038401; _gat_gtag_UA_34473534_8=1' \
                 --data-raw 'request_from=#{last_hour}&request_to=#{next_hour}' \
                 --compressed`
-        
+
         playlist = Nokogiri::HTML(data)
         artist_name = playlist.search('.play_artist')[-1].text.strip
         title = playlist.search('.play_title')[-1].text.strip
@@ -120,7 +120,7 @@ module Importable
         Rails.logger.info "Radio station #{radio_station.name} not found in SCRAPER"
       end
 
-      [artist_name, title, Time.find_zone('Amsterdam').parse(time)]
+      [artist_name, title, Time.find_zone('Amsterdam').parse("#{date_string} #{time}")]
     end
 
     # Methode for creating the Generalplaylist record
