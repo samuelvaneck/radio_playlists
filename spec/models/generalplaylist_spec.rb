@@ -82,6 +82,14 @@ RSpec.describe Generalplaylist do
         Generalplaylist.radio_1_check
       }.to change(Generalplaylist, :count).by(1)
     end
+
+    it 'does not double import' do
+      Generalplaylist.radio_1_check
+
+      expect {
+        Generalplaylist.radio_1_check
+      }.to change(Generalplaylist, :count).by(0)
+    end
   end
 
   describe '#radio_2_check' do
@@ -121,6 +129,14 @@ RSpec.describe Generalplaylist do
       expect {
         Generalplaylist.sky_radio_check
       }.to change(Generalplaylist, :count).by(1)
+    end
+
+    it 'does not double import' do
+      Generalplaylist.sky_radio_check
+
+      expect {
+        Generalplaylist.sky_radio_check
+      }.to change(Generalplaylist, :count).by(0)
     end
   end
 
@@ -170,6 +186,14 @@ RSpec.describe Generalplaylist do
       expect {
         Generalplaylist.q_music_check
       }.to change(Generalplaylist, :count).by(1)
+    end
+
+    it 'does not double import' do
+      Generalplaylist.q_music_check
+
+      expect {
+        Generalplaylist.q_music_check
+      }.to change(Generalplaylist, :count).by(0)
     end
   end
 
