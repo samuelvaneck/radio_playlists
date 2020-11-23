@@ -66,7 +66,7 @@ module TrackDataProcessor
       else
         # Else grap the song record with the same title and artist id
         artist_ids = Array.wrap(artists&.map(&:id) || artists&.id)
-        query_songs = Song.joins(:artists).where(artists: { id: artist_ids }, title: title)
+        query_songs = Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', title.downcase)
         if query_songs.present?
           result = query_songs
         else
