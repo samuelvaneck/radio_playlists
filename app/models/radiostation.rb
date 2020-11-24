@@ -5,6 +5,8 @@ class Radiostation < ActiveRecord::Base
 
   validates :url, :processor, presence: true
 
+  include Importable
+
   def status
     last_created = Generalplaylist.where(radiostation: self).order(created_at: :desc).first
     {
