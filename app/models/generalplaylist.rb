@@ -19,6 +19,18 @@ class Generalplaylist < ActiveRecord::Base
     playlists.uniq
   end
 
+  def deduplicate
+    return unless duplicate?
+
+    song = Song.find(song_id)
+    destroy
+    song.cleanup
+  end
+
+  def duplicate?
+    Generalplaylist.where(radiostation: radiostation, broadcast_timestamp: broadcast_timestamp).count > 1
+  end
+
   private
 
   def today_unique_playlist_item

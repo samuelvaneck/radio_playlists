@@ -61,4 +61,83 @@ RSpec.describe Generalplaylist do
       end
     end
   end
+
+  describe '#deduplicate' do
+    let!(:playlist_one) { FactoryBot.create :generalplaylist, :filled }
+    context 'if there are no duplicate entries' do
+      it 'does not delete the playlist item' do
+        expect {
+          playlist_one.deduplicate
+        }.to change(Generalplaylist, :count).by(0)
+      end
+    end
+
+    context 'if duplicate entries exists' do
+      let!(:playlist_two) {
+        playlist = FactoryBot.build :generalplaylist,
+                                    :filled,
+                                    radiostation: playlist_one.radiostation,
+                                    broadcast_timestamp: playlist_one.broadcast_timestamp
+        playlist.save(validate: false)
+      }
+      it 'deletes the playlist item' do
+        expect {
+          playlist_one.deduplicate
+        }.to change(Generalplaylist, :count).by(-1)
+      end
+    end
+
+    context 'if there are duplicates and the song has no more playlist items' do
+      let!(:playlist_two) {
+        playlist = FactoryBot.build :generalplaylist,
+                                    :filled,
+                                    radiostation: playlist_one.radiostation,
+                                    broadcast_timestamp: playlist_one.broadcast_timestamp
+        playlist.save(validate: false)
+      }
+      it 'deletes the song' do
+        expect {
+          playlist_one.deduplicate
+        }.to change(Song, :count).by(-1)
+      end
+    end
+
+    context 'if there are duplicates and the playlist song has more playlist items' do
+      let!(:playlist_two) {
+        playlist = FactoryBot.build :generalplaylist,
+                                    :filled,
+                                    radiostation: playlist_one.radiostation,
+                                    broadcast_timestamp: playlist_one.broadcast_timestamp
+        playlist.save(validate: false)
+      }
+      let!(:playlist_three) { FactoryBot.create :generalplaylist, :filled, song: playlist_one.song }
+      it 'does not delete the song' do
+        expect {
+          playlist_one.deduplicate
+        }.to change(Song, :count).by(0)
+      end
+    end
+  end
+
+  describe '#duplicate?' do
+    let!(:playlist_one) { FactoryBot.create :generalplaylist, :filled }
+    context 'with duplicates present' do
+      let!(:playlist_two) {
+        playlist = FactoryBot.build :generalplaylist,
+                                    :filled,
+                                    radiostation: playlist_one.radiostation,
+                                    broadcast_timestamp: playlist_one.broadcast_timestamp
+        playlist.save(validate: false)
+      }
+      it 'returns true' do
+        expect(playlist_one.duplicate?).to eq true
+      end
+    end
+
+    context 'without duplicates' do
+      it 'returns false' do
+        expect(playlist_one.duplicate?).to eq false
+      end
+    end
+  end
 end

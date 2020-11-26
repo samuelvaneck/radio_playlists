@@ -47,4 +47,23 @@ RSpec.describe Artist do
       expect(results).to include [artist_3.id, 2], [artist_2.id, 1], [artist_1.id, 1]
     end
   end
+
+  describe '#cleanup' do
+    context 'if the artist has no songs' do
+      let!(:artist_no_songs) { FactoryBot.create :artist }
+      it 'destorys the artist' do
+        expect {
+          artist_no_songs.cleanup
+        }.to change(Artist, :count).by(-1)
+      end
+    end
+
+    context 'if the artist has songs' do
+      it 'does not destroy the artist' do
+        expect {
+          artist_1.cleanup
+        }.to change(Artist, :count).by(0)
+      end
+    end
+  end
 end

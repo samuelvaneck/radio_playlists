@@ -68,4 +68,44 @@ RSpec.describe Song do
       end
     end
   end
+
+  describe '#cleanup' do
+    context 'if the song has no playlists' do
+      let!(:song_no_playlist) { FactoryBot.create :song }
+      it 'destorys the song' do
+        expect {
+          song_no_playlist.cleanup
+        }.to change(Song, :count).by(-1)
+      end
+    end
+
+    context 'if the song has playlist' do
+      it 'does not destroy the song' do
+        expect {
+          song_1.cleanup
+        }.to change(Song, :count).by(0)
+      end
+    end
+
+    context 'if the song artist has no more songs' do
+      let(:artist_one_song) { FactoryBot.create :artist }
+      let!(:song_one) { FactoryBot.create :song, artists: [artist_one_song] }
+      it 'does not destroy the artist' do
+        expect {
+          song_one.cleanup
+        }.to change(Artist, :count).by(-1)
+      end
+    end
+
+    context 'if the song artist has more song' do
+      let(:artist_multiple_song) { FactoryBot.create :artist }
+      let!(:song_one) { FactoryBot.create :song, artists: [artist_multiple_song] }
+      let!(:song_two) { FactoryBot.create :song, artists: [artist_multiple_song] }
+      it 'destroy' do
+        expect {
+          song_two.cleanup
+        }.to change(Artist, :count).by(0)
+      end
+    end
+  end
 end
