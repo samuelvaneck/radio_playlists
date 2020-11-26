@@ -88,4 +88,9 @@ class Song < ActiveRecord::Base
       same_artists && track_artists_names.exclude?('karaoke')
     end
   end
+
+  def cleanup
+    destroy if generalplaylists.blank?
+    artists.each(&:cleanup)
+  end
 end

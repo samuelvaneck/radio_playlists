@@ -42,4 +42,8 @@ class Artist < ActiveRecord::Base
     end
     artists.max_by(&:popularity)
   end
+
+  def cleanup
+    destroy if songs.blank?
+  end
 end
