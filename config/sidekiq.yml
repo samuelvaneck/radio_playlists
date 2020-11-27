@@ -10,6 +10,10 @@
       cron: '0 2 * * *' # at 2am
       queue: default
       enabled: true
+    CleanupJob:
+      cron: '0 1 1 * *' # At 01:00 on day-of-month 1
+      queue: default
+      enabled: true
   :sidekiq_default_hooks: true
   :sidekiq_pid: File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid')
   :sidekiq_env: fetch(:rack_env, fetch(:rails_env, fetch(:stage)))
