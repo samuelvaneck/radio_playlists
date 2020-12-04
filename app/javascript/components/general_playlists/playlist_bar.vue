@@ -62,12 +62,12 @@
           })
       },
       onKeyUpSearch(value) {
-        if (this.timer) {
+        if (!!this.timer) {
           clearTimeout(this.timer);
           this.timer = null;
-          this.loading = true
         }
         this.timer = setTimeout(() => {
+          this.loading = true
           this.term = value
           this.page = 1
           this.lastPage = false
@@ -92,6 +92,16 @@
         this.lastPage = false
         this[type + 'TimeFilter'] = value
         this.getItems()
+      },
+      delay(callback, ms) {
+        let timer = 0;
+        return function() {
+          let context = this, args = arguments;
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            callback.apply(context, args);
+          }, ms || 0);
+        };
       }
     },
     created() {

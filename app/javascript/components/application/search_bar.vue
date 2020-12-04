@@ -13,7 +13,7 @@
       <div>
         <select class='form-control' v-on:change='onChangeRadioStation'>
           <option value=''>All station</option>
-          <option v-for='radioStation in radioStations' :value='radioStation.attributes.id'>{{ radioStation.attributes.name }}</option>
+          <option v-for='radioStation in radioStations' :value='radioStation.attributes.id' v-bind:key='radioStation.id'>{{ radioStation.attributes.name }}</option>
         </select>
       </div>
       <div class='ml-1'>
