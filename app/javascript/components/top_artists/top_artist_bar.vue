@@ -83,12 +83,14 @@
         this.getItems(true)
       },
       onRadioStationSelect: function(value) {
+        this.loading = true
         this.radioStationFilter = value || ''
         this.page = 1
         this.lastPage = false
         this.getItems()
       },
       onChangeTimeFilter(value, type) {
+        this.loading = true
         this.page = 1
         this.lastPage = false
         this[type + 'TimeFilter'] = value
