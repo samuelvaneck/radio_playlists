@@ -63,12 +63,12 @@
           })
       },
       onSearch(value) {
-        if (this.timer) {
+        if (!!this.timer) {
           clearTimeout(this.timer);
           this.timer = null;
-          this.loading = true
         }
         this.timer = setTimeout(() => {
+          this.loading = true
           this.term = value
           this.page = 1
           this.lastPage = false
