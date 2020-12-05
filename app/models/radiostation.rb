@@ -15,4 +15,15 @@ class Radiostation < ActiveRecord::Base
       status: last_created.created_at > 3.hour.ago ? 'OK' : 'Warning'
     }
   end
+
+  def import_song
+    radio_station = self
+    artist_name, title, broadcast_timestamp = send(radio_station.processor.to_sym)
+
+    return false if artist_name.blank?
+    return false if illegal_word_in_title(title)
+
+    artists, song = process_track_data(artist_name, title)
+    create_generalplaylist(broadcast_timestamp, artists, song, radio_station)
+  end
 end

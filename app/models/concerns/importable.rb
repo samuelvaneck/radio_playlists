@@ -8,17 +8,6 @@ module Importable
   extend ActiveSupport::Concern
   include TrackDataProcessor
 
-  def import_song
-    radio_station = self
-    artist_name, title, broadcast_timestamp = send(radio_station.processor.to_sym)
-
-    return false if artist_name.blank?
-    return false if illegal_word_in_title(title)
-
-    artists, song = process_track_data(artist_name, title)
-    create_generalplaylist(broadcast_timestamp, artists, song, radio_station)
-  end
-
   def npo_api_processor
     radio_station = self
     uri = URI radio_station.url
