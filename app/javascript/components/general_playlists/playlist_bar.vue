@@ -50,7 +50,6 @@
 
         if (!append) this.items = []
         this.requestInProgress = true
-        this.loading = true
 
         fetch(url, options).then(res => res.json())
           .then(d => {
@@ -68,6 +67,7 @@
           this.timer = null;
         }
         this.timer = setTimeout(() => {
+          this.loading = true
           this.term = value
           this.page = 1
           this.lastPage = false
@@ -82,12 +82,14 @@
         this.getItems(true)
       },
       onRadioStationSelect(value) {
+        this.loading = true
         this.radioStationFilter = value || ''
         this.page = 1
         this.lastPage = false
         this.getItems()
       },
       onChangeFilterTime(value, type) {
+        this.loading = true
         this.page = 1
         this.lastPage = false
         this[type + 'TimeFilter'] = value
