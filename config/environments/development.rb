@@ -57,4 +57,7 @@ Rails.application.configure do
 
   # If you're using RSpec make sure to add the link changing where the previews path is.
   config.action_mailer.preview_path ||= defined?(Rails.root) ? "#{Rails.root}/spec/mailers/previews" : nil
+
+  # Store files locally.
+  config.active_storage.service = :local
 end
