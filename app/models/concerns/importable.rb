@@ -25,11 +25,11 @@ module Importable
       [artist_name, title, broadcast_timestamp]
     end
   rescue Net::ReadTimeout => _e
-    Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
+    puts "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
   rescue Net::OpenTimeout => _e
-    Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
+    puts "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
   rescue StandardError => e
-    Rails.logger.info e
+    puts e
     false
   end
 
@@ -51,9 +51,9 @@ module Importable
       [artist_name, title, broadcast_timestamp]
     end
   rescue Net::ReadTimeout => _e
-    Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
+    puts "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
   rescue Net::OpenTimeout => _e
-    Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
+    puts "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
   rescue StandardError => _e
     false
   end
@@ -107,7 +107,7 @@ module Importable
       title = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[3]').text.split.map(&:capitalize).join(' ')
       time = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[1]/span').text
     else
-      Rails.logger.info "Radio station #{radio_station.name} not found in SCRAPER"
+      puts "Radio station #{radio_station.name} not found in SCRAPER"
     end
 
     [artist_name, title, Time.find_zone('Amsterdam').parse("#{date_string} #{time}")]
@@ -120,9 +120,9 @@ module Importable
     if last_played_song.blank?
       add_song(broadcast_timestamp, artists, song, radio_station)
     elsif last_played_song.broadcast_timestamp == broadcast_timestamp && last_played_song.song == song
-      Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{radio_station.name}"  
+      puts "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{radio_station.name}"  
     else
-      Rails.logger.info 'No song added'
+      puts 'No song added'
     end
   end
 
