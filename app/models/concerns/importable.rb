@@ -53,7 +53,8 @@ module Importable
     puts "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
   rescue Net::OpenTimeout => _e
     puts "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
-  rescue StandardError => _e
+  rescue StandardError => e
+    puts e
     false
   end
 
@@ -80,19 +81,8 @@ module Importable
       last_hour = "#{date_string} #{Time.zone.now.hour}:00:00"
       next_hour = "#{date_string} #{Time.zone.now.hour == 23 ? '00' : Time.zone.now.hour + 1}:00:00"
       data = `curl 'https://sublime.nl/wp-content/themes/OnAir2ChildTheme/phpincludes/sublime-playlist-query.php' \
-              -H 'authority: sublime.nl' \
-              -H 'accept: */*' \
-              -H 'x-requested-with: XMLHttpRequest' \
-              -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36' \
               -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' \
-              -H 'origin: https://sublime.nl' \
-              -H 'sec-fetch-site: same-origin' \
-              -H 'sec-fetch-mode: cors' \
-              -H 'sec-fetch-dest: empty' \
-              -H 'referer: https://sublime.nl/sublime-playlist/' \
-              -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8,nl;q=0.7' \
-              --data-raw 'request_from=#{last_hour}&request_to=#{next_hour}' \
-              --compressed`
+              --data-raw 'request_from=#{last_hour}&request_to=#{next_hour}'`
 
       playlist = Nokogiri::HTML(data)
       return [] if playlist.search('.play_artist')[-1].blank?
