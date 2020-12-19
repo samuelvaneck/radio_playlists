@@ -18,82 +18,98 @@
   </head>
   <body>
     <div class="mail-center">
-      <table>
-        <thead>
-          <tr colspan='2'>
-            <th>Warnings</th>
-          <tr>
-          <tr>
-            <th>Name</th>
-            <th>Last added song</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @results['warning'].each do |arr| %>
-            <% arr.each do |name, status| %>
-              <tr>
-                <td rowspan='3'>
-                  <%= name.to_s.humanize %>
-                </td>
-                <td>
-                  <b>Track</b> <%= status[:track_info] %>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <b>added</b> <%= time_ago_in_words(status[:last_created_at]) %> ago
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <b>Total</b> <%= status[:total_created] %> items
-                </td>
-              </tr>
+      <% if @results['warnings'].present? %>
+        <table>
+          <thead>
+            <tr colspan='2'>
+              <th>Warnings</th>
+            <tr>
+            <tr>
+              <th>Name</th>
+              <th>Last added song</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @results['warning'].each do |arr| %>
+              <% arr.each do |name, status| %>
+                <tr>
+                  <td rowspan='3'>
+                    <%= name.to_s.humanize %>
+                  </td>
+                  <td>
+                    <b>Track</b> <%= status[:track_info] %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <b>added</b> <%= time_ago_in_words(status[:last_created_at]) %> ago
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <b>Total</b> <%= status[:total_created] %> items
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      <% else %>
+        <table>
+          <tbody>
+            <tr><td><b>No warnings. Hooray!</b></td></tr>
+          </tbody>
+        </table>
+      <% end %>
 
       <br />
       <br />
       <br />
       <br />
 
-      <table>
-        <thead>
-          <tr colspan='2'>
-            <th>OK</th>
-          <tr>
-          <tr>
-            <th>Name</th>
-            <th>Last added song</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @results['ok'].each do |arr| %>
-            <% arr.each do |name, status| %>
-              <tr>
-                <td rowspan='3'>
-                  <%= name.to_s.humanize %>
-                </td>
-                <td>
-                  <b>Track</b> <%= status[:track_info] %>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <b>added</b> <%= time_ago_in_words(status[:last_created_at]) %> ago
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <b>Total</b> <%= status[:total_created] %> items
-                </td>
-              </tr>
+      <% if @results['ok'].present? %>
+        <table>
+          <thead>
+            <tr colspan='2'>
+              <th>OK</th>
+            <tr>
+            <tr>
+              <th>Name</th>
+              <th>Last added song</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @results['ok'].each do |arr| %>
+              <% arr.each do |name, status| %>
+                <tr>
+                  <td rowspan='3'>
+                    <%= name.to_s.humanize %>
+                  </td>
+                  <td>
+                    <b>Track</b> <%= status[:track_info] %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <b>added</b> <%= time_ago_in_words(status[:last_created_at]) %> ago
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <b>Total</b> <%= status[:total_created] %> items
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      <% else %>
+        <table>
+          <tbody>
+            <tr><td><i>All radio stations have warnings</i></td></tr>
+          </tbody>
+        </table>
+      <% end %>
     </div>
   </body>
 </html>
