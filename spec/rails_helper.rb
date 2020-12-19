@@ -62,6 +62,7 @@ RSpec.configure do |config|
   # Use the following instead if you are on Devise >= 4.1.1
   config.include Devise::Test::ControllerHelpers, type: :controller
 
+  config.include(ActiveSupport::Testing::Assertions)
 end
 
 # Capybara.register_driver :selenium do |app|
