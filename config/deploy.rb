@@ -15,7 +15,7 @@ set :sidekiq_config, -> { File.join(shared_path, 'config', 'sidekiq.yml') }
 set :sidekiq_env, 'production'
 set :nginx_sudo_tasks, ['nginx:restart']
 
-append :linked_files, 'config/database.yml', 'config/secrets.yml', 'config/storage.yml'
+append :linked_files, 'config/database.yml', 'config/secrets.yml', 'config/storage.yml', '.env'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', "public/uploads"
 
 # namespace :deploy do
