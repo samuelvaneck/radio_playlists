@@ -8,20 +8,25 @@
         padding: 20px;
         text-align: justify;
       }
+      table, th, td {
+        border: 1px solid black;
+      }
       th, td {
         padding: 10px;
-      }
-      .py-2 {
-        padding: 2em 0em;
       }
     </style>
   </head>
   <body>
     <div class="mail-center">
-      <table class='py-2'>
+      <table>
         <thead>
-          <th>Name</th>
-          <th>Last added song</th>
+          <tr colspan='2'>
+            <th>Warnings</th>
+          <tr>
+          <tr>
+            <th>Name</th>
+            <th>Last added song</th>
+          </tr>
         </thead>
         <tbody>
           <% @results['warning'].each do |arr| %>
@@ -31,17 +36,17 @@
                   <%= name.to_s.humanize %>
                 </td>
                 <td>
-                  <%= status[:track_info] %>
+                  <b>Track</b> <%= status[:track_info] %>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <b>Last added</b> <%= time_ago_in_words(status[:last_created_at]) %>
+                  <b>added</b> <%= time_ago_in_words(status[:last_created_at]) %> ago
                 </td>
               </tr>
               <tr>
                 <td>
-                  <b>Total added</b> <%= status[:total_created] %>
+                  <b>Total</b> <%= status[:total_created] %> items
                 </td>
               </tr>
             <% end %>
@@ -49,10 +54,20 @@
         </tbody>
       </table>
 
-      <table class='py-2'>
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <table>
         <thead>
-          <th>Name</th>
-          <th>Last added song</th>
+          <tr colspan='2'>
+            <th>OK</th>
+          <tr>
+          <tr>
+            <th>Name</th>
+            <th>Last added song</th>
+          </tr>
         </thead>
         <tbody>
           <% @results['ok'].each do |arr| %>
@@ -62,17 +77,17 @@
                   <%= name.to_s.humanize %>
                 </td>
                 <td>
-                  <%= status[:track_info] %>
+                  <b>Track</b> <%= status[:track_info] %>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <b>Last added</b> <%= time_ago_in_words(status[:last_created_at]) %>
+                  <b>added</b> <%= time_ago_in_words(status[:last_created_at]) %> ago
                 </td>
               </tr>
               <tr>
                 <td>
-                  <b>Total added</b> <%= status[:total_created] %>
+                  <b>Total</b> <%= status[:total_created] %> items
                 </td>
               </tr>
             <% end %>
