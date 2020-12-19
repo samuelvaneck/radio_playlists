@@ -11,31 +11,71 @@
       th, td {
         padding: 10px;
       }
-      .
+      .py-2 {
+        padding: 2em 0em;
+      }
     </style>
   </head>
   <body>
     <div class="mail-center">
-      <table>
+      <table class='py-2'>
         <thead>
           <th>Name</th>
           <th>Last added song</th>
         </thead>
         <tbody>
-          <% @results.each do |name, status| %>
-            <tr>
-              <td rowspan='2'>
-                <%= name.to_s.humanize %>
-              </td>
-              <td>
-                Last added: <%= time_ago_in_words(status[:last_created_at]) %>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <%= status[:track_info] %>
-              </td>
-            </tr>
+          <% @results['warning'].each do |arr| %>
+            <% arr.each do |name, status| %>
+              <tr>
+                <td rowspan='3'>
+                  <%= name.to_s.humanize %>
+                </td>
+                <td>
+                  <%= status[:track_info] %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Last added</b> <%= time_ago_in_words(status[:last_created_at]) %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Total added</b> <%= status[:total_created] %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+
+      <table class='py-2'>
+        <thead>
+          <th>Name</th>
+          <th>Last added song</th>
+        </thead>
+        <tbody>
+          <% @results['ok'].each do |arr| %>
+            <% arr.each do |name, status| %>
+              <tr>
+                <td rowspan='3'>
+                  <%= name.to_s.humanize %>
+                </td>
+                <td>
+                  <%= status[:track_info] %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Last added</b> <%= time_ago_in_words(status[:last_created_at]) %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Total added</b> <%= status[:total_created] %>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>

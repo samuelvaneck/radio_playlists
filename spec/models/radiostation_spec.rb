@@ -20,36 +20,56 @@ RSpec.describe Radiostation do
   end
 
   describe '#status' do
+    let(:status) { radio_station.status }
     context 'with a last playlist created 2 hours ago' do
+      before { playlist_4_hours_ago }
       it 'has status warning' do
-        playlist_4_hours_ago
-        status = radio_station.status
-
-        expect(status[:status]).to eq 'Warning'
+        expect(status).to eq 'warning'
       end
     end
 
     context 'with a last playlist created 1 minute ago' do
+      before { playlist_1_minute_ago }
       it 'has status OK' do
-        playlist_1_minute_ago
-        status = radio_station.status
-
-        expect(status[:status]).to eq 'OK'
+        expect(status).to eq 'ok'
       end
     end
+  end
 
-    it 'has the last created time' do
+  describe '#mail_data' do
+    let(:mail_data) { radio_station.mail_data }
+    before do
+      playlist_4_hours_ago
       playlist_1_minute_ago
-      status = radio_station.status
-
-      expect(status[:last_created_at].strftime('%H:%M:%S')).to eq playlist_1_minute_ago.created_at.strftime('%H:%M:%S')
+    end
+    it 'has a key track info' do
+      expect(mail_data[:track_info]).to eq "#{playlist_1_minute_ago.song.artists.map(&:name).join(' & ')} - #{playlist_1_minute_ago.song.title}"
+    end
+    
+    it 'has a key last_create_at' do
+      expect(mail_data[:last_created_at].strftime("%H:%M:%S")).to eq playlist_1_minute_ago.created_at.strftime("%H:%M:%S")
     end
 
-    it 'has the track info' do
-      playlist_1_minute_ago
-      status = radio_station.status
+    it 'has a key total_created' do
+      expect(mail_data[:total_created]).to eq 2
+    end
+  end
 
-      expect(status[:track_info]).to eq "#{playlist_1_minute_ago.song.artists.map(&:name).join(' & ')} - #{playlist_1_minute_ago.song.title}"
+  describe '#last_created' do
+    it 'returns the last created item' do
+      playlist_4_hours_ago
+      playlist_1_minute_ago
+
+      expect(radio_station.last_created).to eq playlist_1_minute_ago
+    end
+  end
+
+  describe '#todays_added_items' do
+    it 'returns all todays added items from the radiostation' do
+      playlist_4_hours_ago
+      playlist_1_minute_ago
+
+      expect(radio_station.todays_added_items).to include playlist_4_hours_ago, playlist_1_minute_ago
     end
   end
 

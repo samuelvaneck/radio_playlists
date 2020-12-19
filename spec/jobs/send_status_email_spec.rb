@@ -4,8 +4,14 @@ require 'rails_helper'
 
 RSpec.describe SendStatusEmail do
   include ActiveJob::TestHelper
-  let(:radiostation) { FactoryBot.create :radiostation }
-  let(:playlist) { FactoryBot.create :generalplaylists, radiostation: radiostation }
+  let!(:radio_station) { FactoryBot.create :radiostation }
+  let!(:radio_station_two) { FactoryBot.create :radiostation }
+  let!(:radio_station_three) { FactoryBot.create :radiostation }
+  let!(:radio_station_four) { FactoryBot.create :radiostation }
+  let!(:playlist) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station }
+  let!(:playlist_two) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station_two }
+  let!(:playlist_three) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station_three }
+  let!(:playlist_four) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station_four, created_at: 6.hours.ago }
 
   describe '#perform' do
     it 'creates a job' do

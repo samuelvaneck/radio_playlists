@@ -6,9 +6,10 @@ class SendStatusEmail < ApplicationJob
   def perform
     results = {}
     Radiostation.all.each do |radio_station|
-      next if radio_station.status[:last_created_at] > 3.hours.ago
+      next if radio_station.blank?
 
-      results[radio_station.name.to_s] = radio_station.status
+      results[radio_station.status] ||= []
+      results[radio_station.status] << { "#{radio_station.name}": radio_station.mail_data }
     end
 
     StatusMailer.status_mail('samuelvaneck@gmail.com', results).deliver
