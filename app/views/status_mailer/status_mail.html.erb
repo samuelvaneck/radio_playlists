@@ -11,12 +11,6 @@
       table, th, td {
         border: 1px solid black;
       }
-      table.warning {
-        border: 1px solid #CD0000;
-      }
-      table.ok {
-        border: 1px solid #013220;
-      }
       th, td {
         padding: 10px;
       }
@@ -25,7 +19,7 @@
   <body>
     <div class="mail-center">
       <% if @results['warnings'].present? %>
-        <table class='warning'>
+        <table style='border: 1px solid #CD0000;'>
           <thead>
             <tr colspan='2'>
               <th>Warnings</th>
@@ -61,7 +55,7 @@
           </tbody>
         </table>
       <% else %>
-        <table class='ok'>
+        <table style='border: 1px solid #013220;'>
           <tbody>
             <tr><td><b>No warnings. Hooray!</b></td></tr>
           </tbody>
@@ -107,7 +101,7 @@
           </tbody>
         </table>
       <% else %>
-        <table class='warning'>
+        <table style='border: 1px solid #CD0000;'>
           <tbody>
             <tr><td><i>All radio stations have warnings</i></td></tr>
           </tbody>
