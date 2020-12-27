@@ -18,8 +18,8 @@ module Importable
       raise StandardError if json.blank?
 
       track = JSON.parse(response.body)['data'][0]
-      artist_name = CGI.unescapeHTML(track['artist'])
-      title =  CGI.unescapeHTML(track['title']).titleize
+      artist_name = CGI.unescapeHTML(track['artist']).titleize
+      title = CGI.unescapeHTML(track['title']).titleize
       broadcast_timestamp = Time.parse(track['startdatetime'])
 
       [artist_name, title, broadcast_timestamp]
