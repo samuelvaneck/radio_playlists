@@ -11,7 +11,7 @@ require 'capistrano/rails'
 require 'capistrano/rbenv'
 require 'capistrano/passenger'
 set :rbenv_type, :user
-set :rbenv_ruby, '2.7.1'
+set :rbenv_ruby, '2.7.2'
 require 'capistrano/rails/console'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
