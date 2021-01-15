@@ -51,7 +51,6 @@ Layout/EmptyLines:
   Exclude:
     - 'bin/setup'
     - 'config/deploy/production.rb'
-    - 'config/initializers/devise.rb'
     - 'spec/models/radiostation_spec.rb'
 
 # Offense count: 2
