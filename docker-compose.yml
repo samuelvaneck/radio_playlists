@@ -26,8 +26,8 @@ services:
 
   radio_web:
     build: .
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
-    hostname: bumblebee-web
+    command: bundle exec rails s -u puma -p 3000 -b '0.0.0.0'
+    hostname: radio-web
     depends_on:
       - postgres
       - redis

@@ -60,4 +60,7 @@ Rails.application.configure do
 
   # Store files locally.
   config.active_storage.service = :local
+
+  config.log_level = :debug
+  config.logger = Logger.new(STDOUT)
 end
