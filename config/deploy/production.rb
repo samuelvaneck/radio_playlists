@@ -62,3 +62,10 @@ server "radioplaylists.samuelvaneck.com",
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+# Postgres setup
+set :pg_without_sudo, false
+set :pg_host, 'localhost'
+set :pg_database, 'radio_playlists_production'
+set :pg_username, 'radio_playlists'
+set :pg_ask_for_password, true

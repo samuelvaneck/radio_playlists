@@ -11,6 +11,7 @@ require 'capistrano/rails'
 require 'capistrano/rbenv'
 require 'capistrano/passenger'
 require 'capistrano/rails/console'
+require 'capistrano/postgresql'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.2'
