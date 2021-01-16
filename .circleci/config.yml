@@ -6,8 +6,8 @@
       docker:
         - image: circleci/ruby:2.7.2-node-browsers
           environment:
-            DATABASE_HOST: localhost
-            DATABASE_USER: radio_playlists
+            POSTGRES_HOST: localhost
+            POSTGRES_USER: radio_playlists
             RAILS_ENV: test
         - image: postgres:latest
           environment:
