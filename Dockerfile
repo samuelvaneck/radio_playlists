@@ -8,9 +8,15 @@ RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs ya
 ENV INSTALL_PATH /app
 RUN mkdir $INSTALL_PATH
 WORKDIR $INSTALL_PATH
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
-RUN gem install bundler
-RUN bundle install
-RUN yarn
 COPY . $INSTALL_PATH
+ENV BUNDLER_VERSION 2.1.4
+RUN gem install bundler && \
+    yarn install --check-files && \
+    bundle config build.nokogiri --use-system-libraries && \
+    bundle config git.allow_insecure true && \
+    bundle config set deployment 'true' && \
+    bundle config set frozen 'true' && \
+    bundle config set without 'development test' && \
+    bundle install --quiet && \
+    bundle exec rake assets:precompile
+
