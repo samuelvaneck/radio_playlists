@@ -433,6 +433,7 @@ DEPENDENCIES
   capistrano3-nginx (~> 2.0)
   capybara
   coffee-rails
+  concurrent-ruby
   database_cleaner
   dotenv-rails
   factory_bot_rails
@@ -475,4 +476,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.5
+   2.2.6

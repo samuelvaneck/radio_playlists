@@ -27,6 +27,7 @@ gem 'will_paginate'
 
 group :development, :test do
   gem 'byebug'
+  gem 'concurrent-ruby'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'guard-rspec'
