@@ -57,7 +57,7 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :mailjet
   config.action_mailer.perform_deliveries = true
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
