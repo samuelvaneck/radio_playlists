@@ -13,6 +13,7 @@ gem 'materialize-sass'
 gem 'nokogiri', '>= 1.10.9'
 gem 'pg'
 gem 'puma', '~> 5.1'
+gem 'mailjet'
 gem 'rails', '~> 6.0', '>= 6.0.3.2'
 gem 'responders'
 gem 'rspotify', '~> 2.8'
@@ -50,13 +51,14 @@ group :test do
 end
 
 group :development do
-  gem 'capistrano'
-  gem 'capistrano-passenger'
-  gem 'capistrano-postgresql'
-  gem 'capistrano-rails'
-  gem 'capistrano-rails-console', require: false
-  gem 'capistrano-rbenv'
-  gem 'capistrano3-nginx', '~> 2.0'
+  # gem 'capistrano'
+  # gem 'capistrano-passenger'
+  # gem 'capistrano-postgresql'
+  # gem 'capistrano-rails'
+  # gem 'capistrano-rails-console', require: false
+  # gem 'capistrano-rbenv'
+  # gem 'capistrano3-nginx', '~> 2.0'
+  gem 'letter_opener'
   gem 'spring'
   gem 'web-console'
 end
