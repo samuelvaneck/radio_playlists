@@ -51,13 +51,6 @@ group :test do
 end
 
 group :development do
-  # gem 'capistrano'
-  # gem 'capistrano-passenger'
-  # gem 'capistrano-postgresql'
-  # gem 'capistrano-rails'
-  # gem 'capistrano-rails-console', require: false
-  # gem 'capistrano-rbenv'
-  # gem 'capistrano3-nginx', '~> 2.0'
   gem 'letter_opener'
   gem 'spring'
   gem 'web-console'
