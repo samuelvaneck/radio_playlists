@@ -61,5 +61,5 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   config.log_level = :debug
-  config.logger = Logger.new(STDOUT)
+  config.logger = Logger.new($stdout)
 end
