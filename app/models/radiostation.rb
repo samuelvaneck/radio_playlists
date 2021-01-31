@@ -13,6 +13,9 @@ class Radiostation < ActiveRecord::Base
 
   def mail_data
     {
+      id: id,
+      name: name,
+      status: status,
       last_created_at: last_created.created_at,
       track_info: "#{last_created.song.artists.map(&:name).join(' & ')} - #{last_created.song.title}",
       total_created: todays_added_items.count
