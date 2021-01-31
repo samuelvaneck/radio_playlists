@@ -13,6 +13,7 @@ ENV INSTALL_PATH=/app
 RUN mkdir $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 COPY . $INSTALL_PATH
+RUN rm -rf "${INSTALL_PATH}/tmp"
 RUN gem update --system && \
     gem install bundler && \
     bundle update rake && \
