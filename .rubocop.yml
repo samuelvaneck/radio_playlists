@@ -3,5 +3,6 @@ AllCops:
   EnabledByDefault: true
   Exclude:
    - vendor/bundle/**/*
+   - node_modules/node-sass/src/libsass/contrib/libsass.spec
 HashSyntax:
   EnforcedStyle: ruby19

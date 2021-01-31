@@ -12,10 +12,12 @@ import '../stylesheets/application.scss'
 import './bootstrap_custom.js'
 
 import Vue from 'vue/dist/vue.esm'
+import StatusBar from 'components/status_bar/status_bar'
 import PlaylistBar from 'components/general_playlists/playlist_bar.vue'
 import TopSongBar from 'components/top_songs/top_song_bar.vue'
 import TopArtistBar from 'components/top_artists/top_artist_bar.vue'
 
+Vue.component('statusBar', StatusBar)
 Vue.component('playlistBar', PlaylistBar)
 Vue.component('topSongBar', TopSongBar)
 Vue.component('topArtistBar', TopArtistBar)
