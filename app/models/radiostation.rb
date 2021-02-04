@@ -8,7 +8,7 @@ class Radiostation < ActiveRecord::Base
   include Importable
 
   def status
-    last_created.created_at > 3.hour.ago ? 'ok' : 'warning'
+    last_created&.created_at > 3.hour.ago ? 'ok' : 'warning'
   end
 
   def status_data
@@ -18,9 +18,9 @@ class Radiostation < ActiveRecord::Base
       id: id,
       name: name,
       status: status,
-      last_created_at: last_created.created_at,
-      track_info: "#{last_created.song.artists.map(&:name).join(' & ')} - #{last_created.song.title}",
-      total_created: todays_added_items.count
+      last_created_at: last_created&.created_at,
+      track_info: "#{last_created&.song&.artists&.map(&:name)&.join(' & ')} - #{last_created&.song&.title}",
+      total_created: todays_added_items&.count
     }
   end
 
@@ -44,6 +44,6 @@ class Radiostation < ActiveRecord::Base
   end
 
   def zero_playlist_items
-    Generalplaylist.where(radiostation: self).blank?
+    Generalplaylist.where(radiostation: self).count.zero?
   end
 end
