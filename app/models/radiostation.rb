@@ -8,7 +8,9 @@ class Radiostation < ActiveRecord::Base
   include Importable
 
   def status
-    last_created&.created_at > 3.hour.ago ? 'ok' : 'warning'
+    return 'warning' if zero_playlist_items
+
+    last_created.created_at > 3.hour.ago ? 'ok' : 'warning'
   end
 
   def status_data
