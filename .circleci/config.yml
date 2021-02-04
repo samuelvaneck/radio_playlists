@@ -59,6 +59,10 @@
         # Setup the environment
         - run: cp .env.circle-ci .env
   
+        # update rake
+        - run: bundle update rake
+        - run: gem install uri -v 0.10.1
+
         # Setup the database
         - run: bundle exec rails db:test:prepare
   
