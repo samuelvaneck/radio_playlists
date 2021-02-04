@@ -88,7 +88,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <b>added</b> <%= time_ago_in_words(status[:last_created_at]) %> ago
+                    <b>added</b> <%= time_ago_in_words(status[:last_created_at]) rescue '-' %> ago
                   </td>
                 </tr>
                 <tr>
