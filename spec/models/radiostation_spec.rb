@@ -36,22 +36,22 @@ RSpec.describe Radiostation do
     end
   end
 
-  describe '#mail_data' do
-    let(:mail_data) { radio_station.mail_data }
+  describe '#status_data' do
+    let(:status_data) { radio_station.status_data }
     before do
       playlist_4_hours_ago
       playlist_1_minute_ago
     end
     it 'has a key track info' do
-      expect(mail_data[:track_info]).to eq "#{playlist_1_minute_ago.song.artists.map(&:name).join(' & ')} - #{playlist_1_minute_ago.song.title}"
+      expect(status_data[:track_info]).to eq "#{playlist_1_minute_ago.song.artists.map(&:name).join(' & ')} - #{playlist_1_minute_ago.song.title}"
     end
 
     it 'has a key last_create_at' do
-      expect(mail_data[:last_created_at].strftime('%H:%M:%S')).to eq playlist_1_minute_ago.created_at.strftime('%H:%M:%S')
+      expect(status_data[:last_created_at].strftime('%H:%M:%S')).to eq playlist_1_minute_ago.created_at.strftime('%H:%M:%S')
     end
 
     it 'has a key total_created' do
-      expect(mail_data[:total_created]).to eq 2
+      expect(status_data[:total_created]).to eq 2
     end
   end
 

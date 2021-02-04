@@ -11,7 +11,9 @@ class Radiostation < ActiveRecord::Base
     last_created.created_at > 3.hour.ago ? 'ok' : 'warning'
   end
 
-  def mail_data
+  def status_data
+    return {} if zero_playlist_items
+
     {
       id: id,
       name: name,
@@ -39,5 +41,9 @@ class Radiostation < ActiveRecord::Base
 
     artists, song = process_track_data(artist_name, title)
     create_generalplaylist(broadcast_timestamp, artists, song, radio_station)
+  end
+
+  def zero_playlist_items
+    Generalplaylist.where(radiostation: self).blank?
   end
 end
