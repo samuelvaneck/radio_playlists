@@ -61,10 +61,10 @@
   
         # update rake
         - run: bundle update rake
-        - run: gem install uri -v 0.10.1
 
         # Setup the database
         - run: bundle exec rails db:test:prepare
+        - run: bundle exec rails db:seed
   
         # Run the tests
         - run: bundle exec rspec

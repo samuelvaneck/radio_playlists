@@ -14,11 +14,11 @@ RSpec.describe StatusMailer, type: :mailer do
     it 'renders the headers' do
       expect(status_mail.subject).to eq 'Status radiostation playlists'
       expect(status_mail.to).to eq ['test@test.com']
-      expect(status_mail.from).to eq ['status@radioplaylists.samuelvaneck.com']
+      expect(status_mail.from).to eq ['radioplaylists@samuelvaneck.com']
     end
 
     it 'renders the email body' do
-      expect(status_mail.body.encoded).to match radio_station.name.humanize
+      expect(status_mail.body.encoded).to match 'No warnings. Hooray!'
     end
   end
 end
