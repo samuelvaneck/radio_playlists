@@ -6,7 +6,7 @@ class Song < ActiveRecord::Base
   has_many :generalplaylists
   has_many :radiostations, through: :generalplaylists
 
-  MULTIPLE_ARTIST_REGEX = ';|feat.|ft.|feat|\bft\b|&|vs.|\bvs\b|versus|\band\b|\bmet\b'
+  MULTIPLE_ARTIST_REGEX = ';|\bfeat.\b|\bft\b|\bfeat\b|\bft\b|&|\bvs.\b|\bvs\b|\bversus\b|\band\b|\bmet\b'
   private_constant :MULTIPLE_ARTIST_REGEX
 
   def self.search_title(title)
@@ -58,6 +58,7 @@ class Song < ActiveRecord::Base
   def spotify_search(search_artists)
     search_artists, search_title = parse_search_terms(search_artists)
     tracks = RSpotify::Track.search("#{search_artists} #{search_title}").sort_by(&:popularity).reverse
+
     tracks = filter_tracks(tracks, search_artists)
 
     # return most popular track
@@ -80,8 +81,8 @@ class Song < ActiveRecord::Base
     regex = Regexp.new(MULTIPLE_ARTIST_REGEX, Regexp::IGNORECASE)
     tracks.filter do |t|
       # e.g. ['martin, 'garrix', 'clinton', 'kane']
-      track_artists_names = t.artists.map { |artist| artist.name.downcase.split(' ') }
-      song_artists_names = search_artists.gsub(regex, '').downcase.split(' ')
+      track_artists_names = t.artists.map { |artist| artist.name.downcase.split(' ') }.flatten.reject { |n| n.match(/\W/) }
+      song_artists_names = search_artists.gsub(regex, '').downcase.split(' ').flatten.reject { |n| n.match(/\W/) }
 
       # compare artists from track and artists from song. If they match the difference array wil be empty and return true
       same_artists = (track_artists_names.flatten - song_artists_names.flatten).empty?
