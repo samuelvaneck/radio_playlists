@@ -20,9 +20,6 @@ module Importable
       track = JSON.parse(response.body)['data'][0]
       artist_name = CGI.unescapeHTML(track['artist']).titleize
       title = CGI.unescapeHTML(track['title']).titleize
-
-      debugger
-
       broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['startdatetime'])
 
       [artist_name, title, broadcast_timestamp]
