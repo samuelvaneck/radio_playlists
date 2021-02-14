@@ -77,9 +77,12 @@ class Song < ActiveRecord::Base
   end
 
   # filter all tracks that only have th artist name
+  # filter out compilation albums
   def filter_tracks(tracks, search_artists)
     regex = Regexp.new(MULTIPLE_ARTIST_REGEX, Regexp::IGNORECASE)
-    tracks.filter do |t|
+    single_album_tracks = tracks.reject { |t| t.album.album_type == 'compilation' }
+
+    single_album_tracks.filter do |t|
       # e.g. ['martin, 'garrix', 'clinton', 'kane']
       track_artists_names = t.artists.map { |artist| artist.name.downcase.split(' ') }.flatten.reject { |n| n.match(/\W/) }
       song_artists_names = search_artists.gsub(regex, '').downcase.split(' ').flatten.reject { |n| n.match(/\W/) }
