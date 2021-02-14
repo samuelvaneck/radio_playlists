@@ -17,7 +17,7 @@ module RadioPlaylists
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    RSpotify::authenticate("ff70df650ee14a1fad4aed3b533e8ea4", "9899f570bc3e4781b9373e60d6f37095")
+    RSpotify::authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_CLIENT_SECRET'])
 
     # Set the local time zone
     config.time_zone = "Amsterdam"
