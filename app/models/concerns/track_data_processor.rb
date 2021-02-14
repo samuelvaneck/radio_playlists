@@ -19,11 +19,12 @@ module TrackDataProcessor
 
     # getting spotify track / filter out the aritst / get the track that is most popular
     tracks = RSpotify::Track.search("#{search_term.join(' ')} #{song_title}").sort_by(&:popularity).reverse
+    single_album_tracks = tracks.reject { |t| t.album.album_type == 'compilation' }
 
     # filter tracks
     filter_array = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit']
     filtered_tracks = []
-    tracks.each do |track|
+    single_album_tracks.each do |track|
       next if filter_array.include? track.artists.map(&:name).join(' ').downcase
 
       filtered_tracks << track
