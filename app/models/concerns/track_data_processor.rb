@@ -11,8 +11,8 @@ module TrackDataProcessor
   end
 
   def find_or_create_artist(name, song_title)
-    search_term = if name.match?(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/)
-                    name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/, '').downcase.split(' ')
+    search_term = if name.match?(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/i)
+                    name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/i, '').downcase.split(' ')
                   else
                     name.downcase.split(' ')
                   end
