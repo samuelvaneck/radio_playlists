@@ -36,13 +36,13 @@ class Radiostation < ActiveRecord::Base
 
   def import_song
     radio_station = self
-    artist_name, title, broadcast_timestamp = send(radio_station.processor.to_sym)
+    track = send(radio_station.processor.to_sym)
 
-    return false if artist_name.blank?
-    return false if illegal_word_in_title(title)
+    return false if track[:artist_name].blank?
+    return false if illegal_word_in_title(track[:title])
 
-    artists, song = process_track_data(artist_name, title)
-    create_generalplaylist(broadcast_timestamp, artists, song, radio_station)
+    artists, song = process_track_data(track[:artist_name], track[:title])
+    create_generalplaylist(track[:broadcast_timestamp], artists, song, radio_station)
   end
 
   def zero_playlist_items

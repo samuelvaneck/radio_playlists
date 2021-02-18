@@ -21,8 +21,14 @@ module Importable
       artist_name = CGI.unescapeHTML(track['artist']).titleize
       title = CGI.unescapeHTML(track['title']).titleize
       broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['startdatetime'])
+      spotify_url = track['spotify_url']
 
-      [artist_name, title, broadcast_timestamp]
+      {
+        artist_name: artist_name, 
+        title: title,
+        broadcast_timestamp: broadcast_timestamp,
+        spotify_url: spotify_url
+      }
     end
   rescue Net::ReadTimeout => _e
     puts "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
@@ -47,8 +53,14 @@ module Importable
     artist_name = track['track']['artistName']
     title = track['track']['title']
     broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['broadcastDate'])
+    spotify_url = nil
 
-    [artist_name, title, broadcast_timestamp]
+    {
+      artist_name: artist_name, 
+      title: title,
+      broadcast_timestamp: broadcast_timestamp,
+      spotify_url: spotify_url
+    }
   rescue Net::ReadTimeout => _e
     puts "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
   rescue Net::OpenTimeout => _e
@@ -68,8 +80,14 @@ module Importable
       broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['played_at'])
       artist_name = track['artist']['name'].titleize
       title = track['title']
+      spotify_url = track['spotify_url']
 
-      [artist_name, title, broadcast_timestamp]
+      {
+        artist_name: artist_name, 
+        title: title,
+        broadcast_timestamp: broadcast_timestamp,
+        spotify_url: spotify_url
+      }
     end
   end
 
@@ -99,7 +117,14 @@ module Importable
       puts "Radio station #{radio_station.name} not found in SCRAPER"
     end
 
-    [artist_name, title, Time.find_zone('Amsterdam').parse("#{date_string} #{time}")]
+    broadcast_timestamp = Time.find_zone('Amsterdam').parse("#{date_string} #{time}") 
+
+    {
+      artist_name: artist_name, 
+      title: title,
+      broadcast_timestamp: broadcast_timestamp,
+      spotify_url: nil
+    }
   end
 
   # Methode for creating the Generalplaylist record
