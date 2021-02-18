@@ -11,8 +11,9 @@ module TrackDataProcessor
   end
 
   def find_or_create_artist(name, song_title)
-    search_term = if name.match?(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/i)
-                    name.gsub(/;|feat.|ft.|feat|ft|&|vs.|vs|versus|and/i, '').downcase.split(' ')
+    regex = Regexp.new(Song::MULTIPLE_ARTIST_REGEX, Regexp::IGNORECASE)
+    search_term = if name.match?(regex)
+                    name.gsub(regex, '').downcase.split(' ')
                   else
                     name.downcase.split(' ')
                   end
@@ -22,10 +23,9 @@ module TrackDataProcessor
     single_album_tracks = tracks.reject { |t| t.album.album_type == 'compilation' }
 
     # filter tracks
-    filter_array = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit']
     filtered_tracks = []
     single_album_tracks.each do |track|
-      next if filter_array.include? track.artists.map(&:name).join(' ').downcase
+      next if Song::TRACK_FILTERS.include? track.artists.map(&:name).join(' ').downcase
 
       filtered_tracks << track
     end

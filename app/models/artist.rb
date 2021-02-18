@@ -33,10 +33,9 @@ class Artist < ActiveRecord::Base
 
   def spotify_search(search_term)
     results = RSpotify::Artist.search(search_term).sort_by(&:popularity).reverse
-    filter_array = ['karoke', 'cover', 'made famous', 'tribute']
     artists = []
     results.each do |artist|
-      next if filter_array.include? artist.name
+      next if Song::TRACK_FILTERS.include? artist.name
 
       artists << artist
     end

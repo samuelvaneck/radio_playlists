@@ -7,7 +7,9 @@ class Song < ActiveRecord::Base
   has_many :radiostations, through: :generalplaylists
 
   MULTIPLE_ARTIST_REGEX = ';|\bfeat.\b|\bft\b|\bfeat\b|\bft\b|&|\bvs.\b|\bvs\b|\bversus\b|\band\b|\bmet\b'
-  private_constant :MULTIPLE_ARTIST_REGEX
+  TRACK_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
+  public_constant :MULTIPLE_ARTIST_REGEX
+  public_constant :TRACK_FILTERS
 
   def self.search_title(title)
     where('title ILIKE ?', "%#{title}%")
