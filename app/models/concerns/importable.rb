@@ -53,13 +53,11 @@ module Importable
     artist_name = track['track']['artistName']
     title = track['track']['title']
     broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['broadcastDate'])
-    spotify_url = nil
 
     {
       artist_name: artist_name, 
       title: title,
-      broadcast_timestamp: broadcast_timestamp,
-      spotify_url: spotify_url
+      broadcast_timestamp: broadcast_timestamp
     }
   rescue Net::ReadTimeout => _e
     puts "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
@@ -122,8 +120,7 @@ module Importable
     {
       artist_name: artist_name, 
       title: title,
-      broadcast_timestamp: broadcast_timestamp,
-      spotify_url: nil
+      broadcast_timestamp: broadcast_timestamp
     }
   end
 
