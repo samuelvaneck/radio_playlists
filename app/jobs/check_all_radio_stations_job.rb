@@ -6,7 +6,7 @@ class CheckAllRadioStationsJob < ApplicationJob
   def perform
     Radiostation.all.each do |radio_station|
       ImportSongJob.perform_async(radio_station.id)
-      sleep 10
+      sleep 5
     end
   end
 end
