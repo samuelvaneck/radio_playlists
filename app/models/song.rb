@@ -6,7 +6,7 @@ class Song < ActiveRecord::Base
   has_many :generalplaylists
   has_many :radiostations, through: :generalplaylists
 
-  MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|\s&\s|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'
+  MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'
   TRACK_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
   public_constant :MULTIPLE_ARTIST_REGEX
   public_constant :TRACK_FILTERS
