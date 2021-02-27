@@ -39,7 +39,7 @@ class Spotify
   end
 
   def custom_album_rejector(single_album_tracks)
-    single_over_albums(single_album_tracks).reject { |t| CUSTOM_ALBUM_FILTERS.include? t.artists.map(&:name).join(' ').downcase }
+    single_album_tracks.reject { |t| CUSTOM_ALBUM_FILTERS.include? t.artists.map(&:name).join(' ').downcase }
   end
 
   def single_over_albums(single_album_tracks)
