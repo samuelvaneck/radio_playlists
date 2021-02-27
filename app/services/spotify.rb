@@ -1,7 +1,7 @@
 # frozen_string_literal: tru
 
 class Spotify
-  attr_accessor :artists, :title, :track
+  attr_accessor :artists, :title
 
   MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'.freeze
   CUSTOM_ALBUM_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
@@ -18,7 +18,7 @@ class Spotify
     spotify_search_results = spotify_search(search_term)
     single_album_tracks = filter_single_and_album_tracks(spotify_search_results)
     filtered_tracks = custom_album_rejector(single_album_tracks)
-    @track = filtered_tracks.max_by(&:popularity)
+    filtered_tracks.max_by(&:popularity)
   end
 
   private
@@ -39,12 +39,18 @@ class Spotify
   end
 
   def custom_album_rejector(single_album_tracks)
-    filtered_tracks = []
-    single_album_tracks.each do |track|
-      next if CUSTOM_ALBUM_FILTERS.include? track.artists.map(&:name).join(' ').downcase
+    single_over_albums(single_album_tracks).reject { |t| CUSTOM_ALBUM_FILTERS.include? t.artists.map(&:name).join(' ').downcase }
+  end
 
-      filtered_tracks << track
-    end
-    filtered_tracks
+  def single_over_albums(single_album_tracks)
+    single_tracks(single_album_tracks) || album_tracks(single_album_tracks)
+  end
+
+  def single_tracks(single_album_tracks)
+    single_album_tracks.select { |t| t.album.album_type == 'single' }
+  end
+
+  def album_tracks(single_album_tracks)
+    single_album_tracks.select { |t| t.album.album_type == 'album' }
   end
 end
