@@ -4,50 +4,26 @@ module TrackDataProcessor
   extend ActiveSupport::Concern
 
   def process_track_data(artist_name, title)
-    artists = find_or_create_artist(artist_name, title)
-    songs = Song.where('lower(title) = ?', title.downcase)
-    song = song_check(songs, artists, title)
+    spotify_track = Spotify.new(artists: artist_name, title: title).find_spotify_track
+    artists = find_or_create_artist(artist_name, spotify_track)
+    song = find_or_create_song(title, spotify_track, artists)
     [artists, song]
   end
 
-  def find_or_create_artist(name, song_title)
-    regex = Regexp.new(Song::MULTIPLE_ARTIST_REGEX, Regexp::IGNORECASE)
-    search_term = if name.match?(regex)
-                    name.gsub(regex, '').downcase.split(' ')
-                  else
-                    name.downcase.split(' ')
-                  end
-
-    # getting spotify track / filter out the aritst / get the track that is most popular
-    tracks = RSpotify::Track.search("#{search_term.join(' ')} #{song_title}").sort_by(&:popularity).reverse
-    single_album_tracks = tracks.reject { |t| t.album.album_type == 'compilation' }
-
-    # filter tracks
-    filtered_tracks = []
-    single_album_tracks.each do |track|
-      next if Song::TRACK_FILTERS.include? track.artists.map(&:name).join(' ').downcase
-
-      filtered_tracks << track
-    end
-
-    # get most popular track
-    track = filtered_tracks.max_by(&:popularity)
-
-    if track.present? && track.artists.present?
-      track.artists.map do |track_artist|
-        artist = Artist.find_or_initialize_by(name: track_artist.name)
-        # sanitizing artist
-        spotify_artist = artist.spotify_search(artist.name)
-        artist.name = spotify_artist.name
-        # set Spotify links
-        artist.spotify_artist_url = spotify_artist.external_urls['spotify']
-        artist.spotify_artwork_url = spotify_artist.images.first['url']
-        artist.save
-
-        artist
-      end
+  def find_or_create_artist(name, spotify_track)
+    if spotify_track.present? && spotify_track.artists.present?
+      Artist.spotify_track_to_artist(spotify_track)
     else
       Artist.find_or_initialize_by(name: name)
+    end
+  end
+
+  def find_or_create_song(title, spotify_track, artists)
+    if spotify_track.present?
+      Song.spotify_track_to_song(spotify_track)
+    else
+      songs = Song.where('lower(title) = ?', title.downcase)
+      song_check(songs, artists, title)
     end
   end
 
@@ -85,9 +61,12 @@ module TrackDataProcessor
   def find_spotify_links(song, artists)
     spotify_song = song.spotify_search(artists)
     if spotify_song.present?
-      song.title = spotify_song.name
-      song.spotify_song_url = spotify_song.external_urls['spotify']
-      song.spotify_artwork_url = spotify_song.album.images[0]['url']
+      song.assign_attributes(
+        title: spotify_song.name,
+        spotify_song_url: spotify_song.external_urls['spotify'],
+        spotify_artwork_url: spotify_song.album.images[0]['url'],
+        id_on_spotify: spotify_song.id
+      )
       song.save
     end
   end
@@ -96,7 +75,7 @@ module TrackDataProcessor
     # catch more then 4 digits, forward slashes, 2 single qoutes,
     # reklame/reclame/nieuws/pingel and 2 dots
     if title.match(/\d{4,}|\/|'{2,}|(reklame|reclame|nieuws|pingel)|\.{2,}/i)
-      Rails.logger.info "Find illegal word in #{title}"
+      Rails.logger.info "Found illegal word in #{title}"
       true
     else
       false

@@ -1,0 +1,50 @@
+# frozen_string_literal: tru
+
+class Spotify
+  attr_accessor :artists, :title, :track
+
+  MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'.freeze
+  CUSTOM_ALBUM_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
+  private_constant :MULTIPLE_ARTIST_REGEX
+  private_constant :CUSTOM_ALBUM_FILTERS
+
+  def initialize(artists: nil, title: nil)
+    @artists = artists
+    @title = title
+  end
+
+  def find_spotify_track
+    search_term = split_artists
+    spotify_search_results = spotify_search(search_term)
+    single_album_tracks = filter_single_and_album_tracks(spotify_search_results)
+    filtered_tracks = custom_album_rejector(single_album_tracks)
+    @track = filtered_tracks.max_by(&:popularity)
+  end
+
+  private
+
+  def split_artists
+    regex = Regexp.new(MULTIPLE_ARTIST_REGEX, Regexp::IGNORECASE)
+    @artists.match?(regex) ? @artists.downcase.split(regex).map(&:strip).join(' ') : @artists.downcase
+  end
+
+  def spotify_search(search_term)
+    RSpotify::Track.search("#{search_term} #{@title}")
+                   .sort_by(&:popularity)
+                   .reverse
+  end
+
+  def filter_single_and_album_tracks(spotify_tracks_search)
+    spotify_tracks_search.reject { |t| t.album.album_type == 'compilation' }
+  end
+
+  def custom_album_rejector(single_album_tracks)
+    filtered_tracks = []
+    single_album_tracks.each do |track|
+      next if CUSTOM_ALBUM_FILTERS.include? track.artists.map(&:name).join(' ').downcase
+
+      filtered_tracks << track
+    end
+    filtered_tracks
+  end
+end

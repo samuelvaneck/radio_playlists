@@ -31,15 +31,18 @@ class Artist < ActiveRecord::Base
     destroy if songs.count.zero?
   end
 
-  def spotify_search(search_term)
-    results = RSpotify::Artist.search(search_term).sort_by(&:popularity).reverse
-    artists = []
-    results.each do |artist|
-      next if Song::TRACK_FILTERS.include? artist.name
-
-      artists << artist
+  def self.spotify_track_to_artist(spotify_track)
+    spotify_track.artists.map do |track_artist|
+      artist = Artist.find_or_initialize_by(id_on_spotify: track_artist.id) || Artist.find_or_initialize_by(name: track_artist.name)
+      artist.assign_attributes(
+        name: track_artist.name,
+        spotify_artist_url: track_artist.external_urls['spotify'],
+        spotify_artwork_url: track_artist.images.first['url'],
+        id_on_spotify: track_artist.id
+      )
+      artist.save
+      artist
     end
-    artists.max_by(&:popularity)
   end
 
   def cleanup

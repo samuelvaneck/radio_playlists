@@ -31,6 +31,17 @@ class Song < ActiveRecord::Base
     songs.group(:song_id).count.sort_by { |_song_id, counter| counter }.reverse
   end
 
+  def self.spotify_track_to_song(spotify_track)
+    song = Song.find_or_initialize_by(id_on_spotify: spotify_track.id)
+    song.assign_attributes(
+      title: spotify_track.name,
+      spotify_song_url: spotify_track.external_urls['spotify'],
+      spotify_artwork_url: spotify_track.album.images[0]['url']
+    )
+    song.save
+    song
+  end
+
   def reload_artists(requested_artist = nil)
     track = spotify_search(Array.wrap(requested_artist) || artists)
     # do nothing if no track is present
