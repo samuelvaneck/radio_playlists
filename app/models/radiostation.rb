@@ -38,7 +38,7 @@ class Radiostation < ActiveRecord::Base
     radio_station = self
     track = send(radio_station.processor.to_sym)
 
-    return false if track[:artist_name].blank?
+    return false if track.blank? || track[:artist_name].blank?
     return false if illegal_word_in_title(track[:title])
 
     artists, song = process_track_data(track[:artist_name], track[:title])

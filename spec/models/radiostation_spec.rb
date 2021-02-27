@@ -7,12 +7,14 @@ RSpec.describe Radiostation do
   let(:playlist_4_hours_ago) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station, created_at: 4.hours.ago }
   let(:playlist_1_minute_ago) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station, created_at: 1.minute.ago }
 
-  let(:song_in_your_eyes_robin_schulz) { FactoryBot.create :song, title: 'In Your Eyes', artists: [artist_robin_schulz, artist_alida] }
-  let(:song_in_your_eyes_weekend) { FactoryBot.create :song, title: 'In Your Eyes', artists: [artist_the_weeknd] }
-  let(:artist_the_weeknd) { FactoryBot.create :artist, name: 'The Weeknd' }
-  let(:artist_robin_schulz) { FactoryBot.create :artist, name: 'Robin Schulz' }
-  let(:artist_alida) { FactoryBot.create :artist, name: 'Alida' }
-
+  def processor_return_object(artist_name, title, time)
+    {
+      artist_name: artist_name, 
+      title: title,
+      broadcast_timestamp: Time.find_zone('Amsterdam').parse(time),
+      spotify_url: nil
+    }
+  end
 
   describe '#validations' do
     it { is_expected.to validate_presence_of(:url) }
@@ -79,9 +81,11 @@ RSpec.describe Radiostation do
       it 'creates a new playlist item' do
         track_data = radio_1.npo_api_processor
 
-        if track_data.is_a?(Array)
-          expect(track_data).to be_an_instance_of(Array)
-          expect(track_data.count).to eq 3
+        if track_data.is_a?(Hash)
+          expect(track_data).to be_an_instance_of(Hash)
+          [:artist_name, :title, :broadcast_timestamp].each do |key|
+            expect(track_data).to have_key(key)
+          end
         else
           expect(track_data).to eq false
         end
@@ -95,9 +99,11 @@ RSpec.describe Radiostation do
       it 'creates an new playlist item' do
         track_data = sky_radio.talpa_api_processor
 
-        if track_data.is_a?(Array)
-          expect(track_data).to be_an_instance_of(Array)
-          expect(track_data.count).to eq 3
+        if track_data.is_a?(Hash)
+          expect(track_data).to be_an_instance_of(Hash)
+          [:artist_name, :title, :broadcast_timestamp].each do |key|
+            expect(track_data).to have_key(key)
+          end
         else
           expect(track_data).to eq false
         end
@@ -111,7 +117,7 @@ RSpec.describe Radiostation do
       it 'returns an artist_name, title and time' do
         track_data = sublime_fm.scraper
 
-        expect(track_data.count).to eq 3
+        expect(track_data.count).to eq 3 if track_data.present?
       end
     end
 
@@ -145,7 +151,7 @@ RSpec.describe Radiostation do
   describe '#radio_2_check' do
     let!(:radio_2) { FactoryBot.create(:radio_2) }
     it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:npo_api_processor).and_return(['Goldkimono', 'To Tomorrow', '20:13'])
+      allow_any_instance_of(Radiostation).to receive(:npo_api_processor).and_return(processor_return_object('Goldkimono', 'To Tomorrow', '20:13'))
       expect {
         radio_2.import_song
       }.to change(Generalplaylist, :count).by(1)
@@ -155,7 +161,7 @@ RSpec.describe Radiostation do
   describe '#radio_3fm_check' do
     let!(:radio_3_fm) { FactoryBot.create(:radio_3_fm) }
     it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:npo_api_processor).and_return(['Haim', 'The Steps', '19:16'])
+      allow_any_instance_of(Radiostation).to receive(:npo_api_processor).and_return(processor_return_object('Haim', 'The Steps', '19:16'))
       expect {
         radio_3_fm.import_song
       }.to change(Generalplaylist, :count).by(1)
@@ -165,7 +171,7 @@ RSpec.describe Radiostation do
   describe '#radio_5_check' do
     let!(:radio_5) { FactoryBot.create(:radio_5) }
     it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:npo_api_processor).and_return(['Fleetwood Mac', 'Everywhere', '19:05'])
+      allow_any_instance_of(Radiostation).to receive(:npo_api_processor).and_return(processor_return_object('Fleetwood Mac', 'Everywhere', '19:05'))
       expect {
         radio_5.import_song
       }.to change(Generalplaylist, :count).by(1)
@@ -175,7 +181,7 @@ RSpec.describe Radiostation do
   describe '#sky_radio_check' do
     let!(:sky_radio) { FactoryBot.create(:sky_radio) }
     it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(['Billy Ocean', 'When The Going Gets Tough', '13:17'])
+      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(processor_return_object('Billy Ocean', 'When The Going Gets Tough', '13:17'))
       expect {
         sky_radio.import_song
       }.to change(Generalplaylist, :count).by(1)
@@ -193,7 +199,7 @@ RSpec.describe Radiostation do
   describe '#radio_veronica_check' do
     let!(:radio_veronica) { FactoryBot.create(:radio_veronica) }
     it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(['Earth, Wind & Fire', "Let's Groove", '20:16'])
+      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(processor_return_object('Earth, Wind & Fire', "Let's Groove", '20:16'))
       expect {
         radio_veronica.import_song
       }.to change(Generalplaylist, :count).by(1)
@@ -203,7 +209,7 @@ RSpec.describe Radiostation do
   describe '#radio_538_check' do
     let!(:radio_538) { FactoryBot.create(:radio_538) }
     before do
-      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(['Robin Schulz, Erika Sirola', 'Speechless', '19:20'])
+      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(processor_return_object('Robin Schulz, Erika Sirola', 'Speechless', '19:20'))
     end
     it 'creates a new playlist item' do
       expect {
@@ -223,7 +229,7 @@ RSpec.describe Radiostation do
   describe '#radio_10_check' do
     let!(:radio_10) { FactoryBot.create(:radio_10) }
     it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(['The Farm', 'All Together Now', '13:39'])
+      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(processor_return_object('The Farm', 'All Together Now', '13:39'))
       expect {
         radio_10.import_song
       }.to change(Generalplaylist, :count).by(1)
@@ -318,15 +324,21 @@ RSpec.describe Radiostation do
   describe '#find_or_create_artist' do
     context 'with multiple name' do
       it 'returns the artists and not a karaoke version' do
-        result = Radiostation.new.find_or_create_artist('Martin Garrix & Clinton Kane', 'Drown')
+        spotify_track = Spotify.new(artists: 'Martin Garrix & Clinton Kane', title: 'Drown').find_spotify_track
+        result = Radiostation.new.find_or_create_artist('Martin Garrix & Clinton Kane', spotify_track)
 
         expect(result.map(&:name)).to contain_exactly 'Martin Garrix', 'Clinton Kane'
       end
     end
   end
 
-  describe '#song_check' do
-    before { song_in_your_eyes_robin_schulz }
+  describe '#find_or_create_song' do
+    let!(:song_in_your_eyes_robin_schulz) { FactoryBot.create :song, title: 'In Your Eyes', artists: [artist_robin_schulz, artist_alida] }
+    let!(:song_in_your_eyes_weekend) { FactoryBot.create :song, title: 'In Your Eyes', artists: [artist_the_weeknd] }
+    let!(:artist_the_weeknd) { FactoryBot.create :artist, name: 'The Weeknd' }
+    let!(:artist_robin_schulz) { FactoryBot.create :artist, name: 'Robin Schulz' }
+    let!(:artist_alida) { FactoryBot.create :artist, name: 'Alida' }
+
     context 'with a song present with the same name but different artist(s)' do
       it 'creates a new artist' do
         song = Radiostation.new.song_check([song_in_your_eyes_robin_schulz], [artist_the_weeknd], 'In Your Eyes')

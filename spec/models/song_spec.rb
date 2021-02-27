@@ -53,22 +53,6 @@ RSpec.describe Song do
     end
   end
 
-  describe '#spotify_search' do
-    context 'when having multiple song hits' do
-      it 'returns the song single and not karaoke version' do
-        result = song_drown.spotify_search([artist_martin_garrix, artist_clinton_kane])
-        expect(result.album.album_type).to eq 'single'
-
-        result = song_breaking_me.spotify_search([artist_topic])
-        expect(result.album.album_type).to eq 'single'
-
-        result = song_stuck_with_u.spotify_search([artist_justin_bieber, artist_ariana_grande])
-        expect(result.album.album_type).to eq 'single'
-        expect(result.artists.map(&:name)).to contain_exactly 'Justin Bieber', 'Ariana Grande'
-      end
-    end
-  end
-
   describe '#cleanup' do
     context 'if the song has no playlists' do
       let!(:song_no_playlist) { FactoryBot.create :song }
