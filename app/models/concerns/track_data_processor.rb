@@ -32,30 +32,25 @@ module TrackDataProcessor
   # if the artist with the some song is not in the database the song with artist Id must be added
   def song_check(songs, artists, title)
     # If there is no song with the same title create a new one
-    result = nil
-    if songs.blank?
-      result = Song.find_or_create_by(title: title)
-    # If the is a song with the same title check the artist
-    elsif artists.blank?
-      # If there is no song title with the same artist create a new one
-      result = Song.find_or_create_by(title: title)
-    else
-      # Else grap the song record with the same title and artist id
-      artist_ids = Array.wrap(artists.instance_of?(Array) ? artists.map(&:id) : artists.id)
-      query_songs = Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', title.downcase)
-      if query_songs.present?
-        result = query_songs
-      else
-        song = Song.new(title: title)
-        song.artists << artists
-        result = song
-      end
-    end
+    result = if songs.blank? || artists.blank?
+               Song.find_or_create_by(title: title)
+             elsif query_songs(artists, title)
+               query_songs(artists, title)
+             else
+               song = Song.new(title: title, artists: artists)
+               song.artists << artists
+               song
+             end
 
     song = result.is_a?(Song) ? result : result.first
     # set spotify song links
     find_spotify_links(song, artists)
     song
+  end
+
+  def query_songs(artists, title)
+    artist_ids = Array.wrap(artists.instance_of?(Array) ? artists.map(&:id) : artists.id)
+    Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', title.downcase)
   end
 
   def find_spotify_links(song, artists)
