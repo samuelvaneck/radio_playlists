@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_14_194320) do
+ActiveRecord::Schema.define(version: 2021_02_27_150050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_01_14_194320) do
     t.datetime "updated_at", null: false
     t.string "spotify_artist_url"
     t.string "spotify_artwork_url"
+    t.string "id_on_spotify"
   end
 
   create_table "artists_songs", id: false, force: :cascade do |t|
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(version: 2021_01_14_194320) do
     t.text "fullname"
     t.string "spotify_song_url"
     t.string "spotify_artwork_url"
+    t.string "id_on_spotify"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
