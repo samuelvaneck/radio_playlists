@@ -42,28 +42,12 @@ module TrackDataProcessor
                song
              end
 
-    song = result.is_a?(Song) ? result : result.first
-    # set spotify song links
-    find_spotify_links(song, artists)
-    song
+    result.is_a?(Song) ? result : result.first
   end
 
   def query_songs(artists, title)
     artist_ids = Array.wrap(artists.instance_of?(Array) ? artists.map(&:id) : artists.id)
     Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', title.downcase)
-  end
-
-  def find_spotify_links(song, artists)
-    spotify_song = song.spotify_search(artists)
-    if spotify_song.present?
-      song.assign_attributes(
-        title: spotify_song.name,
-        spotify_song_url: spotify_song.external_urls['spotify'],
-        spotify_artwork_url: spotify_song.album.images[0]['url'],
-        id_on_spotify: spotify_song.id
-      )
-      song.save
-    end
   end
 
   def illegal_word_in_title(title)

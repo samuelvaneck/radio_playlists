@@ -24,13 +24,6 @@ class Artist < ActiveRecord::Base
     artists.group(:artist_id).count.sort_by { |_artist_id, counter| counter }.reverse
   end
 
-  def reload_artist_songs
-    songs.each(&:reload_artists)
-    songs.reload
-
-    destroy if songs.count.zero?
-  end
-
   def self.spotify_track_to_artist(spotify_track)
     spotify_track.artists.map do |track_artist|
       artist = Artist.find_or_initialize_by(id_on_spotify: track_artist.id) || Artist.find_or_initialize_by(name: track_artist.name)
