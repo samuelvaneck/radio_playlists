@@ -4,9 +4,9 @@ class Spotify
   attr_accessor :artists, :title
 
   MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'.freeze
-  CUSTOM_ALBUM_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
+  TRACK_FILTERS = ['karaoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
   private_constant :MULTIPLE_ARTIST_REGEX
-  private_constant :CUSTOM_ALBUM_FILTERS
+  private_constant :TRACK_FILTERS
 
   def initialize(artists: nil, title: nil)
     @artists = artists
@@ -39,7 +39,7 @@ class Spotify
   end
 
   def custom_album_rejector(single_album_tracks)
-    single_album_tracks.reject { |t| CUSTOM_ALBUM_FILTERS.include? t.artists.map(&:name).join(' ').downcase }
+    single_album_tracks.reject { |t| (TRACK_FILTERS - t.artists.map(&:name).join.downcase.split).count < TRACK_FILTERS.count }
   end
 
   def single_over_albums(single_album_tracks)
