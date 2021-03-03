@@ -3,7 +3,7 @@
 class Spotify
   attr_accessor :artists, :title
 
-  MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'.freeze
+  MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/|\sx\s'.freeze
   TRACK_FILTERS = ['karaoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
   private_constant :MULTIPLE_ARTIST_REGEX
   private_constant :TRACK_FILTERS
