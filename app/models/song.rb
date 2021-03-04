@@ -46,4 +46,32 @@ class Song < ActiveRecord::Base
     destroy if generalplaylists.blank?
     artists.each(&:cleanup)
   end
+
+  def self.find_and_remove_absolute_songs
+    Song.all.each do |song|
+      songs = find_same_songs(song)
+      correct_song = songs.last
+      next if songs.count <= 1 || correct_song.blank?
+
+      remove_absolute_songs(songs, correct_song)
+    end
+  end
+
+  private
+
+  def find_same_songs(song)
+    artist_ids = song.artists.map(&:id)
+    Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', song.title.downcase)
+  end
+
+  def remove_absolute_songs(songs, correct_song)
+    songs.map(&:id).each do |id|
+      next if id == correct_song.id
+
+      absolute_song = Song.find(id) rescue next
+      gps = Generalplaylist.where(song: absolute_song)
+      gps.each { |gp| gp.update_attribute('song_id', correct_song.id) }
+      absolute_song.cleanup
+    end
+  end
 end
