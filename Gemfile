@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.0.0'
+ruby '3.0.2'
 
 gem 'coffee-rails'
 gem 'dotenv-rails'
@@ -9,7 +9,6 @@ gem 'jsonapi-serializer', '~> 2.0.0'
 gem 'jbuilder', '~> 2.10'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'materialize-sass'
 gem 'nokogiri', '>= 1.10.9'
 gem 'pg'
 gem 'puma', '~> 5.1'

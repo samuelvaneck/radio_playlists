@@ -4,7 +4,7 @@
     build:
       working_directory: ~/radio_playlists
       docker:
-        - image: circleci/ruby:3.0.0-node-browsers
+        - image: circleci/ruby:3.0.2-node-browsers
           environment:
             POSTGRES_HOST: localhost
             POSTGRES_USER: radio_playlists
@@ -20,7 +20,7 @@
         - add_ssh_keys:
             fingerprints:
               - "0d:3b:3a:6e:fb:ba:86:a9:9d:fa:41:ab:bc:3b:56:31"
-  
+
         # Restore Cached Dependencies
         - type: cache-restore
           name: Restore bundle cache
@@ -29,17 +29,17 @@
         - type: cache-restore
           name: Restore Yarn Package Cache
           key: yarn-packages-{{ checksum "yarn.lock" }}
-        
+
         # install bundler
         - run: gem install bundler:2.1.4
-  
+
         # Bundle install dependencies
         - run: bundle install --path vendor/bundle
 
         # add yarn
         - run: yarn install --cache-folder ~/.cache/yarn
         - run: bin/rails webpacker:compile
-  
+
         # Cache Dependencies
         - type: cache-save
           name: Store bundle cache
@@ -52,13 +52,13 @@
           key: radio_playlists-yarn-{{ checksum "yarn.lock" }}
           paths:
             - ~/.yarn-cache
-  
+
         # Wait for DB
         - run: dockerize -wait tcp://localhost:5432 -timeout 1m
-  
+
         # Setup the environment
         - run: cp .env.circle-ci .env
-  
+
         # update rake
         - run: bundle update rake
         - run: gem install uri -v 0.10.1
@@ -66,7 +66,7 @@
         # Setup the database
         - run: bundle exec rails db:test:prepare
         - run: bundle exec rails db:seed
-  
+
         # Run the tests
         - run: bundle exec rspec
         - run: bundle exec rubocop
