@@ -103,7 +103,7 @@ GEM
       railties (>= 3.2)
     e2mmap (0.1.0)
     erubi (1.10.0)
-    et-orbi (1.2.4)
+    et-orbi (1.2.5)
       tzinfo
     execjs (2.8.1)
     factory_bot (6.2.0)
@@ -113,7 +113,7 @@ GEM
       railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
-    faraday (1.7.1)
+    faraday (1.8.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -134,7 +134,7 @@ GEM
     faraday-rack (1.0.0)
     ffi (1.15.4)
     formatador (0.3.0)
-    fugit (1.5.1)
+    fugit (1.5.2)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
     globalid (0.5.2)
@@ -169,7 +169,7 @@ GEM
     json (2.3.1)
     jsonapi-serializer (2.0.0)
       activesupport (>= 4.2)
-    jwt (2.2.3)
+    jwt (2.3.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.7.0)
@@ -187,7 +187,7 @@ GEM
       activesupport (>= 3.1.0)
       rack (>= 1.4.0)
       rest-client (>= 2.0.0)
-    marcel (1.0.1)
+    marcel (1.0.2)
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
@@ -200,7 +200,7 @@ GEM
     nenv (0.3.0)
     netrc (0.11.0)
     nio4r (2.5.8)
-    nokogiri (1.12.4-x86_64-linux)
+    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     notiffany (0.1.3)
       nenv (~> 0.1)
@@ -218,7 +218,7 @@ GEM
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
-    parallel (1.20.1)
+    parallel (1.21.0)
     parser (3.0.2.0)
       ast (~> 2.4.1)
     pg (1.2.3)
@@ -231,7 +231,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (3.1.1)
-    puma (5.4.0)
+    puma (5.5.0)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.5.2)
@@ -312,16 +312,16 @@ GEM
       addressable (~> 2.5.2)
       omniauth-oauth2 (>= 1.6)
       rest-client (~> 2.0.2)
-    rubocop (1.20.0)
+    rubocop (1.22.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.9.1, < 2.0)
+      rubocop-ast (>= 1.12.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.11.0)
+    rubocop-ast (1.12.0)
       parser (>= 3.0.1.1)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
@@ -362,7 +362,7 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.3)
-    spring (2.1.1)
+    spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -384,8 +384,8 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.7)
-    unicode-display_width (2.0.0)
+    unf_ext (0.0.8)
+    unicode-display_width (2.1.0)
     uri (0.10.1)
     web-console (4.1.0)
       actionview (>= 6.0.0)
@@ -396,7 +396,7 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (>= 3.0, < 4.0)
-    webpacker (5.4.2)
+    webpacker (5.4.3)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -436,7 +436,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma (~> 5.1)
-  rails (~> 6.0, >= 6.0.3.2)
+  rails (~> 6.1, >= 6.1.4.1)
   rails-controller-testing
   responders
   rspec-rails
@@ -462,4 +462,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.2.27
+   2.2.29
