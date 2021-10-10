@@ -1,19 +1,11 @@
 FROM ruby:3.0.2-alpine3.14
 
-# RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-# RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-# RUN echo "deb [trusted=yes] https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-# RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs yarn libnss3-dev
-
-# Install system dependencies and remove the cache to free up space afterwards
-RUN apk --update add --virtual build-dependencies \
-    build-base \
+RUN apk --update add --virtual build-dependencies build-base \
     ruby-dev \
     postgresql-dev \
     libxml2 libxml2-dev libxslt libxslt-dev libc-dev linux-headers \
     nodejs yarn tzdata bash \
       && rm -rf /var/cache/lists/*_*
-
 
 ARG RAILS_ENV=production
 ENV RUBYOPT='-W0' \
