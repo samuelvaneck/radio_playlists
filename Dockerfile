@@ -16,20 +16,10 @@ RUN mkdir $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 COPY . $INSTALL_PATH
 RUN rm -rf "${INSTALL_PATH}/tmp"
-RUN gem update --system && \
-    gem install bundler && \
-    bundle update rake && \
-    yarn install --check-files && \
-    bundle config build.nokogiri --use-system-libraries && \
-    bundle config --global frozen 1 && \
-    bundle config set --local without 'development test' && \
-    bundle install \
-        --jobs "$(nproc --all)" \
-        --retry 3 --quiet && \
-    bundle exec rake assets:precompile \
-        --quiet --silent \
-        --jobs "$(nproc --all)" \
-        RAILS_ENV=${RAILS_ENV}
 
-
-
+RUN gem install bundler
+RUN bundle config set deployment 'true'
+RUN bundle config build.nokogiri --use-system-libraries
+RUN bundle config set --local without 'development test'
+RUN bundle install --jobs "$(nproc --all)" --retry 3
+RUN bundle exec rails assets:precompile --jobs "$(nproc --all)"
