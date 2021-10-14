@@ -4,23 +4,24 @@ module TrackDataProcessor
   extend ActiveSupport::Concern
 
   def process_track_data(artist_name, title)
-    spotify_track = Spotify.new(artists: artist_name, title: title).find_spotify_track
-    artists = find_or_create_artist(artist_name, spotify_track)
-    song = find_or_create_song(title, spotify_track, artists)
+    spotify = Spotify.new(artists: artist_name, title: title)
+    spotify.find_spotify_track
+    artists = find_or_create_artist(artist_name, spotify)
+    song = find_or_create_song(title, spotify, artists)
     [artists, song]
   end
 
-  def find_or_create_artist(name, spotify_track)
-    if spotify_track.present? && spotify_track.artists.present?
-      Artist.spotify_track_to_artist(spotify_track)
+  def find_or_create_artist(name, spotify)
+    if spotify.track.present? && spotify.track_artists.present?
+      Artist.spotify_track_to_artist(spotify)
     else
       Artist.find_or_initialize_by(name: name)
     end
   end
 
-  def find_or_create_song(title, spotify_track, artists)
-    if spotify_track.present?
-      Song.spotify_track_to_song(spotify_track)
+  def find_or_create_song(title, spotify, artists)
+    if spotify.track.present?
+      Song.spotify_track_to_song(spotify)
     else
       songs = Song.where('lower(title) = ?', title.downcase)
       song_check(songs, artists, title)
