@@ -9,6 +9,8 @@ module TrackDataProcessor
     artists = find_or_create_artist(artist_name, spotify)
     song = find_or_create_song(title, spotify, artists)
     [artists, song]
+  rescue StandardError => e
+    Sentry.capture_exception(e)
   end
 
   def find_or_create_artist(name, spotify)
@@ -28,6 +30,8 @@ module TrackDataProcessor
       songs = Song.where('lower(title) = ?', title.downcase)
       song_check(songs, artists, title)
     end
+  rescue StandardError => e
+    Sentry.capture_exception(e)
   end
 
   # Methode for checking if there are songs with the same title.

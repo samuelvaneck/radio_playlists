@@ -10,8 +10,8 @@ class Spotify
     @title = title
     @token = get_token(cache: true)
     @track = find_spotify_track
-    @track_artists = @track['album']['artists'].map { |artist| artist } || nil
-    @track_title = @track['name'] || nil
+    @track_artists = set_track_artists
+    @track_title = set_track_title
   end
 
   def find_spotify_track
@@ -122,5 +122,13 @@ class Spotify
 
   def artist_url(id_on_spotify)
     URI("https://api.spotify.com/v1/artists/#{id_on_spotify}")
+  end
+
+  def set_track_artists
+    @track.present? ? @track['album']['artists'].map { |artist| artist } : nil
+  end
+
+  def set_track_title
+    @track.present? ? @track['name'] : nil
   end
 end
