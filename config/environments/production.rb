@@ -55,7 +55,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_SERVER'], size: 64.megabytes }
 
   config.action_mailer.delivery_method = :mailjet
   config.action_mailer.perform_deliveries = true

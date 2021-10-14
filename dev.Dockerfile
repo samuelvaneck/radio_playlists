@@ -5,7 +5,7 @@ RUN apk --update add --virtual build-dependencies \
     ruby-dev \
     postgresql-dev \
     libxml2 libxml2-dev libxslt libxslt-dev libc-dev linux-headers \
-    libcurl curl curl-dev \
+    libcurl curl curl-dev less \
     nodejs yarn tzdata bash \
       && rm -rf /var/cache/lists/*_*
 

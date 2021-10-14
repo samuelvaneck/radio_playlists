@@ -24,14 +24,14 @@ class Artist < ActiveRecord::Base
     artists.group(:artist_id).count.sort_by { |_artist_id, counter| counter }.reverse
   end
 
-  def self.spotify_track_to_artist(spotify_track)
-    spotify_track.artists.map do |track_artist|
-      artist = Artist.find_or_initialize_by(id_on_spotify: track_artist.id) || Artist.find_or_initialize_by(name: track_artist.name)
+  def self.spotify_track_to_artist(spotify)
+    spotify.track_artists.map do |track_artist|
+      artist = Artist.find_or_initialize_by(id_on_spotify: track_artist['id']) || Artist.find_or_initialize_by(name: track_artist['name'])
       artist.assign_attributes(
-        name: track_artist.name,
-        spotify_artist_url: track_artist.external_urls['spotify'],
-        spotify_artwork_url: track_artist.images.first['url'],
-        id_on_spotify: track_artist.id
+        name: track_artist['name'],
+        spotify_artist_url: track_artist['external_urls']['spotify'],
+        spotify_artwork_url: spotify.track['album']['images'][0]['url'],
+        id_on_spotify: track_artist['id']
       )
       artist.save
       artist
