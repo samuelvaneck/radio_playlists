@@ -125,10 +125,14 @@ class Spotify
   end
 
   def set_track_artists
-    @track.present? ? @track['album']['artists'].map { |artist| artist } : nil
+    return if @track.blank?
+
+    @track['album']['artists'].map do |artist|
+      make_artist_request(artist['id'])
+    end
   end
 
   def set_track_title
-    @track.present? ? @track['name'] : nil
+    @track['name'] if @track.present?
   end
 end
