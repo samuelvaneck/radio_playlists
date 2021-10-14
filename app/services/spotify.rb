@@ -15,7 +15,10 @@ class Spotify
   end
 
   def find_spotify_track
-    spotify_search_results = make_request
+    url = search_url
+    spotify_search_results = make_request(url)
+    return if spotify_search_results.blank?
+
     single_album_tracks = filter_single_and_album_tracks(spotify_search_results)
     filtered_tracks = custom_album_rejector(single_album_tracks)
     filtered_tracks.max_by { |track| track['popularity'] }
@@ -56,7 +59,7 @@ class Spotify
       token
     end
   rescue Errno::EACCES => e
-    Rails.logger.info "🔑 Error fetching token: #{e}"
+    Sentry.capture_exception(e)
     get_token(cache: false)
   end
 
@@ -70,8 +73,6 @@ class Spotify
 
     response = https.request(request)
     JSON(response.body)['access_token']
-  rescue RestClient::BadRequest => e
-    Rails.logger.info "Create token error: #{e}"
   end
 
   def token_cache_key
@@ -86,15 +87,14 @@ class Spotify
     Base64.strict_encode64("#{ENV['SPOTIFY_CLIENT_ID']}:#{ENV['SPOTIFY_CLIENT_SECRET']}")
   end
 
-  def make_request(method: 'GET', read_timeout: 60)
-    https = Net::HTTP.new(search_url.host, search_url.port)
+  def make_request(url, method: 'GET', read_timeout: 60)
+    https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
-    request = Net::HTTP::Get.new(search_url)
+    request = Net::HTTP::Get.new(url)
     request['Authorization'] = "Bearer #{@token}"
     request['Content-Type'] = 'application/json'
 
-    response = https.request(request)
-    JSON(response.body)
+    JSON(https.request(request).body)
   end
 
   def search_url
@@ -110,16 +110,6 @@ class Spotify
     @artists.match?(regex) ? @artists.downcase.split(regex).map(&:strip).join(' ') : @artists.downcase
   end
 
-  def make_artist_request(id_on_spotify)
-    url = artist_url(id_on_spotify)
-    https = Net::HTTP.new(url.host, url.port)
-    https.use_ssl = true
-    request = Net::HTTP::Get.new(url)
-    request['Authorization'] = "Bearer #{@token}"
-    request['Content-Type'] = 'application/json'
-    JSON(https.request(request).body)
-  end
-
   def artist_url(id_on_spotify)
     URI("https://api.spotify.com/v1/artists/#{id_on_spotify}")
   end
@@ -128,7 +118,8 @@ class Spotify
     return if @track.blank?
 
     @track['album']['artists'].map do |artist|
-      make_artist_request(artist['id'])
+      url = artist_url(artist['id'])
+      make_request(url)
     end
   end
 
