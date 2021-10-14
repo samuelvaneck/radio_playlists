@@ -30,7 +30,7 @@ class Artist < ActiveRecord::Base
       artist.assign_attributes(
         name: track_artist['name'],
         spotify_artist_url: track_artist['external_urls']['spotify'],
-        spotify_artwork_url: strack_artist['images'][0]['url'],
+        spotify_artwork_url: track_artist['images'][0]['url'],
         id_on_spotify: track_artist['id']
       )
       artist.save
