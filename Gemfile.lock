@@ -113,6 +113,25 @@ GEM
       railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
+    faraday (1.8.0)
+      faraday-em_http (~> 1.0)
+      faraday-em_synchrony (~> 1.0)
+      faraday-excon (~> 1.1)
+      faraday-httpclient (~> 1.0.1)
+      faraday-net_http (~> 1.0)
+      faraday-net_http_persistent (~> 1.1)
+      faraday-patron (~> 1.0)
+      faraday-rack (~> 1.0)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords (>= 0.0.4)
+    faraday-em_http (1.0.0)
+    faraday-em_synchrony (1.0.0)
+    faraday-excon (1.1.0)
+    faraday-httpclient (1.0.1)
+    faraday-net_http (1.0.1)
+    faraday-net_http_persistent (1.2.0)
+    faraday-patron (1.0.0)
+    faraday-rack (1.0.0)
     ffi (1.15.4)
     formatador (0.3.0)
     fugit (1.5.2)
@@ -173,6 +192,7 @@ GEM
     mime-types-data (3.2021.0901)
     mini_mime (1.1.1)
     minitest (5.14.4)
+    multipart-post (2.1.1)
     nenv (0.3.0)
     netrc (0.11.0)
     nio4r (2.5.8)
@@ -283,6 +303,7 @@ GEM
     rubocop-ast (1.12.0)
       parser (>= 3.0.1.1)
     ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     rufus-scheduler (3.8.0)
       fugit (~> 1.1, >= 1.1.6)
@@ -300,6 +321,16 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    sentry-rails (4.7.3)
+      railties (>= 5.0)
+      sentry-ruby-core (~> 4.7.0)
+    sentry-ruby (4.7.3)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      faraday (>= 1.0)
+      sentry-ruby-core (= 4.7.3)
+    sentry-ruby-core (4.7.3)
+      concurrent-ruby
+      faraday
     shellany (0.0.1)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
@@ -402,6 +433,8 @@ DEPENDENCIES
   rubocop
   sass-rails
   selenium-webdriver
+  sentry-rails
+  sentry-ruby
   shoulda-matchers
   sidekiq
   sidekiq-scheduler (~> 3.0, >= 3.0.1)

@@ -17,6 +17,8 @@ module TrackDataProcessor
     else
       Artist.find_or_initialize_by(name: name)
     end
+  rescue StandardError => e
+    Sentry.capture_exception(e)
   end
 
   def find_or_create_song(title, spotify, artists)

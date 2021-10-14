@@ -43,6 +43,8 @@ class Radiostation < ActiveRecord::Base
 
     artists, song = process_track_data(track[:artist_name], track[:title])
     create_generalplaylist(track[:broadcast_timestamp], artists, song, radio_station)
+  rescue StandardError => e
+    Sentry.capture_exception(e)
   end
 
   def zero_playlist_items
