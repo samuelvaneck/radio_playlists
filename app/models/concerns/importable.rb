@@ -24,7 +24,7 @@ module Importable
       spotify_url = track['spotify_url']
 
       {
-        artist_name: artist_name, 
+        artist_name: artist_name,
         title: title,
         broadcast_timestamp: broadcast_timestamp,
         spotify_url: spotify_url
@@ -44,7 +44,7 @@ module Importable
     data = `curl '#{radio_station.url}' \
           -H 'x-api-key: #{ENV['TALPA_API_KEY']}' \
           -H 'content-type: application/json'`
-    
+
     json = JSON.parse(data)
     raise StandardError if json.blank?
     raise StandardError if json['errors'].present?
@@ -55,7 +55,7 @@ module Importable
     broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['broadcastDate'])
 
     {
-      artist_name: artist_name, 
+      artist_name: artist_name,
       title: title,
       broadcast_timestamp: broadcast_timestamp
     }
@@ -81,7 +81,7 @@ module Importable
       spotify_url = track['spotify_url']
 
       {
-        artist_name: artist_name, 
+        artist_name: artist_name,
         title: title,
         broadcast_timestamp: broadcast_timestamp,
         spotify_url: spotify_url
@@ -115,10 +115,10 @@ module Importable
       puts "Radio station #{radio_station.name} not found in SCRAPER"
     end
 
-    broadcast_timestamp = Time.find_zone('Amsterdam').parse("#{date_string} #{time}") 
+    broadcast_timestamp = Time.find_zone('Amsterdam').parse("#{date_string} #{time}")
 
     {
-      artist_name: artist_name, 
+      artist_name: artist_name,
       title: title,
       broadcast_timestamp: broadcast_timestamp
     }
@@ -131,7 +131,7 @@ module Importable
     if last_played_song.blank?
       add_song(broadcast_timestamp, artists, song, radio_station)
     elsif last_played_song.broadcast_timestamp == broadcast_timestamp && last_played_song.song == song
-      puts "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{radio_station.name}"  
+      puts "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{radio_station.name}"
     else
       puts 'No song added'
     end
