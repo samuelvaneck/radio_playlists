@@ -1,21 +1,19 @@
 # frozen_string_literal: true
-
 module TrackDataProcessor
   extend ActiveSupport::Concern
 
   def process_track_data(artist_name, title)
-    spotify = Spotify.new(artists: artist_name, title: title)
-    spotify.find_spotify_track
-    artists = find_or_create_artist(artist_name, spotify)
-    song = find_or_create_song(title, spotify, artists)
+    track = Spotify::Track.new(artists: artist_name, title: title)
+    artists = find_or_create_artist(artist_name, track)
+    song = find_or_create_song(title, track, artists)
     [artists, song]
   rescue StandardError => e
     Sentry.capture_exception(e)
   end
 
-  def find_or_create_artist(name, spotify)
-    if spotify.track.present? && spotify.track_artists.present?
-      Artist.spotify_track_to_artist(spotify)
+  def find_or_create_artist(name, track)
+    if track.present? && track.artists.present?
+      Artist.spotify_track_to_artist(track)
     else
       Artist.find_or_initialize_by(name: name)
     end
@@ -23,9 +21,9 @@ module TrackDataProcessor
     Sentry.capture_exception(e)
   end
 
-  def find_or_create_song(title, spotify, artists)
-    if spotify.track.present?
-      Song.spotify_track_to_song(spotify)
+  def find_or_create_song(title, track, artists)
+    if track.present?
+      Song.spotify_track_to_song(track)
     else
       songs = Song.where('lower(title) = ?', title.downcase)
       song_check(songs, artists, title)
