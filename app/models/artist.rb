@@ -24,8 +24,8 @@ class Artist < ActiveRecord::Base
     artists.group(:artist_id).count.sort_by { |_artist_id, counter| counter }.reverse
   end
 
-  def self.spotify_track_to_artist(spotify)
-    spotify.track_artists.map do |track_artist|
+  def self.spotify_track_to_artist(track)
+    track.artists.map do |track_artist|
       artist = Artist.find_or_initialize_by(id_on_spotify: track_artist['id']) || Artist.find_or_initialize_by(name: track_artist['name'])
       artist.assign_attributes(
         name: track_artist['name'],

@@ -31,12 +31,12 @@ class Song < ActiveRecord::Base
     songs.group(:song_id).count.sort_by { |_song_id, counter| counter }.reverse
   end
 
-  def self.spotify_track_to_song(spotify)
-    song = Song.find_or_initialize_by(id_on_spotify: spotify.track['id'])
+  def self.spotify_track_to_song(track)
+    song = Song.find_or_initialize_by(id_on_spotify: track.track['id'])
     song.assign_attributes(
-      title: spotify.track_title,
-      spotify_song_url: spotify.track['external_urls']['spotify'],
-      spotify_artwork_url:  spotify.track['album']['images'][0]['url']
+      title: track.title,
+      spotify_song_url: track.track['external_urls']['spotify'],
+      spotify_artwork_url:  track.track['album']['images'][0]['url']
     )
     song.save
     song
