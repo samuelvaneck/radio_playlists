@@ -62,5 +62,6 @@ class Spotify
       retry
     end
     Sentry.capture(e)
+    nil
   end
 end

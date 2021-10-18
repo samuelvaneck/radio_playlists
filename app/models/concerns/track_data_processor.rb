@@ -10,6 +10,7 @@ module TrackDataProcessor
     [artists, song]
   rescue StandardError => e
     Sentry.capture_exception(e)
+    nil
   end
 
   def find_or_create_artist(name, track)
@@ -20,6 +21,7 @@ module TrackDataProcessor
     end
   rescue StandardError => e
     Sentry.capture_exception(e)
+    nil
   end
 
   def find_or_create_song(title, track, artists)
@@ -31,6 +33,7 @@ module TrackDataProcessor
     end
   rescue StandardError => e
     Sentry.capture_exception(e)
+    nil
   end
 
   # Methode for checking if there are songs with the same title.
