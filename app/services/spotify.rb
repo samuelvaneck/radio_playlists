@@ -5,9 +5,7 @@ class Spotify
 
   class TokenCreationError < StandardError; end
 
-  def initialize(args = nil)
-    @search_artists = set_search_artist(args)
-    @search_title = set_search_title(args)
+  def initialize(args = {})
     @token = get_token(cache: true)
   end
 
@@ -57,13 +55,5 @@ class Spotify
     request['Content-Type'] = 'application/json'
 
     JSON(https.request(request).body)
-  end
-
-  def set_search_artist(args)
-    args[:artists] rescue nil
-  end
-
-  def set_search_title(args)
-    args[:title] rescue nil
   end
 end

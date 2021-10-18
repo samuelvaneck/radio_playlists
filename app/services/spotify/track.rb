@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
 class Spotify::Track < Spotify
-  attr_reader :track, :artists, :title
+  attr_reader :search_artists, :search_title, :track, :artists, :title
 
   def initialize(args)
     super
+    @search_artists = args[:artists]
+    @search_title = args[:title]
     @track = find_spotify_track
     @artists = set_track_artists
     @title = set_track_title
   end
 
   def find_spotify_track
-    url = search_url
     spotify_search_results = make_request(url)
     return if spotify_search_results.blank?
 
@@ -23,7 +24,7 @@ class Spotify::Track < Spotify
   private
 
   # make request params
-  def search_url
+  def url
     URI("https://api.spotify.com/v1/search?q=#{search_params}&type=track")
   end
 
@@ -41,7 +42,7 @@ class Spotify::Track < Spotify
     return if @track.blank?
 
     @track['album']['artists'].map do |artist|
-      Spotify::Artist.new(artist['id']).info
+      Spotify::Artist.new({ id_on_spotify: artist['id'] }).info
     end
   end
 
