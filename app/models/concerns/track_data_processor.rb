@@ -23,7 +23,7 @@ module TrackDataProcessor
   end
 
   def find_or_create_song(title, track, artists)
-    if track.present?
+    if track.present? && track&.track&.present?
       Song.spotify_track_to_song(track)
     else
       songs = Song.where('lower(title) = ?', title.downcase)

@@ -29,7 +29,7 @@ class Spotify::Track < Spotify
   end
 
   def search_params
-    CGI.escape("#{split_artists} #{@search_title}")
+    CGI.escape("#{@search_title} artist:#{split_artists}")
   end
 
   def split_artists

@@ -47,7 +47,8 @@ class Spotify
     Base64.strict_encode64("#{ENV['SPOTIFY_CLIENT_ID']}:#{ENV['SPOTIFY_CLIENT_SECRET']}")
   end
 
-  def make_request(url, method: 'GET', read_timeout: 60)
+  def make_request(url)
+    attempt ||= 1
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     request = Net::HTTP::Get.new(url)
@@ -55,5 +56,11 @@ class Spotify
     request['Content-Type'] = 'application/json'
 
     JSON(https.request(request).body)
+  rescue StandardError => e
+    if attempts < 3
+      attempts += 1
+      retry
+    end
+    Sentry.capture(e)
   end
 end
