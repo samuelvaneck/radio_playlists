@@ -48,7 +48,7 @@ class Spotify
   end
 
   def make_request(url)
-    attempt ||= 1
+    attempts ||= 1
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     request = Net::HTTP::Get.new(url)
@@ -60,8 +60,9 @@ class Spotify
     if attempts < 3
       attempts += 1
       retry
+    else
+      Sentry.capture(e)
+      nil
     end
-    Sentry.capture(e)
-    nil
   end
 end
