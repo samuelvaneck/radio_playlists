@@ -42,6 +42,8 @@ class Radiostation < ActiveRecord::Base
     return false if illegal_word_in_title(track[:title])
 
     artists, song = process_track_data(track[:artist_name], track[:title])
+    return false if artists.nil? || song.nil?
+
     create_generalplaylist(track[:broadcast_timestamp], artists, song, radio_station)
   rescue StandardError => e
     Sentry.capture_exception(e)
