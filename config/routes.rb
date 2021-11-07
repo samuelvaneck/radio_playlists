@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   root 'generalplaylists#index'
 
   mount Sidekiq::Web => '/sidekiq'
+  mount HealthBit.rack => '/health'
 end
