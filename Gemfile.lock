@@ -154,8 +154,8 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    health_check (3.1.0)
-      railties (>= 5.0)
+    health_bit (0.1.8)
+      rack
     http-accept (1.7.0)
     http-cookie (1.0.4)
       domain_name (~> 0.5)
@@ -419,7 +419,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   guard-rspec
-  health_check
+  health_bit
   jbuilder (~> 2.10)
   jquery-rails
   jquery-ui-rails

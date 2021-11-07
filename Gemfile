@@ -4,7 +4,7 @@ ruby '3.0.2'
 
 gem 'coffee-rails'
 gem 'dotenv-rails'
-gem 'health_check'
+gem 'health_bit'
 gem 'json', '~> 2.3.0'
 gem 'jsonapi-serializer', '~> 2.0.0'
 gem 'jbuilder', '~> 2.10'
