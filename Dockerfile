@@ -18,6 +18,7 @@ WORKDIR $INSTALL_PATH
 COPY . $INSTALL_PATH
 RUN rm -rf "${INSTALL_PATH}/tmp"
 
+RUN gem update --system
 RUN gem install bundler
 RUN bundle config set deployment 'true'
 RUN bundle config build.nokogiri --use-system-libraries
