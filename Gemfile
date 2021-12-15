@@ -4,7 +4,7 @@ ruby '3.0.2'
 
 gem 'dotenv-rails'
 gem 'health_bit'
-gem 'json', '~> 2.3.0'
+gem 'json', '~> 2.6.1'
 gem 'jsonapi-serializer', '~> 2.0.0'
 gem 'jbuilder', '~> 2.10'
 gem 'nokogiri', '>= 1.10.9'
