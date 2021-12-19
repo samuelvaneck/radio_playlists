@@ -2,7 +2,7 @@
 
 require 'sinatra/base'
 
-class FakeSpotify < Sinatra::base
+class FakeSpotify < Sinatra::Base
   post '/api/token' do
     valid_token_response
   end
@@ -12,10 +12,9 @@ class FakeSpotify < Sinatra::base
   def valid_token_response
     content_type :json
     status 200
-    body (
+    body ({
       'access_token': 'NgCXRKc...MzYjw',
       'token_type': 'Bearer',
-      'expires_in': 3600
-    ).to_json
+      'expires_in': 3600 }).to_json
   end
 end
