@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx/1.19.10
       Date:
-      - Sun, 19 Dec 2021 14:25:19 GMT
+      - Sun, 19 Dec 2021 15:28:09 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -61,7 +61,58 @@ http_interactions:
         a fool believes","artist":"Doobie Brothers","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273ba6340ac3b1653b6ea0e5da5","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273ba6340ac3b1653b6ea0e5da5","spotify_url":"https://open.spotify.com/track/2yBVeksU2EtrPJbTu4ZslK"},{"startdatetime":"2021-12-18T21:38:36","enddatetime":"2021-12-18T21:42:10","title":"Sir
         Duke","artist":"Stevie Wonder","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2732fee61bfec596bb6f5447c50","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2732fee61bfec596bb6f5447c50","spotify_url":"https://open.spotify.com/track/4pNiE4LCVV74vfIBaUHm1b"},{"startdatetime":"2021-12-18T16:44:23","enddatetime":"2021-12-18T16:47:56","title":"Outta
         love","artist":"Vera, Danny","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273d5b1f4cd8b398bf2e9db7c36","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273d5b1f4cd8b398bf2e9db7c36","spotify_url":"https://open.spotify.com/track/2EoCbbuNwmfRugZxX4B7KX"}]}'
-  recorded_at: Sun, 19 Dec 2021 14:25:19 GMT
+  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 Dec 2021 15:28:09 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQDEwBUr-izbyt1TH5UFbVqlTfRBDkD6mgSMICrX-foE3muSJOArSWp92P00cvFpNla_jcHg9JuSzKOGHfdsNMK2jVK-Z1QQrj8;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - e70fc8b75951dfe6
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQD0lLcJawwY8Bp9x6-AFBcygGW0VhhZorVIJWbasrvEpvQ58oximGG-LDc-x2i0SxmP8zIz_7QZU9gnfTU","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/search?q=Shine%20Your%20Light%20artist:mell%20vintage%20future&type=track
@@ -78,7 +129,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      - Bearer BQD0lLcJawwY8Bp9x6-AFBcygGW0VhhZorVIJWbasrvEpvQ58oximGG-LDc-x2i0SxmP8zIz_7QZU9gnfTU
       Content-Type:
       - application/json
   response:
@@ -108,7 +159,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:25:19 GMT
+      - Sun, 19 Dec 2021 15:28:09 GMT
       Server:
       - envoy
       Via:
@@ -335,7 +386,58 @@ http_interactions:
             "total" : 3
           }
         }
-  recorded_at: Sun, 19 Dec 2021 14:25:19 GMT
+  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 Dec 2021 15:28:09 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQDrka5r5vvf-Izsu3PzQIeaIXkbH62N2kzbqXQZnJ0EPBaRbdpxKUk5p0HHyYYdABpboPZ489XBatIo_zTFZxYTvy9dw-I9HBk;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 4aae65f7991d7052
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQBGFLqKVILY6ncq9_0k7sdYwgsitq1_0ZfnI91dfgh7LWfB9hsrcZtdleLhWY_SOlXZsmeI0ArUNj6vJZE","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8
@@ -352,7 +454,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      - Bearer BQBGFLqKVILY6ncq9_0k7sdYwgsitq1_0ZfnI91dfgh7LWfB9hsrcZtdleLhWY_SOlXZsmeI0ArUNj6vJZE
       Content-Type:
       - application/json
   response:
@@ -363,7 +465,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=78414
+      - public, max-age=76521
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -382,7 +484,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:25:19 GMT
+      - Sun, 19 Dec 2021 15:28:09 GMT
       Server:
       - envoy
       Via:
@@ -423,5 +525,5 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
         }
-  recorded_at: Sun, 19 Dec 2021 14:25:19 GMT
+  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
 recorded_with: VCR 6.0.0

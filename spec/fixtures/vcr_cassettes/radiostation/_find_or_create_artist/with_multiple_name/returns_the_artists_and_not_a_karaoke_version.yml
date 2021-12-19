@@ -1,6 +1,57 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 Dec 2021 15:28:09 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQAf-ie4slRkgAmuB01viQmuxS0r5vShlAWS-ky1WG6VKPWsdS9P5wQOzDvzQN79tqVQaC_hPEVtUrhBp1Rb2F5iUWqgHgoZUf8;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - bb2e21975fa63d11
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQD9MlWExKo-JcmshQXepqZZ3uYVd5_eCA0JizVnM3IW83FmxiyCgyk26S7mnyDcPDTE9yjCHdsLFy3MEGQ","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
+- request:
     method: get
     uri: https://api.spotify.com/v1/search?q=Drown%20artist:martin%20garrix%20clinton%20kane&type=track
     body:
@@ -16,7 +67,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      - Bearer BQD9MlWExKo-JcmshQXepqZZ3uYVd5_eCA0JizVnM3IW83FmxiyCgyk26S7mnyDcPDTE9yjCHdsLFy3MEGQ
       Content-Type:
       - application/json
   response:
@@ -46,7 +97,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:25:19 GMT
+      - Sun, 19 Dec 2021 15:28:09 GMT
       Server:
       - envoy
       Via:
@@ -1037,7 +1088,58 @@ http_interactions:
             "total" : 10
           }
         }
-  recorded_at: Sun, 19 Dec 2021 14:25:19 GMT
+  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 Dec 2021 15:28:10 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQAQw-eaGiYkNQhk9ZRo_gPEYU5Dvn5Kysq1A7UvoSWRPwpSRBZxDY54dpja5POmIvOSttVZ3X1q7mis9Bf7jtn43AKoHk3a7ZQ;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 36058087e85339dc
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQDiKxAwNC7fjvaC3C5Jr_TZjQMLaUcEq6ZPr8LLvj9KRvF6Gj4V7QNN_fawS3eZ59dv8r1JEgq1ZxSrgVg","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ
@@ -1054,7 +1156,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      - Bearer BQDiKxAwNC7fjvaC3C5Jr_TZjQMLaUcEq6ZPr8LLvj9KRvF6Gj4V7QNN_fawS3eZ59dv8r1JEgq1ZxSrgVg
       Content-Type:
       - application/json
   response:
@@ -1065,7 +1167,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=76410
+      - public, max-age=83989
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1084,7 +1186,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:25:19 GMT
+      - Sun, 19 Dec 2021 15:28:09 GMT
       Server:
       - envoy
       Via:
@@ -1125,7 +1227,58 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
         }
-  recorded_at: Sun, 19 Dec 2021 14:25:19 GMT
+  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 Dec 2021 15:28:10 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQBvwt435iaFH4eCRQY8fAMwxLKFMs6aWj9CeZlWdKFKE9sMrYzoKt9ZFSauYQ2WoqXEUOitE1TlmpfGE8eC8HjfjI6_P8_P1hQ;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 3bf275e7e2c23d54
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQBPYqxJfkRwPV0VKCtaryvyEzlqFlwM4wL9ldz3dNgxgwzaidh82nVgXLWsySh_oijHcwJPo2ML8XoJrfs","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 19 Dec 2021 15:28:10 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P
@@ -1142,7 +1295,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      - Bearer BQBPYqxJfkRwPV0VKCtaryvyEzlqFlwM4wL9ldz3dNgxgwzaidh82nVgXLWsySh_oijHcwJPo2ML8XoJrfs
       Content-Type:
       - application/json
   response:
@@ -1153,7 +1306,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=75687
+      - public, max-age=79001
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1172,7 +1325,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:25:19 GMT
+      - Sun, 19 Dec 2021 15:28:10 GMT
       Server:
       - envoy
       Via:
@@ -1213,5 +1366,5 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
         }
-  recorded_at: Sun, 19 Dec 2021 14:25:20 GMT
+  recorded_at: Sun, 19 Dec 2021 15:28:10 GMT
 recorded_with: VCR 6.0.0

@@ -1,6 +1,57 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 Dec 2021 15:28:12 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQBDUtoSYL4aHqsJKirqW5RlQHH6gjH0EJsKJygfv-5pB93rmex5hzBNTgOOy2yfZr_KChaO0iY3wt9BB2fNfNPRWHPiKbSwABQ;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 8b15dfffd3bc649d
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQArBKnKnDF_tL0DAUWwoI9qhmwJg_TvJLzEpY07b59WhYOoZVkn3dJ8SCClxOBnm5EuRHRjvTk8dBIcWac","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 19 Dec 2021 15:28:12 GMT
+- request:
     method: get
     uri: https://api.spotify.com/v1/search?q=When%20The%20Going%20Gets%20Tough%20artist:billy%20ocean&type=track
     body:
@@ -16,7 +67,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      - Bearer BQArBKnKnDF_tL0DAUWwoI9qhmwJg_TvJLzEpY07b59WhYOoZVkn3dJ8SCClxOBnm5EuRHRjvTk8dBIcWac
       Content-Type:
       - application/json
   response:
@@ -46,7 +97,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:25:13 GMT
+      - Sun, 19 Dec 2021 15:28:12 GMT
       Server:
       - envoy
       Via:
@@ -554,7 +605,58 @@ http_interactions:
             "total" : 7
           }
         }
-  recorded_at: Sun, 19 Dec 2021 14:25:13 GMT
+  recorded_at: Sun, 19 Dec 2021 15:28:12 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 Dec 2021 15:28:12 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQDXt77Rdjs8PV25eXkBei6JkUC-5_cb9QoLGQa-2rbTeRCm15zzif3XLJWk_6_pD33ggrqQKQw7lJIQfaCJq8azqu-dEycqjRY;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - f36e78cdf6e87e18
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQBIFoRQCL4yxLJBkjbrJwB3CBlzvpC26fHmhwMp82vALneF_c50ni6v6m5uJ1nbYVs107Odz5Sw5-NVvy8","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 19 Dec 2021 15:28:12 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo
@@ -571,7 +673,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      - Bearer BQBIFoRQCL4yxLJBkjbrJwB3CBlzvpC26fHmhwMp82vALneF_c50ni6v6m5uJ1nbYVs107Odz5Sw5-NVvy8
       Content-Type:
       - application/json
   response:
@@ -582,7 +684,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=85787
+      - public, max-age=78135
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -601,7 +703,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:25:13 GMT
+      - Sun, 19 Dec 2021 15:28:12 GMT
       Server:
       - envoy
       Via:
@@ -642,5 +744,5 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
         }
-  recorded_at: Sun, 19 Dec 2021 14:25:13 GMT
+  recorded_at: Sun, 19 Dec 2021 15:28:12 GMT
 recorded_with: VCR 6.0.0

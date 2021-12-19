@@ -1,6 +1,57 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 Dec 2021 15:28:06 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQA6-VdRJq4E2wCURLtgquFH-6eMUH28kZ7N0Cxclln-OoMibDP858MQs6MgQynoEiieNGg-b1rb-r-fZrQP2G7ge3huTDtIVso;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 7da7990103ef1f42
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQDumJYpGWMRDrSLPakmhd3W8Iuc4QrphD6dKxhiPXpkXWYugnzC0E5pSIMYRz4IbFV-UpzZrNhLcJ3rdM0","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 19 Dec 2021 15:28:06 GMT
+- request:
     method: get
     uri: https://api.spotify.com/v1/search?q=All%20Together%20Now%20artist:the%20farm&type=track
     body:
@@ -16,7 +67,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      - Bearer BQDumJYpGWMRDrSLPakmhd3W8Iuc4QrphD6dKxhiPXpkXWYugnzC0E5pSIMYRz4IbFV-UpzZrNhLcJ3rdM0
       Content-Type:
       - application/json
   response:
@@ -46,7 +97,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:25:20 GMT
+      - Sun, 19 Dec 2021 15:28:06 GMT
       Server:
       - envoy
       Via:
@@ -452,23 +503,23 @@ http_interactions:
               } ],
               "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
               "disc_number" : 1,
-              "duration_ms" : 355944,
+              "duration_ms" : 410488,
               "explicit" : false,
               "external_ids" : {
-                "isrc" : "GBFDB0700427"
+                "isrc" : "GBFDB0700430"
               },
               "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/2JahpkDwH3MuW6zkZKPkgq"
+                "spotify" : "https://open.spotify.com/track/2ZmoaE7byyXP2ct9ZtGcrV"
               },
-              "href" : "https://api.spotify.com/v1/tracks/2JahpkDwH3MuW6zkZKPkgq",
-              "id" : "2JahpkDwH3MuW6zkZKPkgq",
+              "href" : "https://api.spotify.com/v1/tracks/2ZmoaE7byyXP2ct9ZtGcrV",
+              "id" : "2ZmoaE7byyXP2ct9ZtGcrV",
               "is_local" : false,
-              "name" : "Stepping Stone",
-              "popularity" : 10,
-              "preview_url" : "https://p.scdn.co/mp3-preview/76610cbfe10683979b424d1f9bb8769d03ad0eaa?cid=ff70df650ee14a1fad4aed3b533e8ea4",
-              "track_number" : 1,
+              "name" : "Groovy Train",
+              "popularity" : 8,
+              "preview_url" : "https://p.scdn.co/mp3-preview/a95a781a622ddb06e5648c003ae68a2f5c55e911?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 4,
               "type" : "track",
-              "uri" : "spotify:track:2JahpkDwH3MuW6zkZKPkgq"
+              "uri" : "spotify:track:2ZmoaE7byyXP2ct9ZtGcrV"
             }, {
               "album" : {
                 "album_type" : "album",
@@ -520,23 +571,23 @@ http_interactions:
               } ],
               "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
               "disc_number" : 1,
-              "duration_ms" : 410488,
+              "duration_ms" : 355944,
               "explicit" : false,
               "external_ids" : {
-                "isrc" : "GBFDB0700430"
+                "isrc" : "GBFDB0700427"
               },
               "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/2ZmoaE7byyXP2ct9ZtGcrV"
+                "spotify" : "https://open.spotify.com/track/2JahpkDwH3MuW6zkZKPkgq"
               },
-              "href" : "https://api.spotify.com/v1/tracks/2ZmoaE7byyXP2ct9ZtGcrV",
-              "id" : "2ZmoaE7byyXP2ct9ZtGcrV",
+              "href" : "https://api.spotify.com/v1/tracks/2JahpkDwH3MuW6zkZKPkgq",
+              "id" : "2JahpkDwH3MuW6zkZKPkgq",
               "is_local" : false,
-              "name" : "Groovy Train",
-              "popularity" : 8,
-              "preview_url" : "https://p.scdn.co/mp3-preview/a95a781a622ddb06e5648c003ae68a2f5c55e911?cid=ff70df650ee14a1fad4aed3b533e8ea4",
-              "track_number" : 4,
+              "name" : "Stepping Stone",
+              "popularity" : 10,
+              "preview_url" : "https://p.scdn.co/mp3-preview/76610cbfe10683979b424d1f9bb8769d03ad0eaa?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
               "type" : "track",
-              "uri" : "spotify:track:2ZmoaE7byyXP2ct9ZtGcrV"
+              "uri" : "spotify:track:2JahpkDwH3MuW6zkZKPkgq"
             }, {
               "album" : {
                 "album_type" : "album",
@@ -607,74 +658,6 @@ http_interactions:
               "uri" : "spotify:track:7fLoDPFTkarrzFjnQrj2g8"
             }, {
               "album" : {
-                "album_type" : "compilation",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
-                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
-                  "name" : "Various Artists",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
-                } ],
-                "available_markets" : [ "CA", "US" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/4XWQtfFc9ddEBnijfuSYNK"
-                },
-                "href" : "https://api.spotify.com/v1/albums/4XWQtfFc9ddEBnijfuSYNK",
-                "id" : "4XWQtfFc9ddEBnijfuSYNK",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b27371071b9c4fc088f4e2b537aa",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e0271071b9c4fc088f4e2b537aa",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d0000485171071b9c4fc088f4e2b537aa",
-                  "width" : 64
-                } ],
-                "name" : "90's Pop",
-                "release_date" : "2018-10-26",
-                "release_date_precision" : "day",
-                "total_tracks" : 40,
-                "type" : "album",
-                "uri" : "spotify:album:4XWQtfFc9ddEBnijfuSYNK"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
-                },
-                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
-                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
-                "name" : "The Farm",
-                "type" : "artist",
-                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
-              } ],
-              "available_markets" : [ "CA", "US" ],
-              "disc_number" : 1,
-              "duration_ms" : 343866,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "USRE19901615"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/1qgca7XtLpGGrn7khIQY0S"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/1qgca7XtLpGGrn7khIQY0S",
-              "id" : "1qgca7XtLpGGrn7khIQY0S",
-              "is_local" : false,
-              "name" : "All Together Now",
-              "popularity" : 0,
-              "preview_url" : "https://p.scdn.co/mp3-preview/077dea37ce3a7203f513246c434465ed641ea12b?cid=ff70df650ee14a1fad4aed3b533e8ea4",
-              "track_number" : 28,
-              "type" : "track",
-              "uri" : "spotify:track:1qgca7XtLpGGrn7khIQY0S"
-            }, {
-              "album" : {
                 "album_type" : "album",
                 "artists" : [ {
                   "external_urls" : {
@@ -741,6 +724,74 @@ http_interactions:
               "track_number" : 8,
               "type" : "track",
               "uri" : "spotify:track:7pdrndTlAPncej5zEaaHeH"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4XWQtfFc9ddEBnijfuSYNK"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4XWQtfFc9ddEBnijfuSYNK",
+                "id" : "4XWQtfFc9ddEBnijfuSYNK",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27371071b9c4fc088f4e2b537aa",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0271071b9c4fc088f4e2b537aa",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485171071b9c4fc088f4e2b537aa",
+                  "width" : 64
+                } ],
+                "name" : "90's Pop",
+                "release_date" : "2018-10-26",
+                "release_date_precision" : "day",
+                "total_tracks" : 40,
+                "type" : "album",
+                "uri" : "spotify:album:4XWQtfFc9ddEBnijfuSYNK"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 343866,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRE19901615"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/1qgca7XtLpGGrn7khIQY0S"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/1qgca7XtLpGGrn7khIQY0S",
+              "id" : "1qgca7XtLpGGrn7khIQY0S",
+              "is_local" : false,
+              "name" : "All Together Now",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/077dea37ce3a7203f513246c434465ed641ea12b?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 28,
+              "type" : "track",
+              "uri" : "spotify:track:1qgca7XtLpGGrn7khIQY0S"
             }, {
               "album" : {
                 "album_type" : "album",
@@ -1519,7 +1570,58 @@ http_interactions:
             "total" : 43
           }
         }
-  recorded_at: Sun, 19 Dec 2021 14:25:21 GMT
+  recorded_at: Sun, 19 Dec 2021 15:28:06 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 Dec 2021 15:28:06 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQBpPHbZxQc0fvFaKyWDcf0A5-vFYahBC02dFuoEN6iu1Zfl5EJ9BVGWM5B27ND6_8Oq4ABzVNP9kgEyrw_YdAvyOig1YXH7z_E;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 204074e26454fe73
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQCqAjhWSRVjPpOAF6rbat6a7rChaYaHsQ2ZxptKtziDg98XYmSkR0RtpsMIqeirlX9XHuJOKbxpxLBboZI","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 19 Dec 2021 15:28:06 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR
@@ -1536,7 +1638,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      - Bearer BQCqAjhWSRVjPpOAF6rbat6a7rChaYaHsQ2ZxptKtziDg98XYmSkR0RtpsMIqeirlX9XHuJOKbxpxLBboZI
       Content-Type:
       - application/json
   response:
@@ -1547,7 +1649,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=79036
+      - public, max-age=79812
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1566,7 +1668,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:25:20 GMT
+      - Sun, 19 Dec 2021 15:28:06 GMT
       Server:
       - envoy
       Via:
@@ -1611,5 +1713,5 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
         }
-  recorded_at: Sun, 19 Dec 2021 14:25:21 GMT
+  recorded_at: Sun, 19 Dec 2021 15:28:06 GMT
 recorded_with: VCR 6.0.0
