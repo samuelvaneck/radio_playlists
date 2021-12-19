@@ -3,12 +3,12 @@
 require 'vcr'
 
 VCR.configure do |config|
-  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
 end
 
 RSpec.configure do |config|
-  config.around(:example, use_vcr: true) do |example|
+  config.around(use_vcr: true) do |example|
     options = {}
     path_data = [example.metadata[:description]]
     parent = example.example_group
@@ -26,7 +26,7 @@ RSpec.configure do |config|
     VCR.turn_off!
   end
 
-  config.around(:example, real_http: true) do |example|
+  config.around(real_http: true) do |example|
     WebMock.reset!
     WebMock.disable!
     VCR.turn_off!

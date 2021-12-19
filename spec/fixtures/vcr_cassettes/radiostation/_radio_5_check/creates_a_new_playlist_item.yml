@@ -1,0 +1,986 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Everywhere%20artist:fleetwood%20mac&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 14:04:01 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=Everywhere+artist%3Afleetwood+mac&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                  "id" : "08GQAI4eElDnROBrJRGE0X",
+                  "name" : "Fleetwood Mac",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4AsXQ17Arq1cUVoa9dKJ3F"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4AsXQ17Arq1cUVoa9dKJ3F",
+                "id" : "4AsXQ17Arq1cUVoa9dKJ3F",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273aaba065944cd82a6f15c86b6",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02aaba065944cd82a6f15c86b6",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851aaba065944cd82a6f15c86b6",
+                  "width" : 64
+                } ],
+                "name" : "Tango In the Night (Deluxe Edition)",
+                "release_date" : "1987-04-13",
+                "release_date_precision" : "day",
+                "total_tracks" : 39,
+                "type" : "album",
+                "uri" : "spotify:album:4AsXQ17Arq1cUVoa9dKJ3F"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 226653,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH11602189"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/254bXAqt3zP6P50BdQvEsq"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/254bXAqt3zP6P50BdQvEsq",
+              "id" : "254bXAqt3zP6P50BdQvEsq",
+              "is_local" : false,
+              "name" : "Everywhere - 2017 Remaster",
+              "popularity" : 79,
+              "preview_url" : "https://p.scdn.co/mp3-preview/fc21d8858878cc332046baf964a9ef19f9510e99?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 3,
+              "type" : "track",
+              "uri" : "spotify:track:254bXAqt3zP6P50BdQvEsq"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                  "id" : "08GQAI4eElDnROBrJRGE0X",
+                  "name" : "Fleetwood Mac",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0LfM3PGkXE6KvJEE1HkOnz"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0LfM3PGkXE6KvJEE1HkOnz",
+                "id" : "0LfM3PGkXE6KvJEE1HkOnz",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273813da91820fd194cbee5bdce",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02813da91820fd194cbee5bdce",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851813da91820fd194cbee5bdce",
+                  "width" : 64
+                } ],
+                "name" : "Greatest Hits",
+                "release_date" : "1988-11-21",
+                "release_date_precision" : "day",
+                "total_tracks" : 16,
+                "type" : "album",
+                "uri" : "spotify:album:0LfM3PGkXE6KvJEE1HkOnz"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 222733,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USWB19900202"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/1prZ0pr6XoRCxcrC3MCL0M"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/1prZ0pr6XoRCxcrC3MCL0M",
+              "id" : "1prZ0pr6XoRCxcrC3MCL0M",
+              "is_local" : false,
+              "name" : "Everywhere",
+              "popularity" : 66,
+              "preview_url" : "https://p.scdn.co/mp3-preview/4a09325cc96a189742c45fe40ed39d498fa19a45?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 5,
+              "type" : "track",
+              "uri" : "spotify:track:1prZ0pr6XoRCxcrC3MCL0M"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                  "id" : "08GQAI4eElDnROBrJRGE0X",
+                  "name" : "Fleetwood Mac",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/06JqOkwwy91OxrApXclzYf"
+                },
+                "href" : "https://api.spotify.com/v1/albums/06JqOkwwy91OxrApXclzYf",
+                "id" : "06JqOkwwy91OxrApXclzYf",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273470a57c2dc8710171d4783df",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02470a57c2dc8710171d4783df",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851470a57c2dc8710171d4783df",
+                  "width" : 64
+                } ],
+                "name" : "50 Years - Don't Stop",
+                "release_date" : "2018-11-16",
+                "release_date_precision" : "day",
+                "total_tracks" : 50,
+                "type" : "album",
+                "uri" : "spotify:album:06JqOkwwy91OxrApXclzYf"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 223253,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH11802597"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7BRMVjSXolblx6ZXliSaMl"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7BRMVjSXolblx6ZXliSaMl",
+              "id" : "7BRMVjSXolblx6ZXliSaMl",
+              "is_local" : false,
+              "name" : "Everywhere - 2018 Remaster",
+              "popularity" : 47,
+              "preview_url" : "https://p.scdn.co/mp3-preview/a63936d3acadb8f8ba2af991b7cc140eb668065b?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 7,
+              "type" : "track",
+              "uri" : "spotify:track:7BRMVjSXolblx6ZXliSaMl"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                  "id" : "08GQAI4eElDnROBrJRGE0X",
+                  "name" : "Fleetwood Mac",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7CWZNdANL2ZYQs3JfdxoM5"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7CWZNdANL2ZYQs3JfdxoM5",
+                "id" : "7CWZNdANL2ZYQs3JfdxoM5",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273e8556a4e368fe3871df5de59",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02e8556a4e368fe3871df5de59",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851e8556a4e368fe3871df5de59",
+                  "width" : 64
+                } ],
+                "name" : "Tango in the Night (2017 Remaster)",
+                "release_date" : "1987-04-14",
+                "release_date_precision" : "day",
+                "total_tracks" : 12,
+                "type" : "album",
+                "uri" : "spotify:album:7CWZNdANL2ZYQs3JfdxoM5"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 226653,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH11602189"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/4k5FeWIdUaBx5OZdvrSYP1"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/4k5FeWIdUaBx5OZdvrSYP1",
+              "id" : "4k5FeWIdUaBx5OZdvrSYP1",
+              "is_local" : false,
+              "name" : "Everywhere - 2017 Remaster",
+              "popularity" : 47,
+              "preview_url" : "https://p.scdn.co/mp3-preview/fc21d8858878cc332046baf964a9ef19f9510e99?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 3,
+              "type" : "track",
+              "uri" : "spotify:track:4k5FeWIdUaBx5OZdvrSYP1"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                  "id" : "08GQAI4eElDnROBrJRGE0X",
+                  "name" : "Fleetwood Mac",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/70MrKoi2AdCFBxKqeXDPHZ"
+                },
+                "href" : "https://api.spotify.com/v1/albums/70MrKoi2AdCFBxKqeXDPHZ",
+                "id" : "70MrKoi2AdCFBxKqeXDPHZ",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2730b8de3e1eb45d3b13bdb7057",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e020b8de3e1eb45d3b13bdb7057",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048510b8de3e1eb45d3b13bdb7057",
+                  "width" : 64
+                } ],
+                "name" : "The Dance",
+                "release_date" : "1997-08-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 17,
+                "type" : "album",
+                "uri" : "spotify:album:70MrKoi2AdCFBxKqeXDPHZ"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 208733,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRE19700407"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6xTtThCvuvIYHl1ddntJGj"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6xTtThCvuvIYHl1ddntJGj",
+              "id" : "6xTtThCvuvIYHl1ddntJGj",
+              "is_local" : false,
+              "name" : "Everywhere - Live at Warner Brothers Studios in Burbank, CA 5/23/97",
+              "popularity" : 41,
+              "preview_url" : "https://p.scdn.co/mp3-preview/c2fb099763eaa4065195a82b7f9af887264e9f52?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 3,
+              "type" : "track",
+              "uri" : "spotify:track:6xTtThCvuvIYHl1ddntJGj"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                  "id" : "08GQAI4eElDnROBrJRGE0X",
+                  "name" : "Fleetwood Mac",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/600CiKJo7zfaBJKnkThbyD"
+                },
+                "href" : "https://api.spotify.com/v1/albums/600CiKJo7zfaBJKnkThbyD",
+                "id" : "600CiKJo7zfaBJKnkThbyD",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2737d26138bad83453cdf7d13c3",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e027d26138bad83453cdf7d13c3",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048517d26138bad83453cdf7d13c3",
+                  "width" : 64
+                } ],
+                "name" : "The Very Best Of Fleetwood Mac",
+                "release_date" : "2002-10-12",
+                "release_date_precision" : "day",
+                "total_tracks" : 36,
+                "type" : "album",
+                "uri" : "spotify:album:600CiKJo7zfaBJKnkThbyD"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 2,
+              "duration_ms" : 221973,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USWB10202628"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/48TUYgTSBFBNFMSXOzOWDI"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/48TUYgTSBFBNFMSXOzOWDI",
+              "id" : "48TUYgTSBFBNFMSXOzOWDI",
+              "is_local" : false,
+              "name" : "Everywhere - 2002 Remaster",
+              "popularity" : 30,
+              "preview_url" : "https://p.scdn.co/mp3-preview/d307c755eb85bdac272d2d00c7cb2350ea923336?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 13,
+              "type" : "track",
+              "uri" : "spotify:track:48TUYgTSBFBNFMSXOzOWDI"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                  "id" : "08GQAI4eElDnROBrJRGE0X",
+                  "name" : "Fleetwood Mac",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4AsXQ17Arq1cUVoa9dKJ3F"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4AsXQ17Arq1cUVoa9dKJ3F",
+                "id" : "4AsXQ17Arq1cUVoa9dKJ3F",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273aaba065944cd82a6f15c86b6",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02aaba065944cd82a6f15c86b6",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851aaba065944cd82a6f15c86b6",
+                  "width" : 64
+                } ],
+                "name" : "Tango In the Night (Deluxe Edition)",
+                "release_date" : "1987-04-13",
+                "release_date_precision" : "day",
+                "total_tracks" : 39,
+                "type" : "album",
+                "uri" : "spotify:album:4AsXQ17Arq1cUVoa9dKJ3F"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 3,
+              "duration_ms" : 349653,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH11602224"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2GuJwbAmEZwc5tOVBKA4OD"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2GuJwbAmEZwc5tOVBKA4OD",
+              "id" : "2GuJwbAmEZwc5tOVBKA4OD",
+              "is_local" : false,
+              "name" : "Everywhere - 2017 Remaster",
+              "popularity" : 28,
+              "preview_url" : "https://p.scdn.co/mp3-preview/05da3629ed2267c0179607f2d73bf8b16ca71978?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 13,
+              "type" : "track",
+              "uri" : "spotify:track:2GuJwbAmEZwc5tOVBKA4OD"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                  "id" : "08GQAI4eElDnROBrJRGE0X",
+                  "name" : "Fleetwood Mac",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4AsXQ17Arq1cUVoa9dKJ3F"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4AsXQ17Arq1cUVoa9dKJ3F",
+                "id" : "4AsXQ17Arq1cUVoa9dKJ3F",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273aaba065944cd82a6f15c86b6",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02aaba065944cd82a6f15c86b6",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851aaba065944cd82a6f15c86b6",
+                  "width" : 64
+                } ],
+                "name" : "Tango In the Night (Deluxe Edition)",
+                "release_date" : "1987-04-13",
+                "release_date_precision" : "day",
+                "total_tracks" : 39,
+                "type" : "album",
+                "uri" : "spotify:album:4AsXQ17Arq1cUVoa9dKJ3F"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 3,
+              "duration_ms" : 234800,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH11602225"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3j7jdIypVLYAWjIk1LLXR8"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3j7jdIypVLYAWjIk1LLXR8",
+              "id" : "3j7jdIypVLYAWjIk1LLXR8",
+              "is_local" : false,
+              "name" : "Everywhere - Dub; 2017 Remaster",
+              "popularity" : 24,
+              "preview_url" : "https://p.scdn.co/mp3-preview/c63fea021dc20e3ad6bb17b74e05b156293faa02?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 14,
+              "type" : "track",
+              "uri" : "spotify:track:3j7jdIypVLYAWjIk1LLXR8"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/1I1MjAyhiCBXfNTjldxQc1"
+                },
+                "href" : "https://api.spotify.com/v1/albums/1I1MjAyhiCBXfNTjldxQc1",
+                "id" : "1I1MjAyhiCBXfNTjldxQc1",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273a2ca8f125d03454ea1e7ae50",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02a2ca8f125d03454ea1e7ae50",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851a2ca8f125d03454ea1e7ae50",
+                  "width" : 64
+                } ],
+                "name" : "Music for the Moment: Enjoy the Classical Piano Music",
+                "release_date" : "2019-04-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 10,
+                "type" : "album",
+                "uri" : "spotify:album:1I1MjAyhiCBXfNTjldxQc1"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7bXxKl2XQggRoSJiEQ91sQ"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7bXxKl2XQggRoSJiEQ91sQ",
+                "id" : "7bXxKl2XQggRoSJiEQ91sQ",
+                "name" : "Norman Coolin",
+                "type" : "artist",
+                "uri" : "spotify:artist:7bXxKl2XQggRoSJiEQ91sQ"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 200857,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "PLS921753099"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7idwP1uU2Nw2qwsK3rptMQ"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7idwP1uU2Nw2qwsK3rptMQ",
+              "id" : "7idwP1uU2Nw2qwsK3rptMQ",
+              "is_local" : false,
+              "name" : "Everywhere - Acoustic Cover",
+              "popularity" : 11,
+              "preview_url" : "https://p.scdn.co/mp3-preview/d4feb2397d43f9ae8a06c4142fdfdfe6a4639a5e?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 7,
+              "type" : "track",
+              "uri" : "spotify:track:7idwP1uU2Nw2qwsK3rptMQ"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AR", "AT", "AU", "BE", "BG", "BR", "CA", "CH", "CL", "CO", "CR", "CZ", "DE", "DK", "EC", "EE", "ES", "FI", "FR", "GA", "GB", "GR", "GT", "HK", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KZ", "LT", "LU", "LV", "MX", "MY", "NG", "NL", "NO", "NZ", "PE", "PH", "PL", "PT", "PY", "RO", "RS", "RU", "SE", "SG", "SK", "TH", "TR", "TW", "UA", "US", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/70Qrn9hkfD7mbP9zA03JvC"
+                },
+                "href" : "https://api.spotify.com/v1/albums/70Qrn9hkfD7mbP9zA03JvC",
+                "id" : "70Qrn9hkfD7mbP9zA03JvC",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273897bbd99e28b2876052f98ee",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02897bbd99e28b2876052f98ee",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851897bbd99e28b2876052f98ee",
+                  "width" : 64
+                } ],
+                "name" : "Road Trip",
+                "release_date" : "2021-06-04",
+                "release_date_precision" : "day",
+                "total_tracks" : 40,
+                "type" : "album",
+                "uri" : "spotify:album:70Qrn9hkfD7mbP9zA03JvC"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              } ],
+              "available_markets" : [ "AR", "AT", "AU", "BE", "BG", "BR", "CA", "CH", "CL", "CO", "CR", "CZ", "DE", "DK", "EC", "EE", "ES", "FI", "FR", "GA", "GB", "GR", "GT", "HK", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KZ", "LT", "LU", "LV", "MX", "MY", "NG", "NL", "NO", "NZ", "PE", "PH", "PL", "PT", "PY", "RO", "RS", "RU", "SE", "SG", "SK", "TH", "TR", "TW", "UA", "US", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 223253,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH11802597"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5LvpQn431MUxt4WiW6QX7Z"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5LvpQn431MUxt4WiW6QX7Z",
+              "id" : "5LvpQn431MUxt4WiW6QX7Z",
+              "is_local" : false,
+              "name" : "Everywhere",
+              "popularity" : 13,
+              "preview_url" : "https://p.scdn.co/mp3-preview/ccaffafece91b220944015a17a24b92d135cd72c?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:5LvpQn431MUxt4WiW6QX7Z"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/3LkeEB8rZu91T7C8RaBEiu"
+                },
+                "href" : "https://api.spotify.com/v1/albums/3LkeEB8rZu91T7C8RaBEiu",
+                "id" : "3LkeEB8rZu91T7C8RaBEiu",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2735d131144f9a3c64a2c64f415",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e025d131144f9a3c64a2c64f415",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048515d131144f9a3c64a2c64f415",
+                  "width" : 64
+                } ],
+                "name" : "Everywhere 80's",
+                "release_date" : "2021-12-10",
+                "release_date_precision" : "day",
+                "total_tracks" : 29,
+                "type" : "album",
+                "uri" : "spotify:album:3LkeEB8rZu91T7C8RaBEiu"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 223253,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH11802597"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0Jkj3dLXGTJunYyXKIQBLk"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0Jkj3dLXGTJunYyXKIQBLk",
+              "id" : "0Jkj3dLXGTJunYyXKIQBLk",
+              "is_local" : false,
+              "name" : "Everywhere - 2018 Remaster",
+              "popularity" : 4,
+              "preview_url" : "https://p.scdn.co/mp3-preview/ccaffafece91b220944015a17a24b92d135cd72c?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:0Jkj3dLXGTJunYyXKIQBLk"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/33KSpAXBxY4vmLKcR3g6mL"
+                },
+                "href" : "https://api.spotify.com/v1/albums/33KSpAXBxY4vmLKcR3g6mL",
+                "id" : "33KSpAXBxY4vmLKcR3g6mL",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273289014d8580f432ee99c91b5",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02289014d8580f432ee99c91b5",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851289014d8580f432ee99c91b5",
+                  "width" : 64
+                } ],
+                "name" : "Beautiful People, Beautiful Ballads",
+                "release_date" : "2021-11-26",
+                "release_date_precision" : "day",
+                "total_tracks" : 29,
+                "type" : "album",
+                "uri" : "spotify:album:33KSpAXBxY4vmLKcR3g6mL"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+                },
+                "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+                "id" : "08GQAI4eElDnROBrJRGE0X",
+                "name" : "Fleetwood Mac",
+                "type" : "artist",
+                "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 223253,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH11802597"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6jDSADkMOxINTxv2WmWkqe"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6jDSADkMOxINTxv2WmWkqe",
+              "id" : "6jDSADkMOxINTxv2WmWkqe",
+              "is_local" : false,
+              "name" : "Everywhere - 2018 Remaster",
+              "popularity" : 3,
+              "preview_url" : "https://p.scdn.co/mp3-preview/ccaffafece91b220944015a17a24b92d135cd72c?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:6jDSADkMOxINTxv2WmWkqe"
+            } ],
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 12
+          }
+        }
+  recorded_at: Sun, 19 Dec 2021 14:04:01 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=79438
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 14:04:01 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 7543483
+          },
+          "genres" : [ "album rock", "classic rock", "mellow gold", "rock", "soft rock", "yacht rock" ],
+          "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
+          "id" : "08GQAI4eElDnROBrJRGE0X",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb249d55f2d68a44637905c57e",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab67616100005174249d55f2d68a44637905c57e",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f178249d55f2d68a44637905c57e",
+            "width" : 160
+          } ],
+          "name" : "Fleetwood Mac",
+          "popularity" : 82,
+          "type" : "artist",
+          "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+        }
+  recorded_at: Sun, 19 Dec 2021 14:04:01 GMT
+recorded_with: VCR 6.0.0

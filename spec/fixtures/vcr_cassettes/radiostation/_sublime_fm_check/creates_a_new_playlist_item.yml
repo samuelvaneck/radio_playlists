@@ -1,0 +1,1521 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=STREET%20PLAYER%20artist:chicago&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 14:04:03 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=STREET+PLAYER+artist%3Achicago&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                  "id" : "3iDD7bnsjL9J4fO298r0L0",
+                  "name" : "Chicago",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/3zhMFlaM6YZgETDe5TZlim"
+                },
+                "href" : "https://api.spotify.com/v1/albums/3zhMFlaM6YZgETDe5TZlim",
+                "id" : "3zhMFlaM6YZgETDe5TZlim",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273137a8069817d4f1408e43280",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02137a8069817d4f1408e43280",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851137a8069817d4f1408e43280",
+                  "width" : 64
+                } ],
+                "name" : "Chicago 13 (Expanded & Remastered)",
+                "release_date" : "1979-08-13",
+                "release_date_precision" : "day",
+                "total_tracks" : 12,
+                "type" : "album",
+                "uri" : "spotify:album:3zhMFlaM6YZgETDe5TZlim"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/1HiaZTm2nGQL4wtnJLPNV0"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/1HiaZTm2nGQL4wtnJLPNV0",
+              "id" : "1HiaZTm2nGQL4wtnJLPNV0",
+              "is_local" : false,
+              "name" : "Street Player - 2003 Remaster",
+              "popularity" : 50,
+              "preview_url" : "https://p.scdn.co/mp3-preview/e82373bb7eb8c09e2d6ced73beff5b7f538f46cf?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:1HiaZTm2nGQL4wtnJLPNV0"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                  "id" : "3iDD7bnsjL9J4fO298r0L0",
+                  "name" : "Chicago",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/3zhMFlaM6YZgETDe5TZlim"
+                },
+                "href" : "https://api.spotify.com/v1/albums/3zhMFlaM6YZgETDe5TZlim",
+                "id" : "3zhMFlaM6YZgETDe5TZlim",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273137a8069817d4f1408e43280",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02137a8069817d4f1408e43280",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851137a8069817d4f1408e43280",
+                  "width" : 64
+                } ],
+                "name" : "Chicago 13 (Expanded & Remastered)",
+                "release_date" : "1979-08-13",
+                "release_date_precision" : "day",
+                "total_tracks" : 12,
+                "type" : "album",
+                "uri" : "spotify:album:3zhMFlaM6YZgETDe5TZlim"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 524626,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300221"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3LZRLOdSwmpPk6ZvOW6B4B"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3LZRLOdSwmpPk6ZvOW6B4B",
+              "id" : "3LZRLOdSwmpPk6ZvOW6B4B",
+              "is_local" : false,
+              "name" : "Street Player - Dance Mix",
+              "popularity" : 40,
+              "preview_url" : "https://p.scdn.co/mp3-preview/9bff4b09aa6b3692d6e04faf679d9e287f20f3cb?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 12,
+              "type" : "track",
+              "uri" : "spotify:track:3LZRLOdSwmpPk6ZvOW6B4B"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/5364EojmM2AP75U6heAiq3"
+                },
+                "href" : "https://api.spotify.com/v1/albums/5364EojmM2AP75U6heAiq3",
+                "id" : "5364EojmM2AP75U6heAiq3",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273745e2daf2240d1bfc4cb7ef4",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02745e2daf2240d1bfc4cb7ef4",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851745e2daf2240d1bfc4cb7ef4",
+                  "width" : 64
+                } ],
+                "name" : "70's The Collection",
+                "release_date" : "2017-06-23",
+                "release_date_precision" : "day",
+                "total_tracks" : 20,
+                "type" : "album",
+                "uri" : "spotify:album:5364EojmM2AP75U6heAiq3"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 261959,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10210000"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7JlZaWdcnWQf780hKPHrM8"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7JlZaWdcnWQf780hKPHrM8",
+              "id" : "7JlZaWdcnWQf780hKPHrM8",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 18,
+              "preview_url" : "https://p.scdn.co/mp3-preview/580e169dd3c91f5f6ce00e71a38bf0f8fc1a4b48?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 8,
+              "type" : "track",
+              "uri" : "spotify:track:7JlZaWdcnWQf780hKPHrM8"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                  "id" : "3iDD7bnsjL9J4fO298r0L0",
+                  "name" : "Chicago",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/3Nqs8xguq005oIjf3ueMFe"
+                },
+                "href" : "https://api.spotify.com/v1/albums/3Nqs8xguq005oIjf3ueMFe",
+                "id" : "3Nqs8xguq005oIjf3ueMFe",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273ec1403735e42688cd397c363",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02ec1403735e42688cd397c363",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851ec1403735e42688cd397c363",
+                  "width" : 64
+                } ],
+                "name" : "Greatest Hits Live",
+                "release_date" : "2018-10-26",
+                "release_date_precision" : "day",
+                "total_tracks" : 14,
+                "type" : "album",
+                "uri" : "spotify:album:3Nqs8xguq005oIjf3ueMFe"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 234586,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH11802722"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/4sdzXPtcrl7lLBDxiJe8HK"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/4sdzXPtcrl7lLBDxiJe8HK",
+              "id" : "4sdzXPtcrl7lLBDxiJe8HK",
+              "is_local" : false,
+              "name" : "Street Player - Live on Soundstage 2018",
+              "popularity" : 16,
+              "preview_url" : "https://p.scdn.co/mp3-preview/3565f44377538c1a3bd5050ac5f2ae8388b1e05d?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 10,
+              "type" : "track",
+              "uri" : "spotify:track:4sdzXPtcrl7lLBDxiJe8HK"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                  "id" : "3iDD7bnsjL9J4fO298r0L0",
+                  "name" : "Chicago",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0vDTIpQP3H8mH6xlBRlSVC"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0vDTIpQP3H8mH6xlBRlSVC",
+                "id" : "0vDTIpQP3H8mH6xlBRlSVC",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27371bd6fbe048e2030e6f22b64",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0271bd6fbe048e2030e6f22b64",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485171bd6fbe048e2030e6f22b64",
+                  "width" : 64
+                } ],
+                "name" : "Now More Than Ever: The History of Chicago (Remaster)",
+                "release_date" : "2016-12-30",
+                "release_date_precision" : "day",
+                "total_tracks" : 53,
+                "type" : "album",
+                "uri" : "spotify:album:0vDTIpQP3H8mH6xlBRlSVC"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0QOcIyZrWPXFdxYGbDNbCa"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0QOcIyZrWPXFdxYGbDNbCa",
+              "id" : "0QOcIyZrWPXFdxYGbDNbCa",
+              "is_local" : false,
+              "name" : "Street Player - 2003 Remaster",
+              "popularity" : 13,
+              "preview_url" : "https://p.scdn.co/mp3-preview/e82373bb7eb8c09e2d6ced73beff5b7f538f46cf?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 44,
+              "type" : "track",
+              "uri" : "spotify:track:0QOcIyZrWPXFdxYGbDNbCa"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AU", "CA", "JP", "MX", "NZ", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4KVIcUH6RJft9q861e4Hlm"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4KVIcUH6RJft9q861e4Hlm",
+                "id" : "4KVIcUH6RJft9q861e4Hlm",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273b534aac52bda3bd039cd39ca",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02b534aac52bda3bd039cd39ca",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851b534aac52bda3bd039cd39ca",
+                  "width" : 64
+                } ],
+                "name" : "Club Remixes",
+                "release_date" : "2018-12-28",
+                "release_date_precision" : "day",
+                "total_tracks" : 30,
+                "type" : "album",
+                "uri" : "spotify:album:4KVIcUH6RJft9q861e4Hlm"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AU", "CA", "JP", "MX", "NZ", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 524626,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300221"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7fqTOuerhYHODqdhES3Djm"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7fqTOuerhYHODqdhES3Djm",
+              "id" : "7fqTOuerhYHODqdhES3Djm",
+              "is_local" : false,
+              "name" : "Street Player - Dance Mix",
+              "popularity" : 5,
+              "preview_url" : "https://p.scdn.co/mp3-preview/2d3c1df494dad69a4e14896718aa7fc9b5b85568?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 8,
+              "type" : "track",
+              "uri" : "spotify:track:7fqTOuerhYHODqdhES3Djm"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                  "id" : "3iDD7bnsjL9J4fO298r0L0",
+                  "name" : "Chicago",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+                } ],
+                "available_markets" : [ "AE", "AG", "AL", "AM", "AR", "AT", "AU", "AZ", "BA", "BB", "BE", "BF", "BG", "BH", "BN", "BO", "BR", "BS", "BW", "BY", "BZ", "CA", "CH", "CL", "CO", "CR", "CV", "CY", "CZ", "DE", "DK", "DM", "DO", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GB", "GD", "GH", "GM", "GR", "GT", "GW", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KN", "KR", "KZ", "LA", "LB", "LC", "LK", "LT", "LU", "LV", "MD", "ME", "MK", "MN", "MO", "MT", "MU", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PG", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "SZ", "TD", "TH", "TJ", "TL", "TN", "TR", "TT", "TW", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "XK", "ZA", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/3zDMMFkGJMmjrZX6jo9UiL"
+                },
+                "href" : "https://api.spotify.com/v1/albums/3zDMMFkGJMmjrZX6jo9UiL",
+                "id" : "3zDMMFkGJMmjrZX6jo9UiL",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27363558fcfe24ca05d6a3c0595",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0263558fcfe24ca05d6a3c0595",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485163558fcfe24ca05d6a3c0595",
+                  "width" : 64
+                } ],
+                "name" : "The Studio Albums 1979-2008 (Vol. 2)",
+                "release_date" : "2015-07-10",
+                "release_date_precision" : "day",
+                "total_tracks" : 131,
+                "type" : "album",
+                "uri" : "spotify:album:3zDMMFkGJMmjrZX6jo9UiL"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AE", "AG", "AL", "AM", "AR", "AT", "AU", "AZ", "BA", "BB", "BE", "BF", "BG", "BH", "BN", "BO", "BR", "BS", "BW", "BY", "BZ", "CA", "CH", "CL", "CO", "CR", "CV", "CY", "CZ", "DE", "DK", "DM", "DO", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GB", "GD", "GH", "GM", "GR", "GT", "GW", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KN", "KR", "KZ", "LA", "LB", "LC", "LK", "LT", "LU", "LV", "MD", "ME", "MK", "MN", "MO", "MT", "MU", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PG", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "SZ", "TD", "TH", "TJ", "TL", "TN", "TR", "TT", "TW", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "XK", "ZA", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2rNC77OSw5lDuIbPVfnGSJ"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2rNC77OSw5lDuIbPVfnGSJ",
+              "id" : "2rNC77OSw5lDuIbPVfnGSJ",
+              "is_local" : false,
+              "name" : "Street Player - 2003 Remaster",
+              "popularity" : 11,
+              "preview_url" : "https://p.scdn.co/mp3-preview/e82373bb7eb8c09e2d6ced73beff5b7f538f46cf?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:2rNC77OSw5lDuIbPVfnGSJ"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "KE", "KG", "KH", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/6slRN1vY4ubBF4FEFyLnpq"
+                },
+                "href" : "https://api.spotify.com/v1/albums/6slRN1vY4ubBF4FEFyLnpq",
+                "id" : "6slRN1vY4ubBF4FEFyLnpq",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27365d1f3dcfe7047c6c8e5ee58",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0265d1f3dcfe7047c6c8e5ee58",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485165d1f3dcfe7047c6c8e5ee58",
+                  "width" : 64
+                } ],
+                "name" : "The Best of the 70s",
+                "release_date" : "2017-11-24",
+                "release_date_precision" : "day",
+                "total_tracks" : 48,
+                "type" : "album",
+                "uri" : "spotify:album:6slRN1vY4ubBF4FEFyLnpq"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AD", "AE", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "KE", "KG", "KH", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0Z5kUOYJeXvQk3TYxB71JG"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0Z5kUOYJeXvQk3TYxB71JG",
+              "id" : "0Z5kUOYJeXvQk3TYxB71JG",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 12,
+              "preview_url" : "https://p.scdn.co/mp3-preview/736a4e877b104894de0fb3963e1b26373eecd2f1?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 34,
+              "type" : "track",
+              "uri" : "spotify:track:0Z5kUOYJeXvQk3TYxB71JG"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "MX", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0cmbBqzRHBghZzP4KTH1Vr"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0cmbBqzRHBghZzP4KTH1Vr",
+                "id" : "0cmbBqzRHBghZzP4KTH1Vr",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2734488c2b82b6819cb3660a19e",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e024488c2b82b6819cb3660a19e",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048514488c2b82b6819cb3660a19e",
+                  "width" : 64
+                } ],
+                "name" : "70s Dance Party",
+                "release_date" : "2019-01-18",
+                "release_date_precision" : "day",
+                "total_tracks" : 20,
+                "type" : "album",
+                "uri" : "spotify:album:0cmbBqzRHBghZzP4KTH1Vr"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "MX", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 524626,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300221"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0Pp5kfkzQNIOAT3LCWhPfA"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0Pp5kfkzQNIOAT3LCWhPfA",
+              "id" : "0Pp5kfkzQNIOAT3LCWhPfA",
+              "is_local" : false,
+              "name" : "Street Player - Dance Mix",
+              "popularity" : 5,
+              "preview_url" : "https://p.scdn.co/mp3-preview/2d3c1df494dad69a4e14896718aa7fc9b5b85568?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 10,
+              "type" : "track",
+              "uri" : "spotify:track:0Pp5kfkzQNIOAT3LCWhPfA"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                  "id" : "3iDD7bnsjL9J4fO298r0L0",
+                  "name" : "Chicago",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+                } ],
+                "available_markets" : [ "AE", "AG", "AL", "AM", "AR", "AT", "AU", "AZ", "BA", "BB", "BE", "BF", "BG", "BH", "BN", "BO", "BR", "BS", "BW", "BY", "BZ", "CA", "CH", "CL", "CO", "CR", "CV", "CY", "CZ", "DE", "DK", "DM", "DO", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GB", "GD", "GH", "GM", "GR", "GT", "GW", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KN", "KR", "KZ", "LA", "LB", "LC", "LK", "LT", "LU", "LV", "MD", "ME", "MK", "MN", "MO", "MT", "MU", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PG", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "SZ", "TD", "TH", "TJ", "TL", "TN", "TR", "TT", "TW", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "XK", "ZA", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/3zDMMFkGJMmjrZX6jo9UiL"
+                },
+                "href" : "https://api.spotify.com/v1/albums/3zDMMFkGJMmjrZX6jo9UiL",
+                "id" : "3zDMMFkGJMmjrZX6jo9UiL",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27363558fcfe24ca05d6a3c0595",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0263558fcfe24ca05d6a3c0595",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485163558fcfe24ca05d6a3c0595",
+                  "width" : 64
+                } ],
+                "name" : "The Studio Albums 1979-2008 (Vol. 2)",
+                "release_date" : "2015-07-10",
+                "release_date_precision" : "day",
+                "total_tracks" : 131,
+                "type" : "album",
+                "uri" : "spotify:album:3zDMMFkGJMmjrZX6jo9UiL"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AE", "AG", "AL", "AM", "AR", "AT", "AU", "AZ", "BA", "BB", "BE", "BF", "BG", "BH", "BN", "BO", "BR", "BS", "BW", "BY", "BZ", "CA", "CH", "CL", "CO", "CR", "CV", "CY", "CZ", "DE", "DK", "DM", "DO", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GB", "GD", "GH", "GM", "GR", "GT", "GW", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KN", "KR", "KZ", "LA", "LB", "LC", "LK", "LT", "LU", "LV", "MD", "ME", "MK", "MN", "MO", "MT", "MU", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PG", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "SZ", "TD", "TH", "TJ", "TL", "TN", "TR", "TT", "TW", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "XK", "ZA", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 524626,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300221"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3Yl5oYOGa8eOwj7fTlUej7"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3Yl5oYOGa8eOwj7fTlUej7",
+              "id" : "3Yl5oYOGa8eOwj7fTlUej7",
+              "is_local" : false,
+              "name" : "Street Player - Dance Mix",
+              "popularity" : 7,
+              "preview_url" : "https://p.scdn.co/mp3-preview/9bff4b09aa6b3692d6e04faf679d9e287f20f3cb?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 12,
+              "type" : "track",
+              "uri" : "spotify:track:3Yl5oYOGa8eOwj7fTlUej7"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/6tF3XO8i8MvyvGvMPBlT0Q"
+                },
+                "href" : "https://api.spotify.com/v1/albums/6tF3XO8i8MvyvGvMPBlT0Q",
+                "id" : "6tF3XO8i8MvyvGvMPBlT0Q",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2732743f3e8ffcd0cf0b8469e08",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e022743f3e8ffcd0cf0b8469e08",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048512743f3e8ffcd0cf0b8469e08",
+                  "width" : 64
+                } ],
+                "name" : "70 Hits of the 70s",
+                "release_date" : "2021-03-05",
+                "release_date_precision" : "day",
+                "total_tracks" : 70,
+                "type" : "album",
+                "uri" : "spotify:album:6tF3XO8i8MvyvGvMPBlT0Q"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6PT4rpD0y3rHTeZgopnHuV"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6PT4rpD0y3rHTeZgopnHuV",
+              "id" : "6PT4rpD0y3rHTeZgopnHuV",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 1,
+              "preview_url" : "https://p.scdn.co/mp3-preview/e82373bb7eb8c09e2d6ced73beff5b7f538f46cf?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 37,
+              "type" : "track",
+              "uri" : "spotify:track:6PT4rpD0y3rHTeZgopnHuV"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BD", "BE", "BF", "BG", "BI", "BJ", "BN", "BO", "BR", "BT", "BW", "BY", "BZ", "CA", "CD", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JO", "JP", "KE", "KG", "KH", "KM", "KR", "KW", "KZ", "LA", "LB", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/1kk19HlwmhVJNmiPVhNSrQ"
+                },
+                "href" : "https://api.spotify.com/v1/albums/1kk19HlwmhVJNmiPVhNSrQ",
+                "id" : "1kk19HlwmhVJNmiPVhNSrQ",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2730e84ead8b19f5c0718255752",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e020e84ead8b19f5c0718255752",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048510e84ead8b19f5c0718255752",
+                  "width" : 64
+                } ],
+                "name" : "Oh What a Night -70's Party",
+                "release_date" : "2019-06-14",
+                "release_date_precision" : "day",
+                "total_tracks" : 29,
+                "type" : "album",
+                "uri" : "spotify:album:1kk19HlwmhVJNmiPVhNSrQ"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AD", "AE", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BD", "BE", "BF", "BG", "BI", "BJ", "BN", "BO", "BR", "BT", "BW", "BY", "BZ", "CA", "CD", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JO", "JP", "KE", "KG", "KH", "KM", "KR", "KW", "KZ", "LA", "LB", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 524626,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300221"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0CC4Z0O6izZyMp6jguNLc2"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0CC4Z0O6izZyMp6jguNLc2",
+              "id" : "0CC4Z0O6izZyMp6jguNLc2",
+              "is_local" : false,
+              "name" : "Street Player - Dance Mix",
+              "popularity" : 2,
+              "preview_url" : "https://p.scdn.co/mp3-preview/2d3c1df494dad69a4e14896718aa7fc9b5b85568?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 18,
+              "type" : "track",
+              "uri" : "spotify:track:0CC4Z0O6izZyMp6jguNLc2"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4HM0tgpiSu6z1gbUCBS2wn"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4HM0tgpiSu6z1gbUCBS2wn",
+                "id" : "4HM0tgpiSu6z1gbUCBS2wn",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2739d45e5f095d6fc0ec60ca877",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e029d45e5f095d6fc0ec60ca877",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048519d45e5f095d6fc0ec60ca877",
+                  "width" : 64
+                } ],
+                "name" : "Class of 1979",
+                "release_date" : "2020-06-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 26,
+                "type" : "album",
+                "uri" : "spotify:album:4HM0tgpiSu6z1gbUCBS2wn"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6Ql5c3m3Jmo4koabw5YRjR"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6Ql5c3m3Jmo4koabw5YRjR",
+              "id" : "6Ql5c3m3Jmo4koabw5YRjR",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/f275c46b9208e125b6e80602de2955cce319553f?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 6,
+              "type" : "track",
+              "uri" : "spotify:track:6Ql5c3m3Jmo4koabw5YRjR"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7adwQ7Tnu00Oi8VepXUysY"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7adwQ7Tnu00Oi8VepXUysY",
+                "id" : "7adwQ7Tnu00Oi8VepXUysY",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273e2eedf335213f29695429e53",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02e2eedf335213f29695429e53",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851e2eedf335213f29695429e53",
+                  "width" : 64
+                } ],
+                "name" : "The Greatest 70's Soul",
+                "release_date" : "2017-11-24",
+                "release_date_precision" : "day",
+                "total_tracks" : 30,
+                "type" : "album",
+                "uri" : "spotify:album:7adwQ7Tnu00Oi8VepXUysY"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AD", "AE", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7tJj6Pz13gCCUgVfi2n2PH"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7tJj6Pz13gCCUgVfi2n2PH",
+              "id" : "7tJj6Pz13gCCUgVfi2n2PH",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/736a4e877b104894de0fb3963e1b26373eecd2f1?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 12,
+              "type" : "track",
+              "uri" : "spotify:track:7tJj6Pz13gCCUgVfi2n2PH"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4ZS09JhnyOKa3vA80sATUI"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4ZS09JhnyOKa3vA80sATUI",
+                "id" : "4ZS09JhnyOKa3vA80sATUI",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2737e246d2ee10438ab3b3e64b1",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e027e246d2ee10438ab3b3e64b1",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048517e246d2ee10438ab3b3e64b1",
+                  "width" : 64
+                } ],
+                "name" : "Disco Rock",
+                "release_date" : "2021-01-02",
+                "release_date_precision" : "day",
+                "total_tracks" : 25,
+                "type" : "album",
+                "uri" : "spotify:album:4ZS09JhnyOKa3vA80sATUI"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7CZeaRAu6AZZfsF2sbQyBf"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7CZeaRAu6AZZfsF2sbQyBf",
+              "id" : "7CZeaRAu6AZZfsF2sbQyBf",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 2,
+              "preview_url" : "https://p.scdn.co/mp3-preview/f275c46b9208e125b6e80602de2955cce319553f?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 10,
+              "type" : "track",
+              "uri" : "spotify:track:7CZeaRAu6AZZfsF2sbQyBf"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7ASLHrmOa4uKCPtNWPTykM"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7ASLHrmOa4uKCPtNWPTykM",
+                "id" : "7ASLHrmOa4uKCPtNWPTykM",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273917ba668ae6ef2ca7f1232f4",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02917ba668ae6ef2ca7f1232f4",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851917ba668ae6ef2ca7f1232f4",
+                  "width" : 64
+                } ],
+                "name" : "Dance Music",
+                "release_date" : "2017-12-22",
+                "release_date_precision" : "day",
+                "total_tracks" : 25,
+                "type" : "album",
+                "uri" : "spotify:album:7ASLHrmOa4uKCPtNWPTykM"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/4PMPSxcMij1J4lJQDQFNkE"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/4PMPSxcMij1J4lJQDQFNkE",
+              "id" : "4PMPSxcMij1J4lJQDQFNkE",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 1,
+              "preview_url" : "https://p.scdn.co/mp3-preview/736a4e877b104894de0fb3963e1b26373eecd2f1?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 6,
+              "type" : "track",
+              "uri" : "spotify:track:4PMPSxcMij1J4lJQDQFNkE"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/6WuJKZM7hch5cnc0LcWnur"
+                },
+                "href" : "https://api.spotify.com/v1/albums/6WuJKZM7hch5cnc0LcWnur",
+                "id" : "6WuJKZM7hch5cnc0LcWnur",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27304af8d9e01d9afd27a66f5f4",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0204af8d9e01d9afd27a66f5f4",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485104af8d9e01d9afd27a66f5f4",
+                  "width" : 64
+                } ],
+                "name" : "Flashback!",
+                "release_date" : "2021-09-24",
+                "release_date_precision" : "day",
+                "total_tracks" : 30,
+                "type" : "album",
+                "uri" : "spotify:album:6WuJKZM7hch5cnc0LcWnur"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/1t5X1rDVTXoH44Pis1dOXN"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/1t5X1rDVTXoH44Pis1dOXN",
+              "id" : "1t5X1rDVTXoH44Pis1dOXN",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 2,
+              "preview_url" : "https://p.scdn.co/mp3-preview/e82373bb7eb8c09e2d6ced73beff5b7f538f46cf?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 19,
+              "type" : "track",
+              "uri" : "spotify:track:1t5X1rDVTXoH44Pis1dOXN"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/644e7hvHLyB054NoyMHCwr"
+                },
+                "href" : "https://api.spotify.com/v1/albums/644e7hvHLyB054NoyMHCwr",
+                "id" : "644e7hvHLyB054NoyMHCwr",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27371bb05effe95e7b83c2e17b1",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0271bb05effe95e7b83c2e17b1",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485171bb05effe95e7b83c2e17b1",
+                  "width" : 64
+                } ],
+                "name" : "The Greatest Club Classics - 70s Disco",
+                "release_date" : "2019-02-01",
+                "release_date_precision" : "day",
+                "total_tracks" : 30,
+                "type" : "album",
+                "uri" : "spotify:album:644e7hvHLyB054NoyMHCwr"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/4CVw1MBUIZMpGHEOzShDFu"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/4CVw1MBUIZMpGHEOzShDFu",
+              "id" : "4CVw1MBUIZMpGHEOzShDFu",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/736a4e877b104894de0fb3963e1b26373eecd2f1?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 9,
+              "type" : "track",
+              "uri" : "spotify:track:4CVw1MBUIZMpGHEOzShDFu"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AR", "AT", "AU", "BE", "BG", "BR", "CA", "CH", "CL", "CO", "CR", "CZ", "DE", "DK", "EC", "EE", "ES", "FI", "FR", "GA", "GB", "GR", "GT", "HK", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KZ", "LT", "LU", "LV", "MX", "MY", "NG", "NL", "NO", "NZ", "PE", "PH", "PL", "PT", "PY", "RO", "RS", "RU", "SE", "SG", "SK", "TH", "TR", "TW", "UA", "US", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/2bbc80XYPzb4jZUaplmbpI"
+                },
+                "href" : "https://api.spotify.com/v1/albums/2bbc80XYPzb4jZUaplmbpI",
+                "id" : "2bbc80XYPzb4jZUaplmbpI",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2736394219fedc2fb4efc33e364",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e026394219fedc2fb4efc33e364",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048516394219fedc2fb4efc33e364",
+                  "width" : 64
+                } ],
+                "name" : "Funky Friday",
+                "release_date" : "2018-06-27",
+                "release_date_precision" : "day",
+                "total_tracks" : 24,
+                "type" : "album",
+                "uri" : "spotify:album:2bbc80XYPzb4jZUaplmbpI"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "AR", "AT", "AU", "BE", "BG", "BR", "CA", "CH", "CL", "CO", "CR", "CZ", "DE", "DK", "EC", "EE", "ES", "FI", "FR", "GA", "GB", "GR", "GT", "HK", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KZ", "LT", "LU", "LV", "MX", "MY", "NG", "NL", "NO", "NZ", "PE", "PH", "PL", "PT", "PY", "RO", "RS", "RU", "SE", "SG", "SK", "TH", "TR", "TW", "UA", "US", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/1ROCG5GEsmJ7cR97kPWOK7"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/1ROCG5GEsmJ7cR97kPWOK7",
+              "id" : "1ROCG5GEsmJ7cR97kPWOK7",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/736a4e877b104894de0fb3963e1b26373eecd2f1?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 24,
+              "type" : "track",
+              "uri" : "spotify:track:1ROCG5GEsmJ7cR97kPWOK7"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0nqcHWqvaNWbt15iKj8kSY"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0nqcHWqvaNWbt15iKj8kSY",
+                "id" : "0nqcHWqvaNWbt15iKj8kSY",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27351812ae1cafcf86725b6f243",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0251812ae1cafcf86725b6f243",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485151812ae1cafcf86725b6f243",
+                  "width" : 64
+                } ],
+                "name" : "Disco Party",
+                "release_date" : "2021-10-22",
+                "release_date_precision" : "day",
+                "total_tracks" : 50,
+                "type" : "album",
+                "uri" : "spotify:album:0nqcHWqvaNWbt15iKj8kSY"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2mBScy2fCAIrnP4Jvjb7SA"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2mBScy2fCAIrnP4Jvjb7SA",
+              "id" : "2mBScy2fCAIrnP4Jvjb7SA",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/e82373bb7eb8c09e2d6ced73beff5b7f538f46cf?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 23,
+              "type" : "track",
+              "uri" : "spotify:track:2mBScy2fCAIrnP4Jvjb7SA"
+            } ],
+            "limit" : 20,
+            "next" : "https://api.spotify.com/v1/search?query=STREET+PLAYER+artist%3Achicago&type=track&offset=20&limit=20",
+            "offset" : 0,
+            "previous" : null,
+            "total" : 86
+          }
+        }
+  recorded_at: Sun, 19 Dec 2021 14:04:02 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=82518
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 14:04:03 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 2739780
+          },
+          "genres" : [ "adult standards", "album rock", "classic rock", "folk rock", "mellow gold", "soft rock", "yacht rock" ],
+          "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+          "id" : "3iDD7bnsjL9J4fO298r0L0",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5ebd24a4c9c7db183034fe40bc5",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab67616100005174d24a4c9c7db183034fe40bc5",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f178d24a4c9c7db183034fe40bc5",
+            "width" : 160
+          } ],
+          "name" : "Chicago",
+          "popularity" : 71,
+          "type" : "artist",
+          "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+        }
+  recorded_at: Sun, 19 Dec 2021 14:04:03 GMT
+recorded_with: VCR 6.0.0
