@@ -1,3 +1,23 @@
+
+# version: 2
+# jobs:
+# build:
+#   working_directory: /tmp
+#   steps:
+#     - run:
+#         name: Creating Dummy Artifacts
+#         command: |
+#           echo "my artifact file" > /tmp/art-1;
+#           mkdir /tmp/artifacts;
+#           echo "my artifact files in a dir" > /tmp/artifacts/art-2;
+
+#     - store_artifacts:
+#         path: /tmp/art-1
+#         destination: artifact-file
+
+#     - store_artifacts:
+#         path: /tmp/artifacts
+
 ---
   version: 2
   jobs:
@@ -20,6 +40,9 @@
         - add_ssh_keys:
             fingerprints:
               - "0d:3b:3a:6e:fb:ba:86:a9:9d:fa:41:ab:bc:3b:56:31"
+
+        - store_artifacts:
+          path: ~/radio_playlists/log
 
         # Restore Cached Dependencies
         - type: cache-restore
