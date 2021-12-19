@@ -42,7 +42,9 @@
               - "0d:3b:3a:6e:fb:ba:86:a9:9d:fa:41:ab:bc:3b:56:31"
 
         - store_artifacts:
-          path: ~/radio_playlists/log
+            path: ~/radio_playlists/coverage
+        - store_artifacts:
+            path: ~/radio_playlists/log
 
         # Restore Cached Dependencies
         - type: cache-restore
@@ -54,7 +56,7 @@
           key: yarn-packages-{{ checksum "yarn.lock" }}
 
         # install bundler
-        - run: gem install bundler:2.1.4
+        - run: gem install bundler:2.2.33
 
         # Bundle install dependencies
         - run: bundle install --path vendor/bundle
