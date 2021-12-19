@@ -41,11 +41,6 @@
             fingerprints:
               - "0d:3b:3a:6e:fb:ba:86:a9:9d:fa:41:ab:bc:3b:56:31"
 
-        - store_artifacts:
-            path: ~/radio_playlists/coverage
-        - store_artifacts:
-            path: ~/radio_playlists/log
-
         # Restore Cached Dependencies
         - type: cache-restore
           name: Restore bundle cache
@@ -95,3 +90,8 @@
         # Run the tests
         - run: bundle exec rspec
         - run: bundle exec rubocop
+
+        - store_artifacts:
+            path: ~/radio_playlists/coverage
+        - store_artifacts:
+            path: ~/radio_playlists/log
