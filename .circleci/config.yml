@@ -9,7 +9,7 @@
             POSTGRES_HOST: localhost
             POSTGRES_USER: radio_playlists
             RAILS_ENV: test
-        - image: postgres:latest
+        - image: postgres:13
           environment:
             POSTGRES_USER: radio_playlists
             POSTGRES_DB: radio_playlists_test
