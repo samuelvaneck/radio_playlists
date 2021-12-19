@@ -46,7 +46,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:04:03 GMT
+      - Sun, 19 Dec 2021 14:25:13 GMT
       Server:
       - envoy
       Via:
@@ -1094,6 +1094,74 @@ http_interactions:
                   "type" : "artist",
                   "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
                 } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/644e7hvHLyB054NoyMHCwr"
+                },
+                "href" : "https://api.spotify.com/v1/albums/644e7hvHLyB054NoyMHCwr",
+                "id" : "644e7hvHLyB054NoyMHCwr",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27371bb05effe95e7b83c2e17b1",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0271bb05effe95e7b83c2e17b1",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485171bb05effe95e7b83c2e17b1",
+                  "width" : 64
+                } ],
+                "name" : "The Greatest Club Classics - 70s Disco",
+                "release_date" : "2019-02-01",
+                "release_date_precision" : "day",
+                "total_tracks" : 30,
+                "type" : "album",
+                "uri" : "spotify:album:644e7hvHLyB054NoyMHCwr"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
+                "id" : "3iDD7bnsjL9J4fO298r0L0",
+                "name" : "Chicago",
+                "type" : "artist",
+                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 550706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH10300212"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/4CVw1MBUIZMpGHEOzShDFu"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/4CVw1MBUIZMpGHEOzShDFu",
+              "id" : "4CVw1MBUIZMpGHEOzShDFu",
+              "is_local" : false,
+              "name" : "Street Player",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/736a4e877b104894de0fb3963e1b26373eecd2f1?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 9,
+              "type" : "track",
+              "uri" : "spotify:track:4CVw1MBUIZMpGHEOzShDFu"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
                 "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
                 "external_urls" : {
                   "spotify" : "https://open.spotify.com/album/7ASLHrmOa4uKCPtNWPTykM"
@@ -1217,74 +1285,6 @@ http_interactions:
               "track_number" : 19,
               "type" : "track",
               "uri" : "spotify:track:1t5X1rDVTXoH44Pis1dOXN"
-            }, {
-              "album" : {
-                "album_type" : "compilation",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
-                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
-                  "name" : "Various Artists",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
-                } ],
-                "available_markets" : [ "CA", "US" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/644e7hvHLyB054NoyMHCwr"
-                },
-                "href" : "https://api.spotify.com/v1/albums/644e7hvHLyB054NoyMHCwr",
-                "id" : "644e7hvHLyB054NoyMHCwr",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b27371bb05effe95e7b83c2e17b1",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e0271bb05effe95e7b83c2e17b1",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d0000485171bb05effe95e7b83c2e17b1",
-                  "width" : 64
-                } ],
-                "name" : "The Greatest Club Classics - 70s Disco",
-                "release_date" : "2019-02-01",
-                "release_date_precision" : "day",
-                "total_tracks" : 30,
-                "type" : "album",
-                "uri" : "spotify:album:644e7hvHLyB054NoyMHCwr"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/3iDD7bnsjL9J4fO298r0L0"
-                },
-                "href" : "https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0",
-                "id" : "3iDD7bnsjL9J4fO298r0L0",
-                "name" : "Chicago",
-                "type" : "artist",
-                "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
-              } ],
-              "available_markets" : [ "CA", "US" ],
-              "disc_number" : 1,
-              "duration_ms" : 550706,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "USRH10300212"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/4CVw1MBUIZMpGHEOzShDFu"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/4CVw1MBUIZMpGHEOzShDFu",
-              "id" : "4CVw1MBUIZMpGHEOzShDFu",
-              "is_local" : false,
-              "name" : "Street Player",
-              "popularity" : 0,
-              "preview_url" : "https://p.scdn.co/mp3-preview/736a4e877b104894de0fb3963e1b26373eecd2f1?cid=ff70df650ee14a1fad4aed3b533e8ea4",
-              "track_number" : 9,
-              "type" : "track",
-              "uri" : "spotify:track:4CVw1MBUIZMpGHEOzShDFu"
             }, {
               "album" : {
                 "album_type" : "compilation",
@@ -1429,7 +1429,7 @@ http_interactions:
             "total" : 86
           }
         }
-  recorded_at: Sun, 19 Dec 2021 14:04:02 GMT
+  recorded_at: Sun, 19 Dec 2021 14:25:13 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/3iDD7bnsjL9J4fO298r0L0
@@ -1457,7 +1457,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=82518
+      - public, max-age=82912
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1476,7 +1476,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:04:03 GMT
+      - Sun, 19 Dec 2021 14:25:13 GMT
       Server:
       - envoy
       Via:
@@ -1517,5 +1517,5 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:3iDD7bnsjL9J4fO298r0L0"
         }
-  recorded_at: Sun, 19 Dec 2021 14:04:03 GMT
+  recorded_at: Sun, 19 Dec 2021 14:25:13 GMT
 recorded_with: VCR 6.0.0

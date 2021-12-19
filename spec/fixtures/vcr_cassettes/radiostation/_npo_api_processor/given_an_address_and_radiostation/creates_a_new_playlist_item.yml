@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx/1.19.10
       Date:
-      - Sun, 19 Dec 2021 14:04:09 GMT
+      - Sun, 19 Dec 2021 14:25:14 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -40,7 +40,7 @@ http_interactions:
       Access-Control-Allow-Headers:
       - Origin,Content-Type,Accept
       Set-Cookie:
-      - f6924e0876d468cbd333ca02bc97600e=722c29658f622ca09ed24a28fa4ab8c4; path=/;
+      - f6924e0876d468cbd333ca02bc97600e=04dfc68cbf1e5957d376b483389d9ae8; path=/;
         HttpOnly; Secure; SameSite=None
     body:
       encoding: ASCII-8BIT
@@ -61,5 +61,5 @@ http_interactions:
         a fool believes","artist":"Doobie Brothers","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273ba6340ac3b1653b6ea0e5da5","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273ba6340ac3b1653b6ea0e5da5","spotify_url":"https://open.spotify.com/track/2yBVeksU2EtrPJbTu4ZslK"},{"startdatetime":"2021-12-18T21:38:36","enddatetime":"2021-12-18T21:42:10","title":"Sir
         Duke","artist":"Stevie Wonder","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2732fee61bfec596bb6f5447c50","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2732fee61bfec596bb6f5447c50","spotify_url":"https://open.spotify.com/track/4pNiE4LCVV74vfIBaUHm1b"},{"startdatetime":"2021-12-18T16:44:23","enddatetime":"2021-12-18T16:47:56","title":"Outta
         love","artist":"Vera, Danny","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273d5b1f4cd8b398bf2e9db7c36","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273d5b1f4cd8b398bf2e9db7c36","spotify_url":"https://open.spotify.com/track/2EoCbbuNwmfRugZxX4B7KX"}]}'
-  recorded_at: Sun, 19 Dec 2021 14:04:09 GMT
+  recorded_at: Sun, 19 Dec 2021 14:25:14 GMT
 recorded_with: VCR 6.0.0

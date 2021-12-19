@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Radiostation, use_vcr: true do
+RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
   let(:radio_station) { FactoryBot.create :radiostation }
   let(:playlist_4_hours_ago) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station, created_at: 4.hours.ago }
   let(:playlist_1_minute_ago) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station, created_at: 1.minute.ago }

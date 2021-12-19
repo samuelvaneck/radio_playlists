@@ -46,7 +46,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:04:07 GMT
+      - Sun, 19 Dec 2021 14:25:19 GMT
       Server:
       - envoy
       Via:
@@ -1037,7 +1037,7 @@ http_interactions:
             "total" : 10
           }
         }
-  recorded_at: Sun, 19 Dec 2021 14:04:07 GMT
+  recorded_at: Sun, 19 Dec 2021 14:25:19 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ
@@ -1065,7 +1065,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=81650
+      - public, max-age=76410
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1084,7 +1084,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:04:07 GMT
+      - Sun, 19 Dec 2021 14:25:19 GMT
       Server:
       - envoy
       Via:
@@ -1125,7 +1125,7 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
         }
-  recorded_at: Sun, 19 Dec 2021 14:04:07 GMT
+  recorded_at: Sun, 19 Dec 2021 14:25:19 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P
@@ -1153,7 +1153,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=78764
+      - public, max-age=75687
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1172,7 +1172,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:04:07 GMT
+      - Sun, 19 Dec 2021 14:25:19 GMT
       Server:
       - envoy
       Via:
@@ -1213,5 +1213,5 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
         }
-  recorded_at: Sun, 19 Dec 2021 14:04:07 GMT
+  recorded_at: Sun, 19 Dec 2021 14:25:20 GMT
 recorded_with: VCR 6.0.0

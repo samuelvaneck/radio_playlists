@@ -46,7 +46,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:04:05 GMT
+      - Sun, 19 Dec 2021 14:25:13 GMT
       Server:
       - envoy
       Via:
@@ -554,7 +554,7 @@ http_interactions:
             "total" : 7
           }
         }
-  recorded_at: Sun, 19 Dec 2021 14:04:05 GMT
+  recorded_at: Sun, 19 Dec 2021 14:25:13 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo
@@ -582,7 +582,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=74390
+      - public, max-age=85787
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -601,7 +601,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 14:04:05 GMT
+      - Sun, 19 Dec 2021 14:25:13 GMT
       Server:
       - envoy
       Via:
@@ -642,5 +642,5 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
         }
-  recorded_at: Sun, 19 Dec 2021 14:04:05 GMT
+  recorded_at: Sun, 19 Dec 2021 14:25:13 GMT
 recorded_with: VCR 6.0.0
