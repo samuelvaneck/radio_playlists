@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe Radiostation do
+RSpec.describe Radiostation, use_vcr: true do
   let(:radio_station) { FactoryBot.create :radiostation }
   let(:playlist_4_hours_ago) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station, created_at: 4.hours.ago }
   let(:playlist_1_minute_ago) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station, created_at: 1.minute.ago }
 
   def processor_return_object(artist_name, title, time)
     {
-      artist_name: artist_name, 
+      artist_name: artist_name,
       title: title,
       broadcast_timestamp: Time.find_zone('Amsterdam').parse(time),
       spotify_url: nil
@@ -324,7 +324,7 @@ RSpec.describe Radiostation do
   describe '#find_or_create_artist' do
     context 'with multiple name' do
       it 'returns the artists and not a karaoke version' do
-        spotify_track = Spotify.new(artists: 'Martin Garrix & Clinton Kane', title: 'Drown').find_spotify_track
+        spotify_track = Spotify::Track.new(artists: 'Martin Garrix & Clinton Kane', title: 'Drown')
         result = Radiostation.new.find_or_create_artist('Martin Garrix & Clinton Kane', spotify_track)
 
         expect(result.map(&:name)).to contain_exactly 'Martin Garrix', 'Clinton Kane'

@@ -1,0 +1,905 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.qmusic.nl/2.4/tracks/plays?limit=1&next=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.qmusic.nl
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 Dec 2021 13:36:24 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Runtime:
+      - '0.262061'
+      X-Request-Id:
+      - 4aa57ecb0036fa62951df133eecc388c
+      X-Powered-By:
+      - Phusion Passenger(R) Enterprise
+      Etag:
+      - W/"078eaed6d0b5b996ac311a9f86bb2e3a"
+      Status:
+      - 200 OK
+      X-Varnish:
+      - 769168001 769704482
+      Age:
+      - '19'
+      Via:
+      - 1.1 varnish (Varnish/6.1)
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Cache:
+      - HIT-API
+      X-Cache-Hits:
+      - '1'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=93QBGy4xaY7l%2BL7nYCRTOtgJ1mv6J1%2FRok1zcoEB1dtFPaCqzd%2BKIUkYquIlfbN8rKMdmUZkzN%2FSsDRaBgkMtkf0fVeXL0e1FpsZdHEl1jnXulJbBE5FiyE762xg8v0%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6c01050bbc994200-AMS
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJwbGF5ZWRfdHJhY2tzIjpbeyJwbGF5ZWRfYXQiOiIyMDIxLTEyLTE5VDE0OjMzOjUyKzAxOjAwIiwic2x1ZyI6ImVhc3ktb24tbWUtMiIsInRpdGxlIjoiRWFzeSBPbiBNZSIsInNlbGVjdG9yX2NvZGUiOiJRMTM5NjUiLCJyZWxlYXNlX3llYXIiOiIyMDIxIiwiYWZmaWxpYXRlX3VybCI6Imh0dHBzOi8vbXVzaWMuYXBwbGUuY29tL2JlL2FsYnVtL2Vhc3ktb24tbWUvMTU5MDAzNTY5MT9hdD05d1Z0SVVHeiZpPTE1OTAwMzYwMjEmdW89NCIsInRodW1ibmFpbCI6Ii83LzUwLzM4Lzg2LzE0OTM3MjcvMTQwMHgxNDAwYmIuanBnIiwic3BvdGlmeV91cmwiOiJodHRwOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8wZ3BsTDFXTW9KNmlZYVBnTUNMMGdYIiwidmlkZW9zIjpbeyJ0eXBlIjoieW91dHViZSIsInRhZ3MiOiJkZWZhdWx0IiwiaWQiOiJVM0FTajFMNl9zWSJ9XSwiaG9va3MiOnsibTRhIjoiaHR0cHM6Ly9hdWRpby1zc2wuaXR1bmVzLmFwcGxlLmNvbS9pdHVuZXMtYXNzZXRzL0F1ZGlvUHJldmlldzExNS92NC8zMi8yNi9kZi8zMjI2ZGY1Zi04ODc5LTJjMTQtOTVjMi02Y2IzNGJkNTY3MTIvbXphZl82MDkzMzczMjU4MjMxNDY4ODU2LnBsdXMuYWFjLnAubTRhIn0sImZhY3RzIjp7fSwiYXJ0aXN0Ijp7ImlkIjoxOSwibmFtZSI6IkFERUxFIiwib3JpZ2luYWxfbmFtZSI6IkFERUxFIiwic2x1ZyI6ImFkZWxlLTIiLCJiaW8iOiJEZSBlZXJzdGUgYXJ0aWVzdGUgZGllIGluIGRlIEFtZXJpa2FhbnNlIGl0dW5lcyBkdWJiZWwgcGxhdGluYSBoYWFsdCwgZGUgZWVyc3RlIGFydGllc3RlIG5hIE1pY2hhZWwgSmFja3NvbiAzMiBqYWFyIGdlbGVkZW4sIGRpZSB0ZWdlbGlqa2VydGlqZCBvcCBwbGFhdHMgMSBlbiBvcCBwbGFhdHMgMiBpbiBkZSBCcml0c2UgaGl0bGlqc3Qgc3RhYXQsIG1lZXIgZGFuIDQgbWlsam9lbiB0d2l0dGVyIGZvbGxvd2VycyBlbiBlZW4gc3RlbSBvbSBVIHRlZ2VuIHRlIHplZ2dlbi4gTmllbWFuZCBhbmRlcnMgZGFuIEFkZWxlIHBhc3QgcGVyZmVjdCBiaWogZGV6ZSBiZXNjaHJpanZpbmcuIEFkZWxlIExhdXJpZSBCbHVlIEFka2lucyBpcyBlZW4gRW5nZWxzZSBwb3B6YW5nZXJlcyBkaWUgaW4gMjAwOCB2b2xsZWRpZyBkb29yYnJhayBtZXQgaGFhciBhbGJ1bSDigJgxOeKAmS4gRGUgc2luZ2xlcyDigJhDaGFzaW5nIFBhdmVtZW50c+KAmSBlbiBkZSBwcmFjaHRpZ2UgY292ZXIgdmFuIEJvYiBEeWxhbuKAmXMg4oCYTWFrZSBZb3UgRmVlbCBNeSBMb3Zl4oCZIHdhcmVuIGJlaWRlIHdlcmVsZGhpdHMuIFNpbmRzZGllbiBsYWF0IHplIG11emlla2xpZWZoZWJiZXJzIG5pZXQgbWVlciBsb3MsIGVuIHdpaiBoYWFyIG9vayBuaWV0ISBcclxuXHJcbkluIDIwMTEgd29uIEFkZWxlIDggR3JhbW15IEF3YXJkcywgc2Nvb3JkZSB6ZSBoaXRzIG1ldCAnUm9sbGluZyBJbiBUaGUgRGVlcCcsICdTZXQgRmlyZSBUbyBUaGUgUmFpbicgZW4gJ1NvbWVvbmUgTGlrZSBZb3UnLiBJbiBub3ZlbWJlciB2YW4gZGF0IGphYXIgcmFha3RlIGJla2VuZCBkYXQgQWRlbGUgZWVuIHN0ZW1iYW5kb3BlcmF0aWUgbW9lc3Qgb25kZXJnYWFuLiBWb2xnZW5zIGRlIGRva3RlcnMgem91IHplIHZvbGxlZGlnIGhlcnN0ZWxsZW4gdmFuIGRlIG9wZXJhdGllIGVuIHpvdSBkZXplIGdlZW4gaW52bG9lZCBoZWJiZW4gb3AgaGFhciBzdGVtLiBFbmtlbGUgZGFnZW4gbGF0ZXIgc2lqcGVsZGUgdmlhIHZlcnNjaGlsbGVuZGUgbmlldXdzc2l0ZXMgaGV0IHZlcm9udHJ1c3RlbmRlIG5pZXV3cyBiaW5uZW4gZGF0IEFkZWxlIHZpZXIgb2YgdmlqZiBqYWFyIHpvdSBzdG9wcGVuIG1ldCBtdXppZWsgbWFrZW4uIERpdCBibGVlayBnZWx1a2tpZyBuaWV0IGhldCBnZXZhbCB0ZSB6aWpuLiBBZGVsZSBrd2FtIHRlcnVnIGVuIGhhZCBtZXQgJ1J1bW91ciBIYXMgSXQnIG9ubWlkZGVsbGlqayBlZW4gbmlldXdlIGhpdCB0ZSBwYWtrZW4hXHJcblxyXG5JbiAyMDEyIHppbmd0IHplIGRlIHNvdW5kdHJhY2sgdm9vciBkZSBKYW1lcyBCb25kLWZpbG0gJ1NreWZhbGwnLiBEZSBnZWxpamtuYW1pZ2Ugc2luZ2xlIHNjb29ydCBob29nIGluIGRlIGhpdGxpanN0ZW4gZW4gaGFhbHQgbWVlcmRlcmUgcHJpanplbiBiaW5uZW4uIEhpZXJuYSBibGlqZnQgaGV0IGVybnN0aWcgc3RpbCByb25kb20gZGUgQnJpdHNlIHphbmdlcmVzLiBNYWFyIGluIG9rdG9iZXIgMjAxNSBpcyB6ZSBpbmVlbnMgd2VlciB0ZXJ1ZyBtZXQgZGUgc2luZ2xlICdIZWxsbycgZW4gaGV0IGFsYnVtIDI1LCBkYXQgYWxsZSByZWNvcmRzIGJyZWVrdC4iLCJmYWNlYm9va191cmwiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9hZGVsZSIsInR3aXR0ZXJfdXJsIjoiaHR0cHM6Ly90d2l0dGVyLmNvbS8jIS9PZmZpY2lhbEFkZWxlIiwiaW5zdGFncmFtX3VybCI6Imh0dHBzOi8vaW5zdGFncmFtLmNvbS9hZGVsZS8iLCJ3ZWJzaXRlIjoiaHR0cDovL3d3dy5hZGVsZS50di8iLCJwaG90byI6Ii8xL2U2L2UxL2E3LzEyMTk4OC9BZGVsZS1Ta3lmYWxsLmpwZWciLCJjb3VudHJ5Ijp7ImNvZGUiOiJHQiIsIm5hbWUiOiJWZXJlbmlnZCBLb25pbmtyaWprIn19LCJzdWJfYXJ0aXN0cyI6W10sImN1cnJlbnRfZWRpdGlvbnMiOlt7InBvc2l0aW9uIjo0OTYsImVkaXRpb24iOnsiaWQiOjQ3NjksIm5hbWUiOiIyMDIxIn0sImxpc3QiOnsiaWQiOjY2LCJuYW1lIjoiUS10b3AgMTAwMCJ9fSx7InBvc2l0aW9uIjoxLCJlZGl0aW9uIjp7ImlkIjo0ODgxLCJuYW1lIjoiMTcvMTIvMjAyMSJ9LCJsaXN0Ijp7ImlkIjoyMjUsIm5hbWUiOiJRbXVzaWMgVG9wIDQwIn19LHsicG9zaXRpb24iOjEsImVkaXRpb24iOnsiaWQiOjQ3OTksIm5hbWUiOiIyMDIxLTEwLTIyIn0sImxpc3QiOnsiaWQiOjMyMywibmFtZSI6IlEtdG9wIDEwMDAifX0seyJwb3NpdGlvbiI6MSwiZWRpdGlvbiI6eyJpZCI6NDgxNSwibmFtZSI6IlZhbmRhYWcifSwibGlzdCI6eyJpZCI6MzI1LCJuYW1lIjoiUW11c2ljIFRvcCA0MCJ9fV0sImFjdGl2ZV9lZGl0aW9ucyI6W10sIm5leHQiOnsic2x1ZyI6InJvY2thYnllLTIiLCJ0aXRsZSI6IlJvY2thYnllIiwic2VsZWN0b3JfY29kZSI6IjgwNTUtNjUiLCJyZWxlYXNlX3llYXIiOiIyMDE2IiwiYWZmaWxpYXRlX3VybCI6Imh0dHBzOi8vaXR1bmVzLmFwcGxlLmNvbS9iZS9hbGJ1bS9yb2NrYWJ5ZS1mZWF0Li1zZWFuLXBhdWwtYW5uZS9pZDExNjQwNDYwODY/YXQ9OXdWdElVR3omaT0xMTY0MDQ2MzM1JnVvPTQiLCJ0aHVtYm5haWwiOiIvMy9lYi9hNi8zZS8xMzQ3MzY2LzE0MDB4MTQwMGJiLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cDovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNWtudXp3VTY1Z0pLN0lGNXlKc3VhVyIsInZpZGVvcyI6W3sidHlwZSI6InlvdXR1YmUiLCJ0YWdzIjoiZGVmYXVsdCIsImlkIjoicGFwdXZsVmVaZzgifV0sImhvb2tzIjp7Im00YSI6Imh0dHBzOi8vYXVkaW8tc3NsLml0dW5lcy5hcHBsZS5jb20vaXR1bmVzLWFzc2V0cy9BdWRpb1ByZXZpZXc2Mi92NC9kNi8wMy8zMy9kNjAzMzMxNC1iY2QyLWMwNGMtZDRkMi1mMTIyZDllMDhhYTcvbXphZl85MjE5MzA3NzYwMTQ5NTMzMjk4LnBsdXMuYWFjLnAubTRhIn0sImZhY3RzIjp7fSwiYXJ0aXN0Ijp7ImlkIjo2NDU0LCJuYW1lIjoiQ0xFQU4gQkFORElUICYgU0VBTiBQQVVMICYgQU5ORS1NQVJJRSIsIm9yaWdpbmFsX25hbWUiOiJDTEVBTiBCQU5ESVQiLCJzbHVnIjoiY2xlYW4tYmFuZGl0IiwiYmlvIjoiQ2xlYW4gQmFuZGl0IGlzIGVlbiBCcml0c2UgZ3JvZXAsIG9udHN0YWFuIGluIDIwMDkuIERlIGdyb2VwIGJlc3RhYXQgdWl0IEphY2sgUGF0dGVyc29uLCBMdWtlIFBhdHRlcnNvbiwgR3JhY2UgQ2hhdHRvIGVuIE1pbGFuIE5laWwgQW1pbi1TbWl0aC4gSHVuIGdyb3RlIGRvb3JicmFhayB3YXMgaW4gMjAxNCBtZXQgZGUgc2luZ2xlICdSYXRoZXIgQmUnLlxyXG4iLCJmYWNlYm9va191cmwiOiJodHRwOi8vZmFjZWJvb2suY29tL2NsZWFuYmFuZGl0IiwidHdpdHRlcl91cmwiOiJodHRwOi8vdHdpdHRlci5jb20vY2xlYW5iYW5kaXQiLCJpbnN0YWdyYW1fdXJsIjoiaHR0cHM6Ly9pbnN0YWdyYW0uY29tL2NsZWFuYmFuZGl0IiwicGhvdG8iOiIvYS8yOC9jMy9jMi84NzkyMDcvQ2xlYW4rQmFuZGl0LnBuZyIsImNvdW50cnkiOnsiY29kZSI6IkdCIiwibmFtZSI6IlZlcmVuaWdkIEtvbmlua3JpamsifX0sInN1Yl9hcnRpc3RzIjpbeyJhcnRpc3QiOnsiaWQiOjk2LCJuYW1lIjoiU0VBTiBQQVVMIiwiYmlvIjoiVGhlIHRlbXBlcmF0dXJlIHJpc2VzIHRlbGtlbnMgSmFtYWljYWFucyBoaXBob3AtIGVuIGRhbmNlaGFsbGFydGllc3QgU2VhbiBQYXVsIGVlbiBkaXNjb3RoZWVrIGJpbm5lbnN0YXB0IG9mIGVlbiBmZXN0aXZhbHBvZGl1bSBiZXRyZWVkdC4gSGlqIGlzIEphbWFpY2FhbiBtYWFyIHdlcmQgZG9vciB2ZXJzY2hpbGxlbmRlIGN1bHR1cmVuIGJlw69udmxvZWQuIFppam4gZ3Jvb3R2YWRlciBsYW5ncyB2YWRlcnMga2FudCBpcyBQb3J0dWdlZXMsIHppam4gYW5kZXJlIGdyb290dmFkZXIgaXMgQWZyaWthYW5zIGVuIGRpZW5zIHZyb3V3IGlzIENoaW5lZXMuIFNlYW4gUGF1bCBicmFrIGluIDIwMDMgZG9vciBtZXQgZGUgaGl0c2luZ2xlIOKAmEdldCBCdXN54oCZIHdhYXJtZWUgaGlqIGRlIHRvcCAzIGluIGRlIGhpdGxpanN0ZW4gYmVyZWlrdGUuIFppam4gbXV6aWVrIHdvcmR0IGdla2VubWVya3QgZG9vciBlZW4gbWl4IHZhbiBMYXRpam5zLUFtZXJpa2FhbnNlIHJlZ2dhZXRvbiBlbiBkYW5jZWhhbGwuIERlIHBvbXBlbmRlIGJlYXRzLCBvcHp3ZXBlbmRlIG1lbG9kaWXDq24gZW4gc3dlYXR5IGRhbnNtb3ZlcyB6b3JnZW4gdGVsa2VucyBvcG5pZXV3IHZvb3IgZWVuIG9udmVyZ2V0ZWxpamsgZmVlc3QuIE5hIOKAmEdldCBCdXN54oCZIHNjb29yZGUgU2VhbiBQYXVsIHZvb3JhbCBtZXQg4oCYVGVtcGVyYXR1cmXigJksIOKAmEV2ZXIgQmxhemlu4oCZIGVuICdCYWJ5IEJveScuIiwiZmFjZWJvb2tfdXJsIjoiaHR0cDovL3d3dy5mYWNlYm9vay5jb20vc2VhbnBhdWwiLCJ0d2l0dGVyX3VybCI6Imh0dHBzOi8vdHdpdHRlci5jb20vIyEvZHV0dHlwYXVsIiwiaW5zdGFncmFtX3VybCI6Imh0dHBzOi8vaW5zdGFncmFtLmNvbS9kdXR0eXBhdWwvIiwid2Vic2l0ZSI6Imh0dHA6Ly93d3cuYWxsc2VhbnBhdWwuY29tLyIsInBob3RvIjoiLzgvMjAvNzcvYzIvMTA0MjkvU2VhbitQYXVsK1BORysyMDExLnBuZyIsImNvdW50cnkiOnsiY29kZSI6IkJFIiwibmFtZSI6IkJlbGdpw6sifX19LHsiYXJ0aXN0Ijp7ImlkIjoxMDUzOSwibmFtZSI6IkFOTkUtTUFSSUUiLCJiaW8iOiIiLCJmYWNlYm9va191cmwiOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vaWFtYW5uZW1hcmllIiwidHdpdHRlcl91cmwiOiJ3d3cudHdpdHRlci5jb20vQW5uZU1hcmllSUFtIiwicGhvdG8iOiIvMy9hNy9hMS9hYy8xMzMwMDQzL2UxZTNjMDlhZTBkYWYwYTFiOGRkMTc4M2QwMWNjNjJjLnBuZyIsImNvdW50cnkiOnsiY29kZSI6IkdCIiwibmFtZSI6IlZlcmVuaWdkIEtvbmlua3JpamsifX19XX19XSwicGFnaW5hdGlvbiI6eyJuZXh0IjoiLzIuNC90cmFja3MvcGxheXM/bGltaXQ9MSZuZXh0PXRydWUmc2luY2U9MjAyMS0xMi0xOSsxNCUzQTMzJTNBNTIrJTJCMDEwMCIsInByZXZpb3VzIjoiLzIuNC90cmFja3MvcGxheXM/bGltaXQ9MSZuZXh0PXRydWUmdXB0bz0yMDIxLTEyLTE5KzE0JTNBMzMlM0E1MislMkIwMTAwIn19
+  recorded_at: Sun, 19 Dec 2021 13:36:24 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Easy%20On%20Me%20artist:adele&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:24 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=Easy+On+Me+artist%3Aadele&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4dpARuHxo51G3z768sgnrY"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY",
+                  "id" : "4dpARuHxo51G3z768sgnrY",
+                  "name" : "Adele",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4dpARuHxo51G3z768sgnrY"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/224jZ4sUX7OhAuMwaxp86S"
+                },
+                "href" : "https://api.spotify.com/v1/albums/224jZ4sUX7OhAuMwaxp86S",
+                "id" : "224jZ4sUX7OhAuMwaxp86S",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27350dba34377a595e35f81b0e4",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0250dba34377a595e35f81b0e4",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485150dba34377a595e35f81b0e4",
+                  "width" : 64
+                } ],
+                "name" : "Easy On Me",
+                "release_date" : "2021-10-14",
+                "release_date_precision" : "day",
+                "total_tracks" : 1,
+                "type" : "album",
+                "uri" : "spotify:album:224jZ4sUX7OhAuMwaxp86S"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4dpARuHxo51G3z768sgnrY"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY",
+                "id" : "4dpARuHxo51G3z768sgnrY",
+                "name" : "Adele",
+                "type" : "artist",
+                "uri" : "spotify:artist:4dpARuHxo51G3z768sgnrY"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 224694,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USSM12105970"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0gplL1WMoJ6iYaPgMCL0gX"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0gplL1WMoJ6iYaPgMCL0gX",
+              "id" : "0gplL1WMoJ6iYaPgMCL0gX",
+              "is_local" : false,
+              "name" : "Easy On Me",
+              "popularity" : 100,
+              "preview_url" : "https://p.scdn.co/mp3-preview/c5014be1aeb2ab5f129e2789eff3ea87ecd5027f?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:0gplL1WMoJ6iYaPgMCL0gX"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4dpARuHxo51G3z768sgnrY"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY",
+                  "id" : "4dpARuHxo51G3z768sgnrY",
+                  "name" : "Adele",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4dpARuHxo51G3z768sgnrY"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/21jF5jlMtzo94wbxmJ18aa"
+                },
+                "href" : "https://api.spotify.com/v1/albums/21jF5jlMtzo94wbxmJ18aa",
+                "id" : "21jF5jlMtzo94wbxmJ18aa",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273c6b577e4c4a6d326354a89f7",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02c6b577e4c4a6d326354a89f7",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851c6b577e4c4a6d326354a89f7",
+                  "width" : 64
+                } ],
+                "name" : "30",
+                "release_date" : "2021-11-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 12,
+                "type" : "album",
+                "uri" : "spotify:album:21jF5jlMtzo94wbxmJ18aa"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4dpARuHxo51G3z768sgnrY"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY",
+                "id" : "4dpARuHxo51G3z768sgnrY",
+                "name" : "Adele",
+                "type" : "artist",
+                "uri" : "spotify:artist:4dpARuHxo51G3z768sgnrY"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 224694,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USSM12105970"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/46IZ0fSY2mpAiktS3KOqds"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/46IZ0fSY2mpAiktS3KOqds",
+              "id" : "46IZ0fSY2mpAiktS3KOqds",
+              "is_local" : false,
+              "name" : "Easy On Me",
+              "popularity" : 93,
+              "preview_url" : "https://p.scdn.co/mp3-preview/c5014be1aeb2ab5f129e2789eff3ea87ecd5027f?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:46IZ0fSY2mpAiktS3KOqds"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/7Kx7qoNH93gIowJxDrwzZN"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/7Kx7qoNH93gIowJxDrwzZN",
+                  "id" : "7Kx7qoNH93gIowJxDrwzZN",
+                  "name" : "Adele Adkins and Greg Kurstin",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:7Kx7qoNH93gIowJxDrwzZN"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/1AcjxPAgiRKYpwUxUYI33z"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/1AcjxPAgiRKYpwUxUYI33z",
+                  "id" : "1AcjxPAgiRKYpwUxUYI33z",
+                  "name" : "Clint Robinson",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:1AcjxPAgiRKYpwUxUYI33z"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4IsORmGvh2QCf2bZLIl77t"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4IsORmGvh2QCf2bZLIl77t",
+                "id" : "4IsORmGvh2QCf2bZLIl77t",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273f1ac5788203d2b8361c1c770",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02f1ac5788203d2b8361c1c770",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851f1ac5788203d2b8361c1c770",
+                  "width" : 64
+                } ],
+                "name" : "Easy On Me (Cello & Piano Version)",
+                "release_date" : "2021-12-14",
+                "release_date_precision" : "day",
+                "total_tracks" : 1,
+                "type" : "album",
+                "uri" : "spotify:album:4IsORmGvh2QCf2bZLIl77t"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7Kx7qoNH93gIowJxDrwzZN"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7Kx7qoNH93gIowJxDrwzZN",
+                "id" : "7Kx7qoNH93gIowJxDrwzZN",
+                "name" : "Adele Adkins and Greg Kurstin",
+                "type" : "artist",
+                "uri" : "spotify:artist:7Kx7qoNH93gIowJxDrwzZN"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1AcjxPAgiRKYpwUxUYI33z"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1AcjxPAgiRKYpwUxUYI33z",
+                "id" : "1AcjxPAgiRKYpwUxUYI33z",
+                "name" : "Clint Robinson",
+                "type" : "artist",
+                "uri" : "spotify:artist:1AcjxPAgiRKYpwUxUYI33z"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 219166,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "QZPJ32128589"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/37x8g9zVdhmzEaFovPBVR4"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/37x8g9zVdhmzEaFovPBVR4",
+              "id" : "37x8g9zVdhmzEaFovPBVR4",
+              "is_local" : false,
+              "name" : "Easy On Me - Cello & Piano Version",
+              "popularity" : 1,
+              "preview_url" : "https://p.scdn.co/mp3-preview/43fa956216622519b1ab85bd388587f0bd18e525?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:37x8g9zVdhmzEaFovPBVR4"
+            } ],
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 3
+          }
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:24 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=84201
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:24 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/4dpARuHxo51G3z768sgnrY"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 32145957
+          },
+          "genres" : [ "british soul", "pop", "pop soul", "uk pop" ],
+          "href" : "https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY",
+          "id" : "4dpARuHxo51G3z768sgnrY",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb68f6e5892075d7f22615bd17",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab6761610000517468f6e5892075d7f22615bd17",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f17868f6e5892075d7f22615bd17",
+            "width" : 160
+          } ],
+          "name" : "Adele",
+          "popularity" : 96,
+          "type" : "artist",
+          "uri" : "spotify:artist:4dpARuHxo51G3z768sgnrY"
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:24 GMT
+- request:
+    method: get
+    uri: https://api.qmusic.nl/2.4/tracks/plays?limit=1&next=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.qmusic.nl
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 19 Dec 2021 13:36:25 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Runtime:
+      - '0.262061'
+      X-Request-Id:
+      - 4aa57ecb0036fa62951df133eecc388c
+      X-Powered-By:
+      - Phusion Passenger(R) Enterprise
+      Etag:
+      - W/"078eaed6d0b5b996ac311a9f86bb2e3a"
+      Status:
+      - 200 OK
+      X-Varnish:
+      - 770441955 769704482
+      Age:
+      - '19'
+      Via:
+      - 1.1 varnish (Varnish/6.1)
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Cache:
+      - HIT-API
+      X-Cache-Hits:
+      - '2'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=YH59ApYI%2B4ykA4%2FyZmykWm3abQ8Jc9%2FuZs2tkI3ei%2F2i4Iuok45qWJ8oIaN2Iure1rfIB6991GnuQVIB0Iu8xrH54OZ3E%2BVB%2Bz0dVvwV%2Bu87COwcI%2FZ0bUVJvpwp%2Buc%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6c01050d48c30099-AMS
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJwbGF5ZWRfdHJhY2tzIjpbeyJwbGF5ZWRfYXQiOiIyMDIxLTEyLTE5VDE0OjMzOjUyKzAxOjAwIiwic2x1ZyI6ImVhc3ktb24tbWUtMiIsInRpdGxlIjoiRWFzeSBPbiBNZSIsInNlbGVjdG9yX2NvZGUiOiJRMTM5NjUiLCJyZWxlYXNlX3llYXIiOiIyMDIxIiwiYWZmaWxpYXRlX3VybCI6Imh0dHBzOi8vbXVzaWMuYXBwbGUuY29tL2JlL2FsYnVtL2Vhc3ktb24tbWUvMTU5MDAzNTY5MT9hdD05d1Z0SVVHeiZpPTE1OTAwMzYwMjEmdW89NCIsInRodW1ibmFpbCI6Ii83LzUwLzM4Lzg2LzE0OTM3MjcvMTQwMHgxNDAwYmIuanBnIiwic3BvdGlmeV91cmwiOiJodHRwOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8wZ3BsTDFXTW9KNmlZYVBnTUNMMGdYIiwidmlkZW9zIjpbeyJ0eXBlIjoieW91dHViZSIsInRhZ3MiOiJkZWZhdWx0IiwiaWQiOiJVM0FTajFMNl9zWSJ9XSwiaG9va3MiOnsibTRhIjoiaHR0cHM6Ly9hdWRpby1zc2wuaXR1bmVzLmFwcGxlLmNvbS9pdHVuZXMtYXNzZXRzL0F1ZGlvUHJldmlldzExNS92NC8zMi8yNi9kZi8zMjI2ZGY1Zi04ODc5LTJjMTQtOTVjMi02Y2IzNGJkNTY3MTIvbXphZl82MDkzMzczMjU4MjMxNDY4ODU2LnBsdXMuYWFjLnAubTRhIn0sImZhY3RzIjp7fSwiYXJ0aXN0Ijp7ImlkIjoxOSwibmFtZSI6IkFERUxFIiwib3JpZ2luYWxfbmFtZSI6IkFERUxFIiwic2x1ZyI6ImFkZWxlLTIiLCJiaW8iOiJEZSBlZXJzdGUgYXJ0aWVzdGUgZGllIGluIGRlIEFtZXJpa2FhbnNlIGl0dW5lcyBkdWJiZWwgcGxhdGluYSBoYWFsdCwgZGUgZWVyc3RlIGFydGllc3RlIG5hIE1pY2hhZWwgSmFja3NvbiAzMiBqYWFyIGdlbGVkZW4sIGRpZSB0ZWdlbGlqa2VydGlqZCBvcCBwbGFhdHMgMSBlbiBvcCBwbGFhdHMgMiBpbiBkZSBCcml0c2UgaGl0bGlqc3Qgc3RhYXQsIG1lZXIgZGFuIDQgbWlsam9lbiB0d2l0dGVyIGZvbGxvd2VycyBlbiBlZW4gc3RlbSBvbSBVIHRlZ2VuIHRlIHplZ2dlbi4gTmllbWFuZCBhbmRlcnMgZGFuIEFkZWxlIHBhc3QgcGVyZmVjdCBiaWogZGV6ZSBiZXNjaHJpanZpbmcuIEFkZWxlIExhdXJpZSBCbHVlIEFka2lucyBpcyBlZW4gRW5nZWxzZSBwb3B6YW5nZXJlcyBkaWUgaW4gMjAwOCB2b2xsZWRpZyBkb29yYnJhayBtZXQgaGFhciBhbGJ1bSDigJgxOeKAmS4gRGUgc2luZ2xlcyDigJhDaGFzaW5nIFBhdmVtZW50c+KAmSBlbiBkZSBwcmFjaHRpZ2UgY292ZXIgdmFuIEJvYiBEeWxhbuKAmXMg4oCYTWFrZSBZb3UgRmVlbCBNeSBMb3Zl4oCZIHdhcmVuIGJlaWRlIHdlcmVsZGhpdHMuIFNpbmRzZGllbiBsYWF0IHplIG11emlla2xpZWZoZWJiZXJzIG5pZXQgbWVlciBsb3MsIGVuIHdpaiBoYWFyIG9vayBuaWV0ISBcclxuXHJcbkluIDIwMTEgd29uIEFkZWxlIDggR3JhbW15IEF3YXJkcywgc2Nvb3JkZSB6ZSBoaXRzIG1ldCAnUm9sbGluZyBJbiBUaGUgRGVlcCcsICdTZXQgRmlyZSBUbyBUaGUgUmFpbicgZW4gJ1NvbWVvbmUgTGlrZSBZb3UnLiBJbiBub3ZlbWJlciB2YW4gZGF0IGphYXIgcmFha3RlIGJla2VuZCBkYXQgQWRlbGUgZWVuIHN0ZW1iYW5kb3BlcmF0aWUgbW9lc3Qgb25kZXJnYWFuLiBWb2xnZW5zIGRlIGRva3RlcnMgem91IHplIHZvbGxlZGlnIGhlcnN0ZWxsZW4gdmFuIGRlIG9wZXJhdGllIGVuIHpvdSBkZXplIGdlZW4gaW52bG9lZCBoZWJiZW4gb3AgaGFhciBzdGVtLiBFbmtlbGUgZGFnZW4gbGF0ZXIgc2lqcGVsZGUgdmlhIHZlcnNjaGlsbGVuZGUgbmlldXdzc2l0ZXMgaGV0IHZlcm9udHJ1c3RlbmRlIG5pZXV3cyBiaW5uZW4gZGF0IEFkZWxlIHZpZXIgb2YgdmlqZiBqYWFyIHpvdSBzdG9wcGVuIG1ldCBtdXppZWsgbWFrZW4uIERpdCBibGVlayBnZWx1a2tpZyBuaWV0IGhldCBnZXZhbCB0ZSB6aWpuLiBBZGVsZSBrd2FtIHRlcnVnIGVuIGhhZCBtZXQgJ1J1bW91ciBIYXMgSXQnIG9ubWlkZGVsbGlqayBlZW4gbmlldXdlIGhpdCB0ZSBwYWtrZW4hXHJcblxyXG5JbiAyMDEyIHppbmd0IHplIGRlIHNvdW5kdHJhY2sgdm9vciBkZSBKYW1lcyBCb25kLWZpbG0gJ1NreWZhbGwnLiBEZSBnZWxpamtuYW1pZ2Ugc2luZ2xlIHNjb29ydCBob29nIGluIGRlIGhpdGxpanN0ZW4gZW4gaGFhbHQgbWVlcmRlcmUgcHJpanplbiBiaW5uZW4uIEhpZXJuYSBibGlqZnQgaGV0IGVybnN0aWcgc3RpbCByb25kb20gZGUgQnJpdHNlIHphbmdlcmVzLiBNYWFyIGluIG9rdG9iZXIgMjAxNSBpcyB6ZSBpbmVlbnMgd2VlciB0ZXJ1ZyBtZXQgZGUgc2luZ2xlICdIZWxsbycgZW4gaGV0IGFsYnVtIDI1LCBkYXQgYWxsZSByZWNvcmRzIGJyZWVrdC4iLCJmYWNlYm9va191cmwiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9hZGVsZSIsInR3aXR0ZXJfdXJsIjoiaHR0cHM6Ly90d2l0dGVyLmNvbS8jIS9PZmZpY2lhbEFkZWxlIiwiaW5zdGFncmFtX3VybCI6Imh0dHBzOi8vaW5zdGFncmFtLmNvbS9hZGVsZS8iLCJ3ZWJzaXRlIjoiaHR0cDovL3d3dy5hZGVsZS50di8iLCJwaG90byI6Ii8xL2U2L2UxL2E3LzEyMTk4OC9BZGVsZS1Ta3lmYWxsLmpwZWciLCJjb3VudHJ5Ijp7ImNvZGUiOiJHQiIsIm5hbWUiOiJWZXJlbmlnZCBLb25pbmtyaWprIn19LCJzdWJfYXJ0aXN0cyI6W10sImN1cnJlbnRfZWRpdGlvbnMiOlt7InBvc2l0aW9uIjo0OTYsImVkaXRpb24iOnsiaWQiOjQ3NjksIm5hbWUiOiIyMDIxIn0sImxpc3QiOnsiaWQiOjY2LCJuYW1lIjoiUS10b3AgMTAwMCJ9fSx7InBvc2l0aW9uIjoxLCJlZGl0aW9uIjp7ImlkIjo0ODgxLCJuYW1lIjoiMTcvMTIvMjAyMSJ9LCJsaXN0Ijp7ImlkIjoyMjUsIm5hbWUiOiJRbXVzaWMgVG9wIDQwIn19LHsicG9zaXRpb24iOjEsImVkaXRpb24iOnsiaWQiOjQ3OTksIm5hbWUiOiIyMDIxLTEwLTIyIn0sImxpc3QiOnsiaWQiOjMyMywibmFtZSI6IlEtdG9wIDEwMDAifX0seyJwb3NpdGlvbiI6MSwiZWRpdGlvbiI6eyJpZCI6NDgxNSwibmFtZSI6IlZhbmRhYWcifSwibGlzdCI6eyJpZCI6MzI1LCJuYW1lIjoiUW11c2ljIFRvcCA0MCJ9fV0sImFjdGl2ZV9lZGl0aW9ucyI6W10sIm5leHQiOnsic2x1ZyI6InJvY2thYnllLTIiLCJ0aXRsZSI6IlJvY2thYnllIiwic2VsZWN0b3JfY29kZSI6IjgwNTUtNjUiLCJyZWxlYXNlX3llYXIiOiIyMDE2IiwiYWZmaWxpYXRlX3VybCI6Imh0dHBzOi8vaXR1bmVzLmFwcGxlLmNvbS9iZS9hbGJ1bS9yb2NrYWJ5ZS1mZWF0Li1zZWFuLXBhdWwtYW5uZS9pZDExNjQwNDYwODY/YXQ9OXdWdElVR3omaT0xMTY0MDQ2MzM1JnVvPTQiLCJ0aHVtYm5haWwiOiIvMy9lYi9hNi8zZS8xMzQ3MzY2LzE0MDB4MTQwMGJiLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cDovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNWtudXp3VTY1Z0pLN0lGNXlKc3VhVyIsInZpZGVvcyI6W3sidHlwZSI6InlvdXR1YmUiLCJ0YWdzIjoiZGVmYXVsdCIsImlkIjoicGFwdXZsVmVaZzgifV0sImhvb2tzIjp7Im00YSI6Imh0dHBzOi8vYXVkaW8tc3NsLml0dW5lcy5hcHBsZS5jb20vaXR1bmVzLWFzc2V0cy9BdWRpb1ByZXZpZXc2Mi92NC9kNi8wMy8zMy9kNjAzMzMxNC1iY2QyLWMwNGMtZDRkMi1mMTIyZDllMDhhYTcvbXphZl85MjE5MzA3NzYwMTQ5NTMzMjk4LnBsdXMuYWFjLnAubTRhIn0sImZhY3RzIjp7fSwiYXJ0aXN0Ijp7ImlkIjo2NDU0LCJuYW1lIjoiQ0xFQU4gQkFORElUICYgU0VBTiBQQVVMICYgQU5ORS1NQVJJRSIsIm9yaWdpbmFsX25hbWUiOiJDTEVBTiBCQU5ESVQiLCJzbHVnIjoiY2xlYW4tYmFuZGl0IiwiYmlvIjoiQ2xlYW4gQmFuZGl0IGlzIGVlbiBCcml0c2UgZ3JvZXAsIG9udHN0YWFuIGluIDIwMDkuIERlIGdyb2VwIGJlc3RhYXQgdWl0IEphY2sgUGF0dGVyc29uLCBMdWtlIFBhdHRlcnNvbiwgR3JhY2UgQ2hhdHRvIGVuIE1pbGFuIE5laWwgQW1pbi1TbWl0aC4gSHVuIGdyb3RlIGRvb3JicmFhayB3YXMgaW4gMjAxNCBtZXQgZGUgc2luZ2xlICdSYXRoZXIgQmUnLlxyXG4iLCJmYWNlYm9va191cmwiOiJodHRwOi8vZmFjZWJvb2suY29tL2NsZWFuYmFuZGl0IiwidHdpdHRlcl91cmwiOiJodHRwOi8vdHdpdHRlci5jb20vY2xlYW5iYW5kaXQiLCJpbnN0YWdyYW1fdXJsIjoiaHR0cHM6Ly9pbnN0YWdyYW0uY29tL2NsZWFuYmFuZGl0IiwicGhvdG8iOiIvYS8yOC9jMy9jMi84NzkyMDcvQ2xlYW4rQmFuZGl0LnBuZyIsImNvdW50cnkiOnsiY29kZSI6IkdCIiwibmFtZSI6IlZlcmVuaWdkIEtvbmlua3JpamsifX0sInN1Yl9hcnRpc3RzIjpbeyJhcnRpc3QiOnsiaWQiOjk2LCJuYW1lIjoiU0VBTiBQQVVMIiwiYmlvIjoiVGhlIHRlbXBlcmF0dXJlIHJpc2VzIHRlbGtlbnMgSmFtYWljYWFucyBoaXBob3AtIGVuIGRhbmNlaGFsbGFydGllc3QgU2VhbiBQYXVsIGVlbiBkaXNjb3RoZWVrIGJpbm5lbnN0YXB0IG9mIGVlbiBmZXN0aXZhbHBvZGl1bSBiZXRyZWVkdC4gSGlqIGlzIEphbWFpY2FhbiBtYWFyIHdlcmQgZG9vciB2ZXJzY2hpbGxlbmRlIGN1bHR1cmVuIGJlw69udmxvZWQuIFppam4gZ3Jvb3R2YWRlciBsYW5ncyB2YWRlcnMga2FudCBpcyBQb3J0dWdlZXMsIHppam4gYW5kZXJlIGdyb290dmFkZXIgaXMgQWZyaWthYW5zIGVuIGRpZW5zIHZyb3V3IGlzIENoaW5lZXMuIFNlYW4gUGF1bCBicmFrIGluIDIwMDMgZG9vciBtZXQgZGUgaGl0c2luZ2xlIOKAmEdldCBCdXN54oCZIHdhYXJtZWUgaGlqIGRlIHRvcCAzIGluIGRlIGhpdGxpanN0ZW4gYmVyZWlrdGUuIFppam4gbXV6aWVrIHdvcmR0IGdla2VubWVya3QgZG9vciBlZW4gbWl4IHZhbiBMYXRpam5zLUFtZXJpa2FhbnNlIHJlZ2dhZXRvbiBlbiBkYW5jZWhhbGwuIERlIHBvbXBlbmRlIGJlYXRzLCBvcHp3ZXBlbmRlIG1lbG9kaWXDq24gZW4gc3dlYXR5IGRhbnNtb3ZlcyB6b3JnZW4gdGVsa2VucyBvcG5pZXV3IHZvb3IgZWVuIG9udmVyZ2V0ZWxpamsgZmVlc3QuIE5hIOKAmEdldCBCdXN54oCZIHNjb29yZGUgU2VhbiBQYXVsIHZvb3JhbCBtZXQg4oCYVGVtcGVyYXR1cmXigJksIOKAmEV2ZXIgQmxhemlu4oCZIGVuICdCYWJ5IEJveScuIiwiZmFjZWJvb2tfdXJsIjoiaHR0cDovL3d3dy5mYWNlYm9vay5jb20vc2VhbnBhdWwiLCJ0d2l0dGVyX3VybCI6Imh0dHBzOi8vdHdpdHRlci5jb20vIyEvZHV0dHlwYXVsIiwiaW5zdGFncmFtX3VybCI6Imh0dHBzOi8vaW5zdGFncmFtLmNvbS9kdXR0eXBhdWwvIiwid2Vic2l0ZSI6Imh0dHA6Ly93d3cuYWxsc2VhbnBhdWwuY29tLyIsInBob3RvIjoiLzgvMjAvNzcvYzIvMTA0MjkvU2VhbitQYXVsK1BORysyMDExLnBuZyIsImNvdW50cnkiOnsiY29kZSI6IkJFIiwibmFtZSI6IkJlbGdpw6sifX19LHsiYXJ0aXN0Ijp7ImlkIjoxMDUzOSwibmFtZSI6IkFOTkUtTUFSSUUiLCJiaW8iOiIiLCJmYWNlYm9va191cmwiOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vaWFtYW5uZW1hcmllIiwidHdpdHRlcl91cmwiOiJ3d3cudHdpdHRlci5jb20vQW5uZU1hcmllSUFtIiwicGhvdG8iOiIvMy9hNy9hMS9hYy8xMzMwMDQzL2UxZTNjMDlhZTBkYWYwYTFiOGRkMTc4M2QwMWNjNjJjLnBuZyIsImNvdW50cnkiOnsiY29kZSI6IkdCIiwibmFtZSI6IlZlcmVuaWdkIEtvbmlua3JpamsifX19XX19XSwicGFnaW5hdGlvbiI6eyJuZXh0IjoiLzIuNC90cmFja3MvcGxheXM/bGltaXQ9MSZuZXh0PXRydWUmc2luY2U9MjAyMS0xMi0xOSsxNCUzQTMzJTNBNTIrJTJCMDEwMCIsInByZXZpb3VzIjoiLzIuNC90cmFja3MvcGxheXM/bGltaXQ9MSZuZXh0PXRydWUmdXB0bz0yMDIxLTEyLTE5KzE0JTNBMzMlM0E1MislMkIwMTAwIn19
+  recorded_at: Sun, 19 Dec 2021 13:36:25 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Easy%20On%20Me%20artist:adele&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:24 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=Easy+On+Me+artist%3Aadele&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4dpARuHxo51G3z768sgnrY"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY",
+                  "id" : "4dpARuHxo51G3z768sgnrY",
+                  "name" : "Adele",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4dpARuHxo51G3z768sgnrY"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/224jZ4sUX7OhAuMwaxp86S"
+                },
+                "href" : "https://api.spotify.com/v1/albums/224jZ4sUX7OhAuMwaxp86S",
+                "id" : "224jZ4sUX7OhAuMwaxp86S",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27350dba34377a595e35f81b0e4",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0250dba34377a595e35f81b0e4",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485150dba34377a595e35f81b0e4",
+                  "width" : 64
+                } ],
+                "name" : "Easy On Me",
+                "release_date" : "2021-10-14",
+                "release_date_precision" : "day",
+                "total_tracks" : 1,
+                "type" : "album",
+                "uri" : "spotify:album:224jZ4sUX7OhAuMwaxp86S"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4dpARuHxo51G3z768sgnrY"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY",
+                "id" : "4dpARuHxo51G3z768sgnrY",
+                "name" : "Adele",
+                "type" : "artist",
+                "uri" : "spotify:artist:4dpARuHxo51G3z768sgnrY"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 224694,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USSM12105970"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0gplL1WMoJ6iYaPgMCL0gX"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0gplL1WMoJ6iYaPgMCL0gX",
+              "id" : "0gplL1WMoJ6iYaPgMCL0gX",
+              "is_local" : false,
+              "name" : "Easy On Me",
+              "popularity" : 100,
+              "preview_url" : "https://p.scdn.co/mp3-preview/c5014be1aeb2ab5f129e2789eff3ea87ecd5027f?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:0gplL1WMoJ6iYaPgMCL0gX"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4dpARuHxo51G3z768sgnrY"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY",
+                  "id" : "4dpARuHxo51G3z768sgnrY",
+                  "name" : "Adele",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4dpARuHxo51G3z768sgnrY"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/21jF5jlMtzo94wbxmJ18aa"
+                },
+                "href" : "https://api.spotify.com/v1/albums/21jF5jlMtzo94wbxmJ18aa",
+                "id" : "21jF5jlMtzo94wbxmJ18aa",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273c6b577e4c4a6d326354a89f7",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02c6b577e4c4a6d326354a89f7",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851c6b577e4c4a6d326354a89f7",
+                  "width" : 64
+                } ],
+                "name" : "30",
+                "release_date" : "2021-11-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 12,
+                "type" : "album",
+                "uri" : "spotify:album:21jF5jlMtzo94wbxmJ18aa"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4dpARuHxo51G3z768sgnrY"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY",
+                "id" : "4dpARuHxo51G3z768sgnrY",
+                "name" : "Adele",
+                "type" : "artist",
+                "uri" : "spotify:artist:4dpARuHxo51G3z768sgnrY"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 224694,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USSM12105970"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/46IZ0fSY2mpAiktS3KOqds"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/46IZ0fSY2mpAiktS3KOqds",
+              "id" : "46IZ0fSY2mpAiktS3KOqds",
+              "is_local" : false,
+              "name" : "Easy On Me",
+              "popularity" : 93,
+              "preview_url" : "https://p.scdn.co/mp3-preview/c5014be1aeb2ab5f129e2789eff3ea87ecd5027f?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:46IZ0fSY2mpAiktS3KOqds"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/7Kx7qoNH93gIowJxDrwzZN"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/7Kx7qoNH93gIowJxDrwzZN",
+                  "id" : "7Kx7qoNH93gIowJxDrwzZN",
+                  "name" : "Adele Adkins and Greg Kurstin",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:7Kx7qoNH93gIowJxDrwzZN"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/1AcjxPAgiRKYpwUxUYI33z"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/1AcjxPAgiRKYpwUxUYI33z",
+                  "id" : "1AcjxPAgiRKYpwUxUYI33z",
+                  "name" : "Clint Robinson",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:1AcjxPAgiRKYpwUxUYI33z"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4IsORmGvh2QCf2bZLIl77t"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4IsORmGvh2QCf2bZLIl77t",
+                "id" : "4IsORmGvh2QCf2bZLIl77t",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273f1ac5788203d2b8361c1c770",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02f1ac5788203d2b8361c1c770",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851f1ac5788203d2b8361c1c770",
+                  "width" : 64
+                } ],
+                "name" : "Easy On Me (Cello & Piano Version)",
+                "release_date" : "2021-12-14",
+                "release_date_precision" : "day",
+                "total_tracks" : 1,
+                "type" : "album",
+                "uri" : "spotify:album:4IsORmGvh2QCf2bZLIl77t"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7Kx7qoNH93gIowJxDrwzZN"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7Kx7qoNH93gIowJxDrwzZN",
+                "id" : "7Kx7qoNH93gIowJxDrwzZN",
+                "name" : "Adele Adkins and Greg Kurstin",
+                "type" : "artist",
+                "uri" : "spotify:artist:7Kx7qoNH93gIowJxDrwzZN"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1AcjxPAgiRKYpwUxUYI33z"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1AcjxPAgiRKYpwUxUYI33z",
+                "id" : "1AcjxPAgiRKYpwUxUYI33z",
+                "name" : "Clint Robinson",
+                "type" : "artist",
+                "uri" : "spotify:artist:1AcjxPAgiRKYpwUxUYI33z"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 219166,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "QZPJ32128589"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/37x8g9zVdhmzEaFovPBVR4"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/37x8g9zVdhmzEaFovPBVR4",
+              "id" : "37x8g9zVdhmzEaFovPBVR4",
+              "is_local" : false,
+              "name" : "Easy On Me - Cello & Piano Version",
+              "popularity" : 1,
+              "preview_url" : "https://p.scdn.co/mp3-preview/43fa956216622519b1ab85bd388587f0bd18e525?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:37x8g9zVdhmzEaFovPBVR4"
+            } ],
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 3
+          }
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:25 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=76883
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:25 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/4dpARuHxo51G3z768sgnrY"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 32145957
+          },
+          "genres" : [ "british soul", "pop", "pop soul", "uk pop" ],
+          "href" : "https://api.spotify.com/v1/artists/4dpARuHxo51G3z768sgnrY",
+          "id" : "4dpARuHxo51G3z768sgnrY",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb68f6e5892075d7f22615bd17",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab6761610000517468f6e5892075d7f22615bd17",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f17868f6e5892075d7f22615bd17",
+            "width" : 160
+          } ],
+          "name" : "Adele",
+          "popularity" : 96,
+          "type" : "artist",
+          "uri" : "spotify:artist:4dpARuHxo51G3z768sgnrY"
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:25 GMT
+recorded_with: VCR 6.0.0

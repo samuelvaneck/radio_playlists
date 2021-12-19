@@ -9,6 +9,7 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'timecop'
 require 'support/shoulda_matchers'
+require 'support/vcr'
 require 'rspec/rails'
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

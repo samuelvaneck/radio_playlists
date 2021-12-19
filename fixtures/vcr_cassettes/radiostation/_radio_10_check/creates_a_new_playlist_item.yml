@@ -1,0 +1,1615 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=All%20Together%20Now%20artist:the%20farm&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:27 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=All+Together+Now+artist%3Athe+farm&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0nDhAjCRFVSV1zDviuZqID"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0nDhAjCRFVSV1zDviuZqID",
+                "id" : "0nDhAjCRFVSV1zDviuZqID",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273b422ae99c55ca88ff01bf139",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02b422ae99c55ca88ff01bf139",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851b422ae99c55ca88ff01bf139",
+                  "width" : 64
+                } ],
+                "name" : "Spartacus",
+                "release_date" : "1991-04-26",
+                "release_date_precision" : "day",
+                "total_tracks" : 12,
+                "type" : "album",
+                "uri" : "spotify:album:0nDhAjCRFVSV1zDviuZqID"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 343866,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRE19901615"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/4QpRPgaXc5GmAb32VFUm8p"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/4QpRPgaXc5GmAb32VFUm8p",
+              "id" : "4QpRPgaXc5GmAb32VFUm8p",
+              "is_local" : false,
+              "name" : "All Together Now",
+              "popularity" : 33,
+              "preview_url" : "https://p.scdn.co/mp3-preview/077dea37ce3a7203f513246c434465ed641ea12b?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 10,
+              "type" : "track",
+              "uri" : "spotify:track:4QpRPgaXc5GmAb32VFUm8p"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/2GgV2aMVbdssPreu1uCFNr"
+                },
+                "href" : "https://api.spotify.com/v1/albums/2GgV2aMVbdssPreu1uCFNr",
+                "id" : "2GgV2aMVbdssPreu1uCFNr",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273a4148602a9f1998af9c4c096",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02a4148602a9f1998af9c4c096",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851a4148602a9f1998af9c4c096",
+                  "width" : 64
+                } ],
+                "name" : "All Together Now",
+                "release_date" : "2007-10-30",
+                "release_date_precision" : "day",
+                "total_tracks" : 12,
+                "type" : "album",
+                "uri" : "spotify:album:2GgV2aMVbdssPreu1uCFNr"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
+              "disc_number" : 1,
+              "duration_ms" : 329717,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBFDB0700434"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3tZNQuI4cTiXEtc91u2vJC"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3tZNQuI4cTiXEtc91u2vJC",
+              "id" : "3tZNQuI4cTiXEtc91u2vJC",
+              "is_local" : false,
+              "name" : "Altogether Now",
+              "popularity" : 30,
+              "preview_url" : "https://p.scdn.co/mp3-preview/56c686cc341e23f4d5864ba10348dea9e3ea044f?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 8,
+              "type" : "track",
+              "uri" : "spotify:track:3tZNQuI4cTiXEtc91u2vJC"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7jHVXv5vIoFRTNrPCqYV8K"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7jHVXv5vIoFRTNrPCqYV8K",
+                "id" : "7jHVXv5vIoFRTNrPCqYV8K",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dda74d63518cd0e19c768090",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dda74d63518cd0e19c768090",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dda74d63518cd0e19c768090",
+                  "width" : 64
+                } ],
+                "name" : "Spartacus 30",
+                "release_date" : "2021-03-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 44,
+                "type" : "album",
+                "uri" : "spotify:album:7jHVXv5vIoFRTNrPCqYV8K"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 342600,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBBLG9100021"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0HEURvXFXN8E9MOTCfTaAE"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0HEURvXFXN8E9MOTCfTaAE",
+              "id" : "0HEURvXFXN8E9MOTCfTaAE",
+              "is_local" : false,
+              "name" : "All Together Now",
+              "popularity" : 2,
+              "preview_url" : "https://p.scdn.co/mp3-preview/51b9db5184dfe02c100e84c6c6150659cad27da3?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 10,
+              "type" : "track",
+              "uri" : "spotify:track:0HEURvXFXN8E9MOTCfTaAE"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/1IEDNNjrdwhicy2Auu0MrP"
+                },
+                "href" : "https://api.spotify.com/v1/albums/1IEDNNjrdwhicy2Auu0MrP",
+                "id" : "1IEDNNjrdwhicy2Auu0MrP",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2736c24ecb3564e69e00ca29afb",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e026c24ecb3564e69e00ca29afb",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048516c24ecb3564e69e00ca29afb",
+                  "width" : 64
+                } ],
+                "name" : "British Legends: 100 Hits",
+                "release_date" : "2019-12-27",
+                "release_date_precision" : "day",
+                "total_tracks" : 100,
+                "type" : "album",
+                "uri" : "spotify:album:1IEDNNjrdwhicy2Auu0MrP"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 343866,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRE19901615"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/25r9IZY47LrXaA4ccDfJDs"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/25r9IZY47LrXaA4ccDfJDs",
+              "id" : "25r9IZY47LrXaA4ccDfJDs",
+              "is_local" : false,
+              "name" : "All Together Now",
+              "popularity" : 1,
+              "preview_url" : "https://p.scdn.co/mp3-preview/077dea37ce3a7203f513246c434465ed641ea12b?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 24,
+              "type" : "track",
+              "uri" : "spotify:track:25r9IZY47LrXaA4ccDfJDs"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/2GgV2aMVbdssPreu1uCFNr"
+                },
+                "href" : "https://api.spotify.com/v1/albums/2GgV2aMVbdssPreu1uCFNr",
+                "id" : "2GgV2aMVbdssPreu1uCFNr",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273a4148602a9f1998af9c4c096",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02a4148602a9f1998af9c4c096",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851a4148602a9f1998af9c4c096",
+                  "width" : 64
+                } ],
+                "name" : "All Together Now",
+                "release_date" : "2007-10-30",
+                "release_date_precision" : "day",
+                "total_tracks" : 12,
+                "type" : "album",
+                "uri" : "spotify:album:2GgV2aMVbdssPreu1uCFNr"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
+              "disc_number" : 1,
+              "duration_ms" : 281965,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBFDB0700432"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/4S8sVtBOqzcrE0YPPyAXJN"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/4S8sVtBOqzcrE0YPPyAXJN",
+              "id" : "4S8sVtBOqzcrE0YPPyAXJN",
+              "is_local" : false,
+              "name" : "Love See No Colour",
+              "popularity" : 5,
+              "preview_url" : "https://p.scdn.co/mp3-preview/87488323f707f3a255f45427392e4cb4559446a0?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 6,
+              "type" : "track",
+              "uri" : "spotify:track:4S8sVtBOqzcrE0YPPyAXJN"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/2GgV2aMVbdssPreu1uCFNr"
+                },
+                "href" : "https://api.spotify.com/v1/albums/2GgV2aMVbdssPreu1uCFNr",
+                "id" : "2GgV2aMVbdssPreu1uCFNr",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273a4148602a9f1998af9c4c096",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02a4148602a9f1998af9c4c096",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851a4148602a9f1998af9c4c096",
+                  "width" : 64
+                } ],
+                "name" : "All Together Now",
+                "release_date" : "2007-10-30",
+                "release_date_precision" : "day",
+                "total_tracks" : 12,
+                "type" : "album",
+                "uri" : "spotify:album:2GgV2aMVbdssPreu1uCFNr"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
+              "disc_number" : 1,
+              "duration_ms" : 355944,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBFDB0700427"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2JahpkDwH3MuW6zkZKPkgq"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2JahpkDwH3MuW6zkZKPkgq",
+              "id" : "2JahpkDwH3MuW6zkZKPkgq",
+              "is_local" : false,
+              "name" : "Stepping Stone",
+              "popularity" : 10,
+              "preview_url" : "https://p.scdn.co/mp3-preview/76610cbfe10683979b424d1f9bb8769d03ad0eaa?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:2JahpkDwH3MuW6zkZKPkgq"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/2GgV2aMVbdssPreu1uCFNr"
+                },
+                "href" : "https://api.spotify.com/v1/albums/2GgV2aMVbdssPreu1uCFNr",
+                "id" : "2GgV2aMVbdssPreu1uCFNr",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273a4148602a9f1998af9c4c096",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02a4148602a9f1998af9c4c096",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851a4148602a9f1998af9c4c096",
+                  "width" : 64
+                } ],
+                "name" : "All Together Now",
+                "release_date" : "2007-10-30",
+                "release_date_precision" : "day",
+                "total_tracks" : 12,
+                "type" : "album",
+                "uri" : "spotify:album:2GgV2aMVbdssPreu1uCFNr"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
+              "disc_number" : 1,
+              "duration_ms" : 410488,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBFDB0700430"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2ZmoaE7byyXP2ct9ZtGcrV"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2ZmoaE7byyXP2ct9ZtGcrV",
+              "id" : "2ZmoaE7byyXP2ct9ZtGcrV",
+              "is_local" : false,
+              "name" : "Groovy Train",
+              "popularity" : 8,
+              "preview_url" : "https://p.scdn.co/mp3-preview/a95a781a622ddb06e5648c003ae68a2f5c55e911?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 4,
+              "type" : "track",
+              "uri" : "spotify:track:2ZmoaE7byyXP2ct9ZtGcrV"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4vgQHB2rOCnCi3Ii6aDIZZ"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4vgQHB2rOCnCi3Ii6aDIZZ",
+                "id" : "4vgQHB2rOCnCi3Ii6aDIZZ",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2734334e3f61ec72997c6d51b86",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e024334e3f61ec72997c6d51b86",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048514334e3f61ec72997c6d51b86",
+                  "width" : 64
+                } ],
+                "name" : "We Love the 90s",
+                "release_date" : "2020-03-13",
+                "release_date_precision" : "day",
+                "total_tracks" : 54,
+                "type" : "album",
+                "uri" : "spotify:album:4vgQHB2rOCnCi3Ii6aDIZZ"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 343866,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRE19901615"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7fLoDPFTkarrzFjnQrj2g8"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7fLoDPFTkarrzFjnQrj2g8",
+              "id" : "7fLoDPFTkarrzFjnQrj2g8",
+              "is_local" : false,
+              "name" : "All Together Now",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/077dea37ce3a7203f513246c434465ed641ea12b?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 23,
+              "type" : "track",
+              "uri" : "spotify:track:7fLoDPFTkarrzFjnQrj2g8"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4XWQtfFc9ddEBnijfuSYNK"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4XWQtfFc9ddEBnijfuSYNK",
+                "id" : "4XWQtfFc9ddEBnijfuSYNK",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27371071b9c4fc088f4e2b537aa",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0271071b9c4fc088f4e2b537aa",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485171071b9c4fc088f4e2b537aa",
+                  "width" : 64
+                } ],
+                "name" : "90's Pop",
+                "release_date" : "2018-10-26",
+                "release_date_precision" : "day",
+                "total_tracks" : 40,
+                "type" : "album",
+                "uri" : "spotify:album:4XWQtfFc9ddEBnijfuSYNK"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 343866,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRE19901615"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/1qgca7XtLpGGrn7khIQY0S"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/1qgca7XtLpGGrn7khIQY0S",
+              "id" : "1qgca7XtLpGGrn7khIQY0S",
+              "is_local" : false,
+              "name" : "All Together Now",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/077dea37ce3a7203f513246c434465ed641ea12b?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 28,
+              "type" : "track",
+              "uri" : "spotify:track:1qgca7XtLpGGrn7khIQY0S"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/36ZS5BaqmO3GEh6d0o8R3r"
+                },
+                "href" : "https://api.spotify.com/v1/albums/36ZS5BaqmO3GEh6d0o8R3r",
+                "id" : "36ZS5BaqmO3GEh6d0o8R3r",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2734955c6c7b725fceed27bcfba",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e024955c6c7b725fceed27bcfba",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048514955c6c7b725fceed27bcfba",
+                  "width" : 64
+                } ],
+                "name" : "90s Bangers",
+                "release_date" : "2020-03-20",
+                "release_date_precision" : "day",
+                "total_tracks" : 49,
+                "type" : "album",
+                "uri" : "spotify:album:36ZS5BaqmO3GEh6d0o8R3r"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 343866,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRE19901615"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7pdrndTlAPncej5zEaaHeH"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7pdrndTlAPncej5zEaaHeH",
+              "id" : "7pdrndTlAPncej5zEaaHeH",
+              "is_local" : false,
+              "name" : "All Together Now",
+              "popularity" : 1,
+              "preview_url" : "https://p.scdn.co/mp3-preview/077dea37ce3a7203f513246c434465ed641ea12b?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 8,
+              "type" : "track",
+              "uri" : "spotify:track:7pdrndTlAPncej5zEaaHeH"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/6SzncloJo8iKpSEmDyRAIC"
+                },
+                "href" : "https://api.spotify.com/v1/albums/6SzncloJo8iKpSEmDyRAIC",
+                "id" : "6SzncloJo8iKpSEmDyRAIC",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2737971b101767d1c5f0dd5b50e",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e027971b101767d1c5f0dd5b50e",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048517971b101767d1c5f0dd5b50e",
+                  "width" : 64
+                } ],
+                "name" : "The 90s Album",
+                "release_date" : "2020-02-07",
+                "release_date_precision" : "day",
+                "total_tracks" : 49,
+                "type" : "album",
+                "uri" : "spotify:album:6SzncloJo8iKpSEmDyRAIC"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 343866,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRE19901615"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/1OeA6uwc0Pz6nMSOW7eJXl"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/1OeA6uwc0Pz6nMSOW7eJXl",
+              "id" : "1OeA6uwc0Pz6nMSOW7eJXl",
+              "is_local" : false,
+              "name" : "All Together Now",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/077dea37ce3a7203f513246c434465ed641ea12b?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 31,
+              "type" : "track",
+              "uri" : "spotify:track:1OeA6uwc0Pz6nMSOW7eJXl"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7tJg906YfmPq45rZ56rYyJ"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7tJg906YfmPq45rZ56rYyJ",
+                "id" : "7tJg906YfmPq45rZ56rYyJ",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2731559fa2ed536202e574a59c9",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e021559fa2ed536202e574a59c9",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048511559fa2ed536202e574a59c9",
+                  "width" : 64
+                } ],
+                "name" : "Close to Me: UK Pop Classics",
+                "release_date" : "2020-05-08",
+                "release_date_precision" : "day",
+                "total_tracks" : 35,
+                "type" : "album",
+                "uri" : "spotify:album:7tJg906YfmPq45rZ56rYyJ"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 343866,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRE19901615"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7o9xuJugJWnZf4KnNkuAY2"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7o9xuJugJWnZf4KnNkuAY2",
+              "id" : "7o9xuJugJWnZf4KnNkuAY2",
+              "is_local" : false,
+              "name" : "All Together Now",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/122524f90bd8892b95bc851dd51067af9210b758?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 25,
+              "type" : "track",
+              "uri" : "spotify:track:7o9xuJugJWnZf4KnNkuAY2"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/19o64IPa3vm1fYtks1IHY9"
+                },
+                "href" : "https://api.spotify.com/v1/albums/19o64IPa3vm1fYtks1IHY9",
+                "id" : "19o64IPa3vm1fYtks1IHY9",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273846f7246f9102148a38fe5db",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02846f7246f9102148a38fe5db",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851846f7246f9102148a38fe5db",
+                  "width" : 64
+                } ],
+                "name" : "All Together Now That's What I Call the Farm (Live)",
+                "release_date" : "2019-02-22",
+                "release_date_precision" : "day",
+                "total_tracks" : 12,
+                "type" : "album",
+                "uri" : "spotify:album:19o64IPa3vm1fYtks1IHY9"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "ZA", "ZM" ],
+              "disc_number" : 1,
+              "duration_ms" : 329640,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBFDB0700434"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3qnufCAaZZlDb6lSkErrA8"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3qnufCAaZZlDb6lSkErrA8",
+              "id" : "3qnufCAaZZlDb6lSkErrA8",
+              "is_local" : false,
+              "name" : "All Together Now (Live)",
+              "popularity" : 11,
+              "preview_url" : "https://p.scdn.co/mp3-preview/694d2d37f89b0bfce3782e48e08d8e98e1b00f6b?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 8,
+              "type" : "track",
+              "uri" : "spotify:track:3qnufCAaZZlDb6lSkErrA8"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7jHVXv5vIoFRTNrPCqYV8K"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7jHVXv5vIoFRTNrPCqYV8K",
+                "id" : "7jHVXv5vIoFRTNrPCqYV8K",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dda74d63518cd0e19c768090",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dda74d63518cd0e19c768090",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dda74d63518cd0e19c768090",
+                  "width" : 64
+                } ],
+                "name" : "Spartacus 30",
+                "release_date" : "2021-03-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 44,
+                "type" : "album",
+                "uri" : "spotify:album:7jHVXv5vIoFRTNrPCqYV8K"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2Host7cq2V5Xf3bkzYW06Z"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2Host7cq2V5Xf3bkzYW06Z",
+                "id" : "2Host7cq2V5Xf3bkzYW06Z",
+                "name" : "Frankie Bones",
+                "type" : "artist",
+                "uri" : "spotify:artist:2Host7cq2V5Xf3bkzYW06Z"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/588mCfyq2Ogy7sJrWHcFYP"
+                },
+                "href" : "https://api.spotify.com/v1/artists/588mCfyq2Ogy7sJrWHcFYP",
+                "id" : "588mCfyq2Ogy7sJrWHcFYP",
+                "name" : "Tommy Musto",
+                "type" : "artist",
+                "uri" : "spotify:artist:588mCfyq2Ogy7sJrWHcFYP"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 370451,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH12100534"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7JQ5Q5KKtt9cee01hWBzvz"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7JQ5Q5KKtt9cee01hWBzvz",
+              "id" : "7JQ5Q5KKtt9cee01hWBzvz",
+              "is_local" : false,
+              "name" : "All Together Now - Club Mix",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/4610075c6920d8414cf8a30a1e80b2f6ea3e812a?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 29,
+              "type" : "track",
+              "uri" : "spotify:track:7JQ5Q5KKtt9cee01hWBzvz"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7jHVXv5vIoFRTNrPCqYV8K"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7jHVXv5vIoFRTNrPCqYV8K",
+                "id" : "7jHVXv5vIoFRTNrPCqYV8K",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dda74d63518cd0e19c768090",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dda74d63518cd0e19c768090",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dda74d63518cd0e19c768090",
+                  "width" : 64
+                } ],
+                "name" : "Spartacus 30",
+                "release_date" : "2021-03-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 44,
+                "type" : "album",
+                "uri" : "spotify:album:7jHVXv5vIoFRTNrPCqYV8K"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 238755,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBBLG9100078"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0KFmSSWRhPQ1EphOrQWBJ2"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0KFmSSWRhPQ1EphOrQWBJ2",
+              "id" : "0KFmSSWRhPQ1EphOrQWBJ2",
+              "is_local" : false,
+              "name" : "All Together Now - Classical Mix",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/bd1a13a90db9f4b1c0dcb78f18b1e7fb52473ece?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 25,
+              "type" : "track",
+              "uri" : "spotify:track:0KFmSSWRhPQ1EphOrQWBJ2"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7jHVXv5vIoFRTNrPCqYV8K"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7jHVXv5vIoFRTNrPCqYV8K",
+                "id" : "7jHVXv5vIoFRTNrPCqYV8K",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dda74d63518cd0e19c768090",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dda74d63518cd0e19c768090",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dda74d63518cd0e19c768090",
+                  "width" : 64
+                } ],
+                "name" : "Spartacus 30",
+                "release_date" : "2021-03-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 44,
+                "type" : "album",
+                "uri" : "spotify:album:7jHVXv5vIoFRTNrPCqYV8K"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2Host7cq2V5Xf3bkzYW06Z"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2Host7cq2V5Xf3bkzYW06Z",
+                "id" : "2Host7cq2V5Xf3bkzYW06Z",
+                "name" : "Frankie Bones",
+                "type" : "artist",
+                "uri" : "spotify:artist:2Host7cq2V5Xf3bkzYW06Z"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/588mCfyq2Ogy7sJrWHcFYP"
+                },
+                "href" : "https://api.spotify.com/v1/artists/588mCfyq2Ogy7sJrWHcFYP",
+                "id" : "588mCfyq2Ogy7sJrWHcFYP",
+                "name" : "Tommy Musto",
+                "type" : "artist",
+                "uri" : "spotify:artist:588mCfyq2Ogy7sJrWHcFYP"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 422709,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH12100535"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7MT2ZRJX5S21ERjhwqX6ph"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7MT2ZRJX5S21ERjhwqX6ph",
+              "id" : "7MT2ZRJX5S21ERjhwqX6ph",
+              "is_local" : false,
+              "name" : "All Together Now - Dub Mix",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/e2fc03a0b980a68acbb176b0ee03cec42d0b14ad?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 30,
+              "type" : "track",
+              "uri" : "spotify:track:7MT2ZRJX5S21ERjhwqX6ph"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7jHVXv5vIoFRTNrPCqYV8K"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7jHVXv5vIoFRTNrPCqYV8K",
+                "id" : "7jHVXv5vIoFRTNrPCqYV8K",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dda74d63518cd0e19c768090",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dda74d63518cd0e19c768090",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dda74d63518cd0e19c768090",
+                  "width" : 64
+                } ],
+                "name" : "Spartacus 30",
+                "release_date" : "2021-03-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 44,
+                "type" : "album",
+                "uri" : "spotify:album:7jHVXv5vIoFRTNrPCqYV8K"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2Host7cq2V5Xf3bkzYW06Z"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2Host7cq2V5Xf3bkzYW06Z",
+                "id" : "2Host7cq2V5Xf3bkzYW06Z",
+                "name" : "Frankie Bones",
+                "type" : "artist",
+                "uri" : "spotify:artist:2Host7cq2V5Xf3bkzYW06Z"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/588mCfyq2Ogy7sJrWHcFYP"
+                },
+                "href" : "https://api.spotify.com/v1/artists/588mCfyq2Ogy7sJrWHcFYP",
+                "id" : "588mCfyq2Ogy7sJrWHcFYP",
+                "name" : "Tommy Musto",
+                "type" : "artist",
+                "uri" : "spotify:artist:588mCfyq2Ogy7sJrWHcFYP"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 241442,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH12100536"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/28tibAqOZR3wjPHLg2kfWe"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/28tibAqOZR3wjPHLg2kfWe",
+              "id" : "28tibAqOZR3wjPHLg2kfWe",
+              "is_local" : false,
+              "name" : "All Together Now (Club Edit)",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/3686ac0d97baacba96fc051c14509419d53a08a9?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 31,
+              "type" : "track",
+              "uri" : "spotify:track:28tibAqOZR3wjPHLg2kfWe"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7jHVXv5vIoFRTNrPCqYV8K"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7jHVXv5vIoFRTNrPCqYV8K",
+                "id" : "7jHVXv5vIoFRTNrPCqYV8K",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dda74d63518cd0e19c768090",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dda74d63518cd0e19c768090",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dda74d63518cd0e19c768090",
+                  "width" : 64
+                } ],
+                "name" : "Spartacus 30",
+                "release_date" : "2021-03-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 44,
+                "type" : "album",
+                "uri" : "spotify:album:7jHVXv5vIoFRTNrPCqYV8K"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2Host7cq2V5Xf3bkzYW06Z"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2Host7cq2V5Xf3bkzYW06Z",
+                "id" : "2Host7cq2V5Xf3bkzYW06Z",
+                "name" : "Frankie Bones",
+                "type" : "artist",
+                "uri" : "spotify:artist:2Host7cq2V5Xf3bkzYW06Z"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/588mCfyq2Ogy7sJrWHcFYP"
+                },
+                "href" : "https://api.spotify.com/v1/artists/588mCfyq2Ogy7sJrWHcFYP",
+                "id" : "588mCfyq2Ogy7sJrWHcFYP",
+                "name" : "Tommy Musto",
+                "type" : "artist",
+                "uri" : "spotify:artist:588mCfyq2Ogy7sJrWHcFYP"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 231064,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH12100540"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6oHuA6yzUZkKBTEwuIRhGB"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6oHuA6yzUZkKBTEwuIRhGB",
+              "id" : "6oHuA6yzUZkKBTEwuIRhGB",
+              "is_local" : false,
+              "name" : "All Together Now (Indie Rock Edit)",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/3d894323039c9c28915b592f2a7ac7acbf499f60?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 35,
+              "type" : "track",
+              "uri" : "spotify:track:6oHuA6yzUZkKBTEwuIRhGB"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7jHVXv5vIoFRTNrPCqYV8K"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7jHVXv5vIoFRTNrPCqYV8K",
+                "id" : "7jHVXv5vIoFRTNrPCqYV8K",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dda74d63518cd0e19c768090",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dda74d63518cd0e19c768090",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dda74d63518cd0e19c768090",
+                  "width" : 64
+                } ],
+                "name" : "Spartacus 30",
+                "release_date" : "2021-03-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 44,
+                "type" : "album",
+                "uri" : "spotify:album:7jHVXv5vIoFRTNrPCqYV8K"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2Host7cq2V5Xf3bkzYW06Z"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2Host7cq2V5Xf3bkzYW06Z",
+                "id" : "2Host7cq2V5Xf3bkzYW06Z",
+                "name" : "Frankie Bones",
+                "type" : "artist",
+                "uri" : "spotify:artist:2Host7cq2V5Xf3bkzYW06Z"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/588mCfyq2Ogy7sJrWHcFYP"
+                },
+                "href" : "https://api.spotify.com/v1/artists/588mCfyq2Ogy7sJrWHcFYP",
+                "id" : "588mCfyq2Ogy7sJrWHcFYP",
+                "name" : "Tommy Musto",
+                "type" : "artist",
+                "uri" : "spotify:artist:588mCfyq2Ogy7sJrWHcFYP"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 285444,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH12100539"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3ULOhVv9Rqy2H1KO4BEnXP"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3ULOhVv9Rqy2H1KO4BEnXP",
+              "id" : "3ULOhVv9Rqy2H1KO4BEnXP",
+              "is_local" : false,
+              "name" : "All Together Now (Indie Rock Dub)",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/19619a98ec33f6b0b22fa93f32c13f0475566266?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 34,
+              "type" : "track",
+              "uri" : "spotify:track:3ULOhVv9Rqy2H1KO4BEnXP"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                  "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                  "name" : "The Farm",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7jHVXv5vIoFRTNrPCqYV8K"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7jHVXv5vIoFRTNrPCqYV8K",
+                "id" : "7jHVXv5vIoFRTNrPCqYV8K",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dda74d63518cd0e19c768090",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dda74d63518cd0e19c768090",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dda74d63518cd0e19c768090",
+                  "width" : 64
+                } ],
+                "name" : "Spartacus 30",
+                "release_date" : "2021-03-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 44,
+                "type" : "album",
+                "uri" : "spotify:album:7jHVXv5vIoFRTNrPCqYV8K"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+                "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+                "name" : "The Farm",
+                "type" : "artist",
+                "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 249003,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USRH12100537"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/126pg6ZKGAaYzZSBSzWFpW"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/126pg6ZKGAaYzZSBSzWFpW",
+              "id" : "126pg6ZKGAaYzZSBSzWFpW",
+              "is_local" : false,
+              "name" : "All Together Now - Alternative Dance Radio Edit",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/32e6a76ae1cd421a2ff06898c89b2870778af169?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 32,
+              "type" : "track",
+              "uri" : "spotify:track:126pg6ZKGAaYzZSBSzWFpW"
+            } ],
+            "limit" : 20,
+            "next" : "https://api.spotify.com/v1/search?query=All+Together+Now+artist%3Athe+farm&type=track&offset=20&limit=20",
+            "offset" : 0,
+            "previous" : null,
+            "total" : 43
+          }
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:27 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=85462
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:27 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/3lN1TG4RIoaJCff6Ck9KUR"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 50007
+          },
+          "genres" : [ "dance rock", "madchester" ],
+          "href" : "https://api.spotify.com/v1/artists/3lN1TG4RIoaJCff6Ck9KUR",
+          "id" : "3lN1TG4RIoaJCff6Ck9KUR",
+          "images" : [ {
+            "height" : 499,
+            "url" : "https://i.scdn.co/image/9945fa94b81f70c123d1cc1a132e2fa1577ee36f",
+            "width" : 800
+          }, {
+            "height" : 399,
+            "url" : "https://i.scdn.co/image/48ff1c110eb3d4a4cb3269ea2c11356f2ce4bea8",
+            "width" : 640
+          }, {
+            "height" : 125,
+            "url" : "https://i.scdn.co/image/f4502504adb4f8455e8c1745107d58b8c1f6aaeb",
+            "width" : 200
+          }, {
+            "height" : 40,
+            "url" : "https://i.scdn.co/image/afa17352f29f8def33909c33e6c45c961d2abd50",
+            "width" : 64
+          } ],
+          "name" : "The Farm",
+          "popularity" : 43,
+          "type" : "artist",
+          "uri" : "spotify:artist:3lN1TG4RIoaJCff6Ck9KUR"
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:27 GMT
+recorded_with: VCR 6.0.0

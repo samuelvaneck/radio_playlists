@@ -1,0 +1,646 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=When%20The%20Going%20Gets%20Tough%20artist:billy%20ocean&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:28 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=When+The+Going+Gets+Tough+artist%3Abilly+ocean&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+                  "id" : "5IDs1CK15HegSAhGEbSYXo",
+                  "name" : "Billy Ocean",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7n4OT3zEZaEiyKKd6mFAhi"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7n4OT3zEZaEiyKKd6mFAhi",
+                "id" : "7n4OT3zEZaEiyKKd6mFAhi",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27399ee23dac7128cb5754f593c",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0299ee23dac7128cb5754f593c",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485199ee23dac7128cb5754f593c",
+                  "width" : 64
+                } ],
+                "name" : "The Very Best of Billy Ocean",
+                "release_date" : "2010-04-26",
+                "release_date_precision" : "day",
+                "total_tracks" : 18,
+                "type" : "album",
+                "uri" : "spotify:album:7n4OT3zEZaEiyKKd6mFAhi"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+                "id" : "5IDs1CK15HegSAhGEbSYXo",
+                "name" : "Billy Ocean",
+                "type" : "artist",
+                "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 248000,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBAHK9700110"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5UU5FbITNm5OunvHQdsKME"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5UU5FbITNm5OunvHQdsKME",
+              "id" : "5UU5FbITNm5OunvHQdsKME",
+              "is_local" : false,
+              "name" : "When the Going Gets Tough, The Tough Get Going",
+              "popularity" : 66,
+              "preview_url" : "https://p.scdn.co/mp3-preview/f25934de9caeeeb6e2c325f514a3e03448dcf30c?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:5UU5FbITNm5OunvHQdsKME"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+                  "id" : "5IDs1CK15HegSAhGEbSYXo",
+                  "name" : "Billy Ocean",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7oUQQI3USlnBTUeN6KXXoo"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7oUQQI3USlnBTUeN6KXXoo",
+                "id" : "7oUQQI3USlnBTUeN6KXXoo",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27389ec8c852dee33fe4b50bec5",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0289ec8c852dee33fe4b50bec5",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485189ec8c852dee33fe4b50bec5",
+                  "width" : 64
+                } ],
+                "name" : "Love Zone (Expanded Edition)",
+                "release_date" : "1986",
+                "release_date_precision" : "year",
+                "total_tracks" : 13,
+                "type" : "album",
+                "uri" : "spotify:album:7oUQQI3USlnBTUeN6KXXoo"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+                "id" : "5IDs1CK15HegSAhGEbSYXo",
+                "name" : "Billy Ocean",
+                "type" : "artist",
+                "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 343773,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBAHK0300228"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3PwwRQRDvqn69cwYnjO7f8"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3PwwRQRDvqn69cwYnjO7f8",
+              "id" : "3PwwRQRDvqn69cwYnjO7f8",
+              "is_local" : false,
+              "name" : "When the Going Gets Tough, the Tough Get Going",
+              "popularity" : 40,
+              "preview_url" : "https://p.scdn.co/mp3-preview/248be1b80eeb854df7ee4246a6c9b08be418cbb8?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:3PwwRQRDvqn69cwYnjO7f8"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+                  "id" : "5IDs1CK15HegSAhGEbSYXo",
+                  "name" : "Billy Ocean",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7oUQQI3USlnBTUeN6KXXoo"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7oUQQI3USlnBTUeN6KXXoo",
+                "id" : "7oUQQI3USlnBTUeN6KXXoo",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27389ec8c852dee33fe4b50bec5",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0289ec8c852dee33fe4b50bec5",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485189ec8c852dee33fe4b50bec5",
+                  "width" : 64
+                } ],
+                "name" : "Love Zone (Expanded Edition)",
+                "release_date" : "1986",
+                "release_date_precision" : "year",
+                "total_tracks" : 13,
+                "type" : "album",
+                "uri" : "spotify:album:7oUQQI3USlnBTUeN6KXXoo"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+                "id" : "5IDs1CK15HegSAhGEbSYXo",
+                "name" : "Billy Ocean",
+                "type" : "artist",
+                "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 452786,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL1100280"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3tT3CqBYG3peXXZx7xZUx9"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3tT3CqBYG3peXXZx7xZUx9",
+              "id" : "3tT3CqBYG3peXXZx7xZUx9",
+              "is_local" : false,
+              "name" : "When the Going Gets Tough - Extended Version",
+              "popularity" : 35,
+              "preview_url" : "https://p.scdn.co/mp3-preview/ce93d05fdef6883acad9c84439aa8c46706701ab?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 12,
+              "type" : "track",
+              "uri" : "spotify:track:3tT3CqBYG3peXXZx7xZUx9"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+                  "id" : "5IDs1CK15HegSAhGEbSYXo",
+                  "name" : "Billy Ocean",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/40xWoQoVhjcXS9h7LFcjjz"
+                },
+                "href" : "https://api.spotify.com/v1/albums/40xWoQoVhjcXS9h7LFcjjz",
+                "id" : "40xWoQoVhjcXS9h7LFcjjz",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273ad9617f4ae31c6a8a16c9d5c",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02ad9617f4ae31c6a8a16c9d5c",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851ad9617f4ae31c6a8a16c9d5c",
+                  "width" : 64
+                } ],
+                "name" : "Here You Are: The Best of Billy Ocean",
+                "release_date" : "2013-04-22",
+                "release_date_precision" : "day",
+                "total_tracks" : 33,
+                "type" : "album",
+                "uri" : "spotify:album:40xWoQoVhjcXS9h7LFcjjz"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+                "id" : "5IDs1CK15HegSAhGEbSYXo",
+                "name" : "Billy Ocean",
+                "type" : "artist",
+                "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 2,
+              "duration_ms" : 248146,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBAHK9700110"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2RcwxHIhUwE9LBz1JRUQst"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2RcwxHIhUwE9LBz1JRUQst",
+              "id" : "2RcwxHIhUwE9LBz1JRUQst",
+              "is_local" : false,
+              "name" : "When the Going Gets Tough, The Tough Get Going",
+              "popularity" : 12,
+              "preview_url" : "https://p.scdn.co/mp3-preview/a40f3cc542e0be8e9d5e0adc3f262dd206714c70?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:2RcwxHIhUwE9LBz1JRUQst"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+                  "id" : "5IDs1CK15HegSAhGEbSYXo",
+                  "name" : "Billy Ocean",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/1VNsKTY8xa10Cir6KpObvR"
+                },
+                "href" : "https://api.spotify.com/v1/albums/1VNsKTY8xa10Cir6KpObvR",
+                "id" : "1VNsKTY8xa10Cir6KpObvR",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2735ee32ca6ac325e4157b783f5",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e025ee32ca6ac325e4157b783f5",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048515ee32ca6ac325e4157b783f5",
+                  "width" : 64
+                } ],
+                "name" : "Love Really Hurts Without You: The Greatest Hits of Billy Ocean",
+                "release_date" : "2021-07-02",
+                "release_date_precision" : "day",
+                "total_tracks" : 46,
+                "type" : "album",
+                "uri" : "spotify:album:1VNsKTY8xa10Cir6KpObvR"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+                "id" : "5IDs1CK15HegSAhGEbSYXo",
+                "name" : "Billy Ocean",
+                "type" : "artist",
+                "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 246853,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBAHK9700110"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0YYLwfkYMlkPBpfg1vbVTJ"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0YYLwfkYMlkPBpfg1vbVTJ",
+              "id" : "0YYLwfkYMlkPBpfg1vbVTJ",
+              "is_local" : false,
+              "name" : "When the Going Gets Tough, The Tough Get Going",
+              "popularity" : 8,
+              "preview_url" : "https://p.scdn.co/mp3-preview/1ff9e8248a5bc2e237ce673335ce848cef9f2eef?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 4,
+              "type" : "track",
+              "uri" : "spotify:track:0YYLwfkYMlkPBpfg1vbVTJ"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5iCxLV7tMHPBf8GC9I2qmb"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/5iCxLV7tMHPBf8GC9I2qmb",
+                  "id" : "5iCxLV7tMHPBf8GC9I2qmb",
+                  "name" : "Ladies of Soul",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:5iCxLV7tMHPBf8GC9I2qmb"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7iJimrpJor2KfK4T2CcrxM"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7iJimrpJor2KfK4T2CcrxM",
+                "id" : "7iJimrpJor2KfK4T2CcrxM",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273d5b886729abea09c7ba3c04f",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02d5b886729abea09c7ba3c04f",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851d5b886729abea09c7ba3c04f",
+                  "width" : 64
+                } ],
+                "name" : "Live at the Ziggodome 2016",
+                "release_date" : "2016-04-15",
+                "release_date_precision" : "day",
+                "total_tracks" : 29,
+                "type" : "album",
+                "uri" : "spotify:album:7iJimrpJor2KfK4T2CcrxM"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+                "id" : "5IDs1CK15HegSAhGEbSYXo",
+                "name" : "Billy Ocean",
+                "type" : "artist",
+                "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5iCxLV7tMHPBf8GC9I2qmb"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5iCxLV7tMHPBf8GC9I2qmb",
+                "id" : "5iCxLV7tMHPBf8GC9I2qmb",
+                "name" : "Ladies of Soul",
+                "type" : "artist",
+                "uri" : "spotify:artist:5iCxLV7tMHPBf8GC9I2qmb"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 676706,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "NLXV41600023"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5ie3vmJozYt9PsOJQbUbXY"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5ie3vmJozYt9PsOJQbUbXY",
+              "id" : "5ie3vmJozYt9PsOJQbUbXY",
+              "is_local" : false,
+              "name" : "Get Outta My Dreams / Suddenly / When the Going Gets Tough)",
+              "popularity" : 12,
+              "preview_url" : "https://p.scdn.co/mp3-preview/bf805d8a6f41c580c615bd973a565e143d221db7?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 22,
+              "type" : "track",
+              "uri" : "spotify:track:5ie3vmJozYt9PsOJQbUbXY"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "MX", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/25Ks4LhQI0Oy1WVhPJX8fH"
+                },
+                "href" : "https://api.spotify.com/v1/albums/25Ks4LhQI0Oy1WVhPJX8fH",
+                "id" : "25Ks4LhQI0Oy1WVhPJX8fH",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273d3d181cf89a2e686f8f27817",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02d3d181cf89a2e686f8f27817",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851d3d181cf89a2e686f8f27817",
+                  "width" : 64
+                } ],
+                "name" : "World's Greatest 80's Disco - The Only 80's Disco Album You'll Ever Need (Deluxe Version)",
+                "release_date" : "2010-03-22",
+                "release_date_precision" : "day",
+                "total_tracks" : 40,
+                "type" : "album",
+                "uri" : "spotify:album:25Ks4LhQI0Oy1WVhPJX8fH"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5SxGi0nbfa65aZwKMPf65q"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5SxGi0nbfa65aZwKMPf65q",
+                "id" : "5SxGi0nbfa65aZwKMPf65q",
+                "name" : "Billy Ocean Tribute Band",
+                "type" : "artist",
+                "uri" : "spotify:artist:5SxGi0nbfa65aZwKMPf65q"
+              } ],
+              "available_markets" : [ "MX", "US" ],
+              "disc_number" : 2,
+              "duration_ms" : 245866,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBKTX1000769"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7KeqU6JRtjCNA6AL9vy7ZP"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7KeqU6JRtjCNA6AL9vy7ZP",
+              "id" : "7KeqU6JRtjCNA6AL9vy7ZP",
+              "is_local" : false,
+              "name" : "When the Going Gets Tough, The Tough Get Going",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/4bce36a8740af8764ada98778d4c6a98129165bf?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 14,
+              "type" : "track",
+              "uri" : "spotify:track:7KeqU6JRtjCNA6AL9vy7ZP"
+            } ],
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 7
+          }
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:28 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=74928
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:28 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/5IDs1CK15HegSAhGEbSYXo"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 788019
+          },
+          "genres" : [ "disco", "mellow gold", "motown", "new romantic", "new wave", "new wave pop", "soft rock", "yacht rock" ],
+          "href" : "https://api.spotify.com/v1/artists/5IDs1CK15HegSAhGEbSYXo",
+          "id" : "5IDs1CK15HegSAhGEbSYXo",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb32077f76ce695c7dfa2686aa",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab6761610000517432077f76ce695c7dfa2686aa",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f17832077f76ce695c7dfa2686aa",
+            "width" : 160
+          } ],
+          "name" : "Billy Ocean",
+          "popularity" : 65,
+          "type" : "artist",
+          "uri" : "spotify:artist:5IDs1CK15HegSAhGEbSYXo"
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:28 GMT
+recorded_with: VCR 6.0.0

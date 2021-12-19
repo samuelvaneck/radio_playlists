@@ -1,0 +1,851 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.nporadio1.nl/api/tracks
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - www.nporadio1.nl
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.19.10
+      Date:
+      - Sun, 19 Dec 2021 13:36:24 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Cache-Control:
+      - private
+      - public, s-maxage=15, max-age=30
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, HEAD
+      Access-Control-Allow-Headers:
+      - Origin,Content-Type,Accept
+      Set-Cookie:
+      - f6924e0876d468cbd333ca02bc97600e=559304b24fd11437d63d7db82922628a; path=/;
+        HttpOnly; Secure; SameSite=None
+    body:
+      encoding: ASCII-8BIT
+      string: '{"success":true,"message":null,"messages":null,"data":[{"startdatetime":"2021-12-19T06:34:56","enddatetime":"2021-12-19T06:38:16","title":"Shine
+        your light","artist":"Mell & Vintage future","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273e3a4c9f57a84798ca6624063","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273e3a4c9f57a84798ca6624063","spotify_url":"https://open.spotify.com/track/0M2fWYovMm74r6eesWZ705"},{"startdatetime":"2021-12-19T06:15:32","enddatetime":"2021-12-19T06:19:48","title":"I
+        don''t wanna lose you","artist":"Tina Turner","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273a04b4373fd72bf81c8784adf","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273a04b4373fd72bf81c8784adf","spotify_url":"https://open.spotify.com/track/2TxWkdptNrm2Z0CZfMr3Iq"},{"startdatetime":"2021-12-19T05:49:52","enddatetime":"2021-12-19T05:52:38","title":"Happiness","artist":"Jonathan
+        Jeremiah","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273afc1f011b24e65e84e1f3e7a","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273afc1f011b24e65e84e1f3e7a","spotify_url":"https://open.spotify.com/track/0TgiEriN724Bvh8F7SzDRb"},{"startdatetime":"2021-12-19T05:30:19","enddatetime":"2021-12-19T05:33:44","title":"Underdog","artist":"Alicia
+        Keys","image_url_200x200":"https://i.scdn.co/image/6944bfff11f5ee2509883c9909c9a92e7e5ca469","image_url_400x400":"https://i.scdn.co/image/6944bfff11f5ee2509883c9909c9a92e7e5ca469","spotify_url":"https://open.spotify.com/track/3FGiFUJRRp5RGikVrs6kig"},{"startdatetime":"2021-12-19T05:21:36","enddatetime":"2021-12-19T05:25:11","title":"Birds","artist":"Chef''Special","image_url_200x200":"https://radio-images.npo.nl/w_640,h_640/34a076b3-08b3-4c0c-ae2e-33b5a04faf68/3cdd1a7b-dcef-4b3b-8938-2e8df2490345.jpg","image_url_400x400":"https://radio-images.npo.nl/w_640,h_640/34a076b3-08b3-4c0c-ae2e-33b5a04faf68/3cdd1a7b-dcef-4b3b-8938-2e8df2490345.jpg"},{"startdatetime":"2021-12-19T05:04:43","enddatetime":"2021-12-19T05:07:32","title":"I
+        would die 4 U","artist":"Prince & The Revolution","image_url_200x200":"https://i.scdn.co/image/b06f26ee223372607bf0be8188cf94ffe0704bd6","image_url_400x400":"https://i.scdn.co/image/b06f26ee223372607bf0be8188cf94ffe0704bd6","spotify_url":"https://open.spotify.com/track/6fBwVe6udYdnRqwqo06if8"},{"startdatetime":"2021-12-19T04:57:53","enddatetime":"2021-12-19T05:00:56","title":"Here
+        comes the sun","artist":"Beatles","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273dc30583ba717007b00cceb25","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273dc30583ba717007b00cceb25","spotify_url":"https://open.spotify.com/track/6dGnYIeXmHdcikdzNNDMm2"},{"startdatetime":"2021-12-19T04:49:52","enddatetime":"2021-12-19T04:53:18","title":"Stitches","artist":"Mendes,
+        Shawn","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2021-12-19T04:31:58","enddatetime":"2021-12-19T04:35:45","title":"Leave
+        it there","artist":"Michelle David & The True-tones","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273cd65cbbbc8458696ecc6b08a","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273cd65cbbbc8458696ecc6b08a","spotify_url":"https://open.spotify.com/track/5rZFAEWxx8mDa56aMg4sli"},{"startdatetime":"2021-12-19T03:36:24","enddatetime":"2021-12-19T03:39:29","title":"Sowa","artist":"Diawara,
+        Fatoumata","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b27380b3b7b8e174d4a57c10f657","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b27380b3b7b8e174d4a57c10f657","spotify_url":"https://open.spotify.com/track/4rmQdz7qbI5CEzSpy1Puq2"},{"startdatetime":"2021-12-18T23:47:45","enddatetime":"2021-12-18T23:50:23","title":"These
+        boots are made for walkin''","artist":"Nancy Sinatra","image_url_200x200":"https://i.scdn.co/image/d1ce457c65e90da0b924083e98ce0f9aa7bda5b6","image_url_400x400":"https://i.scdn.co/image/d1ce457c65e90da0b924083e98ce0f9aa7bda5b6","spotify_url":"https://open.spotify.com/track/2nwCO1PqpvyoFIvq3Vrj8N"},{"startdatetime":"2021-12-18T23:24:24","enddatetime":"2021-12-18T23:26:19","title":"Baby
+        what you want me to do","artist":"Mick Hucknall","image_url_200x200":"https://i.scdn.co/image/7db6a9b37874afce7904691c3133a649a94ab6cb","image_url_400x400":"https://i.scdn.co/image/7db6a9b37874afce7904691c3133a649a94ab6cb","spotify_url":"https://open.spotify.com/track/5NzI13F19oBiTxZuxqUBtW"},{"startdatetime":"2021-12-18T22:34:32","enddatetime":"2021-12-18T22:38:14","title":"Mooier
+        dan nu","artist":"De Dijk","image_url_200x200":"https://radio-images.npo.nl/w_640,h_640/34a076b3-08b3-4c0c-ae2e-33b5a04faf68/22cddb6b-7132-45ed-abb1-4dcc05957add.jpg","image_url_400x400":"https://radio-images.npo.nl/w_640,h_640/34a076b3-08b3-4c0c-ae2e-33b5a04faf68/22cddb6b-7132-45ed-abb1-4dcc05957add.jpg"},{"startdatetime":"2021-12-18T22:22:09","enddatetime":"2021-12-18T22:26:01","title":"Love
+        story","artist":"Taylor Swift","image_url_200x200":"https://i.scdn.co/image/32f6c33ccf4c9da19d55e606e4430d1c93104f91","image_url_400x400":"https://i.scdn.co/image/32f6c33ccf4c9da19d55e606e4430d1c93104f91","spotify_url":"https://open.spotify.com/track/1vrd6UOGamcKNGnSHJQlSt"},{"startdatetime":"2021-12-18T22:10:13","enddatetime":"2021-12-18T22:13:45","title":"What
+        a fool believes","artist":"Doobie Brothers","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273ba6340ac3b1653b6ea0e5da5","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273ba6340ac3b1653b6ea0e5da5","spotify_url":"https://open.spotify.com/track/2yBVeksU2EtrPJbTu4ZslK"},{"startdatetime":"2021-12-18T21:38:36","enddatetime":"2021-12-18T21:42:10","title":"Sir
+        Duke","artist":"Stevie Wonder","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2732fee61bfec596bb6f5447c50","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2732fee61bfec596bb6f5447c50","spotify_url":"https://open.spotify.com/track/4pNiE4LCVV74vfIBaUHm1b"},{"startdatetime":"2021-12-18T16:44:23","enddatetime":"2021-12-18T16:47:56","title":"Outta
+        love","artist":"Vera, Danny","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273d5b1f4cd8b398bf2e9db7c36","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273d5b1f4cd8b398bf2e9db7c36","spotify_url":"https://open.spotify.com/track/2EoCbbuNwmfRugZxX4B7KX"}]}'
+  recorded_at: Sun, 19 Dec 2021 13:36:24 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Shine%20Your%20Light%20artist:mell%20vintage%20future&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:24 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=Shine+Your+Light+artist%3Amell+vintage+future&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                  "id" : "0gP5wSp6he2gUcPa5gunV8",
+                  "name" : "Mell & Vintage Future",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/126JKujsQ7EcaYROwGcMBv"
+                },
+                "href" : "https://api.spotify.com/v1/albums/126JKujsQ7EcaYROwGcMBv",
+                "id" : "126JKujsQ7EcaYROwGcMBv",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27357d525407188cda3a44b2c23",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0257d525407188cda3a44b2c23",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485157d525407188cda3a44b2c23",
+                  "width" : 64
+                } ],
+                "name" : "Shine Your Light",
+                "release_date" : "2021-11-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 2,
+                "type" : "album",
+                "uri" : "spotify:album:126JKujsQ7EcaYROwGcMBv"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                "id" : "0gP5wSp6he2gUcPa5gunV8",
+                "name" : "Mell & Vintage Future",
+                "type" : "artist",
+                "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 204730,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "NLH4D2160021"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3cJy1HVoh6ONcm0c1JhZ1m"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3cJy1HVoh6ONcm0c1JhZ1m",
+              "id" : "3cJy1HVoh6ONcm0c1JhZ1m",
+              "is_local" : false,
+              "name" : "Shine Your Light",
+              "popularity" : 38,
+              "preview_url" : "https://p.scdn.co/mp3-preview/934c79beca459bb288d8072a8794a3b4886293fd?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:3cJy1HVoh6ONcm0c1JhZ1m"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                  "id" : "0gP5wSp6he2gUcPa5gunV8",
+                  "name" : "Mell & Vintage Future",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/6Vt2MiHrAWPD7GIlVGPtk6"
+                },
+                "href" : "https://api.spotify.com/v1/albums/6Vt2MiHrAWPD7GIlVGPtk6",
+                "id" : "6Vt2MiHrAWPD7GIlVGPtk6",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273e3a4c9f57a84798ca6624063",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02e3a4c9f57a84798ca6624063",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851e3a4c9f57a84798ca6624063",
+                  "width" : 64
+                } ],
+                "name" : "Shine Your Light",
+                "release_date" : "2021-11-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 1,
+                "type" : "album",
+                "uri" : "spotify:album:6Vt2MiHrAWPD7GIlVGPtk6"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                "id" : "0gP5wSp6he2gUcPa5gunV8",
+                "name" : "Mell & Vintage Future",
+                "type" : "artist",
+                "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 204730,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "NLH4D2160021"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0M2fWYovMm74r6eesWZ705"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0M2fWYovMm74r6eesWZ705",
+              "id" : "0M2fWYovMm74r6eesWZ705",
+              "is_local" : false,
+              "name" : "Shine Your Light",
+              "popularity" : 33,
+              "preview_url" : "https://p.scdn.co/mp3-preview/934c79beca459bb288d8072a8794a3b4886293fd?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:0M2fWYovMm74r6eesWZ705"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                  "id" : "0gP5wSp6he2gUcPa5gunV8",
+                  "name" : "Mell & Vintage Future",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/126JKujsQ7EcaYROwGcMBv"
+                },
+                "href" : "https://api.spotify.com/v1/albums/126JKujsQ7EcaYROwGcMBv",
+                "id" : "126JKujsQ7EcaYROwGcMBv",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27357d525407188cda3a44b2c23",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0257d525407188cda3a44b2c23",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485157d525407188cda3a44b2c23",
+                  "width" : 64
+                } ],
+                "name" : "Shine Your Light",
+                "release_date" : "2021-11-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 2,
+                "type" : "album",
+                "uri" : "spotify:album:126JKujsQ7EcaYROwGcMBv"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                "id" : "0gP5wSp6he2gUcPa5gunV8",
+                "name" : "Mell & Vintage Future",
+                "type" : "artist",
+                "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 193733,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "NLH4D2060003"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/43olEYPtbnkPzvcxtPBB7K"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/43olEYPtbnkPzvcxtPBB7K",
+              "id" : "43olEYPtbnkPzvcxtPBB7K",
+              "is_local" : false,
+              "name" : "It's Christmas",
+              "popularity" : 18,
+              "preview_url" : "https://p.scdn.co/mp3-preview/2a6d4977396bfcbe210b8281bda110d1aa4bfebc?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:43olEYPtbnkPzvcxtPBB7K"
+            } ],
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 3
+          }
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:24 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=84501
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:24 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 10131
+          },
+          "genres" : [ "dutch pop", "dutch r&b" ],
+          "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+          "id" : "0gP5wSp6he2gUcPa5gunV8",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb693a2a0fc41c72fc07897136",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab67616100005174693a2a0fc41c72fc07897136",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f178693a2a0fc41c72fc07897136",
+            "width" : 160
+          } ],
+          "name" : "Mell & Vintage Future",
+          "popularity" : 47,
+          "type" : "artist",
+          "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:24 GMT
+- request:
+    method: get
+    uri: https://www.nporadio1.nl/api/tracks
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - www.nporadio1.nl
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.19.10
+      Date:
+      - Sun, 19 Dec 2021 13:36:24 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Cache-Control:
+      - private
+      - public, s-maxage=15, max-age=30
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, HEAD
+      Access-Control-Allow-Headers:
+      - Origin,Content-Type,Accept
+      Set-Cookie:
+      - f6924e0876d468cbd333ca02bc97600e=f70272e3cd8159b7cc3f3e43a43b3fe1; path=/;
+        HttpOnly; Secure; SameSite=None
+    body:
+      encoding: ASCII-8BIT
+      string: '{"success":true,"message":null,"messages":null,"data":[{"startdatetime":"2021-12-19T06:34:56","enddatetime":"2021-12-19T06:38:16","title":"Shine
+        your light","artist":"Mell & Vintage future","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273e3a4c9f57a84798ca6624063","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273e3a4c9f57a84798ca6624063","spotify_url":"https://open.spotify.com/track/0M2fWYovMm74r6eesWZ705"},{"startdatetime":"2021-12-19T06:15:32","enddatetime":"2021-12-19T06:19:48","title":"I
+        don''t wanna lose you","artist":"Tina Turner","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273a04b4373fd72bf81c8784adf","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273a04b4373fd72bf81c8784adf","spotify_url":"https://open.spotify.com/track/2TxWkdptNrm2Z0CZfMr3Iq"},{"startdatetime":"2021-12-19T05:49:52","enddatetime":"2021-12-19T05:52:38","title":"Happiness","artist":"Jonathan
+        Jeremiah","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273afc1f011b24e65e84e1f3e7a","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273afc1f011b24e65e84e1f3e7a","spotify_url":"https://open.spotify.com/track/0TgiEriN724Bvh8F7SzDRb"},{"startdatetime":"2021-12-19T05:30:19","enddatetime":"2021-12-19T05:33:44","title":"Underdog","artist":"Alicia
+        Keys","image_url_200x200":"https://i.scdn.co/image/6944bfff11f5ee2509883c9909c9a92e7e5ca469","image_url_400x400":"https://i.scdn.co/image/6944bfff11f5ee2509883c9909c9a92e7e5ca469","spotify_url":"https://open.spotify.com/track/3FGiFUJRRp5RGikVrs6kig"},{"startdatetime":"2021-12-19T05:21:36","enddatetime":"2021-12-19T05:25:11","title":"Birds","artist":"Chef''Special","image_url_200x200":"https://radio-images.npo.nl/w_640,h_640/34a076b3-08b3-4c0c-ae2e-33b5a04faf68/3cdd1a7b-dcef-4b3b-8938-2e8df2490345.jpg","image_url_400x400":"https://radio-images.npo.nl/w_640,h_640/34a076b3-08b3-4c0c-ae2e-33b5a04faf68/3cdd1a7b-dcef-4b3b-8938-2e8df2490345.jpg"},{"startdatetime":"2021-12-19T05:04:43","enddatetime":"2021-12-19T05:07:32","title":"I
+        would die 4 U","artist":"Prince & The Revolution","image_url_200x200":"https://i.scdn.co/image/b06f26ee223372607bf0be8188cf94ffe0704bd6","image_url_400x400":"https://i.scdn.co/image/b06f26ee223372607bf0be8188cf94ffe0704bd6","spotify_url":"https://open.spotify.com/track/6fBwVe6udYdnRqwqo06if8"},{"startdatetime":"2021-12-19T04:57:53","enddatetime":"2021-12-19T05:00:56","title":"Here
+        comes the sun","artist":"Beatles","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273dc30583ba717007b00cceb25","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273dc30583ba717007b00cceb25","spotify_url":"https://open.spotify.com/track/6dGnYIeXmHdcikdzNNDMm2"},{"startdatetime":"2021-12-19T04:49:52","enddatetime":"2021-12-19T04:53:18","title":"Stitches","artist":"Mendes,
+        Shawn","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2021-12-19T04:31:58","enddatetime":"2021-12-19T04:35:45","title":"Leave
+        it there","artist":"Michelle David & The True-tones","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273cd65cbbbc8458696ecc6b08a","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273cd65cbbbc8458696ecc6b08a","spotify_url":"https://open.spotify.com/track/5rZFAEWxx8mDa56aMg4sli"},{"startdatetime":"2021-12-19T03:36:24","enddatetime":"2021-12-19T03:39:29","title":"Sowa","artist":"Diawara,
+        Fatoumata","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b27380b3b7b8e174d4a57c10f657","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b27380b3b7b8e174d4a57c10f657","spotify_url":"https://open.spotify.com/track/4rmQdz7qbI5CEzSpy1Puq2"},{"startdatetime":"2021-12-18T23:47:45","enddatetime":"2021-12-18T23:50:23","title":"These
+        boots are made for walkin''","artist":"Nancy Sinatra","image_url_200x200":"https://i.scdn.co/image/d1ce457c65e90da0b924083e98ce0f9aa7bda5b6","image_url_400x400":"https://i.scdn.co/image/d1ce457c65e90da0b924083e98ce0f9aa7bda5b6","spotify_url":"https://open.spotify.com/track/2nwCO1PqpvyoFIvq3Vrj8N"},{"startdatetime":"2021-12-18T23:24:24","enddatetime":"2021-12-18T23:26:19","title":"Baby
+        what you want me to do","artist":"Mick Hucknall","image_url_200x200":"https://i.scdn.co/image/7db6a9b37874afce7904691c3133a649a94ab6cb","image_url_400x400":"https://i.scdn.co/image/7db6a9b37874afce7904691c3133a649a94ab6cb","spotify_url":"https://open.spotify.com/track/5NzI13F19oBiTxZuxqUBtW"},{"startdatetime":"2021-12-18T22:34:32","enddatetime":"2021-12-18T22:38:14","title":"Mooier
+        dan nu","artist":"De Dijk","image_url_200x200":"https://radio-images.npo.nl/w_640,h_640/34a076b3-08b3-4c0c-ae2e-33b5a04faf68/22cddb6b-7132-45ed-abb1-4dcc05957add.jpg","image_url_400x400":"https://radio-images.npo.nl/w_640,h_640/34a076b3-08b3-4c0c-ae2e-33b5a04faf68/22cddb6b-7132-45ed-abb1-4dcc05957add.jpg"},{"startdatetime":"2021-12-18T22:22:09","enddatetime":"2021-12-18T22:26:01","title":"Love
+        story","artist":"Taylor Swift","image_url_200x200":"https://i.scdn.co/image/32f6c33ccf4c9da19d55e606e4430d1c93104f91","image_url_400x400":"https://i.scdn.co/image/32f6c33ccf4c9da19d55e606e4430d1c93104f91","spotify_url":"https://open.spotify.com/track/1vrd6UOGamcKNGnSHJQlSt"},{"startdatetime":"2021-12-18T22:10:13","enddatetime":"2021-12-18T22:13:45","title":"What
+        a fool believes","artist":"Doobie Brothers","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273ba6340ac3b1653b6ea0e5da5","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273ba6340ac3b1653b6ea0e5da5","spotify_url":"https://open.spotify.com/track/2yBVeksU2EtrPJbTu4ZslK"},{"startdatetime":"2021-12-18T21:38:36","enddatetime":"2021-12-18T21:42:10","title":"Sir
+        Duke","artist":"Stevie Wonder","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2732fee61bfec596bb6f5447c50","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2732fee61bfec596bb6f5447c50","spotify_url":"https://open.spotify.com/track/4pNiE4LCVV74vfIBaUHm1b"},{"startdatetime":"2021-12-18T16:44:23","enddatetime":"2021-12-18T16:47:56","title":"Outta
+        love","artist":"Vera, Danny","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273d5b1f4cd8b398bf2e9db7c36","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273d5b1f4cd8b398bf2e9db7c36","spotify_url":"https://open.spotify.com/track/2EoCbbuNwmfRugZxX4B7KX"}]}'
+  recorded_at: Sun, 19 Dec 2021 13:36:24 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Shine%20Your%20Light%20artist:mell%20vintage%20future&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:24 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=Shine+Your+Light+artist%3Amell+vintage+future&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                  "id" : "0gP5wSp6he2gUcPa5gunV8",
+                  "name" : "Mell & Vintage Future",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/126JKujsQ7EcaYROwGcMBv"
+                },
+                "href" : "https://api.spotify.com/v1/albums/126JKujsQ7EcaYROwGcMBv",
+                "id" : "126JKujsQ7EcaYROwGcMBv",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27357d525407188cda3a44b2c23",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0257d525407188cda3a44b2c23",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485157d525407188cda3a44b2c23",
+                  "width" : 64
+                } ],
+                "name" : "Shine Your Light",
+                "release_date" : "2021-11-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 2,
+                "type" : "album",
+                "uri" : "spotify:album:126JKujsQ7EcaYROwGcMBv"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                "id" : "0gP5wSp6he2gUcPa5gunV8",
+                "name" : "Mell & Vintage Future",
+                "type" : "artist",
+                "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 204730,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "NLH4D2160021"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3cJy1HVoh6ONcm0c1JhZ1m"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3cJy1HVoh6ONcm0c1JhZ1m",
+              "id" : "3cJy1HVoh6ONcm0c1JhZ1m",
+              "is_local" : false,
+              "name" : "Shine Your Light",
+              "popularity" : 38,
+              "preview_url" : "https://p.scdn.co/mp3-preview/934c79beca459bb288d8072a8794a3b4886293fd?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:3cJy1HVoh6ONcm0c1JhZ1m"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                  "id" : "0gP5wSp6he2gUcPa5gunV8",
+                  "name" : "Mell & Vintage Future",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/6Vt2MiHrAWPD7GIlVGPtk6"
+                },
+                "href" : "https://api.spotify.com/v1/albums/6Vt2MiHrAWPD7GIlVGPtk6",
+                "id" : "6Vt2MiHrAWPD7GIlVGPtk6",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273e3a4c9f57a84798ca6624063",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02e3a4c9f57a84798ca6624063",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851e3a4c9f57a84798ca6624063",
+                  "width" : 64
+                } ],
+                "name" : "Shine Your Light",
+                "release_date" : "2021-11-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 1,
+                "type" : "album",
+                "uri" : "spotify:album:6Vt2MiHrAWPD7GIlVGPtk6"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                "id" : "0gP5wSp6he2gUcPa5gunV8",
+                "name" : "Mell & Vintage Future",
+                "type" : "artist",
+                "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 204730,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "NLH4D2160021"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0M2fWYovMm74r6eesWZ705"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0M2fWYovMm74r6eesWZ705",
+              "id" : "0M2fWYovMm74r6eesWZ705",
+              "is_local" : false,
+              "name" : "Shine Your Light",
+              "popularity" : 33,
+              "preview_url" : "https://p.scdn.co/mp3-preview/934c79beca459bb288d8072a8794a3b4886293fd?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:0M2fWYovMm74r6eesWZ705"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                  "id" : "0gP5wSp6he2gUcPa5gunV8",
+                  "name" : "Mell & Vintage Future",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/126JKujsQ7EcaYROwGcMBv"
+                },
+                "href" : "https://api.spotify.com/v1/albums/126JKujsQ7EcaYROwGcMBv",
+                "id" : "126JKujsQ7EcaYROwGcMBv",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27357d525407188cda3a44b2c23",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0257d525407188cda3a44b2c23",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485157d525407188cda3a44b2c23",
+                  "width" : 64
+                } ],
+                "name" : "Shine Your Light",
+                "release_date" : "2021-11-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 2,
+                "type" : "album",
+                "uri" : "spotify:album:126JKujsQ7EcaYROwGcMBv"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+                "id" : "0gP5wSp6he2gUcPa5gunV8",
+                "name" : "Mell & Vintage Future",
+                "type" : "artist",
+                "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 193733,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "NLH4D2060003"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/43olEYPtbnkPzvcxtPBB7K"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/43olEYPtbnkPzvcxtPBB7K",
+              "id" : "43olEYPtbnkPzvcxtPBB7K",
+              "is_local" : false,
+              "name" : "It's Christmas",
+              "popularity" : 18,
+              "preview_url" : "https://p.scdn.co/mp3-preview/2a6d4977396bfcbe210b8281bda110d1aa4bfebc?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:43olEYPtbnkPzvcxtPBB7K"
+            } ],
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 3
+          }
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:24 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=73510
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:24 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/0gP5wSp6he2gUcPa5gunV8"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 10131
+          },
+          "genres" : [ "dutch pop", "dutch r&b" ],
+          "href" : "https://api.spotify.com/v1/artists/0gP5wSp6he2gUcPa5gunV8",
+          "id" : "0gP5wSp6he2gUcPa5gunV8",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb693a2a0fc41c72fc07897136",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab67616100005174693a2a0fc41c72fc07897136",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f178693a2a0fc41c72fc07897136",
+            "width" : 160
+          } ],
+          "name" : "Mell & Vintage Future",
+          "popularity" : 47,
+          "type" : "artist",
+          "uri" : "spotify:artist:0gP5wSp6he2gUcPa5gunV8"
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:24 GMT
+recorded_with: VCR 6.0.0

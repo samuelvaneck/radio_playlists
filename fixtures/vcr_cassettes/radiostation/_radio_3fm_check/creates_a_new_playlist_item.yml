@@ -1,0 +1,365 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=The%20Steps%20artist:haim&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:27 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=The+Steps+artist%3Ahaim&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4Ui2kfOqGujY81UcPrb5KE"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4Ui2kfOqGujY81UcPrb5KE",
+                  "id" : "4Ui2kfOqGujY81UcPrb5KE",
+                  "name" : "HAIM",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4Ui2kfOqGujY81UcPrb5KE"
+                } ],
+                "available_markets" : [ "CA", "MX", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/396EJBtUzseofX2YCBJVvM"
+                },
+                "href" : "https://api.spotify.com/v1/albums/396EJBtUzseofX2YCBJVvM",
+                "id" : "396EJBtUzseofX2YCBJVvM",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2731bff3b5284c581b83e918d19",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e021bff3b5284c581b83e918d19",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048511bff3b5284c581b83e918d19",
+                  "width" : 64
+                } ],
+                "name" : "Women In Music Pt. III",
+                "release_date" : "2021-02-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 18,
+                "type" : "album",
+                "uri" : "spotify:album:396EJBtUzseofX2YCBJVvM"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4Ui2kfOqGujY81UcPrb5KE"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4Ui2kfOqGujY81UcPrb5KE",
+                "id" : "4Ui2kfOqGujY81UcPrb5KE",
+                "name" : "HAIM",
+                "type" : "artist",
+                "uri" : "spotify:artist:4Ui2kfOqGujY81UcPrb5KE"
+              } ],
+              "available_markets" : [ "CA", "MX", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 247600,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72000497"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5X2RisOZS9i5MsR8EVw58p"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5X2RisOZS9i5MsR8EVw58p",
+              "id" : "5X2RisOZS9i5MsR8EVw58p",
+              "is_local" : false,
+              "name" : "The Steps",
+              "popularity" : 57,
+              "preview_url" : "https://p.scdn.co/mp3-preview/b797bbc889608af4ad66a06e90098b0307e92c9a?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:5X2RisOZS9i5MsR8EVw58p"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4Ui2kfOqGujY81UcPrb5KE"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4Ui2kfOqGujY81UcPrb5KE",
+                  "id" : "4Ui2kfOqGujY81UcPrb5KE",
+                  "name" : "HAIM",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4Ui2kfOqGujY81UcPrb5KE"
+                } ],
+                "available_markets" : [ "CA", "MX", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4veKZd8uf7TDVo1KQRVhuk"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4veKZd8uf7TDVo1KQRVhuk",
+                "id" : "4veKZd8uf7TDVo1KQRVhuk",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2734847cf25090d3ddabddfe83c",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e024847cf25090d3ddabddfe83c",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048514847cf25090d3ddabddfe83c",
+                  "width" : 64
+                } ],
+                "name" : "I Know Alone",
+                "release_date" : "2020-04-29",
+                "release_date_precision" : "day",
+                "total_tracks" : 5,
+                "type" : "album",
+                "uri" : "spotify:album:4veKZd8uf7TDVo1KQRVhuk"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4Ui2kfOqGujY81UcPrb5KE"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4Ui2kfOqGujY81UcPrb5KE",
+                "id" : "4Ui2kfOqGujY81UcPrb5KE",
+                "name" : "HAIM",
+                "type" : "artist",
+                "uri" : "spotify:artist:4Ui2kfOqGujY81UcPrb5KE"
+              } ],
+              "available_markets" : [ "CA", "MX", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 247600,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72000497"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0aogemGEeklb2Hj9akWhxr"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0aogemGEeklb2Hj9akWhxr",
+              "id" : "0aogemGEeklb2Hj9akWhxr",
+              "is_local" : false,
+              "name" : "The Steps",
+              "popularity" : 28,
+              "preview_url" : "https://p.scdn.co/mp3-preview/b797bbc889608af4ad66a06e90098b0307e92c9a?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:0aogemGEeklb2Hj9akWhxr"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4Ui2kfOqGujY81UcPrb5KE"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4Ui2kfOqGujY81UcPrb5KE",
+                  "id" : "4Ui2kfOqGujY81UcPrb5KE",
+                  "name" : "HAIM",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4Ui2kfOqGujY81UcPrb5KE"
+                } ],
+                "available_markets" : [ "CA", "MX", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4iNDXOLDZma37m0iWPkf0x"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4iNDXOLDZma37m0iWPkf0x",
+                "id" : "4iNDXOLDZma37m0iWPkf0x",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273cddf2f6ed7ac39eae48f2d38",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02cddf2f6ed7ac39eae48f2d38",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851cddf2f6ed7ac39eae48f2d38",
+                  "width" : 64
+                } ],
+                "name" : "Don't Wanna",
+                "release_date" : "2020-05-21",
+                "release_date_precision" : "day",
+                "total_tracks" : 6,
+                "type" : "album",
+                "uri" : "spotify:album:4iNDXOLDZma37m0iWPkf0x"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4Ui2kfOqGujY81UcPrb5KE"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4Ui2kfOqGujY81UcPrb5KE",
+                "id" : "4Ui2kfOqGujY81UcPrb5KE",
+                "name" : "HAIM",
+                "type" : "artist",
+                "uri" : "spotify:artist:4Ui2kfOqGujY81UcPrb5KE"
+              } ],
+              "available_markets" : [ "CA", "MX", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 247600,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72000497"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5o7TAaA9XvtoEP82BdnUi0"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5o7TAaA9XvtoEP82BdnUi0",
+              "id" : "5o7TAaA9XvtoEP82BdnUi0",
+              "is_local" : false,
+              "name" : "The Steps",
+              "popularity" : 20,
+              "preview_url" : "https://p.scdn.co/mp3-preview/b797bbc889608af4ad66a06e90098b0307e92c9a?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 3,
+              "type" : "track",
+              "uri" : "spotify:track:5o7TAaA9XvtoEP82BdnUi0"
+            } ],
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 3
+          }
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:27 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/4Ui2kfOqGujY81UcPrb5KE
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=79395
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:28 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/4Ui2kfOqGujY81UcPrb5KE"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 1133521
+          },
+          "genres" : [ "art pop", "dance pop", "indie pop", "metropopolis", "pop rock" ],
+          "href" : "https://api.spotify.com/v1/artists/4Ui2kfOqGujY81UcPrb5KE",
+          "id" : "4Ui2kfOqGujY81UcPrb5KE",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5eba688abfbbed1037befa47232",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab67616100005174a688abfbbed1037befa47232",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f178a688abfbbed1037befa47232",
+            "width" : 160
+          } ],
+          "name" : "HAIM",
+          "popularity" : 70,
+          "type" : "artist",
+          "uri" : "spotify:artist:4Ui2kfOqGujY81UcPrb5KE"
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:28 GMT
+recorded_with: VCR 6.0.0

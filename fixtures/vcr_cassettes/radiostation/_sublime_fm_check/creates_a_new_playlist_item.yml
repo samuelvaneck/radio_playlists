@@ -1,0 +1,772 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=GET%20LUCKY%20artist:daft%20punk%20pharrell%20williams%20nile%20rodgers&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:28 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=GET+LUCKY+artist%3Adaft+punk+pharrell+williams+nile+rodgers&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+                  "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+                  "name" : "Daft Punk",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/2ePFIvZKMe8zefATp9ofFA"
+                },
+                "href" : "https://api.spotify.com/v1/albums/2ePFIvZKMe8zefATp9ofFA",
+                "id" : "2ePFIvZKMe8zefATp9ofFA",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2731d5cf960a92bb8b03fc2be7f",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e021d5cf960a92bb8b03fc2be7f",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048511d5cf960a92bb8b03fc2be7f",
+                  "width" : 64
+                } ],
+                "name" : "Get Lucky (feat. Pharrell Williams & Nile Rodgers) [Radio Edit]",
+                "release_date" : "2013-04-19",
+                "release_date_precision" : "day",
+                "total_tracks" : 1,
+                "type" : "album",
+                "uri" : "spotify:album:2ePFIvZKMe8zefATp9ofFA"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+                "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+                "name" : "Daft Punk",
+                "type" : "artist",
+                "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2RdwBSPQiwcmiDo9kixcl8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2RdwBSPQiwcmiDo9kixcl8",
+                "id" : "2RdwBSPQiwcmiDo9kixcl8",
+                "name" : "Pharrell Williams",
+                "type" : "artist",
+                "uri" : "spotify:artist:2RdwBSPQiwcmiDo9kixcl8"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3yDIp0kaq9EFKe07X1X2rz"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3yDIp0kaq9EFKe07X1X2rz",
+                "id" : "3yDIp0kaq9EFKe07X1X2rz",
+                "name" : "Nile Rodgers",
+                "type" : "artist",
+                "uri" : "spotify:artist:3yDIp0kaq9EFKe07X1X2rz"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 248413,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USQX91300809"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2Foc5Q5nqNiosCNqttzHof"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2Foc5Q5nqNiosCNqttzHof",
+              "id" : "2Foc5Q5nqNiosCNqttzHof",
+              "is_local" : false,
+              "name" : "Get Lucky (feat. Pharrell Williams & Nile Rodgers) - Radio Edit",
+              "popularity" : 81,
+              "preview_url" : "https://p.scdn.co/mp3-preview/92d40a2ae211cceb264e9ee1e67fe05f4d788200?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:2Foc5Q5nqNiosCNqttzHof"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+                  "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+                  "name" : "Daft Punk",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4m2880jivSbbyEGAKfITCa"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4m2880jivSbbyEGAKfITCa",
+                "id" : "4m2880jivSbbyEGAKfITCa",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2731d97ca7376f835055f828139",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e021d97ca7376f835055f828139",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048511d97ca7376f835055f828139",
+                  "width" : 64
+                } ],
+                "name" : "Random Access Memories",
+                "release_date" : "2013-05-17",
+                "release_date_precision" : "day",
+                "total_tracks" : 13,
+                "type" : "album",
+                "uri" : "spotify:album:4m2880jivSbbyEGAKfITCa"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+                "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+                "name" : "Daft Punk",
+                "type" : "artist",
+                "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2RdwBSPQiwcmiDo9kixcl8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2RdwBSPQiwcmiDo9kixcl8",
+                "id" : "2RdwBSPQiwcmiDo9kixcl8",
+                "name" : "Pharrell Williams",
+                "type" : "artist",
+                "uri" : "spotify:artist:2RdwBSPQiwcmiDo9kixcl8"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3yDIp0kaq9EFKe07X1X2rz"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3yDIp0kaq9EFKe07X1X2rz",
+                "id" : "3yDIp0kaq9EFKe07X1X2rz",
+                "name" : "Nile Rodgers",
+                "type" : "artist",
+                "uri" : "spotify:artist:3yDIp0kaq9EFKe07X1X2rz"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 369626,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USQX91300108"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/69kOkLUCkxIZYexIgSG8rq"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/69kOkLUCkxIZYexIgSG8rq",
+              "id" : "69kOkLUCkxIZYexIgSG8rq",
+              "is_local" : false,
+              "name" : "Get Lucky (feat. Pharrell Williams & Nile Rodgers)",
+              "popularity" : 76,
+              "preview_url" : "https://p.scdn.co/mp3-preview/0e6ba5b56550437ee6fd762da1b5b30df7f872b3?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 8,
+              "type" : "track",
+              "uri" : "spotify:track:69kOkLUCkxIZYexIgSG8rq"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+                  "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+                  "name" : "Daft Punk",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4IjfJlYFVmkPH5WQdFuyS8"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4IjfJlYFVmkPH5WQdFuyS8",
+                "id" : "4IjfJlYFVmkPH5WQdFuyS8",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273581fe8d3767d1ca73284b70a",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02581fe8d3767d1ca73284b70a",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851581fe8d3767d1ca73284b70a",
+                  "width" : 64
+                } ],
+                "name" : "Get Lucky (Daft Punk Remix) (feat. Pharrell Williams & Nile Rodgers)",
+                "release_date" : "2013-06-26",
+                "release_date_precision" : "day",
+                "total_tracks" : 1,
+                "type" : "album",
+                "uri" : "spotify:album:4IjfJlYFVmkPH5WQdFuyS8"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+                "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+                "name" : "Daft Punk",
+                "type" : "artist",
+                "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2RdwBSPQiwcmiDo9kixcl8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2RdwBSPQiwcmiDo9kixcl8",
+                "id" : "2RdwBSPQiwcmiDo9kixcl8",
+                "name" : "Pharrell Williams",
+                "type" : "artist",
+                "uri" : "spotify:artist:2RdwBSPQiwcmiDo9kixcl8"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3yDIp0kaq9EFKe07X1X2rz"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3yDIp0kaq9EFKe07X1X2rz",
+                "id" : "3yDIp0kaq9EFKe07X1X2rz",
+                "name" : "Nile Rodgers",
+                "type" : "artist",
+                "uri" : "spotify:artist:3yDIp0kaq9EFKe07X1X2rz"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/584LILU27vO7VKK6YhZ1Na"
+                },
+                "href" : "https://api.spotify.com/v1/artists/584LILU27vO7VKK6YhZ1Na",
+                "id" : "584LILU27vO7VKK6YhZ1Na",
+                "name" : "Florian Lagatta",
+                "type" : "artist",
+                "uri" : "spotify:artist:584LILU27vO7VKK6YhZ1Na"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 632693,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USQX91301322"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/78NwNb2BPO7OKDYYRWB1WT"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/78NwNb2BPO7OKDYYRWB1WT",
+              "id" : "78NwNb2BPO7OKDYYRWB1WT",
+              "is_local" : false,
+              "name" : "Get Lucky (feat. Pharrell Williams & Nile Rodgers) - Daft Punk Remix",
+              "popularity" : 39,
+              "preview_url" : "https://p.scdn.co/mp3-preview/b1be82f36737cd832f99f7c58108bcd2437a5ede?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:78NwNb2BPO7OKDYYRWB1WT"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/5jdzXYmv7zWMdoJzcXrFQ9"
+                },
+                "href" : "https://api.spotify.com/v1/albums/5jdzXYmv7zWMdoJzcXrFQ9",
+                "id" : "5jdzXYmv7zWMdoJzcXrFQ9",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2738634df56f01887c06c8218f2",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e028634df56f01887c06c8218f2",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048518634df56f01887c06c8218f2",
+                  "width" : 64
+                } ],
+                "name" : "2010s Hits",
+                "release_date" : "2019-04-11",
+                "release_date_precision" : "day",
+                "total_tracks" : 31,
+                "type" : "album",
+                "uri" : "spotify:album:5jdzXYmv7zWMdoJzcXrFQ9"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+                "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+                "name" : "Daft Punk",
+                "type" : "artist",
+                "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2RdwBSPQiwcmiDo9kixcl8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2RdwBSPQiwcmiDo9kixcl8",
+                "id" : "2RdwBSPQiwcmiDo9kixcl8",
+                "name" : "Pharrell Williams",
+                "type" : "artist",
+                "uri" : "spotify:artist:2RdwBSPQiwcmiDo9kixcl8"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3yDIp0kaq9EFKe07X1X2rz"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3yDIp0kaq9EFKe07X1X2rz",
+                "id" : "3yDIp0kaq9EFKe07X1X2rz",
+                "name" : "Nile Rodgers",
+                "type" : "artist",
+                "uri" : "spotify:artist:3yDIp0kaq9EFKe07X1X2rz"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 248381,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USQX91300809"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3OtHNyiaYaQgQlGagvhEku"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3OtHNyiaYaQgQlGagvhEku",
+              "id" : "3OtHNyiaYaQgQlGagvhEku",
+              "is_local" : false,
+              "name" : "Get Lucky (feat. Pharrell Williams & Nile Rodgers) - Radio Edit",
+              "popularity" : 32,
+              "preview_url" : "https://p.scdn.co/mp3-preview/c0e1374b04d9937af2cf26028f7d6b318cf92797?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 9,
+              "type" : "track",
+              "uri" : "spotify:track:3OtHNyiaYaQgQlGagvhEku"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/6iE4f7SmNoKRqm5yQBwyPl"
+                },
+                "href" : "https://api.spotify.com/v1/albums/6iE4f7SmNoKRqm5yQBwyPl",
+                "id" : "6iE4f7SmNoKRqm5yQBwyPl",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273173f7e6c53b0ec670d75eec9",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02173f7e6c53b0ec670d75eec9",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851173f7e6c53b0ec670d75eec9",
+                  "width" : 64
+                } ],
+                "name" : "New Year's Eve - NYE 2018/2019",
+                "release_date" : "2018-12-07",
+                "release_date_precision" : "day",
+                "total_tracks" : 30,
+                "type" : "album",
+                "uri" : "spotify:album:6iE4f7SmNoKRqm5yQBwyPl"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+                "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+                "name" : "Daft Punk",
+                "type" : "artist",
+                "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2RdwBSPQiwcmiDo9kixcl8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2RdwBSPQiwcmiDo9kixcl8",
+                "id" : "2RdwBSPQiwcmiDo9kixcl8",
+                "name" : "Pharrell Williams",
+                "type" : "artist",
+                "uri" : "spotify:artist:2RdwBSPQiwcmiDo9kixcl8"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3yDIp0kaq9EFKe07X1X2rz"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3yDIp0kaq9EFKe07X1X2rz",
+                "id" : "3yDIp0kaq9EFKe07X1X2rz",
+                "name" : "Nile Rodgers",
+                "type" : "artist",
+                "uri" : "spotify:artist:3yDIp0kaq9EFKe07X1X2rz"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 369626,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USQX91300108"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5bDrb5U9wtV4tzeiVhw7kO"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5bDrb5U9wtV4tzeiVhw7kO",
+              "id" : "5bDrb5U9wtV4tzeiVhw7kO",
+              "is_local" : false,
+              "name" : "Get Lucky (feat. Pharrell Williams & Nile Rodgers)",
+              "popularity" : 22,
+              "preview_url" : "https://p.scdn.co/mp3-preview/0e6ba5b56550437ee6fd762da1b5b30df7f872b3?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 11,
+              "type" : "track",
+              "uri" : "spotify:track:5bDrb5U9wtV4tzeiVhw7kO"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/3h733BrsRG8CYTqRaLIexi"
+                },
+                "href" : "https://api.spotify.com/v1/albums/3h733BrsRG8CYTqRaLIexi",
+                "id" : "3h733BrsRG8CYTqRaLIexi",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dfa5bb5d1178a4ba57fa1d19",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dfa5bb5d1178a4ba57fa1d19",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dfa5bb5d1178a4ba57fa1d19",
+                  "width" : 64
+                } ],
+                "name" : "Decade of Summer: The 10s",
+                "release_date" : "2021-05-14",
+                "release_date_precision" : "day",
+                "total_tracks" : 58,
+                "type" : "album",
+                "uri" : "spotify:album:3h733BrsRG8CYTqRaLIexi"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+                "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+                "name" : "Daft Punk",
+                "type" : "artist",
+                "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2RdwBSPQiwcmiDo9kixcl8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2RdwBSPQiwcmiDo9kixcl8",
+                "id" : "2RdwBSPQiwcmiDo9kixcl8",
+                "name" : "Pharrell Williams",
+                "type" : "artist",
+                "uri" : "spotify:artist:2RdwBSPQiwcmiDo9kixcl8"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3yDIp0kaq9EFKe07X1X2rz"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3yDIp0kaq9EFKe07X1X2rz",
+                "id" : "3yDIp0kaq9EFKe07X1X2rz",
+                "name" : "Nile Rodgers",
+                "type" : "artist",
+                "uri" : "spotify:artist:3yDIp0kaq9EFKe07X1X2rz"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 369626,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USQX91300108"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/66R5vLVmtPeLdRhFXXNENW"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/66R5vLVmtPeLdRhFXXNENW",
+              "id" : "66R5vLVmtPeLdRhFXXNENW",
+              "is_local" : false,
+              "name" : "Get Lucky (feat. Pharrell Williams & Nile Rodgers)",
+              "popularity" : 24,
+              "preview_url" : "https://p.scdn.co/mp3-preview/bf529e9805a44f872d4d347035a55783a6e4a3d2?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 17,
+              "type" : "track",
+              "uri" : "spotify:track:66R5vLVmtPeLdRhFXXNENW"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/3Cc3sTKGBCesLQcpNS3f3e"
+                },
+                "href" : "https://api.spotify.com/v1/albums/3Cc3sTKGBCesLQcpNS3f3e",
+                "id" : "3Cc3sTKGBCesLQcpNS3f3e",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273affdafc717a666decfff3468",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02affdafc717a666decfff3468",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851affdafc717a666decfff3468",
+                  "width" : 64
+                } ],
+                "name" : "Summer Hits of the 10s",
+                "release_date" : "2021-05-07",
+                "release_date_precision" : "day",
+                "total_tracks" : 39,
+                "type" : "album",
+                "uri" : "spotify:album:3Cc3sTKGBCesLQcpNS3f3e"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+                "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+                "name" : "Daft Punk",
+                "type" : "artist",
+                "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2RdwBSPQiwcmiDo9kixcl8"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2RdwBSPQiwcmiDo9kixcl8",
+                "id" : "2RdwBSPQiwcmiDo9kixcl8",
+                "name" : "Pharrell Williams",
+                "type" : "artist",
+                "uri" : "spotify:artist:2RdwBSPQiwcmiDo9kixcl8"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3yDIp0kaq9EFKe07X1X2rz"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3yDIp0kaq9EFKe07X1X2rz",
+                "id" : "3yDIp0kaq9EFKe07X1X2rz",
+                "name" : "Nile Rodgers",
+                "type" : "artist",
+                "uri" : "spotify:artist:3yDIp0kaq9EFKe07X1X2rz"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 369626,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USQX91300108"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6elGwtMfdmulSYe6pFF3gI"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6elGwtMfdmulSYe6pFF3gI",
+              "id" : "6elGwtMfdmulSYe6pFF3gI",
+              "is_local" : false,
+              "name" : "Get Lucky (feat. Pharrell Williams & Nile Rodgers)",
+              "popularity" : 5,
+              "preview_url" : "https://p.scdn.co/mp3-preview/0e6ba5b56550437ee6fd762da1b5b30df7f872b3?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 17,
+              "type" : "track",
+              "uri" : "spotify:track:6elGwtMfdmulSYe6pFF3gI"
+            } ],
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 7
+          }
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:28 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAnUeo4aQ8EU-NabeB-vpyX1RcW2fUg3hxKqOVcNd_t-4Bl8P7KWkS7tux2mxecjpCis7jVzJVN5uWbK9Q
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=81692
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 19 Dec 2021 13:36:28 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/4tZwfgrHOc3mvqYlEYSvVi"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 8462127
+          },
+          "genres" : [ "electro", "filter house" ],
+          "href" : "https://api.spotify.com/v1/artists/4tZwfgrHOc3mvqYlEYSvVi",
+          "id" : "4tZwfgrHOc3mvqYlEYSvVi",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5ebca77d763703a93930c363a39",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab67616100005174ca77d763703a93930c363a39",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f178ca77d763703a93930c363a39",
+            "width" : 160
+          } ],
+          "name" : "Daft Punk",
+          "popularity" : 82,
+          "type" : "artist",
+          "uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"
+        }
+  recorded_at: Sun, 19 Dec 2021 13:36:28 GMT
+recorded_with: VCR 6.0.0
