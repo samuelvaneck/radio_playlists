@@ -198,7 +198,7 @@ RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
     let!(:sky_radio) { FactoryBot.create(:sky_radio) }
 
     before do
-      # allow_any_instance_of(Spotify).to receive(:track).and_return([])
+      allow_any_instance_of(Spotify).to receive(:track).and_return([])
     end
 
     context 'when importing song' do
@@ -222,7 +222,7 @@ RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
     let!(:radio_veronica) { FactoryBot.create(:radio_veronica) }
 
     before do
-      # allow_any_instance_of(Spotify).to receive(:track).and_return([])
+      allow_any_instance_of(Spotify).to receive(:track).and_return([])
     end
 
     context 'when importing song' do
@@ -238,7 +238,7 @@ RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
     let(:radio_538) { FactoryBot.create(:radio_538) }
 
     before do
-      # allow_any_instance_of(Spotify).to receive(:track).and_return([])
+      allow_any_instance_of(Spotify).to receive(:track).and_return([])
     end
 
     context 'when importing song' do
@@ -254,7 +254,7 @@ RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
     let!(:radio_10) { FactoryBot.create(:radio_10) }
 
     before do
-      # allow_any_instance_of(Spotify).to receive(:track).and_return([])
+      allow_any_instance_of(Spotify).to receive(:track).and_return([])
     end
 
     context 'when importing song' do
