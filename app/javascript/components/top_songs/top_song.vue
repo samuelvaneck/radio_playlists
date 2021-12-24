@@ -1,40 +1,51 @@
 <template>
-  <div class='card mx-1 playlist-card'>
-    <span v-if='loading'>
-      <LoadingBar class='card-img-top' v-bind:height='"190px"' v-bind:width='"90%"' />
-    </span>
-    <span v-else-if='!!song'>
-      <img :src='song.data.attributes.spotify_artwork_url' class='card-img-top' />
-    </span>
-    <div class='card-body'>
-      <div class='d-flex flex-column'>
-        <div class='d-flex d-flex-row'>
-          <div class='bungee'>
-            # {{ chartIdx + 1 }}
-          </div>
-          <div class='ml-auto'>
-            <span class='badge badge-secondary'>{{ counter }} x</span>
+  <div class='wrapper wrapperAnime'>
+    <div class='header'>
+      <div class='imageWrapper'>
+        <span v-if='loading'>
+          <LoadingBar class='image' v-bind:height='"190px"' v-bind:width='"90%"' />
+        </span>
+        <span v-else-if='!!song'>
+          <img :src='song.data.attributes.spotify_artwork_url' class='image' />
+        </span>
+      </div>
+      <div class='badgeWrapper'>
+        <div class='primaryBadge badgeAnime'>
+          <div v-if='!!song && !!song.data.attributes.spotify_song_url' class='mt-2 flex flex-row'>
+            <div class=''>
+              <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
+            </div>
           </div>
         </div>
-        <div class='my-2'>
+      </div>
+    </div>
+
+    <div class='textWrapper'>
+      <div class='text'>
+        <div class='flex flex-row justify-between my-2'>
+          <div class='grow'>
+            <span class='bungee'>
+              # {{ chartIdx + 1 }}
+            </span>
+          </div>
+          <div class='grow'>
+            <span class='playlist-badge'>{{ counter }} x</span>
+          </div>
+        </div>
+        <div class='flex flex-col my-2'>
           <!-- Song -->
-          <div v-if='loading'>
+          <div class='w-full my-1' v-if='loading'>
             <LoadingBar />
           </div>
-          <div v-else-if='!!song'>
+          <div class='grow my-1' v-else-if='!!song'>
             <div>{{ song.data.attributes.title }}</div>
           </div>
           <!-- Artist -->
-          <div v-if='loading'>
+          <div class='w-full my-1' v-if='loading'>
             <LoadingBar />
           </div>
-          <div v-else-if='!!artists'>
+          <div class='grow my-1' v-else-if='!!artists'>
             <div><small><i>{{ artistsNames() }}</i></small></div>
-          </div>
-        </div>
-        <div v-if='!!song && !!song.data.attributes.spotify_song_url' class='mt-2 d-flex flex-row'>
-          <div class='ml-auto'>
-            <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
           </div>
         </div>
       </div>
@@ -75,12 +86,12 @@
         }
 
         fetch(songUrl, options).then(res => res.json())
-          .then(d => { 
+          .then(d => {
             this.song = d
 
             const artistUrl = '/artists/' + this.song.data.attributes.artist_ids
             fetch(artistUrl, options).then(res => res.json())
-              .then(d => { 
+              .then(d => {
                 this.artist = d
                 this.loading = false
 

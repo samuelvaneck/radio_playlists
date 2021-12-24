@@ -14,10 +14,6 @@
   font-family: 'Roboto', sans-serif;
 }
 
-.overflow-x-auto {
-  overflow-x: auto;
-}
-
 .nav-arrow {
   opacity: 0;
   z-index: 10;
@@ -34,23 +30,6 @@
   }
   &.right-arrow {
     transform: translate(-90%, 0%);
-  }
-}
-
-.playlist-card {
-  width: 12rem;
-}
-
-.fixed-list-height {
-  min-height: 250px;
-}
-
-.spotify-btn {
-  width: 30px;
-  height: auto;
-
-  &:hover {
-    cursor: pointer;
   }
 }
 
