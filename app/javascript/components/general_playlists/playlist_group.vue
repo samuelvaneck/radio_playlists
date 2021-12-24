@@ -1,6 +1,6 @@
 <template>
-  <div class='row flex-nowrap overflow-x-auto py-2' style='postion:relative'>
-    <div class='d-flex flex-row' v-bind:key='item.id' v-for='item in items'>
+  <div class='flex flew-row flex-nowrap overflow-x-scroll py-2' style='postion:relative'>
+    <div class='mx-1 mt-2 mb-3' v-bind:key='item.id' v-for='item in items'>
       <Playlist v-bind:item='item' />
     </div>
   </div>

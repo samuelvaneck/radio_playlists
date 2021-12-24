@@ -1,46 +1,61 @@
 <template>
-  <div class='card mx-1 playlist-card'>
-    <span v-if='loading'>
-      <LoadingBar class='card-img-top' v-bind:height='"190px"' v-bind:width='"90%"' />
-    </span>
-    <span v-else-if='!!song'>
-      <img :src='song.data.attributes.spotify_artwork_url' class='card-img-top' />
-    </span>
+  <div class='wrapper wrapperAnime'>
+    <div class='header'>
+      <div class='imageWrapper'>
+        <span v-if='loading'>
+          <LoadingBar class='image' v-bind:height='"190px"' v-bind:width='"90%"' />
+        </span>
+        <span v-else-if='!!song'>
+          <img :src='song.data.attributes.spotify_artwork_url' class='image' />
+        </span>
+      </div>
+      <div class='badgeWrapper'>
+        <div class='primaryBadge badgeAnime'>
+          <div v-if='!!song && !!song.data.attributes.spotify_song_url' class='mt-2 flex flex-row'>
+            <div class='ml-auto'>
+              <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <div class='card-body'>
-      <div class='d-flex flex-column'>
-        <div class='d-flex d-flex-row'>
-          <div class='rubik mr-2'>
-            <div>{{ playedTime() }}</div>
-            <div><small><i>{{ playedDate() }}</i></small></div>
+    <div class='textWrapper'>
+      <div class='text'>
+        <div class='flex flex-row justify-between my-2'>
+          <div class='grow'>
+            <div class='rubik mr-2'>
+              <div>{{ playedTime() }}</div>
+              <div><small><i>{{ playedDate() }}</i></small></div>
+            </div>
           </div>
-          <!-- Radio station label -->
-          <div v-if='loading'>
-            <LoadingBar />
-          </div>
-          <div v-else-if='!!radioStation' class='ml-auto'>
-            <span class='badge badge-secondary'>{{ radioStation.data.attributes.name }}</span>
-          </div>
-        </div>
-        <div class='my-2'>
-          <!-- Song -->
-          <div v-if='loading'>
-            <LoadingBar />
-          </div>
-          <div v-else-if='!!song'>
-            <span>{{ song.data.attributes.title }}</span>
-          </div>
-          <!-- Artist -->
-          <div v-if='loading'>
-            <LoadingBar />
-          </div>
-          <div v-else-if='!!artists'>
-            <small><i>{{ artistName() }}</i></small>
+          <div class='grow'>
+            <!-- Radio station label -->
+            <div v-if='loading'>
+              <LoadingBar />
+            </div>
+            <div v-else-if='!!radioStation' class='ml-auto'>
+              <span class='badge badge-secondary'>{{ radioStation.data.attributes.name }}</span>
+            </div>
           </div>
         </div>
-        <div v-if='!!song && !!song.data.attributes.spotify_song_url' class='mt-2 d-flex flex-row'>
-          <div class='ml-auto'>
-            <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
+
+        <div class='flex flex-col my-2'>
+          <div class='my-2'>
+            <!-- Song -->
+            <div v-if='loading'>
+              <LoadingBar />
+            </div>
+            <div v-else-if='!!song'>
+              <span>{{ song.data.attributes.title }}</span>
+            </div>
+            <!-- Artist -->
+            <div v-if='loading'>
+              <LoadingBar />
+            </div>
+            <div v-else-if='!!artists'>
+              <small><i>{{ artistName() }}</i></small>
+            </div>
           </div>
         </div>
       </div>
@@ -73,7 +88,7 @@
         const date = new Date(this.item.attributes.broadcast_timestamp)
         const hh = (date.getHours() < 10 ? '0' : '') + date.getHours()
         const mm = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes()
-        
+
         return hh + ':' + mm
       },
       playedDate() {
@@ -98,7 +113,7 @@
         }
 
         fetch(songUrl, options).then(res => res.json())
-          .then(d => { 
+          .then(d => {
             this.song = d
             this.loading = false
 

@@ -11,7 +11,7 @@
       </div>
       <div class='badgeWrapper'>
         <div class='primaryBadge badgeAnime'>
-          <div v-if='!!song && !!song.data.attributes.spotify_song_url' class='mt-2 d-flex flex-row'>
+          <div v-if='!!song && !!song.data.attributes.spotify_song_url' class='mt-2 flex flex-row'>
             <div class=''>
               <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
             </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class='flex flew-row flex-nowrap overflow-x-scroll' style='postion:relative'>
+  <div class='flex flew-row flex-nowrap overflow-x-scroll py-2' style='postion:relative'>
     <div class='mx-1 mt-2 mb-3' v-bind:key='item.id' v-for='(item, idx) in items'>
       <TopSong v-bind:id='item[0]' v-bind:counter='item[1]' v-bind:chartIdx='idx' />
     </div>
