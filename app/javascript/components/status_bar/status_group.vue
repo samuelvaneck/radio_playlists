@@ -1,6 +1,6 @@
 <template>
-  <div class='row flex-nowrap overflow-x-auto py-2'>
-    <div class='d-flex flex-row' v-bind:key='item.id' v-for='item in items'>
+  <div class='flex flew-row flex-nowrap overflow-x-scroll py-2'>
+    <div class='flex flex-row' v-bind:key='item.id' v-for='item in items'>
       <Status v-bind:item='item' />
     </div>
   </div>

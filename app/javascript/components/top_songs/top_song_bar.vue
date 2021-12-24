@@ -1,13 +1,15 @@
 <template>
-  <div class='d-flex flex-column'>
-    <div class='d-flex flex-row'>
-      <h3>Top songs</h3>
-      <div class='ml-auto'>
+  <div class='flex flex-column'>
+    <div class='flex flex-row justify-between'>
+      <div class='grow'>
+        <span class="text-3xl">Top songs</span>
+      </div>
+      <div class='grow'>
         <SearchBar @search='onSearch' @filter='onRadioStationSelect' @filterTime='onChangeFilterTime' />
       </div>
     </div>
     <div v-if='loading'>
-      <div class='row flex-nowrap overflow-x-auto py-2'>
+      <div class='flex flew-row flex-nowrap overflow-x-scroll py-2'>
         <LoadingCard v-for='n in 10' :key="n" />
       </div>
     </div>
@@ -78,7 +80,7 @@
       onScroll(row) {
         const rightEdgeOfRow = (row.scrollLeft + row.offsetWidth) >= (row.scrollWidth - 50)
         if (!rightEdgeOfRow || this.requestInProgress || this.lastPage) return
-        
+
         this.page++
         this.getItems(true)
       },

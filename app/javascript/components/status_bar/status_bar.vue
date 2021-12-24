@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column">
+  <div class="flex flex-column">
     <h3>Status</h3>
     <div>
       <StatusGroup v-bind:items='items' />
