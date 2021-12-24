@@ -1,15 +1,35 @@
+
+# version: 2
+# jobs:
+# build:
+#   working_directory: /tmp
+#   steps:
+#     - run:
+#         name: Creating Dummy Artifacts
+#         command: |
+#           echo "my artifact file" > /tmp/art-1;
+#           mkdir /tmp/artifacts;
+#           echo "my artifact files in a dir" > /tmp/artifacts/art-2;
+
+#     - store_artifacts:
+#         path: /tmp/art-1
+#         destination: artifact-file
+
+#     - store_artifacts:
+#         path: /tmp/artifacts
+
 ---
   version: 2
   jobs:
     build:
       working_directory: ~/radio_playlists
       docker:
-        - image: circleci/ruby:3.0.2-node-browsers
+        - image: circleci/ruby:3.0.3-node-browsers
           environment:
             POSTGRES_HOST: localhost
             POSTGRES_USER: radio_playlists
             RAILS_ENV: test
-        - image: postgres:latest
+        - image: postgres:13
           environment:
             POSTGRES_USER: radio_playlists
             POSTGRES_DB: radio_playlists_test
@@ -31,7 +51,7 @@
           key: yarn-packages-{{ checksum "yarn.lock" }}
 
         # install bundler
-        - run: gem install bundler:2.1.4
+        - run: gem install bundler:2.2.33
 
         # Bundle install dependencies
         - run: bundle install --path vendor/bundle
@@ -70,3 +90,8 @@
         # Run the tests
         - run: bundle exec rspec
         - run: bundle exec rubocop
+
+        - store_artifacts:
+            path: ~/radio_playlists/coverage
+        - store_artifacts:
+            path: ~/radio_playlists/log

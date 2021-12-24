@@ -46,6 +46,7 @@ module Importable
           -H 'content-type: application/json'`
 
     json = JSON.parse(data)
+
     raise StandardError if json.blank?
     raise StandardError if json['errors'].present?
 

@@ -45,8 +45,12 @@ group :test do
   gem 'database_cleaner'
   gem 'rubocop'
   gem 'shoulda-matchers'
+  # Sinatra is used to mock requests
+  gem 'sinatra'
   gem 'simplecov'
   gem 'timecop'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do

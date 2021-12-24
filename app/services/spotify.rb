@@ -6,7 +6,12 @@ class Spotify
   class TokenCreationError < StandardError; end
 
   def initialize(args = {})
+    @args = args
     @token = get_token(cache: true)
+  end
+
+  def track
+    Spotify::Track.new(@args)
   end
 
   private

@@ -8,8 +8,13 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'timecop'
+require 'support/fake_spotify'
 require 'support/shoulda_matchers'
+require 'support/vcr'
+require 'support/webmock_support.rb'
 require 'rspec/rails'
+require 'webmock/rspec'
+require Rails.root.join('app/services/spotify')
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end

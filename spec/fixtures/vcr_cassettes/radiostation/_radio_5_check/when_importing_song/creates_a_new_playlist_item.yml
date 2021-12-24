@@ -1,0 +1,1868 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.nporadio5.nl/api/tracks
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - www.nporadio5.nl
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.19.10
+      Date:
+      - Fri, 24 Dec 2021 08:55:54 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Cache-Control:
+      - private
+      - public, s-maxage=15, max-age=30
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, HEAD
+      Access-Control-Allow-Headers:
+      - Origin,Content-Type,Accept
+      Set-Cookie:
+      - d6b24eeb28941bc9c872e1fcfcf919fa=65192ff550d1cf18c86cf16e5f27ca2e; path=/;
+        HttpOnly; Secure; SameSite=None
+    body:
+      encoding: ASCII-8BIT
+      string: '{"success":true,"message":null,"messages":null,"data":[{"startdatetime":"2021-12-24T09:53:41","enddatetime":"2021-12-24T09:56:44","title":"Merry
+        Christmas Darling","artist":"Carpenters","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273d044360064a0177e4208a870","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273d044360064a0177e4208a870","spotify_url":"https://open.spotify.com/track/0z5HSQGWgnjdNvwbOmhB2w"},{"startdatetime":"2021-12-24T09:51:08","enddatetime":"2021-12-24T09:54:04","title":"Heartache
+        Avenue","artist":"The Maisonettes","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/52497984-92de-4d1d-8418-7fb752a72a3c.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/52497984-92de-4d1d-8418-7fb752a72a3c.jpg"},{"startdatetime":"2021-12-24T09:47:31","enddatetime":"2021-12-24T09:51:23","title":"Zing
+        Vecht Huil Bid Lach Werk En Bewonder","artist":"Ramses Shaffy","image_url_200x200":"https://i.scdn.co/image/87cedee3d07d7284c78303e67872f75724cf444d","image_url_400x400":"https://i.scdn.co/image/87cedee3d07d7284c78303e67872f75724cf444d","spotify_url":"https://open.spotify.com/track/72PEd2qwD5t0p6MIj4i5HG"},{"startdatetime":"2021-12-24T09:45:00","enddatetime":"2021-12-24T09:47:08","title":"Jingle
+        bell rock","artist":"Bobby Helms","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273fd56f3c7a294f5cfe51c7b17","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273fd56f3c7a294f5cfe51c7b17","spotify_url":"https://open.spotify.com/track/7vQbuQcyTflfCIOu3Uzzya"},{"startdatetime":"2021-12-24T09:42:02","enddatetime":"2021-12-24T09:45:17","title":"Can''t
+        Give You Anything But My Love","artist":"The Stylistics","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/96593d5f-759e-4bbb-8dd9-88dc95386e22.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/96593d5f-759e-4bbb-8dd9-88dc95386e22.jpg"},{"startdatetime":"2021-12-24T09:37:43","enddatetime":"2021-12-24T09:42:03","title":"Hero","artist":"Mariah
+        Carey","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/282f6d18-26b8-46fd-b19c-8ae44d35d945.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/282f6d18-26b8-46fd-b19c-8ae44d35d945.jpg"},{"startdatetime":"2021-12-24T09:35:15","enddatetime":"2021-12-24T09:37:46","title":"Little
+        Drummer Boy","artist":"Johnny Cash","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273b1dc21e8398cbc76137874a0","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273b1dc21e8398cbc76137874a0","spotify_url":"https://open.spotify.com/track/7FIcV2kEiO2mvvMbxU5Jkn"},{"startdatetime":"2021-12-24T09:30:43","enddatetime":"2021-12-24T09:35:10","title":"State
+        Of Independence","artist":"Donna Summer","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/f3aeace8-0591-483b-9c71-12f2dac82ad9.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/f3aeace8-0591-483b-9c71-12f2dac82ad9.jpg"},{"startdatetime":"2021-12-24T09:28:18","enddatetime":"2021-12-24T09:30:45","title":"Winter
+        Wonderland","artist":"Michael Buble","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273119e4094f07a8123b471ac1d","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273119e4094f07a8123b471ac1d","spotify_url":"https://open.spotify.com/track/1GjQLnGAfpv3rWW1K9Ll8p"},{"startdatetime":"2021-12-24T09:25:31","enddatetime":"2021-12-24T09:28:16","title":"Here
+        Comes The Night","artist":"Them","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/25fc3808-8fcf-4b0d-a99a-b7d88f056194.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/25fc3808-8fcf-4b0d-a99a-b7d88f056194.jpg"},{"startdatetime":"2021-12-24T09:22:20","enddatetime":"2021-12-24T09:25:22","title":"Reach
+        Out And Touch (Somebody''s Hand)","artist":"Diana Ross","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/d588655b-ab84-440d-8ff2-1c773739038d.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/d588655b-ab84-440d-8ff2-1c773739038d.jpg"},{"startdatetime":"2021-12-24T09:18:51","enddatetime":"2021-12-24T09:22:38","title":"Take
+        On Me","artist":"A-Ha","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273e8dd4db47e7177c63b0b7d53","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273e8dd4db47e7177c63b0b7d53","spotify_url":"https://open.spotify.com/track/2WfaOiMkCvy7F5fcp2zZ8L"},{"startdatetime":"2021-12-24T09:15:20","enddatetime":"2021-12-24T09:18:53","title":"Lonely
+        This Christmas","artist":"Mud","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/d3823c4f-474d-4717-838b-7f9cea7c7483.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/d3823c4f-474d-4717-838b-7f9cea7c7483.jpg"},{"startdatetime":"2021-12-24T09:11:10","enddatetime":"2021-12-24T09:15:07","title":"Verliefd","artist":"Circus
+        Custers","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/16ff960f-e9d1-41ba-81f5-0c196de2a826.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/16ff960f-e9d1-41ba-81f5-0c196de2a826.jpg"},{"startdatetime":"2021-12-24T09:09:17","enddatetime":"2021-12-24T09:11:11","title":"Let
+        It Snow Let It Snow Let It Snow","artist":"Dean Martin","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273e359bd02a639a4d01b8241ae","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273e359bd02a639a4d01b8241ae"},{"startdatetime":"2021-12-24T09:06:13","enddatetime":"2021-12-24T09:09:25","title":"Don''t
+        Stop","artist":"Fleetwood Mac","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/216199bd-8666-403b-94b7-d39ce6d5a48c.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/216199bd-8666-403b-94b7-d39ce6d5a48c.jpg"},{"startdatetime":"2021-12-24T09:02:42","enddatetime":"2021-12-24T09:05:12","title":"The
+        Most Wonderful Time Of The Year","artist":"Andy Williams","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/492c71ff-4d4c-47b2-896e-1528a56bf806.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/492c71ff-4d4c-47b2-896e-1528a56bf806.jpg"},{"startdatetime":"2021-12-24T08:55:52","enddatetime":"2021-12-24T08:59:36","title":"Relight
+        My Fire","artist":"Dan Hartman","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/88c2d011-5019-4266-b680-679181c9b260.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/88c2d011-5019-4266-b680-679181c9b260.jpg"},{"startdatetime":"2021-12-24T08:52:35","enddatetime":"2021-12-24T08:56:23","title":"Blinded
+        By The Light","artist":"Manfred Mann''s Earth band","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/640cb913-0fea-4c90-8c2b-1f98251a3164.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/640cb913-0fea-4c90-8c2b-1f98251a3164.jpg"},{"startdatetime":"2021-12-24T08:49:12","enddatetime":"2021-12-24T08:52:39","title":"Brabant","artist":"Guus
+        Meeuwis","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/a233eb5a-6c00-447a-ab49-a5b19072f940.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/a233eb5a-6c00-447a-ab49-a5b19072f940.jpg"},{"startdatetime":"2021-12-24T08:45:07","enddatetime":"2021-12-24T08:47:57","title":"Love
+        Shine A Light","artist":"Katrina & The Waves","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/7eea1b8c-1386-456f-b65b-d970dada6aa2.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/7eea1b8c-1386-456f-b65b-d970dada6aa2.jpg"},{"startdatetime":"2021-12-24T08:41:16","enddatetime":"2021-12-24T08:45:11","title":"Schijn
+        ''N Lichtje Op Mij","artist":"Drukwerk","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/5a177601-3dbb-4e5d-90ef-27df9017aa5e.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/5a177601-3dbb-4e5d-90ef-27df9017aa5e.jpg"},{"startdatetime":"2021-12-24T08:36:08","enddatetime":"2021-12-24T08:40:26","title":"Window
+        Of Hope","artist":"Oleta Adams","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273e3533c0ecf29f106d2dc59a1","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273e3533c0ecf29f106d2dc59a1","spotify_url":"https://open.spotify.com/track/7IyXO4OsPqqmB0v1ebT9Ok"},{"startdatetime":"2021-12-24T08:28:21","enddatetime":"2021-12-24T08:32:55","title":"Fairytale
+        Of New York","artist":"Kirsty MacColl & The Pogues","image_url_200x200":"https://i.scdn.co/image/5062c9ee5614abcc104d831f9613529fb83cc253","image_url_400x400":"https://i.scdn.co/image/5062c9ee5614abcc104d831f9613529fb83cc253","spotify_url":"https://open.spotify.com/track/5DgZL94tF4LP18F5jHu25W"},{"startdatetime":"2021-12-24T08:25:54","enddatetime":"2021-12-24T08:28:00","title":"Hair","artist":"Zen","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/01b98429-b387-4d6b-b5ed-a4b6a31cabf5.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/01b98429-b387-4d6b-b5ed-a4b6a31cabf5.jpg"},{"startdatetime":"2021-12-24T08:22:18","enddatetime":"2021-12-24T08:25:20","title":"FELIZ
+        NAVIDAD","artist":"Jose Feliciano","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/4b64aa2b-1f90-4c16-a31e-318d922cd450.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/4b64aa2b-1f90-4c16-a31e-318d922cd450.jpg"},{"startdatetime":"2021-12-24T08:15:06","enddatetime":"2021-12-24T08:18:11","title":"Christmas
+        Time With You","artist":"Nick & Simon & Stefanie","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273f871a6598e34306374915ad3","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273f871a6598e34306374915ad3"},{"startdatetime":"2021-12-24T08:11:06","enddatetime":"2021-12-24T08:15:06","title":"Right
+        Between The Eyes","artist":"Wax","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/3bc75e6f-9bc5-48d3-b890-6c6f1cccaf37.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/3bc75e6f-9bc5-48d3-b890-6c6f1cccaf37.jpg"},{"startdatetime":"2021-12-24T08:07:30","enddatetime":"2021-12-24T08:11:19","title":"Another
+        Brick In The Wall","artist":"Pink Floyd","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/8437a306-e4ab-443a-bd38-8f0a655f32e5.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/8437a306-e4ab-443a-bd38-8f0a655f32e5.jpg"},{"startdatetime":"2021-12-24T08:02:19","enddatetime":"2021-12-24T08:06:23","title":"All
+        Alone On Christmas","artist":"Darlene Love","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/39136f5f-ed95-499b-9d66-ca6fa8401b2a.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/39136f5f-ed95-499b-9d66-ca6fa8401b2a.jpg"},{"startdatetime":"2021-12-24T07:55:46","enddatetime":"2021-12-24T07:58:49","title":"Mother
+        & Child Reunion","artist":"Paul Simon","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/bdf18d30-04db-4a49-8cbd-560793bb8c5c.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/bdf18d30-04db-4a49-8cbd-560793bb8c5c.jpg"},{"startdatetime":"2021-12-24T07:52:25","enddatetime":"2021-12-24T07:55:13","title":"In
+        Dreams","artist":"Roy Orbison","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/b4355bc8-1801-455b-8ffb-0069860b432e.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/b4355bc8-1801-455b-8ffb-0069860b432e.jpg"},{"startdatetime":"2021-12-24T07:46:00","enddatetime":"2021-12-24T07:49:40","title":"Christmas
+        Memories","artist":"Deborah Parlor & Dennis van Aarssen","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2730929500b8c6b88c50caadf62","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2730929500b8c6b88c50caadf62"},{"startdatetime":"2021-12-24T07:41:44","enddatetime":"2021-12-24T07:46:00","title":"What
+        You''re Proposing","artist":"Status Quo","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/975a7db9-47da-4d60-950f-9fdf21d0188d.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/975a7db9-47da-4d60-950f-9fdf21d0188d.jpg"},{"startdatetime":"2021-12-24T07:36:55","enddatetime":"2021-12-24T07:40:47","title":"History","artist":"Mai
+        Tai","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/5aaa22b6-0fe8-4765-940a-ca7d3e6f73ae.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/5aaa22b6-0fe8-4765-940a-ca7d3e6f73ae.jpg"},{"startdatetime":"2021-12-24T07:33:21","enddatetime":"2021-12-24T07:37:00","title":"Ride
+        My See-Saw","artist":"Moody Blues","image_url_200x200":"https://i.scdn.co/image/bf4f8b2d4bad40cff05d61dc612642ea4f75d6ce","image_url_400x400":"https://i.scdn.co/image/bf4f8b2d4bad40cff05d61dc612642ea4f75d6ce","spotify_url":"https://open.spotify.com/track/6tMNYGXJ1L6wjbSkAXWyHh"},{"startdatetime":"2021-12-24T07:26:27","enddatetime":"2021-12-24T07:30:03","title":"Kerstmis","artist":"Rowwen
+        Heze","image_url_200x200":"https://i.scdn.co/image/bd50eedce936934801efdd7759964c2766bf124d","image_url_400x400":"https://i.scdn.co/image/bd50eedce936934801efdd7759964c2766bf124d","spotify_url":"https://open.spotify.com/track/4hb6ws0AoDABBlatDWAIwA"},{"startdatetime":"2021-12-24T07:23:13","enddatetime":"2021-12-24T07:26:28","title":"Let
+        Your Love Flow","artist":"The Bellamy Brothers","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/190024ee-5e73-45f6-8b4a-4fb6c587f218.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/190024ee-5e73-45f6-8b4a-4fb6c587f218.jpg"},{"startdatetime":"2021-12-24T07:20:15","enddatetime":"2021-12-24T07:22:43","title":"Sure
+        He''s A Cat","artist":"The Cats","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/7cfeba42-b2f0-4280-9105-6a07e94cb629.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/7cfeba42-b2f0-4280-9105-6a07e94cb629.jpg"},{"startdatetime":"2021-12-24T07:12:52","enddatetime":"2021-12-24T07:16:09","title":"Great
+        Big World","artist":"BlueBirds & Birgit Schuurmans","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2737fd2e3f10ceca0c558c6b93e","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2737fd2e3f10ceca0c558c6b93e"},{"startdatetime":"2021-12-24T07:09:39","enddatetime":"2021-12-24T07:12:55","title":"Uptown
+        Girl","artist":"Billy Joel","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/bf49f100-a935-4391-a771-e2b628d204ad.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/bf49f100-a935-4391-a771-e2b628d204ad.jpg"},{"startdatetime":"2021-12-24T07:02:45","enddatetime":"2021-12-24T07:07:23","title":"I
+        Wish It Could Be Christmas Every Day","artist":"Wizzard","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2021-12-24T06:56:17","enddatetime":"2021-12-24T06:58:36","title":"Valleri","artist":"The
+        Monkees","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/34fb4133-039f-454a-ae4d-b9283f2efbfd.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/34fb4133-039f-454a-ae4d-b9283f2efbfd.jpg"},{"startdatetime":"2021-12-24T06:50:55","enddatetime":"2021-12-24T06:56:22","title":"You
+        Have Been Loved","artist":"George Michael","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/943aee7d-494b-44dc-8fcc-47e9bd502ba5.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/943aee7d-494b-44dc-8fcc-47e9bd502ba5.jpg"},{"startdatetime":"2021-12-24T06:43:35","enddatetime":"2021-12-24T06:47:29","title":"Stayin''
+        Alive","artist":"Bee Gees","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273a1f748bf1c1e69b3e36a21ea","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273a1f748bf1c1e69b3e36a21ea","spotify_url":"https://open.spotify.com/track/5ubvP9oKmxLUVq506fgLhk"},{"startdatetime":"2021-12-24T06:39:44","enddatetime":"2021-12-24T06:43:31","title":"Home
+        For Christmas","artist":"Maria Mena","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/e84fbbdf-0b13-440c-b82f-16cffdd183f7.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/e84fbbdf-0b13-440c-b82f-16cffdd183f7.jpg"},{"startdatetime":"2021-12-24T06:37:04","enddatetime":"2021-12-24T06:39:37","title":"Even
+        The Bad Times Are Good","artist":"Tremeloes","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2021-12-24T06:34:21","enddatetime":"2021-12-24T06:37:09","title":"Quiero","artist":"Julio
+        Iglesias","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/2529b55f-2cf3-4815-ae50-a83737637f5b.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/2529b55f-2cf3-4815-ae50-a83737637f5b.jpg"},{"startdatetime":"2021-12-24T06:28:50","enddatetime":"2021-12-24T06:31:50","title":"Such
+        a night","artist":"Elvis Presley","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273c7da0f669c230f078338aa22","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273c7da0f669c230f078338aa22"},{"startdatetime":"2021-12-24T06:22:24","enddatetime":"2021-12-24T06:25:57","title":"Lonely
+        This Christmas","artist":"Mud","image_url_200x200":"https://radio-images.npo.nl/w_200,h_200/45ed5691-8bc1-4018-9d67-242150cff944/d3823c4f-474d-4717-838b-7f9cea7c7483.jpg","image_url_400x400":"https://radio-images.npo.nl/w_400,h_400/45ed5691-8bc1-4018-9d67-242150cff944/d3823c4f-474d-4717-838b-7f9cea7c7483.jpg"}]}'
+  recorded_at: Fri, 24 Dec 2021 08:55:54 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 24 Dec 2021 08:55:54 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQByvAZr18GHhnX3hwe53h4GiAUs0c_KdOi55ywFoCb4RIVPM8Scinqb-dWJgp3XHB-s_37Ej08ZgdL4BOEP0VB1PYgDocOpQoI;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 719ec303cfa32392
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQDpJyyFKDKP37Rr1bQh5MVR2QCHAdjgve_cKnDvxZ81jbidCAFpZft4MotgDc4f7jkmjSy4CigKlY65QGM","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 24 Dec 2021 08:55:54 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 24 Dec 2021 08:55:54 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQCumbBRCdsOXxU3UFOhFCM6D7vPG3sBTmvpSSmMkoeQrCqCLQhq7dpe7-Z_bMPb-eRVyy0C2p1oA-tZKxlqhamLLsE0EPU7EgE;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 863178aded8ccbf5
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQC13W9bH8QEv0gafzMbrfv6mV12E26vH5FyH0wEk38dM4u3lJbsTJtdeTBLW_klI4VzzgdyOgZAyCpIF_U","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 24 Dec 2021 08:55:54 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Merry%20Christmas%20Darling%20artist:carpenters&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQC13W9bH8QEv0gafzMbrfv6mV12E26vH5FyH0wEk38dM4u3lJbsTJtdeTBLW_klI4VzzgdyOgZAyCpIF_U
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Fri, 24 Dec 2021 08:55:54 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=Merry+Christmas+Darling+artist%3Acarpenters&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                  "id" : "1eEfMU2AhEo7XnKgL7c304",
+                  "name" : "Carpenters",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/5GMAtv4CU6GYQMo36Uuiqc"
+                },
+                "href" : "https://api.spotify.com/v1/albums/5GMAtv4CU6GYQMo36Uuiqc",
+                "id" : "5GMAtv4CU6GYQMo36Uuiqc",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273d044360064a0177e4208a870",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02d044360064a0177e4208a870",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851d044360064a0177e4208a870",
+                  "width" : 64
+                } ],
+                "name" : "Christmas Portrait (Special Edition/Reissue)",
+                "release_date" : "1978-10-13",
+                "release_date_precision" : "day",
+                "total_tracks" : 21,
+                "type" : "album",
+                "uri" : "spotify:album:5GMAtv4CU6GYQMo36Uuiqc"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 186973,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USAM17800383"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0z5HSQGWgnjdNvwbOmhB2w"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0z5HSQGWgnjdNvwbOmhB2w",
+              "id" : "0z5HSQGWgnjdNvwbOmhB2w",
+              "is_local" : false,
+              "name" : "Merry Christmas Darling - Remix",
+              "popularity" : 81,
+              "preview_url" : null,
+              "track_number" : 11,
+              "type" : "track",
+              "uri" : "spotify:track:0z5HSQGWgnjdNvwbOmhB2w"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                  "id" : "1eEfMU2AhEo7XnKgL7c304",
+                  "name" : "Carpenters",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4neiBTHUC0mgKE3Soz0QqK"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4neiBTHUC0mgKE3Soz0QqK",
+                "id" : "4neiBTHUC0mgKE3Soz0QqK",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273c84bd71d337d7c4675d73a2d",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02c84bd71d337d7c4675d73a2d",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851c84bd71d337d7c4675d73a2d",
+                  "width" : 64
+                } ],
+                "name" : "The Essential Collection (1965-1997)",
+                "release_date" : "2002-10-15",
+                "release_date_precision" : "day",
+                "total_tracks" : 73,
+                "type" : "album",
+                "uri" : "spotify:album:4neiBTHUC0mgKE3Soz0QqK"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 185906,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USAM10200391"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6W65jVdn0JtttcvFN1KppC"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6W65jVdn0JtttcvFN1KppC",
+              "id" : "6W65jVdn0JtttcvFN1KppC",
+              "is_local" : false,
+              "name" : "Merry Christmas Darling - Single Version",
+              "popularity" : 63,
+              "preview_url" : null,
+              "track_number" : 21,
+              "type" : "track",
+              "uri" : "spotify:track:6W65jVdn0JtttcvFN1KppC"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                  "id" : "1eEfMU2AhEo7XnKgL7c304",
+                  "name" : "Carpenters",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0MvSBMGRQJY3mRwIbJsqF1"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0MvSBMGRQJY3mRwIbJsqF1",
+                  "id" : "0MvSBMGRQJY3mRwIbJsqF1",
+                  "name" : "Royal Philharmonic Orchestra",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0MvSBMGRQJY3mRwIbJsqF1"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4NjqLEe5Rz11HB9aK5VLc2"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4NjqLEe5Rz11HB9aK5VLc2",
+                "id" : "4NjqLEe5Rz11HB9aK5VLc2",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2737cee47f72f7ba60ea64d47ba",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e027cee47f72f7ba60ea64d47ba",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048517cee47f72f7ba60ea64d47ba",
+                  "width" : 64
+                } ],
+                "name" : "Carpenters With The Royal Philharmonic Orchestra",
+                "release_date" : "2018-12-07",
+                "release_date_precision" : "day",
+                "total_tracks" : 18,
+                "type" : "album",
+                "uri" : "spotify:album:4NjqLEe5Rz11HB9aK5VLc2"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0MvSBMGRQJY3mRwIbJsqF1"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0MvSBMGRQJY3mRwIbJsqF1",
+                "id" : "0MvSBMGRQJY3mRwIbJsqF1",
+                "name" : "Royal Philharmonic Orchestra",
+                "type" : "artist",
+                "uri" : "spotify:artist:0MvSBMGRQJY3mRwIbJsqF1"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 181680,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USUM71815371"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3qPeF3U10lZYScRS9JY8cu"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3qPeF3U10lZYScRS9JY8cu",
+              "id" : "3qPeF3U10lZYScRS9JY8cu",
+              "is_local" : false,
+              "name" : "Merry Christmas, Darling",
+              "popularity" : 52,
+              "preview_url" : null,
+              "track_number" : 9,
+              "type" : "track",
+              "uri" : "spotify:track:3qPeF3U10lZYScRS9JY8cu"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                  "id" : "1eEfMU2AhEo7XnKgL7c304",
+                  "name" : "Carpenters",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4XvMJxihQFuslvdOwFr2R4"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4XvMJxihQFuslvdOwFr2R4",
+                "id" : "4XvMJxihQFuslvdOwFr2R4",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273772f4769270cca469da19801",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02772f4769270cca469da19801",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851772f4769270cca469da19801",
+                  "width" : 64
+                } ],
+                "name" : "Christmas Collection",
+                "release_date" : "1984-01-15",
+                "release_date_precision" : "day",
+                "total_tracks" : 31,
+                "type" : "album",
+                "uri" : "spotify:album:4XvMJxihQFuslvdOwFr2R4"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 185693,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USAM17800383"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7CBhozYcHItqcv8qJ5EDo3"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7CBhozYcHItqcv8qJ5EDo3",
+              "id" : "7CBhozYcHItqcv8qJ5EDo3",
+              "is_local" : false,
+              "name" : "Merry Christmas Darling - Remix",
+              "popularity" : 45,
+              "preview_url" : null,
+              "track_number" : 13,
+              "type" : "track",
+              "uri" : "spotify:track:7CBhozYcHItqcv8qJ5EDo3"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/2iHtEm3Rz2Zkbk8I2TJ4G7"
+                },
+                "href" : "https://api.spotify.com/v1/albums/2iHtEm3Rz2Zkbk8I2TJ4G7",
+                "id" : "2iHtEm3Rz2Zkbk8I2TJ4G7",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273b00c456749e855e6f1c4b1fd",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02b00c456749e855e6f1c4b1fd",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851b00c456749e855e6f1c4b1fd",
+                  "width" : 64
+                } ],
+                "name" : "White Christmas",
+                "release_date" : "2021-10-28",
+                "release_date_precision" : "day",
+                "total_tracks" : 47,
+                "type" : "album",
+                "uri" : "spotify:album:2iHtEm3Rz2Zkbk8I2TJ4G7"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0MvSBMGRQJY3mRwIbJsqF1"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0MvSBMGRQJY3mRwIbJsqF1",
+                "id" : "0MvSBMGRQJY3mRwIbJsqF1",
+                "name" : "Royal Philharmonic Orchestra",
+                "type" : "artist",
+                "uri" : "spotify:artist:0MvSBMGRQJY3mRwIbJsqF1"
+              } ],
+              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186433,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USUM71815371"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/078fA3f9IizZc600pRaxYA"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/078fA3f9IizZc600pRaxYA",
+              "id" : "078fA3f9IizZc600pRaxYA",
+              "is_local" : false,
+              "name" : "Merry Christmas, Darling",
+              "popularity" : 33,
+              "preview_url" : null,
+              "track_number" : 33,
+              "type" : "track",
+              "uri" : "spotify:track:078fA3f9IizZc600pRaxYA"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                  "id" : "1eEfMU2AhEo7XnKgL7c304",
+                  "name" : "Carpenters",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0MvSBMGRQJY3mRwIbJsqF1"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0MvSBMGRQJY3mRwIbJsqF1",
+                  "id" : "0MvSBMGRQJY3mRwIbJsqF1",
+                  "name" : "Royal Philharmonic Orchestra",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0MvSBMGRQJY3mRwIbJsqF1"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0OH9RAZP1lskRRfnmeYPRy"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0OH9RAZP1lskRRfnmeYPRy",
+                "id" : "0OH9RAZP1lskRRfnmeYPRy",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27386b4cbc3e1d0d6b545b9feef",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0286b4cbc3e1d0d6b545b9feef",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485186b4cbc3e1d0d6b545b9feef",
+                  "width" : 64
+                } ],
+                "name" : "Ticket To Ride / Yesterday Once More / Merry Christmas, Darling",
+                "release_date" : "2018-11-16",
+                "release_date_precision" : "day",
+                "total_tracks" : 3,
+                "type" : "album",
+                "uri" : "spotify:album:0OH9RAZP1lskRRfnmeYPRy"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0MvSBMGRQJY3mRwIbJsqF1"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0MvSBMGRQJY3mRwIbJsqF1",
+                "id" : "0MvSBMGRQJY3mRwIbJsqF1",
+                "name" : "Royal Philharmonic Orchestra",
+                "type" : "artist",
+                "uri" : "spotify:artist:0MvSBMGRQJY3mRwIbJsqF1"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 186433,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USUM71815371"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0iUUPVLjGOraXTCBn7YXXI"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0iUUPVLjGOraXTCBn7YXXI",
+              "id" : "0iUUPVLjGOraXTCBn7YXXI",
+              "is_local" : false,
+              "name" : "Merry Christmas, Darling",
+              "popularity" : 25,
+              "preview_url" : null,
+              "track_number" : 3,
+              "type" : "track",
+              "uri" : "spotify:track:0iUUPVLjGOraXTCBn7YXXI"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AR", "AT", "AU", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "TH", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7xJjvB0DK5JkhyCTpaXcuP"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7xJjvB0DK5JkhyCTpaXcuP",
+                "id" : "7xJjvB0DK5JkhyCTpaXcuP",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273a2887a4a1266f5a1c6acba5f",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02a2887a4a1266f5a1c6acba5f",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851a2887a4a1266f5a1c6acba5f",
+                  "width" : 64
+                } ],
+                "name" : "Christmas Hits Volume 1",
+                "release_date" : "2019-11-28",
+                "release_date_precision" : "day",
+                "total_tracks" : 52,
+                "type" : "album",
+                "uri" : "spotify:album:7xJjvB0DK5JkhyCTpaXcuP"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0MvSBMGRQJY3mRwIbJsqF1"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0MvSBMGRQJY3mRwIbJsqF1",
+                "id" : "0MvSBMGRQJY3mRwIbJsqF1",
+                "name" : "Royal Philharmonic Orchestra",
+                "type" : "artist",
+                "uri" : "spotify:artist:0MvSBMGRQJY3mRwIbJsqF1"
+              } ],
+              "available_markets" : [ "AE", "AR", "AT", "AU", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "TH", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186433,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USUM71815371"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7eENzCkZeLIaXUZrqgkwpj"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7eENzCkZeLIaXUZrqgkwpj",
+              "id" : "7eENzCkZeLIaXUZrqgkwpj",
+              "is_local" : false,
+              "name" : "Merry Christmas, Darling",
+              "popularity" : 42,
+              "preview_url" : null,
+              "track_number" : 42,
+              "type" : "track",
+              "uri" : "spotify:track:7eENzCkZeLIaXUZrqgkwpj"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AR", "AT", "AU", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "TH", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/19yVa0VPEwQPmK6Fj7nqbq"
+                },
+                "href" : "https://api.spotify.com/v1/albums/19yVa0VPEwQPmK6Fj7nqbq",
+                "id" : "19yVa0VPEwQPmK6Fj7nqbq",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273204fe871b8a728f5d4bed60b",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02204fe871b8a728f5d4bed60b",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851204fe871b8a728f5d4bed60b",
+                  "width" : 64
+                } ],
+                "name" : "Classic Christmas Songs",
+                "release_date" : "2019-12-11",
+                "release_date_precision" : "day",
+                "total_tracks" : 38,
+                "type" : "album",
+                "uri" : "spotify:album:19yVa0VPEwQPmK6Fj7nqbq"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              } ],
+              "available_markets" : [ "AE", "AR", "AT", "AU", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "TH", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186973,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USAM17800383"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0H2DS089N2S7FCH5PQ6Dct"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0H2DS089N2S7FCH5PQ6Dct",
+              "id" : "0H2DS089N2S7FCH5PQ6Dct",
+              "is_local" : false,
+              "name" : "Merry Christmas Darling - Remix",
+              "popularity" : 35,
+              "preview_url" : null,
+              "track_number" : 31,
+              "type" : "track",
+              "uri" : "spotify:track:0H2DS089N2S7FCH5PQ6Dct"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/6a909znnIB8NxFaPbU5cdR"
+                },
+                "href" : "https://api.spotify.com/v1/albums/6a909znnIB8NxFaPbU5cdR",
+                "id" : "6a909znnIB8NxFaPbU5cdR",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273feb85263bd2ebd5323221c7a",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02feb85263bd2ebd5323221c7a",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851feb85263bd2ebd5323221c7a",
+                  "width" : 64
+                } ],
+                "name" : "Best Christmas Playlist Ever 2021",
+                "release_date" : "2021-12-03",
+                "release_date_precision" : "day",
+                "total_tracks" : 64,
+                "type" : "album",
+                "uri" : "spotify:album:6a909znnIB8NxFaPbU5cdR"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              } ],
+              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186973,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USAM17800383"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/288B0aufbpC0TKKIDoRNrC"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/288B0aufbpC0TKKIDoRNrC",
+              "id" : "288B0aufbpC0TKKIDoRNrC",
+              "is_local" : false,
+              "name" : "Merry Christmas Darling - Remix",
+              "popularity" : 21,
+              "preview_url" : null,
+              "track_number" : 3,
+              "type" : "track",
+              "uri" : "spotify:track:288B0aufbpC0TKKIDoRNrC"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/3VJgGREhR9TeJ0dmX70FKJ"
+                },
+                "href" : "https://api.spotify.com/v1/albums/3VJgGREhR9TeJ0dmX70FKJ",
+                "id" : "3VJgGREhR9TeJ0dmX70FKJ",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27315b07e90878bfa8149e7f749",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0215b07e90878bfa8149e7f749",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485115b07e90878bfa8149e7f749",
+                  "width" : 64
+                } ],
+                "name" : "Christmas Songs",
+                "release_date" : "2020-11-27",
+                "release_date_precision" : "day",
+                "total_tracks" : 73,
+                "type" : "album",
+                "uri" : "spotify:album:3VJgGREhR9TeJ0dmX70FKJ"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              } ],
+              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186973,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USAM17800383"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/19Xvg14lZ4yCafcAvVXxvS"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/19Xvg14lZ4yCafcAvVXxvS",
+              "id" : "19Xvg14lZ4yCafcAvVXxvS",
+              "is_local" : false,
+              "name" : "Merry Christmas Darling - Remix",
+              "popularity" : 29,
+              "preview_url" : null,
+              "track_number" : 39,
+              "type" : "track",
+              "uri" : "spotify:track:19Xvg14lZ4yCafcAvVXxvS"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                  "id" : "1eEfMU2AhEo7XnKgL7c304",
+                  "name" : "Carpenters",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/3TYygcT1wShXOCVTzD0Yii"
+                },
+                "href" : "https://api.spotify.com/v1/albums/3TYygcT1wShXOCVTzD0Yii",
+                "id" : "3TYygcT1wShXOCVTzD0Yii",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2734a30891bb07dbc688e39d877",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e024a30891bb07dbc688e39d877",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048514a30891bb07dbc688e39d877",
+                  "width" : 64
+                } ],
+                "name" : "Carpenters Gold (35th Anniversary Edition)",
+                "release_date" : "2004-02-10",
+                "release_date_precision" : "day",
+                "total_tracks" : 40,
+                "type" : "album",
+                "uri" : "spotify:album:3TYygcT1wShXOCVTzD0Yii"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 2,
+              "duration_ms" : 185866,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USAM17800383"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6uExIdYcidGkxJxDEuGT9N"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6uExIdYcidGkxJxDEuGT9N",
+              "id" : "6uExIdYcidGkxJxDEuGT9N",
+              "is_local" : false,
+              "name" : "Merry Christmas Darling - Remix",
+              "popularity" : 22,
+              "preview_url" : null,
+              "track_number" : 5,
+              "type" : "track",
+              "uri" : "spotify:track:6uExIdYcidGkxJxDEuGT9N"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/3yWcmAMwEeFM290DrqrlBn"
+                },
+                "href" : "https://api.spotify.com/v1/albums/3yWcmAMwEeFM290DrqrlBn",
+                "id" : "3yWcmAMwEeFM290DrqrlBn",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273ecb236c7f58799f3c51d93a3",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02ecb236c7f58799f3c51d93a3",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851ecb236c7f58799f3c51d93a3",
+                  "width" : 64
+                } ],
+                "name" : "70's Christmas",
+                "release_date" : "2021-10-11",
+                "release_date_precision" : "day",
+                "total_tracks" : 30,
+                "type" : "album",
+                "uri" : "spotify:album:3yWcmAMwEeFM290DrqrlBn"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              } ],
+              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 185906,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USAM10200391"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6CqeuFEkUmv3zo9i60g2W0"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6CqeuFEkUmv3zo9i60g2W0",
+              "id" : "6CqeuFEkUmv3zo9i60g2W0",
+              "is_local" : false,
+              "name" : "Merry Christmas Darling - Single Version",
+              "popularity" : 20,
+              "preview_url" : null,
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:6CqeuFEkUmv3zo9i60g2W0"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0bGVcaocRNrSHgsu6Jd7PF"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0bGVcaocRNrSHgsu6Jd7PF",
+                "id" : "0bGVcaocRNrSHgsu6Jd7PF",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2732835909c14a1d823e6662278",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e022835909c14a1d823e6662278",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048512835909c14a1d823e6662278",
+                  "width" : 64
+                } ],
+                "name" : "Classic Christmas Hits",
+                "release_date" : "2020-10-09",
+                "release_date_precision" : "day",
+                "total_tracks" : 38,
+                "type" : "album",
+                "uri" : "spotify:album:0bGVcaocRNrSHgsu6Jd7PF"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0MvSBMGRQJY3mRwIbJsqF1"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0MvSBMGRQJY3mRwIbJsqF1",
+                "id" : "0MvSBMGRQJY3mRwIbJsqF1",
+                "name" : "Royal Philharmonic Orchestra",
+                "type" : "artist",
+                "uri" : "spotify:artist:0MvSBMGRQJY3mRwIbJsqF1"
+              } ],
+              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186433,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USUM71815371"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/21GWYjGxZcGDNvvN7WWbGc"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/21GWYjGxZcGDNvvN7WWbGc",
+              "id" : "21GWYjGxZcGDNvvN7WWbGc",
+              "is_local" : false,
+              "name" : "Merry Christmas, Darling",
+              "popularity" : 16,
+              "preview_url" : null,
+              "track_number" : 16,
+              "type" : "track",
+              "uri" : "spotify:track:21GWYjGxZcGDNvvN7WWbGc"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AR", "AT", "AU", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "TH", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/58hVBnqV1aXrTizHUnruNI"
+                },
+                "href" : "https://api.spotify.com/v1/albums/58hVBnqV1aXrTizHUnruNI",
+                "id" : "58hVBnqV1aXrTizHUnruNI",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2730038d26b2ceb05f0fd53e5fc",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e020038d26b2ceb05f0fd53e5fc",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048510038d26b2ceb05f0fd53e5fc",
+                  "width" : 64
+                } ],
+                "name" : "Christmas Top Hits",
+                "release_date" : "2018-10-06",
+                "release_date_precision" : "day",
+                "total_tracks" : 28,
+                "type" : "album",
+                "uri" : "spotify:album:58hVBnqV1aXrTizHUnruNI"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              } ],
+              "available_markets" : [ "AE", "AR", "AT", "AU", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SV", "TH", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186973,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USAM17800383"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/4pLwdgPHgGKJAMChng3wA5"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/4pLwdgPHgGKJAMChng3wA5",
+              "id" : "4pLwdgPHgGKJAMChng3wA5",
+              "is_local" : false,
+              "name" : "Merry Christmas Darling - Remix",
+              "popularity" : 17,
+              "preview_url" : null,
+              "track_number" : 17,
+              "type" : "track",
+              "uri" : "spotify:track:4pLwdgPHgGKJAMChng3wA5"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0ogaJXORWLpMGm4QoHCJoM"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0ogaJXORWLpMGm4QoHCJoM",
+                "id" : "0ogaJXORWLpMGm4QoHCJoM",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27368baab0d3374134988272db7",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0268baab0d3374134988272db7",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485168baab0d3374134988272db7",
+                  "width" : 64
+                } ],
+                "name" : "Christmas Pop Hits 2021",
+                "release_date" : "2021-12-07",
+                "release_date_precision" : "day",
+                "total_tracks" : 100,
+                "type" : "album",
+                "uri" : "spotify:album:0ogaJXORWLpMGm4QoHCJoM"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0MvSBMGRQJY3mRwIbJsqF1"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0MvSBMGRQJY3mRwIbJsqF1",
+                "id" : "0MvSBMGRQJY3mRwIbJsqF1",
+                "name" : "Royal Philharmonic Orchestra",
+                "type" : "artist",
+                "uri" : "spotify:artist:0MvSBMGRQJY3mRwIbJsqF1"
+              } ],
+              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186433,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USUM71815371"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/4EF69hR9xvsCgxqufWarJ7"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/4EF69hR9xvsCgxqufWarJ7",
+              "id" : "4EF69hR9xvsCgxqufWarJ7",
+              "is_local" : false,
+              "name" : "Merry Christmas, Darling",
+              "popularity" : 17,
+              "preview_url" : null,
+              "track_number" : 57,
+              "type" : "track",
+              "uri" : "spotify:track:4EF69hR9xvsCgxqufWarJ7"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/5uEGPJO9IkCG2wSUoEmREP"
+                },
+                "href" : "https://api.spotify.com/v1/albums/5uEGPJO9IkCG2wSUoEmREP",
+                "id" : "5uEGPJO9IkCG2wSUoEmREP",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273bf334bc201aa38d334df9caf",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02bf334bc201aa38d334df9caf",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851bf334bc201aa38d334df9caf",
+                  "width" : 64
+                } ],
+                "name" : "Holiday Music Christmas",
+                "release_date" : "2020-12-11",
+                "release_date_precision" : "day",
+                "total_tracks" : 39,
+                "type" : "album",
+                "uri" : "spotify:album:5uEGPJO9IkCG2wSUoEmREP"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0MvSBMGRQJY3mRwIbJsqF1"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0MvSBMGRQJY3mRwIbJsqF1",
+                "id" : "0MvSBMGRQJY3mRwIbJsqF1",
+                "name" : "Royal Philharmonic Orchestra",
+                "type" : "artist",
+                "uri" : "spotify:artist:0MvSBMGRQJY3mRwIbJsqF1"
+              } ],
+              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186433,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USUM71815371"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6SaOe1mQ5Mk7RiRrZkJG7V"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6SaOe1mQ5Mk7RiRrZkJG7V",
+              "id" : "6SaOe1mQ5Mk7RiRrZkJG7V",
+              "is_local" : false,
+              "name" : "Merry Christmas, Darling",
+              "popularity" : 11,
+              "preview_url" : null,
+              "track_number" : 34,
+              "type" : "track",
+              "uri" : "spotify:track:6SaOe1mQ5Mk7RiRrZkJG7V"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/5NlA5cPHtHxIMOO9tqH7ar"
+                },
+                "href" : "https://api.spotify.com/v1/albums/5NlA5cPHtHxIMOO9tqH7ar",
+                "id" : "5NlA5cPHtHxIMOO9tqH7ar",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273a2d36b20c932f2c5a328ae59",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02a2d36b20c932f2c5a328ae59",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851a2d36b20c932f2c5a328ae59",
+                  "width" : 64
+                } ],
+                "name" : "Jingle Bells",
+                "release_date" : "2021-11-10",
+                "release_date_precision" : "day",
+                "total_tracks" : 64,
+                "type" : "album",
+                "uri" : "spotify:album:5NlA5cPHtHxIMOO9tqH7ar"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0MvSBMGRQJY3mRwIbJsqF1"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0MvSBMGRQJY3mRwIbJsqF1",
+                "id" : "0MvSBMGRQJY3mRwIbJsqF1",
+                "name" : "Royal Philharmonic Orchestra",
+                "type" : "artist",
+                "uri" : "spotify:artist:0MvSBMGRQJY3mRwIbJsqF1"
+              } ],
+              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186433,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USUM71815371"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/1pWC7nlBoYMXj7dbm9St19"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/1pWC7nlBoYMXj7dbm9St19",
+              "id" : "1pWC7nlBoYMXj7dbm9St19",
+              "is_local" : false,
+              "name" : "Merry Christmas, Darling",
+              "popularity" : 14,
+              "preview_url" : null,
+              "track_number" : 53,
+              "type" : "track",
+              "uri" : "spotify:track:1pWC7nlBoYMXj7dbm9St19"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/5hejbQwKmx8CSvwa7HVkYw"
+                },
+                "href" : "https://api.spotify.com/v1/albums/5hejbQwKmx8CSvwa7HVkYw",
+                "id" : "5hejbQwKmx8CSvwa7HVkYw",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273f01dc0038e523d73fcd70727",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02f01dc0038e523d73fcd70727",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851f01dc0038e523d73fcd70727",
+                  "width" : 64
+                } ],
+                "name" : "The Best Christmas Album In The World...Ever! 2021",
+                "release_date" : "2021-11-09",
+                "release_date_precision" : "day",
+                "total_tracks" : 69,
+                "type" : "album",
+                "uri" : "spotify:album:5hejbQwKmx8CSvwa7HVkYw"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              } ],
+              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 185906,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USAM10200391"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6CNhhapFUiuWoKPKFNH1Ww"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6CNhhapFUiuWoKPKFNH1Ww",
+              "id" : "6CNhhapFUiuWoKPKFNH1Ww",
+              "is_local" : false,
+              "name" : "Merry Christmas Darling - Single Version",
+              "popularity" : 18,
+              "preview_url" : null,
+              "track_number" : 65,
+              "type" : "track",
+              "uri" : "spotify:track:6CNhhapFUiuWoKPKFNH1Ww"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/2kILtbsgvOAfrzxu9y7Ivz"
+                },
+                "href" : "https://api.spotify.com/v1/albums/2kILtbsgvOAfrzxu9y7Ivz",
+                "id" : "2kILtbsgvOAfrzxu9y7Ivz",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2732f400f58b8551978b61ec549",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e022f400f58b8551978b61ec549",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048512f400f58b8551978b61ec549",
+                  "width" : 64
+                } ],
+                "name" : "Christmas Dinner 2020",
+                "release_date" : "2020-10-16",
+                "release_date_precision" : "day",
+                "total_tracks" : 39,
+                "type" : "album",
+                "uri" : "spotify:album:2kILtbsgvOAfrzxu9y7Ivz"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0MvSBMGRQJY3mRwIbJsqF1"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0MvSBMGRQJY3mRwIbJsqF1",
+                "id" : "0MvSBMGRQJY3mRwIbJsqF1",
+                "name" : "Royal Philharmonic Orchestra",
+                "type" : "artist",
+                "uri" : "spotify:artist:0MvSBMGRQJY3mRwIbJsqF1"
+              } ],
+              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186433,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USUM71815371"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/4DjpIEw12NhgruXtqlL9jq"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/4DjpIEw12NhgruXtqlL9jq",
+              "id" : "4DjpIEw12NhgruXtqlL9jq",
+              "is_local" : false,
+              "name" : "Merry Christmas, Darling",
+              "popularity" : 12,
+              "preview_url" : null,
+              "track_number" : 31,
+              "type" : "track",
+              "uri" : "spotify:track:4DjpIEw12NhgruXtqlL9jq"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4sZD5pnwOZW8a1h0j7aFTq"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4sZD5pnwOZW8a1h0j7aFTq",
+                "id" : "4sZD5pnwOZW8a1h0j7aFTq",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273e00ed56cb1451be7629a6b23",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02e00ed56cb1451be7629a6b23",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851e00ed56cb1451be7629a6b23",
+                  "width" : 64
+                } ],
+                "name" : "Lonely Christmas",
+                "release_date" : "2020-11-27",
+                "release_date_precision" : "day",
+                "total_tracks" : 22,
+                "type" : "album",
+                "uri" : "spotify:album:4sZD5pnwOZW8a1h0j7aFTq"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+                },
+                "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+                "id" : "1eEfMU2AhEo7XnKgL7c304",
+                "name" : "Carpenters",
+                "type" : "artist",
+                "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+              } ],
+              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
+              "disc_number" : 1,
+              "duration_ms" : 186973,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "USAM17800383"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/11eSwOuMgTfZMy7sfYELpp"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/11eSwOuMgTfZMy7sfYELpp",
+              "id" : "11eSwOuMgTfZMy7sfYELpp",
+              "is_local" : false,
+              "name" : "Merry Christmas Darling - Remix",
+              "popularity" : 10,
+              "preview_url" : null,
+              "track_number" : 13,
+              "type" : "track",
+              "uri" : "spotify:track:11eSwOuMgTfZMy7sfYELpp"
+            } ],
+            "limit" : 20,
+            "next" : "https://api.spotify.com/v1/search?query=Merry+Christmas+Darling+artist%3Acarpenters&type=track&offset=20&limit=20",
+            "offset" : 0,
+            "previous" : null,
+            "total" : 105
+          }
+        }
+  recorded_at: Fri, 24 Dec 2021 08:55:54 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 24 Dec 2021 08:55:54 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQDpfEdYJUeTgUj94iEqT-LauLr9V9xG1tHlqsuAM3r7BW0rNy_beUnavjbAFY90IEa2zWCVlMsHTGRiauuC1qpLjT56gUbonDo;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 4967e88631a02906
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQB1_cq9ZECGdPMpqOoCGknPQ4vXtM9h7OFArm1h4rqbHSxBCD5zLRaCD8MdJXwYMAu8JGwRSqKLadVihIU","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 24 Dec 2021 08:55:54 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQB1_cq9ZECGdPMpqOoCGknPQ4vXtM9h7OFArm1h4rqbHSxBCD5zLRaCD8MdJXwYMAu8JGwRSqKLadVihIU
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=78826
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Fri, 24 Dec 2021 08:55:54 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/1eEfMU2AhEo7XnKgL7c304"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 2144456
+          },
+          "genres" : [ "adult standards", "mellow gold", "soft rock" ],
+          "href" : "https://api.spotify.com/v1/artists/1eEfMU2AhEo7XnKgL7c304",
+          "id" : "1eEfMU2AhEo7XnKgL7c304",
+          "images" : [ {
+            "height" : 493,
+            "url" : "https://i.scdn.co/image/ed45f575339b044d7168780a15ff457b85be851a",
+            "width" : 500
+          }, {
+            "height" : 197,
+            "url" : "https://i.scdn.co/image/6d1f554e76304a29b8baa3f61213a88702c0f599",
+            "width" : 200
+          }, {
+            "height" : 63,
+            "url" : "https://i.scdn.co/image/53a2c2a3d9f4c61f20b04d95936fadc83b7b08b5",
+            "width" : 64
+          } ],
+          "name" : "Carpenters",
+          "popularity" : 76,
+          "type" : "artist",
+          "uri" : "spotify:artist:1eEfMU2AhEo7XnKgL7c304"
+        }
+  recorded_at: Fri, 24 Dec 2021 08:55:54 GMT
+recorded_with: VCR 6.0.0

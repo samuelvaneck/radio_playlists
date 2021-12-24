@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - accounts.spotify.com
+      Authorization:
+      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 24 Dec 2021 08:55:57 GMT
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - __Host-device_id=AQBQq8msA7OG0ihLyG4W6dX-fX6XXUKSl7mFwrUUgWSr6Vpa4urh1WnawGIuWuD00-sbMZjzK25BPP5WX-qhqKcgHAbyQMULnpo;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 80c8fedf893ce20f
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"BQDOtzyQ3ZdZLhbOelg1Mi8d9rZtDGiU9PPsZA4wlaps4L60FUDKd3Ket8bm1LGg1cp44f7DoFT5Y2Mt_wA","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 24 Dec 2021 08:55:57 GMT
+recorded_with: VCR 6.0.0

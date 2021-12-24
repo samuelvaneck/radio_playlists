@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe Radiostation do
+RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
   let(:radio_station) { FactoryBot.create :radiostation }
   let(:playlist_4_hours_ago) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station, created_at: 4.hours.ago }
   let(:playlist_1_minute_ago) { FactoryBot.create :generalplaylist, :filled, radiostation: radio_station, created_at: 1.minute.ago }
 
   def processor_return_object(artist_name, title, time)
     {
-      artist_name: artist_name, 
+      artist_name: artist_name,
       title: title,
       broadcast_timestamp: Time.find_zone('Amsterdam').parse(time),
       spotify_url: nil
@@ -23,6 +23,7 @@ RSpec.describe Radiostation do
 
   describe '#status' do
     let(:status) { radio_station.status }
+
     context 'with a last playlist created 2 hours ago' do
       before { playlist_4_hours_ago }
       it 'has status warning' do
@@ -40,10 +41,12 @@ RSpec.describe Radiostation do
 
   describe '#status_data' do
     let(:status_data) { radio_station.status_data }
+
     before do
       playlist_4_hours_ago
       playlist_1_minute_ago
     end
+
     it 'has a key track info' do
       expect(status_data[:track_info]).to eq "#{playlist_1_minute_ago.song.artists.map(&:name).join(' & ')} - #{playlist_1_minute_ago.song.title}"
     end
@@ -76,8 +79,9 @@ RSpec.describe Radiostation do
   end
 
   describe '#npo_api_processor' do
+    let(:radio_1) { FactoryBot.create(:radio_1) }
+
     context 'given an address and radiostation' do
-      let(:radio_1) { FactoryBot.create(:radio_1) }
       it 'creates a new playlist item' do
         track_data = radio_1.npo_api_processor
 
@@ -94,8 +98,9 @@ RSpec.describe Radiostation do
   end
 
   describe '#talpa_api_processor' do
+    let(:sky_radio) { FactoryBot.create(:sky_radio) }
+
     context 'given an address and radiostation' do
-      let(:sky_radio) { FactoryBot.create(:sky_radio) }
       it 'creates an new playlist item' do
         track_data = sky_radio.talpa_api_processor
 
@@ -111,9 +116,11 @@ RSpec.describe Radiostation do
     end
   end
 
-  describe '#scraper' do
+  xdescribe '#scraper' do
+    let(:sublime_fm) { FactoryBot.create(:sublime_fm) }
+    let(:groot_nieuws_radio) { FactoryBot.create(:groot_nieuws_radio) }
+
     context 'if radio_station is Sublime FM' do
-      let(:sublime_fm) { FactoryBot.create(:sublime_fm) }
       it 'returns an artist_name, title and time' do
         track_data = sublime_fm.scraper
 
@@ -122,7 +129,6 @@ RSpec.describe Radiostation do
     end
 
     context 'if radio_station is Groot Nieuws RAdio' do
-      let(:groot_nieuws_radio) { FactoryBot.create(:groot_nieuws_radio) }
       it 'returns an artist_name, titile and time' do
         track_data = groot_nieuws_radio.scraper
 
@@ -133,141 +139,174 @@ RSpec.describe Radiostation do
 
   describe '#radio_1_check' do
     let!(:radio_1) { FactoryBot.create(:radio_1) }
-    it 'creates a new playlist item' do
-      expect {
-        radio_1.import_song
-      }.to change(Generalplaylist, :count).by(1)
-    end
 
-    it 'does not double import' do
-      radio_1.import_song
+    context 'when importing a song' do
+      it 'creates a new playlist item' do
+        expect {
+          radio_1.import_song
+        }.to change(Generalplaylist, :count).by(1)
+      end
 
-      expect {
+      it 'does not double import' do
         radio_1.import_song
-      }.to change(Generalplaylist, :count).by(0)
+
+        expect {
+          radio_1.import_song
+        }.to change(Generalplaylist, :count).by(0)
+      end
     end
   end
 
   describe '#radio_2_check' do
     let!(:radio_2) { FactoryBot.create(:radio_2) }
-    it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:npo_api_processor).and_return(processor_return_object('Goldkimono', 'To Tomorrow', '20:13'))
-      expect {
-        radio_2.import_song
-      }.to change(Generalplaylist, :count).by(1)
+
+    context 'when importing a song' do
+      it 'creates a new playlist item' do
+        expect {
+          radio_2.import_song
+        }.to change(Generalplaylist, :count).by(1)
+      end
     end
   end
 
   describe '#radio_3fm_check' do
     let!(:radio_3_fm) { FactoryBot.create(:radio_3_fm) }
-    it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:npo_api_processor).and_return(processor_return_object('Haim', 'The Steps', '19:16'))
-      expect {
-        radio_3_fm.import_song
-      }.to change(Generalplaylist, :count).by(1)
+
+    context 'when importing a song' do
+      it 'creates a new playlist item' do
+        expect {
+          radio_3_fm.import_song
+        }.to change(Generalplaylist, :count).by(1)
+      end
     end
   end
 
   describe '#radio_5_check' do
     let!(:radio_5) { FactoryBot.create(:radio_5) }
-    it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:npo_api_processor).and_return(processor_return_object('Fleetwood Mac', 'Everywhere', '19:05'))
-      expect {
-        radio_5.import_song
-      }.to change(Generalplaylist, :count).by(1)
+
+    context 'when importing song' do
+      it 'creates a new playlist item' do
+        expect {
+          radio_5.import_song
+        }.to change(Generalplaylist, :count).by(1)
+      end
     end
   end
 
   describe '#sky_radio_check' do
     let!(:sky_radio) { FactoryBot.create(:sky_radio) }
-    it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(processor_return_object('Billy Ocean', 'When The Going Gets Tough', '13:17'))
-      expect {
-        sky_radio.import_song
-      }.to change(Generalplaylist, :count).by(1)
+
+    before do
+      allow_any_instance_of(Spotify).to receive(:track).and_return([])
     end
 
-    it 'does not double import' do
-      sky_radio.import_song
+    context 'when importing song' do
+      it 'creates a new playlist item' do
+        expect {
+          sky_radio.import_song
+        }.to change(Generalplaylist, :count).by(1)
+      end
 
-      expect {
+      it 'does not double import' do
         sky_radio.import_song
-      }.to change(Generalplaylist, :count).by(0)
+
+        expect {
+          sky_radio.import_song
+        }.to change(Generalplaylist, :count).by(0)
+      end
     end
   end
 
   describe '#radio_veronica_check' do
     let!(:radio_veronica) { FactoryBot.create(:radio_veronica) }
-    it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(processor_return_object('Earth, Wind & Fire', "Let's Groove", '20:16'))
-      expect {
-        radio_veronica.import_song
-      }.to change(Generalplaylist, :count).by(1)
+
+    before do
+      allow_any_instance_of(Spotify).to receive(:track).and_return([])
+    end
+
+    context 'when importing song' do
+      it 'creates a new playlist item' do
+        expect {
+          radio_veronica.import_song
+        }.to change(Generalplaylist, :count).by(1)
+      end
     end
   end
 
   describe '#radio_538_check' do
-    let!(:radio_538) { FactoryBot.create(:radio_538) }
-    before do
-      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(processor_return_object('Robin Schulz, Erika Sirola', 'Speechless', '19:20'))
-    end
-    it 'creates a new playlist item' do
-      expect {
-        radio_538.import_song
-      }.to change(Generalplaylist, :count).by(1)
-    end
-    context 'with two artist' do
-      it 'sets both artists to the song' do
-        radio_538.import_song
+    let(:radio_538) { FactoryBot.create(:radio_538) }
 
-        song = Song.find_by(title: 'Speechless (feat. Erika Sirola)')
-        expect(song.artists.map(&:name)).to contain_exactly 'Robin Schulz', 'Erika Sirola'
+    before do
+      allow_any_instance_of(Spotify).to receive(:track).and_return([])
+    end
+
+    context 'when importing song' do
+      it 'creates a new playlist item' do
+        expect {
+          radio_538.import_song
+        }.to change(Generalplaylist, :count).by(1)
       end
     end
   end
 
   describe '#radio_10_check' do
     let!(:radio_10) { FactoryBot.create(:radio_10) }
-    it 'creates a new playlist item' do
-      allow_any_instance_of(Radiostation).to receive(:talpa_api_processor).and_return(processor_return_object('The Farm', 'All Together Now', '13:39'))
-      expect {
-        radio_10.import_song
-      }.to change(Generalplaylist, :count).by(1)
+
+    before do
+      allow_any_instance_of(Spotify).to receive(:track).and_return([])
+    end
+
+    context 'when importing song' do
+      it 'creates a new playlist item' do
+        expect {
+          radio_10.import_song
+        }.to change(Generalplaylist, :count).by(1)
+      end
     end
   end
 
   describe '#q_music_check' do
     let!(:qmusic) { FactoryBot.create(:qmusic) }
-    it 'creates a new playlist item' do
-      expect {
-        qmusic.import_song
-      }.to change(Generalplaylist, :count).by(1)
-    end
 
-    it 'does not double import' do
-      qmusic.import_song
+    context 'when importing song' do
+      it 'creates a new playlist item' do
+        expect {
+          qmusic.import_song
+        }.to change(Generalplaylist, :count).by(1)
+      end
 
-      expect {
+      it 'does not double import' do
         qmusic.import_song
-      }.to change(Generalplaylist, :count).by(0)
+
+        expect {
+          qmusic.import_song
+        }.to change(Generalplaylist, :count).by(0)
+      end
     end
   end
 
-  describe '#sublime_fm_check' do
+  # TODO: enable once sublime FM website is up and running
+  xdescribe '#sublime_fm_check' do
     let!(:sublime_fm) { FactoryBot.create(:sublime_fm) }
-    it 'creates a new playlist item' do
-      expect {
-        sublime_fm.import_song
-      }.to change(Generalplaylist, :count).by(1)
+
+    context 'when importing song' do
+      it 'creates a new playlist item' do
+        expect {
+          sublime_fm.import_song
+        }.to change(Generalplaylist, :count).by(1)
+      end
     end
   end
 
   describe '#grootnieuws_radio_check' do
     let!(:groot_nieuws_radio) { FactoryBot.create(:groot_nieuws_radio) }
-    it 'creates a new playlist item' do
-      expect {
-        groot_nieuws_radio.import_song
-      }.to change(Generalplaylist, :count).by(1)
+
+    context 'when importing song' do
+      it 'creates a new playlist item' do
+        expect {
+          groot_nieuws_radio.import_song
+        }.to change(Generalplaylist, :count).by(1)
+      end
     end
   end
 
@@ -324,7 +363,7 @@ RSpec.describe Radiostation do
   describe '#find_or_create_artist' do
     context 'with multiple name' do
       it 'returns the artists and not a karaoke version' do
-        spotify_track = Spotify.new(artists: 'Martin Garrix & Clinton Kane', title: 'Drown').find_spotify_track
+        spotify_track = Spotify::Track.new(artists: 'Martin Garrix & Clinton Kane', title: 'Drown')
         result = Radiostation.new.find_or_create_artist('Martin Garrix & Clinton Kane', spotify_track)
 
         expect(result.map(&:name)).to contain_exactly 'Martin Garrix', 'Clinton Kane'
