@@ -1,0 +1,909 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Come%20Back%20And%20Stay%20artist:paul%20young&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQBM-GA4gsN7igR3sZP9aVuRXNf5Og_rSd734Lb9j3tjCnX1fD_yOB2cPRxKKEyX37GpOALgxM7dvZfJRNM
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Fri, 24 Dec 2021 08:46:52 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=Come+Back+And+Stay+artist%3Apaul+young&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                  "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                  "name" : "Paul Young",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0uoqdDFfwAteblEbZt7PO2"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0uoqdDFfwAteblEbZt7PO2",
+                "id" : "0uoqdDFfwAteblEbZt7PO2",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273c79d8dc24ad4cecc246eedd3",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02c79d8dc24ad4cecc246eedd3",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851c79d8dc24ad4cecc246eedd3",
+                  "width" : 64
+                } ],
+                "name" : "No Parlez",
+                "release_date" : "1983",
+                "release_date_precision" : "year",
+                "total_tracks" : 21,
+                "type" : "album",
+                "uri" : "spotify:album:0uoqdDFfwAteblEbZt7PO2"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                "name" : "Paul Young",
+                "type" : "artist",
+                "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 264853,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL0800680"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/1r3YUTAwY0Y7tyV9Xcgps8"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/1r3YUTAwY0Y7tyV9Xcgps8",
+              "id" : "1r3YUTAwY0Y7tyV9Xcgps8",
+              "is_local" : false,
+              "name" : "Come Back and Stay - 2008 Remastered",
+              "popularity" : 61,
+              "preview_url" : "https://p.scdn.co/mp3-preview/95eb7d78ee49e112c2ed84eb23a593c1ee9e9e3c?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:1r3YUTAwY0Y7tyV9Xcgps8"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                  "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                  "name" : "Paul Young",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0IHmWU4OIPZaW86nIeYeiv"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0IHmWU4OIPZaW86nIeYeiv",
+                "id" : "0IHmWU4OIPZaW86nIeYeiv",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273878b6398593832e64701c01d",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02878b6398593832e64701c01d",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851878b6398593832e64701c01d",
+                  "width" : 64
+                } ],
+                "name" : "The Essential Paul Young",
+                "release_date" : "2003-07-01",
+                "release_date_precision" : "day",
+                "total_tracks" : 18,
+                "type" : "album",
+                "uri" : "spotify:album:0IHmWU4OIPZaW86nIeYeiv"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                "name" : "Paul Young",
+                "type" : "artist",
+                "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 263373,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBBBN8300003"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/1RmgLVx1f90AuMnqRHZS5j"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/1RmgLVx1f90AuMnqRHZS5j",
+              "id" : "1RmgLVx1f90AuMnqRHZS5j",
+              "is_local" : false,
+              "name" : "Come Back and Stay",
+              "popularity" : 54,
+              "preview_url" : "https://p.scdn.co/mp3-preview/cf3ff69794e02edd03d3cc9e661fe7f09fa4a5a0?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:1RmgLVx1f90AuMnqRHZS5j"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                  "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                  "name" : "Paul Young",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/6bDQgC4mNcwz46wHKI6h2y"
+                },
+                "href" : "https://api.spotify.com/v1/albums/6bDQgC4mNcwz46wHKI6h2y",
+                "id" : "6bDQgC4mNcwz46wHKI6h2y",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273e0126da84b670e4f81afc75e",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02e0126da84b670e4f81afc75e",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851e0126da84b670e4f81afc75e",
+                  "width" : 64
+                } ],
+                "name" : "From Time To Time - The Singles Collection",
+                "release_date" : "1991-09-07",
+                "release_date_precision" : "day",
+                "total_tracks" : 15,
+                "type" : "album",
+                "uri" : "spotify:album:6bDQgC4mNcwz46wHKI6h2y"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                "name" : "Paul Young",
+                "type" : "artist",
+                "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 265066,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBBBN0009263"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0lTuDiVwCbNrKI8OrCpe2L"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0lTuDiVwCbNrKI8OrCpe2L",
+              "id" : "0lTuDiVwCbNrKI8OrCpe2L",
+              "is_local" : false,
+              "name" : "Come Back and Stay",
+              "popularity" : 31,
+              "preview_url" : "https://p.scdn.co/mp3-preview/22e3391e6f26907d6503672053b77f2f7ee68201?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:0lTuDiVwCbNrKI8OrCpe2L"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                  "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                  "name" : "Paul Young",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0N64zKQNT7Aenth4MG4zur"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0N64zKQNT7Aenth4MG4zur",
+                "id" : "0N64zKQNT7Aenth4MG4zur",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273cc76c20d297c29b058c2d51b",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02cc76c20d297c29b058c2d51b",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851cc76c20d297c29b058c2d51b",
+                  "width" : 64
+                } ],
+                "name" : "Remixes & Rarities",
+                "release_date" : "2013-07-22",
+                "release_date_precision" : "day",
+                "total_tracks" : 24,
+                "type" : "album",
+                "uri" : "spotify:album:0N64zKQNT7Aenth4MG4zur"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                "name" : "Paul Young",
+                "type" : "artist",
+                "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 477120,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBBBN8302016"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2LBG3jwnrgEPnBTIoxEsMz"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2LBG3jwnrgEPnBTIoxEsMz",
+              "id" : "2LBG3jwnrgEPnBTIoxEsMz",
+              "is_local" : false,
+              "name" : "Come Back and Stay - Extended Version",
+              "popularity" : 24,
+              "preview_url" : "https://p.scdn.co/mp3-preview/551d42210fd76610ee2433dd11fdf6e32e97f8fc?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 3,
+              "type" : "track",
+              "uri" : "spotify:track:2LBG3jwnrgEPnBTIoxEsMz"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                  "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                  "name" : "Paul Young",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/16Zjv01t1RghPzjvADyi1N"
+                },
+                "href" : "https://api.spotify.com/v1/albums/16Zjv01t1RghPzjvADyi1N",
+                "id" : "16Zjv01t1RghPzjvADyi1N",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273c00b629a090ed1b42a7c4653",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02c00b629a090ed1b42a7c4653",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851c00b629a090ed1b42a7c4653",
+                  "width" : 64
+                } ],
+                "name" : "Paul Young at Live Aid (Live at Wembley Stadium, 13th July 1985)",
+                "release_date" : "2018",
+                "release_date_precision" : "year",
+                "total_tracks" : 3,
+                "type" : "album",
+                "uri" : "spotify:album:16Zjv01t1RghPzjvADyi1N"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                "name" : "Paul Young",
+                "type" : "artist",
+                "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 475819,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "UK6821836623"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3eIeXIoAOzAyQ9NUEoZOrR"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3eIeXIoAOzAyQ9NUEoZOrR",
+              "id" : "3eIeXIoAOzAyQ9NUEoZOrR",
+              "is_local" : false,
+              "name" : "Do They Know It's Christmas? / Come Back and Stay - Live at Wembley Stadium, 13th July 1985",
+              "popularity" : 23,
+              "preview_url" : "https://p.scdn.co/mp3-preview/daab1d6856f0a011cbb92bb54875f63a8c8b6f03?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:3eIeXIoAOzAyQ9NUEoZOrR"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/26pN2HAuYxPHumuRghBFip"
+                },
+                "href" : "https://api.spotify.com/v1/albums/26pN2HAuYxPHumuRghBFip",
+                "id" : "26pN2HAuYxPHumuRghBFip",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27307735c7591399cd26c09b211",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0207735c7591399cd26c09b211",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485107735c7591399cd26c09b211",
+                  "width" : 64
+                } ],
+                "name" : "Live Aid (Live, 13th July 1985)",
+                "release_date" : "1985",
+                "release_date_precision" : "year",
+                "total_tracks" : 111,
+                "type" : "album",
+                "uri" : "spotify:album:26pN2HAuYxPHumuRghBFip"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                "name" : "Paul Young",
+                "type" : "artist",
+                "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 475819,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "UK6821836623"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5eLwoOt62hmfMDv2n82SYX"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5eLwoOt62hmfMDv2n82SYX",
+              "id" : "5eLwoOt62hmfMDv2n82SYX",
+              "is_local" : false,
+              "name" : "Do They Know It's Christmas? / Come Back And Stay - Live at Live Aid, Wembley Stadium, 13th July 1985",
+              "popularity" : 22,
+              "preview_url" : "https://p.scdn.co/mp3-preview/faa1fcc70c4c92c3636be4503f62206a95fceec1?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 38,
+              "type" : "track",
+              "uri" : "spotify:track:5eLwoOt62hmfMDv2n82SYX"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                  "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                  "name" : "Paul Young",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0uoqdDFfwAteblEbZt7PO2"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0uoqdDFfwAteblEbZt7PO2",
+                "id" : "0uoqdDFfwAteblEbZt7PO2",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273c79d8dc24ad4cecc246eedd3",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02c79d8dc24ad4cecc246eedd3",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851c79d8dc24ad4cecc246eedd3",
+                  "width" : 64
+                } ],
+                "name" : "No Parlez",
+                "release_date" : "1983",
+                "release_date_precision" : "year",
+                "total_tracks" : 21,
+                "type" : "album",
+                "uri" : "spotify:album:0uoqdDFfwAteblEbZt7PO2"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                "name" : "Paul Young",
+                "type" : "artist",
+                "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 2,
+              "duration_ms" : 451146,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL0800691"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5qJAQJI9PT72yhMi1zgwnz"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5qJAQJI9PT72yhMi1zgwnz",
+              "id" : "5qJAQJI9PT72yhMi1zgwnz",
+              "is_local" : false,
+              "name" : "Come Back and Stay - 12\" Mix",
+              "popularity" : 24,
+              "preview_url" : "https://p.scdn.co/mp3-preview/ee8e5c55c5908a4cf3f8e1c0d765dff0c7c10f17?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:5qJAQJI9PT72yhMi1zgwnz"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AR", "AT", "AZ", "BA", "BB", "BD", "BE", "BG", "BH", "BN", "BO", "BR", "BS", "BT", "BY", "BZ", "CH", "CL", "CO", "CR", "CW", "CY", "CZ", "DE", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FM", "FR", "GB", "GD", "GE", "GR", "GT", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KG", "KH", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MK", "MN", "MO", "MT", "MV", "MX", "MY", "NI", "NL", "NO", "NP", "OM", "PA", "PE", "PH", "PK", "PL", "PS", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SM", "SR", "SV", "TH", "TJ", "TL", "TN", "TR", "TT", "TW", "UA", "US", "UY", "UZ", "VC", "VE", "VN", "XK" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0wELDKiN6EnDFXc9HvvNPy"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0wELDKiN6EnDFXc9HvvNPy",
+                "id" : "0wELDKiN6EnDFXc9HvvNPy",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2737a8508207236d8c9a2d3fbee",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e027a8508207236d8c9a2d3fbee",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048517a8508207236d8c9a2d3fbee",
+                  "width" : 64
+                } ],
+                "name" : "Essential - 80's Love",
+                "release_date" : "2010-01-25",
+                "release_date_precision" : "day",
+                "total_tracks" : 60,
+                "type" : "album",
+                "uri" : "spotify:album:0wELDKiN6EnDFXc9HvvNPy"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                "name" : "Paul Young",
+                "type" : "artist",
+                "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AR", "AT", "AZ", "BA", "BB", "BD", "BE", "BG", "BH", "BN", "BO", "BR", "BS", "BT", "BY", "BZ", "CH", "CL", "CO", "CR", "CW", "CY", "CZ", "DE", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FM", "FR", "GB", "GD", "GE", "GR", "GT", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KG", "KH", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MK", "MN", "MO", "MT", "MV", "MX", "MY", "NI", "NL", "NO", "NP", "OM", "PA", "PE", "PH", "PK", "PL", "PS", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SM", "SR", "SV", "TH", "TJ", "TL", "TN", "TR", "TT", "TW", "UA", "US", "UY", "UZ", "VC", "VE", "VN", "XK" ],
+              "disc_number" : 3,
+              "duration_ms" : 262866,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBBBN0009263"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/77q1mP787Y53lk9DM1c8ik"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/77q1mP787Y53lk9DM1c8ik",
+              "id" : "77q1mP787Y53lk9DM1c8ik",
+              "is_local" : false,
+              "name" : "Come Back and Stay",
+              "popularity" : 12,
+              "preview_url" : "https://p.scdn.co/mp3-preview/3e29896833a4a16993eb839ca0ab57982df673ab?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:77q1mP787Y53lk9DM1c8ik"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                  "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                  "name" : "Paul Young",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/2W1l2iWP9Fo0HkCP4c4h76"
+                },
+                "href" : "https://api.spotify.com/v1/albums/2W1l2iWP9Fo0HkCP4c4h76",
+                "id" : "2W1l2iWP9Fo0HkCP4c4h76",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273d68b313c2cedc7119b06f13b",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02d68b313c2cedc7119b06f13b",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851d68b313c2cedc7119b06f13b",
+                  "width" : 64
+                } ],
+                "name" : "Paul Young & The Royal Family: Live at Rockpalast (Live, Essen, 1985)",
+                "release_date" : "1985",
+                "release_date_precision" : "year",
+                "total_tracks" : 13,
+                "type" : "album",
+                "uri" : "spotify:album:2W1l2iWP9Fo0HkCP4c4h76"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                "name" : "Paul Young",
+                "type" : "artist",
+                "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 497173,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "DEMV91906064"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2gi7TNOUINqxYzxFM46EOX"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2gi7TNOUINqxYzxFM46EOX",
+              "id" : "2gi7TNOUINqxYzxFM46EOX",
+              "is_local" : false,
+              "name" : "Come Back and Stay - Live, Essen, 1985",
+              "popularity" : 10,
+              "preview_url" : "https://p.scdn.co/mp3-preview/8bd17aebedbc1d00857f22dc61eb55c004e42924?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 9,
+              "type" : "track",
+              "uri" : "spotify:track:2gi7TNOUINqxYzxFM46EOX"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                  "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                  "name" : "Paul Young",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+                } ],
+                "available_markets" : [ "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0cSVfuekpgynoFDKftgH4O"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0cSVfuekpgynoFDKftgH4O",
+                "id" : "0cSVfuekpgynoFDKftgH4O",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273ad0ef4623744b8b21e4d9782",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02ad0ef4623744b8b21e4d9782",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851ad0ef4623744b8b21e4d9782",
+                  "width" : 64
+                } ],
+                "name" : "Tomb of Memories: The CBS Years (1982-1994) [Remastered]",
+                "release_date" : "2015-08-21",
+                "release_date_precision" : "day",
+                "total_tracks" : 65,
+                "type" : "album",
+                "uri" : "spotify:album:0cSVfuekpgynoFDKftgH4O"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                "name" : "Paul Young",
+                "type" : "artist",
+                "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+              } ],
+              "available_markets" : [ "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 299133,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL1500612"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7cmBMmtxAOYutysbCwuDVY"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7cmBMmtxAOYutysbCwuDVY",
+              "id" : "7cmBMmtxAOYutysbCwuDVY",
+              "is_local" : false,
+              "name" : "Come Back and Stay - Full Length Version Remastered",
+              "popularity" : 0,
+              "preview_url" : "https://p.scdn.co/mp3-preview/f4add1b5bd30b3ad30e2160de5a5ef49d76cd1db?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 9,
+              "type" : "track",
+              "uri" : "spotify:track:7cmBMmtxAOYutysbCwuDVY"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                  "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                  "name" : "Paul Young",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/33Bbi5IrbF0X7MoOxW5xDf"
+                },
+                "href" : "https://api.spotify.com/v1/albums/33Bbi5IrbF0X7MoOxW5xDf",
+                "id" : "33Bbi5IrbF0X7MoOxW5xDf",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273cc27d908907ac0c9dd1b16c8",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02cc27d908907ac0c9dd1b16c8",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851cc27d908907ac0c9dd1b16c8",
+                  "width" : 64
+                } ],
+                "name" : "Tomb of Memories: The CBS Years (1982-1994) [Remastered]",
+                "release_date" : "2015-08-21",
+                "release_date_precision" : "day",
+                "total_tracks" : 66,
+                "type" : "album",
+                "uri" : "spotify:album:33Bbi5IrbF0X7MoOxW5xDf"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+                "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+                "name" : "Paul Young",
+                "type" : "artist",
+                "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 299133,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL1500612"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5pa1sMbF5VDqSlqPGLnEZi"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5pa1sMbF5VDqSlqPGLnEZi",
+              "id" : "5pa1sMbF5VDqSlqPGLnEZi",
+              "is_local" : false,
+              "name" : "Come Back and Stay - Full Length Version Remastered",
+              "popularity" : 9,
+              "preview_url" : "https://p.scdn.co/mp3-preview/9987e3d7e7c2b40c334f3a3cb0c605c57d38e1b9?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 9,
+              "type" : "track",
+              "uri" : "spotify:track:5pa1sMbF5VDqSlqPGLnEZi"
+            } ],
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 11
+          }
+        }
+  recorded_at: Fri, 24 Dec 2021 08:46:53 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQBM-GA4gsN7igR3sZP9aVuRXNf5Og_rSd734Lb9j3tjCnX1fD_yOB2cPRxKKEyX37GpOALgxM7dvZfJRNM
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=77403
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Fri, 24 Dec 2021 08:46:52 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - clear
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/6rqU9HQ57NYGBnBzbrY3a4"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 704881
+          },
+          "genres" : [ "album rock", "art rock", "classic rock", "disco", "europop", "mellow gold", "new romantic", "new wave", "new wave pop", "soft rock", "synthpop" ],
+          "href" : "https://api.spotify.com/v1/artists/6rqU9HQ57NYGBnBzbrY3a4",
+          "id" : "6rqU9HQ57NYGBnBzbrY3a4",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb8b1b108617e384c85ad5c3ec",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab676161000051748b1b108617e384c85ad5c3ec",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f1788b1b108617e384c85ad5c3ec",
+            "width" : 160
+          } ],
+          "name" : "Paul Young",
+          "popularity" : 63,
+          "type" : "artist",
+          "uri" : "spotify:artist:6rqU9HQ57NYGBnBzbrY3a4"
+        }
+  recorded_at: Fri, 24 Dec 2021 08:46:53 GMT
+recorded_with: VCR 6.0.0

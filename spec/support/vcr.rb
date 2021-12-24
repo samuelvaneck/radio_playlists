@@ -10,6 +10,8 @@ end
 RSpec.configure do |config|
   config.around(use_vcr: true) do |example|
     options = {}
+    options[:record] = :new_episodes
+    options[:match_requests_on] = [:host, :path]
     path_data = [example.metadata[:description]]
     parent = example.example_group
     while parent != RSpec::ExampleGroups
