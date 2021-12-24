@@ -6,7 +6,12 @@ class Spotify
   class TokenCreationError < StandardError; end
 
   def initialize(args = {})
+    @args = args
     @token = get_token(cache: true)
+  end
+
+  def track
+    Spotify::Track.new(@args)
   end
 
   private
@@ -56,10 +61,10 @@ class Spotify
     request['Content-Type'] = 'application/json'
 
     response = JSON(https.request(request).body)
-    puts " "
-    puts "🚀 URL: #{url}"
-    puts "🚑 Response: #{response}"
-    puts " "
+    # puts " "
+    # puts "🚀 URL: #{url}"
+    # puts "🚑 Response: #{response}"
+    # puts " "
     response
   rescue StandardError => e
     if attempts < 3

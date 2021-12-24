@@ -1,57 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://accounts.spotify.com/api/token
-    body:
-      encoding: UTF-8
-      string: grant_type=client_credentials
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - accounts.spotify.com
-      Authorization:
-      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Sun, 19 Dec 2021 15:28:09 GMT
-      Content-Type:
-      - application/json
-      Set-Cookie:
-      - __Host-device_id=AQAf-ie4slRkgAmuB01viQmuxS0r5vShlAWS-ky1WG6VKPWsdS9P5wQOzDvzQN79tqVQaC_hPEVtUrhBp1Rb2F5iUWqgHgoZUf8;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
-      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
-      Sp-Trace-Id:
-      - bb2e21975fa63d11
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      Server:
-      - envoy
-      Via:
-      - HTTP/2 edgeproxy, 1.1 google
-      Alt-Svc:
-      - clear
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: '{"access_token":"BQD9MlWExKo-JcmshQXepqZZ3uYVd5_eCA0JizVnM3IW83FmxiyCgyk26S7mnyDcPDTE9yjCHdsLFy3MEGQ","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
-- request:
     method: get
     uri: https://api.spotify.com/v1/search?q=Drown%20artist:martin%20garrix%20clinton%20kane&type=track
     body:
@@ -67,7 +16,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQD9MlWExKo-JcmshQXepqZZ3uYVd5_eCA0JizVnM3IW83FmxiyCgyk26S7mnyDcPDTE9yjCHdsLFy3MEGQ
+      - Bearer BQBM-GA4gsN7igR3sZP9aVuRXNf5Og_rSd734Lb9j3tjCnX1fD_yOB2cPRxKKEyX37GpOALgxM7dvZfJRNM
       Content-Type:
       - application/json
   response:
@@ -97,7 +46,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 15:28:09 GMT
+      - Fri, 24 Dec 2021 08:19:20 GMT
       Server:
       - envoy
       Via:
@@ -297,7 +246,7 @@ http_interactions:
               "id" : "3L3s97R0738xGQ2VqB12qo",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - Alle Farben Remix",
-              "popularity" : 53,
+              "popularity" : 54,
               "preview_url" : "https://p.scdn.co/mp3-preview/6329c558b22b315b545f3a2b7a9fce45bfc268e9?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 1,
               "type" : "track",
@@ -686,201 +635,11 @@ http_interactions:
               "id" : "7EybajZlpD6Sms7D2oy7Ng",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - Pat Lok Remix",
-              "popularity" : 31,
+              "popularity" : 32,
               "preview_url" : "https://p.scdn.co/mp3-preview/3465c9a27e07ed3aaa89df150c33db86cf03c90f?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 4,
               "type" : "track",
               "uri" : "spotify:track:7EybajZlpD6Sms7D2oy7Ng"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
-                  "id" : "60d24wfXkVzDSfLS6hyCjZ",
-                  "name" : "Martin Garrix",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/7okSU80WTrn4LXlyXYbX3P"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
-                  "id" : "7okSU80WTrn4LXlyXYbX3P",
-                  "name" : "Clinton Kane",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/7JUg79xvtX4JIvoZ6bNf7P"
-                },
-                "href" : "https://api.spotify.com/v1/albums/7JUg79xvtX4JIvoZ6bNf7P",
-                "id" : "7JUg79xvtX4JIvoZ6bNf7P",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b273ab3cb85f2d6c24a95613b120",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e02ab3cb85f2d6c24a95613b120",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d00004851ab3cb85f2d6c24a95613b120",
-                  "width" : 64
-                } ],
-                "name" : "Drown (feat. Clinton Kane) [Remixes]",
-                "release_date" : "2020-05-01",
-                "release_date_precision" : "day",
-                "total_tracks" : 5,
-                "type" : "album",
-                "uri" : "spotify:album:7JUg79xvtX4JIvoZ6bNf7P"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
-                },
-                "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
-                "id" : "60d24wfXkVzDSfLS6hyCjZ",
-                "name" : "Martin Garrix",
-                "type" : "artist",
-                "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/7okSU80WTrn4LXlyXYbX3P"
-                },
-                "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
-                "id" : "7okSU80WTrn4LXlyXYbX3P",
-                "name" : "Clinton Kane",
-                "type" : "artist",
-                "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/3ZkyzF84LNx4DAarg3DHxY"
-                },
-                "href" : "https://api.spotify.com/v1/artists/3ZkyzF84LNx4DAarg3DHxY",
-                "id" : "3ZkyzF84LNx4DAarg3DHxY",
-                "name" : "The Subculture",
-                "type" : "artist",
-                "uri" : "spotify:artist:3ZkyzF84LNx4DAarg3DHxY"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 199354,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "NLM5S2000087"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/2jLTl6iFw7b3q74dVtBWkw"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/2jLTl6iFw7b3q74dVtBWkw",
-              "id" : "2jLTl6iFw7b3q74dVtBWkw",
-              "is_local" : false,
-              "name" : "Drown (feat. Clinton Kane) - The Subculture Remix",
-              "popularity" : 29,
-              "preview_url" : "https://p.scdn.co/mp3-preview/58bcbbb112455a26ac6a66e677e8f6f9f4d7c5d4?cid=ff70df650ee14a1fad4aed3b533e8ea4",
-              "track_number" : 5,
-              "type" : "track",
-              "uri" : "spotify:track:2jLTl6iFw7b3q74dVtBWkw"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
-                  "id" : "60d24wfXkVzDSfLS6hyCjZ",
-                  "name" : "Martin Garrix",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/7okSU80WTrn4LXlyXYbX3P"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
-                  "id" : "7okSU80WTrn4LXlyXYbX3P",
-                  "name" : "Clinton Kane",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/7JUg79xvtX4JIvoZ6bNf7P"
-                },
-                "href" : "https://api.spotify.com/v1/albums/7JUg79xvtX4JIvoZ6bNf7P",
-                "id" : "7JUg79xvtX4JIvoZ6bNf7P",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b273ab3cb85f2d6c24a95613b120",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e02ab3cb85f2d6c24a95613b120",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d00004851ab3cb85f2d6c24a95613b120",
-                  "width" : 64
-                } ],
-                "name" : "Drown (feat. Clinton Kane) [Remixes]",
-                "release_date" : "2020-05-01",
-                "release_date_precision" : "day",
-                "total_tracks" : 5,
-                "type" : "album",
-                "uri" : "spotify:album:7JUg79xvtX4JIvoZ6bNf7P"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
-                },
-                "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
-                "id" : "60d24wfXkVzDSfLS6hyCjZ",
-                "name" : "Martin Garrix",
-                "type" : "artist",
-                "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/7okSU80WTrn4LXlyXYbX3P"
-                },
-                "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
-                "id" : "7okSU80WTrn4LXlyXYbX3P",
-                "name" : "Clinton Kane",
-                "type" : "artist",
-                "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/45lcbTsX07JWzmTIjcdyBz"
-                },
-                "href" : "https://api.spotify.com/v1/artists/45lcbTsX07JWzmTIjcdyBz",
-                "id" : "45lcbTsX07JWzmTIjcdyBz",
-                "name" : "Matroda",
-                "type" : "artist",
-                "uri" : "spotify:artist:45lcbTsX07JWzmTIjcdyBz"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 231604,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "NLM5S2000848"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/05mXpytcquS3WoRi3cfl8d"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/05mXpytcquS3WoRi3cfl8d",
-              "id" : "05mXpytcquS3WoRi3cfl8d",
-              "is_local" : false,
-              "name" : "Drown (feat. Clinton Kane) - Matroda Remix",
-              "popularity" : 28,
-              "preview_url" : "https://p.scdn.co/mp3-preview/d8cad8a54d8e38a71066f3b8fc45858fb42715b7?cid=ff70df650ee14a1fad4aed3b533e8ea4",
-              "track_number" : 2,
-              "type" : "track",
-              "uri" : "spotify:track:05mXpytcquS3WoRi3cfl8d"
             }, {
               "album" : {
                 "album_type" : "single",
@@ -1053,6 +812,101 @@ http_interactions:
                 "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
               }, {
                 "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3ZkyzF84LNx4DAarg3DHxY"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3ZkyzF84LNx4DAarg3DHxY",
+                "id" : "3ZkyzF84LNx4DAarg3DHxY",
+                "name" : "The Subculture",
+                "type" : "artist",
+                "uri" : "spotify:artist:3ZkyzF84LNx4DAarg3DHxY"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 199354,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "NLM5S2000087"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2jLTl6iFw7b3q74dVtBWkw"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2jLTl6iFw7b3q74dVtBWkw",
+              "id" : "2jLTl6iFw7b3q74dVtBWkw",
+              "is_local" : false,
+              "name" : "Drown (feat. Clinton Kane) - The Subculture Remix",
+              "popularity" : 29,
+              "preview_url" : "https://p.scdn.co/mp3-preview/58bcbbb112455a26ac6a66e677e8f6f9f4d7c5d4?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 5,
+              "type" : "track",
+              "uri" : "spotify:track:2jLTl6iFw7b3q74dVtBWkw"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+                  "id" : "60d24wfXkVzDSfLS6hyCjZ",
+                  "name" : "Martin Garrix",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/7okSU80WTrn4LXlyXYbX3P"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
+                  "id" : "7okSU80WTrn4LXlyXYbX3P",
+                  "name" : "Clinton Kane",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7JUg79xvtX4JIvoZ6bNf7P"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7JUg79xvtX4JIvoZ6bNf7P",
+                "id" : "7JUg79xvtX4JIvoZ6bNf7P",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273ab3cb85f2d6c24a95613b120",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02ab3cb85f2d6c24a95613b120",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851ab3cb85f2d6c24a95613b120",
+                  "width" : 64
+                } ],
+                "name" : "Drown (feat. Clinton Kane) [Remixes]",
+                "release_date" : "2020-05-01",
+                "release_date_precision" : "day",
+                "total_tracks" : 5,
+                "type" : "album",
+                "uri" : "spotify:album:7JUg79xvtX4JIvoZ6bNf7P"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+                },
+                "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+                "id" : "60d24wfXkVzDSfLS6hyCjZ",
+                "name" : "Martin Garrix",
+                "type" : "artist",
+                "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7okSU80WTrn4LXlyXYbX3P"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
+                "id" : "7okSU80WTrn4LXlyXYbX3P",
+                "name" : "Clinton Kane",
+                "type" : "artist",
+                "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
+              }, {
+                "external_urls" : {
                   "spotify" : "https://open.spotify.com/artist/3XonXgjEAAXVl0WKLF1Z4g"
                 },
                 "href" : "https://api.spotify.com/v1/artists/3XonXgjEAAXVl0WKLF1Z4g",
@@ -1080,6 +934,101 @@ http_interactions:
               "track_number" : 3,
               "type" : "track",
               "uri" : "spotify:track:6hByDhfa9c4osUufhP24qm"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+                  "id" : "60d24wfXkVzDSfLS6hyCjZ",
+                  "name" : "Martin Garrix",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/7okSU80WTrn4LXlyXYbX3P"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
+                  "id" : "7okSU80WTrn4LXlyXYbX3P",
+                  "name" : "Clinton Kane",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/7JUg79xvtX4JIvoZ6bNf7P"
+                },
+                "href" : "https://api.spotify.com/v1/albums/7JUg79xvtX4JIvoZ6bNf7P",
+                "id" : "7JUg79xvtX4JIvoZ6bNf7P",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273ab3cb85f2d6c24a95613b120",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02ab3cb85f2d6c24a95613b120",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851ab3cb85f2d6c24a95613b120",
+                  "width" : 64
+                } ],
+                "name" : "Drown (feat. Clinton Kane) [Remixes]",
+                "release_date" : "2020-05-01",
+                "release_date_precision" : "day",
+                "total_tracks" : 5,
+                "type" : "album",
+                "uri" : "spotify:album:7JUg79xvtX4JIvoZ6bNf7P"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/60d24wfXkVzDSfLS6hyCjZ"
+                },
+                "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
+                "id" : "60d24wfXkVzDSfLS6hyCjZ",
+                "name" : "Martin Garrix",
+                "type" : "artist",
+                "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7okSU80WTrn4LXlyXYbX3P"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
+                "id" : "7okSU80WTrn4LXlyXYbX3P",
+                "name" : "Clinton Kane",
+                "type" : "artist",
+                "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/45lcbTsX07JWzmTIjcdyBz"
+                },
+                "href" : "https://api.spotify.com/v1/artists/45lcbTsX07JWzmTIjcdyBz",
+                "id" : "45lcbTsX07JWzmTIjcdyBz",
+                "name" : "Matroda",
+                "type" : "artist",
+                "uri" : "spotify:artist:45lcbTsX07JWzmTIjcdyBz"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 231604,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "NLM5S2000848"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/05mXpytcquS3WoRi3cfl8d"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/05mXpytcquS3WoRi3cfl8d",
+              "id" : "05mXpytcquS3WoRi3cfl8d",
+              "is_local" : false,
+              "name" : "Drown (feat. Clinton Kane) - Matroda Remix",
+              "popularity" : 28,
+              "preview_url" : "https://p.scdn.co/mp3-preview/d8cad8a54d8e38a71066f3b8fc45858fb42715b7?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:05mXpytcquS3WoRi3cfl8d"
             } ],
             "limit" : 20,
             "next" : null,
@@ -1088,58 +1037,7 @@ http_interactions:
             "total" : 10
           }
         }
-  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
-- request:
-    method: post
-    uri: https://accounts.spotify.com/api/token
-    body:
-      encoding: UTF-8
-      string: grant_type=client_credentials
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - accounts.spotify.com
-      Authorization:
-      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Sun, 19 Dec 2021 15:28:10 GMT
-      Content-Type:
-      - application/json
-      Set-Cookie:
-      - __Host-device_id=AQAQw-eaGiYkNQhk9ZRo_gPEYU5Dvn5Kysq1A7UvoSWRPwpSRBZxDY54dpja5POmIvOSttVZ3X1q7mis9Bf7jtn43AKoHk3a7ZQ;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
-      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
-      Sp-Trace-Id:
-      - 36058087e85339dc
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      Server:
-      - envoy
-      Via:
-      - HTTP/2 edgeproxy, 1.1 google
-      Alt-Svc:
-      - clear
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: '{"access_token":"BQDiKxAwNC7fjvaC3C5Jr_TZjQMLaUcEq6ZPr8LLvj9KRvF6Gj4V7QNN_fawS3eZ59dv8r1JEgq1ZxSrgVg","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
+  recorded_at: Fri, 24 Dec 2021 08:19:21 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ
@@ -1156,7 +1054,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQDiKxAwNC7fjvaC3C5Jr_TZjQMLaUcEq6ZPr8LLvj9KRvF6Gj4V7QNN_fawS3eZ59dv8r1JEgq1ZxSrgVg
+      - Bearer BQBM-GA4gsN7igR3sZP9aVuRXNf5Og_rSd734Lb9j3tjCnX1fD_yOB2cPRxKKEyX37GpOALgxM7dvZfJRNM
       Content-Type:
       - application/json
   response:
@@ -1167,7 +1065,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=83989
+      - public, max-age=82293
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1186,7 +1084,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 15:28:09 GMT
+      - Fri, 24 Dec 2021 08:19:20 GMT
       Server:
       - envoy
       Via:
@@ -1204,7 +1102,7 @@ http_interactions:
           },
           "followers" : {
             "href" : null,
-            "total" : 15261934
+            "total" : 15274191
           },
           "genres" : [ "dance pop", "dutch edm", "edm", "electro house", "pop", "pop dance", "progressive house", "tropical house" ],
           "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
@@ -1227,58 +1125,7 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
         }
-  recorded_at: Sun, 19 Dec 2021 15:28:09 GMT
-- request:
-    method: post
-    uri: https://accounts.spotify.com/api/token
-    body:
-      encoding: UTF-8
-      string: grant_type=client_credentials
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - accounts.spotify.com
-      Authorization:
-      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Sun, 19 Dec 2021 15:28:10 GMT
-      Content-Type:
-      - application/json
-      Set-Cookie:
-      - __Host-device_id=AQBvwt435iaFH4eCRQY8fAMwxLKFMs6aWj9CeZlWdKFKE9sMrYzoKt9ZFSauYQ2WoqXEUOitE1TlmpfGE8eC8HjfjI6_P8_P1hQ;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
-      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
-      Sp-Trace-Id:
-      - 3bf275e7e2c23d54
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      Server:
-      - envoy
-      Via:
-      - HTTP/2 edgeproxy, 1.1 google
-      Alt-Svc:
-      - clear
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: '{"access_token":"BQBPYqxJfkRwPV0VKCtaryvyEzlqFlwM4wL9ldz3dNgxgwzaidh82nVgXLWsySh_oijHcwJPo2ML8XoJrfs","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Sun, 19 Dec 2021 15:28:10 GMT
+  recorded_at: Fri, 24 Dec 2021 08:19:21 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P
@@ -1295,7 +1142,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQBPYqxJfkRwPV0VKCtaryvyEzlqFlwM4wL9ldz3dNgxgwzaidh82nVgXLWsySh_oijHcwJPo2ML8XoJrfs
+      - Bearer BQBM-GA4gsN7igR3sZP9aVuRXNf5Og_rSd734Lb9j3tjCnX1fD_yOB2cPRxKKEyX37GpOALgxM7dvZfJRNM
       Content-Type:
       - application/json
   response:
@@ -1306,7 +1153,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=79001
+      - public, max-age=79890
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1325,7 +1172,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 15:28:10 GMT
+      - Fri, 24 Dec 2021 08:19:21 GMT
       Server:
       - envoy
       Via:
@@ -1343,7 +1190,7 @@ http_interactions:
           },
           "followers" : {
             "href" : null,
-            "total" : 665016
+            "total" : 668816
           },
           "genres" : [ "alt z", "gen z singer-songwriter", "pop" ],
           "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
@@ -1366,5 +1213,5 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
         }
-  recorded_at: Sun, 19 Dec 2021 15:28:10 GMT
+  recorded_at: Fri, 24 Dec 2021 08:19:21 GMT
 recorded_with: VCR 6.0.0

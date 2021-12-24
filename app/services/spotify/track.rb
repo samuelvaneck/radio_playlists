@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+# require Rails.root.join('app/services/spotify.rb')
+
 class Spotify::Track < Spotify
   attr_reader :search_artists, :search_title, :track, :artists, :title
 
   def initialize(args)
-    super
+    super()
     @search_artists = args[:artists]
     @search_title = args[:title]
     @track = find_spotify_track

@@ -23,29 +23,29 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
+      - Fri, 24 Dec 2021 08:16:44 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
+      X-Request-Id:
+      - f92789b4046dfaa016d26f0a31479d89
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       X-Runtime:
-      - '0.246730'
-      X-Request-Id:
-      - 4c029819ce20dea97e91f0fd4de1cbea
+      - '0.153116'
       X-Powered-By:
       - Phusion Passenger(R) Enterprise
       Etag:
-      - W/"e69cb031851513b106a332487c0a72ae"
+      - W/"f92de4ea96a601c5926c6f352f372f97"
       Status:
       - 200 OK
       X-Varnish:
-      - 770886157 771326260
+      - 812519179 811892390
       Age:
-      - '418'
+      - '0'
       Via:
       - 1.1 varnish (Varnish/6.1)
       Access-Control-Allow-Origin:
@@ -53,78 +53,27 @@ http_interactions:
       X-Cache:
       - HIT-API
       X-Cache-Hits:
-      - '6'
+      - '1'
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
       - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=7%2FW1rJ3c5NghmqDxNDtLIGzWbRWybAFWjq4jxvqxl2A89mW%2FlxxUm8SRH4QB6C%2BUJb%2BfQsDgAQp6ZNGywqIqFW2wKa3A7S7EsB4JjGZnfm0gFZJYG%2FTkCuY62OhnbnY%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=3TZizSAoOUIUqHIuwFF%2Bx7iFh3zNog5AsYz55DdcPkt9iFo8ymScmzq4MlMyBOVhyj7%2Brf1iK0JC%2BwS6Iiv3teTbEzbe%2BVikTgnj2rURi0oSB1FXmJXM2H2%2BhH%2BIPvg%3D"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 6c01a8992fbb1ead-AMS
+      - 6c2863a8a8bb41c2-AMS
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJwbGF5ZWRfdHJhY2tzIjpbeyJwbGF5ZWRfYXQiOiIyMDIxLTEyLTE5VDE2OjE5OjU0KzAxOjAwIiwic2x1ZyI6InRlbGwtaXQtdG8tbXktaGVhcnQtMiIsInRpdGxlIjoiVGVsbCBJdCBUbyBNeSBIZWFydCIsInNlbGVjdG9yX2NvZGUiOiJRMTM5ODIiLCJyZWxlYXNlX3llYXIiOiIyMDIxIiwidGh1bWJuYWlsIjoiL2YvMTkvYTcvMTIvMTQ5NjQ2OC8xNDAweDE0MDBiYi5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHA6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzQ2bnZRcFVEc3hwUzA4VVRGT2VLVEEiLCJ2aWRlb3MiOlt7InR5cGUiOiJ5b3V0dWJlIiwidGFncyI6ImRlZmF1bHQiLCJpZCI6IkVkdUt3UHUtNmVZIn1dLCJob29rcyI6eyJtNGEiOiJodHRwczovL2F1ZGlvLXNzbC5pdHVuZXMuYXBwbGUuY29tL2l0dW5lcy1hc3NldHMvQXVkaW9QcmV2aWV3MTE2L3Y0LzY5LzdkLzllLzY5N2Q5ZWFkLWNmZWQtYzU5OS1hODZjLWM2NDljZTY3ZjdkZC9temFmXzE3Mzg0NTYwMzA0MTcyNjIxMTEyLnBsdXMuYWFjLnAubTRhIn0sImZhY3RzIjp7fSwiYXJ0aXN0Ijp7ImlkIjoxNDgyMywibmFtZSI6Ik1FRFVaQSAmIEhPWklFUiIsIm9yaWdpbmFsX25hbWUiOiJNRURVWkEiLCJzbHVnIjoibWVkdXphIiwiYmlvIjoiTWVkdXphIGlzIGVlbiBkai10cmlvIHVpdCBNaWxhYW4gYmVzdGFhbmRlIHVpdCBNYXR0aWEsIEx1Y2EgZW4gU2ltb25lLlxyXG4iLCJ0d2l0dGVyX3VybCI6Imh0dHBzOi8vdHdpdHRlci5jb20vbWVkdXphbXVzaWMiLCJwaG90byI6Ii9iL2Q1L2UzL2QxLzE0MTg1NjYvTWVkdXphX0ZpbmFsX0FwcHJvdmVkXzMwMGRwaS0xLmpwZyIsImNvdW50cnkiOnsiY29kZSI6IklUIiwibmFtZSI6Ikl0YWxpw6sifX0sInN1Yl9hcnRpc3RzIjpbeyJhcnRpc3QiOnsiaWQiOjY2OTUsIm5hbWUiOiJIT1pJRVIiLCJiaW8iOiJBbmRyZXcgSG96aWVyLUJ5cm5lLCBnZWJvcmVuIG9wIDE3IG1hYXJ0IDE5OTAsIGlzIGJldGVyIGJla2VuZCBvbmRlciB6J24gYXJ0aWVzdGVubmFhbSBIb3ppZXIgZW4gaXMgZWVuIEllcnNlIG11emlrYW50LiBcclxuXHJcbkluIDIwMTMgYnJhY2h0IGhpaiBkZSBzaW5nbGUgJ1Rha2UgTWUgVG8gQ2h1cmNoJyB1aXQsIGVlbiBudW1tZXIgZGF0IHZpcmFsIGdpbmcgb3AgWW91VHViZSBlbiBSZWRkaXQgZW4gZGUgZWVyc3RlIHBsYWF0cyBiZXJlaWt0ZSBpbiBkZSBJZXJzZSBpVHVuZXMgVG9wIDQwLiIsImZhY2Vib29rX3VybCI6Imh0dHA6Ly9mYWNlYm9vay5jb20vaG96aWVybXVzaWMiLCJ0d2l0dGVyX3VybCI6Imh0dHA6Ly90d2l0dGVyLmNvbS9Ib3ppZXIiLCJpbnN0YWdyYW1fdXJsIjoiaHR0cHM6Ly9pbnN0YWdyYW0uY29tL2hvemllciIsIndlYnNpdGUiOiJodHRwOi8vaG96aWVyLmNvbSIsInBob3RvIjoiLzMvNDMvYmEvN2EvOTUzMjc0L2hvemllcjEuanBnIiwiY291bnRyeSI6eyJjb2RlIjoiSUUiLCJuYW1lIjoiSWVybGFuZCJ9fX1dLCJjdXJyZW50X2VkaXRpb25zIjpbeyJwb3NpdGlvbiI6MiwiZWRpdGlvbiI6eyJpZCI6NDg3NSwibmFtZSI6IjExIGRlY2VtYmVyIDIwMjEifSwibGlzdCI6eyJpZCI6Mjg3LCJuYW1lIjoiV29ybGR3aWRlIENsdWIgMjAifX0seyJwb3NpdGlvbiI6MjgsImVkaXRpb24iOnsiaWQiOjQ4ODEsIm5hbWUiOiIxNy8xMi8yMDIxIn0sImxpc3QiOnsiaWQiOjIyNSwibmFtZSI6IlFtdXNpYyBUb3AgNDAifX1dLCJhY3RpdmVfZWRpdGlvbnMiOltdLCJuZXh0Ijp7InNsdWciOiJtaWRuaWdodC1za3kiLCJ0aXRsZSI6Ik1pZG5pZ2h0IFNreSIsInNlbGVjdG9yX2NvZGUiOiJRMTM1NjYiLCJyZWxlYXNlX3llYXIiOiIyMDIwIiwidGh1bWJuYWlsIjoiL2QvOTgvN2QvZDgvMTQ1ODU4My8xNDAweDE0MDBiYi5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHA6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzI3eWNhUW5RQXhhUGl5ZWczbnIyYUIiLCJ2aWRlb3MiOlt7InR5cGUiOiJ5b3V0dWJlIiwidGFncyI6ImRlZmF1bHQiLCJpZCI6ImFTMW5vMW15ZVRNIn1dLCJob29rcyI6eyJtNGEiOiJodHRwczovL2F1ZGlvLXNzbC5pdHVuZXMuYXBwbGUuY29tL2l0dW5lcy1hc3NldHMvQXVkaW9QcmV2aWV3MTI0L3Y0Lzg0L2JhL2Y4Lzg0YmFmODc4LTZmMDgtMzU1MS04MDgxLWQwMDQyMmE0YWRlZi9temFmXzYzOTUxMzU2NTk1OTEwMDAzMzEucGx1cy5hYWMucC5tNGEifSwiZmFjdHMiOnt9LCJhcnRpc3QiOnsiaWQiOjEyNTcsIm5hbWUiOiJNSUxFWSBDWVJVUyIsIm9yaWdpbmFsX25hbWUiOiJNSUxFWSBDWVJVUyIsInNsdWciOiJtaWxleS1jeXJ1cyIsImJpbyI6IlR3ZXJraW5nLXF1ZWVuIE1pbGV5IFJheSBDeXJ1cyBpcyBlZW4gQW1lcmlrYWFucyBhY3RyaWNlIGVuIHphbmdlcmVzLiBaZSBpcyBiZXJvZW1kIGdld29yZGVuIGRvb3IgaGFhciBob29mZHJvbCBpbiBkZSBEaXNuZXlzZXJpZSBIYW5uYWggTW9udGFuYS4gWmUgYnJhayBpbiBOZWRlcmxhbmQgYmlqIGhldCBncm90ZSBwdWJsaWVrIGRvb3IgbWV0IGhhYXIgaGl0c2luZ2xlICdXcmVja2luZyBCYWxsJy4gRGl0IGt3YW0gbWVkZSBkb29yIGRlIG9wdmFsbGVuZGUgY2xpcCB3YWFyIHplIG5hYWt0IG9wIGVlbiBzbG9vcGtvZ2VsIHppdC4gT29rIG1hYWt0ZSB6ZSBkZSB3YXQgc2Vrc3VlZWwgZ2V0aW50ZSBkYW5zICd0d2Vya2luZycgcG9wdWxhaXIuIEluIDIwMTMgaXMgQ3lydXMgZG9vciBNVFYgdmVya296ZW4gdG90IFwiQXJ0aXN0IG9mIHRoZSBZZWFyXCIuIFxyXG4iLCJmYWNlYm9va191cmwiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9NaWxleUN5cnVzIiwidHdpdHRlcl91cmwiOiJodHRwczovL3R3aXR0ZXIuY29tL01pbGV5Q3lydXMiLCJzbmFwY2hhdCI6Im1pbGV5eHhjeXJ1cyIsImluc3RhZ3JhbV91cmwiOiJodHRwczovL2luc3RhZ3JhbS5jb20vbWlsZXljeXJ1cy8iLCJ3ZWJzaXRlIjoiaHR0cDovL3d3dy5taWxleWN5cnVzLmNvbS8iLCJwaG90byI6Ii8zL2RhL2UyL2I1LzgyNjE2Mi9taWxleS1jeXJ1cy1ob29rcy11cC13aXRoLXRlcnJ5LXJpY2hhcmRzb24tYWdhaW4tMTMuanBnIiwiY291bnRyeSI6eyJjb2RlIjoiVVMiLCJuYW1lIjoiVmVyZW5pZ2RlIFN0YXRlbiJ9fSwic3ViX2FydGlzdHMiOltdfX1dLCJwYWdpbmF0aW9uIjp7Im5leHQiOiIvMi40L3RyYWNrcy9wbGF5cz9saW1pdD0xJm5leHQ9dHJ1ZSZzaW5jZT0yMDIxLTEyLTE5KzE2JTNBMTklM0E1NCslMkIwMTAwIiwicHJldmlvdXMiOiIvMi40L3RyYWNrcy9wbGF5cz9saW1pdD0xJm5leHQ9dHJ1ZSZ1cHRvPTIwMjEtMTItMTkrMTYlM0ExOSUzQTU0KyUyQjAxMDAifX0=
-  recorded_at: Sun, 19 Dec 2021 15:28:03 GMT
-- request:
-    method: post
-    uri: https://accounts.spotify.com/api/token
-    body:
-      encoding: UTF-8
-      string: grant_type=client_credentials
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - accounts.spotify.com
-      Authorization:
-      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
-      Content-Type:
-      - application/json
-      Set-Cookie:
-      - __Host-device_id=AQAOq4Oi6KLY_daJFsnd_lT9qFu-4X64kEfp4MbGFK4KlcexSnHDPFHjRW7_UqL2pqljheVvqg8k0h-QtnccmcXMSRDHOglnqyg;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
-      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
-      Sp-Trace-Id:
-      - 21a2bdde21406da4
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      Server:
-      - envoy
-      Via:
-      - HTTP/2 edgeproxy, 1.1 google
-      Alt-Svc:
-      - clear
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: '{"access_token":"BQCXZPD8e8wltUaflFtsMVefOMMZvDLhkc4ntDbuNwuK-xXWQa3KR_rIE5aycAKjPEAroPEiEDIfsCnuqKs","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
+        eyJwbGF5ZWRfdHJhY2tzIjpbeyJwbGF5ZWRfYXQiOiIyMDIxLTEyLTI0VDA5OjE2OjM1KzAxOjAwIiwic2x1ZyI6InlvdW5nLXJpZ2h0LW5vdyIsInRpdGxlIjoiWW91bmcgUmlnaHQgTm93Iiwic2VsZWN0b3JfY29kZSI6IlExNDAwNCIsInJlbGVhc2VfeWVhciI6IjIwMjEiLCJhZmZpbGlhdGVfdXJsIjoiaHR0cHM6Ly9tdXNpYy5hcHBsZS5jb20vbmwvYWxidW0veW91bmctcmlnaHQtbm93LzE1OTMwMTgwNzE/YXQ9OXdWdElVR3omaT0xNTkzMDE4MDcyJnVvPTQiLCJ0aHVtYm5haWwiOiIvYy8wMy85NC9jOS8xNDk5MzE1LzE0MDB4MTQwMGJiLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cDovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMEpwRU16VEhidDJ6QklYcm50clh6RyIsInZpZGVvcyI6W3sidHlwZSI6InlvdXR1YmUiLCJ0YWdzIjoiZGVmYXVsdCIsImlkIjoiNWp4alVwWnI2MWsifV0sImhvb2tzIjp7Im00YSI6Imh0dHBzOi8vYXVkaW8tc3NsLml0dW5lcy5hcHBsZS5jb20vaXR1bmVzLWFzc2V0cy9BdWRpb1ByZXZpZXcxMTYvdjQvMzQvNjEvMGQvMzQ2MTBkNDMtODA3MS0zZGNkLTgwNzgtODM1Y2Q3ZDE0Zjg5L216YWZfOTgzNTQ2MDU5MzM5MjQwMjYzLnBsdXMuYWFjLnAubTRhIn0sImZhY3RzIjp7fSwiYXJ0aXN0Ijp7ImlkIjo3NjQ1LCJuYW1lIjoiUk9CSU4gU0NIVUxaICYgREVOTklTIExMT1lEIiwib3JpZ2luYWxfbmFtZSI6IlJPQklOIFNDSFVMWiIsInNsdWciOiJyb2Jpbi1zY2h1bHoiLCJiaW8iOiJSb2JpbiBTY2h1bHogaXMgZWVuIER1aXRzZSBkaiBlbiBwcm9kdWNlciwgZ2Vib3JlbiBpbiAxOTg3LiBIaWogd2VyZCBiZWtlbmQgaW4gMjAxNCB0b2VuIGhpaiBlZW4gcmVtaXggbWFha3RlIHZhbiBXYXZlcyB2YW4gZGUgTmVkZXJsYW5kc2UgemFuZ2VyIE1yLiBQcm9iei4gTmFkaWVuIHNjb29yZGUgaGlqIGVlbiB0d2VlZGUgZ3JvdGUgaGl0IG1ldCBlZW4gcmVtaXggdmFuIFByYXllciBJbiBDIHZhbiBoZXQgRnJhbnNlIGR1byBMaWxseSBXb29kICYgVGhlIFByaWNrLiIsImZhY2Vib29rX3VybCI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9yb2Jpbi5zY2h1bHoub2ZmaWNpYWwiLCJ0d2l0dGVyX3VybCI6Imh0dHBzOi8vdHdpdHRlci5jb20vcm9iaW5fc2NodWx6Iiwid2Vic2l0ZSI6Imh0dHA6Ly9yb2Jpbi1zY2h1bHouY29tLyIsInBob3RvIjoiLzMvYjQvMjAvYTcvMTA2ODQ5NS8xNDY2MjQzXzc2NTM5MTI5NjgxMDI5N183NjkzODA2MjFfbi5qcGciLCJjb3VudHJ5Ijp7ImNvZGUiOiJERSIsIm5hbWUiOiJEdWl0c2xhbmQifX0sInN1Yl9hcnRpc3RzIjpbeyJhcnRpc3QiOnsiaWQiOjEyODkzLCJuYW1lIjoiREVOTklTIExMT1lEIiwiYmlvIjoiRGVubmlzIExsb3lkIGlzIGRlIGFydGllc3Rlbm5hYW0gZGllIGRlIElzcmHDq2xpc2NoIE5pciBUaWJvciB2b29yIHppY2h6ZWxmIGtvb3MgaW4gMjAxNS5cclxuXHJcbkRlIHphbmdlciBkaWUgZ2Vib3JlbiBpcyBpbiBUZWwgQXZpdiBzY29vcmRlIHppam4gZWVyc3RlIHN1Y2NlcyBtZXQgZGUgc2luZ2xlICdOZXZlcm1pbmQnLiIsImZhY2Vib29rX3VybCI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9kZW5uaXMubGxveWQubXVzaWMiLCJpbnN0YWdyYW1fdXJsIjoiaHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS9kZW5uaXNsbG95ZC8iLCJ3ZWJzaXRlIjoiaHR0cDovL2Rlbm5pc2xsb3lkbXVzaWMuY29tLyIsInBob3RvIjoiLzUvMmEvYzAvYzQvMTM4OTcyMi9pbWFnZS5qcGciLCJjb3VudHJ5Ijp7ImNvZGUiOiJJTCIsIm5hbWUiOiJJc3Jhw6tsIn19fV0sImN1cnJlbnRfZWRpdGlvbnMiOltdLCJhY3RpdmVfZWRpdGlvbnMiOltdLCJuZXh0Ijp7InNsdWciOiJkcml2aW5nLWhvbWUtZm9yLWNocmlzdG1hcyIsInRpdGxlIjoiRHJpdmluZyBIb21lIEZvciBDaHJpc3RtYXMiLCJzZWxlY3Rvcl9jb2RlIjoiNDcwMy0wNCIsInJlbGVhc2VfeWVhciI6IjE5ODYiLCJ0aHVtYm5haWwiOiIvMC8wMS8wNi9hYy8zNDc2MS9DaHJpc18yMFJlYV8yMC1fMjBEcml2aW5nXzIwSG9tZV8yMEZvcl8yMENocmlzdG1hc18yMF9zaW5nbGVfLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cDovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svM1ozUWhaQVpwcXdaYTFwaHNiUTNKWiIsInZpZGVvcyI6W3sidHlwZSI6InlvdXR1YmUiLCJ0YWdzIjoiZGVmYXVsdCIsImlkIjoiVEhjYlF5RnRDcWcifV0sImhvb2tzIjp7Im00YSI6Imh0dHBzOi8vYXVkaW8tc3NsLml0dW5lcy5hcHBsZS5jb20vaXR1bmVzLWFzc2V0cy9BdWRpb1ByZXZpZXcxMjgvdjQvMzEvNzcvOTIvMzE3NzkyZTktNDgwOC04NzY5LWUyOTgtZWMwN2I0N2M1MjExL216YWZfMzA1MDU4NzQzNDM3MzEzNDQ0Mi5wbHVzLmFhYy5wLm00YSJ9LCJmYWN0cyI6e30sImFydGlzdCI6eyJpZCI6OTY2LCJuYW1lIjoiQ0hSSVMgUkVBIiwib3JpZ2luYWxfbmFtZSI6IkNIUklTIFJFQSIsInNsdWciOiJjaHJpcy1yZWEiLCJiaW8iOiJDaHJpc3RvcGhlciBBbnRvbiAoQ2hyaXMpIFJlYSB1aXQgRW5nZWxhbmQgaXMgdm9vcmFsIGJla2VuZCBnZXdvcmRlbiBtZXQgbnVtbWVycyBhbHMgJ0Zvb2wnIChJZiBZb3UgVGhpbmsgSXQncyBPdmVyKSwgJ0pvc2VwaGluZScgZW4gJ0RyaXZpbmcgSG9tZSBmb3IgQ2hyaXN0bWFzJy4gSGlqIGhpZWxkIHppY2ggbmlldCBlbmtlbCBiZXppZyBtZXQgemluZ2VuLCBtYWFyIGJyYWNodCBvb2sgZWVuIGR2ZCBlbiBlZW4gYm9layB1aXQgbWV0IHNjaGlsZGVyaWplbiBkaWUgaGlqIGdlbWFha3QgaGFkIHRpamRlbnMgaGV0IGhlcnN0ZWwgdmFuIGVlbiBlcm5zdGlnZSB6aWVrdGUgcm9uZCAyMDAwLiBJbiAyMDA1IGtvbmRpZ2RlIGhpaiB6aWpuIGFmc2NoZWlkIGFhbiwgbWFhciBpbiBoZXQgbmFqYWFyIHZhbiAyMDA3IGtlZXJkZSBoaWogYWx3ZWVyIHRlcnVnIG5hYXIgaGV0IHBvZGl1bS4iLCJmYWNlYm9va191cmwiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9DaHJpc1JlYU9mZmljaWFsIiwidHdpdHRlcl91cmwiOiJodHRwczovL3R3aXR0ZXIuY29tL2NocmlzcmVhIiwid2Vic2l0ZSI6Imh0dHA6Ly93d3cuY2hyaXNyZWEuY29tLyIsInBob3RvIjoiL2MvM2QvZjkvMDUvMTE4MjAvQ2hyaXMrUmVhLmpwZyIsImNvdW50cnkiOnsiY29kZSI6IkdCIiwibmFtZSI6IlZlcmVuaWdkIEtvbmlua3JpamsifX0sInN1Yl9hcnRpc3RzIjpbXX19XSwicGFnaW5hdGlvbiI6eyJuZXh0IjoiLzIuNC90cmFja3MvcGxheXM/bGltaXQ9MSZuZXh0PXRydWUmc2luY2U9MjAyMS0xMi0yNCswOSUzQTE2JTNBMzUrJTJCMDEwMCIsInByZXZpb3VzIjoiLzIuNC90cmFja3MvcGxheXM/bGltaXQ9MSZuZXh0PXRydWUmdXB0bz0yMDIxLTEyLTI0KzA5JTNBMTYlM0EzNSslMkIwMTAwIn19
+  recorded_at: Fri, 24 Dec 2021 08:16:44 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/search?q=Tell%20It%20To%20My%20Heart%20artist:meduza%20hozier&type=track
+    uri: https://api.spotify.com/v1/search?q=Young%20Right%20Now%20artist:robin%20schulz%20dennis%20lloyd&type=track
     body:
       encoding: US-ASCII
       string: ''
@@ -138,7 +87,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQCXZPD8e8wltUaflFtsMVefOMMZvDLhkc4ntDbuNwuK-xXWQa3KR_rIE5aycAKjPEAroPEiEDIfsCnuqKs
+      - Bearer BQBM-GA4gsN7igR3sZP9aVuRXNf5Og_rSd734Lb9j3tjCnX1fD_yOB2cPRxKKEyX37GpOALgxM7dvZfJRNM
       Content-Type:
       - application/json
   response:
@@ -168,7 +117,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 15:28:03 GMT
+      - Fri, 24 Dec 2021 08:16:44 GMT
       Server:
       - envoy
       Via:
@@ -179,815 +128,12 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: |-
-        {
-          "tracks" : {
-            "href" : "https://api.spotify.com/v1/search?query=Tell+It+To+My+Heart+artist%3Ameduza+hozier&type=track&offset=0&limit=20",
-            "items" : [ {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/27rVuwJ0g0eKRpnvEhQl3G"
-                },
-                "href" : "https://api.spotify.com/v1/albums/27rVuwJ0g0eKRpnvEhQl3G",
-                "id" : "27rVuwJ0g0eKRpnvEhQl3G",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b273a97f3fad25245a1453b1b3b2",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e02a97f3fad25245a1453b1b3b2",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d00004851a97f3fad25245a1453b1b3b2",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart",
-                "release_date" : "2021-10-29",
-                "release_date_precision" : "day",
-                "total_tracks" : 1,
-                "type" : "album",
-                "uri" : "spotify:album:27rVuwJ0g0eKRpnvEhQl3G"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 165524,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72106958"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/46nvQpUDsxpS08UTFOeKTA"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/46nvQpUDsxpS08UTFOeKTA",
-              "id" : "46nvQpUDsxpS08UTFOeKTA",
-              "is_local" : false,
-              "name" : "Tell It To My Heart",
-              "popularity" : 84,
-              "preview_url" : null,
-              "track_number" : 1,
-              "type" : "track",
-              "uri" : "spotify:track:46nvQpUDsxpS08UTFOeKTA"
-            }, {
-              "album" : {
-                "album_type" : "album",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
-                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
-                  "name" : "Various Artists",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
-                } ],
-                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/4QZY2WTWvDhNQG5fW6Zi8c"
-                },
-                "href" : "https://api.spotify.com/v1/albums/4QZY2WTWvDhNQG5fW6Zi8c",
-                "id" : "4QZY2WTWvDhNQG5fW6Zi8c",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b27325bfc4b49baea3d552a69c54",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e0225bfc4b49baea3d552a69c54",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d0000485125bfc4b49baea3d552a69c54",
-                  "width" : 64
-                } ],
-                "name" : "Workout 2022",
-                "release_date" : "2021-12-14",
-                "release_date_precision" : "day",
-                "total_tracks" : 20,
-                "type" : "album",
-                "uri" : "spotify:album:4QZY2WTWvDhNQG5fW6Zi8c"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              } ],
-              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
-              "disc_number" : 1,
-              "duration_ms" : 165524,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72106958"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/71Jki3QmRGThdzH2onIkUw"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/71Jki3QmRGThdzH2onIkUw",
-              "id" : "71Jki3QmRGThdzH2onIkUw",
-              "is_local" : false,
-              "name" : "Tell It To My Heart",
-              "popularity" : 2,
-              "preview_url" : null,
-              "track_number" : 12,
-              "type" : "track",
-              "uri" : "spotify:track:71Jki3QmRGThdzH2onIkUw"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0DdDnziut7wOo6cAYWVZC5"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0DdDnziut7wOo6cAYWVZC5",
-                  "id" : "0DdDnziut7wOo6cAYWVZC5",
-                  "name" : "KREAM",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0DdDnziut7wOo6cAYWVZC5"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/0fBMkxf9P05d6QtFoZE1HA"
-                },
-                "href" : "https://api.spotify.com/v1/albums/0fBMkxf9P05d6QtFoZE1HA",
-                "id" : "0fBMkxf9P05d6QtFoZE1HA",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b2730af38d2a26ba954ca76c8001",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e020af38d2a26ba954ca76c8001",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d000048510af38d2a26ba954ca76c8001",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart (KREAM Remix)",
-                "release_date" : "2021-12-03",
-                "release_date_precision" : "day",
-                "total_tracks" : 3,
-                "type" : "album",
-                "uri" : "spotify:album:0fBMkxf9P05d6QtFoZE1HA"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/39RaU9BN81x3KBo299bwXs"
-                },
-                "href" : "https://api.spotify.com/v1/artists/39RaU9BN81x3KBo299bwXs",
-                "id" : "39RaU9BN81x3KBo299bwXs",
-                "name" : "Fideles",
-                "type" : "artist",
-                "uri" : "spotify:artist:39RaU9BN81x3KBo299bwXs"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 232131,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72108412"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/2DR33CsJEcnnf5TjOy3bZP"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/2DR33CsJEcnnf5TjOy3bZP",
-              "id" : "2DR33CsJEcnnf5TjOy3bZP",
-              "is_local" : false,
-              "name" : "Tell It To My Heart - Fideles Remix",
-              "popularity" : 58,
-              "preview_url" : null,
-              "track_number" : 3,
-              "type" : "track",
-              "uri" : "spotify:track:2DR33CsJEcnnf5TjOy3bZP"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0DdDnziut7wOo6cAYWVZC5"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0DdDnziut7wOo6cAYWVZC5",
-                  "id" : "0DdDnziut7wOo6cAYWVZC5",
-                  "name" : "KREAM",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0DdDnziut7wOo6cAYWVZC5"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/0fBMkxf9P05d6QtFoZE1HA"
-                },
-                "href" : "https://api.spotify.com/v1/albums/0fBMkxf9P05d6QtFoZE1HA",
-                "id" : "0fBMkxf9P05d6QtFoZE1HA",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b2730af38d2a26ba954ca76c8001",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e020af38d2a26ba954ca76c8001",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d000048510af38d2a26ba954ca76c8001",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart (KREAM Remix)",
-                "release_date" : "2021-12-03",
-                "release_date_precision" : "day",
-                "total_tracks" : 3,
-                "type" : "album",
-                "uri" : "spotify:album:0fBMkxf9P05d6QtFoZE1HA"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0DdDnziut7wOo6cAYWVZC5"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0DdDnziut7wOo6cAYWVZC5",
-                "id" : "0DdDnziut7wOo6cAYWVZC5",
-                "name" : "KREAM",
-                "type" : "artist",
-                "uri" : "spotify:artist:0DdDnziut7wOo6cAYWVZC5"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 232620,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72108533"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/4BxYyjqSPyip5kbscidyZx"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/4BxYyjqSPyip5kbscidyZx",
-              "id" : "4BxYyjqSPyip5kbscidyZx",
-              "is_local" : false,
-              "name" : "Tell It To My Heart - KREAM Remix",
-              "popularity" : 63,
-              "preview_url" : null,
-              "track_number" : 2,
-              "type" : "track",
-              "uri" : "spotify:track:4BxYyjqSPyip5kbscidyZx"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0DdDnziut7wOo6cAYWVZC5"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0DdDnziut7wOo6cAYWVZC5",
-                  "id" : "0DdDnziut7wOo6cAYWVZC5",
-                  "name" : "KREAM",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0DdDnziut7wOo6cAYWVZC5"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/0fBMkxf9P05d6QtFoZE1HA"
-                },
-                "href" : "https://api.spotify.com/v1/albums/0fBMkxf9P05d6QtFoZE1HA",
-                "id" : "0fBMkxf9P05d6QtFoZE1HA",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b2730af38d2a26ba954ca76c8001",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e020af38d2a26ba954ca76c8001",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d000048510af38d2a26ba954ca76c8001",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart (KREAM Remix)",
-                "release_date" : "2021-12-03",
-                "release_date_precision" : "day",
-                "total_tracks" : 3,
-                "type" : "album",
-                "uri" : "spotify:album:0fBMkxf9P05d6QtFoZE1HA"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 165524,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72106958"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/5LJGWAI8PdcfW0GlQtBxFA"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/5LJGWAI8PdcfW0GlQtBxFA",
-              "id" : "5LJGWAI8PdcfW0GlQtBxFA",
-              "is_local" : false,
-              "name" : "Tell It To My Heart",
-              "popularity" : 48,
-              "preview_url" : null,
-              "track_number" : 1,
-              "type" : "track",
-              "uri" : "spotify:track:5LJGWAI8PdcfW0GlQtBxFA"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/39RaU9BN81x3KBo299bwXs"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/39RaU9BN81x3KBo299bwXs",
-                  "id" : "39RaU9BN81x3KBo299bwXs",
-                  "name" : "Fideles",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:39RaU9BN81x3KBo299bwXs"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/5ZKigzvl4RwT3sZjZa4xgW"
-                },
-                "href" : "https://api.spotify.com/v1/albums/5ZKigzvl4RwT3sZjZa4xgW",
-                "id" : "5ZKigzvl4RwT3sZjZa4xgW",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b2736d31b30eb11cbe075d4f1ce4",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e026d31b30eb11cbe075d4f1ce4",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d000048516d31b30eb11cbe075d4f1ce4",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart (Fideles Remix)",
-                "release_date" : "2021-11-26",
-                "release_date_precision" : "day",
-                "total_tracks" : 2,
-                "type" : "album",
-                "uri" : "spotify:album:5ZKigzvl4RwT3sZjZa4xgW"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 165524,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72106958"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/6pqZ2QX4bTo0N9Lvv2v2Ja"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/6pqZ2QX4bTo0N9Lvv2v2Ja",
-              "id" : "6pqZ2QX4bTo0N9Lvv2v2Ja",
-              "is_local" : false,
-              "name" : "Tell It To My Heart",
-              "popularity" : 56,
-              "preview_url" : null,
-              "track_number" : 1,
-              "type" : "track",
-              "uri" : "spotify:track:6pqZ2QX4bTo0N9Lvv2v2Ja"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/39RaU9BN81x3KBo299bwXs"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/39RaU9BN81x3KBo299bwXs",
-                  "id" : "39RaU9BN81x3KBo299bwXs",
-                  "name" : "Fideles",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:39RaU9BN81x3KBo299bwXs"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/5ZKigzvl4RwT3sZjZa4xgW"
-                },
-                "href" : "https://api.spotify.com/v1/albums/5ZKigzvl4RwT3sZjZa4xgW",
-                "id" : "5ZKigzvl4RwT3sZjZa4xgW",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b2736d31b30eb11cbe075d4f1ce4",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e026d31b30eb11cbe075d4f1ce4",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d000048516d31b30eb11cbe075d4f1ce4",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart (Fideles Remix)",
-                "release_date" : "2021-11-26",
-                "release_date_precision" : "day",
-                "total_tracks" : 2,
-                "type" : "album",
-                "uri" : "spotify:album:5ZKigzvl4RwT3sZjZa4xgW"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/39RaU9BN81x3KBo299bwXs"
-                },
-                "href" : "https://api.spotify.com/v1/artists/39RaU9BN81x3KBo299bwXs",
-                "id" : "39RaU9BN81x3KBo299bwXs",
-                "name" : "Fideles",
-                "type" : "artist",
-                "uri" : "spotify:artist:39RaU9BN81x3KBo299bwXs"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 232131,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72108412"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/21GCZAuEUosa18f5zwot6c"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/21GCZAuEUosa18f5zwot6c",
-              "id" : "21GCZAuEUosa18f5zwot6c",
-              "is_local" : false,
-              "name" : "Tell It To My Heart - Fideles Remix",
-              "popularity" : 56,
-              "preview_url" : null,
-              "track_number" : 2,
-              "type" : "track",
-              "uri" : "spotify:track:21GCZAuEUosa18f5zwot6c"
-            }, {
-              "album" : {
-                "album_type" : "album",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
-                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
-                  "name" : "Various Artists",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
-                } ],
-                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/6M9AWqEt3G1geFgvUime15"
-                },
-                "href" : "https://api.spotify.com/v1/albums/6M9AWqEt3G1geFgvUime15",
-                "id" : "6M9AWqEt3G1geFgvUime15",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b273e7edda208463707bc6b80408",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e02e7edda208463707bc6b80408",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d00004851e7edda208463707bc6b80408",
-                  "width" : 64
-                } ],
-                "name" : "Top 50 2021",
-                "release_date" : "2021-12-10",
-                "release_date_precision" : "day",
-                "total_tracks" : 50,
-                "type" : "album",
-                "uri" : "spotify:album:6M9AWqEt3G1geFgvUime15"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              } ],
-              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
-              "disc_number" : 1,
-              "duration_ms" : 165524,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72106958"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/3DRb8X8bsyiXarcZoVhRn0"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/3DRb8X8bsyiXarcZoVhRn0",
-              "id" : "3DRb8X8bsyiXarcZoVhRn0",
-              "is_local" : false,
-              "name" : "Tell It To My Heart",
-              "popularity" : 3,
-              "preview_url" : null,
-              "track_number" : 20,
-              "type" : "track",
-              "uri" : "spotify:track:3DRb8X8bsyiXarcZoVhRn0"
-            } ],
-            "limit" : 20,
-            "next" : null,
-            "offset" : 0,
-            "previous" : null,
-            "total" : 8
-          }
-        }
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
-- request:
-    method: post
-    uri: https://accounts.spotify.com/api/token
-    body:
-      encoding: UTF-8
-      string: grant_type=client_credentials
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - accounts.spotify.com
-      Authorization:
-      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
-      Content-Type:
-      - application/json
-      Set-Cookie:
-      - __Host-device_id=AQAHteCVZWIusaZCqeUlw1bz5VWRWhts1lLmRCI35ZLR8wLE5dqcheOp832V8lS6gKTEWM3UUB6vRZAi7T0mfnffto1vWzz0yV8;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
-      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
-      Sp-Trace-Id:
-      - c62e6692acb4bb61
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      Server:
-      - envoy
-      Via:
-      - HTTP/2 edgeproxy, 1.1 google
-      Alt-Svc:
-      - clear
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: '{"access_token":"BQAjaHT5P5k6YDWSMhWHSSrpep1kxqfANbnZPgWahu-WRoH-O7IExH-mm0cEwS2X7fRFirEYDYoMM7UIkfc","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
+      string: !binary |-
+        ewogICJ0cmFja3MiIDogewogICAgImhyZWYiIDogImh0dHBzOi8vYXBpLnNwb3RpZnkuY29tL3YxL3NlYXJjaD9xdWVyeT1Zb3VuZytSaWdodCtOb3crYXJ0aXN0JTNBcm9iaW4rc2NodWx6K2Rlbm5pcytsbG95ZCZ0eXBlPXRyYWNrJm9mZnNldD0wJmxpbWl0PTIwIiwKICAgICJpdGVtcyIgOiBbIHsKICAgICAgImFsYnVtIiA6IHsKICAgICAgICAiYWxidW1fdHlwZSIgOiAic2luZ2xlIiwKICAgICAgICAiYXJ0aXN0cyIgOiBbIHsKICAgICAgICAgICJleHRlcm5hbF91cmxzIiA6IHsKICAgICAgICAgICAgInNwb3RpZnkiIDogImh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS9hcnRpc3QvM3Q1eFJYenN1Wm1NRGtRemdPWDM1UyIKICAgICAgICAgIH0sCiAgICAgICAgICAiaHJlZiIgOiAiaHR0cHM6Ly9hcGkuc3BvdGlmeS5jb20vdjEvYXJ0aXN0cy8zdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIiwKICAgICAgICAgICJpZCIgOiAiM3Q1eFJYenN1Wm1NRGtRemdPWDM1UyIsCiAgICAgICAgICAibmFtZSIgOiAiUm9iaW4gU2NodWx6IiwKICAgICAgICAgICJ0eXBlIiA6ICJhcnRpc3QiLAogICAgICAgICAgInVyaSIgOiAic3BvdGlmeTphcnRpc3Q6M3Q1eFJYenN1Wm1NRGtRemdPWDM1UyIKICAgICAgICB9LCB7CiAgICAgICAgICAiZXh0ZXJuYWxfdXJscyIgOiB7CiAgICAgICAgICAgICJzcG90aWZ5IiA6ICJodHRwczovL29wZW4uc3BvdGlmeS5jb20vYXJ0aXN0LzNFT0VLNTdDVjc3RDRvdllWY21peXQiCiAgICAgICAgICB9LAogICAgICAgICAgImhyZWYiIDogImh0dHBzOi8vYXBpLnNwb3RpZnkuY29tL3YxL2FydGlzdHMvM0VPRUs1N0NWNzdENG92WVZjbWl5dCIsCiAgICAgICAgICAiaWQiIDogIjNFT0VLNTdDVjc3RDRvdllWY21peXQiLAogICAgICAgICAgIm5hbWUiIDogIkRlbm5pcyBMbG95ZCIsCiAgICAgICAgICAidHlwZSIgOiAiYXJ0aXN0IiwKICAgICAgICAgICJ1cmkiIDogInNwb3RpZnk6YXJ0aXN0OjNFT0VLNTdDVjc3RDRvdllWY21peXQiCiAgICAgICAgfSBdLAogICAgICAgICJhdmFpbGFibGVfbWFya2V0cyIgOiBbICJBRCIsICJBRSIsICJBRyIsICJBTCIsICJBTSIsICJBTyIsICJBUiIsICJBVCIsICJBVSIsICJBWiIsICJCQSIsICJCQiIsICJCRCIsICJCRSIsICJCRiIsICJCRyIsICJCSCIsICJCSSIsICJCSiIsICJCTiIsICJCTyIsICJCUiIsICJCUyIsICJCVCIsICJCVyIsICJCWSIsICJCWiIsICJDQSIsICJDRCIsICJDRyIsICJDSCIsICJDSSIsICJDTCIsICJDTSIsICJDTyIsICJDUiIsICJDViIsICJDVyIsICJDWSIsICJDWiIsICJERSIsICJESiIsICJESyIsICJETSIsICJETyIsICJEWiIsICJFQyIsICJFRSIsICJFRyIsICJFUyIsICJGSSIsICJGSiIsICJGTSIsICJGUiIsICJHQSIsICJHQiIsICJHRCIsICJHRSIsICJHSCIsICJHTSIsICJHTiIsICJHUSIsICJHUiIsICJHVCIsICJHVyIsICJHWSIsICJISyIsICJITiIsICJIUiIsICJIVCIsICJIVSIsICJJRCIsICJJRSIsICJJTCIsICJJTiIsICJJUSIsICJJUyIsICJJVCIsICJKTSIsICJKTyIsICJKUCIsICJLRSIsICJLRyIsICJLSCIsICJLSSIsICJLTSIsICJLTiIsICJLUiIsICJLVyIsICJLWiIsICJMQSIsICJMQiIsICJMQyIsICJMSSIsICJMSyIsICJMUiIsICJMUyIsICJMVCIsICJMVSIsICJMViIsICJMWSIsICJNQSIsICJNQyIsICJNRCIsICJNRSIsICJNRyIsICJNSCIsICJNSyIsICJNTCIsICJNTiIsICJNTyIsICJNUiIsICJNVCIsICJNVSIsICJNViIsICJNVyIsICJNWCIsICJNWSIsICJNWiIsICJOQSIsICJORSIsICJORyIsICJOSSIsICJOTCIsICJOTyIsICJOUCIsICJOUiIsICJOWiIsICJPTSIsICJQQSIsICJQRSIsICJQRyIsICJQSCIsICJQSyIsICJQTCIsICJQUyIsICJQVCIsICJQVyIsICJQWSIsICJRQSIsICJSTyIsICJSUyIsICJSVSIsICJSVyIsICJTQSIsICJTQiIsICJTQyIsICJTRSIsICJTRyIsICJTSSIsICJTSyIsICJTTCIsICJTTSIsICJTTiIsICJTUiIsICJTVCIsICJTViIsICJTWiIsICJURCIsICJURyIsICJUSCIsICJUSiIsICJUTCIsICJUTiIsICJUTyIsICJUUiIsICJUVCIsICJUViIsICJUVyIsICJUWiIsICJVQSIsICJVRyIsICJVUyIsICJVWSIsICJVWiIsICJWQyIsICJWRSIsICJWTiIsICJWVSIsICJXUyIsICJYSyIsICJaQSIsICJaTSIsICJaVyIgXSwKICAgICAgICAiZXh0ZXJuYWxfdXJscyIgOiB7CiAgICAgICAgICAic3BvdGlmeSIgOiAiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2FsYnVtLzMxdDlpTGltbXJpUm4zTXZpcXl3enciCiAgICAgICAgfSwKICAgICAgICAiaHJlZiIgOiAiaHR0cHM6Ly9hcGkuc3BvdGlmeS5jb20vdjEvYWxidW1zLzMxdDlpTGltbXJpUm4zTXZpcXl3enciLAogICAgICAgICJpZCIgOiAiMzF0OWlMaW1tcmlSbjNNdmlxeXd6dyIsCiAgICAgICAgImltYWdlcyIgOiBbIHsKICAgICAgICAgICJoZWlnaHQiIDogNjQwLAogICAgICAgICAgInVybCIgOiAiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzllOGMyY2QxZjNlYTcwODI1MTg3YzE0MyIsCiAgICAgICAgICAid2lkdGgiIDogNjQwCiAgICAgICAgfSwgewogICAgICAgICAgImhlaWdodCIgOiAzMDAsCiAgICAgICAgICAidXJsIiA6ICJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDAxZTAyOWU4YzJjZDFmM2VhNzA4MjUxODdjMTQzIiwKICAgICAgICAgICJ3aWR0aCIgOiAzMDAKICAgICAgICB9LCB7CiAgICAgICAgICAiaGVpZ2h0IiA6IDY0LAogICAgICAgICAgInVybCIgOiAiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwNDg1MTllOGMyY2QxZjNlYTcwODI1MTg3YzE0MyIsCiAgICAgICAgICAid2lkdGgiIDogNjQKICAgICAgICB9IF0sCiAgICAgICAgIm5hbWUiIDogIllvdW5nIFJpZ2h0IE5vdyIsCiAgICAgICAgInJlbGVhc2VfZGF0ZSIgOiAiMjAyMS0xMS0xMiIsCiAgICAgICAgInJlbGVhc2VfZGF0ZV9wcmVjaXNpb24iIDogImRheSIsCiAgICAgICAgInRvdGFsX3RyYWNrcyIgOiAxLAogICAgICAgICJ0eXBlIiA6ICJhbGJ1bSIsCiAgICAgICAgInVyaSIgOiAic3BvdGlmeTphbGJ1bTozMXQ5aUxpbW1yaVJuM012aXF5d3p3IgogICAgICB9LAogICAgICAiYXJ0aXN0cyIgOiBbIHsKICAgICAgICAiZXh0ZXJuYWxfdXJscyIgOiB7CiAgICAgICAgICAic3BvdGlmeSIgOiAiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2FydGlzdC8zdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIgogICAgICAgIH0sCiAgICAgICAgImhyZWYiIDogImh0dHBzOi8vYXBpLnNwb3RpZnkuY29tL3YxL2FydGlzdHMvM3Q1eFJYenN1Wm1NRGtRemdPWDM1UyIsCiAgICAgICAgImlkIiA6ICIzdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIiwKICAgICAgICAibmFtZSIgOiAiUm9iaW4gU2NodWx6IiwKICAgICAgICAidHlwZSIgOiAiYXJ0aXN0IiwKICAgICAgICAidXJpIiA6ICJzcG90aWZ5OmFydGlzdDozdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIgogICAgICB9LCB7CiAgICAgICAgImV4dGVybmFsX3VybHMiIDogewogICAgICAgICAgInNwb3RpZnkiIDogImh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS9hcnRpc3QvM0VPRUs1N0NWNzdENG92WVZjbWl5dCIKICAgICAgICB9LAogICAgICAgICJocmVmIiA6ICJodHRwczovL2FwaS5zcG90aWZ5LmNvbS92MS9hcnRpc3RzLzNFT0VLNTdDVjc3RDRvdllWY21peXQiLAogICAgICAgICJpZCIgOiAiM0VPRUs1N0NWNzdENG92WVZjbWl5dCIsCiAgICAgICAgIm5hbWUiIDogIkRlbm5pcyBMbG95ZCIsCiAgICAgICAgInR5cGUiIDogImFydGlzdCIsCiAgICAgICAgInVyaSIgOiAic3BvdGlmeTphcnRpc3Q6M0VPRUs1N0NWNzdENG92WVZjbWl5dCIKICAgICAgfSBdLAogICAgICAiYXZhaWxhYmxlX21hcmtldHMiIDogWyAiQUQiLCAiQUUiLCAiQUciLCAiQUwiLCAiQU0iLCAiQU8iLCAiQVIiLCAiQVQiLCAiQVUiLCAiQVoiLCAiQkEiLCAiQkIiLCAiQkQiLCAiQkUiLCAiQkYiLCAiQkciLCAiQkgiLCAiQkkiLCAiQkoiLCAiQk4iLCAiQk8iLCAiQlIiLCAiQlMiLCAiQlQiLCAiQlciLCAiQlkiLCAiQloiLCAiQ0EiLCAiQ0QiLCAiQ0ciLCAiQ0giLCAiQ0kiLCAiQ0wiLCAiQ00iLCAiQ08iLCAiQ1IiLCAiQ1YiLCAiQ1ciLCAiQ1kiLCAiQ1oiLCAiREUiLCAiREoiLCAiREsiLCAiRE0iLCAiRE8iLCAiRFoiLCAiRUMiLCAiRUUiLCAiRUciLCAiRVMiLCAiRkkiLCAiRkoiLCAiRk0iLCAiRlIiLCAiR0EiLCAiR0IiLCAiR0QiLCAiR0UiLCAiR0giLCAiR00iLCAiR04iLCAiR1EiLCAiR1IiLCAiR1QiLCAiR1ciLCAiR1kiLCAiSEsiLCAiSE4iLCAiSFIiLCAiSFQiLCAiSFUiLCAiSUQiLCAiSUUiLCAiSUwiLCAiSU4iLCAiSVEiLCAiSVMiLCAiSVQiLCAiSk0iLCAiSk8iLCAiSlAiLCAiS0UiLCAiS0ciLCAiS0giLCAiS0kiLCAiS00iLCAiS04iLCAiS1IiLCAiS1ciLCAiS1oiLCAiTEEiLCAiTEIiLCAiTEMiLCAiTEkiLCAiTEsiLCAiTFIiLCAiTFMiLCAiTFQiLCAiTFUiLCAiTFYiLCAiTFkiLCAiTUEiLCAiTUMiLCAiTUQiLCAiTUUiLCAiTUciLCAiTUgiLCAiTUsiLCAiTUwiLCAiTU4iLCAiTU8iLCAiTVIiLCAiTVQiLCAiTVUiLCAiTVYiLCAiTVciLCAiTVgiLCAiTVkiLCAiTVoiLCAiTkEiLCAiTkUiLCAiTkciLCAiTkkiLCAiTkwiLCAiTk8iLCAiTlAiLCAiTlIiLCAiTloiLCAiT00iLCAiUEEiLCAiUEUiLCAiUEciLCAiUEgiLCAiUEsiLCAiUEwiLCAiUFMiLCAiUFQiLCAiUFciLCAiUFkiLCAiUUEiLCAiUk8iLCAiUlMiLCAiUlUiLCAiUlciLCAiU0EiLCAiU0IiLCAiU0MiLCAiU0UiLCAiU0ciLCAiU0kiLCAiU0siLCAiU0wiLCAiU00iLCAiU04iLCAiU1IiLCAiU1QiLCAiU1YiLCAiU1oiLCAiVEQiLCAiVEciLCAiVEgiLCAiVEoiLCAiVEwiLCAiVE4iLCAiVE8iLCAiVFIiLCAiVFQiLCAiVFYiLCAiVFciLCAiVFoiLCAiVUEiLCAiVUciLCAiVVMiLCAiVVkiLCAiVVoiLCAiVkMiLCAiVkUiLCAiVk4iLCAiVlUiLCAiV1MiLCAiWEsiLCAiWkEiLCAiWk0iLCAiWlciIF0sCiAgICAgICJkaXNjX251bWJlciIgOiAxLAogICAgICAiZHVyYXRpb25fbXMiIDogMTg2MTQwLAogICAgICAiZXhwbGljaXQiIDogZmFsc2UsCiAgICAgICJleHRlcm5hbF9pZHMiIDogewogICAgICAgICJpc3JjIiA6ICJERUE2MjIxMDExOTMiCiAgICAgIH0sCiAgICAgICJleHRlcm5hbF91cmxzIiA6IHsKICAgICAgICAic3BvdGlmeSIgOiAiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzBKcEVNelRIYnQyekJJWHJudHJYekciCiAgICAgIH0sCiAgICAgICJocmVmIiA6ICJodHRwczovL2FwaS5zcG90aWZ5LmNvbS92MS90cmFja3MvMEpwRU16VEhidDJ6QklYcm50clh6RyIsCiAgICAgICJpZCIgOiAiMEpwRU16VEhidDJ6QklYcm50clh6RyIsCiAgICAgICJpc19sb2NhbCIgOiBmYWxzZSwKICAgICAgIm5hbWUiIDogIllvdW5nIFJpZ2h0IE5vdyIsCiAgICAgICJwb3B1bGFyaXR5IiA6IDc5LAogICAgICAicHJldmlld191cmwiIDogImh0dHBzOi8vcC5zY2RuLmNvL21wMy1wcmV2aWV3LzQxZjQwZjVhODU4ZGEyMGJmYjAzNGM1Mjk1MjY4MzZkNjNhMDBhOWE/Y2lkPWZmNzBkZjY1MGVlMTRhMWZhZDRhZWQzYjUzM2U4ZWE0IiwKICAgICAgInRyYWNrX251bWJlciIgOiAxLAogICAgICAidHlwZSIgOiAidHJhY2siLAogICAgICAidXJpIiA6ICJzcG90aWZ5OnRyYWNrOjBKcEVNelRIYnQyekJJWHJudHJYekciCiAgICB9LCB7CiAgICAgICJhbGJ1bSIgOiB7CiAgICAgICAgImFsYnVtX3R5cGUiIDogImFsYnVtIiwKICAgICAgICAiYXJ0aXN0cyIgOiBbIHsKICAgICAgICAgICJleHRlcm5hbF91cmxzIiA6IHsKICAgICAgICAgICAgInNwb3RpZnkiIDogImh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS9hcnRpc3QvMEx5ZlFXSlQ2blhhZkxQWnF4ZTlPZiIKICAgICAgICAgIH0sCiAgICAgICAgICAiaHJlZiIgOiAiaHR0cHM6Ly9hcGkuc3BvdGlmeS5jb20vdjEvYXJ0aXN0cy8wTHlmUVdKVDZuWGFmTFBacXhlOU9mIiwKICAgICAgICAgICJpZCIgOiAiMEx5ZlFXSlQ2blhhZkxQWnF4ZTlPZiIsCiAgICAgICAgICAibmFtZSIgOiAiVmFyaW91cyBBcnRpc3RzIiwKICAgICAgICAgICJ0eXBlIiA6ICJhcnRpc3QiLAogICAgICAgICAgInVyaSIgOiAic3BvdGlmeTphcnRpc3Q6MEx5ZlFXSlQ2blhhZkxQWnF4ZTlPZiIKICAgICAgICB9IF0sCiAgICAgICAgImF2YWlsYWJsZV9tYXJrZXRzIiA6IFsgIkFEIiwgIkFFIiwgIkFHIiwgIkFMIiwgIkFNIiwgIkFPIiwgIkFSIiwgIkFUIiwgIkFVIiwgIkFaIiwgIkJBIiwgIkJCIiwgIkJEIiwgIkJFIiwgIkJGIiwgIkJHIiwgIkJIIiwgIkJJIiwgIkJKIiwgIkJOIiwgIkJPIiwgIkJSIiwgIkJTIiwgIkJUIiwgIkJXIiwgIkJZIiwgIkJaIiwgIkNBIiwgIkNEIiwgIkNHIiwgIkNIIiwgIkNJIiwgIkNMIiwgIkNNIiwgIkNPIiwgIkNSIiwgIkNWIiwgIkNXIiwgIkNZIiwgIkNaIiwgIkRFIiwgIkRKIiwgIkRLIiwgIkRNIiwgIkRPIiwgIkRaIiwgIkVDIiwgIkVFIiwgIkVHIiwgIkVTIiwgIkZJIiwgIkZKIiwgIkZNIiwgIkZSIiwgIkdBIiwgIkdCIiwgIkdEIiwgIkdFIiwgIkdIIiwgIkdNIiwgIkdOIiwgIkdRIiwgIkdSIiwgIkdUIiwgIkdXIiwgIkdZIiwgIkhLIiwgIkhOIiwgIkhSIiwgIkhUIiwgIkhVIiwgIklEIiwgIklFIiwgIklMIiwgIklOIiwgIklRIiwgIklTIiwgIklUIiwgIkpNIiwgIkpPIiwgIkpQIiwgIktFIiwgIktHIiwgIktIIiwgIktJIiwgIktNIiwgIktOIiwgIktSIiwgIktXIiwgIktaIiwgIkxBIiwgIkxCIiwgIkxDIiwgIkxJIiwgIkxLIiwgIkxSIiwgIkxTIiwgIkxUIiwgIkxVIiwgIkxWIiwgIkxZIiwgIk1BIiwgIk1DIiwgIk1EIiwgIk1FIiwgIk1HIiwgIk1IIiwgIk1LIiwgIk1MIiwgIk1OIiwgIk1PIiwgIk1SIiwgIk1UIiwgIk1VIiwgIk1WIiwgIk1XIiwgIk1YIiwgIk1ZIiwgIk1aIiwgIk5BIiwgIk5FIiwgIk5HIiwgIk5JIiwgIk5MIiwgIk5PIiwgIk5QIiwgIk5SIiwgIk5aIiwgIk9NIiwgIlBBIiwgIlBFIiwgIlBHIiwgIlBIIiwgIlBLIiwgIlBMIiwgIlBTIiwgIlBUIiwgIlBXIiwgIlBZIiwgIlFBIiwgIlJPIiwgIlJTIiwgIlJVIiwgIlJXIiwgIlNBIiwgIlNCIiwgIlNDIiwgIlNFIiwgIlNHIiwgIlNJIiwgIlNLIiwgIlNMIiwgIlNNIiwgIlNOIiwgIlNSIiwgIlNUIiwgIlNWIiwgIlNaIiwgIlREIiwgIlRHIiwgIlRIIiwgIlRKIiwgIlRMIiwgIlROIiwgIlRPIiwgIlRSIiwgIlRUIiwgIlRWIiwgIlRXIiwgIlRaIiwgIlVBIiwgIlVHIiwgIlVTIiwgIlVZIiwgIlVaIiwgIlZDIiwgIlZFIiwgIlZOIiwgIlZVIiwgIldTIiwgIlhLIiwgIlpBIiwgIlpNIiwgIlpXIiBdLAogICAgICAgICJleHRlcm5hbF91cmxzIiA6IHsKICAgICAgICAgICJzcG90aWZ5IiA6ICJodHRwczovL29wZW4uc3BvdGlmeS5jb20vYWxidW0vMjd2RGo2MmlnUHlFcU1Ddlh2T3g1UiIKICAgICAgICB9LAogICAgICAgICJocmVmIiA6ICJodHRwczovL2FwaS5zcG90aWZ5LmNvbS92MS9hbGJ1bXMvMjd2RGo2MmlnUHlFcU1Ddlh2T3g1UiIsCiAgICAgICAgImlkIiA6ICIyN3ZEajYyaWdQeUVxTUN2WHZPeDVSIiwKICAgICAgICAiaW1hZ2VzIiA6IFsgewogICAgICAgICAgImhlaWdodCIgOiA2NDAsCiAgICAgICAgICAidXJsIiA6ICJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczZTcwMmRiM2NhNDQwNDY4ZDM2OGEyNmU5IiwKICAgICAgICAgICJ3aWR0aCIgOiA2NDAKICAgICAgICB9LCB7CiAgICAgICAgICAiaGVpZ2h0IiA6IDMwMCwKICAgICAgICAgICJ1cmwiIDogImh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMDFlMDJlNzAyZGIzY2E0NDA0NjhkMzY4YTI2ZTkiLAogICAgICAgICAgIndpZHRoIiA6IDMwMAogICAgICAgIH0sIHsKICAgICAgICAgICJoZWlnaHQiIDogNjQsCiAgICAgICAgICAidXJsIiA6ICJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDA0ODUxZTcwMmRiM2NhNDQwNDY4ZDM2OGEyNmU5IiwKICAgICAgICAgICJ3aWR0aCIgOiA2NAogICAgICAgIH0gXSwKICAgICAgICAibmFtZSIgOiAiTmV3IFllYXLigJlzIEV2ZSBTb25ncyAtIE5ZRSBQYXJ0eSAyMDIyIiwKICAgICAgICAicmVsZWFzZV9kYXRlIiA6ICIyMDIxLTEyLTE3IiwKICAgICAgICAicmVsZWFzZV9kYXRlX3ByZWNpc2lvbiIgOiAiZGF5IiwKICAgICAgICAidG90YWxfdHJhY2tzIiA6IDMyLAogICAgICAgICJ0eXBlIiA6ICJhbGJ1bSIsCiAgICAgICAgInVyaSIgOiAic3BvdGlmeTphbGJ1bToyN3ZEajYyaWdQeUVxTUN2WHZPeDVSIgogICAgICB9LAogICAgICAiYXJ0aXN0cyIgOiBbIHsKICAgICAgICAiZXh0ZXJuYWxfdXJscyIgOiB7CiAgICAgICAgICAic3BvdGlmeSIgOiAiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2FydGlzdC8zdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIgogICAgICAgIH0sCiAgICAgICAgImhyZWYiIDogImh0dHBzOi8vYXBpLnNwb3RpZnkuY29tL3YxL2FydGlzdHMvM3Q1eFJYenN1Wm1NRGtRemdPWDM1UyIsCiAgICAgICAgImlkIiA6ICIzdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIiwKICAgICAgICAibmFtZSIgOiAiUm9iaW4gU2NodWx6IiwKICAgICAgICAidHlwZSIgOiAiYXJ0aXN0IiwKICAgICAgICAidXJpIiA6ICJzcG90aWZ5OmFydGlzdDozdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIgogICAgICB9LCB7CiAgICAgICAgImV4dGVybmFsX3VybHMiIDogewogICAgICAgICAgInNwb3RpZnkiIDogImh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS9hcnRpc3QvM0VPRUs1N0NWNzdENG92WVZjbWl5dCIKICAgICAgICB9LAogICAgICAgICJocmVmIiA6ICJodHRwczovL2FwaS5zcG90aWZ5LmNvbS92MS9hcnRpc3RzLzNFT0VLNTdDVjc3RDRvdllWY21peXQiLAogICAgICAgICJpZCIgOiAiM0VPRUs1N0NWNzdENG92WVZjbWl5dCIsCiAgICAgICAgIm5hbWUiIDogIkRlbm5pcyBMbG95ZCIsCiAgICAgICAgInR5cGUiIDogImFydGlzdCIsCiAgICAgICAgInVyaSIgOiAic3BvdGlmeTphcnRpc3Q6M0VPRUs1N0NWNzdENG92WVZjbWl5dCIKICAgICAgfSBdLAogICAgICAiYXZhaWxhYmxlX21hcmtldHMiIDogWyAiQUQiLCAiQUUiLCAiQUciLCAiQUwiLCAiQU0iLCAiQU8iLCAiQVIiLCAiQVQiLCAiQVUiLCAiQVoiLCAiQkEiLCAiQkIiLCAiQkQiLCAiQkUiLCAiQkYiLCAiQkciLCAiQkgiLCAiQkkiLCAiQkoiLCAiQk4iLCAiQk8iLCAiQlIiLCAiQlMiLCAiQlQiLCAiQlciLCAiQlkiLCAiQloiLCAiQ0EiLCAiQ0QiLCAiQ0ciLCAiQ0giLCAiQ0kiLCAiQ0wiLCAiQ00iLCAiQ08iLCAiQ1IiLCAiQ1YiLCAiQ1ciLCAiQ1kiLCAiQ1oiLCAiREUiLCAiREoiLCAiREsiLCAiRE0iLCAiRE8iLCAiRFoiLCAiRUMiLCAiRUUiLCAiRUciLCAiRVMiLCAiRkkiLCAiRkoiLCAiRk0iLCAiRlIiLCAiR0EiLCAiR0IiLCAiR0QiLCAiR0UiLCAiR0giLCAiR00iLCAiR04iLCAiR1EiLCAiR1IiLCAiR1QiLCAiR1ciLCAiR1kiLCAiSEsiLCAiSE4iLCAiSFIiLCAiSFQiLCAiSFUiLCAiSUQiLCAiSUUiLCAiSUwiLCAiSU4iLCAiSVEiLCAiSVMiLCAiSVQiLCAiSk0iLCAiSk8iLCAiSlAiLCAiS0UiLCAiS0ciLCAiS0giLCAiS0kiLCAiS00iLCAiS04iLCAiS1IiLCAiS1ciLCAiS1oiLCAiTEEiLCAiTEIiLCAiTEMiLCAiTEkiLCAiTEsiLCAiTFIiLCAiTFMiLCAiTFQiLCAiTFUiLCAiTFYiLCAiTFkiLCAiTUEiLCAiTUMiLCAiTUQiLCAiTUUiLCAiTUciLCAiTUgiLCAiTUsiLCAiTUwiLCAiTU4iLCAiTU8iLCAiTVIiLCAiTVQiLCAiTVUiLCAiTVYiLCAiTVciLCAiTVgiLCAiTVkiLCAiTVoiLCAiTkEiLCAiTkUiLCAiTkciLCAiTkkiLCAiTkwiLCAiTk8iLCAiTlAiLCAiTlIiLCAiTloiLCAiT00iLCAiUEEiLCAiUEUiLCAiUEciLCAiUEgiLCAiUEsiLCAiUEwiLCAiUFMiLCAiUFQiLCAiUFciLCAiUFkiLCAiUUEiLCAiUk8iLCAiUlMiLCAiUlUiLCAiUlciLCAiU0EiLCAiU0IiLCAiU0MiLCAiU0UiLCAiU0ciLCAiU0kiLCAiU0siLCAiU0wiLCAiU00iLCAiU04iLCAiU1IiLCAiU1QiLCAiU1YiLCAiU1oiLCAiVEQiLCAiVEciLCAiVEgiLCAiVEoiLCAiVEwiLCAiVE4iLCAiVE8iLCAiVFIiLCAiVFQiLCAiVFYiLCAiVFciLCAiVFoiLCAiVUEiLCAiVUciLCAiVVMiLCAiVVkiLCAiVVoiLCAiVkMiLCAiVkUiLCAiVk4iLCAiVlUiLCAiV1MiLCAiWEsiLCAiWkEiLCAiWk0iLCAiWlciIF0sCiAgICAgICJkaXNjX251bWJlciIgOiAxLAogICAgICAiZHVyYXRpb25fbXMiIDogMTg2MTQwLAogICAgICAiZXhwbGljaXQiIDogZmFsc2UsCiAgICAgICJleHRlcm5hbF9pZHMiIDogewogICAgICAgICJpc3JjIiA6ICJERUE2MjIxMDExOTMiCiAgICAgIH0sCiAgICAgICJleHRlcm5hbF91cmxzIiA6IHsKICAgICAgICAic3BvdGlmeSIgOiAiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzRJUEtDeVBuZDgzUnl2Qk9uYTdrTTYiCiAgICAgIH0sCiAgICAgICJocmVmIiA6ICJodHRwczovL2FwaS5zcG90aWZ5LmNvbS92MS90cmFja3MvNElQS0N5UG5kODNSeXZCT25hN2tNNiIsCiAgICAgICJpZCIgOiAiNElQS0N5UG5kODNSeXZCT25hN2tNNiIsCiAgICAgICJpc19sb2NhbCIgOiBmYWxzZSwKICAgICAgIm5hbWUiIDogIllvdW5nIFJpZ2h0IE5vdyIsCiAgICAgICJwb3B1bGFyaXR5IiA6IDcsCiAgICAgICJwcmV2aWV3X3VybCIgOiAiaHR0cHM6Ly9wLnNjZG4uY28vbXAzLXByZXZpZXcvNDFmNDBmNWE4NThkYTIwYmZiMDM0YzUyOTUyNjgzNmQ2M2EwMGE5YT9jaWQ9ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQiLAogICAgICAidHJhY2tfbnVtYmVyIiA6IDE5LAogICAgICAidHlwZSIgOiAidHJhY2siLAogICAgICAidXJpIiA6ICJzcG90aWZ5OnRyYWNrOjRJUEtDeVBuZDgzUnl2Qk9uYTdrTTYiCiAgICB9IF0sCiAgICAibGltaXQiIDogMjAsCiAgICAibmV4dCIgOiBudWxsLAogICAgIm9mZnNldCIgOiAwLAogICAgInByZXZpb3VzIiA6IG51bGwsCiAgICAidG90YWwiIDogMgogIH0KfQ==
+  recorded_at: Fri, 24 Dec 2021 08:16:44 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu
+    uri: https://api.spotify.com/v1/artists/3t5xRXzsuZmMDkQzgOX35S
     body:
       encoding: US-ASCII
       string: ''
@@ -1001,7 +147,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAjaHT5P5k6YDWSMhWHSSrpep1kxqfANbnZPgWahu-WRoH-O7IExH-mm0cEwS2X7fRFirEYDYoMM7UIkfc
+      - Bearer BQBM-GA4gsN7igR3sZP9aVuRXNf5Og_rSd734Lb9j3tjCnX1fD_yOB2cPRxKKEyX37GpOALgxM7dvZfJRNM
       Content-Type:
       - application/json
   response:
@@ -1012,7 +158,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=84500
+      - public, max-age=79430
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1031,7 +177,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
+      - Fri, 24 Dec 2021 08:16:44 GMT
       Server:
       - envoy
       Via:
@@ -1045,88 +191,37 @@ http_interactions:
       string: |-
         {
           "external_urls" : {
-            "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
+            "spotify" : "https://open.spotify.com/artist/3t5xRXzsuZmMDkQzgOX35S"
           },
           "followers" : {
             "href" : null,
-            "total" : 477335
+            "total" : 2853627
           },
-          "genres" : [ "edm", "pop", "pop dance", "pop house", "tropical house" ],
-          "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-          "id" : "0xRXCcSX89eobfrshSVdyu",
+          "genres" : [ "dance pop", "deep euro house", "deep house", "edm", "german dance", "pop", "pop dance", "tropical house" ],
+          "href" : "https://api.spotify.com/v1/artists/3t5xRXzsuZmMDkQzgOX35S",
+          "id" : "3t5xRXzsuZmMDkQzgOX35S",
           "images" : [ {
             "height" : 640,
-            "url" : "https://i.scdn.co/image/ab6761610000e5eb0250d43f727734741aad6423",
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb7886f753d19bacd490d5acca",
             "width" : 640
           }, {
             "height" : 320,
-            "url" : "https://i.scdn.co/image/ab676161000051740250d43f727734741aad6423",
+            "url" : "https://i.scdn.co/image/ab676161000051747886f753d19bacd490d5acca",
             "width" : 320
           }, {
             "height" : 160,
-            "url" : "https://i.scdn.co/image/ab6761610000f1780250d43f727734741aad6423",
+            "url" : "https://i.scdn.co/image/ab6761610000f1787886f753d19bacd490d5acca",
             "width" : 160
           } ],
-          "name" : "MEDUZA",
-          "popularity" : 79,
+          "name" : "Robin Schulz",
+          "popularity" : 81,
           "type" : "artist",
-          "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
+          "uri" : "spotify:artist:3t5xRXzsuZmMDkQzgOX35S"
         }
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
-- request:
-    method: post
-    uri: https://accounts.spotify.com/api/token
-    body:
-      encoding: UTF-8
-      string: grant_type=client_credentials
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - accounts.spotify.com
-      Authorization:
-      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
-      Content-Type:
-      - application/json
-      Set-Cookie:
-      - __Host-device_id=AQAdEkkAUaRB-FyhDCH7ZnAmfJyvQPD1AxwPX5HEh3KmiYMwTXTV73vMB7T0vqPF-_lexrPfrmmHJCMW6wd8wRFfpbkcG3vkzo4;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
-      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
-      Sp-Trace-Id:
-      - c6c056791e788845
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      Server:
-      - envoy
-      Via:
-      - HTTP/2 edgeproxy, 1.1 google
-      Alt-Svc:
-      - clear
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: '{"access_token":"BQAhuEuQvTFseizEZOaFC3ZZvOYOUbpC0XHKtpRi6E4ucMIf9uneTaATS0NjdR7H9tFP6S-5k5l6k1xmlqE","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
+  recorded_at: Fri, 24 Dec 2021 08:16:45 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS
+    uri: https://api.spotify.com/v1/artists/3EOEK57CV77D4ovYVcmiyt
     body:
       encoding: US-ASCII
       string: ''
@@ -1140,7 +235,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAhuEuQvTFseizEZOaFC3ZZvOYOUbpC0XHKtpRi6E4ucMIf9uneTaATS0NjdR7H9tFP6S-5k5l6k1xmlqE
+      - Bearer BQBM-GA4gsN7igR3sZP9aVuRXNf5Og_rSd734Lb9j3tjCnX1fD_yOB2cPRxKKEyX37GpOALgxM7dvZfJRNM
       Content-Type:
       - application/json
   response:
@@ -1151,7 +246,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=85636
+      - public, max-age=82840
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1170,7 +265,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 15:28:03 GMT
+      - Fri, 24 Dec 2021 08:16:44 GMT
       Server:
       - envoy
       Via:
@@ -1184,34 +279,34 @@ http_interactions:
       string: |-
         {
           "external_urls" : {
-            "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
+            "spotify" : "https://open.spotify.com/artist/3EOEK57CV77D4ovYVcmiyt"
           },
           "followers" : {
             "href" : null,
-            "total" : 4972441
+            "total" : 585532
           },
-          "genres" : [ "irish singer-songwriter", "pop" ],
-          "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-          "id" : "2FXC3k01G6Gw61bmprjgqS",
+          "genres" : [ "israeli pop" ],
+          "href" : "https://api.spotify.com/v1/artists/3EOEK57CV77D4ovYVcmiyt",
+          "id" : "3EOEK57CV77D4ovYVcmiyt",
           "images" : [ {
             "height" : 640,
-            "url" : "https://i.scdn.co/image/ab6761610000e5eb9ba4d95b74bacff4d5747f61",
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb03a549a526f43c676492b910",
             "width" : 640
           }, {
             "height" : 320,
-            "url" : "https://i.scdn.co/image/ab676161000051749ba4d95b74bacff4d5747f61",
+            "url" : "https://i.scdn.co/image/ab6761610000517403a549a526f43c676492b910",
             "width" : 320
           }, {
             "height" : 160,
-            "url" : "https://i.scdn.co/image/ab6761610000f1789ba4d95b74bacff4d5747f61",
+            "url" : "https://i.scdn.co/image/ab6761610000f17803a549a526f43c676492b910",
             "width" : 160
           } ],
-          "name" : "Hozier",
-          "popularity" : 82,
+          "name" : "Dennis Lloyd",
+          "popularity" : 72,
           "type" : "artist",
-          "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
+          "uri" : "spotify:artist:3EOEK57CV77D4ovYVcmiyt"
         }
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
+  recorded_at: Fri, 24 Dec 2021 08:16:45 GMT
 - request:
     method: get
     uri: https://api.qmusic.nl/2.4/tracks/plays?limit=1&next=true
@@ -1235,29 +330,29 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
+      - Fri, 24 Dec 2021 08:16:45 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
+      X-Request-Id:
+      - f92789b4046dfaa016d26f0a31479d89
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       X-Runtime:
-      - '0.246730'
-      X-Request-Id:
-      - 4c029819ce20dea97e91f0fd4de1cbea
+      - '0.153116'
       X-Powered-By:
       - Phusion Passenger(R) Enterprise
       Etag:
-      - W/"e69cb031851513b106a332487c0a72ae"
+      - W/"f92de4ea96a601c5926c6f352f372f97"
       Status:
       - 200 OK
       X-Varnish:
-      - 770886175 771326260
+      - 811892447 811892390
       Age:
-      - '419'
+      - '0'
       Via:
       - 1.1 varnish (Varnish/6.1)
       Access-Control-Allow-Origin:
@@ -1265,78 +360,27 @@ http_interactions:
       X-Cache:
       - HIT-API
       X-Cache-Hits:
-      - '7'
+      - '2'
       Cf-Cache-Status:
       - DYNAMIC
       Expect-Ct:
       - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ePoECs%2B5YL9SCChD4EpGys%2BXdyMzn4ODHg7PKkW3%2FNiXFGrT4ye8EFHMBafPC3JrNIs60PAKpup%2FVd25P5ZQuigRPGocrVXwVNEP7zRjs%2FKNAEN57I7zpPR83%2F%2B0RJ4%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mOPIg%2Bivoe8uMUtBtmAoXr0EDSMp%2FrxJB1be48SG8CRU7I5R%2FXfmpkWf6qZlIkoufA6EJ4su6jZuBkYYZ6790Rgj2aTFNFcrkJfgR5ZPnlJBvkFsbVlq8KbV4OOLCQw%3D"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 6c01a89c7c186b3c-AMS
+      - 6c2863aaba76009b-AMS
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJwbGF5ZWRfdHJhY2tzIjpbeyJwbGF5ZWRfYXQiOiIyMDIxLTEyLTE5VDE2OjE5OjU0KzAxOjAwIiwic2x1ZyI6InRlbGwtaXQtdG8tbXktaGVhcnQtMiIsInRpdGxlIjoiVGVsbCBJdCBUbyBNeSBIZWFydCIsInNlbGVjdG9yX2NvZGUiOiJRMTM5ODIiLCJyZWxlYXNlX3llYXIiOiIyMDIxIiwidGh1bWJuYWlsIjoiL2YvMTkvYTcvMTIvMTQ5NjQ2OC8xNDAweDE0MDBiYi5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHA6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzQ2bnZRcFVEc3hwUzA4VVRGT2VLVEEiLCJ2aWRlb3MiOlt7InR5cGUiOiJ5b3V0dWJlIiwidGFncyI6ImRlZmF1bHQiLCJpZCI6IkVkdUt3UHUtNmVZIn1dLCJob29rcyI6eyJtNGEiOiJodHRwczovL2F1ZGlvLXNzbC5pdHVuZXMuYXBwbGUuY29tL2l0dW5lcy1hc3NldHMvQXVkaW9QcmV2aWV3MTE2L3Y0LzY5LzdkLzllLzY5N2Q5ZWFkLWNmZWQtYzU5OS1hODZjLWM2NDljZTY3ZjdkZC9temFmXzE3Mzg0NTYwMzA0MTcyNjIxMTEyLnBsdXMuYWFjLnAubTRhIn0sImZhY3RzIjp7fSwiYXJ0aXN0Ijp7ImlkIjoxNDgyMywibmFtZSI6Ik1FRFVaQSAmIEhPWklFUiIsIm9yaWdpbmFsX25hbWUiOiJNRURVWkEiLCJzbHVnIjoibWVkdXphIiwiYmlvIjoiTWVkdXphIGlzIGVlbiBkai10cmlvIHVpdCBNaWxhYW4gYmVzdGFhbmRlIHVpdCBNYXR0aWEsIEx1Y2EgZW4gU2ltb25lLlxyXG4iLCJ0d2l0dGVyX3VybCI6Imh0dHBzOi8vdHdpdHRlci5jb20vbWVkdXphbXVzaWMiLCJwaG90byI6Ii9iL2Q1L2UzL2QxLzE0MTg1NjYvTWVkdXphX0ZpbmFsX0FwcHJvdmVkXzMwMGRwaS0xLmpwZyIsImNvdW50cnkiOnsiY29kZSI6IklUIiwibmFtZSI6Ikl0YWxpw6sifX0sInN1Yl9hcnRpc3RzIjpbeyJhcnRpc3QiOnsiaWQiOjY2OTUsIm5hbWUiOiJIT1pJRVIiLCJiaW8iOiJBbmRyZXcgSG96aWVyLUJ5cm5lLCBnZWJvcmVuIG9wIDE3IG1hYXJ0IDE5OTAsIGlzIGJldGVyIGJla2VuZCBvbmRlciB6J24gYXJ0aWVzdGVubmFhbSBIb3ppZXIgZW4gaXMgZWVuIEllcnNlIG11emlrYW50LiBcclxuXHJcbkluIDIwMTMgYnJhY2h0IGhpaiBkZSBzaW5nbGUgJ1Rha2UgTWUgVG8gQ2h1cmNoJyB1aXQsIGVlbiBudW1tZXIgZGF0IHZpcmFsIGdpbmcgb3AgWW91VHViZSBlbiBSZWRkaXQgZW4gZGUgZWVyc3RlIHBsYWF0cyBiZXJlaWt0ZSBpbiBkZSBJZXJzZSBpVHVuZXMgVG9wIDQwLiIsImZhY2Vib29rX3VybCI6Imh0dHA6Ly9mYWNlYm9vay5jb20vaG96aWVybXVzaWMiLCJ0d2l0dGVyX3VybCI6Imh0dHA6Ly90d2l0dGVyLmNvbS9Ib3ppZXIiLCJpbnN0YWdyYW1fdXJsIjoiaHR0cHM6Ly9pbnN0YWdyYW0uY29tL2hvemllciIsIndlYnNpdGUiOiJodHRwOi8vaG96aWVyLmNvbSIsInBob3RvIjoiLzMvNDMvYmEvN2EvOTUzMjc0L2hvemllcjEuanBnIiwiY291bnRyeSI6eyJjb2RlIjoiSUUiLCJuYW1lIjoiSWVybGFuZCJ9fX1dLCJjdXJyZW50X2VkaXRpb25zIjpbeyJwb3NpdGlvbiI6MiwiZWRpdGlvbiI6eyJpZCI6NDg3NSwibmFtZSI6IjExIGRlY2VtYmVyIDIwMjEifSwibGlzdCI6eyJpZCI6Mjg3LCJuYW1lIjoiV29ybGR3aWRlIENsdWIgMjAifX0seyJwb3NpdGlvbiI6MjgsImVkaXRpb24iOnsiaWQiOjQ4ODEsIm5hbWUiOiIxNy8xMi8yMDIxIn0sImxpc3QiOnsiaWQiOjIyNSwibmFtZSI6IlFtdXNpYyBUb3AgNDAifX1dLCJhY3RpdmVfZWRpdGlvbnMiOltdLCJuZXh0Ijp7InNsdWciOiJtaWRuaWdodC1za3kiLCJ0aXRsZSI6Ik1pZG5pZ2h0IFNreSIsInNlbGVjdG9yX2NvZGUiOiJRMTM1NjYiLCJyZWxlYXNlX3llYXIiOiIyMDIwIiwidGh1bWJuYWlsIjoiL2QvOTgvN2QvZDgvMTQ1ODU4My8xNDAweDE0MDBiYi5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHA6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzI3eWNhUW5RQXhhUGl5ZWczbnIyYUIiLCJ2aWRlb3MiOlt7InR5cGUiOiJ5b3V0dWJlIiwidGFncyI6ImRlZmF1bHQiLCJpZCI6ImFTMW5vMW15ZVRNIn1dLCJob29rcyI6eyJtNGEiOiJodHRwczovL2F1ZGlvLXNzbC5pdHVuZXMuYXBwbGUuY29tL2l0dW5lcy1hc3NldHMvQXVkaW9QcmV2aWV3MTI0L3Y0Lzg0L2JhL2Y4Lzg0YmFmODc4LTZmMDgtMzU1MS04MDgxLWQwMDQyMmE0YWRlZi9temFmXzYzOTUxMzU2NTk1OTEwMDAzMzEucGx1cy5hYWMucC5tNGEifSwiZmFjdHMiOnt9LCJhcnRpc3QiOnsiaWQiOjEyNTcsIm5hbWUiOiJNSUxFWSBDWVJVUyIsIm9yaWdpbmFsX25hbWUiOiJNSUxFWSBDWVJVUyIsInNsdWciOiJtaWxleS1jeXJ1cyIsImJpbyI6IlR3ZXJraW5nLXF1ZWVuIE1pbGV5IFJheSBDeXJ1cyBpcyBlZW4gQW1lcmlrYWFucyBhY3RyaWNlIGVuIHphbmdlcmVzLiBaZSBpcyBiZXJvZW1kIGdld29yZGVuIGRvb3IgaGFhciBob29mZHJvbCBpbiBkZSBEaXNuZXlzZXJpZSBIYW5uYWggTW9udGFuYS4gWmUgYnJhayBpbiBOZWRlcmxhbmQgYmlqIGhldCBncm90ZSBwdWJsaWVrIGRvb3IgbWV0IGhhYXIgaGl0c2luZ2xlICdXcmVja2luZyBCYWxsJy4gRGl0IGt3YW0gbWVkZSBkb29yIGRlIG9wdmFsbGVuZGUgY2xpcCB3YWFyIHplIG5hYWt0IG9wIGVlbiBzbG9vcGtvZ2VsIHppdC4gT29rIG1hYWt0ZSB6ZSBkZSB3YXQgc2Vrc3VlZWwgZ2V0aW50ZSBkYW5zICd0d2Vya2luZycgcG9wdWxhaXIuIEluIDIwMTMgaXMgQ3lydXMgZG9vciBNVFYgdmVya296ZW4gdG90IFwiQXJ0aXN0IG9mIHRoZSBZZWFyXCIuIFxyXG4iLCJmYWNlYm9va191cmwiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9NaWxleUN5cnVzIiwidHdpdHRlcl91cmwiOiJodHRwczovL3R3aXR0ZXIuY29tL01pbGV5Q3lydXMiLCJzbmFwY2hhdCI6Im1pbGV5eHhjeXJ1cyIsImluc3RhZ3JhbV91cmwiOiJodHRwczovL2luc3RhZ3JhbS5jb20vbWlsZXljeXJ1cy8iLCJ3ZWJzaXRlIjoiaHR0cDovL3d3dy5taWxleWN5cnVzLmNvbS8iLCJwaG90byI6Ii8zL2RhL2UyL2I1LzgyNjE2Mi9taWxleS1jeXJ1cy1ob29rcy11cC13aXRoLXRlcnJ5LXJpY2hhcmRzb24tYWdhaW4tMTMuanBnIiwiY291bnRyeSI6eyJjb2RlIjoiVVMiLCJuYW1lIjoiVmVyZW5pZ2RlIFN0YXRlbiJ9fSwic3ViX2FydGlzdHMiOltdfX1dLCJwYWdpbmF0aW9uIjp7Im5leHQiOiIvMi40L3RyYWNrcy9wbGF5cz9saW1pdD0xJm5leHQ9dHJ1ZSZzaW5jZT0yMDIxLTEyLTE5KzE2JTNBMTklM0E1NCslMkIwMTAwIiwicHJldmlvdXMiOiIvMi40L3RyYWNrcy9wbGF5cz9saW1pdD0xJm5leHQ9dHJ1ZSZ1cHRvPTIwMjEtMTItMTkrMTYlM0ExOSUzQTU0KyUyQjAxMDAifX0=
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
-- request:
-    method: post
-    uri: https://accounts.spotify.com/api/token
-    body:
-      encoding: UTF-8
-      string: grant_type=client_credentials
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - accounts.spotify.com
-      Authorization:
-      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
-      Content-Type:
-      - application/json
-      Set-Cookie:
-      - __Host-device_id=AQCoRes88d1WmCtQpYd3eE2FKjjjD_K3VQVgpES818WjZLaZItfaJVFHuypKP2TQt0TSuyhl4V2d5y48fs6WuM1y8DUto7aLKpk;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
-      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
-      Sp-Trace-Id:
-      - 96d315c134602d27
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      Server:
-      - envoy
-      Via:
-      - HTTP/2 edgeproxy, 1.1 google
-      Alt-Svc:
-      - clear
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: '{"access_token":"BQBNy8wwOsmSsYu6tZWIhn1wk8KZJkyOr1VecrWgfqxDHsAbtcpdCMbrJeT4NFMV5B_zC7srUszi2fA6BTE","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
+        eyJwbGF5ZWRfdHJhY2tzIjpbeyJwbGF5ZWRfYXQiOiIyMDIxLTEyLTI0VDA5OjE2OjM1KzAxOjAwIiwic2x1ZyI6InlvdW5nLXJpZ2h0LW5vdyIsInRpdGxlIjoiWW91bmcgUmlnaHQgTm93Iiwic2VsZWN0b3JfY29kZSI6IlExNDAwNCIsInJlbGVhc2VfeWVhciI6IjIwMjEiLCJhZmZpbGlhdGVfdXJsIjoiaHR0cHM6Ly9tdXNpYy5hcHBsZS5jb20vbmwvYWxidW0veW91bmctcmlnaHQtbm93LzE1OTMwMTgwNzE/YXQ9OXdWdElVR3omaT0xNTkzMDE4MDcyJnVvPTQiLCJ0aHVtYm5haWwiOiIvYy8wMy85NC9jOS8xNDk5MzE1LzE0MDB4MTQwMGJiLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cDovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMEpwRU16VEhidDJ6QklYcm50clh6RyIsInZpZGVvcyI6W3sidHlwZSI6InlvdXR1YmUiLCJ0YWdzIjoiZGVmYXVsdCIsImlkIjoiNWp4alVwWnI2MWsifV0sImhvb2tzIjp7Im00YSI6Imh0dHBzOi8vYXVkaW8tc3NsLml0dW5lcy5hcHBsZS5jb20vaXR1bmVzLWFzc2V0cy9BdWRpb1ByZXZpZXcxMTYvdjQvMzQvNjEvMGQvMzQ2MTBkNDMtODA3MS0zZGNkLTgwNzgtODM1Y2Q3ZDE0Zjg5L216YWZfOTgzNTQ2MDU5MzM5MjQwMjYzLnBsdXMuYWFjLnAubTRhIn0sImZhY3RzIjp7fSwiYXJ0aXN0Ijp7ImlkIjo3NjQ1LCJuYW1lIjoiUk9CSU4gU0NIVUxaICYgREVOTklTIExMT1lEIiwib3JpZ2luYWxfbmFtZSI6IlJPQklOIFNDSFVMWiIsInNsdWciOiJyb2Jpbi1zY2h1bHoiLCJiaW8iOiJSb2JpbiBTY2h1bHogaXMgZWVuIER1aXRzZSBkaiBlbiBwcm9kdWNlciwgZ2Vib3JlbiBpbiAxOTg3LiBIaWogd2VyZCBiZWtlbmQgaW4gMjAxNCB0b2VuIGhpaiBlZW4gcmVtaXggbWFha3RlIHZhbiBXYXZlcyB2YW4gZGUgTmVkZXJsYW5kc2UgemFuZ2VyIE1yLiBQcm9iei4gTmFkaWVuIHNjb29yZGUgaGlqIGVlbiB0d2VlZGUgZ3JvdGUgaGl0IG1ldCBlZW4gcmVtaXggdmFuIFByYXllciBJbiBDIHZhbiBoZXQgRnJhbnNlIGR1byBMaWxseSBXb29kICYgVGhlIFByaWNrLiIsImZhY2Vib29rX3VybCI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9yb2Jpbi5zY2h1bHoub2ZmaWNpYWwiLCJ0d2l0dGVyX3VybCI6Imh0dHBzOi8vdHdpdHRlci5jb20vcm9iaW5fc2NodWx6Iiwid2Vic2l0ZSI6Imh0dHA6Ly9yb2Jpbi1zY2h1bHouY29tLyIsInBob3RvIjoiLzMvYjQvMjAvYTcvMTA2ODQ5NS8xNDY2MjQzXzc2NTM5MTI5NjgxMDI5N183NjkzODA2MjFfbi5qcGciLCJjb3VudHJ5Ijp7ImNvZGUiOiJERSIsIm5hbWUiOiJEdWl0c2xhbmQifX0sInN1Yl9hcnRpc3RzIjpbeyJhcnRpc3QiOnsiaWQiOjEyODkzLCJuYW1lIjoiREVOTklTIExMT1lEIiwiYmlvIjoiRGVubmlzIExsb3lkIGlzIGRlIGFydGllc3Rlbm5hYW0gZGllIGRlIElzcmHDq2xpc2NoIE5pciBUaWJvciB2b29yIHppY2h6ZWxmIGtvb3MgaW4gMjAxNS5cclxuXHJcbkRlIHphbmdlciBkaWUgZ2Vib3JlbiBpcyBpbiBUZWwgQXZpdiBzY29vcmRlIHppam4gZWVyc3RlIHN1Y2NlcyBtZXQgZGUgc2luZ2xlICdOZXZlcm1pbmQnLiIsImZhY2Vib29rX3VybCI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9kZW5uaXMubGxveWQubXVzaWMiLCJpbnN0YWdyYW1fdXJsIjoiaHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS9kZW5uaXNsbG95ZC8iLCJ3ZWJzaXRlIjoiaHR0cDovL2Rlbm5pc2xsb3lkbXVzaWMuY29tLyIsInBob3RvIjoiLzUvMmEvYzAvYzQvMTM4OTcyMi9pbWFnZS5qcGciLCJjb3VudHJ5Ijp7ImNvZGUiOiJJTCIsIm5hbWUiOiJJc3Jhw6tsIn19fV0sImN1cnJlbnRfZWRpdGlvbnMiOltdLCJhY3RpdmVfZWRpdGlvbnMiOltdLCJuZXh0Ijp7InNsdWciOiJkcml2aW5nLWhvbWUtZm9yLWNocmlzdG1hcyIsInRpdGxlIjoiRHJpdmluZyBIb21lIEZvciBDaHJpc3RtYXMiLCJzZWxlY3Rvcl9jb2RlIjoiNDcwMy0wNCIsInJlbGVhc2VfeWVhciI6IjE5ODYiLCJ0aHVtYm5haWwiOiIvMC8wMS8wNi9hYy8zNDc2MS9DaHJpc18yMFJlYV8yMC1fMjBEcml2aW5nXzIwSG9tZV8yMEZvcl8yMENocmlzdG1hc18yMF9zaW5nbGVfLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cDovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svM1ozUWhaQVpwcXdaYTFwaHNiUTNKWiIsInZpZGVvcyI6W3sidHlwZSI6InlvdXR1YmUiLCJ0YWdzIjoiZGVmYXVsdCIsImlkIjoiVEhjYlF5RnRDcWcifV0sImhvb2tzIjp7Im00YSI6Imh0dHBzOi8vYXVkaW8tc3NsLml0dW5lcy5hcHBsZS5jb20vaXR1bmVzLWFzc2V0cy9BdWRpb1ByZXZpZXcxMjgvdjQvMzEvNzcvOTIvMzE3NzkyZTktNDgwOC04NzY5LWUyOTgtZWMwN2I0N2M1MjExL216YWZfMzA1MDU4NzQzNDM3MzEzNDQ0Mi5wbHVzLmFhYy5wLm00YSJ9LCJmYWN0cyI6e30sImFydGlzdCI6eyJpZCI6OTY2LCJuYW1lIjoiQ0hSSVMgUkVBIiwib3JpZ2luYWxfbmFtZSI6IkNIUklTIFJFQSIsInNsdWciOiJjaHJpcy1yZWEiLCJiaW8iOiJDaHJpc3RvcGhlciBBbnRvbiAoQ2hyaXMpIFJlYSB1aXQgRW5nZWxhbmQgaXMgdm9vcmFsIGJla2VuZCBnZXdvcmRlbiBtZXQgbnVtbWVycyBhbHMgJ0Zvb2wnIChJZiBZb3UgVGhpbmsgSXQncyBPdmVyKSwgJ0pvc2VwaGluZScgZW4gJ0RyaXZpbmcgSG9tZSBmb3IgQ2hyaXN0bWFzJy4gSGlqIGhpZWxkIHppY2ggbmlldCBlbmtlbCBiZXppZyBtZXQgemluZ2VuLCBtYWFyIGJyYWNodCBvb2sgZWVuIGR2ZCBlbiBlZW4gYm9layB1aXQgbWV0IHNjaGlsZGVyaWplbiBkaWUgaGlqIGdlbWFha3QgaGFkIHRpamRlbnMgaGV0IGhlcnN0ZWwgdmFuIGVlbiBlcm5zdGlnZSB6aWVrdGUgcm9uZCAyMDAwLiBJbiAyMDA1IGtvbmRpZ2RlIGhpaiB6aWpuIGFmc2NoZWlkIGFhbiwgbWFhciBpbiBoZXQgbmFqYWFyIHZhbiAyMDA3IGtlZXJkZSBoaWogYWx3ZWVyIHRlcnVnIG5hYXIgaGV0IHBvZGl1bS4iLCJmYWNlYm9va191cmwiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9DaHJpc1JlYU9mZmljaWFsIiwidHdpdHRlcl91cmwiOiJodHRwczovL3R3aXR0ZXIuY29tL2NocmlzcmVhIiwid2Vic2l0ZSI6Imh0dHA6Ly93d3cuY2hyaXNyZWEuY29tLyIsInBob3RvIjoiL2MvM2QvZjkvMDUvMTE4MjAvQ2hyaXMrUmVhLmpwZyIsImNvdW50cnkiOnsiY29kZSI6IkdCIiwibmFtZSI6IlZlcmVuaWdkIEtvbmlua3JpamsifX0sInN1Yl9hcnRpc3RzIjpbXX19XSwicGFnaW5hdGlvbiI6eyJuZXh0IjoiLzIuNC90cmFja3MvcGxheXM/bGltaXQ9MSZuZXh0PXRydWUmc2luY2U9MjAyMS0xMi0yNCswOSUzQTE2JTNBMzUrJTJCMDEwMCIsInByZXZpb3VzIjoiLzIuNC90cmFja3MvcGxheXM/bGltaXQ9MSZuZXh0PXRydWUmdXB0bz0yMDIxLTEyLTI0KzA5JTNBMTYlM0EzNSslMkIwMTAwIn19
+  recorded_at: Fri, 24 Dec 2021 08:16:45 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/search?q=Tell%20It%20To%20My%20Heart%20artist:meduza%20hozier&type=track
+    uri: https://api.spotify.com/v1/search?q=Young%20Right%20Now%20artist:robin%20schulz%20dennis%20lloyd&type=track
     body:
       encoding: US-ASCII
       string: ''
@@ -1350,7 +394,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQBNy8wwOsmSsYu6tZWIhn1wk8KZJkyOr1VecrWgfqxDHsAbtcpdCMbrJeT4NFMV5B_zC7srUszi2fA6BTE
+      - Bearer BQBM-GA4gsN7igR3sZP9aVuRXNf5Og_rSd734Lb9j3tjCnX1fD_yOB2cPRxKKEyX37GpOALgxM7dvZfJRNM
       Content-Type:
       - application/json
   response:
@@ -1380,7 +424,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
+      - Fri, 24 Dec 2021 08:16:45 GMT
       Server:
       - envoy
       Via:
@@ -1391,815 +435,12 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: |-
-        {
-          "tracks" : {
-            "href" : "https://api.spotify.com/v1/search?query=Tell+It+To+My+Heart+artist%3Ameduza+hozier&type=track&offset=0&limit=20",
-            "items" : [ {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/27rVuwJ0g0eKRpnvEhQl3G"
-                },
-                "href" : "https://api.spotify.com/v1/albums/27rVuwJ0g0eKRpnvEhQl3G",
-                "id" : "27rVuwJ0g0eKRpnvEhQl3G",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b273a97f3fad25245a1453b1b3b2",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e02a97f3fad25245a1453b1b3b2",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d00004851a97f3fad25245a1453b1b3b2",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart",
-                "release_date" : "2021-10-29",
-                "release_date_precision" : "day",
-                "total_tracks" : 1,
-                "type" : "album",
-                "uri" : "spotify:album:27rVuwJ0g0eKRpnvEhQl3G"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 165524,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72106958"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/46nvQpUDsxpS08UTFOeKTA"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/46nvQpUDsxpS08UTFOeKTA",
-              "id" : "46nvQpUDsxpS08UTFOeKTA",
-              "is_local" : false,
-              "name" : "Tell It To My Heart",
-              "popularity" : 84,
-              "preview_url" : null,
-              "track_number" : 1,
-              "type" : "track",
-              "uri" : "spotify:track:46nvQpUDsxpS08UTFOeKTA"
-            }, {
-              "album" : {
-                "album_type" : "album",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
-                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
-                  "name" : "Various Artists",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
-                } ],
-                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/4QZY2WTWvDhNQG5fW6Zi8c"
-                },
-                "href" : "https://api.spotify.com/v1/albums/4QZY2WTWvDhNQG5fW6Zi8c",
-                "id" : "4QZY2WTWvDhNQG5fW6Zi8c",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b27325bfc4b49baea3d552a69c54",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e0225bfc4b49baea3d552a69c54",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d0000485125bfc4b49baea3d552a69c54",
-                  "width" : 64
-                } ],
-                "name" : "Workout 2022",
-                "release_date" : "2021-12-14",
-                "release_date_precision" : "day",
-                "total_tracks" : 20,
-                "type" : "album",
-                "uri" : "spotify:album:4QZY2WTWvDhNQG5fW6Zi8c"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              } ],
-              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BE", "BG", "BH", "BO", "BR", "BY", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LU", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
-              "disc_number" : 1,
-              "duration_ms" : 165524,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72106958"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/71Jki3QmRGThdzH2onIkUw"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/71Jki3QmRGThdzH2onIkUw",
-              "id" : "71Jki3QmRGThdzH2onIkUw",
-              "is_local" : false,
-              "name" : "Tell It To My Heart",
-              "popularity" : 2,
-              "preview_url" : null,
-              "track_number" : 12,
-              "type" : "track",
-              "uri" : "spotify:track:71Jki3QmRGThdzH2onIkUw"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0DdDnziut7wOo6cAYWVZC5"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0DdDnziut7wOo6cAYWVZC5",
-                  "id" : "0DdDnziut7wOo6cAYWVZC5",
-                  "name" : "KREAM",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0DdDnziut7wOo6cAYWVZC5"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/0fBMkxf9P05d6QtFoZE1HA"
-                },
-                "href" : "https://api.spotify.com/v1/albums/0fBMkxf9P05d6QtFoZE1HA",
-                "id" : "0fBMkxf9P05d6QtFoZE1HA",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b2730af38d2a26ba954ca76c8001",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e020af38d2a26ba954ca76c8001",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d000048510af38d2a26ba954ca76c8001",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart (KREAM Remix)",
-                "release_date" : "2021-12-03",
-                "release_date_precision" : "day",
-                "total_tracks" : 3,
-                "type" : "album",
-                "uri" : "spotify:album:0fBMkxf9P05d6QtFoZE1HA"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/39RaU9BN81x3KBo299bwXs"
-                },
-                "href" : "https://api.spotify.com/v1/artists/39RaU9BN81x3KBo299bwXs",
-                "id" : "39RaU9BN81x3KBo299bwXs",
-                "name" : "Fideles",
-                "type" : "artist",
-                "uri" : "spotify:artist:39RaU9BN81x3KBo299bwXs"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 232131,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72108412"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/2DR33CsJEcnnf5TjOy3bZP"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/2DR33CsJEcnnf5TjOy3bZP",
-              "id" : "2DR33CsJEcnnf5TjOy3bZP",
-              "is_local" : false,
-              "name" : "Tell It To My Heart - Fideles Remix",
-              "popularity" : 58,
-              "preview_url" : null,
-              "track_number" : 3,
-              "type" : "track",
-              "uri" : "spotify:track:2DR33CsJEcnnf5TjOy3bZP"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0DdDnziut7wOo6cAYWVZC5"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0DdDnziut7wOo6cAYWVZC5",
-                  "id" : "0DdDnziut7wOo6cAYWVZC5",
-                  "name" : "KREAM",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0DdDnziut7wOo6cAYWVZC5"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/0fBMkxf9P05d6QtFoZE1HA"
-                },
-                "href" : "https://api.spotify.com/v1/albums/0fBMkxf9P05d6QtFoZE1HA",
-                "id" : "0fBMkxf9P05d6QtFoZE1HA",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b2730af38d2a26ba954ca76c8001",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e020af38d2a26ba954ca76c8001",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d000048510af38d2a26ba954ca76c8001",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart (KREAM Remix)",
-                "release_date" : "2021-12-03",
-                "release_date_precision" : "day",
-                "total_tracks" : 3,
-                "type" : "album",
-                "uri" : "spotify:album:0fBMkxf9P05d6QtFoZE1HA"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0DdDnziut7wOo6cAYWVZC5"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0DdDnziut7wOo6cAYWVZC5",
-                "id" : "0DdDnziut7wOo6cAYWVZC5",
-                "name" : "KREAM",
-                "type" : "artist",
-                "uri" : "spotify:artist:0DdDnziut7wOo6cAYWVZC5"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 232620,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72108533"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/4BxYyjqSPyip5kbscidyZx"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/4BxYyjqSPyip5kbscidyZx",
-              "id" : "4BxYyjqSPyip5kbscidyZx",
-              "is_local" : false,
-              "name" : "Tell It To My Heart - KREAM Remix",
-              "popularity" : 63,
-              "preview_url" : null,
-              "track_number" : 2,
-              "type" : "track",
-              "uri" : "spotify:track:4BxYyjqSPyip5kbscidyZx"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0DdDnziut7wOo6cAYWVZC5"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0DdDnziut7wOo6cAYWVZC5",
-                  "id" : "0DdDnziut7wOo6cAYWVZC5",
-                  "name" : "KREAM",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0DdDnziut7wOo6cAYWVZC5"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/0fBMkxf9P05d6QtFoZE1HA"
-                },
-                "href" : "https://api.spotify.com/v1/albums/0fBMkxf9P05d6QtFoZE1HA",
-                "id" : "0fBMkxf9P05d6QtFoZE1HA",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b2730af38d2a26ba954ca76c8001",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e020af38d2a26ba954ca76c8001",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d000048510af38d2a26ba954ca76c8001",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart (KREAM Remix)",
-                "release_date" : "2021-12-03",
-                "release_date_precision" : "day",
-                "total_tracks" : 3,
-                "type" : "album",
-                "uri" : "spotify:album:0fBMkxf9P05d6QtFoZE1HA"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 165524,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72106958"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/5LJGWAI8PdcfW0GlQtBxFA"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/5LJGWAI8PdcfW0GlQtBxFA",
-              "id" : "5LJGWAI8PdcfW0GlQtBxFA",
-              "is_local" : false,
-              "name" : "Tell It To My Heart",
-              "popularity" : 48,
-              "preview_url" : null,
-              "track_number" : 1,
-              "type" : "track",
-              "uri" : "spotify:track:5LJGWAI8PdcfW0GlQtBxFA"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/39RaU9BN81x3KBo299bwXs"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/39RaU9BN81x3KBo299bwXs",
-                  "id" : "39RaU9BN81x3KBo299bwXs",
-                  "name" : "Fideles",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:39RaU9BN81x3KBo299bwXs"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/5ZKigzvl4RwT3sZjZa4xgW"
-                },
-                "href" : "https://api.spotify.com/v1/albums/5ZKigzvl4RwT3sZjZa4xgW",
-                "id" : "5ZKigzvl4RwT3sZjZa4xgW",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b2736d31b30eb11cbe075d4f1ce4",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e026d31b30eb11cbe075d4f1ce4",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d000048516d31b30eb11cbe075d4f1ce4",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart (Fideles Remix)",
-                "release_date" : "2021-11-26",
-                "release_date_precision" : "day",
-                "total_tracks" : 2,
-                "type" : "album",
-                "uri" : "spotify:album:5ZKigzvl4RwT3sZjZa4xgW"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 165524,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72106958"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/6pqZ2QX4bTo0N9Lvv2v2Ja"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/6pqZ2QX4bTo0N9Lvv2v2Ja",
-              "id" : "6pqZ2QX4bTo0N9Lvv2v2Ja",
-              "is_local" : false,
-              "name" : "Tell It To My Heart",
-              "popularity" : 56,
-              "preview_url" : null,
-              "track_number" : 1,
-              "type" : "track",
-              "uri" : "spotify:track:6pqZ2QX4bTo0N9Lvv2v2Ja"
-            }, {
-              "album" : {
-                "album_type" : "single",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                  "id" : "0xRXCcSX89eobfrshSVdyu",
-                  "name" : "MEDUZA",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                  "id" : "2FXC3k01G6Gw61bmprjgqS",
-                  "name" : "Hozier",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-                }, {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/39RaU9BN81x3KBo299bwXs"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/39RaU9BN81x3KBo299bwXs",
-                  "id" : "39RaU9BN81x3KBo299bwXs",
-                  "name" : "Fideles",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:39RaU9BN81x3KBo299bwXs"
-                } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/5ZKigzvl4RwT3sZjZa4xgW"
-                },
-                "href" : "https://api.spotify.com/v1/albums/5ZKigzvl4RwT3sZjZa4xgW",
-                "id" : "5ZKigzvl4RwT3sZjZa4xgW",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b2736d31b30eb11cbe075d4f1ce4",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e026d31b30eb11cbe075d4f1ce4",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d000048516d31b30eb11cbe075d4f1ce4",
-                  "width" : 64
-                } ],
-                "name" : "Tell It To My Heart (Fideles Remix)",
-                "release_date" : "2021-11-26",
-                "release_date_precision" : "day",
-                "total_tracks" : 2,
-                "type" : "album",
-                "uri" : "spotify:album:5ZKigzvl4RwT3sZjZa4xgW"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/39RaU9BN81x3KBo299bwXs"
-                },
-                "href" : "https://api.spotify.com/v1/artists/39RaU9BN81x3KBo299bwXs",
-                "id" : "39RaU9BN81x3KBo299bwXs",
-                "name" : "Fideles",
-                "type" : "artist",
-                "uri" : "spotify:artist:39RaU9BN81x3KBo299bwXs"
-              } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
-              "disc_number" : 1,
-              "duration_ms" : 232131,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72108412"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/21GCZAuEUosa18f5zwot6c"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/21GCZAuEUosa18f5zwot6c",
-              "id" : "21GCZAuEUosa18f5zwot6c",
-              "is_local" : false,
-              "name" : "Tell It To My Heart - Fideles Remix",
-              "popularity" : 56,
-              "preview_url" : null,
-              "track_number" : 2,
-              "type" : "track",
-              "uri" : "spotify:track:21GCZAuEUosa18f5zwot6c"
-            }, {
-              "album" : {
-                "album_type" : "album",
-                "artists" : [ {
-                  "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
-                  },
-                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
-                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
-                  "name" : "Various Artists",
-                  "type" : "artist",
-                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
-                } ],
-                "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/6M9AWqEt3G1geFgvUime15"
-                },
-                "href" : "https://api.spotify.com/v1/albums/6M9AWqEt3G1geFgvUime15",
-                "id" : "6M9AWqEt3G1geFgvUime15",
-                "images" : [ {
-                  "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b273e7edda208463707bc6b80408",
-                  "width" : 640
-                }, {
-                  "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e02e7edda208463707bc6b80408",
-                  "width" : 300
-                }, {
-                  "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d00004851e7edda208463707bc6b80408",
-                  "width" : 64
-                } ],
-                "name" : "Top 50 2021",
-                "release_date" : "2021-12-10",
-                "release_date_precision" : "day",
-                "total_tracks" : 50,
-                "type" : "album",
-                "uri" : "spotify:album:6M9AWqEt3G1geFgvUime15"
-              },
-              "artists" : [ {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
-                },
-                "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-                "id" : "0xRXCcSX89eobfrshSVdyu",
-                "name" : "MEDUZA",
-                "type" : "artist",
-                "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
-              }, {
-                "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
-                },
-                "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-                "id" : "2FXC3k01G6Gw61bmprjgqS",
-                "name" : "Hozier",
-                "type" : "artist",
-                "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
-              } ],
-              "available_markets" : [ "AE", "AL", "AR", "AT", "AU", "BA", "BG", "BH", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FR", "GB", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IS", "IT", "JP", "KE", "KH", "KR", "KW", "LB", "LK", "LT", "LV", "MA", "ME", "MK", "MT", "MX", "MY", "NG", "NI", "NZ", "OM", "PA", "PE", "PH", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TT", "TW", "UA", "US", "UY", "VE", "VN", "XK", "ZA" ],
-              "disc_number" : 1,
-              "duration_ms" : 165524,
-              "explicit" : false,
-              "external_ids" : {
-                "isrc" : "GBUM72106958"
-              },
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/3DRb8X8bsyiXarcZoVhRn0"
-              },
-              "href" : "https://api.spotify.com/v1/tracks/3DRb8X8bsyiXarcZoVhRn0",
-              "id" : "3DRb8X8bsyiXarcZoVhRn0",
-              "is_local" : false,
-              "name" : "Tell It To My Heart",
-              "popularity" : 3,
-              "preview_url" : null,
-              "track_number" : 20,
-              "type" : "track",
-              "uri" : "spotify:track:3DRb8X8bsyiXarcZoVhRn0"
-            } ],
-            "limit" : 20,
-            "next" : null,
-            "offset" : 0,
-            "previous" : null,
-            "total" : 8
-          }
-        }
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
-- request:
-    method: post
-    uri: https://accounts.spotify.com/api/token
-    body:
-      encoding: UTF-8
-      string: grant_type=client_credentials
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - accounts.spotify.com
-      Authorization:
-      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
-      Content-Type:
-      - application/json
-      Set-Cookie:
-      - __Host-device_id=AQC8DJMJTNSVCqXWjm5yoOlUceU8WlXNz2bD4nFEoiAonPD-bNVmvpgRXK0jWICWkD-gJumvWOk80amsheEqrYPg8vg_oxPzOds;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
-      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
-      Sp-Trace-Id:
-      - 31e53138f7a523ba
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      Server:
-      - envoy
-      Via:
-      - HTTP/2 edgeproxy, 1.1 google
-      Alt-Svc:
-      - clear
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: '{"access_token":"BQDlJQG36SpGugQVELo0Pz0u_0kWpH3PAkOYJeKlOATVHPpA39TvrQRyLZ8ttTC7_mbDcDRCek0KmcoPUmw","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
+      string: !binary |-
+        ewogICJ0cmFja3MiIDogewogICAgImhyZWYiIDogImh0dHBzOi8vYXBpLnNwb3RpZnkuY29tL3YxL3NlYXJjaD9xdWVyeT1Zb3VuZytSaWdodCtOb3crYXJ0aXN0JTNBcm9iaW4rc2NodWx6K2Rlbm5pcytsbG95ZCZ0eXBlPXRyYWNrJm9mZnNldD0wJmxpbWl0PTIwIiwKICAgICJpdGVtcyIgOiBbIHsKICAgICAgImFsYnVtIiA6IHsKICAgICAgICAiYWxidW1fdHlwZSIgOiAic2luZ2xlIiwKICAgICAgICAiYXJ0aXN0cyIgOiBbIHsKICAgICAgICAgICJleHRlcm5hbF91cmxzIiA6IHsKICAgICAgICAgICAgInNwb3RpZnkiIDogImh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS9hcnRpc3QvM3Q1eFJYenN1Wm1NRGtRemdPWDM1UyIKICAgICAgICAgIH0sCiAgICAgICAgICAiaHJlZiIgOiAiaHR0cHM6Ly9hcGkuc3BvdGlmeS5jb20vdjEvYXJ0aXN0cy8zdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIiwKICAgICAgICAgICJpZCIgOiAiM3Q1eFJYenN1Wm1NRGtRemdPWDM1UyIsCiAgICAgICAgICAibmFtZSIgOiAiUm9iaW4gU2NodWx6IiwKICAgICAgICAgICJ0eXBlIiA6ICJhcnRpc3QiLAogICAgICAgICAgInVyaSIgOiAic3BvdGlmeTphcnRpc3Q6M3Q1eFJYenN1Wm1NRGtRemdPWDM1UyIKICAgICAgICB9LCB7CiAgICAgICAgICAiZXh0ZXJuYWxfdXJscyIgOiB7CiAgICAgICAgICAgICJzcG90aWZ5IiA6ICJodHRwczovL29wZW4uc3BvdGlmeS5jb20vYXJ0aXN0LzNFT0VLNTdDVjc3RDRvdllWY21peXQiCiAgICAgICAgICB9LAogICAgICAgICAgImhyZWYiIDogImh0dHBzOi8vYXBpLnNwb3RpZnkuY29tL3YxL2FydGlzdHMvM0VPRUs1N0NWNzdENG92WVZjbWl5dCIsCiAgICAgICAgICAiaWQiIDogIjNFT0VLNTdDVjc3RDRvdllWY21peXQiLAogICAgICAgICAgIm5hbWUiIDogIkRlbm5pcyBMbG95ZCIsCiAgICAgICAgICAidHlwZSIgOiAiYXJ0aXN0IiwKICAgICAgICAgICJ1cmkiIDogInNwb3RpZnk6YXJ0aXN0OjNFT0VLNTdDVjc3RDRvdllWY21peXQiCiAgICAgICAgfSBdLAogICAgICAgICJhdmFpbGFibGVfbWFya2V0cyIgOiBbICJBRCIsICJBRSIsICJBRyIsICJBTCIsICJBTSIsICJBTyIsICJBUiIsICJBVCIsICJBVSIsICJBWiIsICJCQSIsICJCQiIsICJCRCIsICJCRSIsICJCRiIsICJCRyIsICJCSCIsICJCSSIsICJCSiIsICJCTiIsICJCTyIsICJCUiIsICJCUyIsICJCVCIsICJCVyIsICJCWSIsICJCWiIsICJDQSIsICJDRCIsICJDRyIsICJDSCIsICJDSSIsICJDTCIsICJDTSIsICJDTyIsICJDUiIsICJDViIsICJDVyIsICJDWSIsICJDWiIsICJERSIsICJESiIsICJESyIsICJETSIsICJETyIsICJEWiIsICJFQyIsICJFRSIsICJFRyIsICJFUyIsICJGSSIsICJGSiIsICJGTSIsICJGUiIsICJHQSIsICJHQiIsICJHRCIsICJHRSIsICJHSCIsICJHTSIsICJHTiIsICJHUSIsICJHUiIsICJHVCIsICJHVyIsICJHWSIsICJISyIsICJITiIsICJIUiIsICJIVCIsICJIVSIsICJJRCIsICJJRSIsICJJTCIsICJJTiIsICJJUSIsICJJUyIsICJJVCIsICJKTSIsICJKTyIsICJKUCIsICJLRSIsICJLRyIsICJLSCIsICJLSSIsICJLTSIsICJLTiIsICJLUiIsICJLVyIsICJLWiIsICJMQSIsICJMQiIsICJMQyIsICJMSSIsICJMSyIsICJMUiIsICJMUyIsICJMVCIsICJMVSIsICJMViIsICJMWSIsICJNQSIsICJNQyIsICJNRCIsICJNRSIsICJNRyIsICJNSCIsICJNSyIsICJNTCIsICJNTiIsICJNTyIsICJNUiIsICJNVCIsICJNVSIsICJNViIsICJNVyIsICJNWCIsICJNWSIsICJNWiIsICJOQSIsICJORSIsICJORyIsICJOSSIsICJOTCIsICJOTyIsICJOUCIsICJOUiIsICJOWiIsICJPTSIsICJQQSIsICJQRSIsICJQRyIsICJQSCIsICJQSyIsICJQTCIsICJQUyIsICJQVCIsICJQVyIsICJQWSIsICJRQSIsICJSTyIsICJSUyIsICJSVSIsICJSVyIsICJTQSIsICJTQiIsICJTQyIsICJTRSIsICJTRyIsICJTSSIsICJTSyIsICJTTCIsICJTTSIsICJTTiIsICJTUiIsICJTVCIsICJTViIsICJTWiIsICJURCIsICJURyIsICJUSCIsICJUSiIsICJUTCIsICJUTiIsICJUTyIsICJUUiIsICJUVCIsICJUViIsICJUVyIsICJUWiIsICJVQSIsICJVRyIsICJVUyIsICJVWSIsICJVWiIsICJWQyIsICJWRSIsICJWTiIsICJWVSIsICJXUyIsICJYSyIsICJaQSIsICJaTSIsICJaVyIgXSwKICAgICAgICAiZXh0ZXJuYWxfdXJscyIgOiB7CiAgICAgICAgICAic3BvdGlmeSIgOiAiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2FsYnVtLzMxdDlpTGltbXJpUm4zTXZpcXl3enciCiAgICAgICAgfSwKICAgICAgICAiaHJlZiIgOiAiaHR0cHM6Ly9hcGkuc3BvdGlmeS5jb20vdjEvYWxidW1zLzMxdDlpTGltbXJpUm4zTXZpcXl3enciLAogICAgICAgICJpZCIgOiAiMzF0OWlMaW1tcmlSbjNNdmlxeXd6dyIsCiAgICAgICAgImltYWdlcyIgOiBbIHsKICAgICAgICAgICJoZWlnaHQiIDogNjQwLAogICAgICAgICAgInVybCIgOiAiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzllOGMyY2QxZjNlYTcwODI1MTg3YzE0MyIsCiAgICAgICAgICAid2lkdGgiIDogNjQwCiAgICAgICAgfSwgewogICAgICAgICAgImhlaWdodCIgOiAzMDAsCiAgICAgICAgICAidXJsIiA6ICJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDAxZTAyOWU4YzJjZDFmM2VhNzA4MjUxODdjMTQzIiwKICAgICAgICAgICJ3aWR0aCIgOiAzMDAKICAgICAgICB9LCB7CiAgICAgICAgICAiaGVpZ2h0IiA6IDY0LAogICAgICAgICAgInVybCIgOiAiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwNDg1MTllOGMyY2QxZjNlYTcwODI1MTg3YzE0MyIsCiAgICAgICAgICAid2lkdGgiIDogNjQKICAgICAgICB9IF0sCiAgICAgICAgIm5hbWUiIDogIllvdW5nIFJpZ2h0IE5vdyIsCiAgICAgICAgInJlbGVhc2VfZGF0ZSIgOiAiMjAyMS0xMS0xMiIsCiAgICAgICAgInJlbGVhc2VfZGF0ZV9wcmVjaXNpb24iIDogImRheSIsCiAgICAgICAgInRvdGFsX3RyYWNrcyIgOiAxLAogICAgICAgICJ0eXBlIiA6ICJhbGJ1bSIsCiAgICAgICAgInVyaSIgOiAic3BvdGlmeTphbGJ1bTozMXQ5aUxpbW1yaVJuM012aXF5d3p3IgogICAgICB9LAogICAgICAiYXJ0aXN0cyIgOiBbIHsKICAgICAgICAiZXh0ZXJuYWxfdXJscyIgOiB7CiAgICAgICAgICAic3BvdGlmeSIgOiAiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2FydGlzdC8zdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIgogICAgICAgIH0sCiAgICAgICAgImhyZWYiIDogImh0dHBzOi8vYXBpLnNwb3RpZnkuY29tL3YxL2FydGlzdHMvM3Q1eFJYenN1Wm1NRGtRemdPWDM1UyIsCiAgICAgICAgImlkIiA6ICIzdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIiwKICAgICAgICAibmFtZSIgOiAiUm9iaW4gU2NodWx6IiwKICAgICAgICAidHlwZSIgOiAiYXJ0aXN0IiwKICAgICAgICAidXJpIiA6ICJzcG90aWZ5OmFydGlzdDozdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIgogICAgICB9LCB7CiAgICAgICAgImV4dGVybmFsX3VybHMiIDogewogICAgICAgICAgInNwb3RpZnkiIDogImh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS9hcnRpc3QvM0VPRUs1N0NWNzdENG92WVZjbWl5dCIKICAgICAgICB9LAogICAgICAgICJocmVmIiA6ICJodHRwczovL2FwaS5zcG90aWZ5LmNvbS92MS9hcnRpc3RzLzNFT0VLNTdDVjc3RDRvdllWY21peXQiLAogICAgICAgICJpZCIgOiAiM0VPRUs1N0NWNzdENG92WVZjbWl5dCIsCiAgICAgICAgIm5hbWUiIDogIkRlbm5pcyBMbG95ZCIsCiAgICAgICAgInR5cGUiIDogImFydGlzdCIsCiAgICAgICAgInVyaSIgOiAic3BvdGlmeTphcnRpc3Q6M0VPRUs1N0NWNzdENG92WVZjbWl5dCIKICAgICAgfSBdLAogICAgICAiYXZhaWxhYmxlX21hcmtldHMiIDogWyAiQUQiLCAiQUUiLCAiQUciLCAiQUwiLCAiQU0iLCAiQU8iLCAiQVIiLCAiQVQiLCAiQVUiLCAiQVoiLCAiQkEiLCAiQkIiLCAiQkQiLCAiQkUiLCAiQkYiLCAiQkciLCAiQkgiLCAiQkkiLCAiQkoiLCAiQk4iLCAiQk8iLCAiQlIiLCAiQlMiLCAiQlQiLCAiQlciLCAiQlkiLCAiQloiLCAiQ0EiLCAiQ0QiLCAiQ0ciLCAiQ0giLCAiQ0kiLCAiQ0wiLCAiQ00iLCAiQ08iLCAiQ1IiLCAiQ1YiLCAiQ1ciLCAiQ1kiLCAiQ1oiLCAiREUiLCAiREoiLCAiREsiLCAiRE0iLCAiRE8iLCAiRFoiLCAiRUMiLCAiRUUiLCAiRUciLCAiRVMiLCAiRkkiLCAiRkoiLCAiRk0iLCAiRlIiLCAiR0EiLCAiR0IiLCAiR0QiLCAiR0UiLCAiR0giLCAiR00iLCAiR04iLCAiR1EiLCAiR1IiLCAiR1QiLCAiR1ciLCAiR1kiLCAiSEsiLCAiSE4iLCAiSFIiLCAiSFQiLCAiSFUiLCAiSUQiLCAiSUUiLCAiSUwiLCAiSU4iLCAiSVEiLCAiSVMiLCAiSVQiLCAiSk0iLCAiSk8iLCAiSlAiLCAiS0UiLCAiS0ciLCAiS0giLCAiS0kiLCAiS00iLCAiS04iLCAiS1IiLCAiS1ciLCAiS1oiLCAiTEEiLCAiTEIiLCAiTEMiLCAiTEkiLCAiTEsiLCAiTFIiLCAiTFMiLCAiTFQiLCAiTFUiLCAiTFYiLCAiTFkiLCAiTUEiLCAiTUMiLCAiTUQiLCAiTUUiLCAiTUciLCAiTUgiLCAiTUsiLCAiTUwiLCAiTU4iLCAiTU8iLCAiTVIiLCAiTVQiLCAiTVUiLCAiTVYiLCAiTVciLCAiTVgiLCAiTVkiLCAiTVoiLCAiTkEiLCAiTkUiLCAiTkciLCAiTkkiLCAiTkwiLCAiTk8iLCAiTlAiLCAiTlIiLCAiTloiLCAiT00iLCAiUEEiLCAiUEUiLCAiUEciLCAiUEgiLCAiUEsiLCAiUEwiLCAiUFMiLCAiUFQiLCAiUFciLCAiUFkiLCAiUUEiLCAiUk8iLCAiUlMiLCAiUlUiLCAiUlciLCAiU0EiLCAiU0IiLCAiU0MiLCAiU0UiLCAiU0ciLCAiU0kiLCAiU0siLCAiU0wiLCAiU00iLCAiU04iLCAiU1IiLCAiU1QiLCAiU1YiLCAiU1oiLCAiVEQiLCAiVEciLCAiVEgiLCAiVEoiLCAiVEwiLCAiVE4iLCAiVE8iLCAiVFIiLCAiVFQiLCAiVFYiLCAiVFciLCAiVFoiLCAiVUEiLCAiVUciLCAiVVMiLCAiVVkiLCAiVVoiLCAiVkMiLCAiVkUiLCAiVk4iLCAiVlUiLCAiV1MiLCAiWEsiLCAiWkEiLCAiWk0iLCAiWlciIF0sCiAgICAgICJkaXNjX251bWJlciIgOiAxLAogICAgICAiZHVyYXRpb25fbXMiIDogMTg2MTQwLAogICAgICAiZXhwbGljaXQiIDogZmFsc2UsCiAgICAgICJleHRlcm5hbF9pZHMiIDogewogICAgICAgICJpc3JjIiA6ICJERUE2MjIxMDExOTMiCiAgICAgIH0sCiAgICAgICJleHRlcm5hbF91cmxzIiA6IHsKICAgICAgICAic3BvdGlmeSIgOiAiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzBKcEVNelRIYnQyekJJWHJudHJYekciCiAgICAgIH0sCiAgICAgICJocmVmIiA6ICJodHRwczovL2FwaS5zcG90aWZ5LmNvbS92MS90cmFja3MvMEpwRU16VEhidDJ6QklYcm50clh6RyIsCiAgICAgICJpZCIgOiAiMEpwRU16VEhidDJ6QklYcm50clh6RyIsCiAgICAgICJpc19sb2NhbCIgOiBmYWxzZSwKICAgICAgIm5hbWUiIDogIllvdW5nIFJpZ2h0IE5vdyIsCiAgICAgICJwb3B1bGFyaXR5IiA6IDc5LAogICAgICAicHJldmlld191cmwiIDogImh0dHBzOi8vcC5zY2RuLmNvL21wMy1wcmV2aWV3LzQxZjQwZjVhODU4ZGEyMGJmYjAzNGM1Mjk1MjY4MzZkNjNhMDBhOWE/Y2lkPWZmNzBkZjY1MGVlMTRhMWZhZDRhZWQzYjUzM2U4ZWE0IiwKICAgICAgInRyYWNrX251bWJlciIgOiAxLAogICAgICAidHlwZSIgOiAidHJhY2siLAogICAgICAidXJpIiA6ICJzcG90aWZ5OnRyYWNrOjBKcEVNelRIYnQyekJJWHJudHJYekciCiAgICB9LCB7CiAgICAgICJhbGJ1bSIgOiB7CiAgICAgICAgImFsYnVtX3R5cGUiIDogImFsYnVtIiwKICAgICAgICAiYXJ0aXN0cyIgOiBbIHsKICAgICAgICAgICJleHRlcm5hbF91cmxzIiA6IHsKICAgICAgICAgICAgInNwb3RpZnkiIDogImh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS9hcnRpc3QvMEx5ZlFXSlQ2blhhZkxQWnF4ZTlPZiIKICAgICAgICAgIH0sCiAgICAgICAgICAiaHJlZiIgOiAiaHR0cHM6Ly9hcGkuc3BvdGlmeS5jb20vdjEvYXJ0aXN0cy8wTHlmUVdKVDZuWGFmTFBacXhlOU9mIiwKICAgICAgICAgICJpZCIgOiAiMEx5ZlFXSlQ2blhhZkxQWnF4ZTlPZiIsCiAgICAgICAgICAibmFtZSIgOiAiVmFyaW91cyBBcnRpc3RzIiwKICAgICAgICAgICJ0eXBlIiA6ICJhcnRpc3QiLAogICAgICAgICAgInVyaSIgOiAic3BvdGlmeTphcnRpc3Q6MEx5ZlFXSlQ2blhhZkxQWnF4ZTlPZiIKICAgICAgICB9IF0sCiAgICAgICAgImF2YWlsYWJsZV9tYXJrZXRzIiA6IFsgIkFEIiwgIkFFIiwgIkFHIiwgIkFMIiwgIkFNIiwgIkFPIiwgIkFSIiwgIkFUIiwgIkFVIiwgIkFaIiwgIkJBIiwgIkJCIiwgIkJEIiwgIkJFIiwgIkJGIiwgIkJHIiwgIkJIIiwgIkJJIiwgIkJKIiwgIkJOIiwgIkJPIiwgIkJSIiwgIkJTIiwgIkJUIiwgIkJXIiwgIkJZIiwgIkJaIiwgIkNBIiwgIkNEIiwgIkNHIiwgIkNIIiwgIkNJIiwgIkNMIiwgIkNNIiwgIkNPIiwgIkNSIiwgIkNWIiwgIkNXIiwgIkNZIiwgIkNaIiwgIkRFIiwgIkRKIiwgIkRLIiwgIkRNIiwgIkRPIiwgIkRaIiwgIkVDIiwgIkVFIiwgIkVHIiwgIkVTIiwgIkZJIiwgIkZKIiwgIkZNIiwgIkZSIiwgIkdBIiwgIkdCIiwgIkdEIiwgIkdFIiwgIkdIIiwgIkdNIiwgIkdOIiwgIkdRIiwgIkdSIiwgIkdUIiwgIkdXIiwgIkdZIiwgIkhLIiwgIkhOIiwgIkhSIiwgIkhUIiwgIkhVIiwgIklEIiwgIklFIiwgIklMIiwgIklOIiwgIklRIiwgIklTIiwgIklUIiwgIkpNIiwgIkpPIiwgIkpQIiwgIktFIiwgIktHIiwgIktIIiwgIktJIiwgIktNIiwgIktOIiwgIktSIiwgIktXIiwgIktaIiwgIkxBIiwgIkxCIiwgIkxDIiwgIkxJIiwgIkxLIiwgIkxSIiwgIkxTIiwgIkxUIiwgIkxVIiwgIkxWIiwgIkxZIiwgIk1BIiwgIk1DIiwgIk1EIiwgIk1FIiwgIk1HIiwgIk1IIiwgIk1LIiwgIk1MIiwgIk1OIiwgIk1PIiwgIk1SIiwgIk1UIiwgIk1VIiwgIk1WIiwgIk1XIiwgIk1YIiwgIk1ZIiwgIk1aIiwgIk5BIiwgIk5FIiwgIk5HIiwgIk5JIiwgIk5MIiwgIk5PIiwgIk5QIiwgIk5SIiwgIk5aIiwgIk9NIiwgIlBBIiwgIlBFIiwgIlBHIiwgIlBIIiwgIlBLIiwgIlBMIiwgIlBTIiwgIlBUIiwgIlBXIiwgIlBZIiwgIlFBIiwgIlJPIiwgIlJTIiwgIlJVIiwgIlJXIiwgIlNBIiwgIlNCIiwgIlNDIiwgIlNFIiwgIlNHIiwgIlNJIiwgIlNLIiwgIlNMIiwgIlNNIiwgIlNOIiwgIlNSIiwgIlNUIiwgIlNWIiwgIlNaIiwgIlREIiwgIlRHIiwgIlRIIiwgIlRKIiwgIlRMIiwgIlROIiwgIlRPIiwgIlRSIiwgIlRUIiwgIlRWIiwgIlRXIiwgIlRaIiwgIlVBIiwgIlVHIiwgIlVTIiwgIlVZIiwgIlVaIiwgIlZDIiwgIlZFIiwgIlZOIiwgIlZVIiwgIldTIiwgIlhLIiwgIlpBIiwgIlpNIiwgIlpXIiBdLAogICAgICAgICJleHRlcm5hbF91cmxzIiA6IHsKICAgICAgICAgICJzcG90aWZ5IiA6ICJodHRwczovL29wZW4uc3BvdGlmeS5jb20vYWxidW0vMjd2RGo2MmlnUHlFcU1Ddlh2T3g1UiIKICAgICAgICB9LAogICAgICAgICJocmVmIiA6ICJodHRwczovL2FwaS5zcG90aWZ5LmNvbS92MS9hbGJ1bXMvMjd2RGo2MmlnUHlFcU1Ddlh2T3g1UiIsCiAgICAgICAgImlkIiA6ICIyN3ZEajYyaWdQeUVxTUN2WHZPeDVSIiwKICAgICAgICAiaW1hZ2VzIiA6IFsgewogICAgICAgICAgImhlaWdodCIgOiA2NDAsCiAgICAgICAgICAidXJsIiA6ICJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczZTcwMmRiM2NhNDQwNDY4ZDM2OGEyNmU5IiwKICAgICAgICAgICJ3aWR0aCIgOiA2NDAKICAgICAgICB9LCB7CiAgICAgICAgICAiaGVpZ2h0IiA6IDMwMCwKICAgICAgICAgICJ1cmwiIDogImh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMDFlMDJlNzAyZGIzY2E0NDA0NjhkMzY4YTI2ZTkiLAogICAgICAgICAgIndpZHRoIiA6IDMwMAogICAgICAgIH0sIHsKICAgICAgICAgICJoZWlnaHQiIDogNjQsCiAgICAgICAgICAidXJsIiA6ICJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDA0ODUxZTcwMmRiM2NhNDQwNDY4ZDM2OGEyNmU5IiwKICAgICAgICAgICJ3aWR0aCIgOiA2NAogICAgICAgIH0gXSwKICAgICAgICAibmFtZSIgOiAiTmV3IFllYXLigJlzIEV2ZSBTb25ncyAtIE5ZRSBQYXJ0eSAyMDIyIiwKICAgICAgICAicmVsZWFzZV9kYXRlIiA6ICIyMDIxLTEyLTE3IiwKICAgICAgICAicmVsZWFzZV9kYXRlX3ByZWNpc2lvbiIgOiAiZGF5IiwKICAgICAgICAidG90YWxfdHJhY2tzIiA6IDMyLAogICAgICAgICJ0eXBlIiA6ICJhbGJ1bSIsCiAgICAgICAgInVyaSIgOiAic3BvdGlmeTphbGJ1bToyN3ZEajYyaWdQeUVxTUN2WHZPeDVSIgogICAgICB9LAogICAgICAiYXJ0aXN0cyIgOiBbIHsKICAgICAgICAiZXh0ZXJuYWxfdXJscyIgOiB7CiAgICAgICAgICAic3BvdGlmeSIgOiAiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL2FydGlzdC8zdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIgogICAgICAgIH0sCiAgICAgICAgImhyZWYiIDogImh0dHBzOi8vYXBpLnNwb3RpZnkuY29tL3YxL2FydGlzdHMvM3Q1eFJYenN1Wm1NRGtRemdPWDM1UyIsCiAgICAgICAgImlkIiA6ICIzdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIiwKICAgICAgICAibmFtZSIgOiAiUm9iaW4gU2NodWx6IiwKICAgICAgICAidHlwZSIgOiAiYXJ0aXN0IiwKICAgICAgICAidXJpIiA6ICJzcG90aWZ5OmFydGlzdDozdDV4Ulh6c3VabU1Ea1F6Z09YMzVTIgogICAgICB9LCB7CiAgICAgICAgImV4dGVybmFsX3VybHMiIDogewogICAgICAgICAgInNwb3RpZnkiIDogImh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS9hcnRpc3QvM0VPRUs1N0NWNzdENG92WVZjbWl5dCIKICAgICAgICB9LAogICAgICAgICJocmVmIiA6ICJodHRwczovL2FwaS5zcG90aWZ5LmNvbS92MS9hcnRpc3RzLzNFT0VLNTdDVjc3RDRvdllWY21peXQiLAogICAgICAgICJpZCIgOiAiM0VPRUs1N0NWNzdENG92WVZjbWl5dCIsCiAgICAgICAgIm5hbWUiIDogIkRlbm5pcyBMbG95ZCIsCiAgICAgICAgInR5cGUiIDogImFydGlzdCIsCiAgICAgICAgInVyaSIgOiAic3BvdGlmeTphcnRpc3Q6M0VPRUs1N0NWNzdENG92WVZjbWl5dCIKICAgICAgfSBdLAogICAgICAiYXZhaWxhYmxlX21hcmtldHMiIDogWyAiQUQiLCAiQUUiLCAiQUciLCAiQUwiLCAiQU0iLCAiQU8iLCAiQVIiLCAiQVQiLCAiQVUiLCAiQVoiLCAiQkEiLCAiQkIiLCAiQkQiLCAiQkUiLCAiQkYiLCAiQkciLCAiQkgiLCAiQkkiLCAiQkoiLCAiQk4iLCAiQk8iLCAiQlIiLCAiQlMiLCAiQlQiLCAiQlciLCAiQlkiLCAiQloiLCAiQ0EiLCAiQ0QiLCAiQ0ciLCAiQ0giLCAiQ0kiLCAiQ0wiLCAiQ00iLCAiQ08iLCAiQ1IiLCAiQ1YiLCAiQ1ciLCAiQ1kiLCAiQ1oiLCAiREUiLCAiREoiLCAiREsiLCAiRE0iLCAiRE8iLCAiRFoiLCAiRUMiLCAiRUUiLCAiRUciLCAiRVMiLCAiRkkiLCAiRkoiLCAiRk0iLCAiRlIiLCAiR0EiLCAiR0IiLCAiR0QiLCAiR0UiLCAiR0giLCAiR00iLCAiR04iLCAiR1EiLCAiR1IiLCAiR1QiLCAiR1ciLCAiR1kiLCAiSEsiLCAiSE4iLCAiSFIiLCAiSFQiLCAiSFUiLCAiSUQiLCAiSUUiLCAiSUwiLCAiSU4iLCAiSVEiLCAiSVMiLCAiSVQiLCAiSk0iLCAiSk8iLCAiSlAiLCAiS0UiLCAiS0ciLCAiS0giLCAiS0kiLCAiS00iLCAiS04iLCAiS1IiLCAiS1ciLCAiS1oiLCAiTEEiLCAiTEIiLCAiTEMiLCAiTEkiLCAiTEsiLCAiTFIiLCAiTFMiLCAiTFQiLCAiTFUiLCAiTFYiLCAiTFkiLCAiTUEiLCAiTUMiLCAiTUQiLCAiTUUiLCAiTUciLCAiTUgiLCAiTUsiLCAiTUwiLCAiTU4iLCAiTU8iLCAiTVIiLCAiTVQiLCAiTVUiLCAiTVYiLCAiTVciLCAiTVgiLCAiTVkiLCAiTVoiLCAiTkEiLCAiTkUiLCAiTkciLCAiTkkiLCAiTkwiLCAiTk8iLCAiTlAiLCAiTlIiLCAiTloiLCAiT00iLCAiUEEiLCAiUEUiLCAiUEciLCAiUEgiLCAiUEsiLCAiUEwiLCAiUFMiLCAiUFQiLCAiUFciLCAiUFkiLCAiUUEiLCAiUk8iLCAiUlMiLCAiUlUiLCAiUlciLCAiU0EiLCAiU0IiLCAiU0MiLCAiU0UiLCAiU0ciLCAiU0kiLCAiU0siLCAiU0wiLCAiU00iLCAiU04iLCAiU1IiLCAiU1QiLCAiU1YiLCAiU1oiLCAiVEQiLCAiVEciLCAiVEgiLCAiVEoiLCAiVEwiLCAiVE4iLCAiVE8iLCAiVFIiLCAiVFQiLCAiVFYiLCAiVFciLCAiVFoiLCAiVUEiLCAiVUciLCAiVVMiLCAiVVkiLCAiVVoiLCAiVkMiLCAiVkUiLCAiVk4iLCAiVlUiLCAiV1MiLCAiWEsiLCAiWkEiLCAiWk0iLCAiWlciIF0sCiAgICAgICJkaXNjX251bWJlciIgOiAxLAogICAgICAiZHVyYXRpb25fbXMiIDogMTg2MTQwLAogICAgICAiZXhwbGljaXQiIDogZmFsc2UsCiAgICAgICJleHRlcm5hbF9pZHMiIDogewogICAgICAgICJpc3JjIiA6ICJERUE2MjIxMDExOTMiCiAgICAgIH0sCiAgICAgICJleHRlcm5hbF91cmxzIiA6IHsKICAgICAgICAic3BvdGlmeSIgOiAiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzRJUEtDeVBuZDgzUnl2Qk9uYTdrTTYiCiAgICAgIH0sCiAgICAgICJocmVmIiA6ICJodHRwczovL2FwaS5zcG90aWZ5LmNvbS92MS90cmFja3MvNElQS0N5UG5kODNSeXZCT25hN2tNNiIsCiAgICAgICJpZCIgOiAiNElQS0N5UG5kODNSeXZCT25hN2tNNiIsCiAgICAgICJpc19sb2NhbCIgOiBmYWxzZSwKICAgICAgIm5hbWUiIDogIllvdW5nIFJpZ2h0IE5vdyIsCiAgICAgICJwb3B1bGFyaXR5IiA6IDcsCiAgICAgICJwcmV2aWV3X3VybCIgOiAiaHR0cHM6Ly9wLnNjZG4uY28vbXAzLXByZXZpZXcvNDFmNDBmNWE4NThkYTIwYmZiMDM0YzUyOTUyNjgzNmQ2M2EwMGE5YT9jaWQ9ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQiLAogICAgICAidHJhY2tfbnVtYmVyIiA6IDE5LAogICAgICAidHlwZSIgOiAidHJhY2siLAogICAgICAidXJpIiA6ICJzcG90aWZ5OnRyYWNrOjRJUEtDeVBuZDgzUnl2Qk9uYTdrTTYiCiAgICB9IF0sCiAgICAibGltaXQiIDogMjAsCiAgICAibmV4dCIgOiBudWxsLAogICAgIm9mZnNldCIgOiAwLAogICAgInByZXZpb3VzIiA6IG51bGwsCiAgICAidG90YWwiIDogMgogIH0KfQ==
+  recorded_at: Fri, 24 Dec 2021 08:16:45 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu
+    uri: https://api.spotify.com/v1/artists/3t5xRXzsuZmMDkQzgOX35S
     body:
       encoding: US-ASCII
       string: ''
@@ -2213,7 +454,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQDlJQG36SpGugQVELo0Pz0u_0kWpH3PAkOYJeKlOATVHPpA39TvrQRyLZ8ttTC7_mbDcDRCek0KmcoPUmw
+      - Bearer BQBM-GA4gsN7igR3sZP9aVuRXNf5Og_rSd734Lb9j3tjCnX1fD_yOB2cPRxKKEyX37GpOALgxM7dvZfJRNM
       Content-Type:
       - application/json
   response:
@@ -2224,7 +465,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=72001
+      - public, max-age=73264
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -2243,7 +484,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
+      - Fri, 24 Dec 2021 08:16:45 GMT
       Server:
       - envoy
       Via:
@@ -2257,88 +498,37 @@ http_interactions:
       string: |-
         {
           "external_urls" : {
-            "spotify" : "https://open.spotify.com/artist/0xRXCcSX89eobfrshSVdyu"
+            "spotify" : "https://open.spotify.com/artist/3t5xRXzsuZmMDkQzgOX35S"
           },
           "followers" : {
             "href" : null,
-            "total" : 477335
+            "total" : 2853627
           },
-          "genres" : [ "edm", "pop", "pop dance", "pop house", "tropical house" ],
-          "href" : "https://api.spotify.com/v1/artists/0xRXCcSX89eobfrshSVdyu",
-          "id" : "0xRXCcSX89eobfrshSVdyu",
+          "genres" : [ "dance pop", "deep euro house", "deep house", "edm", "german dance", "pop", "pop dance", "tropical house" ],
+          "href" : "https://api.spotify.com/v1/artists/3t5xRXzsuZmMDkQzgOX35S",
+          "id" : "3t5xRXzsuZmMDkQzgOX35S",
           "images" : [ {
             "height" : 640,
-            "url" : "https://i.scdn.co/image/ab6761610000e5eb0250d43f727734741aad6423",
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb7886f753d19bacd490d5acca",
             "width" : 640
           }, {
             "height" : 320,
-            "url" : "https://i.scdn.co/image/ab676161000051740250d43f727734741aad6423",
+            "url" : "https://i.scdn.co/image/ab676161000051747886f753d19bacd490d5acca",
             "width" : 320
           }, {
             "height" : 160,
-            "url" : "https://i.scdn.co/image/ab6761610000f1780250d43f727734741aad6423",
+            "url" : "https://i.scdn.co/image/ab6761610000f1787886f753d19bacd490d5acca",
             "width" : 160
           } ],
-          "name" : "MEDUZA",
-          "popularity" : 79,
+          "name" : "Robin Schulz",
+          "popularity" : 81,
           "type" : "artist",
-          "uri" : "spotify:artist:0xRXCcSX89eobfrshSVdyu"
+          "uri" : "spotify:artist:3t5xRXzsuZmMDkQzgOX35S"
         }
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
-- request:
-    method: post
-    uri: https://accounts.spotify.com/api/token
-    body:
-      encoding: UTF-8
-      string: grant_type=client_credentials
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - accounts.spotify.com
-      Authorization:
-      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
-      Content-Type:
-      - application/json
-      Set-Cookie:
-      - __Host-device_id=AQCBEaDnyTwIccQ-hJe0SXnuUFyb6YLntK2Z75WDykhO0KRh1JpKqHt6T4yAazlNrQC7FzG_81_Mvgyf7VZlGOUTzdzqS3tgzY0;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
-      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
-      Sp-Trace-Id:
-      - 460ce9527b82b05b
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      Server:
-      - envoy
-      Via:
-      - HTTP/2 edgeproxy, 1.1 google
-      Alt-Svc:
-      - clear
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: '{"access_token":"BQA9EAWp7Xl8BEUnT_TM4WvoooO0hGQMGTbRZTYa7hezKRqKQ7DPpvkoix9o3RLkq-PV17PW7Hx_V8rHJ1k","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
+  recorded_at: Fri, 24 Dec 2021 08:16:45 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS
+    uri: https://api.spotify.com/v1/artists/3EOEK57CV77D4ovYVcmiyt
     body:
       encoding: US-ASCII
       string: ''
@@ -2352,7 +542,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQA9EAWp7Xl8BEUnT_TM4WvoooO0hGQMGTbRZTYa7hezKRqKQ7DPpvkoix9o3RLkq-PV17PW7Hx_V8rHJ1k
+      - Bearer BQBM-GA4gsN7igR3sZP9aVuRXNf5Og_rSd734Lb9j3tjCnX1fD_yOB2cPRxKKEyX37GpOALgxM7dvZfJRNM
       Content-Type:
       - application/json
   response:
@@ -2363,7 +553,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=77118
+      - public, max-age=79878
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -2382,7 +572,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 19 Dec 2021 15:28:04 GMT
+      - Fri, 24 Dec 2021 08:16:45 GMT
       Server:
       - envoy
       Via:
@@ -2396,32 +586,32 @@ http_interactions:
       string: |-
         {
           "external_urls" : {
-            "spotify" : "https://open.spotify.com/artist/2FXC3k01G6Gw61bmprjgqS"
+            "spotify" : "https://open.spotify.com/artist/3EOEK57CV77D4ovYVcmiyt"
           },
           "followers" : {
             "href" : null,
-            "total" : 4972441
+            "total" : 585532
           },
-          "genres" : [ "irish singer-songwriter", "pop" ],
-          "href" : "https://api.spotify.com/v1/artists/2FXC3k01G6Gw61bmprjgqS",
-          "id" : "2FXC3k01G6Gw61bmprjgqS",
+          "genres" : [ "israeli pop" ],
+          "href" : "https://api.spotify.com/v1/artists/3EOEK57CV77D4ovYVcmiyt",
+          "id" : "3EOEK57CV77D4ovYVcmiyt",
           "images" : [ {
             "height" : 640,
-            "url" : "https://i.scdn.co/image/ab6761610000e5eb9ba4d95b74bacff4d5747f61",
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb03a549a526f43c676492b910",
             "width" : 640
           }, {
             "height" : 320,
-            "url" : "https://i.scdn.co/image/ab676161000051749ba4d95b74bacff4d5747f61",
+            "url" : "https://i.scdn.co/image/ab6761610000517403a549a526f43c676492b910",
             "width" : 320
           }, {
             "height" : 160,
-            "url" : "https://i.scdn.co/image/ab6761610000f1789ba4d95b74bacff4d5747f61",
+            "url" : "https://i.scdn.co/image/ab6761610000f17803a549a526f43c676492b910",
             "width" : 160
           } ],
-          "name" : "Hozier",
-          "popularity" : 82,
+          "name" : "Dennis Lloyd",
+          "popularity" : 72,
           "type" : "artist",
-          "uri" : "spotify:artist:2FXC3k01G6Gw61bmprjgqS"
+          "uri" : "spotify:artist:3EOEK57CV77D4ovYVcmiyt"
         }
-  recorded_at: Sun, 19 Dec 2021 15:28:04 GMT
+  recorded_at: Fri, 24 Dec 2021 08:16:45 GMT
 recorded_with: VCR 6.0.0
