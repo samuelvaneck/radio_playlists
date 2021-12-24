@@ -29,7 +29,7 @@
             </span>
           </div>
           <div class='grow'>
-            <span class=''>{{ counter }} x</span>
+            <span class='playlist-badge'>{{ counter }} x</span>
           </div>
         </div>
         <div class='flex flex-col my-2'>

@@ -35,7 +35,7 @@
               <LoadingBar />
             </div>
             <div v-else-if='!!radioStation' class='ml-auto'>
-              <span class='badge badge-secondary'>{{ radioStation.data.attributes.name }}</span>
+              <span class='playlist-badge'>{{ radioStation.data.attributes.name }}</span>
             </div>
           </div>
         </div>

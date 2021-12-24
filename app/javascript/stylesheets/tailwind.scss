@@ -50,5 +50,18 @@
   .spotify-btn {
     @apply w-9 h-9 cursor-pointer rounded-full bg-white hover:bg-gray-800 p-1;
   }
+
+  .text-tiny {
+    font-size: 75%;
+    font-weight: 700;
+  }
+
+  .bg-playlist-btn {
+    background-color: #457b9d;
+  }
+
+  .playlist-badge {
+    @apply bg-playlist-btn px-2 py-1 text-tiny leading-3 rounded-lg text-white whitespace-nowrap;
+  }
 }
 
