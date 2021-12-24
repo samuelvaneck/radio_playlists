@@ -116,7 +116,6 @@ RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
     end
   end
 
-
   xdescribe '#scraper' do
     let(:sublime_fm) { FactoryBot.create(:sublime_fm) }
     let(:groot_nieuws_radio) { FactoryBot.create(:groot_nieuws_radio) }
