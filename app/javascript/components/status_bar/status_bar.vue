@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-column">
-    <h3>Status</h3>
+    <div><span class='text-xl'>Status</span></div>
     <div>
       <StatusGroup v-bind:items='items' />
     </div>

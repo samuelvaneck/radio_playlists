@@ -2,7 +2,7 @@
   <div class='flex flex-column'>
     <div class='flex flex-row justify-between'>
       <div class='grow'>
-        <span class="text-3xl">Top songs</span>
+        <span class="text-xl">Top songs</span>
       </div>
       <div class='grow'>
         <SearchBar @search='onSearch' @filter='onRadioStationSelect' @filterTime='onChangeFilterTime' />
