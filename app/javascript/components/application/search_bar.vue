@@ -11,32 +11,32 @@
         </div>
       </div>
       <div>
-        <select class='form-control' v-on:change='onChangeRadioStation'>
+        <select class='border border-solid hover:border-dotted mx-1 py-2 px-3 rounded-full shadow-md' v-on:change='onChangeRadioStation'>
           <option value=''>All station</option>
           <option v-for='radioStation in radioStations' :value='radioStation.attributes.id' v-bind:key='radioStation.id'>{{ radioStation.attributes.name }}</option>
         </select>
       </div>
       <div class='ml-1'>
-        <input class='form-control' v-on:keyup='onKeyUpSearch' placeholder='Search...' />
+        <input class='border border-solid hover:border-dotted mx-1 py-2 px-3 rounded-full shadow-md' v-on:keyup='onKeyUpSearch' placeholder='Search...' />
       </div>
     </div>
     <transition name='fade'>
       <div v-if='showTimeFilters' class='time-filters d-flex flex-row justify-content-end mt-1'>
         <div>
           Start date
-          <input type='datetime-local' 
-                 name='start_date' 
-                 class='form-control' 
-                 :value='startDateFilter' 
+          <input type='datetime-local'
+                 name='start_date'
+                 class='form-control'
+                 :value='startDateFilter'
                  v-on:change='onChangeStartTime'
                  :max='setMaxTimeFilter' />
         </div>
         <div>
           End date
-          <input type='datetime-local' 
-                 name='end_date' 
-                 class='form-control ml-1' 
-                 :value='endDateFilter' 
+          <input type='datetime-local'
+                 name='end_date'
+                 class='form-control ml-1'
+                 :value='endDateFilter'
                  v-on:change='onChangeEndtTime'
                  :max='setMaxTimeFilter' />
         </div>
