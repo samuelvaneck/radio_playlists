@@ -63,5 +63,13 @@
   .playlist-badge {
     @apply bg-playlist-btn px-2 py-1 text-tiny leading-3 rounded-lg text-white whitespace-nowrap;
   }
+
+  .status-button-ok {
+    @apply bg-green-500 hover:bg-green-700 text-white text-center py-2 px-4 rounded-full mx-1;
+  }
+
+  .status-button-warning {
+    @apply bg-red-500 hover:bg-red-700 text-white text-center py-2 px-4 rounded-full mx-1;
+  }
 }
 
