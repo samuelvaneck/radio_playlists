@@ -69,7 +69,7 @@
   }
 
   .status-button-warning {
-    @apply bg-red-500 hover:bg-red-700 text-white text-center py-2 px-4 rounded-tr-xl rounded-bl-xl mx-1 shadow-lg whitespace-nowrap;
+    @apply bg-red-500 hover:bg-red-700 text-white text-center py-2 px-4 rounded-tr-xl rounded-bl-xl mr-1 shadow-lg whitespace-nowrap;
   }
 }
 

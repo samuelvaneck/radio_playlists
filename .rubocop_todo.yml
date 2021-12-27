@@ -303,6 +303,7 @@ Style/ClassAndModuleChildren:
 Style/CommentAnnotation:
   Exclude:
     - 'Guardfile'
+    - 'spec/models/radiostation_spec.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
