@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_27_150050) do
+ActiveRecord::Schema.define(version: 2021_12_29_124749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(version: 2021_02_27_150050) do
     t.bigint "artist_id", null: false
     t.index ["artist_id"], name: "index_artists_songs_on_artist_id"
     t.index ["song_id"], name: "index_artists_songs_on_song_id"
+  end
+
+  create_table "charts", force: :cascade do |t|
+    t.datetime "date"
+    t.jsonb "chart", default: []
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "generalplaylists", force: :cascade do |t|

@@ -116,7 +116,7 @@ RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  xdescribe '#scraper' do
+  describe '#scraper' do
     let(:sublime_fm) { FactoryBot.create(:sublime_fm) }
     let(:groot_nieuws_radio) { FactoryBot.create(:groot_nieuws_radio) }
 
@@ -285,7 +285,7 @@ RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  # TODO: enable once sublime FM website is up and running
+  # TODO: Fix tests
   xdescribe '#sublime_fm_check' do
     let!(:sublime_fm) { FactoryBot.create(:sublime_fm) }
 
