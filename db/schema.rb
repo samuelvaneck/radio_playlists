@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2021_12_29_124749) do
   create_table "charts", force: :cascade do |t|
     t.datetime "date"
     t.jsonb "chart", default: []
-    t.string "type"
+    t.string "chart_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
