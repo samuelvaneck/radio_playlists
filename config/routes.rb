@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :radiostations, only: %i[index show] do
     get :status, on: :member
   end
+  resources :charts, only: %i[show]
 
   root 'generalplaylists#index'
 
