@@ -23,12 +23,12 @@
     <div class='textWrapper'>
       <div class='text'>
         <div class='flex flex-row justify-between my-2'>
-          <div class='grow'>
+          <div>
             <span class='bungee'>
               # {{ chartIdx + 1 }}
             </span>
           </div>
-          <div class='grow'>
+          <div class='float-right'>
             <span class='playlist-badge'>{{ counter }} x</span>
           </div>
         </div>

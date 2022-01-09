@@ -50,6 +50,7 @@ default: &default
 
 development:
   <<: *default
+  compile: false
   public_output_path: packs
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:

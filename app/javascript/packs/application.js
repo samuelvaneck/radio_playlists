@@ -9,7 +9,6 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import '../stylesheets/application.scss'
-import './bootstrap_custom.js'
 
 import Vue from 'vue/dist/vue.esm'
 import StatusBar from 'components/status_bar/status_bar'
@@ -31,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-// 
+//
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => {
   const component = key.split('/').pop().split('.')[0]
