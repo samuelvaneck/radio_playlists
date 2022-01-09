@@ -23,13 +23,13 @@
     <div class='textWrapper'>
       <div class='text'>
         <div class='flex flex-row justify-between my-2'>
-          <div class='grow'>
+          <div>
             <div class='rubik mr-2'>
               <div>{{ playedTime() }}</div>
               <div><small><i>{{ playedDate() }}</i></small></div>
             </div>
           </div>
-          <div class='grow'>
+          <div class='float-right'>
             <!-- Radio station label -->
             <div v-if='loading'>
               <LoadingBar />
