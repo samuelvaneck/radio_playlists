@@ -1,10 +1,10 @@
 <template>
-  <div class='flex flex-column'>
+  <div class='flex flex-col'>
     <div class='flex flex-row justify-between'>
-      <div class='grow'>
+      <div>
         <span class='text-xl'>Playlists</span>
       </div>
-      <div class='grow'>
+      <div class='float-right'>
         <SearchBar @search='onKeyUpSearch' @filter='onRadioStationSelect' @filterTime='onChangeFilterTime' />
       </div>
     </div>

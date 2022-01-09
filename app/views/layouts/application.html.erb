@@ -2,12 +2,16 @@
 <html>
 <head>
   <title>RadioPlaylists</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
   <%= javascript_pack_tag 'application' %>
   <%= stylesheet_pack_tag 'application', media: 'all' %>
   <%= favicon_link_tag 'radio.png' %>
   <%= favicon_link_tag 'radio.png', rel: 'apple-touch-icon', type: 'image/png' %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
-  <%= csrf_meta_tags %>
 </head>
 <body>
 

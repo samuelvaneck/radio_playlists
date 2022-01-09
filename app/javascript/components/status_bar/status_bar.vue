@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-column">
+  <div class="flex flex-col">
     <div><span class='text-xl'>Status</span></div>
-    <div>
+    <div class='float-right'>
       <StatusGroup v-bind:items='items' />
     </div>
   </div>
