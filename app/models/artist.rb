@@ -21,7 +21,13 @@ class Artist < ActiveRecord::Base
   end
 
   def self.group_and_count(artists)
-    artists.group(:artist_id).count.sort_by { |_artist_id, counter| counter }.reverse
+    artists.group(:artist_id)
+           .count.sort_by { |_artist_id, counter| counter }
+           .reverse
+           .map do |artist_id, counter|
+             serialized_artist = ArtistSerializer.new(Artist.find(artist_id)).serializable_hash
+             [serialized_artist, counter]
+           end
   end
 
   def self.spotify_track_to_artist(track)

@@ -25,14 +25,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 Dec 2021 08:55:53 GMT
+      - Sun, 16 Jan 2022 11:29:11 GMT
       Content-Type:
       - application/json
       Set-Cookie:
-      - __Host-device_id=AQD-DEDW6JdTST4Sjy4gbasHrtqkE2DexX59PNea-x_yCkuniEs2zKYEL3uZTIweJOtFnrWVQLy51qjyyW-kHKIWgckIcH0v7eE;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - __Host-device_id=AQDH9Yoyobcd1esJ9EqVSuzoWcf10NIxb1Sdhi20s7wTSH7iNMzTuUi8dOThccEm7LZ31X0dTQFWzuTZaYmOTFa057TqF-Z1xjU;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
       - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
       Sp-Trace-Id:
-      - b8717863d21b92a2
+      - 4ef475791e11310d
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -49,8 +49,8 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"BQDJ6IjUS-TriX9iEW438N6XQM1ELGNeio96f54t_2Sq6sM_aNb3mgSTOLJ28Gg9uQ9f-ntTUsv1jwn6y1w","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Fri, 24 Dec 2021 08:55:53 GMT
+      string: '{"access_token":"BQBQLZMQMsZE-zOM90JUC7GHY3mCqT-L6qPThE_dDXTtCwdA1Qy_DCfvV3GpCa_tf3uq1uAgcYgYMeooTdI","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 16 Jan 2022 11:29:11 GMT
 - request:
     method: post
     uri: https://accounts.spotify.com/api/token
@@ -76,14 +76,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 Dec 2021 08:55:53 GMT
+      - Sun, 16 Jan 2022 11:29:11 GMT
       Content-Type:
       - application/json
       Set-Cookie:
-      - __Host-device_id=AQBHJQR5ielkKP8PwKCKtS3_uGvAT58YuQVecQcJDwQRprRddBoBbO-SDrKts5C56nXFnEslP30MSrbtZLwfLyIsi9COTqiuXBs;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - __Host-device_id=AQBokc7NQtTz2vFRhwKlDLGE3GfrmDtZU0uQ6-cL-2re900oHBYBH9JFHPeNpExMPnTNVfdGV4igGmZUb6l-YNgri-wRc7jLVtc;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
       - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
       Sp-Trace-Id:
-      - fded0bb251fee729
+      - 65707c80bb133f69
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -100,6 +100,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"BQCpAafOpETp-vmJLVL0bwA0NcYjBA1PsiDwMh__uvJGEev899NBZamLmiXT0ebfE6tXJpqEZ3yvFMvI86g","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Fri, 24 Dec 2021 08:55:53 GMT
+      string: '{"access_token":"BQB4ED4ffGHZuC2prVzL8b4JoAjO4WxL9qhvk5apCCmArmsMkN20IwXz6cGvyys9iV-a2fAReJw6N8xkg7c","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 16 Jan 2022 11:29:11 GMT
 recorded_with: VCR 6.0.0

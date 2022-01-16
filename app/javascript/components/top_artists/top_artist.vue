@@ -50,11 +50,11 @@
   import SpotifyLogo from 'images/Spotify_Icon_RGB_Green.png'
 
   export default {
-    props: ['id', 'counter', 'chartIdx'],
+    props: ['artist', 'counter', 'chartIdx'],
     components: { LoadingBar, SpotifyLogo },
     data () {
       return {
-        artist: null,
+        // artist: null,
         spotifyArtworkUrl: null,
         loading: true,
         spotifyLogo: SpotifyLogo
@@ -66,28 +66,15 @@
           window.open(this.artist.data.attributes.spotify_artist_url, '_blank')
         }
       },
-      getValues: function() {
-        const songUrl = '/artists/' + this.id
-        const options = {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json;charset=UTF-8'
-          }
+      setSpotifyArtworkUrl: function() {
+         if (!!this.artist.data.attributes.spotify_artwork_url) {
+          this.spotifyArtworkUrl = this.artist.data.attributes.spotify_artwork_url
         }
-
-        fetch(songUrl, options).then(res => res.json())
-          .then(d => {
-            this.artist = d
-            if (!!this.artist.data.attributes.spotify_artwork_url) {
-              this.spotifyArtworkUrl = this.artist.data.attributes.spotify_artwork_url
-            }
-            this.loading = false
-          })
+        this.loading = false
       }
     },
     mounted: function() {
-      this.getValues()
+      this.setSpotifyArtworkUrl()
     }
   }
 </script>

@@ -25,14 +25,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 Dec 2021 08:55:53 GMT
+      - Sun, 16 Jan 2022 11:29:12 GMT
       Content-Type:
       - application/json
       Set-Cookie:
-      - __Host-device_id=AQAVwd1nf1EpC8dpExBqDnsKRG_qBacyA8cjMF16xTkTbQHdWcR0qxEj_IL4BkRYWk18NMm3acd1YOa-S6W60aoBYO3St2THAqg;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - __Host-device_id=AQAdOkTqSk5lfEPecES-yQqP1foTbLOoL4Km8Ki0ttPM4FcEwecQ2tu5Z8qYzW4VuEkwTB8JLAa7tolQtIxBIoQramJ4-6PlPXQ;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
       - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
       Sp-Trace-Id:
-      - 7f9f77b4748d2f63
+      - 9575f2fae6452e50
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -49,8 +49,8 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"BQAnvZZA8Mbnz70L-Aps6fpZN2wpwBorVkYZxvRwDq6ib50RoPFUdC9P5hy-nzYCWtwRTbSyX9qUjCGlGo8","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Fri, 24 Dec 2021 08:55:53 GMT
+      string: '{"access_token":"BQAIjTrJ-rR0M2CqMU12rGD_p5n14JWqbOhOe3IlxdF6AXS5WdML51ogoSmCpo0PcxrpHC2LauXBG4lvKUo","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 16 Jan 2022 11:29:12 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/search?q=Drown%20artist:martin%20garrix%20clinton%20kane&type=track
@@ -67,7 +67,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAnvZZA8Mbnz70L-Aps6fpZN2wpwBorVkYZxvRwDq6ib50RoPFUdC9P5hy-nzYCWtwRTbSyX9qUjCGlGo8
+      - Bearer BQAIjTrJ-rR0M2CqMU12rGD_p5n14JWqbOhOe3IlxdF6AXS5WdML51ogoSmCpo0PcxrpHC2LauXBG4lvKUo
       Content-Type:
       - application/json
   response:
@@ -97,7 +97,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Fri, 24 Dec 2021 08:55:53 GMT
+      - Sun, 16 Jan 2022 11:29:12 GMT
       Server:
       - envoy
       Via:
@@ -193,7 +193,7 @@ http_interactions:
               "id" : "4RVtBlHFKj51Ipvpfv5ER4",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane)",
-              "popularity" : 75,
+              "popularity" : 74,
               "preview_url" : "https://p.scdn.co/mp3-preview/03c2fec6e65cb1e45fd8c5b5720303fbf8b50c1d?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 1,
               "type" : "track",
@@ -297,7 +297,7 @@ http_interactions:
               "id" : "3L3s97R0738xGQ2VqB12qo",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - Alle Farben Remix",
-              "popularity" : 54,
+              "popularity" : 52,
               "preview_url" : "https://p.scdn.co/mp3-preview/6329c558b22b315b545f3a2b7a9fce45bfc268e9?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 1,
               "type" : "track",
@@ -401,7 +401,7 @@ http_interactions:
               "id" : "5aRwLXpWjgXmwoJvXoYvCq",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - Nicky Romero Remix",
-              "popularity" : 47,
+              "popularity" : 46,
               "preview_url" : "https://p.scdn.co/mp3-preview/379026585b8f255ddc852da4b7ea856d49a8d72f?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 1,
               "type" : "track",
@@ -496,7 +496,7 @@ http_interactions:
               "id" : "5VmxyusgwTKK69tPePaBzF",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - Alle Farben Remix",
-              "popularity" : 36,
+              "popularity" : 35,
               "preview_url" : "https://p.scdn.co/mp3-preview/76983a5abcdff8d3d08d4698b01313c7dcccac70?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 1,
               "type" : "track",
@@ -591,7 +591,7 @@ http_interactions:
               "id" : "0Eo4ybyABVbzEefKptQQWo",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - Matroda Remix",
-              "popularity" : 36,
+              "popularity" : 34,
               "preview_url" : "https://p.scdn.co/mp3-preview/54b8826081f7334b85ca90058978dec23f123c93?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 1,
               "type" : "track",
@@ -686,7 +686,7 @@ http_interactions:
               "id" : "7EybajZlpD6Sms7D2oy7Ng",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - Pat Lok Remix",
-              "popularity" : 32,
+              "popularity" : 30,
               "preview_url" : "https://p.scdn.co/mp3-preview/3465c9a27e07ed3aaa89df150c33db86cf03c90f?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 4,
               "type" : "track",
@@ -790,7 +790,7 @@ http_interactions:
               "id" : "6QI017tvDtPq0ZrPWAR9ys",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - The Subculture Remix",
-              "popularity" : 30,
+              "popularity" : 28,
               "preview_url" : "https://p.scdn.co/mp3-preview/48b68c1903e67b0011356805e406e71e07b12525?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 1,
               "type" : "track",
@@ -885,7 +885,7 @@ http_interactions:
               "id" : "2jLTl6iFw7b3q74dVtBWkw",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - The Subculture Remix",
-              "popularity" : 29,
+              "popularity" : 27,
               "preview_url" : "https://p.scdn.co/mp3-preview/58bcbbb112455a26ac6a66e677e8f6f9f4d7c5d4?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 5,
               "type" : "track",
@@ -980,7 +980,7 @@ http_interactions:
               "id" : "6hByDhfa9c4osUufhP24qm",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - Sidney Samson Remix",
-              "popularity" : 29,
+              "popularity" : 27,
               "preview_url" : "https://p.scdn.co/mp3-preview/0d605658d633d1132b466d229b2e5d969cb3ed12?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 3,
               "type" : "track",
@@ -1075,7 +1075,7 @@ http_interactions:
               "id" : "05mXpytcquS3WoRi3cfl8d",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - Matroda Remix",
-              "popularity" : 28,
+              "popularity" : 26,
               "preview_url" : "https://p.scdn.co/mp3-preview/d8cad8a54d8e38a71066f3b8fc45858fb42715b7?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 2,
               "type" : "track",
@@ -1088,7 +1088,7 @@ http_interactions:
             "total" : 10
           }
         }
-  recorded_at: Fri, 24 Dec 2021 08:55:53 GMT
+  recorded_at: Sun, 16 Jan 2022 11:29:12 GMT
 - request:
     method: post
     uri: https://accounts.spotify.com/api/token
@@ -1114,14 +1114,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 Dec 2021 08:55:54 GMT
+      - Sun, 16 Jan 2022 11:29:13 GMT
       Content-Type:
       - application/json
       Set-Cookie:
-      - __Host-device_id=AQDWk2eMS0gRHKkmOnuLToErORgwAETtEdmDgaGsLaLOCKsCU7uZgdudm518iRD2WpUUS00f9CKVJ3nrxku6waU3hjY8tNJ_jj8;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - __Host-device_id=AQBgmhZFq5sSpIpxePAMD7lbWkI42BQ74X9oxtfkOg7hNv5_MQrvsYO-Fh3CByeTLre-gELjVMSs1BoZlPv1QMKs89y3kkUDEmc;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
       - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
       Sp-Trace-Id:
-      - cd209b25c3b47185
+      - 217403e4ab699658
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -1138,8 +1138,8 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"BQC_SZBh3Vqz78LDjfdyFsH0fVk6p9O0O6FRW92NPDCrllSphD97B10gtRsmuZto5SYwvdlceRP1Fwl0Ga4","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Fri, 24 Dec 2021 08:55:54 GMT
+      string: '{"access_token":"BQCo41IsXshKDHIgc-WDJ-KR1kmBsbIOEZATaaHvpyf-XimaRBlX2PI7dotpgkZvU-SKexoeAwGuXlsZ0yY","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 16 Jan 2022 11:29:13 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ
@@ -1156,7 +1156,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQC_SZBh3Vqz78LDjfdyFsH0fVk6p9O0O6FRW92NPDCrllSphD97B10gtRsmuZto5SYwvdlceRP1Fwl0Ga4
+      - Bearer BQCo41IsXshKDHIgc-WDJ-KR1kmBsbIOEZATaaHvpyf-XimaRBlX2PI7dotpgkZvU-SKexoeAwGuXlsZ0yY
       Content-Type:
       - application/json
   response:
@@ -1167,7 +1167,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=73392
+      - public, max-age=73325
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1186,7 +1186,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Fri, 24 Dec 2021 08:55:53 GMT
+      - Sun, 16 Jan 2022 11:29:12 GMT
       Server:
       - envoy
       Via:
@@ -1204,7 +1204,7 @@ http_interactions:
           },
           "followers" : {
             "href" : null,
-            "total" : 15274191
+            "total" : 15329099
           },
           "genres" : [ "dance pop", "dutch edm", "edm", "electro house", "pop", "pop dance", "progressive house", "tropical house" ],
           "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
@@ -1227,7 +1227,7 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
         }
-  recorded_at: Fri, 24 Dec 2021 08:55:54 GMT
+  recorded_at: Sun, 16 Jan 2022 11:29:13 GMT
 - request:
     method: post
     uri: https://accounts.spotify.com/api/token
@@ -1253,14 +1253,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 Dec 2021 08:55:54 GMT
+      - Sun, 16 Jan 2022 11:29:13 GMT
       Content-Type:
       - application/json
       Set-Cookie:
-      - __Host-device_id=AQD1PizRMJHXuhS96Lx6iP4KPXCqy7Fs7wdGHZHkjwRQx034Mr_7IB-PoH4SY2Ld_UysPH0-MAWBCidxX--UGYNW417CFhs2HeE;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - __Host-device_id=AQCnze7aVZmR1C8gfCZ0ypeqDQ5IGU_gqqQjiA1OE3RmZ283iihLavEwR11kgUoL_au9FCaHjhZmdpGFoR1Hpv-pr8UKQRLSCcQ;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
       - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
       Sp-Trace-Id:
-      - 4b236a3cd8b14b9e
+      - 4ec8db2e652fe599
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -1277,8 +1277,8 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"BQC6Uvv9LimJAolidpGiTdSv1FqaNge_Mw6_gPAP5KYlj8F6kS8FccYBR1bYdgCPmQ6saRYO70PRREqi3Ds","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Fri, 24 Dec 2021 08:55:54 GMT
+      string: '{"access_token":"BQC3JffjW7lOt1y-nYaWzIMK4pQKf9W3UQcEj7NtxHKYqjcMMKpTJU9Sb8ejfOYWYHEIDCW1tXgWeYQoXTM","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 16 Jan 2022 11:29:13 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P
@@ -1295,7 +1295,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQC6Uvv9LimJAolidpGiTdSv1FqaNge_Mw6_gPAP5KYlj8F6kS8FccYBR1bYdgCPmQ6saRYO70PRREqi3Ds
+      - Bearer BQC3JffjW7lOt1y-nYaWzIMK4pQKf9W3UQcEj7NtxHKYqjcMMKpTJU9Sb8ejfOYWYHEIDCW1tXgWeYQoXTM
       Content-Type:
       - application/json
   response:
@@ -1306,7 +1306,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=74737
+      - public, max-age=80578
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1325,7 +1325,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Fri, 24 Dec 2021 08:55:54 GMT
+      - Sun, 16 Jan 2022 11:29:12 GMT
       Server:
       - envoy
       Via:
@@ -1343,7 +1343,7 @@ http_interactions:
           },
           "followers" : {
             "href" : null,
-            "total" : 668816
+            "total" : 687289
           },
           "genres" : [ "alt z", "gen z singer-songwriter", "pop" ],
           "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
@@ -1366,5 +1366,5 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
         }
-  recorded_at: Fri, 24 Dec 2021 08:55:54 GMT
+  recorded_at: Sun, 16 Jan 2022 11:29:13 GMT
 recorded_with: VCR 6.0.0

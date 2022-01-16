@@ -25,14 +25,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 Dec 2021 08:55:53 GMT
+      - Sun, 16 Jan 2022 11:29:11 GMT
       Content-Type:
       - application/json
       Set-Cookie:
-      - __Host-device_id=AQBjRjRz_fLHZZfMvQvC_x3NyBsOcTs_ddW1Muqrfxrtc3U4Ls9wyq3MC7hc5bjyL_6W7nFMqZmY6EhuT_EiUwdlxj3bKkmKQaQ;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - __Host-device_id=AQDSVhh7K-muBwrLtZAN5NOD8pwm6eDYICtNK4unzPZs_df952EgeOyTBav3hZ51nRUtOp8VqQvviT5if13y-Zp2F4tx_VRG2V4;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
       - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
       Sp-Trace-Id:
-      - 0fdc5b0f789c8b77
+      - 4b7a7ea5826cfd62
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -49,6 +49,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"BQDkjhfo0qAf7uL9V85hBuRXFc0sPjCAdlhESu_VC1PjF0Vg8IGN1Qm_VqyW0DO_B_gngb6jt1WeOlvB200","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Fri, 24 Dec 2021 08:55:53 GMT
+      string: '{"access_token":"BQBjWudmcBb2nNf2wUFIIubP4mqeu_fIa0LCnkTghrPBL8S6y9AeN6ulNvIk0fCFA3hElDOltRVvJA6CceA","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 16 Jan 2022 11:29:11 GMT
 recorded_with: VCR 6.0.0

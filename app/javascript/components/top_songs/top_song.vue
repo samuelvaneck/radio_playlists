@@ -58,11 +58,10 @@
   import SpotifyLogo from 'images/Spotify_Icon_RGB_Green.png'
 
   export default {
-    props: ['id', 'counter', 'chartIdx'],
+    props: ['song', 'counter', 'chartIdx'],
     data () {
       return {
         artists: [],
-        song: null,
         songArtworkUrl: null,
         radioStation: null,
         loading: true,
@@ -76,7 +75,7 @@
         }
       },
       getValues() {
-        const songUrl = '/songs/' + this.id
+        const artistUrl = '/artists/' + this.song.data.attributes.artist_ids
         const options = {
           method: 'GET',
           headers: {
@@ -85,22 +84,16 @@
           }
         }
 
-        fetch(songUrl, options).then(res => res.json())
+        fetch(artistUrl, options).then(res => res.json())
           .then(d => {
-            this.song = d
+            this.artist = d
+            this.loading = false
 
-            const artistUrl = '/artists/' + this.song.data.attributes.artist_ids
-            fetch(artistUrl, options).then(res => res.json())
-              .then(d => {
-                this.artist = d
-                this.loading = false
-
-                for(let artist of this.song.data.relationships.artists.data) {
-                  const artistUrl = '/artists/' + artist.id
-                  fetch(artistUrl, options).then(res => res.json())
-                    .then(d => this.artists.push(d))
-                }
-              })
+            for(let artist of this.song.data.relationships.artists.data) {
+              const artistUrl = '/artists/' + artist.id
+              fetch(artistUrl, options).then(res => res.json())
+                .then(d => this.artists.push(d))
+            }
           })
       },
       artistsNames() {

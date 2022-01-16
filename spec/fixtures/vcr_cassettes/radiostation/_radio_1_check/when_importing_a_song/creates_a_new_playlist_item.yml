@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx/1.19.10
       Date:
-      - Fri, 24 Dec 2021 08:55:52 GMT
+      - Sun, 16 Jan 2022 11:29:13 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -40,13 +40,28 @@ http_interactions:
       Access-Control-Allow-Headers:
       - Origin,Content-Type,Accept
       Set-Cookie:
-      - f6924e0876d468cbd333ca02bc97600e=8c35759a655a50144a7ee2eee20b5368; path=/;
+      - f6924e0876d468cbd333ca02bc97600e=b2fa1bf6a8a3c00cfcbaa66606870bba; path=/;
         HttpOnly; Secure; SameSite=None
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjpudWxsLCJtZXNzYWdlcyI6bnVsbCwiZGF0YSI6W3sic3RhcnRkYXRldGltZSI6IjIwMjEtMTItMjRUMDk6MTE6NDQiLCJlbmRkYXRldGltZSI6IjIwMjEtMTItMjRUMDk6MTU6MDAiLCJ0aXRsZSI6IkNocmlzdG1hcyBnZXRhd2F5IiwiYXJ0aXN0IjoiQmxhY2tiaXJkIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNmIxODg0YzdjNmRlMWFmY2VjNGExN2JlIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNmIxODg0YzdjNmRlMWFmY2VjNGExN2JlIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svN29UNjhMUVJrMFZycjhCMG9tNUJDYSJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjEtMTItMjRUMDg6NDc6MjciLCJlbmRkYXRldGltZSI6IjIwMjEtMTItMjRUMDg6NTI6MDciLCJ0aXRsZSI6IlNub3cgKGhleSBvaCkiLCJhcnRpc3QiOiJSZWQgSG90IENoaWxpIFBlcHBlcnMiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2ZkNjJiMWY0ZjY5NzI4NGEwMjQ3ODQ3MDY5NDliZmYzYTZlMWEyN2UiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2ZkNjJiMWY0ZjY5NzI4NGEwMjQ3ODQ3MDY5NDliZmYzYTZlMWEyN2UiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8yYWlid3Y1aEdYU2d3N1lydThJWVRPIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMS0xMi0yNFQwODo0NjozNCIsImVuZGRhdGV0aW1lIjoiMjAyMS0xMi0yNFQwODo0OTo1OSIsInRpdGxlIjoiRmxhcHBpZSIsImFydGlzdCI6IllvdXAgdmFuIGhldCBIZWsiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzM5NjdkZDlkMjUwYjJjMjY1OTA1ODUxOWUiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzM5NjdkZDlkMjUwYjJjMjY1OTA1ODUxOWUiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8yeWt0eG9NYkVsWUt3dEdWTEdldGZHIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMS0xMi0yNFQwODoyNjoxNCIsImVuZGRhdGV0aW1lIjoiMjAyMS0xMi0yNFQwODoyOTowNiIsInRpdGxlIjoiQWxsIGFib3V0IHRoZSBtb25leSIsImFydGlzdCI6Ik1lamEiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vcmFkaW8taW1hZ2VzLm5wby5ubC93XzY0MCxoXzY0MC8zNGEwNzZiMy0wOGIzLTRjMGMtYWUyZS0zM2I1YTA0ZmFmNjgvMzgxZDg5ODctMGIxZi00ZWU0LWI0ODAtNjZiN2ZlZTI0NTEzLmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9yYWRpby1pbWFnZXMubnBvLm5sL3dfNjQwLGhfNjQwLzM0YTA3NmIzLTA4YjMtNGMwYy1hZTJlLTMzYjVhMDRmYWY2OC8zODFkODk4Ny0wYjFmLTRlZTQtYjQ4MC02NmI3ZmVlMjQ1MTMuanBnIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMS0xMi0yNFQwNzo0NzoyOSIsImVuZGRhdGV0aW1lIjoiMjAyMS0xMi0yNFQwNzo1MjoxNSIsInRpdGxlIjoiTW9uZXkgZG9uJ3QgbWF0dGVyIHRvbmlnaHQiLCJhcnRpc3QiOiJQcmluY2UiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2M0ODUxMWUwMWExNWU4NDM1M2UzYjQ5ZDkxNzU4ZGFmOTUxNDA4NjEiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2M0ODUxMWUwMWExNWU4NDM1M2UzYjQ5ZDkxNzU4ZGFmOTUxNDA4NjEiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8xMmE3ZkRhWHhWQ1FvaG93cTRXZDlPIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMS0xMi0yNFQwNzoyNTo0MCIsImVuZGRhdGV0aW1lIjoiMjAyMS0xMi0yNFQwNzoyODo0OCIsInRpdGxlIjoiUHJheWVyIGluIEMiLCJhcnRpc3QiOiJSb2JpbiBTY2h1bHogVGhlIFByaWNrIExpbGx5IFdvb2QiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMwNTM4ZDVkOTY1Nzk4YTQwMzIxOWE0NzAiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMwNTM4ZDVkOTY1Nzk4YTQwMzIxOWE0NzAiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay81Zm5BOW1rSWZTY1NxSElwZUR5dmNrIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMS0xMi0yNFQwNjo1MDoxNiIsImVuZGRhdGV0aW1lIjoiMjAyMS0xMi0yNFQwNjo1MzoxMyIsInRpdGxlIjoiTG92ZSB0cmFpbiIsImFydGlzdCI6Ik8nSmF5cyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9lLWNkbnMtaW1hZ2VzLmR6Y2RuLm5ldC9pbWFnZXMvY292ZXIvZWQzNzAzZjYxYjdkZmViZTkxMjNlNmQ4MjJiMWVmNDUvMTAwMHgxMDAwLTAwMDAwMC04MC0wLTAuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2UtY2Rucy1pbWFnZXMuZHpjZG4ubmV0L2ltYWdlcy9jb3Zlci9lZDM3MDNmNjFiN2RmZWJlOTEyM2U2ZDgyMmIxZWY0NS8xMDAweDEwMDAtMDAwMDAwLTgwLTAtMC5qcGcifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIxLTEyLTI0VDA2OjExOjQwIiwiZW5kZGF0ZXRpbWUiOiIyMDIxLTEyLTI0VDA2OjE0OjI3IiwidGl0bGUiOiJZb3UncmUgbXkgYmVzdCBmcmllbmQiLCJhcnRpc3QiOiJRdWVlbiIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2NlNGYxNzM3YmM4YTY0NmM4YzRiZDI1YSIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2NlNGYxNzM3YmM4YTY0NmM4YzRiZDI1YSIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzQ5TDVzN2xURVM1RVZueUdPMDlIMFMifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIxLTEyLTI0VDA1OjQ2OjQxIiwiZW5kZGF0ZXRpbWUiOiIyMDIxLTEyLTI0VDA1OjUwOjE2IiwidGl0bGUiOiJXYWtlIHVwIGV2ZXJ5Ym9keSIsImFydGlzdCI6IkpvaG4gTGVnZW5kICYgVGhlIFJvb3RzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9lZmQ5NGE3MTA3NmQ4MjhkODBlOTgxMzJmOTRkMjQ0MjQ5MDQ1M2ZhIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9lZmQ5NGE3MTA3NmQ4MjhkODBlOTgxMzJmOTRkMjQ0MjQ5MDQ1M2ZhIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svN2xWeFdNSDBDM0JqOGI4SkxraDlFTiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjEtMTItMjRUMDQ6NDA6NDAiLCJlbmRkYXRldGltZSI6IjIwMjEtMTItMjRUMDQ6NDM6NDEiLCJ0aXRsZSI6IkZlbGl6IE5hdmlkYWQiLCJhcnRpc3QiOiJKb3Pvv70gRmVsaWNpYW5vIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYzhhYzU2MGY4MDNiYmE0OTAyZjhiYmM1IiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYzhhYzU2MGY4MDNiYmE0OTAyZjhiYmM1Iiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMG9QZGFZNGRYdGMzWnNhRzE3Vjk3MiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjEtMTItMjNUMjI6NDM6NTMiLCJlbmRkYXRldGltZSI6IjIwMjEtMTItMjNUMjI6NDc6MDUiLCJ0aXRsZSI6IlNodXQgeW91ciBleWVzIiwiYXJ0aXN0IjoiU25vdyBQYXRyb2wiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2M1NjJmNmEzODk3YTg5ZGE1ZmY4MWEzMWZlNGRlYWMyZmRkM2ZiODEiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2M1NjJmNmEzODk3YTg5ZGE1ZmY4MWEzMWZlNGRlYWMyZmRkM2ZiODEiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8yQlFKVnd4RFpFZEd2Qk9lV3JqMzRnIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMS0xMi0yM1QyMjoxODowNyIsImVuZGRhdGV0aW1lIjoiMjAyMS0xMi0yM1QyMjoyMTo1NCIsInRpdGxlIjoiS29vbCBmdW5rIiwiYXJ0aXN0IjoiU3VwZXIgZGIiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzM3MTJlZmI3Yzc1NWY2ODE4MmU4MDE2OTQiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzM3MTJlZmI3Yzc1NWY2ODE4MmU4MDE2OTQiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay80MFBUUDA2SlhUbTFGUkJpeUREenp2In0seyJzdGFydGRhdGV0aW1lIjoiMjAyMS0xMi0yM1QyMToyODo1MSIsImVuZGRhdGV0aW1lIjoiMjAyMS0xMi0yM1QyMTozMToxNiIsInRpdGxlIjoiR290IHRvIGdldCB5b3UgaW50byBteSBsaWZlIiwiYXJ0aXN0IjoiQmVhdGxlcyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWY3N2IzNzQyODYwZDFkMDA1MDljMjI0NDFiZDY1YTQ3MGY3NGFkYSIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWY3N2IzNzQyODYwZDFkMDA1MDljMjI0NDFiZDY1YTQ3MGY3NGFkYSIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzN0R2hSTGdjQ1A2U0laVTN0YkdsN2wifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIxLTEyLTIzVDE3OjQ3OjE5IiwiZW5kZGF0ZXRpbWUiOiIyMDIxLTEyLTIzVDE3OjQ5OjM1IiwidGl0bGUiOiJEbyBpdCBhZ2FpbiIsImFydGlzdCI6IkJlYWNoIEJveXMiLCJpbWFnZV91cmxfMjAweDIwMCI6bnVsbCwiaW1hZ2VfdXJsXzQwMHg0MDAiOm51bGx9LHsic3RhcnRkYXRldGltZSI6IjIwMjEtMTItMjNUMTY6MTc6MzciLCJlbmRkYXRldGltZSI6IjIwMjEtMTItMjNUMTY6MjE6MjEiLCJ0aXRsZSI6IlRoZSBtdXN0YXJkIHNlZWQiLCJhcnRpc3QiOiJTb24gTWlldXgiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzNiNDdkNjdhZTQyYWM2YTExN2JhY2ZmOTUiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzNiNDdkNjdhZTQyYWM2YTExN2JhY2ZmOTUiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay82RG5IaXVOcWZUa1JQUWhPd05KVnhYIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMS0xMi0yM1QxNTozODoxMCIsImVuZGRhdGV0aW1lIjoiMjAyMS0xMi0yM1QxNTo0MToxMSIsInRpdGxlIjoiVGhpcyBpcyB0aGUgbGlmZSIsImFydGlzdCI6IkFteSBNYWNEb25hbGQiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMwM2I3ZDg4YzkyMTc5ZGIwYjAzNDAyMTYiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMwM2I3ZDg4YzkyMTc5ZGIwYjAzNDAyMTYiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8zQUk3Y2E1UnBZTHlxYVZnVTdLMUFQIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMS0xMi0yM1QxNDo1NTowMiIsImVuZGRhdGV0aW1lIjoiMjAyMS0xMi0yM1QxNDo1ODoyNyIsInRpdGxlIjoiTWVycnkgQ2hyaXN0bWFzIiwiYXJ0aXN0IjoiRWQgU2hlZXJhbiAmIEVsdG9uIEpvaG4iLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzNiNjI5MDI2ZTRjZjYyNTRhOTBkZmM0MTQiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzNiNjI5MDI2ZTRjZjYyNTRhOTBkZmM0MTQiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8zYkgyRXU5QTl5bUk0VW5HSFJtb1hnIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMS0xMi0yM1QxNDo0MjowMCIsImVuZGRhdGV0aW1lIjoiMjAyMS0xMi0yM1QxNDo0NTo0MyIsInRpdGxlIjoiWW91IHdpbiBhZ2FpbiIsImFydGlzdCI6IkJlZSBHZWVzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYzFkMzY3OTk1OWVjNzhmNjcxNjU4OTUyIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYzFkMzY3OTk1OWVjNzhmNjcxNjU4OTUyIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNW13enB6UnVlMVNCV3dyYmJoWGZiZiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjEtMTItMjNUMTQ6MTQ6MzYiLCJlbmRkYXRldGltZSI6IjIwMjEtMTItMjNUMTQ6MTc6NDMiLCJ0aXRsZSI6IkJhYnkgZG9uJ3QgY2hhbmdlIHlvdXIgbWluZCIsImFydGlzdCI6IkdsYWR5cyBLbmlnaHQgJiBUaGUgUGlwcyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzIyNmQxNDJjZjljYTFlYWU1ODU2Y2I5NyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzIyNmQxNDJjZjljYTFlYWU1ODU2Y2I5NyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzBhTndQTHFuN25UOER2VDFqVVFEdzYifV19
-  recorded_at: Fri, 24 Dec 2021 08:55:52 GMT
+      string: '{"success":true,"message":null,"messages":null,"data":[{"startdatetime":"2022-01-16T07:59:04","enddatetime":"2022-01-16T08:03:20","title":"Looking
+        for Moses","artist":"Mamas Gun","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273b2da3e5f6524b07b24656989","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273b2da3e5f6524b07b24656989"},{"startdatetime":"2022-01-16T06:34:50","enddatetime":"2022-01-16T06:38:18","title":"It''s
+        the first time","artist":"Lois Lane","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2737fe2b14dbd0ab2600620c2a9","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2737fe2b14dbd0ab2600620c2a9","spotify_url":"https://open.spotify.com/track/6BX7SFkTv8b3DdvStVeIUI"},{"startdatetime":"2022-01-16T06:13:55","enddatetime":"2022-01-16T06:17:03","title":"L''Enfer","artist":"Stromae","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2739b90e4ccf55c0a23a13f4eae","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2739b90e4ccf55c0a23a13f4eae","spotify_url":"https://open.spotify.com/track/7bp3zmEvpHLa0h32nhDUkB"},{"startdatetime":"2022-01-16T05:52:09","enddatetime":"2022-01-16T05:55:34","title":"Wake
+        Up","artist":"Latanya Alberto, Immanuel Wilkins, Bnnyhunna","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2735c783a42d2519ac7414a5a5e","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2735c783a42d2519ac7414a5a5e","spotify_url":"https://open.spotify.com/track/577Vqm7rk9EkCnJ9huPyF3"},{"startdatetime":"2022-01-16T05:43:51","enddatetime":"2022-01-16T05:47:07","title":"Minority","artist":"Shishani","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273bb85368b74500566176f616a","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273bb85368b74500566176f616a","spotify_url":"https://open.spotify.com/track/7xanJa53u43rg1zSGXvFFG"},{"startdatetime":"2022-01-16T05:21:07","enddatetime":"2022-01-16T05:25:35","title":"Achter
+        De Wolken","artist":"Willem","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2730847629103a8c415b4e0ece7","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2730847629103a8c415b4e0ece7","spotify_url":"https://open.spotify.com/track/1dt33fni648jHSWqkXWljd"},{"startdatetime":"2022-01-16T05:05:24","enddatetime":"2022-01-16T05:09:20","title":"Here
+        We Go Again","artist":"Ray Charles, Norah Jones","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273f0baface7e953e503917efa9","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273f0baface7e953e503917efa9","spotify_url":"https://open.spotify.com/track/5wfCY08QVWdUaigsFv9IkZ"},{"startdatetime":"2022-01-16T04:31:10","enddatetime":"2022-01-16T04:35:00","title":"Whats
+        Going On","artist":"Marvin Gaye","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273b36949bee43217351961ffbc","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273b36949bee43217351961ffbc","spotify_url":"https://open.spotify.com/track/3Um9toULmYFGCpvaIPFw7l"},{"startdatetime":"2022-01-16T03:34:51","enddatetime":"2022-01-16T03:38:57","title":"Never
+        never gonna give you up","artist":"White, Barry","image_url_200x200":"https://e-cdns-images.dzcdn.net/images/cover/5f98433c01f725ca2191e8364def8018/1000x1000-000000-80-0-0.jpg","image_url_400x400":"https://e-cdns-images.dzcdn.net/images/cover/5f98433c01f725ca2191e8364def8018/1000x1000-000000-80-0-0.jpg"},{"startdatetime":"2022-01-16T03:17:43","enddatetime":"2022-01-16T03:21:24","title":"Dance
+        Tonight","artist":"Lucy Pearl","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2737faa4455bdba540c4599ed6c","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2737faa4455bdba540c4599ed6c","spotify_url":"https://open.spotify.com/track/1TwVcKR6JojvPwBGbWZT36"},{"startdatetime":"2022-01-16T03:02:10","enddatetime":"2022-01-16T03:06:45","title":"Get
+        It On Tonite (Album Version)","artist":"Montell Jordan","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273f99077592b070cd1e1736b48","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273f99077592b070cd1e1736b48"},{"startdatetime":"2022-01-15T23:22:57","enddatetime":"2022-01-15T23:26:01","title":"Multiply","artist":"Jamie
+        Lidell","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b27359ffb992d096995a1d42ed34","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b27359ffb992d096995a1d42ed34","spotify_url":"https://open.spotify.com/track/1EZtB75i7g87yZzJucQKOq"},{"startdatetime":"2022-01-15T22:16:42","enddatetime":"2022-01-15T22:20:20","title":"The
+        second time around","artist":"Shalamar","image_url_200x200":"https://i.scdn.co/image/e6252cf1a54afbae0480c5c03289cbded325c7c9","image_url_400x400":"https://i.scdn.co/image/e6252cf1a54afbae0480c5c03289cbded325c7c9","spotify_url":"https://open.spotify.com/track/6yh8yf1jpPrTMA5cezYpbi"},{"startdatetime":"2022-01-15T21:23:18","enddatetime":"2022-01-15T21:27:00","title":"Higher
+        ground","artist":"Stevie Wonder","image_url_200x200":"https://i.scdn.co/image/22d572f30398d3881b6f6f77edd4ecc59d24497d","image_url_400x400":"https://i.scdn.co/image/22d572f30398d3881b6f6f77edd4ecc59d24497d","spotify_url":"https://open.spotify.com/track/0dMd4rilfd6gPbXaLpNYhu"},{"startdatetime":"2022-01-15T19:31:10","enddatetime":"2022-01-15T19:34:03","title":"White
+        tiger","artist":"Izzy Bizu","image_url_200x200":"https://i.scdn.co/image/664094eef56ef4dc3ce22b6bdd0ad1d8caf17523","image_url_400x400":"https://i.scdn.co/image/664094eef56ef4dc3ce22b6bdd0ad1d8caf17523","spotify_url":"https://open.spotify.com/track/64I0PKLFEKlcvc7fEVUGq0"},{"startdatetime":"2022-01-15T19:17:56","enddatetime":"2022-01-15T19:21:24","title":"Let
+        the music play","artist":"Barry White","image_url_200x200":"https://i.scdn.co/image/9bd67c1a706a59093f50c7bcece093b61cc71ecb","image_url_400x400":"https://i.scdn.co/image/9bd67c1a706a59093f50c7bcece093b61cc71ecb","spotify_url":"https://open.spotify.com/track/2sR6PY1YgPZTB8hZflRbFq"},{"startdatetime":"2022-01-15T12:46:32","enddatetime":"2022-01-15T12:49:07","title":"Zij
+        wil mij","artist":"Flemming","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273f9e4c7c6c12df526810c0423","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273f9e4c7c6c12df526810c0423","spotify_url":"https://open.spotify.com/track/3Falq0rEoroeaZqNp9UDIY"},{"startdatetime":"2022-01-15T12:32:22","enddatetime":"2022-01-15T12:35:22","title":"In
+        het licht","artist":"Lisse","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2735f4fb296c5b3537dac50d17c","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2735f4fb296c5b3537dac50d17c"}]}'
+  recorded_at: Sun, 16 Jan 2022 11:29:13 GMT
 - request:
     method: post
     uri: https://accounts.spotify.com/api/token
@@ -72,14 +87,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 Dec 2021 08:55:52 GMT
+      - Sun, 16 Jan 2022 11:29:13 GMT
       Content-Type:
       - application/json
       Set-Cookie:
-      - __Host-device_id=AQCPPwYG6kQbqn9AcTS2e2BengXIndoT-sCgiLST08YtYc7HnSkp1w6b0Xy9Cbtn1wV2UEWtI9wGKcZSpYzKw_9f_L8RSLHRNEM;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - __Host-device_id=AQAE2SB9aKTx_vojUoErRNQrpckOAq_NFhRLkBVmmcQ8YlxlY7-932XBa3Ld-nEvSqeisFPhasSjmOh-wCPKGI17zXKdpbPo010;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
       - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
       Sp-Trace-Id:
-      - b829b0216af6afe4
+      - b1e81dfc7fb53159
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -96,8 +111,8 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"BQBMfRls6YCFnDn3J5w7YNWKuU2TfAF04R-qa-43b_K1H07ci8V_jbmHipRhtxQ9TX2z17krVbCVBX55dws","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Fri, 24 Dec 2021 08:55:52 GMT
+      string: '{"access_token":"BQANqWIxRbRMHfXn77pfkBwaFYFYiHAbQKMPrEshBlSxrT3W6dIjGLbwKGHxTZU-fhzZu0a_oHYGHDnXQEA","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 16 Jan 2022 11:29:13 GMT
 - request:
     method: post
     uri: https://accounts.spotify.com/api/token
@@ -123,14 +138,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 Dec 2021 08:55:52 GMT
+      - Sun, 16 Jan 2022 11:29:13 GMT
       Content-Type:
       - application/json
       Set-Cookie:
-      - __Host-device_id=AQB28uVBVRLpgN_Ct5Y3Ph9NgpUSODwfmLTm_7EqdzEC2Or7-76kHf_HQ1YbHtIqjDCg-08AMZn8Kz4bV5f1TyAYHYFSPx6c4Wk;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - __Host-device_id=AQD9e-saYUFU3wlKO2nCi7dBjyVqQdiuxhok94th-VBQNv4Zc6NkBFeyVQ_KaqUfn2UTYzdTl4TiogShmd6GsI6Y1mwgfCVFIXc;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
       - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
       Sp-Trace-Id:
-      - 5636307a09bb4417
+      - 81b3c812efec14e0
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -147,11 +162,11 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"BQBVsC_a78oTBl9Ka8qPZ93iWwvBzesqj1B7VDmRhcXX9XkgpJ8-SL6jgCk2cehL3iUQbb808QvT12NpMhU","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Fri, 24 Dec 2021 08:55:52 GMT
+      string: '{"access_token":"BQDdsoy21suGwf9seey3SDhXYtGWv5vs2-EaXB83fUA1rBrUjStX7a-jyn8J4GQp7PadOWdPLhb3xYYjjYw","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 16 Jan 2022 11:29:13 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/search?q=Christmas%20Getaway%20artist:blackbird&type=track
+    uri: https://api.spotify.com/v1/search?q=Looking%20For%20Moses%20artist:mamas%20gun&type=track
     body:
       encoding: US-ASCII
       string: ''
@@ -165,7 +180,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQBVsC_a78oTBl9Ka8qPZ93iWwvBzesqj1B7VDmRhcXX9XkgpJ8-SL6jgCk2cehL3iUQbb808QvT12NpMhU
+      - Bearer BQDdsoy21suGwf9seey3SDhXYtGWv5vs2-EaXB83fUA1rBrUjStX7a-jyn8J4GQp7PadOWdPLhb3xYYjjYw
       Content-Type:
       - application/json
   response:
@@ -195,7 +210,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Fri, 24 Dec 2021 08:55:51 GMT
+      - Sun, 16 Jan 2022 11:29:13 GMT
       Server:
       - envoy
       Via:
@@ -209,84 +224,152 @@ http_interactions:
       string: |-
         {
           "tracks" : {
-            "href" : "https://api.spotify.com/v1/search?query=Christmas+Getaway+artist%3Ablackbird&type=track&offset=0&limit=20",
+            "href" : "https://api.spotify.com/v1/search?query=Looking+For+Moses+artist%3Amamas+gun&type=track&offset=0&limit=20",
             "items" : [ {
               "album" : {
                 "album_type" : "single",
                 "artists" : [ {
                   "external_urls" : {
-                    "spotify" : "https://open.spotify.com/artist/5SU9mZVaI9pRXgXmIhG1fL"
+                    "spotify" : "https://open.spotify.com/artist/09bP40OuEV5tOM1rQnZNxI"
                   },
-                  "href" : "https://api.spotify.com/v1/artists/5SU9mZVaI9pRXgXmIhG1fL",
-                  "id" : "5SU9mZVaI9pRXgXmIhG1fL",
-                  "name" : "Blackbird",
+                  "href" : "https://api.spotify.com/v1/artists/09bP40OuEV5tOM1rQnZNxI",
+                  "id" : "09bP40OuEV5tOM1rQnZNxI",
+                  "name" : "Mamas Gun",
                   "type" : "artist",
-                  "uri" : "spotify:artist:5SU9mZVaI9pRXgXmIhG1fL"
+                  "uri" : "spotify:artist:09bP40OuEV5tOM1rQnZNxI"
                 } ],
-                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "available_markets" : [ "CA", "US" ],
                 "external_urls" : {
-                  "spotify" : "https://open.spotify.com/album/5ylYMLVLFGjGEsJb87NgTI"
+                  "spotify" : "https://open.spotify.com/album/4BhmGP2OAS9LKwJzNqr9YG"
                 },
-                "href" : "https://api.spotify.com/v1/albums/5ylYMLVLFGjGEsJb87NgTI",
-                "id" : "5ylYMLVLFGjGEsJb87NgTI",
+                "href" : "https://api.spotify.com/v1/albums/4BhmGP2OAS9LKwJzNqr9YG",
+                "id" : "4BhmGP2OAS9LKwJzNqr9YG",
                 "images" : [ {
                   "height" : 640,
-                  "url" : "https://i.scdn.co/image/ab67616d0000b2736b1884c7c6de1afcec4a17be",
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273da37ce5de2c52f1c050d2e80",
                   "width" : 640
                 }, {
                   "height" : 300,
-                  "url" : "https://i.scdn.co/image/ab67616d00001e026b1884c7c6de1afcec4a17be",
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02da37ce5de2c52f1c050d2e80",
                   "width" : 300
                 }, {
                   "height" : 64,
-                  "url" : "https://i.scdn.co/image/ab67616d000048516b1884c7c6de1afcec4a17be",
+                  "url" : "https://i.scdn.co/image/ab67616d00004851da37ce5de2c52f1c050d2e80",
                   "width" : 64
                 } ],
-                "name" : "Christmas Getaway",
-                "release_date" : "2021-11-19",
+                "name" : "Party For One / Looking For Moses",
+                "release_date" : "2022-01-14",
                 "release_date_precision" : "day",
-                "total_tracks" : 1,
+                "total_tracks" : 2,
                 "type" : "album",
-                "uri" : "spotify:album:5ylYMLVLFGjGEsJb87NgTI"
+                "uri" : "spotify:album:4BhmGP2OAS9LKwJzNqr9YG"
               },
               "artists" : [ {
                 "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/5SU9mZVaI9pRXgXmIhG1fL"
+                  "spotify" : "https://open.spotify.com/artist/09bP40OuEV5tOM1rQnZNxI"
                 },
-                "href" : "https://api.spotify.com/v1/artists/5SU9mZVaI9pRXgXmIhG1fL",
-                "id" : "5SU9mZVaI9pRXgXmIhG1fL",
-                "name" : "Blackbird",
+                "href" : "https://api.spotify.com/v1/artists/09bP40OuEV5tOM1rQnZNxI",
+                "id" : "09bP40OuEV5tOM1rQnZNxI",
+                "name" : "Mamas Gun",
                 "type" : "artist",
-                "uri" : "spotify:artist:5SU9mZVaI9pRXgXmIhG1fL"
+                "uri" : "spotify:artist:09bP40OuEV5tOM1rQnZNxI"
               } ],
-              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "available_markets" : [ "CA", "US" ],
               "disc_number" : 1,
-              "duration_ms" : 199412,
+              "duration_ms" : 313893,
               "explicit" : false,
               "external_ids" : {
-                "isrc" : "NLT3W2100006"
+                "isrc" : "GB3ZD2000051"
               },
               "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/7oT68LQRk0Vrr8B0om5BCa"
+                "spotify" : "https://open.spotify.com/track/0D7LS7utqNm9JCSxFmA354"
               },
-              "href" : "https://api.spotify.com/v1/tracks/7oT68LQRk0Vrr8B0om5BCa",
-              "id" : "7oT68LQRk0Vrr8B0om5BCa",
+              "href" : "https://api.spotify.com/v1/tracks/0D7LS7utqNm9JCSxFmA354",
+              "id" : "0D7LS7utqNm9JCSxFmA354",
               "is_local" : false,
-              "name" : "Christmas Getaway",
-              "popularity" : 49,
-              "preview_url" : "https://p.scdn.co/mp3-preview/1d48ea0d7038535e63dc4198c406ad94b40a2563?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "name" : "Looking For Moses",
+              "popularity" : 14,
+              "preview_url" : "https://p.scdn.co/mp3-preview/795cc5dc49a4a3b0d509ff40fb028be9d46ec7f0?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:0D7LS7utqNm9JCSxFmA354"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/09bP40OuEV5tOM1rQnZNxI"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/09bP40OuEV5tOM1rQnZNxI",
+                  "id" : "09bP40OuEV5tOM1rQnZNxI",
+                  "name" : "Mamas Gun",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:09bP40OuEV5tOM1rQnZNxI"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4BhmGP2OAS9LKwJzNqr9YG"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4BhmGP2OAS9LKwJzNqr9YG",
+                "id" : "4BhmGP2OAS9LKwJzNqr9YG",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273da37ce5de2c52f1c050d2e80",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02da37ce5de2c52f1c050d2e80",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851da37ce5de2c52f1c050d2e80",
+                  "width" : 64
+                } ],
+                "name" : "Party For One / Looking For Moses",
+                "release_date" : "2022-01-14",
+                "release_date_precision" : "day",
+                "total_tracks" : 2,
+                "type" : "album",
+                "uri" : "spotify:album:4BhmGP2OAS9LKwJzNqr9YG"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/09bP40OuEV5tOM1rQnZNxI"
+                },
+                "href" : "https://api.spotify.com/v1/artists/09bP40OuEV5tOM1rQnZNxI",
+                "id" : "09bP40OuEV5tOM1rQnZNxI",
+                "name" : "Mamas Gun",
+                "type" : "artist",
+                "uri" : "spotify:artist:09bP40OuEV5tOM1rQnZNxI"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 294266,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GB3ZD2100055"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2QGIRAgv1ylntxYg5Py2dN"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2QGIRAgv1ylntxYg5Py2dN",
+              "id" : "2QGIRAgv1ylntxYg5Py2dN",
+              "is_local" : false,
+              "name" : "Party For One",
+              "popularity" : 8,
+              "preview_url" : "https://p.scdn.co/mp3-preview/ce4d89bc43801c78f4dce5e815db5c5ffb68e3da?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 1,
               "type" : "track",
-              "uri" : "spotify:track:7oT68LQRk0Vrr8B0om5BCa"
+              "uri" : "spotify:track:2QGIRAgv1ylntxYg5Py2dN"
             } ],
             "limit" : 20,
             "next" : null,
             "offset" : 0,
             "previous" : null,
-            "total" : 1
+            "total" : 2
           }
         }
-  recorded_at: Fri, 24 Dec 2021 08:55:52 GMT
+  recorded_at: Sun, 16 Jan 2022 11:29:13 GMT
 - request:
     method: post
     uri: https://accounts.spotify.com/api/token
@@ -312,14 +395,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 Dec 2021 08:55:52 GMT
+      - Sun, 16 Jan 2022 11:29:13 GMT
       Content-Type:
       - application/json
       Set-Cookie:
-      - __Host-device_id=AQAK2L2T32IOHlP6RD6hizN-ShBxSihqWapLqIh3wtQAGtqw65MY4-pqnzTJppR2ItLxqr7dGEQVNt5Cz7BDrbvhAyUhCMsMKvQ;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - __Host-device_id=AQDbB7SflTPluwwaAu06ZFi8Cz4BoIJ_6VxOE0Dw4msi9Je6wjvks0dpmZG5uj_0ORxgdvAromZUcyHjH1NLgELo6F80K_gULws;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
       - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
       Sp-Trace-Id:
-      - 5ad6034269cdfc4e
+      - f713e09f574115ea
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -336,11 +419,11 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"BQB6v5vFQhJ9JIjG_9cQZgGYM17XztlqPNX2lWVbgVY9SdsJGYgYYjHA4hCfx5-mm_AxquHfsj9cFTPs1io","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Fri, 24 Dec 2021 08:55:52 GMT
+      string: '{"access_token":"BQDglcUQBUkUKMK2xcPnmmuJRMc1MfZ3u6EQweHyNFUQ0tWSILmGp7AYal6MW9FlOXkrrwhchcB5GEoLgWk","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Sun, 16 Jan 2022 11:29:13 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/artists/5SU9mZVaI9pRXgXmIhG1fL
+    uri: https://api.spotify.com/v1/artists/09bP40OuEV5tOM1rQnZNxI
     body:
       encoding: US-ASCII
       string: ''
@@ -354,7 +437,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQB6v5vFQhJ9JIjG_9cQZgGYM17XztlqPNX2lWVbgVY9SdsJGYgYYjHA4hCfx5-mm_AxquHfsj9cFTPs1io
+      - Bearer BQDglcUQBUkUKMK2xcPnmmuJRMc1MfZ3u6EQweHyNFUQ0tWSILmGp7AYal6MW9FlOXkrrwhchcB5GEoLgWk
       Content-Type:
       - application/json
   response:
@@ -365,7 +448,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=72409
+      - public, max-age=75641
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -384,7 +467,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Fri, 24 Dec 2021 08:55:52 GMT
+      - Sun, 16 Jan 2022 11:29:13 GMT
       Server:
       - envoy
       Via:
@@ -398,32 +481,32 @@ http_interactions:
       string: |-
         {
           "external_urls" : {
-            "spotify" : "https://open.spotify.com/artist/5SU9mZVaI9pRXgXmIhG1fL"
+            "spotify" : "https://open.spotify.com/artist/09bP40OuEV5tOM1rQnZNxI"
           },
           "followers" : {
             "href" : null,
-            "total" : 5355
+            "total" : 20293
           },
-          "genres" : [ "dutch pop" ],
-          "href" : "https://api.spotify.com/v1/artists/5SU9mZVaI9pRXgXmIhG1fL",
-          "id" : "5SU9mZVaI9pRXgXmIhG1fL",
+          "genres" : [ "retro soul" ],
+          "href" : "https://api.spotify.com/v1/artists/09bP40OuEV5tOM1rQnZNxI",
+          "id" : "09bP40OuEV5tOM1rQnZNxI",
           "images" : [ {
             "height" : 640,
-            "url" : "https://i.scdn.co/image/ab6761610000e5eb4cc3d7d2c09eba51593ceeff",
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb270a19c9c03f3ae9b2eb0466",
             "width" : 640
           }, {
             "height" : 320,
-            "url" : "https://i.scdn.co/image/ab676161000051744cc3d7d2c09eba51593ceeff",
+            "url" : "https://i.scdn.co/image/ab67616100005174270a19c9c03f3ae9b2eb0466",
             "width" : 320
           }, {
             "height" : 160,
-            "url" : "https://i.scdn.co/image/ab6761610000f1784cc3d7d2c09eba51593ceeff",
+            "url" : "https://i.scdn.co/image/ab6761610000f178270a19c9c03f3ae9b2eb0466",
             "width" : 160
           } ],
-          "name" : "Blackbird",
-          "popularity" : 43,
+          "name" : "Mamas Gun",
+          "popularity" : 47,
           "type" : "artist",
-          "uri" : "spotify:artist:5SU9mZVaI9pRXgXmIhG1fL"
+          "uri" : "spotify:artist:09bP40OuEV5tOM1rQnZNxI"
         }
-  recorded_at: Fri, 24 Dec 2021 08:55:52 GMT
+  recorded_at: Sun, 16 Jan 2022 11:29:13 GMT
 recorded_with: VCR 6.0.0

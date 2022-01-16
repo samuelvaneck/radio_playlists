@@ -41,10 +41,21 @@ RSpec.describe Artist do
   end
 
   describe '#group_and_count' do
-    it 'groups and counts the artist' do
-      results = Artist.group_and_count(Artist.joins(:generalplaylists).all)
+    let(:result) do
+      Artist.group_and_count(Artist.joins(:generalplaylists).all)
+    end
+    let(:third_artist) do
+      [ArtistSerializer.new(Artist.find(artist_3.id)).serializable_hash, 2]
+    end
+    let(:second_artist) do
+      [ArtistSerializer.new(Artist.find(artist_2.id)).serializable_hash, 1]
+    end
+    let(:first_artist) do
+      [ArtistSerializer.new(Artist.find(artist_1.id)).serializable_hash, 1]
+    end
 
-      expect(results).to include [artist_3.id, 2], [artist_2.id, 1], [artist_1.id, 1]
+    it 'groups and counts the artist' do
+      expect(result).to include third_artist, second_artist, first_artist
     end
   end
 
