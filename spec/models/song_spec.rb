@@ -48,10 +48,10 @@ RSpec.describe Song do
   describe '#group_and_count' do
     let(:result) { Song.group_and_count(Generalplaylist.all) }
     let(:second_song) do
-      [SongSerializer.new(Song.find(song_2.id)).serializable_hash, 2]
+      [song_2.id, 2]
     end
     let(:first_song) do
-      [SongSerializer.new(Song.find(song_1.id)).serializable_hash, 1]
+      [song_1.id, 1]
     end
 
     it 'groups and counts the songs' do
