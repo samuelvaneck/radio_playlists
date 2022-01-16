@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.0.3'
+ruby '3.1.0'
 
 gem 'dotenv-rails'
 gem 'health_bit'
@@ -23,6 +23,10 @@ gem 'uglifier'
 gem 'uri', '~> 0.11.0'
 gem 'webpacker', '~> 5'
 gem 'will_paginate'
+
+# Until mail gem is updated
+# https://stackoverflow.com/questions/70500220/rails-7-ruby-3-1-loaderror-cannot-load-such-file-net-smtp
+gem 'net-smtp', require: false
 
 group :development, :test do
   gem 'concurrent-ruby'

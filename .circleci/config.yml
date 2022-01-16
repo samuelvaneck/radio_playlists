@@ -24,7 +24,7 @@
     build:
       working_directory: ~/radio_playlists
       docker:
-        - image: circleci/ruby:3.0.3-node-browsers
+        - image: cimg/ruby:3.1.0-browsers
           environment:
             POSTGRES_HOST: localhost
             POSTGRES_USER: radio_playlists
