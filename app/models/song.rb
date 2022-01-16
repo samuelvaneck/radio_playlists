@@ -31,10 +31,6 @@ class Song < ActiveRecord::Base
     songs.group(:song_id)
          .count.sort_by { |_song_id, counter| counter }
          .reverse
-         .map do |song_id, counter|
-           serialized_song = SongSerializer.new(Song.find(song_id)).serializable_hash
-           [serialized_song, counter]
-         end
   end
 
   def self.spotify_track_to_song(track)
