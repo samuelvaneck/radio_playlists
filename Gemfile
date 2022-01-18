@@ -25,8 +25,11 @@ gem 'webpacker', '~> 5'
 gem 'will_paginate'
 
 # Until mail gem is updated
-# https://stackoverflow.com/questions/70500220/rails-7-ruby-3-1-loaderror-cannot-load-such-file-net-smtp
+# https://github.com/mikel/mail/pull/1439
 gem 'net-smtp', require: false
+gem 'net-pop', require: false
+gem 'net-imap', require: false
+
 
 group :development, :test do
   gem 'concurrent-ruby'
