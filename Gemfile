@@ -21,8 +21,10 @@ gem 'sidekiq-scheduler', '~> 3.1'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'uri', '~> 0.11.0'
-gem 'webpacker', '~> 5'
 gem 'will_paginate'
+
+gem 'jsbundling-rails', '~> 1.0'
+gem 'cssbundling-rails', '~> 1.0'
 
 # Until mail gem is updated
 # https://github.com/mikel/mail/pull/1439

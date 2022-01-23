@@ -1,32 +1,31 @@
-@import './general_playlist.scss';
-@import './tailwind.scss';
+@import './stylesheets/general_playlist.scss';
 
 @font-face {
   font-family: 'Rubik';
   font-weight: regular;
   font-style: 'normal';
-  src: url('../fonts/Rubik-Regular.ttf');
+  src: url('./fonts/Rubik-Regular.ttf');
 }
 
 @font-face {
   font-family: 'Bungee';
   font-weight: regular;
   font-style: 'normal';
-  src: url('../fonts/Bungee-Regular.ttf');
+  src: url('./fonts/Bungee-Regular.ttf');
 }
 
 @font-face {
   font-family: 'Bungee Inline';
   font-weight: regular;
   font-style: 'normal';
-  src: url('../fonts/BungeeInline-Regular.ttf');
+  src: url('./fonts/BungeeInline-Regular.ttf');
 }
 
 @font-face {
   font-family: 'Roboto';
   font-weight: regular;
   font-style: 'normal';
-  src: url('../fonts/Roboto-Regular.ttf');
+  src: url('./fonts/Roboto-Regular.ttf');
 }
 
 body {

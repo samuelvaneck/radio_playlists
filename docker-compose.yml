@@ -51,18 +51,13 @@ services:
     build:
       context: .
       dockerfile: dev.Dockerfile
-    command: ./bin/webpack --watch
+    command: ./bin/dev
     depends_on:
       - postgres
     volumes:
       - .:/app
-    ports:
-      - 3085:3085
     environment:
       - NODE_ENV=development
-      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
-      - WEBPACKER_DEV_SERVER_INLINE=true
-      - WEBPACKER_DEV_SERVER_HOT=false
 
   selenium:
     image: selenium/standalone-chrome-debug
