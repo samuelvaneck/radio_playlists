@@ -8,7 +8,7 @@ module.exports = {
       '/app/**/*.html.erb',
       './app/helpers/**/*.rb',
       './app/javascript/**/*.js',
-      "./app/javascript/**/*.vue",
+      "./app/javascript/**/*.vue"
     ]
   },
   darkMode: 'media',

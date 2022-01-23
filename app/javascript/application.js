@@ -6,15 +6,17 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+import "@hotwired/turbo-rails"
+
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import '../stylesheets/application.scss'
+import './application.scss'
 
 import Vue from 'vue/dist/vue.esm'
-import StatusBar from 'components/status_bar/status_bar'
-import PlaylistBar from 'components/general_playlists/playlist_bar.vue'
-import TopSongBar from 'components/top_songs/top_song_bar.vue'
-import TopArtistBar from 'components/top_artists/top_artist_bar.vue'
+import StatusBar from './components/status_bar/status_bar'
+import PlaylistBar from './components/general_playlists/playlist_bar.vue'
+import TopSongBar from './components/top_songs/top_song_bar.vue'
+import TopArtistBar from './components/top_artists/top_artist_bar.vue'
 
 Vue.component('statusBar', StatusBar)
 Vue.component('playlistBar', PlaylistBar)

@@ -11,7 +11,7 @@ gem 'nokogiri', '>= 1.10.9'
 gem 'pg'
 gem 'puma', '~> 5.5'
 gem 'mailjet'
-gem 'rails', '~> 6.1', '>= 6.1.4.1'
+gem 'rails', '~> 7.0', '>= 7.0.1'
 gem 'responders'
 gem 'sass-rails'
 gem 'sentry-ruby'
@@ -21,8 +21,10 @@ gem 'sidekiq-scheduler', '~> 3.1'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'uri', '~> 0.11.0'
-gem 'webpacker', '~> 5'
 gem 'will_paginate'
+
+gem 'jsbundling-rails', '~> 1.0'
+gem 'cssbundling-rails', '~> 1.0'
 
 # Until mail gem is updated
 # https://github.com/mikel/mail/pull/1439

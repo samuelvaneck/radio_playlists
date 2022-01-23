@@ -47,7 +47,7 @@
 
 <script>
   import LoadingBar from '../application/loading_bar.vue'
-  import SpotifyLogo from 'images/Spotify_Icon_RGB_Green.png'
+  import SpotifyLogo from '../../images/Spotify_Icon_RGB_Green.png'
 
   export default {
     props: ['artist', 'counter', 'chartIdx'],
