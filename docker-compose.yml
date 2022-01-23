@@ -30,7 +30,7 @@ services:
     build:
       context: .
       dockerfile: dev.Dockerfile
-    command: bash -c "rm -rf /app/tmp/pids && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -rf /app/tmp/pids && bin/dev"
     hostname: radio-web
     depends_on:
       - postgres
@@ -43,21 +43,10 @@ services:
     environment:
       - RAILS_LOG_TO_STDOUT=true
       - DOCKER_COMPOSE=true
-      - WEBPACKER_DEV_SERVER_HOST=webpacker
+      # - WEBPACKER_DEV_SERVER_HOST=webpacker
+      - NODE_ENV=development
     tty: true
     stdin_open: true
-
-  webpacker:
-    build:
-      context: .
-      dockerfile: dev.Dockerfile
-    command: ./bin/dev
-    depends_on:
-      - postgres
-    volumes:
-      - .:/app
-    environment:
-      - NODE_ENV=development
 
   selenium:
     image: selenium/standalone-chrome-debug
@@ -67,5 +56,3 @@ services:
     environment:
       SCREEN_WIDTH: 1920
       SCREEN_HEIGHT: 1080
-    #logging:
-     # driver: none
