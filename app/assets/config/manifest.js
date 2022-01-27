@@ -1,4 +1,3 @@
-//= link application.js
-//= link application.css
-//= link radio.png
 //= link_tree ../builds
+//= link_tree ../images
+//= link_tree ../fonts

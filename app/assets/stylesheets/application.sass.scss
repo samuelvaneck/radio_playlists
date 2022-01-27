@@ -1,0 +1,57 @@
+@import 'general_playlist.scss';
+
+@font-face {
+  font-family: 'Rubik';
+  font-weight: regular;
+  font-style: 'normal';
+  src: asset-url("fonts/Rubik-Regular.ttf'");
+}
+
+@font-face {
+  font-family: 'Bungee';
+  font-weight: regular;
+  font-style: 'normal';
+  src: asset-url('fonts/Bungee-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Bungee Inline';
+  font-weight: regular;
+  font-style: 'normal';
+  src: asset-url('fonts/BungeeInline-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: regular;
+  font-style: 'normal';
+  src: asset-url('fonts/Roboto-Regular.ttf');
+}
+
+body {
+  font-family: 'Roboto';
+}
+
+// custom scrollbar
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

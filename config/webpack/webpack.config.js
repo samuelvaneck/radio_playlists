@@ -1,19 +1,15 @@
 const path    = require("path")
 const webpack = require("webpack")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const mode = process.env.NODE_ENV === 'development' ? 'development' : 'production';
 const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
-  // mode: "production",
-  // devtool: "source-map",
   mode,
   entry: {
     application: [
-      "./app/javascript/application.js",
-      "./app/assets/stylesheets/application.scss"
+      "./app/javascript/application.js"
     ]
   },
   module: {
@@ -48,7 +44,6 @@ module.exports = {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
-    // new FixStyleOnlyEntriesPlugin(),
     new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin(),
     new VueLoaderPlugin()
