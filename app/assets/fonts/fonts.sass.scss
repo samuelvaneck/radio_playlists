@@ -1,0 +1,32 @@
+$rubixFontURL: url('./fonts/Rubik-Regular.ttf');
+$bungeeRegularFontURL: url('./fonts/Bungee-Regular.ttf');
+$bungeeInlineFontURL: url('./fonts/BungeeInline-Regular.ttf');
+$robotoFontURL: url('./fonts/Roboto-Regular.ttf');
+
+@font-face {
+  font-family: 'Rubik';
+  font-weight: regular;
+  font-style: 'normal';
+  src: $rubixFontURL;
+}
+
+@font-face {
+  font-family: 'Bungee';
+  font-weight: regular;
+  font-style: 'normal';
+  src: $bungeeRegularFontURL;
+}
+
+@font-face {
+  font-family: 'Bungee Inline';
+  font-weight: regular;
+  font-style: 'normal';
+  src: $bungeeInlineFontURL;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: regular;
+  font-style: 'normal';
+  src: $rubixFontURL;
+}
