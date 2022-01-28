@@ -1,31 +1,36 @@
-@import 'general_playlist.scss';
+@import url('general_playlist.scss');
+$rubixFontURL: url('./fonts/Rubik-Regular.ttf');
+$bungeeRegularFontURL: url('./fonts/Bungee-Regular.ttf');
+$bungeeInlineFontURL: url('./fonts/BungeeInline-Regular.ttf');
+$robotoFontURL: url('./fonts/Roboto-Regular.ttf');
+
 
 @font-face {
   font-family: 'Rubik';
   font-weight: regular;
   font-style: 'normal';
-  src: asset-url("fonts/Rubik-Regular.ttf'");
+  src: $rubixFontURL;
 }
 
 @font-face {
   font-family: 'Bungee';
   font-weight: regular;
   font-style: 'normal';
-  src: asset-url('fonts/Bungee-Regular.ttf');
+  src: $bungeeRegularFontURL;
 }
 
 @font-face {
   font-family: 'Bungee Inline';
   font-weight: regular;
   font-style: 'normal';
-  src: asset-url('fonts/BungeeInline-Regular.ttf');
+  src: $bungeeInlineFontURL;
 }
 
 @font-face {
   font-family: 'Roboto';
   font-weight: regular;
   font-style: 'normal';
-  src: asset-url('fonts/Roboto-Regular.ttf');
+  src: $rubixFontURL;
 }
 
 body {
