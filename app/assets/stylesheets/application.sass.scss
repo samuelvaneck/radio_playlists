@@ -1,5 +1,36 @@
-@import url('./fonts/fonts.sass.scss');
-@import url('general_playlist.scss');
+$rubixFontURL: url('./fonts/Rubik-Regular.ttf');
+$bungeeRegularFontURL: url('./fonts/Bungee-Regular.ttf');
+$bungeeInlineFontURL: url('./fonts/BungeeInline-Regular.ttf');
+$robotoFontURL: url('./fonts/Roboto-Regular.ttf');
+
+@font-face {
+  font-family: 'Rubik';
+  font-weight: regular;
+  font-style: 'normal';
+  src: $rubixFontURL;
+}
+
+@font-face {
+  font-family: 'Bungee';
+  font-weight: regular;
+  font-style: 'normal';
+  src: $bungeeRegularFontURL;
+}
+
+@font-face {
+  font-family: 'Bungee Inline';
+  font-weight: regular;
+  font-style: 'normal';
+  src: $bungeeInlineFontURL;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: regular;
+  font-style: 'normal';
+  src: $rubixFontURL;
+}
+
 
 body {
   font-family: 'Roboto';
@@ -27,4 +58,55 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.rubik {
+  font-family: 'Rubik', sans-serif;
+}
+
+.bungee {
+  font-family: 'Bungee', cursive;
+}
+
+.bungee-inline {
+  font-family: 'Bungee Inline', cursive;
+}
+
+.roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+.nav-arrow {
+  opacity: 0;
+  z-index: 10;
+  font-size: 12em;
+  background-color: #eeeeee;
+  position: absolute;
+  transition-duration: 0.1s;
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.left-arrow{
+    transform: translate(-5%, 0%);
+  }
+  &.right-arrow {
+    transform: translate(-90%, 0%);
+  }
+}
+
+.time-filters {
+  padding: 5px;
+  padding-right: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+}
+
+// VUE transition name='fade'
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .15s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
