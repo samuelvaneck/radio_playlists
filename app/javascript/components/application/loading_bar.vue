@@ -1,6 +1,6 @@
 <template>
-  <span 
-    :style="{ height, width: computedWidth }" 
+  <span
+    :style="{ height, width: computedWidth }"
     class="loading-bar" />
 </template>
 
@@ -32,30 +32,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  .loading-bar {
-    display: inline-block;
-    position: static;
-    overflow: hidden;
-    vertical-align: middle;
-    background-color: #DDDBDD;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 5px;
-    border-radius: 4px;
-
-    &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      content: ' ';
-    }
-
-    @keyframes shimmer {
-      100% { transform: translateX(100%) }
-    }
-  }
-</style>
