@@ -65,7 +65,6 @@
 
 <script>
   import LoadingBar from '../application/loading_bar.vue'
-  import SpotifyLogo from '../../images/Spotify_Icon_RGB_Green.png'
 
   export default {
     props: ['item'],
@@ -77,7 +76,7 @@
         songArtworkUrl: null,
         radioStation: null,
         loading: true,
-        spotifyLogo: SpotifyLogo
+        spotifyLogo: null
       }
     },
     methods: {
@@ -129,10 +128,14 @@
       },
       artistName() {
         return this.artists.map(artist => artist.data.attributes.name ).join(' - ')
+      },
+      getSpotifyImage() {
+        this.spotifyLogo = document.getElementById('section-1').getAttribute('data-spotify-logo-url')
       }
     },
     mounted: function() {
       this.getValue()
+      this.getSpotifyImage()
     }
   }
 </script>

@@ -47,17 +47,16 @@
 
 <script>
   import LoadingBar from '../application/loading_bar.vue'
-  import SpotifyLogo from '../../images/Spotify_Icon_RGB_Green.png'
 
   export default {
     props: ['artist', 'counter', 'chartIdx'],
-    components: { LoadingBar, SpotifyLogo },
+    components: { LoadingBar },
     data () {
       return {
         // artist: null,
         spotifyArtworkUrl: null,
         loading: true,
-        spotifyLogo: SpotifyLogo
+        spotifyLogo: null
       }
     },
     methods: {
@@ -71,10 +70,14 @@
           this.spotifyArtworkUrl = this.artist.data.attributes.spotify_artwork_url
         }
         this.loading = false
+      },
+      getSpotifyImage() {
+        this.spotifyLogo = document.getElementById('section-1').getAttribute('data-spotify-logo-url');
       }
     },
     mounted: function() {
       this.setSpotifyArtworkUrl()
+      this.getSpotifyImage()
     }
   }
 </script>
