@@ -2,15 +2,15 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   mode: 'jit',
-  purge: {
-    enabled: ["production", "staging"].includes(process.env.NODE_ENV),
-    content: [
-      '/app/**/*.html.erb',
-      './app/helpers/**/*.rb',
-      './app/javascript/**/*.js',
-      "./app/javascript/**/*.vue"
-    ]
-  },
+  // purge: {
+  // },
+  enabled: ["production", "staging"].includes(process.env.NODE_ENV),
+  content: [
+    '/app/**/*.html.erb',
+    './app/helpers/**/*.rb',
+    './app/javascript/**/*.js',
+    "./app/javascript/**/*.vue"
+  ],
   darkMode: 'media',
   theme: {
     screens: {

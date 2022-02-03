@@ -9,7 +9,8 @@ module.exports = {
   mode,
   entry: {
     application: [
-      "./app/javascript/application.js"
+      "./app/javascript/application.js",
+      "./app/javascript/stylesheets/application.scss"
     ]
   },
   module: {
@@ -24,11 +25,14 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader'
       },
-      //
       {
-        test: /\.(png|jpe?g|gif|eot|woff2|woff|ttf|svg)$/i,
-        use: 'file-loader',
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      }
     ],
   },
   resolve: {
