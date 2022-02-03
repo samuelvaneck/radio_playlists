@@ -10,7 +10,7 @@ import "@hotwired/turbo-rails"
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import './application.scss'
+import './stylesheets/application.scss'
 
 import Vue from 'vue/dist/vue.esm'
 import StatusBar from './components/status_bar/status_bar'
