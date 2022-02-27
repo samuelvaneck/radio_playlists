@@ -116,7 +116,7 @@
             if (d.historic_position === -1) {
               this.position = '?';
             } else {
-              const changedPositions = (this.chartIdx + 1) - d.yesterdays_position;
+              const changedPositions = (this.chartIdx + 1) - d.historic_position;
               if (Math.sign(changedPositions) === 1) {
                 this.position = '+' + (changedPositions);
               } else {
