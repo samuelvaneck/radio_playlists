@@ -18,7 +18,7 @@ class Chart < ApplicationRecord
   end
 
   def position(object_id)
-    chart_index = chart.map { |idx| return idx[1] if idx[0] == Integer(object_id, 10) }.compact
+    chart_index = chart.map.with_index { |idx, i| return i if idx[0] == Integer(object_id, 10) }.compact
     chart_index.blank? ? -1 : chart_index[0] + 1
   end
 
