@@ -17,7 +17,10 @@ class Chart < ApplicationRecord
     chart.save
   end
 
-  def chart_postion(id, type); end
+  def position(object_id)
+    chart_index = chart.map { |idx| return idx[1] if idx[0] == Integer(object_id, 10) }.compact
+    chart_index.blank? ? -1 : chart_index[0] + 1
+  end
 
   private
 
@@ -30,10 +33,6 @@ class Chart < ApplicationRecord
     artists = Artist.search({ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
     Artist.group_and_count(artists)
   end
-
-  def song_position(song_id); end
-
-  def artist_position(artist_id); end
 
   def yesterday_beginning_of_day
     1.day.ago.beginning_of_day.strftime('%FT%R')
