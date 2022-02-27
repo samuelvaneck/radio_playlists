@@ -116,8 +116,10 @@
             if (d.historic_position === -1) {
               this.position = '?';
             } else {
-              const changedPositions = (this.chartIdx + 1) - d.historic_position;
-              if (Math.sign(changedPositions) === 1) {
+              const changedPositions = d.historic_position - this.chartIdx;
+              if(changedPositions === 0) {
+                this.position = '=';
+              } else if (Math.sign(changedPositions) === 1) {
                 this.position = '+' + (changedPositions);
               } else {
                 this.position = changedPositions;
