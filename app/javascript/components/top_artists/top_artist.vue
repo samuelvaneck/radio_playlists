@@ -86,18 +86,14 @@
 
         fetch(url, options).then(res => res.json())
           .then(d => {
-            if (d.last_week_position === -1 && d.yesterdays_position === -1) {
-              this.position = '?';
-            } else if (d.last_week_position === -1) {
-              this.position = '+' + d.yesterdays_position
-            } else if (d.yesterdays_position === -1) {
+            if (d.historic_position === -1) {
               this.position = '?';
             } else {
-              const changePositions = d.last_week_position - d.yesterdays_position;
-              if (Math.sign(changePositions) === 1) {
-                this.position = '+' + (changePositions);
+              const changedPositions = (this.chartIdx + 1) - d.yesterdays_position;
+              if (Math.sign(changedPositions) === 1) {
+                this.position = '+' + (changedPositions);
               } else {
-                this.position = changePositions;
+                this.position = changedPositions;
               }
             }
           });
