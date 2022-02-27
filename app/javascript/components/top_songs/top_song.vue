@@ -24,9 +24,8 @@
       <div class='text'>
         <div class='flex flex-row justify-between my-2'>
           <div>
-            <span class='bungee'>
-              # {{ chartIdx + 1 }}
-            </span>
+            <span class='bungee'># {{ chartIdx + 1 }}</span>
+            <span class='playlist-badge'>{{ this.position }}</span>
           </div>
           <div class='float-right'>
             <span class='playlist-badge'>{{ counter }} x</span>
@@ -65,6 +64,7 @@
         radioStation: null,
         loading: true,
         spotifyLogo: null,
+        position: ''
       }
     },
     methods: {
@@ -100,11 +100,40 @@
       },
       getSpotifyImage() {
         this.spotifyLogo = document.getElementById('section-1').getAttribute('data-spotify-logo-url');
+      },
+      getChartPosition() {
+        const url = '/charts/' + this.song.data.attributes.id + '/?chart_type=songs';
+        const options = {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json;charset=UTF-8'
+          }
+        }
+
+        fetch(url, options).then(res => res.json())
+          .then(d => {
+            if (d.last_week_position === -1 && d.yesterdays_position === -1) {
+              this.position = '?';
+            } else if (d.last_week_position === -1) {
+              this.position = '+' + d.yesterdays_position
+            } else if (d.yesterdays_position === -1) {
+              this.position = '?';
+            } else {
+              const changePositions = d.last_week_position - d.yesterdays_position;
+              if (Math.sign(changePositions) === 1) {
+                this.position = '+' + (changePositions);
+              } else {
+                this.position = changePositions;
+              }
+            }
+          });
       }
     },
     mounted: function() {
       this.getValues()
       this.getSpotifyImage();
+      this.getChartPosition();
     },
     components: { LoadingBar }
   }

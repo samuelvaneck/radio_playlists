@@ -66,4 +66,6 @@ Rails.application.configure do
   config.logger = ActiveSupport::TaggedLogging.new(logger)
 
   config.hosts << '0.0.0.0'
+
+  config.web_console.permissions = '172.18.0.1/16'
 end
