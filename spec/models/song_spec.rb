@@ -9,8 +9,8 @@ RSpec.describe Song do
   let(:song_2) { FactoryBot.create :song, artists: [artist_2] }
   let(:radiostation) { FactoryBot.create :radiostation }
   let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1 }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
-  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radiostation }
+  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: }
+  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: }
 
   let(:song_drown) { FactoryBot.create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
   let(:artist_martin_garrix) { FactoryBot.create :artist, name: 'Martin Garrix' }

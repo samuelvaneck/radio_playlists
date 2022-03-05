@@ -9,8 +9,8 @@ RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
 
   def processor_return_object(artist_name, title, time)
     {
-      artist_name: artist_name,
-      title: title,
+      artist_name:,
+      title:,
       broadcast_timestamp: Time.find_zone('Amsterdam').parse(time),
       spotify_url: nil
     }

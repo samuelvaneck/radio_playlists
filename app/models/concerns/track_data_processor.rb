@@ -4,7 +4,7 @@ module TrackDataProcessor
 
   def process_track_data(artist_name, title)
     generate_sentry_breadcrumb(artist_name, title)
-    track = Spotify.new(artists: artist_name, title: title).track
+    track = Spotify.new(artists: artist_name, title:).track
 
     artists = find_or_create_artist(artist_name, track)
     song = find_or_create_song(title, track, artists)
@@ -18,7 +18,7 @@ module TrackDataProcessor
     if track.present? && track.artists.present?
       Artist.spotify_track_to_artist(track)
     else
-      Artist.find_or_initialize_by(name: name)
+      Artist.find_or_initialize_by(name:)
     end
   rescue StandardError => e
     Sentry.capture_exception(e)
@@ -43,11 +43,11 @@ module TrackDataProcessor
   def song_check(songs, artists, title)
     # If there is no song with the same title create a new one
     result = if songs.blank? || artists.blank?
-               Song.find_or_create_by(title: title)
+               Song.find_or_create_by(title:)
              elsif query_songs(artists, title)
                query_songs(artists, title)
              else
-               song = Song.new(title: title, artists: artists)
+               song = Song.new(title:, artists:)
                song.artists << artists
                song
              end
@@ -74,7 +74,7 @@ module TrackDataProcessor
   def generate_sentry_breadcrumb(artist_name, title)
     crumb = Sentry::Breadcrumb.new(
       category: 'import_song',
-      data: { artist_naem: artist_name, title: title, radio_station: name },
+      data: { artist_naem: artist_name, title:, radio_station: name },
       level: 'info'
     )
     Sentry.add_breadcrumb(crumb)
