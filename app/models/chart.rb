@@ -12,7 +12,7 @@ class Chart < ApplicationRecord
   end
 
   def self.create_yesterdays_chart(chart_type)
-    chart = Chart.new(date: 1.day.ago.beginning_of_day, chart_type: chart_type)
+    chart = Chart.new(date: 1.day.ago.beginning_of_day, chart_type:)
     chart.chart = chart.__send__("yesterdays_#{chart_type}_chart".to_sym)
     chart.save
   end

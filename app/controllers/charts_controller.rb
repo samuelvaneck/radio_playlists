@@ -6,6 +6,6 @@ class ChartsController < ApplicationController
     historic_chart = Chart.find_by(date: historic_start_time.beginning_of_day, chart_type: params[:chart_type])
     historic_position = historic_chart.position(params[:id])
 
-    render json: { historic_position: historic_position }
+    render json: { historic_position: }
   end
 end

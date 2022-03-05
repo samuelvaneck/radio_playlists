@@ -24,10 +24,10 @@ module Importable
       spotify_url = track['spotify_url']
 
       {
-        artist_name: artist_name,
-        title: title,
-        broadcast_timestamp: broadcast_timestamp,
-        spotify_url: spotify_url
+        artist_name:,
+        title:,
+        broadcast_timestamp:,
+        spotify_url:
       }
     end
   rescue Net::ReadTimeout => _e
@@ -56,9 +56,9 @@ module Importable
     broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['broadcastDate'])
 
     {
-      artist_name: artist_name,
-      title: title,
-      broadcast_timestamp: broadcast_timestamp
+      artist_name:,
+      title:,
+      broadcast_timestamp:
     }
   rescue Net::ReadTimeout => _e
     puts "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
@@ -82,10 +82,10 @@ module Importable
       spotify_url = track['spotify_url']
 
       {
-        artist_name: artist_name,
-        title: title,
-        broadcast_timestamp: broadcast_timestamp,
-        spotify_url: spotify_url
+        artist_name:,
+        title:,
+        broadcast_timestamp:,
+        spotify_url:
       }
     end
   end
@@ -118,15 +118,15 @@ module Importable
     broadcast_timestamp = Time.find_zone('Amsterdam').parse("#{date_string} #{time}")
 
     {
-      artist_name: artist_name,
-      title: title,
-      broadcast_timestamp: broadcast_timestamp
+      artist_name:,
+      title:,
+      broadcast_timestamp:
     }
   end
 
   # Methode for creating the Generalplaylist record
   def create_generalplaylist(broadcast_timestamp, artists, song, radio_station)
-    last_played_song = Generalplaylist.where(radiostation: radio_station, song: song, broadcast_timestamp: broadcast_timestamp).order(created_at: :desc).first
+    last_played_song = Generalplaylist.where(radiostation: radio_station, song:, broadcast_timestamp:).order(created_at: :desc).first
 
     if last_played_song.blank?
       add_song(broadcast_timestamp, artists, song, radio_station)
@@ -142,11 +142,11 @@ module Importable
     fullname = "#{Array.wrap(artists).map(&:name).join(' ')} #{song.title}"
     # Create a new Generalplaylist record
     Generalplaylist.create(
-      broadcast_timestamp: broadcast_timestamp,
-      song: song,
+      broadcast_timestamp:,
+      song:,
       radiostation: radio_station
     )
-    song.update(fullname: fullname)
+    song.update(fullname:)
 
     # cleaning up artists
     song.artists.clear

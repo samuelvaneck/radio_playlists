@@ -1,4 +1,4 @@
-FROM ruby:3.1.0-alpine3.15
+FROM ruby:3.1.1-alpine3.15
 
 RUN apk --update add --virtual build-dependencies \
     build-base \

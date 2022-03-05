@@ -28,7 +28,7 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def duplicate?
-    Generalplaylist.where(radiostation: radiostation, broadcast_timestamp: broadcast_timestamp).count > 1
+    Generalplaylist.where(radiostation:, broadcast_timestamp:).count > 1
   end
 
   private

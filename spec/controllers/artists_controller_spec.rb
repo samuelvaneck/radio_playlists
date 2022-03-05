@@ -5,8 +5,8 @@ require 'rails_helper'
 describe ArtistsController do
   let(:artist) { FactoryBot.create :artist }
   let(:song) { FactoryBot.create :song, artists: [artist] }
-  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song }
+  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: }
+  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: }
   let(:playlists) { FactoryBot.create_list :generalplaylist, 5, :filled }
   let(:json) do
     JSON(response.body).sort_by { |_artist, counter| counter }

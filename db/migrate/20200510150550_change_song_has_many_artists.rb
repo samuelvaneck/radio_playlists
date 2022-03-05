@@ -20,7 +20,7 @@ class ChangeSongHasManyArtists < ActiveRecord::Migration[6.0]
       next if artist_names.blank?
 
       artist_names.each do |name|
-        artist = Artist.find_or_create_by(name: name)
+        artist = Artist.find_or_create_by(name:)
         next if song.artists.include? artist
 
         song.artists << artist
