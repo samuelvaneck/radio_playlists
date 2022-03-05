@@ -11,7 +11,7 @@
     "autoprefixer": "^10.4.2",
     "build": "^0.1.4",
     "core-js": "^3.21.1",
-    "css-loader": "^6.6.0",
+    "css-loader": "^6.7.0",
     "esbuild": "0.14.11",
     "file-loader": "^6.2.0",
     "jquery": "^3.5.1",
