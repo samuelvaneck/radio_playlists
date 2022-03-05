@@ -58,7 +58,8 @@
 
         # add yarn
         - run: yarn install --cache-folder ~/.cache/yarn
-        - run: bin/rails webpacker:compile
+        - run: yarn build
+        - run: yarn build:css
 
         # Cache Dependencies
         - type: cache-save
