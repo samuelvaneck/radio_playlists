@@ -43,6 +43,10 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rails-controller-testing'
+  gem 'rubocop'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'webdrivers'
@@ -52,7 +56,6 @@ group :test do
   gem 'brakeman'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'rubocop'
   gem 'shoulda-matchers'
   # Sinatra is used to mock requests
   gem 'sinatra'

@@ -1,8 +1,154 @@
 inherit_from: .rubocop_todo.yml
+
+################################################################################
+# Require rubocop gems here
+################################################################################
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+################################################################################
+# Add more cops from here as we go: https://docs.rubocop.org/rubocop/index.html
+################################################################################
+Layout/LineLength:
+  Enabled: true
+  Details: >-
+    If lines are too short, text becomes hard to read because you must
+    constantly jump from one line to the next while reading. If lines are too
+    long, the line jumping becomes too hard because you "lose the line" while
+    going back to the start of the next line. 120 characters is a good
+    compromise.
+  Max: 120
+# Metrics/AbcSize:
+  # turn this back on later
+  # Severity: refactor
+  # Enable: false
+# Metrics/MethodLength:
+#   Severity: refactor
+# Note maybe this order is better
+# http://ideia.me/customize-rubocop-layout-class-structure-cop
+Naming:
+  Enabled: true
+Lint:
+  Enabled: true
+Lint/UnusedMethodArgument:
+  Enabled: true
+Bundler:
+  Enabled: true
+Security:
+  Enabled: true
+Layout/ClassStructure:
+  Enabled: true
+  Categories:
+    module_inclusion:
+      - include
+      - prepend
+      - extend
+    hooks:
+      - before_validation
+      - before_create
+      - before_update
+      - before_save
+      - before_destroy
+      - after_validation
+      - after_create
+      - after_update
+      - after_save
+      - after_destroy
+    validations:
+      - validates
+      - validates_with
+      - validates_presence_of
+      - validates_uniqueness_of
+    associations:
+      - belongs_to
+      - has_one
+      - has_many
+      - has_and_belongs_to_many
+  ExpectedOrder:
+    - constants
+    - module_inclusion
+    - table_name
+    - primary_key
+    - sequence_name
+    - hooks
+    - associations
+    - alias_attribute
+    - attribute
+    - keyword_attribute
+    - object_attributes
+    - validations
+    - scope
+    - public_class_methods
+    - initializer
+    - public_methods
+    - protected_methods
+    - private_methods
+Style/StringLiterals:
+  Enabled: true
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+Style/FrozenStringLiteralComment:
+  Enabled: false
+################################################################################
+# Rubocop Rails setting using rubocop-rails gem
+################################################################################
+Rails:
+  Enabled: true
+################################################################################
+# Rubocop Rspec settings using rubocop-rspec gem
+################################################################################
+RSpec/ContextWording:
+  Enabled: true
+  Prefixes:
+    - when
+    - with
+    - without
+    - if
+    - unless
+    - for
+RSpec/Focus:
+  Enabled: true
+RSpec/Be:
+  Enabled: true
+RSpec/BeEql:
+  Enabled: true
+RSpec/BeforeAfterAll:
+  Enabled: true
+RSpec/EmptyExampleGroup:
+  Enabled: true
+RSpec/EmptyHook:
+  Enabled: true
+RSpec/EmptyLineAfterExample:
+  Enabled: true
+RSpec/EmptyLineAfterExampleGroup:
+  Enabled: true
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: true
+RSpec/EmptyLineAfterHook:
+  Enabled: true
+RSpec/EmptyLineAfterSubject:
+  Enabled: true
+RSpec/ExampleWithoutDescription:
+  Enabled: true
+RSpec/ExampleWording:
+  Enabled: true
+RSpec/NestedGroups:
+  Enabled: true
+  Max: 4
+RSpec/MultipleMemoizedHelpers:
+  Max: 15
+################################################################################
+# Rubocop Performance settings using rubocop-performance gem
+################################################################################
+Performance:
+  Enabled: true
+################################################################################
+# Rubocop default cops setting see: https://docs.rubocop.org/rubocop/index.html
+#################################################################################
 AllCops:
-  EnabledByDefault: true
+  NewCops: disable
+  EnabledByDefault: false
   Exclude:
    - vendor/bundle/**/*
    - node_modules/node-sass/src/libsass/contrib/libsass.spec
-HashSyntax:
-  EnforcedStyle: ruby19
