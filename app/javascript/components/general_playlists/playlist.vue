@@ -5,14 +5,14 @@
         <span v-if='loading'>
           <LoadingBar class='image' v-bind:height='"190px"' v-bind:width='"90%"' />
         </span>
-        <span v-else-if='!!song'>
-          <img :src='song.data.attributes.spotify_artwork_url' class='image' />
+        <span>
+          <img :src='song.spotify_artwork_url' class='image' />
         </span>
       </div>
       <div class='badgeWrapper'>
         <div class='primaryBadge badgeAnime'>
-          <div v-if='!!song && !!song.data.attributes.spotify_song_url' class='mt-2 flex flex-row'>
-            <div class='ml-auto'>
+          <div class='mt-2 flex flex-row'>
+            <div v-if="!!song.spotify_song_url" class='ml-auto'>
               <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
             </div>
           </div>
@@ -34,8 +34,8 @@
             <div v-if='loading'>
               <LoadingBar />
             </div>
-            <div v-else-if='!!radioStation' class='ml-auto'>
-              <span class='playlist-badge'>{{ radioStation.data.attributes.name }}</span>
+            <div class='ml-auto'>
+              <span class='playlist-badge'>{{ radioStation.name }}</span>
             </div>
           </div>
         </div>
@@ -46,14 +46,14 @@
             <div v-if='loading'>
               <LoadingBar />
             </div>
-            <div v-else-if='!!song'>
-              <span>{{ song.data.attributes.title }}</span>
+            <div>
+              <span>{{ song.title }}</span>
             </div>
             <!-- Artist -->
             <div v-if='loading'>
               <LoadingBar />
             </div>
-            <div v-else-if='!!artists'>
+            <div>
               <small><i>{{ artistName() }}</i></small>
             </div>
           </div>
@@ -67,21 +67,18 @@
   import LoadingBar from '../application/loading_bar.vue'
 
   export default {
-    props: ['item'],
+    props: ['item', 'song', 'radioStation', 'artists'],
     components: { LoadingBar },
     data () {
       return {
-        artists: [],
-        song: null,
         songArtworkUrl: null,
-        radioStation: null,
         loading: true,
         spotifyLogo: null
       }
     },
     methods: {
       handleClickSpotifyBtn() {
-        window.open(this.song.data.attributes.spotify_song_url, '_blank')
+        window.open(this.song.spotify_song_url, '_blank')
       },
       playedTime() {
         const date = new Date(this.item.attributes.broadcast_timestamp)
@@ -98,44 +95,14 @@
 
         return dd + '-' + mm + '-' + yyyy
       },
-      getValue() {
-        this.item
-        const attributes = this.item.attributes
-        const songUrl = '/songs/' + attributes.song_id
-        const radioStationUrl = '/radiostations/' + attributes.radiostation_id
-        const options = {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json;charset=UTF-8'
-          }
-        }
-
-        fetch(songUrl, options).then(res => res.json())
-          .then(d => {
-            this.song = d
-            this.loading = false
-
-            this.song.data;
-            // for(let artist of this.song.data.relationships.artists.data) {
-            //   const artistUrl = '/artists/' + artist.id
-            //   fetch(artistUrl, options).then(res => res.json())
-            //     .then(d => this.artists.push(d))
-            // }
-          })
-
-        fetch(radioStationUrl, options).then(res => res.json())
-          .then(d => this.radioStation = d)
-      },
       artistName() {
-        return this.artists.map(artist => artist.data.attributes.name ).join(' - ')
+        return this.artists.map(artist => artist.name ).join(' - ')
       },
       getSpotifyImage() {
         this.spotifyLogo = document.getElementById('section-1').getAttribute('data-spotify-logo-url')
       }
     },
     mounted: function() {
-      this.getValue()
       this.getSpotifyImage()
     }
   }

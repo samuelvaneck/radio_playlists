@@ -109,7 +109,7 @@
     },
     mounted: function() {
       this.getSpotifyImage();
-      // this.getChartPosition();
+      this.getChartPosition();
     },
     components: { LoadingBar }
   }
