@@ -116,11 +116,12 @@
             this.song = d
             this.loading = false
 
-            for(let artist of this.song.data.relationships.artists.data) {
-              const artistUrl = '/artists/' + artist.id
-              fetch(artistUrl, options).then(res => res.json())
-                .then(d => this.artists.push(d))
-            }
+            this.song.data;
+            // for(let artist of this.song.data.relationships.artists.data) {
+            //   const artistUrl = '/artists/' + artist.id
+            //   fetch(artistUrl, options).then(res => res.json())
+            //     .then(d => this.artists.push(d))
+            // }
           })
 
         fetch(radioStationUrl, options).then(res => res.json())

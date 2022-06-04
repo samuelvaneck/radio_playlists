@@ -104,7 +104,7 @@
     mounted: function() {
       this.setSpotifyArtworkUrl()
       this.getSpotifyImage()
-      this.getChartPosition()
+      // this.getChartPosition()
     }
   }
 </script>

@@ -7,9 +7,14 @@ class SongSerializer
   attributes :id,
              :title,
              :fullname,
-             :artist_ids,
+            #  :artist_ids,
              :spotify_song_url,
-             :spotify_artwork_url
+             :spotify_artwork_url,
+             :artists
 
-  has_many :artists
+  def artists
+    object.artists.map do |artist|
+      ArtistSerializer.new(artist)
+    end
+  end
 end

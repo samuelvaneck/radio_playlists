@@ -5,7 +5,7 @@
         <span v-if='loading'>
           <LoadingBar class='image' v-bind:height='"190px"' v-bind:width='"90%"' />
         </span>
-        <span v-else-if='!!song'>
+        <span>
           <img :src='song.data.attributes.spotify_artwork_url' class='image' />
         </span>
       </div>
@@ -36,14 +36,16 @@
           <div class='w-full my-1' v-if='loading'>
             <LoadingBar />
           </div>
-          <div class='grow my-1' v-else-if='!!song'>
+          <!-- <div class='grow my-1' v-else-if='!!song'> -->
+          <div class='grow my-1'>
             <div>{{ song.data.attributes.title }}</div>
           </div>
           <!-- Artist -->
           <div class='w-full my-1' v-if='loading'>
             <LoadingBar />
           </div>
-          <div class='grow my-1' v-else-if='!!artists'>
+          <!-- <div class='grow my-1' v-else-if='!!artists'> -->
+          <div class='grow my-1'>
             <div><small><i>{{ artistsNames() }}</i></small></div>
           </div>
         </div>
@@ -56,10 +58,9 @@
   import LoadingBar from '../application/loading_bar.vue'
 
   export default {
-    props: ['song', 'counter', 'chartIdx'],
+    props: ['song', 'counter', 'chartIdx', 'artists'],
     data () {
       return {
-        artists: [],
         songArtworkUrl: null,
         radioStation: null,
         loading: true,
@@ -73,30 +74,8 @@
           window.open(this.song.data.attributes.spotify_song_url, '_blank')
         }
       },
-      getValues() {
-        const artistUrl = '/artists/' + this.song.data.attributes.artist_ids
-        const options = {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json;charset=UTF-8'
-          }
-        }
-
-        fetch(artistUrl, options).then(res => res.json())
-          .then(d => {
-            this.artist = d
-            this.loading = false
-
-            for(let artist of this.song.data.relationships.artists.data) {
-              const artistUrl = '/artists/' + artist.id
-              fetch(artistUrl, options).then(res => res.json())
-                .then(d => this.artists.push(d))
-            }
-          })
-      },
       artistsNames() {
-        return this.artists.map(artist => artist.data.attributes.name ).join(' - ')
+        return this.artists.map(artist => artist.name ).join(' - ')
       },
       getSpotifyImage() {
         this.spotifyLogo = document.getElementById('section-1').getAttribute('data-spotify-logo-url');
@@ -129,9 +108,8 @@
       }
     },
     mounted: function() {
-      this.getValues()
       this.getSpotifyImage();
-      this.getChartPosition();
+      // this.getChartPosition();
     },
     components: { LoadingBar }
   }
