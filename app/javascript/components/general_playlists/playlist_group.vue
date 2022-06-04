@@ -1,7 +1,10 @@
 <template>
   <div class='flex flew-row flex-nowrap overflow-x-scroll py-2' style='postion:relative'>
     <div class='mx-1 mt-2 mb-3' v-bind:key='item.id' v-for='item in items'>
-      <Playlist v-bind:item='item' />
+      <Playlist v-bind:item='item'
+                v-bind:song='item.attributes.song'
+                v-bind:radioStation='item.attributes.radiostation'
+                v-bind:artists='item.attributes.artists' />
     </div>
   </div>
 </template>
