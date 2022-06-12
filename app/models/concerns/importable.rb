@@ -156,6 +156,8 @@ module Importable
       song.artists << artist
     end
 
-    puts "Saved #{song.title} (#{song.id}) from #{Array.wrap(artists).map(&:name).join(', ')} (#{Array.wrap(artists).map(&:id).join(' ')}) on #{radio_station.name}!"
+    artists_names = Array.wrap(artists).map(&:name).join(', ')
+    artists_ids = Array.wrap(artists).map(&:id).join(' ')
+    puts "Saved #{song.title} (#{song.id}) from #{artists_names} (#{artists_ids}) on #{radio_station.name}!"
   end
 end

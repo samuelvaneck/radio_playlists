@@ -20,7 +20,7 @@ class Song < ActiveRecord::Base
     end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
 
     songs = Generalplaylist.joins(:song, :artists).all
-    songs.where!('songs.title ILIKE ? OR artists.name ILIKE ?', "%#{params[:search_term]}%", "%#{params[:search_term]}%") if params[:search_term].present?
+    songs.where!(search_query, search_value(params), search_value(params)) if params[:search_term].present?
     songs.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
     songs.where!('generalplaylists.created_at > ?', start_time)
     songs.where!('generalplaylists.created_at < ?', end_time)
@@ -57,6 +57,14 @@ class Song < ActiveRecord::Base
 
       remove_absolute_songs(songs, correct_song)
     end
+  end
+
+  def self.search_query
+    'songs.title ILIKE ? OR artists.name ILIKE ?'
+  end
+
+  def self.search_value(params)
+    "%#{params[:search_term]}%"
   end
 
   private
