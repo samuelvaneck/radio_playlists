@@ -12,7 +12,7 @@ class Generalplaylist < ActiveRecord::Base
     end_time =  params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
 
     playlists = Generalplaylist.joins(:song, :artists).order(created_at: :DESC)
-    playlists.where!('songs.title ILIKE ? OR artists.name ILIKE ?', "%#{params[:search_term]}%", "%#{params[:search_term]}%") if params[:search_term].present?
+    playlists.where!(search_query, "%#{params[:search]}#", "%#{params[:search]}%") if params[:search].present?
     playlists.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
     playlists.where!('generalplaylists.created_at > ?', start_time)
     playlists.where!('generalplaylists.created_at < ?', end_time)
@@ -34,7 +34,12 @@ class Generalplaylist < ActiveRecord::Base
   private
 
   def today_unique_playlist_item
-    exisiting_record = Generalplaylist.joins(:song, :radiostation).where('broadcast_timestamp = ? AND radiostations.id = ?', broadcast_timestamp, radiostation_id).present?
+    exisiting_record = Generalplaylist.joins(:song, :radiostation)
+                                      .where('broadcast_timestamp = ? AND radiostations.id = ?', broadcast_timestamp, radiostation_id).present?
     errors.add(:base, 'none unique playlist') if exisiting_record
+  end
+
+  def search_query
+    'songs.title ILIKE ? OR artists.name ILIKE ?'
   end
 end
