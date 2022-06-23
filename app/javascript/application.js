@@ -12,34 +12,17 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import './stylesheets/application.scss'
 
-import Vue from 'vue/dist/vue.esm'
+import { createApp } from 'vue/dist/vue.esm-bundler.js'
 import StatusBar from './components/status_bar/status_bar'
 import PlaylistBar from './components/general_playlists/playlist_bar.vue'
 import TopSongBar from './components/top_songs/top_song_bar.vue'
 import TopArtistBar from './components/top_artists/top_artist_bar.vue'
 
-Vue.component('statusBar', StatusBar)
-Vue.component('playlistBar', PlaylistBar)
-Vue.component('topSongBar', TopSongBar)
-Vue.component('topArtistBar', TopArtistBar)
-
 document.addEventListener('DOMContentLoaded', () => {
-  let elements = document.querySelectorAll('[data-behaviour="vue"]')
-  for (let element of elements) {
-    const app = new Vue({
-      el: element,
-    })
-  }
-})
-
-//
-const files = require.context('./', true, /\.vue$/i)
-files.keys().map(key => {
-  const component = key.split('/').pop().split('.')[0]
-
-  // With Lazy Loading
-  Vue.component(component, () => import(`${key}`))
-
-  // Or without Lazy Loading
-  Vue.component(component, files(key).default)
+  const app = createApp(document.getElementById('app'));
+  app.component('statusBar', StatusBar);
+  app.component('playlistBar', PlaylistBar);
+  app.component('topSongBar', TopSongBar);
+  app.component('topArtistBar', TopArtistBar);
+  app.mount('#app');
 })
