@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_20_124025) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_20_124025) do
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -46,8 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_20_124025) do
     t.string "name"
     t.string "image"
     t.string "genre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "spotify_artist_url"
     t.string "spotify_artwork_url"
     t.string "id_on_spotify"
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_20_124025) do
   end
 
   create_table "charts", force: :cascade do |t|
-    t.datetime "date"
+    t.datetime "date", precision: nil
     t.jsonb "chart", default: []
     t.string "chart_type"
     t.datetime "created_at", null: false
@@ -71,9 +71,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_20_124025) do
   create_table "generalplaylists", force: :cascade do |t|
     t.bigint "song_id"
     t.bigint "radiostation_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "broadcast_timestamp"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "broadcast_timestamp", precision: nil
     t.index ["radiostation_id"], name: "index_generalplaylists_on_radiostation_id"
     t.index ["song_id", "radiostation_id", "broadcast_timestamp"], name: "playlist_radio_song_time", unique: true
     t.index ["song_id"], name: "index_generalplaylists_on_song_id"
@@ -82,16 +82,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_20_124025) do
   create_table "radiostations", force: :cascade do |t|
     t.string "name"
     t.string "genre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.text "url"
     t.string "processor"
   end
 
   create_table "songs", force: :cascade do |t|
     t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.text "fullname"
     t.string "spotify_song_url"
     t.string "spotify_artwork_url"
