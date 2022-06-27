@@ -10,7 +10,7 @@
     "@tailwindcss/typography": "^0.5.2",
     "autoprefixer": "^10.4.7",
     "build": "^0.1.4",
-    "core-js": "^3.23.2",
+    "core-js": "^3.23.3",
     "css-loader": "^6.7.1",
     "esbuild": "0.14.36",
     "file-loader": "^6.2.0",
