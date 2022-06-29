@@ -71,11 +71,17 @@ class Song < ActiveRecord::Base
     playlists = Generalplaylist.joins(:song)
                                .where(song: self)
                                .where('generalplaylists.created_at > ?', 1.week.ago)
+                               .sort_by(&:broadcast_timestamp)
 
-    playlists.map do |playlist|
+
+    playlists = playlists.group_by do |playlist|
+      playlist.broadcast_timestamp.strftime('%Y-%m-%d')
+    end
+
+    playlists.map do |date, items|
       {
-        radiostation_id: playlist.radiostation_id,
-        broadcast_timestamp: playlist.broadcast_timestamp.to_formatted_s(:rfc822)
+        date: date,
+        value: items.count
       }
     end
   end
