@@ -1,5 +1,5 @@
 <template>
-  <div class='wrapper wrapperAnime'>
+  <div class='wrapper wrapperAnime' @click="handleClickCard">
     <div class='header'>
       <div class='imageWrapper'>
         <span v-if='loading'>
@@ -56,6 +56,7 @@
 
 <script>
   import LoadingBar from '../application/loading_bar.vue'
+  import { useModalStore } from '../../stores/modal';
 
   export default {
     props: ['song', 'counter', 'chartIdx', 'artists'],
@@ -69,6 +70,16 @@
       }
     },
     methods: {
+      handleClickCard(event) {
+        if (event.target.classList.contains('spotify-btn')) { return }
+
+        const modalStore = useModalStore();
+        modalStore.$patch({
+          song: this.song.data.attributes,
+          artists: this.artists,
+          showModal: true
+        })
+      },
       handleClickSpotifyBtn() {
         if (!!this.song.data.attributes.spotify_song_url) {
           window.open(this.song.data.attributes.spotify_song_url, '_blank')

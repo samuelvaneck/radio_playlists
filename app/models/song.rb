@@ -67,6 +67,21 @@ class Song < ActiveRecord::Base
     "%#{params[:search_term]}%"
   end
 
+  def graph_data
+    playlists = Generalplaylist.joins(:song)
+                               .where(song: self)
+                               .where('generalplaylists.created_at > ?', 1.week.ago)
+                               .sort_by(&:broadcast_timestamp)
+
+    playlists = playlists.group_by do |playlist|
+      playlist.broadcast_timestamp.strftime('%Y-%m-%d')
+    end
+
+    playlists.map do |date, items|
+      { date:, value: items.count }
+    end
+  end
+
   private
 
   def find_same_songs(song)

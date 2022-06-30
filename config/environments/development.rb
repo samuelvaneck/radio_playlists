@@ -65,5 +65,5 @@ Rails.application.configure do
   logger.formatter = config.log_formatter
   config.logger = ActiveSupport::TaggedLogging.new(logger)
 
-  config.web_console.permissions = '172.18.0.1/16'
+  config.web_console.permissions = '172.16.0.1/12'
 end
