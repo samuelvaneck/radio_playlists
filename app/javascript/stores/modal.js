@@ -3,7 +3,8 @@ import { defineStore } from "pinia";
 export const useModalStore = defineStore('modal', {
   state: () => {
     return {
-      object: null,
+      artists: null,
+      song: null,
       showModal: false
     }
   }

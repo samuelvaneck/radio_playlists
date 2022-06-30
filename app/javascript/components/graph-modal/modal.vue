@@ -10,15 +10,15 @@
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div class="sm:flex sm:items-start">
                 <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                  <img :src='this.object.attributes.spotify_artwork_url' />
+                  <img :src='this.song.spotify_artwork_url' />
                 </div>
                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <h3>{{ this.object.attributes.title }}</h3>
+                  <h3>{{ this.song.title }}</h3>
                   <h5 class="text-gray-500">{{ artistsNames() }}</h5>
                 </div>
               </div>
               <div class="sm:flex sm:items-start">
-                <Graph v-bind:object="object" />
+                <Graph v-bind:object="song" />
               </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
@@ -39,13 +39,14 @@
     components: { Graph },
     data() {
       return {
-        object: null,
+        song: null,
+        artists: null,
         showing: false
       }
     },
     methods: {
       artistsNames() {
-        return this.object.attributes.artists.map(artist => artist.name ).join(' - ')
+        return this.artists.map(artist => artist.name ).join(' - ')
       },
       close() {
         this.showing = false
@@ -54,7 +55,8 @@
     mounted() {
       const modalStore = useModalStore()
       modalStore.$subscribe((mutation, state) => {
-        this.object = state.object.data;
+        this.song = state.song,
+        this.artists = state.artists,
         this.showing = state.showModal;
       })
     }

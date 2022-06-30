@@ -70,10 +70,13 @@
       }
     },
     methods: {
-      handleClickCard() {
+      handleClickCard(event) {
+        if (event.target.classList.contains('spotify-btn')) { return }
+
         const modalStore = useModalStore();
         modalStore.$patch({
-          object: this.song,
+          song: this.song.data.attributes,
+          artists: this.artists,
           showModal: true
         })
       },
