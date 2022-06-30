@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SongsController < ApplicationController
+  before_action :set_song, only: %i[show graph_data]
+
   def index
     songs = Song.search(params)
     songs = Song.group_and_count(songs)
@@ -9,8 +11,11 @@ class SongsController < ApplicationController
   end
 
   def show
-    song = Song.find params[:id]
-    render json: SongSerializer.new(song).serializable_hash.to_json
+    render json: SongSerializer.new(@song).serializable_hash.to_json
+  end
+
+  def graph_data
+    render json: @song.graph_data
   end
 
   private
@@ -21,5 +26,9 @@ class SongsController < ApplicationController
            serialized_song = SongSerializer.new(Song.find(song_id)).serializable_hash
            [serialized_song, counter]
          end
+  end
+
+  def set_song
+    @song = Song.find params[:id]
   end
 end

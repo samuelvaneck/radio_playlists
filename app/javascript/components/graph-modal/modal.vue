@@ -17,6 +17,9 @@
                   <h5 class="text-gray-500">{{ artistsNames() }}</h5>
                 </div>
               </div>
+              <div class="sm:flex sm:items-start">
+                <Graph v-bind:object="object" />
+              </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
               <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" v-on:click="close">Deactivate</button>
@@ -29,9 +32,11 @@
 </template>
 
 <script>
+  import Graph from './graph'
   import { useModalStore } from '../../stores/modal'
 
   export default {
+    components: { Graph },
     data() {
       return {
         object: null,
