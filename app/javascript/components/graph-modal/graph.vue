@@ -1,7 +1,5 @@
 <template>
-  <div id="graph">
-
-  </div>
+  <div id="graph"></div>
 </template>
 
 <script>
@@ -26,9 +24,33 @@
         fetch(`/songs/${this.object.id}/graph_data`)
           .then(response => response.json())
           .then(data => {
-            const margin = ({top: 10, right: 30, bottom: 30, left: 60})
-            const width = 460 - margin.left - margin.right;
-            const height = 400 - margin.top - margin.bottom;
+            const margin = ({top: 20, right: 20, bottom: 30, left: 40})
+            const default_width = 460 - margin.left - margin.right;
+            const default_height = 400 - margin.top - margin.bottom;
+            const default_ratio = default_width / default_height;
+            let width;
+            let height;
+
+            function set_size() {
+              const current_width = window.innerWidth;
+              const current_height = window.innerHeight;
+              const current_ratio = current_width / current_height;
+              let h;
+              let w;
+              if (current_ratio > default_ratio) {
+                h = default_height;
+                w = default_width;
+              } else {
+                margin.left = 20;
+                w = current_width;
+                h = w / default_ratio;
+              }
+
+              width = w - 50 - margin.right;
+              height = h - margin.top - margin.bottom;
+            }
+            set_size()
+
             const svg = d3.select('#graph')
                           .append('svg')
                           .attr("width", width + margin.left + margin.right)
