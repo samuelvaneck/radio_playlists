@@ -42,40 +42,44 @@
                        date: timeFormat(new Date(item.date))
                      }
             });
-            const groupGraphData = d3.group(graphData, d => { return d.date })
-
-            //
+            function roundUpNearest10(num) {
+              return Math.ceil(num / 10) * 10;
+            }
             const minDate = d3.min(graphData, d => { return new Date(d.date); });
             const maxDate = d3.max(graphData, d => { return new Date(d.date) } );
             const maxCount = d3.max(graphData, d => { return d.value })
-
-            const x = d3.scaleTime()
-                        .domain([minDate, maxDate])
-                        .range([0, width]);
+            // X-axis
+            const xScale = d3.scaleTime()
+                             .domain([minDate, maxDate])
+                             .range([0, width]);
+            // appand X-axis
             g.append("g")
              .attr("transform", "translate(0," + height + ")")
-             .call(d3.axisBottom(x).ticks(5));
+             .call(d3.axisBottom(xScale).ticks(5));
 
-            const y = d3.scaleLinear()
-                        .domain([0, maxCount])
-                        .range([height, 0]);
-            g.append("g").call(d3.axisLeft(y));
-
-            const res = Array.from(groupGraphData.keys()); // list of group names
-            const color = d3.scaleOrdinal()
-                            .domain(res)
-                            .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
+            // Y-axis
+            const yScale = d3.scaleLinear()
+                             .domain([0, roundUpNearest10(maxCount)])
+                             .range([height, 0]);
+            const yAxisTicks = yScale.ticks()
+                                     .filter(tick => Number.isInteger(tick));
+            const yAxis = d3.axisLeft(yScale)
+                            .tickValues(yAxisTicks)
+                            .tickFormat(d3.format('d'));
+            // append Y-axis
+            g.append("g").call(yAxis);
 
             const line = d3.line()
-              .x(d => { return x(new Date(d.date)) })
-              .y(d => { return y(d.value) })
+              .x(d => { return xScale(new Date(d.date)) })
+              .y(d => { return yScale(d.value) })
 
+            // append the line
             g.append("path")
-              .datum(graphData)
-              .attr('fill', 'none')
-              .attr('stroke-width', 1,5)
+             .datum(graphData)
+             .attr('fill', 'none')
+             .attr('stroke-width', 1,5)
               .attr('stroke', 'black')
-              .attr("d", line);
+             .attr("d", line);
           });
       }
     },
