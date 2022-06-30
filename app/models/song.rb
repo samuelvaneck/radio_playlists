@@ -73,16 +73,12 @@ class Song < ActiveRecord::Base
                                .where('generalplaylists.created_at > ?', 1.week.ago)
                                .sort_by(&:broadcast_timestamp)
 
-
     playlists = playlists.group_by do |playlist|
       playlist.broadcast_timestamp.strftime('%Y-%m-%d')
     end
 
     playlists.map do |date, items|
-      {
-        date: date,
-        value: items.count
-      }
+      { date:, value: items.count }
     end
   end
 
