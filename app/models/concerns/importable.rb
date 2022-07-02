@@ -41,24 +41,29 @@ module Importable
 
   def talpa_api_processor
     radio_station = self
-    data = `curl --location --request GET '#{radio_station.url}' \
-            --header 'x-api-key: #{ENV['TALPA_API_KEY']}' \
-            --header 'Content-Type: application/json'`
-    json = JSON.parse(data)
+    uri = URI radio_station.url
+    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', open_timeout: 3, read_timeout: 3) do |http|
+      headers = {
+        'Content-Type': 'application/json',
+        'x-api-key': ENV['TALPA_API_KEY']
+      }
+      request = Net::HTTP::Get.new(uri, headers)
+      response = http.request(request)
+      json = JSON.parse(response.body)
+      raise StandardError if json.blank?
+      raise StandardError, json['errors'] if json['errors'].present?
 
-    raise StandardError if json.blank?
-    raise StandardError, json['errors'] if json['errors'].present?
+      track = json['data']['getStation']['playouts'][0]
+      artist_name = track['track']['artistName']
+      title = track['track']['title']
+      broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['broadcastDate'])
 
-    track = json['data']['getStation']['playouts'][0]
-    artist_name = track['track']['artistName']
-    title = track['track']['title']
-    broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['broadcastDate'])
-
-    {
-      artist_name:,
-      title:,
-      broadcast_timestamp:
-    }
+      {
+        artist_name:,
+        title:,
+        broadcast_timestamp:
+      }
+    end
   rescue Net::ReadTimeout => _e
     puts "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
   rescue Net::OpenTimeout => _e
