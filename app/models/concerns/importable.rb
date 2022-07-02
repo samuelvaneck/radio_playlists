@@ -41,14 +41,13 @@ module Importable
 
   def talpa_api_processor
     radio_station = self
-    data = `curl '#{radio_station.url}' \
-          -H 'x-api-key: #{ENV['TALPA_API_KEY']}' \
-          -H 'content-type: application/json'`
-
+    data = `curl --location --request GET '#{radio_station.url}' \
+            --header 'x-api-key: #{ENV['TALPA_API_KEY']}' \
+            --header 'Content-Type: application/json'`
     json = JSON.parse(data)
 
     raise StandardError if json.blank?
-    raise StandardError if json['errors'].present?
+    raise StandardError, json['errors'] if json['errors'].present?
 
     track = json['data']['getStation']['playouts'][0]
     artist_name = track['track']['artistName']
@@ -65,7 +64,7 @@ module Importable
   rescue Net::OpenTimeout => _e
     puts "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
   rescue StandardError => e
-    puts e
+    puts e.try(:message)
     false
   end
 
