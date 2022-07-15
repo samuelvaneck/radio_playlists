@@ -2,8 +2,6 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   mode: 'jit',
-  // purge: {
-  // },
   enabled: ["production", "staging"].includes(process.env.NODE_ENV),
   content: [
     '/app/**/*.html.erb',
@@ -65,7 +63,7 @@ module.exports = {
         'Menlo'
       ]
     },
-    zIndex: ['responsive', 'focus-within', 'focus'],
+    // zIndex: ['responsive', 'focus-within', 'focus'],
     container: {
       center: true,
       padding: {
