@@ -73,13 +73,30 @@ class Song < ActiveRecord::Base
                                .where('generalplaylists.created_at > ?', 1.week.ago)
                                .sort_by(&:broadcast_timestamp)
 
-    playlists = playlists.group_by do |playlist|
-      playlist.broadcast_timestamp.strftime('%Y-%m-%d')
+    min_date, max_date = playlists.map { |playlist| playlist.broadcast_timestamp.strftime('%Y-%m-%d') }.minmax
+
+    playlists = playlists.each_with_object({}) do |playlist, result|
+      broadcast_timestamp, radiostation_id = playlist.values_at(:broadcast_timestamp, :radiostation_id)
+      result[broadcast_timestamp.strftime('%Y-%m-%d')] ||= {}
+      result[broadcast_timestamp.strftime('%Y-%m-%d')][radiostation_id] ||= []
+      result[broadcast_timestamp.strftime('%Y-%m-%d')][radiostation_id] << playlist
     end
 
-    playlists.map do |date, items|
-      { date:, value: items.count }
+    playlists = min_date.upto(max_date).map do |date|
+      result = { date: }
+      grouped_playlists = playlists[date]
+
+      Radiostation.all.each do |radio_station|
+        result[radio_station.name] = if grouped_playlists && grouped_playlists[radio_station.id]
+                                       grouped_playlists[radio_station.id].count
+                                     else
+                                       0
+                                     end
+      end
+      result
     end
+    playlists << { columns: Radiostation.all.map(&:name) }
+    playlists
   end
 
   private
