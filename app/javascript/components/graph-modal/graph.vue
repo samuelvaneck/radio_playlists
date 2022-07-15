@@ -80,10 +80,6 @@
               // Omit any data not present in the x- and z-domains.
               const I = d3.range(X.length).filter(i => xDomain.has(X[i]) && zDomain.has(Z[i]));
 
-              // console.log(data)
-
-              // console.log({ X, Y, Z, zDomain, I });
-
               // Compute a nested array of series where each series is [[y1, y2], [y1, y2],
               // [y1, y2], …] representing the y-extent of each stacked rect. In addition,
               // each tuple has an i (index) property so that we can refer back to the
@@ -184,94 +180,93 @@
               return Object.assign(svg.node(), {scales: {color}});
             }
 
+            function lineChart(date) {
+              const margin = ({top: 20, right: 20, bottom: 30, left: 40})
+              const default_width = 460 - margin.left - margin.right;
+              const default_height = 400 - margin.top - margin.bottom;
+              const default_ratio = default_width / default_height;
+              let width;
+              let height;
 
-          //   const margin = ({top: 20, right: 20, bottom: 30, left: 40})
-          //   const default_width = 460 - margin.left - margin.right;
-          //   const default_height = 400 - margin.top - margin.bottom;
-          //   const default_ratio = default_width / default_height;
-          //   let width;
-          //   let height;
+              function set_size() {
+                const current_width = window.innerWidth;
+                const current_height = window.innerHeight;
+                const current_ratio = current_width / current_height;
+                let h;
+                let w;
+                if (current_ratio > default_ratio) {
+                  h = default_height;
+                  w = default_width;
+                } else {
+                  margin.left = 20;
+                  w = current_width;
+                  h = w / default_ratio;
+                }
 
-          //   function set_size() {
-          //     const current_width = window.innerWidth;
-          //     const current_height = window.innerHeight;
-          //     const current_ratio = current_width / current_height;
-          //     let h;
-          //     let w;
-          //     if (current_ratio > default_ratio) {
-          //       h = default_height;
-          //       w = default_width;
-          //     } else {
-          //       margin.left = 20;
-          //       w = current_width;
-          //       h = w / default_ratio;
-          //     }
+                width = w - 50 - margin.right;
+                height = h - margin.top - margin.bottom;
+              }
+              set_size()
 
-          //     width = w - 50 - margin.right;
-          //     height = h - margin.top - margin.bottom;
-          //   }
-          //   set_size()
+              const svg = d3.select('#graph')
+                            .append('svg')
+                            .attr("width", width + margin.left + margin.right)
+                            .attr("height", height + margin.top + margin.bottom);
+              const g = svg.append("g")
+                           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+              const timeFormat = d3.timeFormat("%d-%b-%y");
+              const graphData = data.map(item => {
+                return {
+                         value: item.value,
+                         date: timeFormat(new Date(item.date))
+                       }
+              });
+              function roundUpNearest10(num) {
+                return Math.ceil(num / 10) * 10;
+              }
+              const minDate = d3.min(graphData, d => { return new Date(d.date); });
+              const maxDate = d3.max(graphData, d => { return new Date(d.date) } );
+              const maxCount = d3.max(graphData, d => { return d.value })
 
-          //   const svg = d3.select('#graph')
-          //                 .append('svg')
-          //                 .attr("width", width + margin.left + margin.right)
-          //                 .attr("height", height + margin.top + margin.bottom);
-          //   const g = svg.append("g")
-          //                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-          //   const timeFormat = d3.timeFormat("%d-%b-%y");
-          //   const graphData = data.map(item => {
-          //     return {
-          //              value: item.value,
-          //              date: timeFormat(new Date(item.date))
-          //            }
-          //   });
-          //   function roundUpNearest10(num) {
-          //     return Math.ceil(num / 10) * 10;
-          //   }
-          //   const minDate = d3.min(graphData, d => { return new Date(d.date); });
-          //   const maxDate = d3.max(graphData, d => { return new Date(d.date) } );
-          //   const maxCount = d3.max(graphData, d => { return d.value })
+              const dateRange = d3.timeDays(minDate, maxDate, 1)
+              const dates = d3.map(graphData, d => { return d.date })
+              const newDates = dateRange.map(date => {
+                return graphData.find(element => new Date(element) === date) ||  { date: date, value: 0 }
+              });
 
-          //   const dateRange = d3.timeDays(minDate, maxDate, 1)
-          //   const dates = d3.map(graphData, d => { return d.date })
-          //   const newDates = dateRange.map(date => {
-          //     return graphData.find(element => new Date(element) === date) ||  { date: date, value: 0 }
-          //   });
+              // X-axis
+              const xScale = d3.scaleTime()
+                               .domain([minDate, maxDate])
+                               .range([0, width]);
+              // appand X-axis
+              g.append("g")
+               .attr("transform", "translate(0," + height + ")")
+               .call(d3.axisBottom(xScale).ticks(5));
 
-          //   console.log(newDates);
+              // Y-axis
+              const yScale = d3.scaleLinear()
+                               .domain([0, roundUpNearest10(maxCount)])
+                               .range([height, 0]);
+              const yAxisTicks = yScale.ticks()
+                                       .filter(tick => Number.isInteger(tick));
+              const yAxis = d3.axisLeft(yScale)
+                              .tickValues(yAxisTicks)
+                              .tickFormat(d3.format('d'));
+              // append Y-axis
+              g.append("g").call(yAxis);
 
-          //   // X-axis
-          //   const xScale = d3.scaleTime()
-          //                    .domain([minDate, maxDate])
-          //                    .range([0, width]);
-          //   // appand X-axis
-          //   g.append("g")
-          //    .attr("transform", "translate(0," + height + ")")
-          //    .call(d3.axisBottom(xScale).ticks(5));
+              const line = d3.line()
+                .x(d => { return xScale(new Date(d.date)) })
+                .y(d => { return yScale(d.value) })
 
-          //   // Y-axis
-          //   const yScale = d3.scaleLinear()
-          //                    .domain([0, roundUpNearest10(maxCount)])
-          //                    .range([height, 0]);
-          //   const yAxisTicks = yScale.ticks()
-          //                            .filter(tick => Number.isInteger(tick));
-          //   const yAxis = d3.axisLeft(yScale)
-          //                   .tickValues(yAxisTicks)
-          //                   .tickFormat(d3.format('d'));
-          //   // append Y-axis
-          //   g.append("g").call(yAxis);
-
-          //   const line = d3.line()
-          //     .x(d => { return xScale(new Date(d.date)) })
-          //     .y(d => { return yScale(d.value) })
-
-          //   // append the line
-          //   g.append("path")
-          //    .datum(graphData)
-          //    .attr('fill', 'none')
-          //    .attr('stroke-width', 1,5)
-          //     .attr('stroke', 'black')
-          //    .attr("d", line);
+              // append the line
+              g.append("path")
+               .datum(graphData)
+               .attr('fill', 'none')
+               .attr('stroke-width', 1,5)
+                .attr('stroke', 'black')
+               .attr("d", line);
+            }
           });
       }
     },
