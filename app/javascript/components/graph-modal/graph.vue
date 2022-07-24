@@ -1,5 +1,8 @@
 <template>
-  <div id="graph"></div>
+  <div class='flex flex-col'>
+    <div id="graph"></div>
+    <div id="legend"></div>
+  </div>
 </template>
 
 <script>
@@ -65,6 +68,7 @@
               yFormat, // a format specifier string for the y-axis
               yLabel, // a label for the y-axis
               colors = d3.schemeTableau10, // array of colors
+              legendHeightPosition = 10, // position of the legend, in pixels
             } = {}) {
               // Compute values.
               const X = d3.map(data, x);
@@ -172,6 +176,29 @@
 
               if (title) bar.append("title")
                   .text(({i}) => title(i));
+
+              const svgLegend = d3.select('#legend')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', 120)
+                .attr('viewBox', [0, 0, width, 100])
+                .attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
+
+              radioStationNames.forEach((station, i) => {
+                const modulo = i % 3;
+                const xPosition = modulo * (width / 3);
+
+                svgLegend.append('circle')
+                         .attr('cx', marginLeft + xPosition)
+                         .attr('cy', legendHeightPosition).attr('r', 6)
+                         .attr('fill', colors[i]);
+                svgLegend.append('text')
+                         .attr('x', marginLeft + xPosition + 10)
+                         .attr('y', legendHeightPosition + 5)
+                         .text(station);
+
+                if (modulo === 2) { legendHeightPosition += 30; }
+              });
 
               svg.append("g")
                   .attr("transform", `translate(0,${yScale(0)})`)
