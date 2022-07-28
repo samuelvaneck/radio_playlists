@@ -36,6 +36,7 @@
             const filteredStagedData = stagedData.filter(element => { return element.date !== undefined });
             const radioStationNamesWithValues = filteredStagedData.filter(element => { return element.value !== 0 })
                                                                   .map(element => element.radioSationName);
+            const uniqueStationNames = [...new Set(radioStationNamesWithValues)];
 
             const chart = StackedBarChart(filteredStagedData, {
               x: d => d.date,
@@ -47,7 +48,7 @@
               colors: d3.schemeSpectral[radioStationNames.length],
               width: 500,
               height: 500,
-              radioStationNamesLegend: radioStationNamesWithValues,
+              radioStationNamesLegend: uniqueStationNames,
             })
 
             document.getElementById('graph').append(chart);

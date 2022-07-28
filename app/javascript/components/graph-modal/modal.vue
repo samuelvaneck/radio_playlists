@@ -50,6 +50,8 @@
       },
       close() {
         this.showing = false
+        document.getElementById('graph').getElementsByTagName('svg')[0].innerHTML = ''
+        document.getElementById('legend').getElementsByTagName('svg')[0].innerHTML = ''
       }
     },
     mounted() {
