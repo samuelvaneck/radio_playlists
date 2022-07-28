@@ -331,9 +331,6 @@ GEM
       sentry-ruby (~> 5.4.1)
     sentry-ruby (5.4.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sentry-ruby-core (5.4.1)
-      concurrent-ruby
-      sentry-ruby (= 5.4.1)
     shellany (0.0.1)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)

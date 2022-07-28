@@ -1,7 +1,11 @@
 <template>
   <div class='flex flex-col'>
-    <div id="graph"></div>
-    <div id="legend"></div>
+    <div id="graph">
+      <svg width="100%" height="100%"></svg>
+    </div>
+    <div id="legend">
+      <svg width="100%" height="100%"></svg>
+    </div>
   </div>
 </template>
 
@@ -30,6 +34,8 @@
             const radioStationNames = data[data.length-1].columns;
             const stagedData = radioStationNames.flatMap(radioSationName => data.map(d => ({ date: d.date, radioSationName, value: d[radioSationName] })))
             const filteredStagedData = stagedData.filter(element => { return element.date !== undefined });
+            const radioStationNamesWithValues = filteredStagedData.filter(element => { return element.value !== 0 })
+                                                                  .map(element => element.radioSationName);
 
             const chart = StackedBarChart(filteredStagedData, {
               x: d => d.date,
@@ -40,7 +46,8 @@
               zDomain: radioStationNames,
               colors: d3.schemeSpectral[radioStationNames.length],
               width: 500,
-              height: 500
+              height: 500,
+              radioStationNamesLegend: radioStationNamesWithValues,
             })
 
             document.getElementById('graph').append(chart);
@@ -69,6 +76,7 @@
               yLabel, // a label for the y-axis
               colors = d3.schemeTableau10, // array of colors
               legendHeightPosition = 10, // position of the legend, in pixels
+              radioStationNamesLegend = [] // array of radio station names to display in the legend
             } = {}) {
               // Compute values.
               const X = d3.map(data, x);
@@ -117,7 +125,8 @@
                 title = i => T(O[i], i, data);
               }
 
-              const svg = d3.create("svg")
+              const svg = d3.select('#graph')
+                  .selectAll('svg')
                   .attr("width", width)
                   .attr("height", height)
                   .attr("viewBox", [0, 0, width, height])
@@ -178,20 +187,21 @@
                   .text(({i}) => title(i));
 
               const svgLegend = d3.select('#legend')
-                .append('svg')
+                .select('svg')
                 .attr('width', width)
                 .attr('height', 120)
                 .attr('viewBox', [0, 0, width, 100])
                 .attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
 
-              radioStationNames.forEach((station, i) => {
+              radioStationNamesLegend.forEach((station , i) => {
                 const modulo = i % 3;
                 const xPosition = modulo * (width / 3);
+                const stationIndex = radioStationNames.indexOf(station);
 
                 svgLegend.append('circle')
                          .attr('cx', marginLeft + xPosition)
                          .attr('cy', legendHeightPosition).attr('r', 6)
-                         .attr('fill', colors[i]);
+                         .attr('fill', colors[stationIndex]);
                 svgLegend.append('text')
                          .attr('x', marginLeft + xPosition + 10)
                          .attr('y', legendHeightPosition + 5)

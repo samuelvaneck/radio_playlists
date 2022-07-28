@@ -1,12 +1,16 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://accounts.spotify.com/api/token
+    method: get
+    uri: https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile:%20%22radio-brand-web%22,%20slug:%20%22radio-538%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile:%20%22%22,%20limit:%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D
     body:
-      encoding: UTF-8
-      string: grant_type=client_credentials
+      encoding: US-ASCII
+      string: ''
     headers:
+      Content-Type:
+      - application/json
+      X-Api-Key:
+      - da2-27bfqtcztfatfp7ef6feqg2wkq
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -14,41 +18,47 @@ http_interactions:
       User-Agent:
       - Ruby
       Host:
-      - accounts.spotify.com
-      Authorization:
-      - Basic ZmY3MGRmNjUwZWUxNGExZmFkNGFlZDNiNTMzZThlYTQ6OTg5OWY1NzBiYzNlNDc4MWI5MzczZTYwZDZmMzcwOTU=
-      Content-Type:
-      - application/x-www-form-urlencoded
+      - graph.talparad.io
   response:
     status:
       code: 200
       message: OK
     headers:
-      Date:
-      - Sun, 16 Jan 2022 11:29:10 GMT
       Content-Type:
-      - application/json
-      Set-Cookie:
-      - __Host-device_id=AQA1--Kf0poDFe7XteMzk-42ck4Cc8fqEZooQXmgcbF7sTSOF15nBikyAuIadNsrqPxcAsLzLmbO82TFZUzUQGqiEm9NJGBWJYU;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
-      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
-      Sp-Trace-Id:
-      - 26084083ef2077bb
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      Server:
-      - envoy
-      Via:
-      - HTTP/2 edgeproxy, 1.1 google
-      Alt-Svc:
-      - clear
+      - application/json;charset=UTF-8
       Transfer-Encoding:
       - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 28 Jul 2022 11:55:36 GMT
+      X-Amzn-Requestid:
+      - 1d38ab4f-8175-4821-bcb5-0b14fb408faf
+      X-Amzn-Appsync-Tokensconsumed:
+      - '1'
+      Via:
+      - 1.1 08d7dbeb0736051b46014fbaac0a421e.cloudfront.net (CloudFront), 1.1 18c617ef1621da46798c2b8cbc1c808c.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Pop:
+      - AMS1-P1
+      - FRA56-P5
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Miss from cloudfront
+      X-Amz-Cf-Id:
+      - mYfJbPqCTnfhFQaehhyvFy-L_SR5m926zO9Ykv4dAZyRdQNglhafzQ==
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"BQAziFY0KS4c7A4V46A33pz1WiWAflW18TPlxumppi2ttL6mhOJwhCfC-I5Xx7ZIzM4pLEyQTgu1Od4wcjA","token_type":"Bearer","expires_in":3600}'
-  recorded_at: Sun, 16 Jan 2022 11:29:10 GMT
-recorded_with: VCR 6.0.0
+      string: '{"data":{"getStation":{"title":"Radio 538","playouts":[{"broadcastDate":"2022-07-28T11:51:16Z","track":{"id":"56f78102-d823-501f-b77f-14f2e11f3688","title":"THAT''S
+        WHAT I WANT","artistName":"LIL NAS X","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:48:35Z","track":{"id":"aef1274c-2723-56fc-955a-3680ae50ba99","title":"GREEN
+        GREEN GRASS","artistName":"GEORGE EZRA","isrc":"GBARL2200008","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBARL2200008.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:45:31Z","track":{"id":"43914e0c-c715-582b-ba02-e05b40eb390c","title":"WHEN
+        LOVE TAKES OVER","artistName":"DAVID GUETTA & KELLY ROWLAND","isrc":"FRZID0900200","images":[{"type":"image","uri":"https://img.talparad.io/tracks/FRZID0900200.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:42:43Z","track":{"id":"c6e6db8f-fff0-5513-b641-1144c2f7ec5b","title":"AS
+        IT WAS","artistName":"HARRY STYLES","isrc":"USSM12200612","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM12200612.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:39:52Z","track":{"id":"2ab095ff-9d54-512e-9a6f-1abbd2eac3a9","title":"NAZARENO","artistName":"FARRUKO","isrc":"USSD12200291","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSD12200291.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:36:21Z","track":{"id":"5624c130-ba3c-5dc7-9e6f-db34b46a1984","title":"ARCADE","artistName":"DUNCAN
+        LAURENCE","isrc":"NL1TK1900002","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NL1TK1900002.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:33:17Z","track":{"id":"7b7debf3-466d-5a04-93b5-c60bdfe0e0be","title":"MAYBE
+        YOU''RE THE PROBLEM","artistName":"AVA MAX","isrc":"USAT22203651","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAT22203651.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:30:26Z","track":{"id":"9b43afad-d136-5ce1-aa64-cb15bbbcaf84","title":"WHERE
+        DID YOU GO?","artistName":"JAX JONES FT. MNEK","isrc":"GBUM72108841","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBUM72108841.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:21:37Z","track":{"id":"5e4a6e38-0822-5ff1-8cf6-ef6c18710486","title":"BY
+        THE WAY","artistName":"RED HOT CHILI PEPPERS","isrc":"USWB10201297","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:19:35Z","track":{"id":"349dd761-7795-518c-ad28-25f246b4ea88","title":"HOT
+        IN IT","artistName":"TIESTO & CHARLI XCX","isrc":"CYA112001102","images":[{"type":"image","uri":"https://img.talparad.io/tracks/CYA112001102.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Thu, 28 Jul 2022 11:55:36 GMT
+recorded_with: VCR 6.1.0
