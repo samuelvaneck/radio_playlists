@@ -82,7 +82,7 @@ class Song < ActiveRecord::Base
       result[broadcast_timestamp.strftime('%Y-%m-%d')][radiostation_id] << playlist
     end
 
-    playlists = graph_data_series(playlists, min_date, max_date).compact
+    playlists = graph_data_series(playlists, min_date, max_date)
     playlists << { columns: Radiostation.all.map(&:name) }
     playlists
   end
@@ -106,8 +106,8 @@ class Song < ActiveRecord::Base
   end
 
   def graph_data_series(playlists, min_date, max_date)
-    min_date.upto(max_date).map do |date|
-      date.try(:to_date)
+    min_date.to_date.upto(max_date.to_date).map do |date|
+      date = date.strftime('%Y-%m-%d')
       result = { date: }
       grouped_playlists = playlists[date]
 
@@ -119,8 +119,6 @@ class Song < ActiveRecord::Base
                                      end
       end
       result
-    rescue Date::Error => _e
-      next
     end
   end
 end
