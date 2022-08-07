@@ -70,7 +70,7 @@ class Song < ActiveRecord::Base
   def graph_data
     playlists = Generalplaylist.joins(:song)
                                .where(song: self)
-                               .where('generalplaylists.created_at > ?', 1.month.ago)
+                               .where('generalplaylists.created_at > ?', 1.week.ago)
                                .sort_by(&:broadcast_timestamp)
 
     min_date, max_date = playlists.map { |playlist| playlist.broadcast_timestamp.strftime('%Y-%m-%d') }.minmax
