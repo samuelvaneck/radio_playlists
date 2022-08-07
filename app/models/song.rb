@@ -70,7 +70,7 @@ class Song < ActiveRecord::Base
   def graph_data
     playlists = Generalplaylist.joins(:song)
                                .where(song: self)
-                               .where('generalplaylists.created_at > ?', 1.week.ago)
+                               .where('generalplaylists.created_at > ?', 1.month.ago)
                                .sort_by(&:broadcast_timestamp)
 
     min_date, max_date = playlists.map { |playlist| playlist.broadcast_timestamp.strftime('%Y-%m-%d') }.minmax
@@ -82,19 +82,7 @@ class Song < ActiveRecord::Base
       result[broadcast_timestamp.strftime('%Y-%m-%d')][radiostation_id] << playlist
     end
 
-    playlists = min_date.upto(max_date).map do |date|
-      result = { date: }
-      grouped_playlists = playlists[date]
-
-      Radiostation.all.each do |radio_station|
-        result[radio_station.name] = if grouped_playlists && grouped_playlists[radio_station.id]
-                                       grouped_playlists[radio_station.id].count
-                                     else
-                                       0
-                                     end
-      end
-      result
-    end
+    playlists = graph_data_series(playlists, min_date, max_date).compact
     playlists << { columns: Radiostation.all.map(&:name) }
     playlists
   end
@@ -114,6 +102,25 @@ class Song < ActiveRecord::Base
       gps = Generalplaylist.where(song: absolute_song)
       gps.each { |gp| gp.update_attribute('song_id', correct_song.id) }
       absolute_song.cleanup
+    end
+  end
+
+  def graph_data_series(playlists, min_date, max_date)
+    min_date.upto(max_date).map do |date|
+      date.try(:to_date)
+      result = { date: }
+      grouped_playlists = playlists[date]
+
+      Radiostation.all.each do |radio_station|
+        result[radio_station.name] = if grouped_playlists && grouped_playlists[radio_station.id]
+                                       grouped_playlists[radio_station.id].count
+                                     else
+                                       0
+                                     end
+      end
+      result
+    rescue Date::Error => _e
+      next
     end
   end
 end
