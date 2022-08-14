@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ArtistsController < ApplicationController
+  before_action :set_artist, only: %i[show graph_data]
   def index
     artists = Artist.search(params)
     artists = Artist.group_and_count(artists)
@@ -9,10 +10,13 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    artist = Artist.find params[:id]
     options = {}
     options[:include] = [:songs]
-    render json: ArtistSerializer.new(artist).serializable_hash.to_json
+    render json: ArtistSerializer.new(@artist).serializable_hash.to_json
+  end
+
+  def graph_data
+    render json: @artist.graph_data
   end
 
   private
@@ -23,5 +27,9 @@ class ArtistsController < ApplicationController
               serialized_artist = ArtistSerializer.new(Artist.find(artist_id)).serializable_hash
               [serialized_artist, counter]
             end
+  end
+
+  def set_artist
+    @artist = Artist.find params[:id]
   end
 end

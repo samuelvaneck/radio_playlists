@@ -28,7 +28,8 @@
     },
     methods: {
       renderChart() {
-        fetch(`/songs/${this.object.id}/graph_data`)
+        const objectType = this.object.hasOwnProperty('artists') ? 'songs' : 'artists';
+        fetch(`/${objectType}/${this.object.id}/graph_data`)
           .then(response => response.json())
           .then(data => {
             const radioStationNames = data[data.length-1].columns;

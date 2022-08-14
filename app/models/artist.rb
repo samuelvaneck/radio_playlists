@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Artist < ActiveRecord::Base
+  include GraphConcern
+
   has_many :artists_songs
   has_many :songs, through: :artists_songs
   has_many :generalplaylists, through: :songs
@@ -42,5 +44,23 @@ class Artist < ActiveRecord::Base
 
   def cleanup
     destroy if songs.blank?
+  end
+
+  def graph_data
+    playlists = generalplaylists.where('generalplaylists.created_at > ?', 1.week.ago)
+                                .sort_by(&:broadcast_timestamp)
+
+    min_date, max_date = playlists.map { |playlist| playlist.broadcast_timestamp.strftime('%Y-%m-%d') }.minmax
+
+    playlists = playlists.each_with_object({}) do |playlist, result|
+      broadcast_timestamp, radiostation_id = playlist.values_at(:broadcast_timestamp, :radiostation_id)
+      result[broadcast_timestamp.strftime('%Y-%m-%d')] ||= {}
+      result[broadcast_timestamp.strftime('%Y-%m-%d')][radiostation_id] ||= []
+      result[broadcast_timestamp.strftime('%Y-%m-%d')][radiostation_id] << playlist
+    end
+
+    playlists = graph_data_series(playlists, min_date, max_date)
+    playlists << { columns: Radiostation.all.map(&:name) }
+    playlists
   end
 end
