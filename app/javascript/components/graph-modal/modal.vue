@@ -10,15 +10,20 @@
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div class="sm:flex sm:items-start">
                 <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                  <img :src='this.song.spotify_artwork_url' />
+                  <img v-if="!!song" :src='this.song.spotify_artwork_url' />
+                  <img v-if="!!artist" :src='this.artist.spotify_artwork_url' />
                 </div>
-                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                <div v-if="!!song" class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <h3>{{ this.song.title }}</h3>
                   <h5 class="text-gray-500">{{ artistsNames() }}</h5>
                 </div>
+                <div v-if="!!artist" class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                  <h3>{{ this.artist.name }}</h3>
+                </div>
               </div>
               <div class="sm:flex sm:items-start">
-                <Graph v-bind:object="song" />
+                <Graph v-if="!!song" v-bind:object="song" />
+                <Graph v-if="!!artist" v-bind:object="artist" />
               </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
@@ -41,6 +46,7 @@
       return {
         song: null,
         artists: null,
+        artist: null,
         showing: false
       }
     },
@@ -49,16 +55,35 @@
         return this.artists.map(artist => artist.name ).join(' - ')
       },
       close() {
+        const modalStore = useModalStore();
+
         this.showing = false
+        modalStore.$patch({
+          song: null,
+          artists: null,
+          artist: null,
+          showModal: false
+        })
         document.getElementById('graph').getElementsByTagName('svg')[0].innerHTML = ''
         document.getElementById('legend').getElementsByTagName('svg')[0].innerHTML = ''
+      }
+    },
+    // method that watches for changes on the artist and song stores
+    watch: {
+      artist() {
+        console.log(this.artists)
+      },
+      song() {
+        console.log(this.song)
       }
     },
     mounted() {
       const modalStore = useModalStore()
       modalStore.$subscribe((mutation, state) => {
+        console.log(state)
         this.song = state.song,
         this.artists = state.artists,
+        this.artist = state.artist,
         this.showing = state.showModal;
       })
     }

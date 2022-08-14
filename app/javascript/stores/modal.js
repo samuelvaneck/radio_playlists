@@ -5,6 +5,7 @@ export const useModalStore = defineStore('modal', {
     return {
       artists: null,
       song: null,
+      artist: null,
       showModal: false
     }
   }
