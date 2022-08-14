@@ -71,16 +71,15 @@
     // method that watches for changes on the artist and song stores
     watch: {
       artist() {
-        console.log(this.artists)
+        // console.log(this.artists)
       },
       song() {
-        console.log(this.song)
+        // console.log(this.song)
       }
     },
     mounted() {
       const modalStore = useModalStore()
       modalStore.$subscribe((mutation, state) => {
-        console.log(state)
         this.song = state.song,
         this.artists = state.artists,
         this.artist = state.artist,

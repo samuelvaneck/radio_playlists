@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Song < ActiveRecord::Base
+  include GraphConcern
+
   has_many :artists_songs
   has_many :artists, through: :artists_songs
   has_many :generalplaylists
@@ -102,23 +104,6 @@ class Song < ActiveRecord::Base
       gps = Generalplaylist.where(song: absolute_song)
       gps.each { |gp| gp.update_attribute('song_id', correct_song.id) }
       absolute_song.cleanup
-    end
-  end
-
-  def graph_data_series(playlists, min_date, max_date)
-    min_date.to_date.upto(max_date.to_date).map do |date|
-      date = date.strftime('%Y-%m-%d')
-      result = { date: }
-      grouped_playlists = playlists[date]
-
-      Radiostation.all.each do |radio_station|
-        result[radio_station.name] = if grouped_playlists && grouped_playlists[radio_station.id]
-                                       grouped_playlists[radio_station.id].count
-                                     else
-                                       0
-                                     end
-      end
-      result
     end
   end
 end
