@@ -43,7 +43,7 @@
               x: d => d.date,
               y: d => d.value,
               z: d => d.radioSationName,
-              xDomain: d3.groupSort(data, D => d3.sum(D, d => -d.value), d => d.date),
+              xDomain: d3.groupSort(data.slice(0, -1), D => d3.sum(D, d => -d.value), d => d.date),
               yLabel: 'Counts',
               zDomain: radioStationNames,
               colors: d3.schemeSpectral[radioStationNames.length],
