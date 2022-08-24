@@ -21,6 +21,13 @@
                   <h3>{{ this.artist.name }}</h3>
                 </div>
               </div>
+              <div class="sm:flex sm:items-start mt-2">
+                <button class="graph-button">Day</button>
+                <button class="graph-button button-active">Week</button>
+                <button class="graph-button">Month</button>
+                <button class="graph-button">Year</button>
+                <button class="graph-button">All</button>
+              </div>
               <div class="sm:flex sm:items-start">
                 <Graph v-if="!!song" v-bind:object="song" />
                 <Graph v-if="!!artist" v-bind:object="artist" />
