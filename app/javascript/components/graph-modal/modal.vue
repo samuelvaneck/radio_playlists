@@ -23,7 +23,7 @@
               </div>
               <GraphButtons @clickGraphButton="handleClickGraphButton" />
               <div class="sm:flex sm:items-start mt-2">
-                <Graph v-if="!!song" v-bind:object="song" />
+                <Graph v-if="!!song" v-bind:object="song" v-bind:graphTime="graphTime" />
                 <Graph v-if="!!artist" v-bind:object="artist" />
               </div>
             </div>
@@ -49,7 +49,8 @@
         song: null,
         artists: null,
         artist: null,
-        showing: false
+        showing: false,
+        graphTime: 'week'
       }
     },
     methods: {
@@ -70,7 +71,7 @@
         document.getElementById('legend').getElementsByTagName('svg')[0].innerHTML = ''
       },
       handleClickGraphButton(value) {
-        console.log(value);
+        this.graphTime =value;
       }
     },
     // method that watches for changes on the artist and song stores

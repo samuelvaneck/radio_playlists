@@ -13,12 +13,11 @@
   import * as d3 from 'd3';
 
   export default {
-    props: ['object'],
+    props: ['object', 'graphTime'],
     data() {
       return {
-        loadData: {},
         height: 600,
-        width: 600
+        width: 600,
       }
     },
     created() {
@@ -26,10 +25,17 @@
         .scaleOrdinal()
         .range(["#5EAFC6", "#FE9922", "#93c464", "#75739F"]);
     },
+    watch: {
+      graphTime: function(newValue, oldValue) {
+        document.getElementById('graph').getElementsByTagName('svg')[0].innerHTML = '';
+        document.getElementById('legend').getElementsByTagName('svg')[0].innerHTML = '';
+        this.renderChart(newValue);
+      }
+    },
     methods: {
-      renderChart() {
+      renderChart(timeValue = 'week') {
         const objectType = this.object.hasOwnProperty('artists') ? 'songs' : 'artists';
-        fetch(`/${objectType}/${this.object.id}/graph_data`)
+        fetch(`/${objectType}/${this.object.id}/graph_data?time=${timeValue}`)
           .then(response => response.json())
           .then(data => {
             const radioStationNames = data[data.length-1].columns;
