@@ -63,7 +63,7 @@ class Artist < ActiveRecord::Base
       result[broadcast_timestamp.strftime(strftime_value)][radiostation_id] << playlist
     end
 
-    playlists = graph_data_series(playlists, min_date, max_date)
+    playlists = graph_data_series(playlists, min_date, max_date, time_value)
     playlists << { columns: Radiostation.all.map(&:name) }
     playlists
   end
