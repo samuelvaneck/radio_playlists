@@ -86,7 +86,7 @@
               legendHeightPosition = 10, // position of the legend, in pixels
               radioStationNamesLegend = [] // array of radio station names to display in the legend
             } = {}) {
-              console.log({ data, xDomain });
+              console.log(data);
               // Compute values.
               const X = d3.map(data, x);
               const Y = d3.map(data, y);
@@ -117,11 +117,28 @@
               // Compute the default y-domain. Note: diverging stacks can be negative.
               if (yDomain === undefined) yDomain = d3.extent(series.flat(2));
 
+              const parseTimeFormat = {
+                'day': '%Y-%m-%dT%H:%M',
+                'week': '%Y-%m-%d',
+                'month': '%Y-%m-%d',
+                'year': '%Y-%m-%d',
+                'all': '%Y-%m-%d'
+              }
+              const xAxisTimeFormat = {
+                'day': '%H',
+                'week': '%a',
+                'month': '%d',
+                'year': '%d',
+                'all': '%d'
+              }
+              const parseTime = d3.timeParse(parseTimeFormat[timeValue]);
+              const formatTime = d3.timeFormat(xAxisTimeFormat[timeValue]);
+
               // Construct scales, axes, and formats.
               const xScale = d3.scaleBand(xDomain, xRange).paddingInner(xPadding);
               const yScale = yType(yDomain, yRange);
               const color = d3.scaleOrdinal(zDomain, colors);
-              const xAxis = d3.axisBottom(xScale).tickSizeOuter(0);
+              const xAxis = d3.axisBottom(xScale).tickSizeOuter(0).ticks(d3.timeHours, 2).tickFormat((d) => { return formatTime(parseTime(d)) });
               const yAxis = d3.axisLeft(yScale).ticks(height / 60, yFormat);
 
               // Compute titles.
