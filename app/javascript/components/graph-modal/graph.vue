@@ -26,7 +26,7 @@
         .range(["#5EAFC6", "#FE9922", "#93c464", "#75739F"]);
     },
     watch: {
-      graphTime: function(newValue, oldValue) {
+      graphTime: function(newValue) {
         document.getElementById('graph').getElementsByTagName('svg')[0].innerHTML = '';
         document.getElementById('legend').getElementsByTagName('svg')[0].innerHTML = '';
         this.renderChart(newValue);

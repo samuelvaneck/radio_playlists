@@ -3,10 +3,18 @@
 module GraphConcern
   extend ActiveSupport::Concern
 
+  STRFTIME_VALUES = {
+    day: '%Y-%m-%dT%H:00',
+    week: '%Y-%m-%d',
+    month: '%Y-%m-%d',
+    year: '%Y-%m',
+    all: '%Y-%m'
+  }.freeze
+
   included do
-    def graph_data_series(playlists, min_date, max_date)
+    def graph_data_series(playlists, min_date, max_date, strftime_value)
       min_date.to_date.upto(max_date.to_date).map do |date|
-        date = date.strftime('%Y-%m-%d')
+        date = date.strftime(strftime_value)
         result = { date: }
         grouped_playlists = playlists[date]
 
