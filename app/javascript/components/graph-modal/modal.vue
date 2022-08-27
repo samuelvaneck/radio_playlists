@@ -21,14 +21,8 @@
                   <h3>{{ this.artist.name }}</h3>
                 </div>
               </div>
+              <GraphButtons @clickGraphButton="handleClickGraphButton" />
               <div class="sm:flex sm:items-start mt-2">
-                <button class="graph-button">Day</button>
-                <button class="graph-button button-active">Week</button>
-                <button class="graph-button">Month</button>
-                <button class="graph-button">Year</button>
-                <button class="graph-button">All</button>
-              </div>
-              <div class="sm:flex sm:items-start">
                 <Graph v-if="!!song" v-bind:object="song" />
                 <Graph v-if="!!artist" v-bind:object="artist" />
               </div>
@@ -44,11 +38,12 @@
 </template>
 
 <script>
+  import GraphButtons from './graph_buttons.vue'
   import Graph from './graph'
   import { useModalStore } from '../../stores/modal'
 
   export default {
-    components: { Graph },
+    components: { Graph, GraphButtons },
     data() {
       return {
         song: null,
@@ -73,6 +68,9 @@
         })
         document.getElementById('graph').getElementsByTagName('svg')[0].innerHTML = ''
         document.getElementById('legend').getElementsByTagName('svg')[0].innerHTML = ''
+      },
+      handleClickGraphButton(value) {
+        console.log(value);
       }
     },
     // method that watches for changes on the artist and song stores
