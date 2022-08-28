@@ -46,22 +46,24 @@ class Artist < ActiveRecord::Base
     destroy if songs.blank?
   end
 
-  def graph_data
-    begin_date = 1.week.ago.beginning_of_day
+  def graph_data(time_value)
+    strftime_value = STRFTIME_VALUES[time_value.to_sym]
+    begin_date = graph_begin_date(time_value) unless time_value == 'all'
     end_date = 1.day.ago.end_of_day
-    playlists = generalplaylists.where('generalplaylists.created_at > ? AND generalplaylists.created_at < ?', begin_date, end_date)
-                                .sort_by(&:broadcast_timestamp)
+    playlists = generalplaylists
+    playlists = playlists.where('generalplaylists.created_at > ? AND generalplaylists.created_at < ?', begin_date, end_date) unless time_value == 'all'
+    playlists = playlists.sort_by(&:broadcast_timestamp)
 
-    min_date, max_date = playlists.map { |playlist| playlist.broadcast_timestamp.strftime('%Y-%m-%d') }.minmax
+    min_date, max_date = playlists.map { |playlist| playlist.broadcast_timestamp.strftime(strftime_value) }.minmax
 
     playlists = playlists.each_with_object({}) do |playlist, result|
       broadcast_timestamp, radiostation_id = playlist.values_at(:broadcast_timestamp, :radiostation_id)
-      result[broadcast_timestamp.strftime('%Y-%m-%d')] ||= {}
-      result[broadcast_timestamp.strftime('%Y-%m-%d')][radiostation_id] ||= []
-      result[broadcast_timestamp.strftime('%Y-%m-%d')][radiostation_id] << playlist
+      result[broadcast_timestamp.strftime(strftime_value)] ||= {}
+      result[broadcast_timestamp.strftime(strftime_value)][radiostation_id] ||= []
+      result[broadcast_timestamp.strftime(strftime_value)][radiostation_id] << playlist
     end
 
-    playlists = graph_data_series(playlists, min_date, max_date)
+    playlists = graph_data_series(playlists, min_date, max_date, time_value)
     playlists << { columns: Radiostation.all.map(&:name) }
     playlists
   end

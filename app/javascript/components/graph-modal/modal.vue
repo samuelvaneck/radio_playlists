@@ -21,9 +21,10 @@
                   <h3>{{ this.artist.name }}</h3>
                 </div>
               </div>
-              <div class="sm:flex sm:items-start">
-                <Graph v-if="!!song" v-bind:object="song" />
-                <Graph v-if="!!artist" v-bind:object="artist" />
+              <GraphButtons @clickGraphButton="handleClickGraphButton" />
+              <div class="sm:flex sm:items-start mt-2">
+                <Graph v-if="!!song" v-bind:object="song" v-bind:graphTime="graphTime" />
+                <Graph v-if="!!artist" v-bind:object="artist" v-bind:graphTime="graphTime" />
               </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
@@ -37,17 +38,19 @@
 </template>
 
 <script>
+  import GraphButtons from './graph_buttons.vue'
   import Graph from './graph'
   import { useModalStore } from '../../stores/modal'
 
   export default {
-    components: { Graph },
+    components: { Graph, GraphButtons },
     data() {
       return {
         song: null,
         artists: null,
         artist: null,
-        showing: false
+        showing: false,
+        graphTime: 'week'
       }
     },
     methods: {
@@ -66,6 +69,9 @@
         })
         document.getElementById('graph').getElementsByTagName('svg')[0].innerHTML = ''
         document.getElementById('legend').getElementsByTagName('svg')[0].innerHTML = ''
+      },
+      handleClickGraphButton(value) {
+        this.graphTime =value;
       }
     },
     // method that watches for changes on the artist and song stores

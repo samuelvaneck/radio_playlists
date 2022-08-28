@@ -13,12 +13,11 @@
   import * as d3 from 'd3';
 
   export default {
-    props: ['object'],
+    props: ['object', 'graphTime'],
     data() {
       return {
-        loadData: {},
         height: 600,
-        width: 600
+        width: 600,
       }
     },
     created() {
@@ -26,10 +25,17 @@
         .scaleOrdinal()
         .range(["#5EAFC6", "#FE9922", "#93c464", "#75739F"]);
     },
+    watch: {
+      graphTime: function(newValue) {
+        document.getElementById('graph').getElementsByTagName('svg')[0].innerHTML = '';
+        document.getElementById('legend').getElementsByTagName('svg')[0].innerHTML = '';
+        this.renderChart(newValue);
+      }
+    },
     methods: {
-      renderChart() {
+      renderChart(timeValue = 'week') {
         const objectType = this.object.hasOwnProperty('artists') ? 'songs' : 'artists';
-        fetch(`/${objectType}/${this.object.id}/graph_data`)
+        fetch(`/${objectType}/${this.object.id}/graph_data?time=${timeValue}`)
           .then(response => response.json())
           .then(data => {
             const radioStationNames = data[data.length-1].columns;
@@ -84,6 +90,20 @@
               const X = d3.map(data, x);
               const Y = d3.map(data, y);
               const Z = d3.map(data, z);
+              const parseTimeFormat = {
+                'day': '%Y-%m-%dT%H:%M',
+                'week': '%Y-%m-%d',
+                'month': '%Y-%m-%d',
+                'year': '%Y-%m-%d',
+                'all': '%Y-%m-%d'
+              }
+              const xAxisTimeFormat = {
+                'day': '%H',
+                'week': '%a',
+                'month': '%d',
+                'year': '%d',
+                'all': '%d'
+              }
 
               // Compute default x- and z-domains, and unique them.
               if (xDomain === undefined) xDomain = X;
@@ -110,12 +130,18 @@
               // Compute the default y-domain. Note: diverging stacks can be negative.
               if (yDomain === undefined) yDomain = d3.extent(series.flat(2));
 
+              const parseTime = d3.timeParse(parseTimeFormat[timeValue]);
+              const formatTime = d3.timeFormat(xAxisTimeFormat[timeValue]);
+
               // Construct scales, axes, and formats.
               const xScale = d3.scaleBand(xDomain, xRange).paddingInner(xPadding);
               const yScale = yType(yDomain, yRange);
               const color = d3.scaleOrdinal(zDomain, colors);
-              const xAxis = d3.axisBottom(xScale).tickSizeOuter(0);
-              const yAxis = d3.axisLeft(yScale).ticks(height / 60, yFormat);
+              const xAxis = d3.axisBottom(xScale)
+                              .tickSizeOuter(0)
+                              .tickFormat((d) => { return formatTime(parseTime(d)) });
+              const yAxis = d3.axisLeft(yScale)
+                              .ticks(height / 60, yFormat);
 
               // Compute titles.
               if (title === undefined) {

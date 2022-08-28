@@ -71,4 +71,16 @@
   .status-button-warning {
     @apply bg-red-500 hover:bg-red-700 text-white text-center py-2 px-4 rounded-tr-xl rounded-bl-xl mr-1 shadow-lg whitespace-nowrap;
   }
+
+  .graph-button {
+    @apply bg-white hover:bg-gray-100 text-gray-800 text-tiny mr-1 py-2 px-4 border border-gray-400 rounded shadow;
+  }
+
+  .button-active {
+    @apply border-b-4;
+  }
+
+  .button-disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
 }
