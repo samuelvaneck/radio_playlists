@@ -86,7 +86,6 @@
               legendHeightPosition = 10, // position of the legend, in pixels
               radioStationNamesLegend = [] // array of radio station names to display in the legend
             } = {}) {
-              console.log(data);
               // Compute values.
               const X = d3.map(data, x);
               const Y = d3.map(data, y);

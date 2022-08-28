@@ -48,11 +48,11 @@ class Artist < ActiveRecord::Base
 
   def graph_data(time_value)
     strftime_value = STRFTIME_VALUES[time_value.to_sym]
-    begin_date = 1.send(time_value.to_sym).ago.beginning_of_day unless time_value == 'all'
+    begin_date = graph_begin_date(time_value) unless time_value == 'all'
     end_date = 1.day.ago.end_of_day
     playlists = generalplaylists
-    playlists.where!('generalplaylists.created_at > ? AND generalplaylists.created_at < ?', begin_date, end_date) unless time_value == 'all'
-    playlists.sort_by(&:broadcast_timestamp)
+    playlists = playlists.where('generalplaylists.created_at > ? AND generalplaylists.created_at < ?', begin_date, end_date) unless time_value == 'all'
+    playlists = playlists.sort_by(&:broadcast_timestamp)
 
     min_date, max_date = playlists.map { |playlist| playlist.broadcast_timestamp.strftime(strftime_value) }.minmax
 

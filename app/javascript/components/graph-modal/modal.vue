@@ -24,7 +24,7 @@
               <GraphButtons @clickGraphButton="handleClickGraphButton" />
               <div class="sm:flex sm:items-start mt-2">
                 <Graph v-if="!!song" v-bind:object="song" v-bind:graphTime="graphTime" />
-                <Graph v-if="!!artist" v-bind:object="artist" />
+                <Graph v-if="!!artist" v-bind:object="artist" v-bind:graphTime="graphTime" />
               </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
