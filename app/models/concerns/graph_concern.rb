@@ -19,6 +19,46 @@ module GraphConcern
   }.freeze
 
   included do
+    def graph_data(time_value)
+      strftime_value = STRFTIME_VALUES[time_value.to_sym]
+      playlists = get_playlists(time_value)
+      min_date, max_date = min_max_date(playlists, strftime_value)
+      playlists = format_graph_data(playlists, strftime_value)
+      playlists = graph_data_series(playlists, min_date, max_date, time_value)
+      playlists << legend_data_column
+      playlists
+    end
+
+    def get_playlists(time_value)
+      begin_date = graph_begin_date(time_value) unless time_value == 'all'
+      end_date = 1.day.ago.end_of_day
+      result = generalplaylists
+      result = result.where(playlists_time_slot_query, begin_date, end_date) unless time_value == 'all'
+      result.sort_by(&:broadcast_timestamp)
+    end
+
+    def min_max_date(results, strftime_value)
+      results.map { |result| result.broadcast_timestamp.strftime(strftime_value) }.minmax
+    end
+
+    def graph_begin_date(time_value)
+      1.send(time_value.to_sym).ago.send("beginning_of_#{time_value}".to_sym)
+    end
+
+    def playlists_time_slot_query
+      'generalplaylists.created_at > ? AND generalplaylists.created_at < ?'
+    end
+
+    def format_graph_data(playlists, strftime_value)
+      # result['2022-01-01'][radiostation_id]'] = 1
+      playlists.each_with_object({}) do |playlist, result|
+        broadcast_timestamp, radiostation_id = playlist.values_at(:broadcast_timestamp, :radiostation_id)
+        result[broadcast_timestamp.strftime(strftime_value)] ||= {}
+        result[broadcast_timestamp.strftime(strftime_value)][radiostation_id] ||= []
+        result[broadcast_timestamp.strftime(strftime_value)][radiostation_id] << playlist
+      end
+    end
+
     def graph_data_series(playlists, min_date, max_date, time_value)
       strftime_value = STRFTIME_VALUES[time_value.to_sym]
       time_step = TIME_STEPS[time_value.to_sym]
@@ -41,8 +81,8 @@ module GraphConcern
       end
     end
 
-    def graph_begin_date(time_value)
-      1.send(time_value.to_sym).ago.send("beginning_of_#{time_value}".to_sym)
+    def legend_data_column
+      { columns: Radiostation.all.map(&:name) }
     end
   end
 end
