@@ -14,7 +14,7 @@
     "core-js": "^3.25.1",
     "css-loader": "^6.7.1",
     "d3": "^7.6.1",
-    "esbuild": "0.14.36",
+    "esbuild": "0.15.7",
     "file-loader": "^6.2.0",
     "jquery": "^3.6.1",
     "mini-css-extract-plugin": "^2.6.1",
