@@ -1,7 +1,7 @@
 const path    = require("path")
 const webpack = require("webpack")
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const mode = process.env.NODE_ENV === 'development' ? 'development' : 'production';
 const { VueLoaderPlugin } = require('vue-loader')
 
@@ -45,10 +45,10 @@ module.exports = {
     path: path.resolve(__dirname, '..', '..', 'app/assets/builds'),
   },
   plugins: [
+    new RemoveEmptyScriptsPlugin(),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
-    new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin(),
     new VueLoaderPlugin()
   ],
