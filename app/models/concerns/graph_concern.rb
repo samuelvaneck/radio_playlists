@@ -62,8 +62,8 @@ module GraphConcern
     def graph_data_series(playlists, min_date, max_date, time_value)
       strftime_value = STRFTIME_VALUES[time_value.to_sym]
       time_step = TIME_STEPS[time_value.to_sym]
-      min_date_i = min_date.to_datetime.beginning_of_day.to_i
-      max_date_i = max_date.to_datetime.end_of_day.to_i
+      min_date_i = min_date.present? ? min_date.to_datetime.beginning_of_day.to_i : time_step.send(:ago).beginning_of_day.to_i
+      max_date_i = max_date.present? ? max_date.to_datetime.end_of_day.to_i : Time.zone.now.end_of_day.to_i
 
       (min_date_i..max_date_i).step(time_step).map do |date|
         date = Time.zone.at(date).strftime(strftime_value)
