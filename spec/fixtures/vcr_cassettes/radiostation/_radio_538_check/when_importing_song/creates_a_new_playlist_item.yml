@@ -31,34 +31,34 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Thu, 28 Jul 2022 11:55:36 GMT
+      - Fri, 16 Sep 2022 07:28:38 GMT
       X-Amzn-Requestid:
-      - 1d38ab4f-8175-4821-bcb5-0b14fb408faf
+      - 930f72f9-2465-42e5-b79d-34e7e0037986
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 08d7dbeb0736051b46014fbaac0a421e.cloudfront.net (CloudFront), 1.1 18c617ef1621da46798c2b8cbc1c808c.cloudfront.net
+      - 1.1 1d6a59dd8d58fe552d5643e843d187e8.cloudfront.net (CloudFront), 1.1 0e26d323fcb311e751a59cbb74b861d0.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
-      - AMS1-P1
-      - FRA56-P5
+      - LHR62-C3
+      - MAD56-P2
       Vary:
       - Accept-Encoding
       X-Cache:
       - Miss from cloudfront
       X-Amz-Cf-Id:
-      - mYfJbPqCTnfhFQaehhyvFy-L_SR5m926zO9Ykv4dAZyRdQNglhafzQ==
+      - Ye3mZYRHOLeSagt5SJ99aHY55FDbLIzjXFbFiNGS5I_XlHBM6zAzFw==
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Radio 538","playouts":[{"broadcastDate":"2022-07-28T11:51:16Z","track":{"id":"56f78102-d823-501f-b77f-14f2e11f3688","title":"THAT''S
-        WHAT I WANT","artistName":"LIL NAS X","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:48:35Z","track":{"id":"aef1274c-2723-56fc-955a-3680ae50ba99","title":"GREEN
-        GREEN GRASS","artistName":"GEORGE EZRA","isrc":"GBARL2200008","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBARL2200008.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:45:31Z","track":{"id":"43914e0c-c715-582b-ba02-e05b40eb390c","title":"WHEN
-        LOVE TAKES OVER","artistName":"DAVID GUETTA & KELLY ROWLAND","isrc":"FRZID0900200","images":[{"type":"image","uri":"https://img.talparad.io/tracks/FRZID0900200.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:42:43Z","track":{"id":"c6e6db8f-fff0-5513-b641-1144c2f7ec5b","title":"AS
-        IT WAS","artistName":"HARRY STYLES","isrc":"USSM12200612","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM12200612.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:39:52Z","track":{"id":"2ab095ff-9d54-512e-9a6f-1abbd2eac3a9","title":"NAZARENO","artistName":"FARRUKO","isrc":"USSD12200291","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSD12200291.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:36:21Z","track":{"id":"5624c130-ba3c-5dc7-9e6f-db34b46a1984","title":"ARCADE","artistName":"DUNCAN
-        LAURENCE","isrc":"NL1TK1900002","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NL1TK1900002.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:33:17Z","track":{"id":"7b7debf3-466d-5a04-93b5-c60bdfe0e0be","title":"MAYBE
-        YOU''RE THE PROBLEM","artistName":"AVA MAX","isrc":"USAT22203651","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAT22203651.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:30:26Z","track":{"id":"9b43afad-d136-5ce1-aa64-cb15bbbcaf84","title":"WHERE
-        DID YOU GO?","artistName":"JAX JONES FT. MNEK","isrc":"GBUM72108841","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBUM72108841.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:21:37Z","track":{"id":"5e4a6e38-0822-5ff1-8cf6-ef6c18710486","title":"BY
-        THE WAY","artistName":"RED HOT CHILI PEPPERS","isrc":"USWB10201297","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-07-28T11:19:35Z","track":{"id":"349dd761-7795-518c-ad28-25f246b4ea88","title":"HOT
-        IN IT","artistName":"TIESTO & CHARLI XCX","isrc":"CYA112001102","images":[{"type":"image","uri":"https://img.talparad.io/tracks/CYA112001102.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Thu, 28 Jul 2022 11:55:36 GMT
+      string: '{"data":{"getStation":{"title":"Radio 538","playouts":[{"broadcastDate":"2022-09-16T07:23:19Z","track":{"id":"8be3b6f1-3d8b-5542-a80e-c8a24366bf65","title":"FAST
+        LOVE","artistName":"GEORGE MICHAEL","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-09-16T07:20:31Z","track":{"id":"929018ce-e2eb-5fbf-a6ca-9bd8f6fa5161","title":"COOL
+        CORONA","artistName":"NICE DEVICE","isrc":"DKAMG9300401","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DKAMG9300401.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-09-16T07:17:01Z","track":{"id":"911cb10c-9da0-59e2-b69a-53d6e5d570c2","title":"WONDERWALL","artistName":"OASIS","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-09-16T07:13:48Z","track":{"id":"46dbc75a-ab89-5a67-93f2-53dd3efa3f20","title":"FREE","artistName":"ULTRA
+        NATE","isrc":"USSR39751201","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSR39751201.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-09-16T07:09:31Z","track":{"id":"83aec8aa-7789-518c-8af7-d2fb74f3d93b","title":"BOOM!
+        SHAKE THE ROOM","artistName":"DJ JAZZY JEFF & THE FRESH PRINCE","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-09-16T07:06:10Z","track":{"id":"63e894b3-85a5-5891-a39d-217f84ef9552","title":"HET
+        REGENT ZONNESTRALEN","artistName":"ACDA & DE MUNNIK","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-09-16T07:04:10Z","track":{"id":"ae9127ab-df44-5518-94de-64755877ff32","title":"DREAMS
+        (WILL COME ALIVE)","artistName":"2 BROTHERS ON THE 4TH FLOOR","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-09-16T06:51:14Z","track":{"id":"f5adc4c7-1600-5444-bb0b-3f7a910f3947","title":"FERRARI","artistName":"JAMES
+        HYPE","isrc":"GB3CE2200004","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GB3CE2200004.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-09-16T06:47:58Z","track":{"id":"7f260760-81f9-5a5d-981a-20929e6a6b05","title":"FORGET
+        ME","artistName":"LEWIS CAPALDI","isrc":"CH6542040310","images":[{"type":"image","uri":"https://img.talparad.io/tracks/CH6542040310.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-09-16T06:41:30Z","track":{"id":"0c0f060f-4179-5484-8ca4-71b5fdbf6e95","title":"CHEAP
+        THRILLS","artistName":"SIA FT. SEAN PAUL","isrc":"USRC11600201","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USRC11600201.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Fri, 16 Sep 2022 07:28:37 GMT
 recorded_with: VCR 6.1.0
