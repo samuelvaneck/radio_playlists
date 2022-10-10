@@ -18,7 +18,7 @@
     "file-loader": "^6.2.0",
     "jquery": "^3.6.1",
     "mini-css-extract-plugin": "^2.6.1",
-    "pinia": "^2.0.22",
+    "pinia": "^2.0.23",
     "postcss": "^8.4.17",
     "postcss-import": "15.0.0",
     "regenerator-runtime": "^0.13.9",
