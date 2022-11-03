@@ -83,7 +83,7 @@ RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
 
     context 'given an address and radiostation' do
       it 'creates a new playlist item' do
-        track_data = radio_1.npo_api_processor
+        track_data = TrackScrapper.new(radio_1).latest_track
 
         if track_data.is_a?(Hash)
           expect(track_data).to be_an_instance_of(Hash)
@@ -102,7 +102,7 @@ RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
 
     context 'given an address and radiostation' do
       it 'creates an new playlist item' do
-        track_data = sky_radio.talpa_api_processor
+        track_data = TrackScrapper.new(sky_radio).latest_track
 
         if track_data.is_a?(Hash)
           expect(track_data).to be_an_instance_of(Hash)
@@ -122,17 +122,17 @@ RSpec.describe Radiostation, use_vcr: true, with_valid_token: true do
 
     context 'if radio_station is Sublime FM' do
       it 'returns an artist_name, title and time' do
-        track_data = sublime_fm.scraper
+        track_data = TrackScrapper.new(sublime_fm).latest_track
 
-        expect(track_data.count).to eq 3 if track_data.present?
+        expect(track_data.count).to eq 4 if track_data.present?
       end
     end
 
     context 'if radio_station is Groot Nieuws RAdio' do
       it 'returns an artist_name, titile and time' do
-        track_data = groot_nieuws_radio.scraper
+        track_data = TrackScrapper.new(groot_nieuws_radio).latest_track
 
-        expect(track_data.count).to eq 3
+        expect(track_data.count).to eq 4 if track_data.present?
       end
     end
   end
