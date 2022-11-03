@@ -59,7 +59,6 @@ class TrackScrapper
   end
 
   def qmusic_api_processor
-    uri = URI @radio_station.url
     json = JSON(make_request)
     raise StandardError if json.blank?
 
