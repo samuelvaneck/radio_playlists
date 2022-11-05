@@ -26,10 +26,10 @@
             'Content-Type': 'application/json;charset=UTF-8'
           }
         }
-        fetch('/radiostations', options).then(res => res.json())
+        fetch('/radio_stations', options).then(res => res.json())
           .then(d => {
             d.data.forEach(radioStation => {
-              let url = '/radiostations/' + radioStation.id + '/status'
+              let url = '/radio_stations/' + radioStation.id + '/status'
 
               fetch(url, options).then(status => status.json())
                 .then(di => this.items.push(di))

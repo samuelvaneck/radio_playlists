@@ -2,7 +2,7 @@
 
 class Generalplaylist < ActiveRecord::Base
   belongs_to :song
-  belongs_to :radiostation
+  belongs_to :radio_station
   has_many :artists, through: :song
 
   validate :today_unique_playlist_item
@@ -13,7 +13,7 @@ class Generalplaylist < ActiveRecord::Base
 
     playlists = Generalplaylist.joins(:song, :artists).order(created_at: :DESC)
     playlists.where!(search_query, search_value(params), search_value(params)) if params[:search_term].present?
-    playlists.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
+    playlists.where!('radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
     playlists.where!('generalplaylists.created_at > ?', start_time)
     playlists.where!('generalplaylists.created_at < ?', end_time)
     playlists.uniq
@@ -28,7 +28,7 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def duplicate?
-    Generalplaylist.where(radiostation:, broadcast_timestamp:).count > 1
+    Generalplaylist.where(radio_station:, broadcast_timestamp:).count > 1
   end
 
   def self.search_query
@@ -42,8 +42,8 @@ class Generalplaylist < ActiveRecord::Base
   private
 
   def today_unique_playlist_item
-    exisiting_record = Generalplaylist.joins(:song, :radiostation)
-                                      .where('broadcast_timestamp = ? AND radiostations.id = ?', broadcast_timestamp, radiostation_id).present?
+    exisiting_record = Generalplaylist.joins(:song, :radio_station)
+                                      .where('broadcast_timestamp = ? AND radio_stations.id = ?', broadcast_timestamp, radio_station_id).present?
     errors.add(:base, 'none unique playlist') if exisiting_record
   end
 end

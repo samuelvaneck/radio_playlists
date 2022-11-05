@@ -42,7 +42,7 @@
     components: { SearchBar, NavArrow, TopSongGroup, LoadingCard },
     methods: {
       getItems: function(append = false) {
-        const url = '/songs?radiostation_id=' + this.radioStationFilter + '&search_term=' + this.term + '&page=' + this.page + '&start_time=' + this.startTimeFilter + '&end_time=' + this.endTimeFilter
+        const url = '/songs?radio_station_id=' + this.radioStationFilter + '&search_term=' + this.term + '&page=' + this.page + '&start_time=' + this.startTimeFilter + '&end_time=' + this.endTimeFilter
         const options = {
           method: 'GET',
           headers: {

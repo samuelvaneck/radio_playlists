@@ -97,7 +97,7 @@
       }
     },
     created() {
-      const url = '/radiostations'
+      const url = '/radio_stations'
       const options = {
         method: 'GET',
         headers: {

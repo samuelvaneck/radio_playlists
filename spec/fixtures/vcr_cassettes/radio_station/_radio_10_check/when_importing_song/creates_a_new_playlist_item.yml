@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile:%20%22radio-brand-web%22,%20slug:%20%22radio-10%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile:%20%22%22,%20limit:%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      X-Api-Key:
+      - da2-27bfqtcztfatfp7ef6feqg2wkq
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - graph.talparad.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Sat, 05 Nov 2022 13:45:34 GMT
+      X-Amzn-Requestid:
+      - e250088b-56ff-4def-ac02-10a8eec94d93
+      X-Amzn-Appsync-Tokensconsumed:
+      - '1'
+      Via:
+      - 1.1 32c8da10203574baccb74b8f771a7ffa.cloudfront.net (CloudFront), 1.1 e345c29560592087623dbe75e8d765d6.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Pop:
+      - AMS1-P2
+      - FRA50-C1
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Miss from cloudfront
+      X-Amz-Cf-Id:
+      - TwTFmXv6ioWiHODhHT-4t50DnzwnLM2saREkoOuZmbp2L6ecyI0YHw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"getStation":{"title":"Radio 10","playouts":[{"broadcastDate":"2022-11-05T13:45:13Z","track":{"id":"0426b98a-80c5-53c5-9387-5f4f8fd5cbf5","title":"Rehab","artistName":"Amy
+        Winehouse","isrc":"GBUM70603730","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBUM70603730.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:42:26Z","track":{"id":"aef1274c-2723-56fc-955a-3680ae50ba99","title":"Green
+        Green Grass","artistName":"George Ezra","isrc":"GBARL2200008","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBARL2200008.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:37:12Z","track":{"id":"443418b7-3f13-5fea-a140-ae1caabf7915","title":"Baggy
+        Trousers","artistName":"Madness","isrc":"GB7GZ0900026","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GB7GZ0900026.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:33:59Z","track":{"id":"ccaa82b2-6c13-5ef2-919f-af29da800822","title":"Kiss
+        Me","artistName":"Sixpence Non The Richer","isrc":"USWR60400390","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:24:06Z","track":{"id":"d3ed51fa-8da9-519f-84c1-0188ea7ed41a","title":"Fireflies","artistName":"Owl
+        City","isrc":"USUM70972068","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM70972068.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:19:21Z","track":{"id":"c4f5c4f2-754e-5763-803f-c3f3c408a009","title":"Friday,
+        I''m In Love","artistName":"The Cure","isrc":"GBGNS1100870","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBGNS1100870.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:15:48Z","track":{"id":"e9c288e1-df6b-568f-99ff-47d84730f354","title":"Don''t
+        Leave Me This Way","artistName":"Thelma Houston","isrc":"USMO17600547","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:08:12Z","track":{"id":"4009414b-3a59-52ad-9467-1b89a436c188","title":"Ijskoud","artistName":"Nielson","isrc":"NLG901800010","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLG901800010.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:04:12Z","track":{"id":"1deec267-0de6-564b-803c-3160526f4a83","title":"The
+        Final Countdown","artistName":"Europe","isrc":"USSM19803152","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T12:52:17Z","track":{"id":"1bccca09-5329-5fd8-b400-34b4c859ed70","title":"Better
+        Days","artistName":"Dermot Kennedy","isrc":"USUG12102831","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUG12102831.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sat, 05 Nov 2022 13:45:34 GMT
+recorded_with: VCR 6.1.0

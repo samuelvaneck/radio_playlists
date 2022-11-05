@@ -7,10 +7,10 @@ RSpec.describe Song do
   let(:song_1) { FactoryBot.create :song, artists: [artist_1] }
   let(:artist_2) { FactoryBot.create :artist }
   let(:song_2) { FactoryBot.create :song, artists: [artist_2] }
-  let(:radiostation) { FactoryBot.create :radiostation }
+  let(:radio_station) { FactoryBot.create :radio_station }
   let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1 }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: }
-  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: }
+  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radio_station: }
+  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radio_station: }
 
   let(:song_drown) { FactoryBot.create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
   let(:artist_martin_garrix) { FactoryBot.create :artist, name: 'Martin Garrix' }
@@ -36,9 +36,9 @@ RSpec.describe Song do
       end
     end
 
-    context 'with radiostation_id params present' do
-      it 'only returns the songs played on the radiostation' do
-        results = Song.search({ radiostation_id: radiostation.id })
+    context 'with radio_station_id params present' do
+      it 'only returns the songs played on the radio station' do
+        results = Song.search({ radio_station_id: radio_station.id })
 
         expect(results).to include playlist_2, playlist_3
       end

@@ -37,5 +37,5 @@ radio_stations = [
 ]
 
 radio_stations.each do |radio_station|
-  Radiostation.create(radio_station)
+  RadioStation.create(radio_station)
 end

@@ -54,7 +54,7 @@ describe SongsController do
       end
     end
 
-    context 'filtering by radiostation' do
+    context 'filtering by radio station' do
       let(:json) { JSON.parse(response.body) }
       let(:serialized_song) { SongSerializer.new(Song.find(song.id)).serializable_hash.as_json }
 
@@ -64,8 +64,8 @@ describe SongsController do
         playlists
       end
 
-      it 'only returns the songs that are played by the radiostation' do
-        get :index, params: { format: :json, radiostation_id: playlist_1.radiostation.id }
+      it 'only returns the songs that are played by the radio_station' do
+        get :index, params: { format: :json, radio_station_id: playlist_1.radio_station.id }
 
         expect(json).to eq [[serialized_song, 1]]
       end
