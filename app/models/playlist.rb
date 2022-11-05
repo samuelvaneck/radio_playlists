@@ -43,7 +43,8 @@ class Playlist < ActiveRecord::Base
 
   def today_unique_playlist_item
     exisiting_record = Playlist.joins(:song, :radio_station)
-                                      .where('broadcast_timestamp = ? AND radio_stations.id = ?', broadcast_timestamp, radio_station_id).present?
+                               .where('broadcast_timestamp = ? AND radio_stations.id = ?', broadcast_timestamp, radio_station_id)
+                               .present?
     errors.add(:base, 'none unique playlist') if exisiting_record
   end
 end
