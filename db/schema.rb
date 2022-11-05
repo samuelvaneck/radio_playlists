@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_01_20_124025) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_05_125747) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,16 +70,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_20_124025) do
 
   create_table "generalplaylists", force: :cascade do |t|
     t.bigint "song_id"
-    t.bigint "radiostation_id"
+    t.bigint "radio_station_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.datetime "broadcast_timestamp", precision: nil
-    t.index ["radiostation_id"], name: "index_generalplaylists_on_radiostation_id"
-    t.index ["song_id", "radiostation_id", "broadcast_timestamp"], name: "playlist_radio_song_time", unique: true
+    t.index ["radio_station_id"], name: "index_generalplaylists_on_radio_station_id"
+    t.index ["song_id", "radio_station_id", "broadcast_timestamp"], name: "playlist_radio_song_time", unique: true
     t.index ["song_id"], name: "index_generalplaylists_on_song_id"
   end
 
-  create_table "radiostations", force: :cascade do |t|
+  create_table "radio_stations", force: :cascade do |t|
     t.string "name"
     t.string "genre"
     t.datetime "created_at", precision: nil, null: false
@@ -100,6 +100,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_20_124025) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "generalplaylists", "radiostations"
+  add_foreign_key "generalplaylists", "radio_stations"
   add_foreign_key "generalplaylists", "songs"
 end

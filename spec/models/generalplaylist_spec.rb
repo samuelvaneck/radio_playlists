@@ -11,10 +11,10 @@ RSpec.describe Generalplaylist do
   let(:song_3) { FactoryBot.create :song, artists: [artist_3] }
   let(:artist_4) { FactoryBot.create :artist, name: 'Erika Sirola' }
   let(:song_4) { FactoryBot.create :song, artists: [artist_4] }
-  let(:radio_station) { FactoryBot.create :radiostation }
-  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1, radiostation: radio_station }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radio_station }
-  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radiostation: radio_station }
+  let(:radio_station) { FactoryBot.create :radio_station }
+  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1, radio_station: radio_station }
+  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radio_station: radio_station }
+  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radio_station: radio_station }
 
   describe '#search' do
     before do
@@ -30,9 +30,9 @@ RSpec.describe Generalplaylist do
       end
     end
 
-    context 'with radiostations params' do
-      it 'returns the playlist played on the radiostation' do
-        expect(Generalplaylist.search({ radiostation_id: radio_station.id })).to include playlist_2, playlist_3
+    context 'with radio_stations params' do
+      it 'returns the playlist played on the radio station' do
+        expect(Generalplaylist.search({ radio_station_id: radio_station.id })).to include playlist_2, playlist_3
       end
     end
 
@@ -49,7 +49,7 @@ RSpec.describe Generalplaylist do
       it 'fails validation' do
         new_playlist_item = Generalplaylist.new(broadcast_timestamp: playlist_1.broadcast_timestamp,
                                                 song: playlist_1.song,
-                                                radiostation: playlist_1.radiostation)
+                                                radio_station: playlist_1.radio_station)
 
         expect(new_playlist_item.valid?).to eq false
       end
@@ -78,7 +78,7 @@ RSpec.describe Generalplaylist do
       let!(:playlist_two) {
         playlist = FactoryBot.build :generalplaylist,
                                     :filled,
-                                    radiostation: playlist_one.radiostation,
+                                    radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
       }
@@ -93,7 +93,7 @@ RSpec.describe Generalplaylist do
       let!(:playlist_two) {
         playlist = FactoryBot.build :generalplaylist,
                                     :filled,
-                                    radiostation: playlist_one.radiostation,
+                                    radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
       }
@@ -108,7 +108,7 @@ RSpec.describe Generalplaylist do
       let!(:playlist_two) {
         playlist = FactoryBot.build :generalplaylist,
                                     :filled,
-                                    radiostation: playlist_one.radiostation,
+                                    radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
       }
@@ -127,7 +127,7 @@ RSpec.describe Generalplaylist do
       let!(:playlist_two) {
         playlist = FactoryBot.build :generalplaylist,
                                     :filled,
-                                    radiostation: playlist_one.radiostation,
+                                    radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
       }

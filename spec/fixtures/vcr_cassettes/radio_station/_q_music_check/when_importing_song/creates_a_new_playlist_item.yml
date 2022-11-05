@@ -1,0 +1,140 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.qmusic.nl/2.4/tracks/plays?limit=1&next=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.qmusic.nl
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 05 Nov 2022 13:45:46 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Request-Id:
+      - 687c15a481313b9865f1ff81fc90ad5a
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Runtime:
+      - '0.272705'
+      X-Powered-By:
+      - Phusion Passenger(R) Enterprise
+      Etag:
+      - W/"744667a216ae8c9d7204b2065aa0f480"
+      Status:
+      - 200 OK
+      X-Varnish:
+      - '832308039'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish (Varnish/6.1)
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Cache:
+      - MISS-API
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=wawjOc83uPm2GzHAIMwkXVCmzQ63U7e2hJurtm04HosOlWXe304PnsI6tS0itiq9qaf3e84GzS%2FPuGKlXvDQ4j%2FdfH5OtBjvv8psCCC5xDy6ChuqdY5L2acOdFyTCY0%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 765608214efc0bcd-AMS
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJwbGF5ZWRfdHJhY2tzIjpbeyJwbGF5ZWRfYXQiOiIyMDIyLTExLTA1VDE0OjQ1OjE1KzAxOjAwIiwic2x1ZyI6ImJhZC1tZW1vcmllcy0yIiwidGl0bGUiOiJCYWQgTWVtb3JpZXMiLCJzZWxlY3Rvcl9jb2RlIjoiUTE0MzQ0IiwicmVsZWFzZV95ZWFyIjoiMjAyMiIsInJlY29yZF9sYWJlbCI6IlVuaXZlcnNhbCIsImFmZmlsaWF0ZV91cmwiOiJodHRwczovL211c2ljLmFwcGxlLmNvbS9iZS9hbGJ1bS9iYWQtbWVtb3JpZXMtZmVhdC1lbGxleS1kdWglQzMlQTktZmFzdC1ib3kvMTYzMjUzNDM1Mz9hdD05d1Z0SVVHeiZpPTE2MzI1MzQzNTkmdW89NCIsInRodW1ibmFpbCI6Ii9iL2JkLzllLzg0LzE1MjY3MDYvMTQwMHgxNDAwYmIuanBnIiwic3BvdGlmeV91cmwiOiJodHRwOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8zcmIwdE1xNDJXZmdndWNQbTBISGtBIiwidmlkZW9zIjpbeyJ0eXBlIjoieW91dHViZSIsInRhZ3MiOiJkZWZhdWx0IiwiaWQiOiJULWpOa3dlc2pwayJ9XSwiaG9va3MiOnsibTRhIjoiaHR0cHM6Ly9hdWRpby1zc2wuaXR1bmVzLmFwcGxlLmNvbS9pdHVuZXMtYXNzZXRzL0F1ZGlvUHJldmlldzExMi92NC9hNS81YS9lZS9hNTVhZWVlYi1jYzdhLTQ5ZmMtNzRjZC1lODNhMTJjMzU2OTgvbXphZl8xOTg2MzY5ODM2NDM3NDcxMTUxLnBsdXMuYWFjLnAubTRhIn0sImZhY3RzIjp7fSwiYXJ0aXN0Ijp7ImlkIjoxNDgyMywibmFtZSI6Ik1FRFVaQSAmIEpBTUVTIENBUlRFUiAmIEVMTEVZIERVSEUgJiBGQVNUQk9ZIiwib3JpZ2luYWxfbmFtZSI6Ik1FRFVaQSIsInNsdWciOiJtZWR1emEiLCJiaW8iOiJNZWR1emEgaXMgZWVuIGRqLXRyaW8gdWl0IE1pbGFhbiBiZXN0YWFuZGUgdWl0IE1hdHRpYSwgTHVjYSBlbiBTaW1vbmUuXHJcbiIsInR3aXR0ZXJfdXJsIjoiaHR0cHM6Ly90d2l0dGVyLmNvbS9tZWR1emFtdXNpYyIsInBob3RvIjoiL2IvZDUvZTMvZDEvMTQxODU2Ni9NZWR1emFfRmluYWxfQXBwcm92ZWRfMzAwZHBpLTEuanBnIiwiY291bnRyeSI6eyJjb2RlIjoiSVQiLCJuYW1lIjoiSXRhbGnDqyJ9fSwic3ViX2FydGlzdHMiOlt7ImFydGlzdCI6eyJpZCI6MTQzMDMsIm5hbWUiOiJFTExFWSBEVUjDiSIsImJpbyI6IkVsbGV5IER1aMOpIGlzIGVlbiBBbWVyaWthYW5zZSB6YW5nZXJlcywgZ2Vib3JlbiBpbiBBbGFiYW1hLiBIYWFyIHZhZGVycyBlbiBvb21zIG1hYWt0ZW4gbmFhbSBpbiBkZSBqYXp6c2NlbmUgaW4gTmV3IE9ybGVhbnMsIHdhYXJuYSBFbGxleSBnZcOvbnNwaXJlZXJkIHJhYWt0ZS4gVG9lbiB6ZSBoYWFyIGVlcnN0ZSBnaXRhYXIgb3AgMTUgamFyaWdlIGxlZWZ0aWpkIGtyZWVnLCBiZWdvbiB6ZSBvcCB0ZSB0cmVkZW4gaW4ga29mZmlldGVudGplcyBlbiBsb2thbGUgYmFycmV0amVzLiBaZSB3ZXJkIG9wZ2VwaWt0IGRvb3IgdmVyc2NoaWxsZW5kZSBzb25nd3JpdGVycyB1aXQgTG9zIEFuZ2VsZXMsIGVuIGFsIHNuZWwgYnJhY2h0IHplIGhhYXIgZWVyc3RlIGFsYnVtIOKAmE1pbGxlbm5pdW3igJkgdWl0LiAgTmFkYXQgaGFhciB0cmFjayDigJhJbW1vcnRhbOKAmSBvbnRwbG9mdGUgb3AgU3BvdGlmeSwgd2VyZCB6ZSBwYXMgw6ljaHQgZ3Jvb3QuICIsImZhY2Vib29rX3VybCI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9lbGxleWR1aGVtdXNpYy8iLCJ0d2l0dGVyX3VybCI6Imh0dHBzOi8vdHdpdHRlci5jb20vZWxsZXlkdWhlIiwiaW5zdGFncmFtX3VybCI6Imh0dHBzOi8vd3d3Lmluc3RhZ3JhbS5jb20vZWxsZXlkdWhlLyIsInBob3RvIjoiLzAvNzkvNDgvMDAvMTM5NzMwNi8zMGU3MjEzNWZjN2UyMDc3MDdkYTY4NTNlY2ZjYzA3Zi5wbmciLCJjb3VudHJ5Ijp7ImNvZGUiOiJVUyIsIm5hbWUiOiJWZXJlbmlnZGUgU3RhdGVuIn19fV0sInRhZ3MiOlt7ImlkIjoxLCJuYW1lIjoiKFIvTikifSx7ImlkIjozLCJuYW1lIjoiSGl0IGludHJvIn0seyJpZCI6MTI1LCJuYW1lIjoiRXgtYWxhcm1zY2hpamYifV0sImN1cnJlbnRfZWRpdGlvbnMiOlt7InBvc2l0aW9uIjozLCJlZGl0aW9uIjp7ImlkIjo1MjUzLCJuYW1lIjoiMDQvMTEvMjAyMiJ9LCJsaXN0Ijp7ImlkIjoyMjUsIm5hbWUiOiJRbXVzaWMgVG9wIDQwIn19XSwiYWN0aXZlX2VkaXRpb25zIjpbXSwibmV4dCI6eyJzbHVnIjoiaXNsYW5kcy1pbi10aGUtc3RyZWFtIiwidGl0bGUiOiJJc2xhbmRzIEluIFRoZSBTdHJlYW0iLCJzZWxlY3Rvcl9jb2RlIjoiMjMwNC0wNCIsInJlbGVhc2VfeWVhciI6IjE5ODMiLCJhZmZpbGlhdGVfdXJsIjoiaHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL25sL2FsYnVtL2lzbGFuZHMtaW4tc3RyZWFtLWtlbm55LXJvZ2Vycy9pZDIxNzgxMjM1OD9hdD05d1Z0SVVHeiZpPTIxNzgxMjQyMSZ1bz00IiwidGh1bWJuYWlsIjoiL2QvMTcvMzYvN2IvMTI4NTcva2Vubnktcm9nZXJzLWFuZC1kb2xseS1wYXJ0b24taXNsYW5kcy1pbi10aGUtc3RyZWFtLXJjYS12aWN0b3ItMi1zLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cDovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNmRuY284aGFlZ25KWXR5bFYyNmNCcSIsInZpZGVvcyI6W3sidHlwZSI6InlvdXR1YmUiLCJ0YWdzIjoiZGVmYXVsdCIsImlkIjoibGl4REtfdE1FaEUifV0sImhvb2tzIjp7Im00YSI6Imh0dHBzOi8vYXVkaW8tc3NsLml0dW5lcy5hcHBsZS5jb20vaXR1bmVzLWFzc2V0cy9BdWRpb1ByZXZpZXcxMjgvdjQvOTkvZTcvMjEvOTllNzIxYWQtODY4ZC02NmU2LTM5MmMtMTA5NzkxNjlmMGIwL216YWZfNDkxMjQwMDYxNzI2NzE1MjA5NC5wbHVzLmFhYy5wLm00YSJ9LCJmYWN0cyI6e30sImFydGlzdCI6eyJpZCI6MTg3MiwibmFtZSI6IktFTk5ZIFJPR0VSUyAmIERPTExZIFBBUlRPTiIsIm9yaWdpbmFsX25hbWUiOiJLRU5OWSBST0dFUlMiLCJzbHVnIjoia2Vubnktcm9nZXJzIiwiYmlvIjoiS2VubmV0aCBSYXkgUm9nZXJzIGlzIGJldGVyIGJla2VuZCBhbHMgS2VubnkgUm9nZXJzLiBIZXQgaXMgZWVuIEFtZXJpa2FhbnNlIGNvdW50cnl6YW5nZXIsIGZvdG9ncmFhZiwgc29uZ3dyaXRlciwgYWN0ZXVyIGVuIHpha2VubWFuLiAnUnVieSAoRG9uJ3QgVGFrZSBZb3VyIExvdmUgVG8gVG93biknLCAnSXNsYW5kcyBJbiBUaGUgU3RyZWFtJyAobWV0IERvbGx5IFBhcnRvbikgZW4gJ1RoZSBHYW1ibGVyJyBiZWhvcmVuIHRvdCB6aWpuIG1lZXN0IHN1Y2Nlc3ZvbGxlIGhpdHMuIE5hYXN0IHZlbGUgc29sby1oaXRzIGhlZWZ0IGhpaiBvb2sgZWVuIGFhbnRhbCBkdWV0dGVuIGdlem9uZ2VuIG1ldCBvbmRlciBhbmRlcmUgRG9sbHkgUGFydG9uIGVuIERvdHRpZSBXZXN0LiBNZXQgemlqbiBpbmRydWt3ZWtrZW5kZSB6YW5nY2FycmnDqHJlIHZhbiBtZWVyIGRhbiBlZW4gaGFsdmUgZWV1dyBpbmNsdXNpZWYgbWVlciBkYW4gMjAgIzEtaGl0cyBrYW4gS2VubnkgUm9nZXJzIGJlc2Nob3V3ZCB3b3JkZW4gYWxzIGVlbiB2YW4gZGUgZ3Jvb3RzdGUgY291bnRyeXphbmdlcnMgYWxsZXIgdGlqZGVuLiIsImZhY2Vib29rX3VybCI6Imh0dHA6Ly93d3cuZmFjZWJvb2suY29tL0tlbm55Um9nZXJzT2ZmaWNpYWwiLCJ0d2l0dGVyX3VybCI6Imh0dHA6Ly93d3cudHdpdHRlci5jb20vX0tlbm55Um9nZXJzIiwid2Vic2l0ZSI6Imh0dHA6Ly9rZW5ueXJvZ2Vycy5tdXNpY2NpdHluZXR3b3Jrcy5jb20vIiwicGhvdG8iOiIvYy9jMC9lMS83MS8xMDg4OS9LZW5ueStSb2dlcnMuanBnIiwiY291bnRyeSI6eyJjb2RlIjoiVVMiLCJuYW1lIjoiVmVyZW5pZ2RlIFN0YXRlbiJ9fSwic3ViX2FydGlzdHMiOlt7ImFydGlzdCI6eyJpZCI6MTAxMCwibmFtZSI6IkRPTExZIFBBUlRPTiIsImJpbyI6IkRvbGx5IFJlYmVjY2EgUGFydG9uIChTZXZpZXJ2aWxsZSAoVGVubmVzc2VlKSwgMTkgamFudWFyaSAxOTQ2KSBpcyBlZW4gQW1lcmlrYWFuc2UgY291bnRyeXphbmdlcmVzLCB0ZWtzdHNjaHJpamZzdGVyLCBzaW5nZXItc29uZ3dyaXRlciBlbiBhY3RyaWNlLiBJbiAxOTg2IHdlcmQgemUgb3BnZW5vbWVuIGluIGRlIE5hc2h2aWxsZSBTb25nd3JpdGVycyBIYWxsIG9mIEZhbWUuXHJcbiIsImZhY2Vib29rX3VybCI6Imh0dHA6Ly93d3cuZmFjZWJvb2suY29tL0RvbGx5UGFydG9uIiwidHdpdHRlcl91cmwiOiJodHRwczovL3R3aXR0ZXIuY29tL0RvbGx5X1BhcnRvbiIsIndlYnNpdGUiOiJodHRwOi8vZG9sbHlwYXJ0b25tdXNpYy5uZXQvIiwicGhvdG8iOiIvMy9hMS9mOC81ZC8xMDk5NS9Eb2xseStQYXJ0b24rUE5HLnBuZyIsImNvdW50cnkiOnsiY29kZSI6IlVTIiwibmFtZSI6IlZlcmVuaWdkZSBTdGF0ZW4ifX19XSwidGFncyI6W119fV0sInBhZ2luYXRpb24iOnsibmV4dCI6Ii8yLjQvdHJhY2tzL3BsYXlzP2xpbWl0PTEmbmV4dD10cnVlJnNpbmNlPTIwMjItMTEtMDUrMTQlM0E0NSUzQTE1KyUyQjAxMDAiLCJwcmV2aW91cyI6Ii8yLjQvdHJhY2tzL3BsYXlzP2xpbWl0PTEmbmV4dD10cnVlJnVwdG89MjAyMi0xMS0wNSsxNCUzQTQ1JTNBMTUrJTJCMDEwMCJ9fQ==
+  recorded_at: Sat, 05 Nov 2022 13:45:46 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Bad%20Memories%20artist:meduza%20james%20carter%20elley%20duhe%20fastboy&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQChgre7A9UEmXdG9NHpjau2x83dB8DXi91TCjWJblcA7qJzHNrfyLwOGdKEE7x4ZcxmP8XTadJCAS4MVJ0TF9On2mw0unNW-IbT6deuAyR85GeGhqE
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sat, 05 Nov 2022 13:45:46 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=Bad+Memories+artist%3Ameduza+james+carter+elley+duhe+fastboy&type=track&offset=0&limit=20",
+            "items" : [ ],
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 0
+          }
+        }
+  recorded_at: Sat, 05 Nov 2022 13:45:46 GMT
+recorded_with: VCR 6.1.0

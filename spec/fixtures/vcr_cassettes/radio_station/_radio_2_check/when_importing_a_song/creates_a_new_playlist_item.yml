@@ -1,0 +1,1160 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.nporadio2.nl/api/tracks
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - www.nporadio2.nl
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.23.2
+      Date:
+      - Sat, 05 Nov 2022 13:45:21 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Cache-Control:
+      - public, s-maxage=15, max-age=5
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, HEAD
+      Access-Control-Allow-Headers:
+      - Origin,Content-Type,Accept
+      X-Cache-Status:
+      - STALE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjpudWxsLCJtZXNzYWdlcyI6bnVsbCwiZGF0YSI6W3sic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6NDA6MDUiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6NDQ6MDQiLCJ0aXRsZSI6IlRoZXJlIE11c3QgQmUgQW4gQW5nZWwgKFBsYXlpbmcgV2l0aCBNeSBIZWFydCkiLCJhcnRpc3QiOiJFdXJ5dGhtaWNzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMjNhMTc1OWNiOWYzYmE3NDRkNjYxY2IwIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMjNhMTc1OWNiOWYzYmE3NDRkNjYxY2IwIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMlBLUE1MWkpEbXc3N1M4VjJrRWw2RCJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6MzY6MjkiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6NDA6MTEiLCJ0aXRsZSI6IkFsbCBGb3IgTm90aGluZyIsImFydGlzdCI6IktlbnNpbmd0b24iLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvMzBiYTRjZGUtNjUyNC00NmI2LWIzMjItYTU2NjUzYTJmZGU0LmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi8zMGJhNGNkZS02NTI0LTQ2YjYtYjMyMi1hNTY2NTNhMmZkZTQuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNXVDOGE5RnhkcUo1OVhIanpkaWJDZiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6Mjk6MzIiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6MzM6MzMiLCJ0aXRsZSI6Ikl0J3MgTXkgTGlmZSIsImFydGlzdCI6IkRyLiBBbGJhbiIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi84OTgxMWIwYi1jYzUwLTRjMmMtYWQ4YS0xMDg0ZTg1MDE2NzkuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2Lzg5ODExYjBiLWNjNTAtNGMyYy1hZDhhLTEwODRlODUwMTY3OS5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay82SGRNN2d6WFZnY3BlcHYyNzZyYW9nIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQxNDoyOToyNCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQxNDozMjozMSIsInRpdGxlIjoiUE9JTkciLCJhcnRpc3QiOiJSb3R0ZXJkYW0gVGVybWluYXRpb24gU291cmNlIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzZhYjZhZDY3LWJmZmItNDFmZS1hYWI1LTI4NzcwNDVhYmJjMC5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvNmFiNmFkNjctYmZmYi00MWZlLWFhYjUtMjg3NzA0NWFiYmMwLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzFtVlVBRkJHa1ZSdmJORzVIRkJ0b0sifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDE0OjI5OjA1IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDE0OjMzOjI3IiwidGl0bGUiOiJJJ2xsIEJlIFRoZXJlIiwiYXJ0aXN0IjoiTWFyaWFoIENhcmV5IiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2Lzk1YzNlYTZjLTg4OTktNDRmNS04YjUxLWE5NWM5YjE4NGFlNy5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvOTVjM2VhNmMtODg5OS00NGY1LThiNTEtYTk1YzliMTg0YWU3LmpwZyJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6Mjg6NTEiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6MzQ6MTciLCJ0aXRsZSI6IlNleHkgTUYiLCJhcnRpc3QiOiJQcmluY2UiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvZTZiOGQzNmUtYjhhMy00ZWIwLWEyN2ItM2QyYjc5MjBlZWFiLmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi9lNmI4ZDM2ZS1iOGEzLTRlYjAtYTI3Yi0zZDJiNzkyMGVlYWIuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMlpXQnkwaWlZRFpFUm9rWWZPSFhyNiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6Mjg6MzMiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6MzI6MTYiLCJ0aXRsZSI6Ik9uIEEgUmFnZ2EgVGlwIiwiYXJ0aXN0IjoiU0wyIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzZhYjZhZDY3LWJmZmItNDFmZS1hYWI1LTI4NzcwNDVhYmJjMC5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvNmFiNmFkNjctYmZmYi00MWZlLWFhYjUtMjg3NzA0NWFiYmMwLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzdnWDZZMmpoc3JWcXU5cUlyeHBQb2YifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDE0OjIyOjM4IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDE0OjI2OjQyIiwidGl0bGUiOiJDb21wbGljYXRlZCIsImFydGlzdCI6IkF2cmlsIExhdmlnbmUiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvODE3NTYxNDAtNTljYi00MjkyLTliODMtYjhmMjAwMzUzMzZlLmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi84MTc1NjE0MC01OWNiLTQyOTItOWI4My1iOGYyMDAzNTMzNmUuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNXhFTTVoSWdKMWpqZ2NFQmZwa3QyRiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6MTg6MzAiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6MjI6NTMiLCJ0aXRsZSI6IkxldCBNZSBFbnRlcnRhaW4gWW91IiwiYXJ0aXN0IjoiUm9iYmllIFdpbGxpYW1zIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzdiYjcwODBmLTljMzYtNDE5Ny05ZDc5LWMxMDMzMWQzNDQ3Mi5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvN2JiNzA4MGYtOWMzNi00MTk3LTlkNzktYzEwMzMxZDM0NDcyLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzBTTHRxQ3JYQlJybmt4U09NQTNYNFcifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDE0OjE0OjI2IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDE0OjE3OjMzIiwidGl0bGUiOiJFbGVjdHJpYyBMaWZlIiwiYXJ0aXN0IjoiRHVuY2FuIExhdXJlbmNlIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczZDhkZGViMDZhNWE2Mjg0YzUyYWFiNDM0IiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczZDhkZGViMDZhNWE2Mjg0YzUyYWFiNDM0Iiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMGlMcXBtNWM0ZEdsd3RoNUxZcTJ0aiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6MDk6NDgiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTQ6MTQ6NDQiLCJ0aXRsZSI6IllvdSdyZSBUaGUgVm9pY2UiLCJhcnRpc3QiOiJKb2huIEZhcm5oYW0iLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvZjIzOWE2NzItYzU5ZS00NDlhLWIyMmItMzFmNWQxNTcyMjg4LmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi9mMjM5YTY3Mi1jNTllLTQ0OWEtYjIyYi0zMWY1ZDE1NzIyODguanBnIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQxMTo1MjozMCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQxMTo1NjoxMCIsInRpdGxlIjoiQnVpbHQgQW5kIEJyb2tlbiIsImFydGlzdCI6IkJsYWNrYmlyZCIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzdjYWFiNTRmOGIyNDJmMjIzNDg0OTNlNyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzdjYWFiNTRmOGIyNDJmMjIzNDg0OTNlNyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzJvTGwyMkVkV1BSOHU4aFR0ZmdCUFMifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDExOjQ2OjI2IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDExOjUyOjIyIiwidGl0bGUiOiJTd2VldCBDaGlsZCBPJyBNaW5lIChBbGJ1bXZlcnNpZSkiLCJhcnRpc3QiOiJHdW5zIE4nIFJvc2VzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNjgzODRkZDg1ZmQ1ZTk1ODMxMjUyZjYwIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNjgzODRkZDg1ZmQ1ZTk1ODMxMjUyZjYwIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svN28yQ1RINGN0c3RtOFROZWxxamI1MSJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTE6NDM6MDEiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTE6NDY6MzYiLCJ0aXRsZSI6IkNoZWxzZWEgRGFnZ2VyIiwiYXJ0aXN0IjoiVGhlIEZyYXRlbGxpcyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi82MmQ1Y2MyMy1jMGJjLTQyY2QtYmM1NS1lMTdjM2Y5N2VhZDcuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzYyZDVjYzIzLWMwYmMtNDJjZC1iYzU1LWUxN2MzZjk3ZWFkNy5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8xYkNtdmV6Rmc1TVJjRU56Q0dHMUN5In0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQxMTozOTo0NyIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQxMTo0MzoyMiIsInRpdGxlIjoiRG9wYW1pbmUiLCJhcnRpc3QiOiJQdXJwbGUgRGlzY28gTWFjaGluZSBmdC4gRXllbGFyIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNmUyY2Q0YjZjMTBjYmNmNWRiZjJlOGFkIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNmUyY2Q0YjZjMTBjYmNmNWRiZjJlOGFkIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNUpCdFdwTG9HTzYyZ2I1dmF4NTA1YiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTE6MzY6MjUiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTE6Mzk6NTEiLCJ0aXRsZSI6IkZsYXBwaWUiLCJhcnRpc3QiOiJZb3VwIHZhbiAndCBIZWsiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvY2JlMzEwZTAtY2RkNy00ZTI3LTk2MmEtZGU3YjI0Y2JkOTk3LmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi9jYmUzMTBlMC1jZGQ3LTRlMjctOTYyYS1kZTdiMjRjYmQ5OTcuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svM0U3bFVNZFpLNUg1MkNIRmVtclR0NyJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTE6Mjk6NDYiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTE6MzM6MjMiLCJ0aXRsZSI6IldoYXQgSXQgSXMiLCJhcnRpc3QiOiJNYXJrIEtub3BmbGVyIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzJjNGYxOTZjLTQyYTQtNDY2ZS04N2E4LWJlMTgzNmI4OTk4NS5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvMmM0ZjE5NmMtNDJhNC00NjZlLTg3YTgtYmUxODM2Yjg5OTg1LmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzY1ZjhDYTRIYlpDTUxocFpQVEhXNE8ifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDExOjI1OjE5IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDExOjI5OjQxIiwidGl0bGUiOiJCZWF1dGlmdWwgU3RyYW5nZXIiLCJhcnRpc3QiOiJNYWRvbm5hIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzRmOTA0OTAwLTA5ZDMtNDZlMC1hZjUzLWRiMzYyMGIzZWZiZS5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvNGY5MDQ5MDAtMDlkMy00NmUwLWFmNTMtZGIzNjIwYjNlZmJlLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzNEbFJaTTZ6S1NsQVppZ0hiSlEzY3AifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDExOjE3OjEyIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDExOjIwOjUwIiwidGl0bGUiOiJZb3UgQWluJ3QgU2VlbiBOb3RoaW5nIFlldCIsImFydGlzdCI6IkJhY2htYW4tVHVybmVyIE92ZXJkcml2ZSIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi9kMjQ5YjFiMS1mYWY1LTRkNzMtOWE4Yy01N2ExMzQyYjQyM2IuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2L2QyNDliMWIxLWZhZjUtNGQ3My05YThjLTU3YTEzNDJiNDIzYi5qcGcifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDExOjE0OjIwIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDExOjE3OjEzIiwidGl0bGUiOiJMYXRlIE5pZ2h0IFRhbGtpbmciLCJhcnRpc3QiOiJIYXJyeSBTdHlsZXMiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMyZThlZDc5ZTE3N2ZmNjAxMTA3NmY1ZjAiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMyZThlZDc5ZTE3N2ZmNjAxMTA3NmY1ZjAiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8xcUVtRmZnY0xPYlVmUW0wajFXMkNLIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQxMTowODo0OCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQxMToxMzozMCIsInRpdGxlIjoiWW91IEdldCBXaGF0IFlvdSBHaXZlIiwiYXJ0aXN0IjoiTmV3IFJhZGljYWxzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczZGZkZWRkNDU1M2I0MGJiYWFiMzQyZGFlIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczZGZkZWRkNDU1M2I0MGJiYWFiMzQyZGFlIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMUN3c2Q1eEk4Q2FqSno3OTVveTRYRiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTA6NTM6NTkiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTA6NTc6NDgiLCJ0aXRsZSI6IkN1ZGRseSBUb3kiLCJhcnRpc3QiOiJSb2FjaGZvcmQiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvY2QwYmU2NjktMjkyZi00MzQ5LWFiZDAtMWQ5NzQwZDNmODc4LmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi9jZDBiZTY2OS0yOTJmLTQzNDktYWJkMC0xZDk3NDBkM2Y4NzguanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNUxYZFZBVWFvUnhNOXVkNmxWazEzWiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTA6NTA6MzQiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTA6NTM6NTQiLCJ0aXRsZSI6IkFudGktSGVybyIsImFydGlzdCI6IlRheWxvciBTd2lmdCIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2E2ZjA0ZWZhNmVmOTVhOWM0Njc0ZmQ1YSIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2E2ZjA0ZWZhNmVmOTVhOWM0Njc0ZmQ1YSIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzFCSldheThIc1k1VHo4TDI4aXRrQ2sifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjQ2OjAzIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjUwOjAzIiwidGl0bGUiOiJDYWxpZm9ybmlhIExvdmUiLCJhcnRpc3QiOiIyUGFjIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2L2U1ZjNiMmIwLWI1OTItNDIxNi05M2FjLTU2OWQ1OTljMzMxOS5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvZTVmM2IyYjAtYjU5Mi00MjE2LTkzYWMtNTY5ZDU5OWMzMzE5LmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzNpYTNkSkVUU09sbFBzdjNMSmtFMzUifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjQwOjA5IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjQ0OjE1IiwidGl0bGUiOiJPcCBGaWV0c2UiLCJhcnRpc3QiOiJTa2lrIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYzhlYWY2NDIwY2M1Y2Q3MTdjNjk5NjU1IiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYzhlYWY2NDIwY2M1Y2Q3MTdjNjk5NjU1Iiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMHdOZ2pyWXhGaGVnUXJNcFRvMko5diJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTA6MzY6MjQiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTA6NDA6NDciLCJ0aXRsZSI6IlRoZSBXaG9sZSBPZiBUaGUgTW9vbiIsImFydGlzdCI6IldhdGVyYm95cyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2U2ZTEyN2ZmNjZhZWUxNjdkNjdlNzk0YSIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2U2ZTEyN2ZmNjZhZWUxNjdkNjdlNzk0YSIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzE1bVpvMUthaDAzZzhDVExiU3NXcnIifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjMzOjIwIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjM2OjM1IiwidGl0bGUiOiJOaWdodCBNb3ZlcyIsImFydGlzdCI6Ikxpc3NpZSIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzgyOGU2NTE0MWFlNzI4YmYyNmZkZDA5OSIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzgyOGU2NTE0MWFlNzI4YmYyNmZkZDA5OSIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzByUERhRlpRNzVlVHVGczdBYzg0dzAifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjI4OjEyIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjMyOjQ4IiwidGl0bGUiOiJXaGVyZSBUaGUgU3RyZWV0cyBIYXZlIE5vIE5hbWUiLCJhcnRpc3QiOiJVMiIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2I3YmVhM2QwMWYwNGU2ZDA0MDhkMmFmZSIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2I3YmVhM2QwMWYwNGU2ZDA0MDhkMmFmZSIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzRxZ1pzMFJOamR6S0FTMjJsUDBRalkifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjI0OjM2IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjI3OjU2IiwidGl0bGUiOiJOb3QgRmFpciIsImFydGlzdCI6IkxpbHkgQWxsZW4iLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvMGIzNGQ4YjMtNGI3Yy00MGI2LWFjNzgtYzRiMjNjZTlmMGIyLmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi8wYjM0ZDhiMy00YjdjLTQwYjYtYWM3OC1jNGIyM2NlOWYwYjIuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNzZWV3VCdThxb0Z4emZocGZXMGxFNiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTA6MTQ6NTYiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTA6MTk6MTIiLCJ0aXRsZSI6IktpbGxlciAvIFBhcGEgV2FzIEEgUm9sbGluJyBTdG9uZSIsImFydGlzdCI6Ikdlb3JnZSBNaWNoYWVsIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2L2RjYzMyODBhLWNkMzktNGQ5Yi04OWRkLTM5Y2NjODZiNzgyMC5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvZGNjMzI4MGEtY2QzOS00ZDliLTg5ZGQtMzljY2M4NmI3ODIwLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzNFTXdDYnZhZXlXVlpiM2FlMHJvSHQifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjExOjI3IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDEwOjE0OjIwIiwidGl0bGUiOiJCcmlnaHQgRXllcyIsImFydGlzdCI6IlJvbmRlIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMDQwZTRmNjE3MGQ3MzAxYjE3OTM3ZTZiIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMDQwZTRmNjE3MGQ3MzAxYjE3OTM3ZTZiIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svM0tabFZCY2tVWFUzcUNtaTBoMFZIZiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMTA6MDc6MzMiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMTA6MTA6NDYiLCJ0aXRsZSI6Ikxvd2Rvd24iLCJhcnRpc3QiOiJCb3ogU2NhZ2dzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczOTQ2NzZjZTZhYTUyODgzMThiNGNhNTJhIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczOTQ2NzZjZTZhYTUyODgzMThiNGNhNTJhIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMG5sWmpUUHpXNlM5SklFU3VHZkltVCJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMDk6NTM6MjIiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMDk6NTY6NTEiLCJ0aXRsZSI6IllvdSBTaG9vayBNZSBBbGwgTmlnaHQgTG9uZyIsImFydGlzdCI6IkFDL0RDIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzExOTg2Y2QxLTUzNDMtNGMzMy1hNzE3LWJiYjQ3MDkwNWUxYy5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvMTE5ODZjZDEtNTM0My00YzMzLWE3MTctYmJiNDcwOTA1ZTFjLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzJTaVhBeTdUdVVreWNSVmJiV0RFcG8ifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA5OjQ5OjA2IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA5OjUyOjA0IiwidGl0bGUiOiJDcmF6eSIsImFydGlzdCI6IkduYXJscyBCYXJrbGV5IiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNjcwZjQ2NjZhMzc4ZGU4MzQyODVlYjMzIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNjcwZjQ2NjZhMzc4ZGU4MzQyODVlYjMzIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMk41ek1aWDdZZUwxdGljbzhvUXhhOSJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMDk6NDQ6NDMiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMDk6NDk6MTEiLCJ0aXRsZSI6Ikxvc2luZyBNeSBSZWxpZ2lvbiIsImFydGlzdCI6IlIuRS5NLiIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi80YTlkNzA0My1jNTNhLTQ0ODItOTg1MS02OGFkOTU2YTVhMDEuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzRhOWQ3MDQzLWM1M2EtNDQ4Mi05ODUxLTY4YWQ5NTZhNWEwMS5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8zMUFPajlzRnoyZ00wTzNoTUFSUkJ4In0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQwOTozNjoyNyIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQwOTo0MDoxNCIsInRpdGxlIjoiSXMgVGhpcyBMb3ZlIiwiYXJ0aXN0IjoiQm9iIE1hcmxleSAmIFRoZSBXYWlsZXJzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2L2M3OTM2MmQ2LWIyYjgtNGE3Yi04MWRkLWRlOWNjZjI4MmIwNS5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvYzc5MzYyZDYtYjJiOC00YTdiLTgxZGQtZGU5Y2NmMjgyYjA1LmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzZKUkxGaVg5TkpTb1JSS3hvd2xCWXIifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA5OjMyOjMxIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA5OjM2OjMxIiwidGl0bGUiOiJXZSBEb2VuIFdhdCBXZSBLdW5uZW4iLCJhcnRpc3QiOiJCbG9mIGZ0LiBHZWlrZSBBcm5hZXJ0IiwiaW1hZ2VfdXJsXzIwMHgyMDAiOm51bGwsImltYWdlX3VybF80MDB4NDAwIjpudWxsfSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA5OjI1OjQ2IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA5OjI5OjIwIiwidGl0bGUiOiJTbyBXaGF0IiwiYXJ0aXN0IjoiUGluayIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi85YmUwMzY4Ny0wMjYyLTRmNTUtOTJmYS0zODA2M2Y4NDAwOGMuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzliZTAzNjg3LTAyNjItNGY1NS05MmZhLTM4MDYzZjg0MDA4Yy5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay83QnBBRUVaa1N2dlRqa0ZoeFZZN3pOIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQwOToxNzowNSIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQwOToyMTozMSIsInRpdGxlIjoiU3R1Y2sgV2l0aCBZb3UiLCJhcnRpc3QiOiJIdWV5IExld2lzICYgdGhlIE5ld3MiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvZDUwMTMyMzAtYjBkNC00MTdlLWJmMWMtMmFlNGExY2ExZjVmLmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi9kNTAxMzIzMC1iMGQ0LTQxN2UtYmYxYy0yYWU0YTFjYTFmNWYuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMmNGbDd1dGxxeVpqQ1hOMUc1blJ2QSJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMDk6MTM6NDMiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMDk6MTY6NTgiLCJ0aXRsZSI6IlJlYWR5IEZvciBNb3JlIiwiYXJ0aXN0IjoiS3JlemlwIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMzZmOTEwZjYyOTUwMTRhNTlkZGVkNzU1IiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMzZmOTEwZjYyOTUwMTRhNTlkZGVkNzU1Iiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMUlQY2xINHYzUlFUNVhZZlVTeDBXUyJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMDk6MDc6MDYiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMDk6MTE6MjYiLCJ0aXRsZSI6IkxvdmUgUmVhcnMgSXRzIFVnbHkgSGVhZCIsImFydGlzdCI6IkxpdmluZyBDb2xvdXIiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMzYTMyZTExNDMzNGZjZGVmYzVjOWExZGIiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMzYTMyZTExNDMzNGZjZGVmYzVjOWExZGIiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay81aHVTZ1RWcUJkSUpURmhwU2hKZmNnIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQwODo1MDoxOCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQwODo1NDowMyIsInRpdGxlIjoiQ3VmZiBJdCIsImFydGlzdCI6IkJleW9uY++/vSIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzBlNThhMGY4MzA4YzFhZDQwM2QxMDVlNyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzBlNThhMGY4MzA4YzFhZDQwM2QxMDVlNyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzF4emkxSmNyN21FaTlLMlJmekxPcVMifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA4OjQyOjA5IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA4OjQ0OjQxIiwidGl0bGUiOiJBbGwgVGhlc2UgTmlnaHRzIiwiYXJ0aXN0IjoiVG9tIEdyZW5uYW4iLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzM4MzQxOTFhZjI4ZTM0YzBmZTdjYjY3OGIiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzM4MzQxOTFhZjI4ZTM0YzBmZTdjYjY3OGIiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8xVmVBWFVhMjBZa3pmRWkxWmsyeTBvIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQwODozNzowOSIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQwODozOToyOSIsInRpdGxlIjoiQmFkwqBNb29uwqBSaXNpbmciLCJhcnRpc3QiOiJDcmVlZGVuY2UgQ2xlYXJ3YXRlciBSZXZpdmFsIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzMzMGUxNWI2LTRkZjYtNDEzYi1hYjZkLTRlZjk1ODEyOWY1Yy5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvMzMwZTE1YjYtNGRmNi00MTNiLWFiNmQtNGVmOTU4MTI5ZjVjLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzIwT0Z3WGhFWGYxMkR6d1htYVY3ZmoifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA4OjMyOjUxIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA4OjM3OjE0IiwidGl0bGUiOiJGYWlyZ3JvdW5kIiwiYXJ0aXN0IjoiU2ltcGx5IFJlZCIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2M2YmYxMWFjYTdlYjBhNzVhMzZiMWQwZSIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2M2YmYxMWFjYTdlYjBhNzVhMzZiMWQwZSIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzNsZ2hxV0VMRVdqOXlFUHZtZTdjNFcifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA4OjI1OjQxIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA4OjI5OjUzIiwidGl0bGUiOiJNYXJpYSIsImFydGlzdCI6IkJsb25kaWUiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvMDJiNTVjZTAtOWFkOS00YmM4LTg1YzctNTBjYWQ1ZDBkZjJlLmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi8wMmI1NWNlMC05YWQ5LTRiYzgtODVjNy01MGNhZDVkMGRmMmUuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svN2JPWU9EMGQ3QnlNVFh2Sm5RVmw4ZCJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMDVUMDg6MjA6MjYiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMDVUMDg6MjM6NDUiLCJ0aXRsZSI6Ik11bHRpY29sb3IgKEhJIElOS0VMKSIsImFydGlzdCI6IlNvbiBNaWV1eCIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzJmMTUzMzE2YzlkY2NlNzM4Y2I4NTEwZiIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzJmMTUzMzE2YzlkY2NlNzM4Y2I4NTEwZiIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzJFeGRiaWVRZmZNWHBZN3lnTjJZTjkifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA4OjEzOjQxIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA4OjE3OjQ4IiwidGl0bGUiOiJMb2xhIChsaXZlKSIsImFydGlzdCI6IlRoZSBLaW5rcyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzM0ZThkZjg3LTBmMzMtNDVjNi1iZDFhLWYyNTI4ZmY4NzYyNi8wODViZDJlOC0xMWJlLTQwMDctODgxYy1mZDQ5ZDFlZmZjNDguanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzA4NWJkMmU4LTExYmUtNDAwNy04ODFjLWZkNDlkMWVmZmM0OC5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay82VVR4cHQ0Rm4wY1JCWmxraTFkUkZxIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQwODowODo0NCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0wNVQwODoxMTo0OSIsInRpdGxlIjoiR3JhY2UgS2VsbHkiLCJhcnRpc3QiOiJNaWthIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMzRlOGRmODctMGYzMy00NWM2LWJkMWEtZjI1MjhmZjg3NjI2LzUxNjczYmUwLTVkMmItNGVmNi05MTM4LTIzZjYyMjE2ZWVjOC5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8zNGU4ZGY4Ny0wZjMzLTQ1YzYtYmQxYS1mMjUyOGZmODc2MjYvNTE2NzNiZTAtNWQyYi00ZWY2LTkxMzgtMjNmNjIyMTZlZWM4LmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzJTRHgwUG9vSFpJMVNRS1IweTQ0YnMifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA3OjU0OjA1IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTA1VDA3OjU3OjQ5IiwidGl0bGUiOiJTd2VldCBTeW1waG9ueSIsImFydGlzdCI6IkpveSBPbGFkb2t1biAmIENocmlzIFN0YXBsZXRvbiIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2EyYjQ3NmUwN2M5OGFlNDA0ZGE4MDRlOCIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2EyYjQ3NmUwN2M5OGFlNDA0ZGE4MDRlOCIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzc4SHBkSmxOb3BwVVJrTW1FMGRvZ1MifV19
+  recorded_at: Sat, 05 Nov 2022 13:45:21 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=There%20Must%20Be%20An%20Angel%20(Playing%20With%20My%20Heart)%20artist:eurythmics&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQChgre7A9UEmXdG9NHpjau2x83dB8DXi91TCjWJblcA7qJzHNrfyLwOGdKEE7x4ZcxmP8XTadJCAS4MVJ0TF9On2mw0unNW-IbT6deuAyR85GeGhqE
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=7200
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sat, 05 Nov 2022 13:45:21 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=There+Must+Be+An+Angel+%28Playing+With+My+Heart%29+artist%3Aeurythmics&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                  "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                  "name" : "Eurythmics",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                  "id" : "5MspMQqdVbdwP6ax3GXqum",
+                  "name" : "Annie Lennox",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                  "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                  "name" : "Dave Stewart",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/1moeActSxQQhEdAVIClRBm"
+                },
+                "href" : "https://api.spotify.com/v1/albums/1moeActSxQQhEdAVIClRBm",
+                "id" : "1moeActSxQQhEdAVIClRBm",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273a27a49c3ac1c50a02dd50820",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02a27a49c3ac1c50a02dd50820",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851a27a49c3ac1c50a02dd50820",
+                  "width" : 64
+                } ],
+                "name" : "Greatest Hits",
+                "release_date" : "1991-03-01",
+                "release_date_precision" : "day",
+                "total_tracks" : 18,
+                "type" : "album",
+                "uri" : "spotify:album:1moeActSxQQhEdAVIClRBm"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                "name" : "Eurythmics",
+                "type" : "artist",
+                "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                "id" : "5MspMQqdVbdwP6ax3GXqum",
+                "name" : "Annie Lennox",
+                "type" : "artist",
+                "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                "name" : "Dave Stewart",
+                "type" : "artist",
+                "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 280360,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL8500001"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2ndQcVbaMrpBJuQYd2a0d4"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2ndQcVbaMrpBJuQYd2a0d4",
+              "id" : "2ndQcVbaMrpBJuQYd2a0d4",
+              "is_local" : false,
+              "name" : "There Must Be an Angel (Playing With My Heart)",
+              "popularity" : 44,
+              "preview_url" : "https://p.scdn.co/mp3-preview/ab4338429b78b159644e2cb7d775c5339ab222d0?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 6,
+              "type" : "track",
+              "uri" : "spotify:track:2ndQcVbaMrpBJuQYd2a0d4"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                  "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                  "name" : "Eurythmics",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                  "id" : "5MspMQqdVbdwP6ax3GXqum",
+                  "name" : "Annie Lennox",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                  "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                  "name" : "Dave Stewart",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/1t7fYXGuOKQ61AY4qRtIot"
+                },
+                "href" : "https://api.spotify.com/v1/albums/1t7fYXGuOKQ61AY4qRtIot",
+                "id" : "1t7fYXGuOKQ61AY4qRtIot",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27323a1759cb9f3ba744d661cb0",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0223a1759cb9f3ba744d661cb0",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485123a1759cb9f3ba744d661cb0",
+                  "width" : 64
+                } ],
+                "name" : "Ultimate Collection",
+                "release_date" : "2005-11-08",
+                "release_date_precision" : "day",
+                "total_tracks" : 19,
+                "type" : "album",
+                "uri" : "spotify:album:1t7fYXGuOKQ61AY4qRtIot"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                "name" : "Eurythmics",
+                "type" : "artist",
+                "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                "id" : "5MspMQqdVbdwP6ax3GXqum",
+                "name" : "Annie Lennox",
+                "type" : "artist",
+                "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                "name" : "Dave Stewart",
+                "type" : "artist",
+                "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 280973,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL0300617"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2PKPMLZJDmw77S8V2kEl6D"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2PKPMLZJDmw77S8V2kEl6D",
+              "id" : "2PKPMLZJDmw77S8V2kEl6D",
+              "is_local" : false,
+              "name" : "There Must Be an Angel (Playing with My Heart)",
+              "popularity" : 36,
+              "preview_url" : "https://p.scdn.co/mp3-preview/d6bdf729a53ed8da4b250fbdc0a5a098c6b8ed8d?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 8,
+              "type" : "track",
+              "uri" : "spotify:track:2PKPMLZJDmw77S8V2kEl6D"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                  "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                  "name" : "Eurythmics",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                  "id" : "5MspMQqdVbdwP6ax3GXqum",
+                  "name" : "Annie Lennox",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                  "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                  "name" : "Dave Stewart",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/2tbXCl8en5ZDVnHIk1OZGI"
+                },
+                "href" : "https://api.spotify.com/v1/albums/2tbXCl8en5ZDVnHIk1OZGI",
+                "id" : "2tbXCl8en5ZDVnHIk1OZGI",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2738b9d4820655b6bf032ed41f3",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e028b9d4820655b6bf032ed41f3",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048518b9d4820655b6bf032ed41f3",
+                  "width" : 64
+                } ],
+                "name" : "Be Yourself Tonight",
+                "release_date" : "1985-04-29",
+                "release_date_precision" : "day",
+                "total_tracks" : 15,
+                "type" : "album",
+                "uri" : "spotify:album:2tbXCl8en5ZDVnHIk1OZGI"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                "name" : "Eurythmics",
+                "type" : "artist",
+                "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                "id" : "5MspMQqdVbdwP6ax3GXqum",
+                "name" : "Annie Lennox",
+                "type" : "artist",
+                "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                "name" : "Dave Stewart",
+                "type" : "artist",
+                "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 321106,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL0300617"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/487afb1uhQ0QHTgg5gUJos"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/487afb1uhQ0QHTgg5gUJos",
+              "id" : "487afb1uhQ0QHTgg5gUJos",
+              "is_local" : false,
+              "name" : "There Must Be an Angel (Playing with My Heart)",
+              "popularity" : 43,
+              "preview_url" : "https://p.scdn.co/mp3-preview/d5210de5c01b53f2fb96c6661f5c7d73b28039e3?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:487afb1uhQ0QHTgg5gUJos"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                  "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                  "name" : "Eurythmics",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                  "id" : "5MspMQqdVbdwP6ax3GXqum",
+                  "name" : "Annie Lennox",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                  "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                  "name" : "Dave Stewart",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/5kPl4VCiuIsGv1UECxt4N0"
+                },
+                "href" : "https://api.spotify.com/v1/albums/5kPl4VCiuIsGv1UECxt4N0",
+                "id" : "5kPl4VCiuIsGv1UECxt4N0",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273ac0c7c52b34bab19578c1a0d",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02ac0c7c52b34bab19578c1a0d",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851ac0c7c52b34bab19578c1a0d",
+                  "width" : 64
+                } ],
+                "name" : "Be Yourself Tonight (2018 Remastered)",
+                "release_date" : "1985-04-29",
+                "release_date_precision" : "day",
+                "total_tracks" : 9,
+                "type" : "album",
+                "uri" : "spotify:album:5kPl4VCiuIsGv1UECxt4N0"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                "name" : "Eurythmics",
+                "type" : "artist",
+                "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                "id" : "5MspMQqdVbdwP6ax3GXqum",
+                "name" : "Annie Lennox",
+                "type" : "artist",
+                "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                "name" : "Dave Stewart",
+                "type" : "artist",
+                "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 325240,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL1800406"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0P2fNRXSFMksVXe2OW2PpU"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0P2fNRXSFMksVXe2OW2PpU",
+              "id" : "0P2fNRXSFMksVXe2OW2PpU",
+              "is_local" : false,
+              "name" : "There Must Be an Angel (Playing With My Heart) [2018 Remastered]",
+              "popularity" : 25,
+              "preview_url" : "https://p.scdn.co/mp3-preview/75081eb7b900b41a1f4155451f52e25efe4be5e6?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:0P2fNRXSFMksVXe2OW2PpU"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                  "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                  "name" : "Eurythmics",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                  "id" : "5MspMQqdVbdwP6ax3GXqum",
+                  "name" : "Annie Lennox",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                  "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                  "name" : "Dave Stewart",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0C2W2DUuXsn8iRHYInqs71"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0C2W2DUuXsn8iRHYInqs71",
+                "id" : "0C2W2DUuXsn8iRHYInqs71",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27395f8ed4cb2be01d60ad6474d",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0295f8ed4cb2be01d60ad6474d",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485195f8ed4cb2be01d60ad6474d",
+                  "width" : 64
+                } ],
+                "name" : "Live 1983-1989",
+                "release_date" : "1993-11-20",
+                "release_date_precision" : "day",
+                "total_tracks" : 22,
+                "type" : "album",
+                "uri" : "spotify:album:0C2W2DUuXsn8iRHYInqs71"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                "name" : "Eurythmics",
+                "type" : "artist",
+                "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                "id" : "5MspMQqdVbdwP6ax3GXqum",
+                "name" : "Annie Lennox",
+                "type" : "artist",
+                "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                "name" : "Dave Stewart",
+                "type" : "artist",
+                "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 2,
+              "duration_ms" : 418760,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL9300084"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/39SDQpxpD5OdtIUWSg4eqG"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/39SDQpxpD5OdtIUWSg4eqG",
+              "id" : "39SDQpxpD5OdtIUWSg4eqG",
+              "is_local" : false,
+              "name" : "There Must Be An Angel (Playing With My Heart) - Live",
+              "popularity" : 27,
+              "preview_url" : "https://p.scdn.co/mp3-preview/e683d37a6ea0c037ab227f8706e36000f987a696?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:39SDQpxpD5OdtIUWSg4eqG"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                  "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                  "name" : "Eurythmics",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PH", "PK", "PL", "PS", "PT", "PY", "QA", "RO", "RS", "RW", "SA", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TR", "TT", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0H0gECNGQQ9RE3HZL2Z9AH"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0H0gECNGQQ9RE3HZL2Z9AH",
+                "id" : "0H0gECNGQQ9RE3HZL2Z9AH",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273481afe71fce65a81affa6dfb",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02481afe71fce65a81affa6dfb",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851481afe71fce65a81affa6dfb",
+                  "width" : 64
+                } ],
+                "name" : "Boxed",
+                "release_date" : "2005-11-11",
+                "release_date_precision" : "day",
+                "total_tracks" : 125,
+                "type" : "album",
+                "uri" : "spotify:album:0H0gECNGQQ9RE3HZL2Z9AH"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                "name" : "Eurythmics",
+                "type" : "artist",
+                "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                "id" : "5MspMQqdVbdwP6ax3GXqum",
+                "name" : "Annie Lennox",
+                "type" : "artist",
+                "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                "name" : "Dave Stewart",
+                "type" : "artist",
+                "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PH", "PK", "PL", "PS", "PT", "PY", "QA", "RO", "RS", "RW", "SA", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TR", "TT", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 4,
+              "duration_ms" : 321106,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL0300617"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6wtcN2hsEtRmINhghVkaEn"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6wtcN2hsEtRmINhghVkaEn",
+              "id" : "6wtcN2hsEtRmINhghVkaEn",
+              "is_local" : false,
+              "name" : "There Must Be an Angel (Playing with My Heart)",
+              "popularity" : 24,
+              "preview_url" : "https://p.scdn.co/mp3-preview/63bc5412cfd263b4026f2684e2469bf0c49d8419?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:6wtcN2hsEtRmINhghVkaEn"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0xHBgcc8mjG1FILI9NPrg9"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0xHBgcc8mjG1FILI9NPrg9",
+                "id" : "0xHBgcc8mjG1FILI9NPrg9",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273925dd54f56617efcf7b75d8b",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02925dd54f56617efcf7b75d8b",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851925dd54f56617efcf7b75d8b",
+                  "width" : 64
+                } ],
+                "name" : "Flash Back Internacional",
+                "release_date" : "2018-04-27",
+                "release_date_precision" : "day",
+                "total_tracks" : 36,
+                "type" : "album",
+                "uri" : "spotify:album:0xHBgcc8mjG1FILI9NPrg9"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                "name" : "Eurythmics",
+                "type" : "artist",
+                "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                "id" : "5MspMQqdVbdwP6ax3GXqum",
+                "name" : "Annie Lennox",
+                "type" : "artist",
+                "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                "name" : "Dave Stewart",
+                "type" : "artist",
+                "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 280973,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL0300617"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0YjUpd97gbDGCbjXOfaI4G"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0YjUpd97gbDGCbjXOfaI4G",
+              "id" : "0YjUpd97gbDGCbjXOfaI4G",
+              "is_local" : false,
+              "name" : "There Must Be an Angel (Playing with My Heart)",
+              "popularity" : 17,
+              "preview_url" : "https://p.scdn.co/mp3-preview/1e59444ac9f93f1a60b1f08670e1b30b5be44f3e?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 35,
+              "type" : "track",
+              "uri" : "spotify:track:0YjUpd97gbDGCbjXOfaI4G"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+                  "id" : "0LyfQWJT6nXafLPZqxe9Of",
+                  "name" : "Various Artists",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/0LplRIGNE4ds9AmJ6w0qXa"
+                },
+                "href" : "https://api.spotify.com/v1/albums/0LplRIGNE4ds9AmJ6w0qXa",
+                "id" : "0LplRIGNE4ds9AmJ6w0qXa",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273369c5ebfe2b60892107b0265",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02369c5ebfe2b60892107b0265",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851369c5ebfe2b60892107b0265",
+                  "width" : 64
+                } ],
+                "name" : "Mother's Day Songs",
+                "release_date" : "2018-03-02",
+                "release_date_precision" : "day",
+                "total_tracks" : 31,
+                "type" : "album",
+                "uri" : "spotify:album:0LplRIGNE4ds9AmJ6w0qXa"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+                },
+                "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+                "id" : "0NKDgy9j66h3DLnN8qu1bB",
+                "name" : "Eurythmics",
+                "type" : "artist",
+                "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+                },
+                "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+                "id" : "5MspMQqdVbdwP6ax3GXqum",
+                "name" : "Annie Lennox",
+                "type" : "artist",
+                "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+                },
+                "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+                "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+                "name" : "Dave Stewart",
+                "type" : "artist",
+                "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 280360,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBARL8500001"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0AvAML9EcGCNpx7id6dtlY"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0AvAML9EcGCNpx7id6dtlY",
+              "id" : "0AvAML9EcGCNpx7id6dtlY",
+              "is_local" : false,
+              "name" : "There Must Be an Angel (Playing With My Heart)",
+              "popularity" : 9,
+              "preview_url" : "https://p.scdn.co/mp3-preview/17d2ce78daed3d48793b6f3fa3a1b04e12205887?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 17,
+              "type" : "track",
+              "uri" : "spotify:track:0AvAML9EcGCNpx7id6dtlY"
+            } ],
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 8
+          }
+        }
+  recorded_at: Sat, 05 Nov 2022 13:45:21 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQChgre7A9UEmXdG9NHpjau2x83dB8DXi91TCjWJblcA7qJzHNrfyLwOGdKEE7x4ZcxmP8XTadJCAS4MVJ0TF9On2mw0unNW-IbT6deuAyR85GeGhqE
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=85707
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sat, 05 Nov 2022 13:45:25 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/0NKDgy9j66h3DLnN8qu1bB"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 1599640
+          },
+          "genres" : [ "dance rock", "europop", "mellow gold", "new romantic", "new wave", "new wave pop", "rock", "soft rock", "sophisti-pop", "synthpop" ],
+          "href" : "https://api.spotify.com/v1/artists/0NKDgy9j66h3DLnN8qu1bB",
+          "id" : "0NKDgy9j66h3DLnN8qu1bB",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb145a01fb993c3088fe6ac5e7",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab67616100005174145a01fb993c3088fe6ac5e7",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f178145a01fb993c3088fe6ac5e7",
+            "width" : 160
+          } ],
+          "name" : "Eurythmics",
+          "popularity" : 67,
+          "type" : "artist",
+          "uri" : "spotify:artist:0NKDgy9j66h3DLnN8qu1bB"
+        }
+  recorded_at: Sat, 05 Nov 2022 13:45:25 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQChgre7A9UEmXdG9NHpjau2x83dB8DXi91TCjWJblcA7qJzHNrfyLwOGdKEE7x4ZcxmP8XTadJCAS4MVJ0TF9On2mw0unNW-IbT6deuAyR85GeGhqE
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=73536
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sat, 05 Nov 2022 13:45:25 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/5MspMQqdVbdwP6ax3GXqum"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 1273505
+          },
+          "genres" : [ "mellow gold", "new wave pop", "pop rock", "singer-songwriter", "soft rock" ],
+          "href" : "https://api.spotify.com/v1/artists/5MspMQqdVbdwP6ax3GXqum",
+          "id" : "5MspMQqdVbdwP6ax3GXqum",
+          "images" : [ {
+            "height" : 500,
+            "url" : "https://i.scdn.co/image/fb1b39783fdc9625bcba0837e7da9882969eaa03",
+            "width" : 500
+          }, {
+            "height" : 200,
+            "url" : "https://i.scdn.co/image/c23a0ac99d89ab0817c7102b4d078ccd4b874682",
+            "width" : 200
+          }, {
+            "height" : 64,
+            "url" : "https://i.scdn.co/image/36bd0d0d9a915081aa7d41a9e566056c11f07446",
+            "width" : 64
+          } ],
+          "name" : "Annie Lennox",
+          "popularity" : 69,
+          "type" : "artist",
+          "uri" : "spotify:artist:5MspMQqdVbdwP6ax3GXqum"
+        }
+  recorded_at: Sat, 05 Nov 2022 13:45:25 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQChgre7A9UEmXdG9NHpjau2x83dB8DXi91TCjWJblcA7qJzHNrfyLwOGdKEE7x4ZcxmP8XTadJCAS4MVJ0TF9On2mw0unNW-IbT6deuAyR85GeGhqE
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=82663
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sat, 05 Nov 2022 13:45:25 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/7gcCQIlkkfbul5Mt0jBQkg"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 24812
+          },
+          "genres" : [ "new wave pop", "rock keyboard" ],
+          "href" : "https://api.spotify.com/v1/artists/7gcCQIlkkfbul5Mt0jBQkg",
+          "id" : "7gcCQIlkkfbul5Mt0jBQkg",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb69f218e3cb145eacfb6c8476",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab6761610000517469f218e3cb145eacfb6c8476",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f17869f218e3cb145eacfb6c8476",
+            "width" : 160
+          } ],
+          "name" : "Dave Stewart",
+          "popularity" : 67,
+          "type" : "artist",
+          "uri" : "spotify:artist:7gcCQIlkkfbul5Mt0jBQkg"
+        }
+  recorded_at: Sat, 05 Nov 2022 13:45:25 GMT
+recorded_with: VCR 6.1.0

@@ -41,7 +41,7 @@
     },
     methods: {
       getItems: function(append = false) {
-        const url = '/generalplaylists?radiostation_id=' + this.radioStationFilter + '&search_term=' + this.term + '&page=' + this.page + '&start_time=' + this.startTimeFilter + '&end_time=' + this.endTimeFilter
+        const url = '/generalplaylists?radio_station_id=' + this.radioStationFilter + '&search_term=' + this.term + '&page=' + this.page + '&start_time=' + this.startTimeFilter + '&end_time=' + this.endTimeFilter
         const options = {
           method: 'GET',
           headers: {

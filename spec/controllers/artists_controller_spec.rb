@@ -47,14 +47,14 @@ describe ArtistsController do
       end
     end
 
-    context 'filtering by radiostation' do
+    context 'filtering by radio station' do
       before do
         playlist_1
         playlist_2
         playlists
       end
-      it 'only returns the artists that are played by the radiostation' do
-        get :index, params: { format: :json, radiostation_id: playlist_1.radiostation.id }
+      it 'only returns the artists that are played by the radio station' do
+        get :index, params: { format: :json, radio_station_id: playlist_1.radio_station.id }
 
         expect(json).to eq [[ArtistSerializer.new(Artist.find(artist.id)).serializable_hash.as_json, 1]]
       end

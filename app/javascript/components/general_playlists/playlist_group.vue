@@ -3,7 +3,7 @@
     <div class='mx-1 mt-2 mb-3' v-bind:key='item.id' v-for='item in items'>
       <Playlist v-bind:item='item'
                 v-bind:song='item.attributes.song'
-                v-bind:radioStation='item.attributes.radiostation'
+                v-bind:radioStation='item.attributes.radio_station'
                 v-bind:artists='item.attributes.artists' />
     </div>
   </div>

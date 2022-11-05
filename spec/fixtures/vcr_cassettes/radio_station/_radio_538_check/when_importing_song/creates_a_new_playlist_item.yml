@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile:%20%22radio-brand-web%22,%20slug:%20%22radio-538%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile:%20%22%22,%20limit:%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      X-Api-Key:
+      - da2-27bfqtcztfatfp7ef6feqg2wkq
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - graph.talparad.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Sat, 05 Nov 2022 13:45:35 GMT
+      X-Amzn-Requestid:
+      - 2e5a873d-b1c3-4dfc-bd43-9a79bcafc4bb
+      X-Amzn-Appsync-Tokensconsumed:
+      - '1'
+      Via:
+      - 1.1 e64eb476d8f76c461d21278e018e194e.cloudfront.net (CloudFront), 1.1 ac059d7185137233d6f58dd3345e3798.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Pop:
+      - AMS1-P2
+      - FRA50-C1
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Hit from cloudfront
+      X-Amz-Cf-Id:
+      - bmrgsgGGUjeMcrJOfhiIanIzBxwegKGOY01tRmC-FDvtmeISk76CAg==
+      Age:
+      - '3'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"getStation":{"title":"Radio 538","playouts":[{"broadcastDate":"2022-11-05T13:41:53Z","track":{"id":"ddaa7177-efe5-521e-a9a6-10b1806cb5c6","title":"TERUG
+        BIJ AF","artistName":"FLEMMING & RONNIE FLEX","isrc":"NLZ292200122","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLZ292200122.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:39:37Z","track":{"id":"d57f763c-06a5-5c06-866c-844766a5392d","title":"IN
+        MY MIND","artistName":"DYNORO & GIGI D''AGOSTINO","isrc":"QZ22B1859046","images":[{"type":"image","uri":"https://img.talparad.io/tracks/QZ22B1859046.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:36:00Z","track":{"id":"347a025d-85c5-556b-bfdc-ffa0d8658aa5","title":"BONES","artistName":"IMAGINE
+        DRAGONS","isrc":"USUM72201759","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM72201759.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:32:34Z","track":{"id":"083fd543-40ea-5466-842c-804afe75c6ee","title":"CELESTIAL","artistName":"ED
+        SHEERAN","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:21:30Z","track":{"id":"efd53e2d-0073-54f1-b1b3-7ff1d1aa5c15","title":"ACCIDENTALLY
+        IN LOVE","artistName":"COUNTING CROWS","isrc":"USIR10400291","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USIR10400291.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:18:44Z","track":{"id":"8f20c563-e478-597c-947f-319ab0bcaf31","title":"WHEN
+        YOU''RE GONE","artistName":"SHAWN MENDES","isrc":"USUM72205147","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM72205147.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:15:10Z","track":{"id":"af3b489d-38a2-5c4e-96c3-a38157c17b73","title":"UNHOLY","artistName":"SAM
+        SMITH & KIM PETRAS","isrc":"GBUM72205415","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBUM72205415.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:12:39Z","track":{"id":"26e5e4ba-3ba3-58fd-a449-68dea8406d05","title":"ROLL
+        THE DICE","artistName":"ARMIN VAN BUUREN FT. PHILIP STRAND","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:12:38Z","track":{"id":"8f20c563-e478-597c-947f-319ab0bcaf31","title":"WHEN
+        YOU''RE GONE","artistName":"SHAWN MENDES","isrc":"USUM72205147","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM72205147.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:07:31Z","track":{"id":"ca689620-1786-54ec-8313-6f8314d9e31a","title":"SYMPHONY","artistName":"SHEPPARD","isrc":"DEUM71600095","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEUM71600095.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sat, 05 Nov 2022 13:45:38 GMT
+recorded_with: VCR 6.1.0

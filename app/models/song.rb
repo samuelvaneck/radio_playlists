@@ -6,7 +6,7 @@ class Song < ActiveRecord::Base
   has_many :artists_songs
   has_many :artists, through: :artists_songs
   has_many :generalplaylists
-  has_many :radiostations, through: :generalplaylists
+  has_many :radio_stations, through: :generalplaylists
 
   MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'
   TRACK_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
@@ -23,7 +23,7 @@ class Song < ActiveRecord::Base
 
     songs = Generalplaylist.joins(:song, :artists).all
     songs.where!(search_query, search_value(params), search_value(params)) if params[:search_term].present?
-    songs.where!('radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
+    songs.where!('radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
     songs.where!('generalplaylists.created_at > ?', start_time)
     songs.where!('generalplaylists.created_at < ?', end_time)
     songs.distinct

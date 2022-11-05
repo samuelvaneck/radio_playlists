@@ -8,15 +8,15 @@ class GeneralplaylistSerializer
              :broadcast_timestamp,
              :created_at,
              :song,
-             :radiostation,
+             :radio_station,
              :artists
 
   def song
     SongSerializer.new(object.song)
   end
 
-  def radiostation
-    RadiostationSerializer.new(object.radiostation)
+  def radio_station
+    RadioStationSerializer.new(object.radio_station)
   end
 
   def artists

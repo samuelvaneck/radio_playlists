@@ -50,12 +50,12 @@ module GraphConcern
     end
 
     def format_graph_data(playlists, strftime_value)
-      # result['2022-01-01'][radiostation_id]'] = 1
+      # result['2022-01-01'][radio_station_id]'] = 1
       playlists.each_with_object({}) do |playlist, result|
-        broadcast_timestamp, radiostation_id = playlist.values_at(:broadcast_timestamp, :radiostation_id)
+        broadcast_timestamp, radio_station_id = playlist.values_at(:broadcast_timestamp, :radio_station_id)
         result[broadcast_timestamp.strftime(strftime_value)] ||= {}
-        result[broadcast_timestamp.strftime(strftime_value)][radiostation_id] ||= []
-        result[broadcast_timestamp.strftime(strftime_value)][radiostation_id] << playlist
+        result[broadcast_timestamp.strftime(strftime_value)][radio_station_id] ||= []
+        result[broadcast_timestamp.strftime(strftime_value)][radio_station_id] << playlist
       end
     end
 
@@ -70,7 +70,7 @@ module GraphConcern
         result = { date: }
         grouped_playlists = playlists[date]
 
-        Radiostation.find_each do |radio_station|
+        RadioStation.find_each do |radio_station|
           result[radio_station.name] = if grouped_playlists && grouped_playlists[radio_station.id]
                                          grouped_playlists[radio_station.id].count
                                        else
@@ -82,7 +82,7 @@ module GraphConcern
     end
 
     def legend_data_column
-      { columns: Radiostation.all.map(&:name) }
+      { columns: RadioStation.all.map(&:name) }
     end
   end
 end

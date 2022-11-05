@@ -16,7 +16,7 @@ class Artist < ActiveRecord::Base
     # artists = Generalplaylist.joins(:artists).all
     artists = Artist.joins(:generalplaylists).all
     artists.where!('artists.name ILIKE ?', "%#{params[:search_term]}%") if params[:search_term].present?
-    artists.where!('generalplaylists.radiostation_id = ?', params[:radiostation_id]) if params[:radiostation_id].present?
+    artists.where!('generalplaylists.radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
     artists.where!('generalplaylists.created_at > ?', start_time)
     artists.where!('generalplaylists.created_at < ?', end_time)
     artists

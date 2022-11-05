@@ -1,0 +1,80 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.nporadio1.nl/api/tracks
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - www.nporadio1.nl
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.23.2
+      Date:
+      - Sat, 05 Nov 2022 13:45:38 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Cache-Control:
+      - public, s-maxage=15, max-age=5
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, HEAD
+      Access-Control-Allow-Headers:
+      - Origin,Content-Type,Accept
+      Connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: '{"success":true,"message":null,"messages":null,"data":[{"startdatetime":"2022-11-05T10:30:09","enddatetime":"2022-11-05T10:33:34","title":"I
+        can hear your heartbeat","artist":"Chris Rea","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273b24b8434a8eb9e0232f6eebe","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273b24b8434a8eb9e0232f6eebe","spotify_url":"https://open.spotify.com/track/7n0lp1r1yHYXN2jZvqzbAI"},{"startdatetime":"2022-11-05T06:39:41","enddatetime":"2022-11-05T06:42:15","title":"Amazing","artist":"George
+        Michael","image_url_200x200":"https://i.scdn.co/image/81422a857d8ab8531d6eb967465789ee3081fdf4","image_url_400x400":"https://i.scdn.co/image/81422a857d8ab8531d6eb967465789ee3081fdf4","spotify_url":"https://open.spotify.com/track/0hsrqeudoR9Kymm7RNiVoq"},{"startdatetime":"2022-11-05T06:13:26","enddatetime":"2022-11-05T06:17:05","title":"Send
+        my love (to your lover)","artist":"Adele","image_url_200x200":"https://i.scdn.co/image/602102500b9cebde7559a5f9c16daaaef2846440","image_url_400x400":"https://i.scdn.co/image/602102500b9cebde7559a5f9c16daaaef2846440","spotify_url":"https://open.spotify.com/track/4BHzQ9C00ceJxfG16AlNWb"},{"startdatetime":"2022-11-05T05:34:08","enddatetime":"2022-11-05T05:37:34","title":"Shattered
+        Dreams","artist":"Johnny Hates Jazz","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2732f915da5ca987450e615f863","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2732f915da5ca987450e615f863","spotify_url":"https://open.spotify.com/track/5KXKhCfPNS4342ly8tTf6w"},{"startdatetime":"2022-11-05T05:04:56","enddatetime":"2022-11-05T05:09:04","title":"Cry
+        Wolf","artist":"A Ha","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2739126fb3b1b0c4ec47ab659b5","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2739126fb3b1b0c4ec47ab659b5","spotify_url":"https://open.spotify.com/track/4aPf0wQ6VBlRqWABaVjfRN"},{"startdatetime":"2022-11-05T04:51:24","enddatetime":"2022-11-05T04:53:32","title":"Itsy
+        bitsy teenie weenie Honululu strandbikini","artist":"Caterina Valente, Silvio
+        Francesco","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2022-11-05T04:31:48","enddatetime":"2022-11-05T04:37:02","title":"With
+        A Little Help From My Friends","artist":"Joe Cocker","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2735bb09aa81ffb17ccf902629f","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2735bb09aa81ffb17ccf902629f","spotify_url":"https://open.spotify.com/track/0YZ3J8xzGwLOg4yEgST1YK"},{"startdatetime":"2022-11-05T03:16:42","enddatetime":"2022-11-05T03:19:35","title":"Tschau
+        tschau bambino","artist":"Caterina Valente","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2022-11-05T02:27:42","enddatetime":"2022-11-05T02:30:39","title":"I
+        Go To Sleep","artist":"Pretenders","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273bb84afa8b7d9e49a912e5772","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273bb84afa8b7d9e49a912e5772","spotify_url":"https://open.spotify.com/track/4cBSJKXHyxXUD360KscFou"},{"startdatetime":"2022-11-05T02:03:58","enddatetime":"2022-11-05T02:07:43","title":"Nachtzuster","artist":"Doe
+        Maar","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b27352adca8774ee4d782a53facf","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b27352adca8774ee4d782a53facf","spotify_url":"https://open.spotify.com/track/2jiqyWQHMxjbTs0aPlugDT"},{"startdatetime":"2022-11-04T23:24:02","enddatetime":"2022-11-04T23:25:51","title":"St.
+        Clare","artist":"Suzanne Vega","image_url_200x200":"https://i.scdn.co/image/792813ee936fe10dd22d4fcc56458a92497ec3b6","image_url_400x400":"https://i.scdn.co/image/792813ee936fe10dd22d4fcc56458a92497ec3b6","spotify_url":"https://open.spotify.com/track/5IutuyS9xYszmv11QuUAnk"},{"startdatetime":"2022-11-04T23:13:08","enddatetime":"2022-11-04T23:16:07","title":"Heatwave","artist":"Collins,
+        Phil","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273bcbc449f2541139c7c0161ec","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273bcbc449f2541139c7c0161ec","spotify_url":"https://open.spotify.com/track/5YopKkyZRGr9W8CWNge3ed"},{"startdatetime":"2022-11-04T22:40:39","enddatetime":"2022-11-04T22:43:44","title":"Not
+        going anywhere","artist":"Remme","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273523dd7463b36855068b10c29","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273523dd7463b36855068b10c29","spotify_url":"https://open.spotify.com/track/4MiFx3aSA5gm41BHuJMBXa"},{"startdatetime":"2022-11-04T22:26:10","enddatetime":"2022-11-04T22:29:03","title":"Long
+        lost friend","artist":"Struijlaart, Ed","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273663342e6a4da794f92d1d70b","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273663342e6a4da794f92d1d70b","spotify_url":"https://open.spotify.com/track/24T46JXfdsD3prLYBMGp8p"},{"startdatetime":"2022-11-04T22:15:52","enddatetime":"2022-11-04T22:19:01","title":"Black
+        eyed boy","artist":"Texas","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2733cb5dc762c64c829f2c15b10","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2733cb5dc762c64c829f2c15b10","spotify_url":"https://open.spotify.com/track/6fT9Oe3oy5gWvs8L6EXMrc"},{"startdatetime":"2022-11-04T17:46:17","enddatetime":"2022-11-04T17:48:45","title":"Ho
+        hey","artist":"Lumineers","image_url_200x200":"https://i.scdn.co/image/178f2aa69928c5880fb16ee26e7dabeecd8d50e3","image_url_400x400":"https://i.scdn.co/image/178f2aa69928c5880fb16ee26e7dabeecd8d50e3","spotify_url":"https://open.spotify.com/track/0W4Kpfp1w2xkY3PrV714B7"},{"startdatetime":"2022-11-04T16:20:00","enddatetime":"2022-11-04T16:21:52","title":"Circles","artist":"Krystl","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2735f05240680ced70c241300e2","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2735f05240680ced70c241300e2","spotify_url":"https://open.spotify.com/track/40rS0Z8vPsWAYILz9JuF2c"},{"startdatetime":"2022-11-04T15:45:38","enddatetime":"2022-11-04T15:49:09","title":"Tous
+        les memes","artist":"Stromae","image_url_200x200":"https://i.scdn.co/image/95ab79a33e86e54f813e84c93bcaa9dea567502a","image_url_400x400":"https://i.scdn.co/image/95ab79a33e86e54f813e84c93bcaa9dea567502a","spotify_url":"https://open.spotify.com/track/1GC1MIaRMW3kfVK9VyD5Ii"},{"startdatetime":"2022-11-04T15:29:34","enddatetime":"2022-11-04T15:32:18","title":"Love
+        to last","artist":"Hajaj","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2735d38212476c2a545ada5d54a","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2735d38212476c2a545ada5d54a","spotify_url":"https://open.spotify.com/track/492FG3XeaSPRftcsu8vD9k"},{"startdatetime":"2022-11-04T15:15:34","enddatetime":"2022-11-04T15:19:19","title":"Rhythm
+        of the night","artist":"DeBarge","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2737a5a52177044460e8e5060ae","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2737a5a52177044460e8e5060ae","spotify_url":"https://open.spotify.com/track/5yGTQzYbEdY6B9RFZJypgt"},{"startdatetime":"2022-11-04T14:44:16","enddatetime":"2022-11-04T14:49:09","title":"Nightshift","artist":"Springsteen,
+        Bruce","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2738b9fb4d70e366ea42669b0c3","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2738b9fb4d70e366ea42669b0c3","spotify_url":"https://open.spotify.com/track/4DFvHfRmWWuzqwYTMgh6Dv"},{"startdatetime":"2022-11-04T14:27:43","enddatetime":"2022-11-04T14:31:22","title":"Nem
+        ouro nem prata","artist":"Maurity, Ruy","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273c80e7e9a893d4a4025bd2d2a","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273c80e7e9a893d4a4025bd2d2a","spotify_url":"https://open.spotify.com/track/0fNUUevlqx2mplpNppk90K"},{"startdatetime":"2022-11-04T14:15:50","enddatetime":"2022-11-04T14:19:46","title":"Lady
+        love","artist":"Rawls, Lou","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273d7fabbc83863cae8352aa4ae","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273d7fabbc83863cae8352aa4ae","spotify_url":"https://open.spotify.com/track/2ydBZKZD2nr7XTd64E2AVg"},{"startdatetime":"2022-11-04T10:32:43","enddatetime":"2022-11-04T10:34:54","title":"We
+        can work it out","artist":"Beatles","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273582d56ce20fe0146ffa0e5cf","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273582d56ce20fe0146ffa0e5cf","spotify_url":"https://open.spotify.com/track/1hTUFqJuQAMjXVGwUPWDqi"},{"startdatetime":"2022-11-04T09:14:49","enddatetime":"2022-11-04T09:18:26","title":"Go
+        your own way","artist":"Fleetwood Mac","image_url_200x200":"https://i.scdn.co/image/5d6296e45ce540774713b30bc4e74a87df6604f2","image_url_400x400":"https://i.scdn.co/image/5d6296e45ce540774713b30bc4e74a87df6604f2","spotify_url":"https://open.spotify.com/track/4xh7W7tlNMIczFhupCPniY"},{"startdatetime":"2022-11-04T08:49:12","enddatetime":"2022-11-04T08:52:44","title":"Noodgeval","artist":"Goldband","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2731592b8a03555f62a3463bca5","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2731592b8a03555f62a3463bca5","spotify_url":"https://open.spotify.com/track/2LcmbuYX7tyR4DWy3b273L"},{"startdatetime":"2022-11-04T08:25:03","enddatetime":"2022-11-04T08:27:59","title":"Mr.
+        Maker","artist":"The Kooks","image_url_200x200":"https://i.scdn.co/image/cb0ebb9c75a391d6e79f1ad562f1d3b9d7b82a57","image_url_400x400":"https://i.scdn.co/image/cb0ebb9c75a391d6e79f1ad562f1d3b9d7b82a57","spotify_url":"https://open.spotify.com/track/3TozQOXWTxGJxCnqbYoTAN"},{"startdatetime":"2022-11-04T07:51:24","enddatetime":"2022-11-04T07:55:00","title":"Bend
+        and break","artist":"Keane","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273045d0a38105fbe7bde43c490","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273045d0a38105fbe7bde43c490","spotify_url":"https://open.spotify.com/track/1hoyGI5Hj81BT7Rkb9uXGF"},{"startdatetime":"2022-11-04T07:25:43","enddatetime":"2022-11-04T07:28:38","title":"Blijven
+        rijden","artist":"Meau","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b27315bbed2f821780205b94d41c","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b27315bbed2f821780205b94d41c","spotify_url":"https://open.spotify.com/track/0mQJSaRQzKClGZXyORNy6U"},{"startdatetime":"2022-11-04T06:51:22","enddatetime":"2022-11-04T06:53:49","title":"Only
+        you","artist":"Moss, Jade","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2739b5abce14553bbfa54bf7987","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2739b5abce14553bbfa54bf7987","spotify_url":"https://open.spotify.com/track/7JUlGhe5fWMnoJ7g2XBzzN"},{"startdatetime":"2022-11-04T06:25:04","enddatetime":"2022-11-04T06:30:22","title":"Hard
+        Sun","artist":"Eddie Vedder","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2733ed52339ae78ac1b695e8d80","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2733ed52339ae78ac1b695e8d80","spotify_url":"https://open.spotify.com/track/0fzCtVM9D5UEwiLqcY8Ouq"},{"startdatetime":"2022-11-04T06:12:57","enddatetime":"2022-11-04T06:16:41","title":"Old
+        town","artist":"Corrs","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2731613606cdc92045d912f5dc1","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2731613606cdc92045d912f5dc1","spotify_url":"https://open.spotify.com/track/6jegEPoCRffT7Ovm8t4ar7"},{"startdatetime":"2022-11-04T04:10:16","enddatetime":"2022-11-04T04:15:09","title":"Free
+        Your Mind","artist":"En Vogue","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b27350638bf4b6a49dce27bc4ff5","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b27350638bf4b6a49dce27bc4ff5","spotify_url":"https://open.spotify.com/track/2vG1yrWSMiL6egg6w4e9ma"},{"startdatetime":"2022-11-04T03:56:32","enddatetime":"2022-11-04T03:58:53","title":"Cover
+        Me In Sunshine","artist":"P!nk","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273e465904fbcc8de1920c60867","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273e465904fbcc8de1920c60867","spotify_url":"https://open.spotify.com/track/6Tio0ZoDeSQnI7EBAqWer2"}]}'
+  recorded_at: Sat, 05 Nov 2022 13:45:38 GMT
+recorded_with: VCR 6.1.0

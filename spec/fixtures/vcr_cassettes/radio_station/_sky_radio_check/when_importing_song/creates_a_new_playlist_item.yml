@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile:%20%22radio-brand-web%22,%20slug:%20%22sky-radio%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile:%20%22%22,%20limit:%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      X-Api-Key:
+      - da2-27bfqtcztfatfp7ef6feqg2wkq
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - graph.talparad.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Sat, 05 Nov 2022 13:45:39 GMT
+      X-Amzn-Requestid:
+      - d01b813f-da8e-4819-ab05-6c2a37571091
+      X-Amzn-Appsync-Tokensconsumed:
+      - '1'
+      Via:
+      - 1.1 6b4954a8411e7b2a232537f8000c5c9c.cloudfront.net (CloudFront), 1.1 3bdef981159de9c713020c64476ba0e4.cloudfront.net
+        (CloudFront)
+      X-Amz-Cf-Pop:
+      - AMS1-P2
+      - FRA50-C1
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Miss from cloudfront
+      X-Amz-Cf-Id:
+      - qh_N7teOOOABtxdXagZ5NLB0k2KQAWefNJXuPCvMaM-IuNsHU6OKkQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"getStation":{"title":"Sky Radio","playouts":[{"broadcastDate":"2022-11-05T13:44:36Z","track":{"id":"8f71ddb9-8701-54b2-a1a1-95f70649311f","title":"Forget
+        Me","artistName":"Lewis Capaldi","isrc":"DEUM72204717","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEUM72204717.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:41:22Z","track":{"id":"f1b0be56-854d-5a4e-b66e-03c71c672cbb","title":"Lemon
+        Tree","artistName":"Fool''s Garden","isrc":"DEA349502964","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEA349502964.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:37:55Z","track":{"id":"34745e85-ee4d-560f-a10d-61e5d079b111","title":"Youngblood","artistName":"5
+        Seconds Of Summer","isrc":"GBUM71800366","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBUM71800366.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:34:35Z","track":{"id":"b4b838a7-d980-54d5-99a2-f9d1f90ed242","title":"Solo
+        Para Ti","artistName":"Alvaro Soler & Topic","isrc":"DEUM72201943","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEUM72201943.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:31:05Z","track":{"id":"3533f572-0577-5021-8ae9-ecbcc4badb6c","title":"Make
+        You Feel My Love","artistName":"Adele","isrc":"GBBKS0700586","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBBKS0700586.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:22:43Z","track":{"id":"1a5011ae-3c7c-5ae9-8fb7-cbce60afed61","title":"Post
+        Malone","artistName":"Sam Feldt (feat. RANI)","isrc":"NLZ541900734","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLZ541900734.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:19:46Z","track":{"id":"39fe17dd-c8a1-5a99-a81d-b47280c206dd","title":"Fingers
+        Crossed","artistName":"Laura Spencer-Smith","isrc":"TCAFY2118876","images":[{"type":"image","uri":"https://img.talparad.io/tracks/TCAFY2118876.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:16:26Z","track":{"id":"45d500f3-9a5a-527e-a48d-015c496a044b","title":"Down
+        Under","artistName":"Men At Work","isrc":"AUSM08100002","images":[{"type":"image","uri":"https://img.talparad.io/tracks/AUSM08100002.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:13:27Z","track":{"id":"394d55f2-580b-5894-835e-a72a7c3c5b16","title":"Love
+        Myself","artistName":"Ronde","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:10:30Z","track":{"id":"628f9619-9c68-5bae-b73e-f6c79946bf6b","title":"Euphoria","artistName":"Loreen","isrc":"SEPQA1200005","images":[{"type":"image","uri":"https://img.talparad.io/tracks/SEPQA1200005.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sat, 05 Nov 2022 13:45:39 GMT
+recorded_with: VCR 6.1.0
