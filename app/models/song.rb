@@ -5,8 +5,8 @@ class Song < ActiveRecord::Base
 
   has_many :artists_songs
   has_many :artists, through: :artists_songs
-  has_many :generalplaylists
-  has_many :radio_stations, through: :generalplaylists
+  has_many :playlists
+  has_many :radio_stations, through: :playlists
 
   MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'
   TRACK_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
@@ -21,11 +21,11 @@ class Song < ActiveRecord::Base
     start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
     end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
 
-    songs = Generalplaylist.joins(:song, :artists).all
+    songs = Playlist.joins(:song, :artists).all
     songs.where!(search_query, search_value(params), search_value(params)) if params[:search_term].present?
     songs.where!('radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
-    songs.where!('generalplaylists.created_at > ?', start_time)
-    songs.where!('generalplaylists.created_at < ?', end_time)
+    songs.where!('playlists.created_at > ?', start_time)
+    songs.where!('playlists.created_at < ?', end_time)
     songs.distinct
   end
 
@@ -47,7 +47,7 @@ class Song < ActiveRecord::Base
   end
 
   def cleanup
-    destroy if generalplaylists.blank?
+    destroy if playlists.blank?
     artists.each(&:cleanup)
   end
 
@@ -81,7 +81,7 @@ class Song < ActiveRecord::Base
       next if id == correct_song.id
 
       absolute_song = Song.find(id) rescue next
-      gps = Generalplaylist.where(song: absolute_song)
+      gps = Playlist.where(song: absolute_song)
       gps.each { |gp| gp.update_attribute('song_id', correct_song.id) }
       absolute_song.cleanup
     end

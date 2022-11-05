@@ -20,7 +20,7 @@ Bundler/OrderedGems:
 # SupportedStyles: case, end
 Layout/CaseIndentation:
   Exclude:
-    - 'app/helpers/generalplaylist_helper.rb'
+    - 'app/helpers/playlists_helper.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
@@ -35,7 +35,7 @@ Layout/ClassStructure:
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLineAfterGuardClause:
   Exclude:
-    - 'app/helpers/generalplaylist_helper.rb'
+    - 'app/helpers/playlists_helper.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -56,7 +56,7 @@ Layout/EmptyLines:
 # SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines
 Layout/EmptyLinesAroundModuleBody:
   Exclude:
-    - 'app/helpers/generalplaylist_helper.rb'
+    - 'app/helpers/playlists_helper.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -149,7 +149,7 @@ Naming/VariableNumber:
     - 'spec/controllers/songs_controller_spec.rb'
     - 'spec/factories/radio_station.rb'
     - 'spec/models/artist_spec.rb'
-    - 'spec/models/generalplaylist_spec.rb'
+    - 'spec/models/playlists_spec.rb'
     - 'spec/models/radio_station_spec.rb'
     - 'spec/models/song_spec.rb'
 
@@ -182,7 +182,7 @@ RSpec/AnyInstance:
 RSpec/ContextWording:
   Exclude:
     - 'spec/controllers/artists_controller_spec.rb'
-    - 'spec/controllers/general_playlists_controller_spec.rb'
+    - 'spec/controllers/playlists_controller.rb'
     - 'spec/controllers/songs_controller_spec.rb'
     - 'spec/models/radio_station_spec.rb'
 
@@ -194,7 +194,7 @@ RSpec/DescribedClass:
   Exclude:
     - 'spec/mailers/status_mailer_spec.rb'
     - 'spec/models/artist_spec.rb'
-    - 'spec/models/generalplaylist_spec.rb'
+    - 'spec/models/playlists_spec.rb'
     - 'spec/models/song_spec.rb'
 
 # Offense count: 1
@@ -208,7 +208,7 @@ RSpec/EmptyExampleGroup:
 RSpec/EmptyLineAfterFinalLet:
   Exclude:
     - 'spec/models/artist_spec.rb'
-    - 'spec/models/generalplaylist_spec.rb'
+    - 'spec/models/playlists_spec.rb'
     - 'spec/models/song_spec.rb'
 
 # Offense count: 6
@@ -217,8 +217,8 @@ RSpec/EmptyLineAfterFinalLet:
 RSpec/EmptyLineAfterHook:
   Exclude:
     - 'spec/controllers/artists_controller_spec.rb'
-    - 'spec/controllers/general_playlists_controller_spec.rb'
-    - 'spec/models/generalplaylist_spec.rb'
+    - 'spec/controllers/playlists_controller.rb'
+    - 'spec/models/playlists_spec.rb'
 
 # Offense count: 2
 # Configuration parameters: CountAsOne.
@@ -238,13 +238,13 @@ RSpec/ExampleWording:
 # Include: **/*_spec*rb*, **/spec/**/*
 RSpec/FilePath:
   Exclude:
-    - 'spec/controllers/general_playlists_controller_spec.rb'
+    - 'spec/controllers/playlists_controller.rb'
 
 # Offense count: 10
 RSpec/LetSetup:
   Exclude:
     - 'spec/jobs/send_status_email_spec.rb'
-    - 'spec/models/generalplaylist_spec.rb'
+    - 'spec/models/playlists_spec.rb'
     - 'spec/models/song_spec.rb'
 
 # Offense count: 5
@@ -256,7 +256,7 @@ RSpec/MultipleExpectations:
 Rails/ApplicationRecord:
   Exclude:
     - 'app/models/artist.rb'
-    - 'app/models/generalplaylist.rb'
+    - 'app/models/playlist.rb'
     - 'app/models/radio_station.rb'
     - 'app/models/song.rb'
 
@@ -319,7 +319,7 @@ Style/BlockDelimiters:
   Exclude:
     - 'spec/jobs/send_status_email_spec.rb'
     - 'spec/models/artist_spec.rb'
-    - 'spec/models/generalplaylist_spec.rb'
+    - 'spec/models/playlists_spec.rb'
     - 'spec/models/song_spec.rb'
 
 # Offense count: 2
@@ -368,7 +368,7 @@ Style/HashSyntax:
     - 'app/models/concerns/importable.rb'
     - 'spec/jobs/send_status_email_spec.rb'
     - 'spec/mailers/status_mailer_spec.rb'
-    - 'spec/models/generalplaylist_spec.rb'
+    - 'spec/models/playlists_spec.rb'
     - 'spec/models/radio_station_spec.rb'
 
 # Offense count: 5
@@ -384,7 +384,7 @@ Style/LambdaCall:
 # SupportedStyles: predicate, comparison
 Style/NilComparison:
   Exclude:
-    - 'app/helpers/generalplaylist_helper.rb'
+    - 'app/helpers/playlists_helper.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
@@ -412,7 +412,7 @@ Style/RedundantParentheses:
 # Configuration parameters: AllowMultipleReturnValues.
 Style/RedundantReturn:
   Exclude:
-    - 'app/helpers/generalplaylist_helper.rb'
+    - 'app/helpers/playlists_helper.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -435,7 +435,7 @@ Style/RescueModifier:
 Style/StringLiterals:
   Exclude:
     - 'Guardfile'
-    - 'app/helpers/generalplaylist_helper.rb'
+    - 'app/helpers/playlists_helper.rb'
     - 'app/services/spotify.rb'
     - 'config/application.rb'
     - 'config/boot.rb'
@@ -443,7 +443,7 @@ Style/StringLiterals:
     - 'config/environments/production.rb'
     - 'config/initializers/assets.rb'
     - 'config/puma.rb'
-    - 'spec/controllers/general_playlists_controller_spec.rb'
+    - 'spec/controllers/playlists_controller.rb'
     - 'spec/factories/radio_station.rb'
 
 # Offense count: 5
@@ -460,19 +460,19 @@ Style/SymbolArray:
 # AllowedMethods: define_method, mail, respond_to
 Style/SymbolProc:
   Exclude:
-    - 'app/helpers/generalplaylist_helper.rb'
+    - 'app/helpers/playlists_helper.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/WhileUntilDo:
   Exclude:
-    - 'app/helpers/generalplaylist_helper.rb'
+    - 'app/helpers/playlists_helper.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/WhileUntilModifier:
   Exclude:
-    - 'app/helpers/generalplaylist_helper.rb'
+    - 'app/helpers/playlists_helper.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).

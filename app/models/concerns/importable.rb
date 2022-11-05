@@ -8,9 +8,9 @@ module Importable
   extend ActiveSupport::Concern
   include TrackDataProcessor
 
-  # Methode for creating the Generalplaylist record
-  def create_generalplaylist(broadcast_timestamp, artists, song, radio_station)
-    last_played_song = Generalplaylist.where(radio_station: radio_station, song:, broadcast_timestamp:).order(created_at: :desc).first
+  # Methode for creating the Playlist record
+  def create_playlist(broadcast_timestamp, artists, song, radio_station)
+    last_played_song = Playlist.where(radio_station: radio_station, song:, broadcast_timestamp:).order(created_at: :desc).first
 
     if last_played_song.blank?
 
@@ -27,8 +27,8 @@ module Importable
   # Methode for adding the song to the database
   def add_song(broadcast_timestamp, artists, song, radio_station)
     fullname = "#{Array.wrap(artists).map(&:name).join(' ')} #{song.title}"
-    # Create a new Generalplaylist record
-    Generalplaylist.create!(
+    # Create a new Playlist record
+    Playlist.create!(
       broadcast_timestamp:,
       song:,
       radio_station: radio_station

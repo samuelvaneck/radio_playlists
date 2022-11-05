@@ -8,10 +8,10 @@ RSpec.describe SendStatusEmail do
   let!(:radio_station_two) { FactoryBot.create :radio_station }
   let!(:radio_station_three) { FactoryBot.create :radio_station }
   let!(:radio_station_four) { FactoryBot.create :radio_station }
-  let!(:playlist) { FactoryBot.create :generalplaylist, :filled, radio_station: radio_station }
-  let!(:playlist_two) { FactoryBot.create :generalplaylist, :filled, radio_station: radio_station_two }
-  let!(:playlist_three) { FactoryBot.create :generalplaylist, :filled, radio_station: radio_station_three }
-  let!(:playlist_four) { FactoryBot.create :generalplaylist, :filled, radio_station: radio_station_four, created_at: 6.hours.ago }
+  let!(:playlist) { FactoryBot.create :playlist, :filled, radio_station: radio_station }
+  let!(:playlist_two) { FactoryBot.create :playlist, :filled, radio_station: radio_station_two }
+  let!(:playlist_three) { FactoryBot.create :playlist, :filled, radio_station: radio_station_three }
+  let!(:playlist_four) { FactoryBot.create :playlist, :filled, radio_station: radio_station_four, created_at: 6.hours.ago }
 
   describe '#perform' do
     it 'creates a job' do

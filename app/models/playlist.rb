@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Generalplaylist < ActiveRecord::Base
+class Playlist < ActiveRecord::Base
   belongs_to :song
   belongs_to :radio_station
   has_many :artists, through: :song
@@ -11,11 +11,11 @@ class Generalplaylist < ActiveRecord::Base
     start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
     end_time =  params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
 
-    playlists = Generalplaylist.joins(:song, :artists).order(created_at: :DESC)
+    playlists = Playlist.joins(:song, :artists).order(created_at: :DESC)
     playlists.where!(search_query, search_value(params), search_value(params)) if params[:search_term].present?
     playlists.where!('radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
-    playlists.where!('generalplaylists.created_at > ?', start_time)
-    playlists.where!('generalplaylists.created_at < ?', end_time)
+    playlists.where!('playlists.created_at > ?', start_time)
+    playlists.where!('playlists.created_at < ?', end_time)
     playlists.uniq
   end
 
@@ -28,7 +28,7 @@ class Generalplaylist < ActiveRecord::Base
   end
 
   def duplicate?
-    Generalplaylist.where(radio_station:, broadcast_timestamp:).count > 1
+    Playlist.where(radio_station:, broadcast_timestamp:).count > 1
   end
 
   def self.search_query
@@ -42,8 +42,9 @@ class Generalplaylist < ActiveRecord::Base
   private
 
   def today_unique_playlist_item
-    exisiting_record = Generalplaylist.joins(:song, :radio_station)
-                                      .where('broadcast_timestamp = ? AND radio_stations.id = ?', broadcast_timestamp, radio_station_id).present?
+    exisiting_record = Playlist.joins(:song, :radio_station)
+                               .where('broadcast_timestamp = ? AND radio_stations.id = ?', broadcast_timestamp, radio_station_id)
+                               .present?
     errors.add(:base, 'none unique playlist') if exisiting_record
   end
 end

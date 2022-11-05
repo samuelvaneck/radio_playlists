@@ -5,7 +5,7 @@ class Artist < ActiveRecord::Base
 
   has_many :artists_songs
   has_many :songs, through: :artists_songs
-  has_many :generalplaylists, through: :songs
+  has_many :playlists, through: :songs
 
   validates :name, presence: true
 
@@ -13,12 +13,12 @@ class Artist < ActiveRecord::Base
     start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
     end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
 
-    # artists = Generalplaylist.joins(:artists).all
-    artists = Artist.joins(:generalplaylists).all
+    # artists = Playlist.joins(:artists).all
+    artists = Artist.joins(:playlists).all
     artists.where!('artists.name ILIKE ?', "%#{params[:search_term]}%") if params[:search_term].present?
-    artists.where!('generalplaylists.radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
-    artists.where!('generalplaylists.created_at > ?', start_time)
-    artists.where!('generalplaylists.created_at < ?', end_time)
+    artists.where!('playlists.radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
+    artists.where!('playlists.created_at > ?', start_time)
+    artists.where!('playlists.created_at < ?', end_time)
     artists
   end
 

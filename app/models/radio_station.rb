@@ -1,6 +1,6 @@
 class RadioStation < ActiveRecord::Base
-  has_many :generalplaylists
-  has_many :songs, through: :generalplaylists
+  has_many :playlists
+  has_many :songs, through: :playlists
   has_many :artists, through: :songs
 
   validates :url, :processor, presence: true
@@ -27,11 +27,11 @@ class RadioStation < ActiveRecord::Base
   end
 
   def last_created
-    Generalplaylist.where(radio_station: self).order(created_at: :desc).first
+    Playlist.where(radio_station: self).order(created_at: :desc).first
   end
 
   def todays_added_items
-    Generalplaylist.where(radio_station: self, created_at: 1.day.ago..Time.zone.now)
+    Playlist.where(radio_station: self, created_at: 1.day.ago..Time.zone.now)
   end
 
   def import_song
@@ -43,13 +43,13 @@ class RadioStation < ActiveRecord::Base
     artists, song = process_track_data(track[:artist_name], track[:title])
     return false if artists.nil? || song.nil?
 
-    create_generalplaylist(track[:broadcast_timestamp], artists, song, radio_station)
+    create_playlist(track[:broadcast_timestamp], artists, song, radio_station)
   rescue StandardError => e
     Sentry.capture_exception(e)
     nil
   end
 
   def zero_playlist_items
-    Generalplaylist.where(radio_station: self).count.zero?
+    Playlist.where(radio_station: self).count.zero?
   end
 end
