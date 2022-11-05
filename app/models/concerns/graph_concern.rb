@@ -32,7 +32,7 @@ module GraphConcern
     def get_playlists(time_value)
       begin_date = graph_begin_date(time_value) unless time_value == 'all'
       end_date = 1.day.ago.end_of_day
-      result = generalplaylists
+      result = playlists
       result = result.where(playlists_time_slot_query, begin_date, end_date) unless time_value == 'all'
       result.sort_by(&:broadcast_timestamp)
     end
@@ -46,7 +46,7 @@ module GraphConcern
     end
 
     def playlists_time_slot_query
-      'generalplaylists.created_at > ? AND generalplaylists.created_at < ?'
+      'playlists.created_at > ? AND playlists.created_at < ?'
     end
 
     def format_graph_data(playlists, strftime_value)

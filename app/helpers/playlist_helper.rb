@@ -1,4 +1,4 @@
-module GeneralplaylistHelper
+module PlaylistHelper
 
   def random_album_image(top_artist)
     image = nil
@@ -51,18 +51,18 @@ module GeneralplaylistHelper
   end
 
   def fetch_counts_per_radio_station(top_song, time, radio_station_id)
-    return Generalplaylist.where("song_id = ? AND radio_station_id = ?", top_song, radio_station_id).count if time.blank?
+    return Playlist.where("song_id = ? AND radio_station_id = ?", top_song, radio_station_id).count if time.blank?
     case time
       when "day"
-        return Generalplaylist.where("song_id = ? AND radio_station_id = ? AND created_at > ?", top_song, radio_station_id, 1.day.ago).count
+        return Playlist.where("song_id = ? AND radio_station_id = ? AND created_at > ?", top_song, radio_station_id, 1.day.ago).count
       when "week"
-        return Generalplaylist.where("song_id = ? AND radio_station_id = ? AND created_at > ?", top_song, radio_station_id, 1.week.ago).count
+        return Playlist.where("song_id = ? AND radio_station_id = ? AND created_at > ?", top_song, radio_station_id, 1.week.ago).count
       when "month"
-        return Generalplaylist.where("song_id = ? AND radio_station_id = ? AND created_at > ?", top_song, radio_station_id, 1.month.ago).count
+        return Playlist.where("song_id = ? AND radio_station_id = ? AND created_at > ?", top_song, radio_station_id, 1.month.ago).count
       when "year"
-        return Generalplaylist.where("song_id = ? AND radio_station_id = ? AND created_at > ?", top_song, radio_station_id, 1.year.ago).count
+        return Playlist.where("song_id = ? AND radio_station_id = ? AND created_at > ?", top_song, radio_station_id, 1.year.ago).count
       when "total"
-        return Generalplaylist.where("song_id = ? AND radio_station_id = ?", top_song, radio_station_id).count
+        return Playlist.where("song_id = ? AND radio_station_id = ?", top_song, radio_station_id).count
     end
   end
 
@@ -107,18 +107,18 @@ module GeneralplaylistHelper
   end
 
   def fetch_counts_artist_per_radio_station(top_artist, time, radio_station_id)
-    return Generalplaylist.where("artist_id = ? AND radio_station_id = ?", top_artist, radio_station_id).count if time.blank?
+    return Playlist.where("artist_id = ? AND radio_station_id = ?", top_artist, radio_station_id).count if time.blank?
     case time
       when "day"
-        return Generalplaylist.where("artist_id = ? AND radio_station_id = ? AND created_at > ?", top_artist, radio_station_id, 1.day.ago).count
+        return Playlist.where("artist_id = ? AND radio_station_id = ? AND created_at > ?", top_artist, radio_station_id, 1.day.ago).count
       when "week"
-        return Generalplaylist.where("artist_id = ? AND radio_station_id = ? AND created_at > ?", top_artist, radio_station_id, 1.week.ago).count
+        return Playlist.where("artist_id = ? AND radio_station_id = ? AND created_at > ?", top_artist, radio_station_id, 1.week.ago).count
       when "month"
-        return Generalplaylist.where("artist_id = ? AND radio_station_id = ? AND created_at > ?", top_artist, radio_station_id, 1.month.ago).count
+        return Playlist.where("artist_id = ? AND radio_station_id = ? AND created_at > ?", top_artist, radio_station_id, 1.month.ago).count
       when "year"
-        return Generalplaylist.where("artist_id = ? AND radio_station_id = ? AND created_at > ?", top_artist, radio_station_id, 1.year.ago).count
+        return Playlist.where("artist_id = ? AND radio_station_id = ? AND created_at > ?", top_artist, radio_station_id, 1.year.ago).count
       when "total"
-        return Generalplaylist.where("artist_id = ? AND radio_station_id = ?", top_artist, radio_station_id).count
+        return Playlist.where("artist_id = ? AND radio_station_id = ?", top_artist, radio_station_id).count
     end
   end
 end

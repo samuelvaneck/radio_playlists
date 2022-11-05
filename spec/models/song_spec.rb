@@ -8,9 +8,9 @@ RSpec.describe Song do
   let(:artist_2) { FactoryBot.create :artist }
   let(:song_2) { FactoryBot.create :song, artists: [artist_2] }
   let(:radio_station) { FactoryBot.create :radio_station }
-  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1 }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radio_station: }
-  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radio_station: }
+  let(:playlist_1) { FactoryBot.create :playlist, :filled, song: song_1 }
+  let(:playlist_2) { FactoryBot.create :playlist, :filled, song: song_2, radio_station: }
+  let(:playlist_3) { FactoryBot.create :playlist, :filled, song: song_2, radio_station: }
 
   let(:song_drown) { FactoryBot.create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
   let(:artist_martin_garrix) { FactoryBot.create :artist, name: 'Martin Garrix' }
@@ -46,7 +46,7 @@ RSpec.describe Song do
   end
 
   describe '#group_and_count' do
-    let(:result) { Song.group_and_count(Generalplaylist.all) }
+    let(:result) { Song.group_and_count(Playlist.all) }
     let(:second_song) do
       [song_2.id, 2]
     end

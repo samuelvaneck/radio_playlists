@@ -2,54 +2,56 @@
 
 require 'rails_helper'
 
-RSpec.describe Generalplaylist do
-  let(:artist_1) { FactoryBot.create :artist }
-  let(:song_1) { FactoryBot.create :song, artists: [artist_1] }
-  let(:artist_2) { FactoryBot.create :artist }
-  let(:song_2) { FactoryBot.create :song, artists: [artist_2] }
-  let(:artist_3) { FactoryBot.create :artist, name: 'Robin Schulz' }
-  let(:song_3) { FactoryBot.create :song, artists: [artist_3] }
-  let(:artist_4) { FactoryBot.create :artist, name: 'Erika Sirola' }
-  let(:song_4) { FactoryBot.create :song, artists: [artist_4] }
+RSpec.describe Playlist do
+  let(:artist_one) { FactoryBot.create :artist }
+  let(:song_one) { FactoryBot.create :song, artists: [artist_one] }
+  let(:artist_two) { FactoryBot.create :artist }
+  let(:song_two) { FactoryBot.create :song, artists: [artist_two] }
+  let(:artist_three) { FactoryBot.create :artist, name: 'Robin Schulz' }
+  let(:song_three) { FactoryBot.create :song, artists: [artist_three] }
+  let(:artist_four) { FactoryBot.create :artist, name: 'Erika Sirola' }
+  let(:song_four) { FactoryBot.create :song, artists: [artist_four] }
   let(:radio_station) { FactoryBot.create :radio_station }
-  let(:playlist_1) { FactoryBot.create :generalplaylist, :filled, song: song_1, radio_station: radio_station }
-  let(:playlist_2) { FactoryBot.create :generalplaylist, :filled, song: song_2, radio_station: radio_station }
-  let(:playlist_3) { FactoryBot.create :generalplaylist, :filled, song: song_2, radio_station: radio_station }
+  let(:playlist_one) { FactoryBot.create :playlist, :filled, song: song_one, radio_station: }
+  let(:playlist_two) { FactoryBot.create :playlist, :filled, song: song_two, radio_station: }
+  let(:playlist_three) { FactoryBot.create :playlist, :filled, song: song_two, radio_station: }
 
   describe '#search' do
     before do
-      playlist_1
-      playlist_2
-      playlist_3
+      playlist_one
+      playlist_two
+      playlist_three
     end
+
     context 'with search term params' do
       it 'returns the playlists artist name or song title that matches the search terms' do
-        expected = [playlist_1]
+        expected = [playlist_one]
 
-        expect(Generalplaylist.search({ search_term: song_1.title })).to eq expected
+        expect(described_class.search({ search_term: song_one.title })).to eq expected
       end
     end
 
     context 'with radio_stations params' do
       it 'returns the playlist played on the radio station' do
-        expect(Generalplaylist.search({ radio_station_id: radio_station.id })).to include playlist_2, playlist_3
+        expect(described_class.search({ radio_station_id: radio_station.id })).to include playlist_two, playlist_three
       end
     end
 
     context 'with no params' do
       it 'returns all the playlists' do
-        expect(Generalplaylist.search({})).to include playlist_1, playlist_2, playlist_3
+        expect(described_class.search({})).to include playlist_one, playlist_two, playlist_three
       end
     end
   end
 
   describe '#today_unique_playlist_item' do
-    before { playlist_1 }
+    before { playlist_one }
+
     context 'with an already playlist existing item' do
       it 'fails validation' do
-        new_playlist_item = Generalplaylist.new(broadcast_timestamp: playlist_1.broadcast_timestamp,
-                                                song: playlist_1.song,
-                                                radio_station: playlist_1.radio_station)
+        new_playlist_item = described_class.new(broadcast_timestamp: playlist_one.broadcast_timestamp,
+                                                song: playlist_one.song,
+                                                radio_station: playlist_one.radio_station)
 
         expect(new_playlist_item.valid?).to eq false
       end
@@ -57,7 +59,7 @@ RSpec.describe Generalplaylist do
 
     context 'with a unique playlist item' do
       it 'does not fail validation' do
-        new_playlist_item = FactoryBot.build :generalplaylist, :filled
+        new_playlist_item = FactoryBot.build :playlist, :filled
 
         expect(new_playlist_item.valid?).to eq true
       end
@@ -65,72 +67,78 @@ RSpec.describe Generalplaylist do
   end
 
   describe '#deduplicate' do
-    let!(:playlist_one) { FactoryBot.create :generalplaylist, :filled }
+    let!(:playlist_one) { FactoryBot.create :playlist, :filled }
+
     context 'if there are no duplicate entries' do
       it 'does not delete the playlist item' do
-        expect {
+        expect do
           playlist_one.deduplicate
-        }.to change(Generalplaylist, :count).by(0)
+        end.to change(described_class, :count).by(0)
       end
     end
 
     context 'if duplicate entries exists' do
-      let!(:playlist_two) {
-        playlist = FactoryBot.build :generalplaylist,
+      before do
+        playlist = FactoryBot.build :playlist,
                                     :filled,
                                     radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
-      }
+      end
+
       it 'deletes the playlist item' do
-        expect {
+        expect do
           playlist_one.deduplicate
-        }.to change(Generalplaylist, :count).by(-1)
+        end.to change(described_class, :count).by(-1)
       end
     end
 
     context 'if there are duplicates and the song has no more playlist items' do
-      let!(:playlist_two) {
-        playlist = FactoryBot.build :generalplaylist,
+      before do
+        playlist = FactoryBot.build :playlist,
                                     :filled,
                                     radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
-      }
+      end
+
       it 'deletes the song' do
-        expect {
+        expect do
           playlist_one.deduplicate
-        }.to change(Song, :count).by(-1)
+        end.to change(Song, :count).by(-1)
       end
     end
 
     context 'if there are duplicates and the playlist song has more playlist items' do
-      let!(:playlist_two) {
-        playlist = FactoryBot.build :generalplaylist,
+      before do
+        playlist = FactoryBot.build :playlist,
                                     :filled,
                                     radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
-      }
-      let!(:playlist_three) { FactoryBot.create :generalplaylist, :filled, song: playlist_one.song }
+        FactoryBot.create :playlist, :filled, song: playlist_one.song
+      end
+
       it 'does not delete the song' do
-        expect {
+        expect do
           playlist_one.deduplicate
-        }.to change(Song, :count).by(0)
+        end.to change(Song, :count).by(0)
       end
     end
   end
 
   describe '#duplicate?' do
-    let!(:playlist_one) { FactoryBot.create :generalplaylist, :filled }
+    let!(:playlist_one) { FactoryBot.create :playlist, :filled }
+
     context 'with duplicates present' do
-      let!(:playlist_two) {
-        playlist = FactoryBot.build :generalplaylist,
+      before do
+        playlist = FactoryBot.build :playlist,
                                     :filled,
                                     radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
-      }
+      end
+
       it 'returns true' do
         expect(playlist_one.duplicate?).to eq true
       end

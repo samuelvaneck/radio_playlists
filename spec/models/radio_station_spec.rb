@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   let(:radio_station) { FactoryBot.create :radio_station }
-  let(:playlist_4_hours_ago) { FactoryBot.create :generalplaylist, :filled, radio_station: radio_station, created_at: 4.hours.ago }
-  let(:playlist_1_minute_ago) { FactoryBot.create :generalplaylist, :filled, radio_station: radio_station, created_at: 1.minute.ago }
+  let(:playlist_4_hours_ago) { FactoryBot.create :playlist, :filled, radio_station: radio_station, created_at: 4.hours.ago }
+  let(:playlist_1_minute_ago) { FactoryBot.create :playlist, :filled, radio_station: radio_station, created_at: 1.minute.ago }
 
   def processor_return_object(artist_name, title, time)
     {
@@ -146,7 +146,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'creates a new playlist item' do
         expect do
           radio_1.import_song
-        end.to change(Generalplaylist, :count).by(1)
+        end.to change(Playlist, :count).by(1)
       end
 
       it 'does not double import' do
@@ -154,7 +154,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
 
         expect do
           radio_1.import_song
-        end.to change(Generalplaylist, :count).by(0)
+        end.to change(Playlist, :count).by(0)
       end
     end
   end
@@ -166,7 +166,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'creates a new playlist item' do
         expect do
           radio_2.import_song
-        end.to change(Generalplaylist, :count).by(1)
+        end.to change(Playlist, :count).by(1)
       end
     end
   end
@@ -178,7 +178,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'creates a new playlist item' do
         expect do
           radio_3_fm.import_song
-        end.to change(Generalplaylist, :count).by(1)
+        end.to change(Playlist, :count).by(1)
       end
     end
   end
@@ -190,7 +190,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'creates a new playlist item' do
         expect do
           radio_5.import_song
-        end.to change(Generalplaylist, :count).by(1)
+        end.to change(Playlist, :count).by(1)
       end
     end
   end
@@ -206,7 +206,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'creates a new playlist item' do
         expect do
           sky_radio.import_song
-        end.to change(Generalplaylist, :count).by(1)
+        end.to change(Playlist, :count).by(1)
       end
 
       it 'does not double import' do
@@ -214,7 +214,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
 
         expect do
           sky_radio.import_song
-        end.to change(Generalplaylist, :count).by(0)
+        end.to change(Playlist, :count).by(0)
       end
     end
   end
@@ -230,7 +230,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'creates a new playlist item' do
         expect do
           radio_veronica.import_song
-        end.to change(Generalplaylist, :count).by(1)
+        end.to change(Playlist, :count).by(1)
       end
     end
   end
@@ -246,7 +246,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'creates a new playlist item' do
         expect do
           radio_538.import_song
-        end.to change(Generalplaylist, :count).by(1)
+        end.to change(Playlist, :count).by(1)
       end
     end
   end
@@ -262,7 +262,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'creates a new playlist item' do
         expect do
           radio_10.import_song
-        end.to change(Generalplaylist, :count).by(1)
+        end.to change(Playlist, :count).by(1)
       end
     end
   end
@@ -274,7 +274,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'creates a new playlist item' do
         expect do
           qmusic.import_song
-        end.to change(Generalplaylist, :count).by(1)
+        end.to change(Playlist, :count).by(1)
       end
 
       it 'does not double import' do
@@ -282,7 +282,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
 
         expect do
           qmusic.import_song
-        end.to change(Generalplaylist, :count).by(0)
+        end.to change(Playlist, :count).by(0)
       end
     end
   end
@@ -294,7 +294,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'creates a new playlist item' do
         expect do
           sublime_fm.import_song
-        end.to change(Generalplaylist, :count).by(1)
+        end.to change(Playlist, :count).by(1)
       end
     end
   end
@@ -306,7 +306,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'creates a new playlist item' do
         expect do
           groot_nieuws_radio.import_song
-        end.to change(Generalplaylist, :count).by(1)
+        end.to change(Playlist, :count).by(1)
       end
     end
   end
@@ -400,7 +400,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
         song = nil
         expect do
           song = described_class.new.song_check([song_in_your_eyes_weekend], [artist_the_weeknd], 'In your eyes')
-        end.to change(Generalplaylist, :count).by(0)
+        end.to change(Playlist, :count).by(0)
 
         expect(song.title).to eq 'In Your Eyes'
       end

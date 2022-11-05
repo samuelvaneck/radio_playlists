@@ -2,21 +2,22 @@
 
 require 'rails_helper'
 
-describe GeneralplaylistsController do
+describe PlaylistsController do
   let(:radio_station_one) { FactoryBot.create :radio_station }
   let(:radio_station_two) { FactoryBot.create :radio_station }
   let(:artist_one) { FactoryBot.create :artist }
   let(:song_one) { FactoryBot.create :song, artists: [artist_one] }
   let(:artist_two) { FactoryBot.create :artist }
   let(:song_two) { FactoryBot.create :song, artists: [artist_two] }
-  let(:playlist) { FactoryBot.create :generalplaylist, radio_station: radio_station_one, song: song_one }
-  let(:playlists) { FactoryBot.create_list :generalplaylist, 5, radio_station: radio_station_two, song: song_two }
+  let(:playlist) { FactoryBot.create :playlist, radio_station: radio_station_one, song: song_one }
+  let(:playlists) { FactoryBot.create_list :playlist, 5, radio_station: radio_station_two, song: song_two }
 
-  describe "GET #index" do
+  describe 'GET #index' do
     before do
       playlist
       playlists
     end
+
     context 'with no search params' do
       it 'renders the index page' do
         get :index
@@ -40,7 +41,7 @@ describe GeneralplaylistsController do
       end
     end
 
-    context 'filtered by radio_station' do
+    context 'when filtered by radio_station' do
       it 'only fetches the playlists that are played on the radio_station' do
         get :index, params: { format: :json, radio_station_id: radio_station_one.id }
 

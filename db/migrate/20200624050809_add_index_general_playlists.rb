@@ -10,7 +10,7 @@ class AddIndexGeneralPlaylists < ActiveRecord::Migration[6.0]
     remove_index :generalplaylists, [:song_id, :radio_station_id, :broadcast_timestamp]
     add_column :generalplaylists, :time, :string
 
-    Generalplaylist.find_in_batches do |group|
+    Playlist.find_in_batches do |group|
       group.each do |playlist|
         next if playlist.time.present?
 

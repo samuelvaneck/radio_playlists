@@ -1,4 +1,4 @@
-class CreateGeneralplaylists < ActiveRecord::Migration[5.1]
+class CreatePlaylists < ActiveRecord::Migration[5.1]
   def change
     create_table :generalplaylists do |t|
       t.string :time

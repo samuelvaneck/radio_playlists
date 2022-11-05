@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # serializer for generaplaylist
-class GeneralplaylistSerializer
+class PlaylistSerializer
   include FastJsonapi::ObjectSerializer
 
   attributes :id,

@@ -4,7 +4,7 @@ require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
-  resources :generalplaylists, only: %i[index show]
+  resources :playlists, only: %i[index show]
   resources :artists, only: %i[index show] do
     get :graph_data, on: :member
   end
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
   resources :charts, only: %i[show]
 
-  root 'generalplaylists#index'
+  root 'playlists#index'
 
   mount Sidekiq::Web => '/sidekiq'
   mount HealthBit.rack => '/health'
