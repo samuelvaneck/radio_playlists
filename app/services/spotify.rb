@@ -7,8 +7,7 @@ class Spotify
 
   def initialize(args = {})
     @args = args
-    @token = "BQChgre7A9UEmXdG9NHpjau2x83dB8DXi91TCjWJblcA7qJzHNrfyLwOGdKEE7x4ZcxmP8XTadJCAS4MVJ0TF9On2mw0unNW-IbT6deuAyR85GeGhqE"
-    # @token = get_token(cache: true)
+    @token = get_token(cache: true)
   end
 
   def track
