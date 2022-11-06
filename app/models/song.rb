@@ -7,6 +7,7 @@ class Song < ActiveRecord::Base
   has_many :artists, through: :artists_songs
   has_many :playlists
   has_many :radio_stations, through: :playlists
+  after_commit :update_fullname, on: %i[create update]
 
   MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'
   TRACK_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
@@ -69,6 +70,10 @@ class Song < ActiveRecord::Base
     "%#{params[:search_term]}%"
   end
 
+  def update_artists(adding_artists)
+    adding_artists.each { |artist| artists << artist }
+  end
+
   private
 
   def find_same_songs(song)
@@ -85,5 +90,9 @@ class Song < ActiveRecord::Base
       gps.each { |gp| gp.update_attribute('song_id', correct_song.id) }
       absolute_song.cleanup
     end
+  end
+
+  def update_fullname
+    update_column(:fullname, "#{Array.wrap(artists).map(&:name).join(' ')} #{title}")
   end
 end

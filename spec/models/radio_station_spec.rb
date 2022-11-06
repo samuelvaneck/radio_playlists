@@ -151,7 +151,6 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
 
       it 'does not double import' do
         radio_1.import_song
-
         expect do
           radio_1.import_song
         end.to change(Playlist, :count).by(0)
