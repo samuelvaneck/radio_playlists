@@ -71,7 +71,7 @@ class Song < ActiveRecord::Base
   end
 
   def update_artists(adding_artists)
-    adding_artists.each { |artist| artists << artist }
+    Array.wrap(adding_artists).each { |artist| artists << artist }
   end
 
   private
