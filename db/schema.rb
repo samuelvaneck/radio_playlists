@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_05_140712) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_10_141120) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_140712) do
   create_table "artists_songs", id: false, force: :cascade do |t|
     t.bigint "song_id", null: false
     t.bigint "artist_id", null: false
+    t.index ["artist_id", "song_id"], name: "index_artists_songs_on_artist_id_and_song_id", unique: true
     t.index ["artist_id"], name: "index_artists_songs_on_artist_id"
     t.index ["song_id"], name: "index_artists_songs_on_song_id"
   end
