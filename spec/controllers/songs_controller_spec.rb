@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 describe SongsController do
-  let(:artist) { FactoryBot.create :artist }
-  let(:song) { FactoryBot.create :song, artists: [artist] }
-  let(:playlist_1) { FactoryBot.create :playlist, :filled, song: }
-  let(:playlist_2) { FactoryBot.create :playlist, :filled, song: }
-  let(:playlists) { FactoryBot.create_list :playlist, 5, :filled }
+  let(:artist) { create :artist }
+  let(:song) { create :song, artists: [artist] }
+  let(:playlist_1) { create :playlist, :filled, song: }
+  let(:playlist_2) { create :playlist, :filled, song: }
+  let(:playlists) { create_list :playlist, 5, :filled }
 
   describe 'GET #index' do
     context 'with no search params' do

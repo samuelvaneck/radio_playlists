@@ -1,17 +1,15 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe SendStatusEmail do
+describe SendStatusEmail do
   include ActiveJob::TestHelper
-  let!(:radio_station) { FactoryBot.create :radio_station }
-  let!(:radio_station_two) { FactoryBot.create :radio_station }
-  let!(:radio_station_three) { FactoryBot.create :radio_station }
-  let!(:radio_station_four) { FactoryBot.create :radio_station }
-  let!(:playlist) { FactoryBot.create :playlist, :filled, radio_station: radio_station }
-  let!(:playlist_two) { FactoryBot.create :playlist, :filled, radio_station: radio_station_two }
-  let!(:playlist_three) { FactoryBot.create :playlist, :filled, radio_station: radio_station_three }
-  let!(:playlist_four) { FactoryBot.create :playlist, :filled, radio_station: radio_station_four, created_at: 6.hours.ago }
+  let!(:radio_station) { create :radio_station }
+  let!(:radio_station_two) { create :radio_station }
+  let!(:radio_station_three) { create :radio_station }
+  let!(:radio_station_four) { create :radio_station }
+  let!(:playlist) { create :playlist, :filled, radio_station: radio_station }
+  let!(:playlist_two) { create :playlist, :filled, radio_station: radio_station_two }
+  let!(:playlist_three) { create :playlist, :filled, radio_station: radio_station_three }
+  let!(:playlist_four) { create :playlist, :filled, radio_station: radio_station_four, created_at: 6.hours.ago }
 
   describe '#perform' do
     it 'creates a job' do

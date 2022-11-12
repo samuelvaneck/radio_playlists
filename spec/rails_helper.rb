@@ -8,6 +8,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'timecop'
+require 'support/factory_bot'
 require 'support/fake_spotify'
 require 'support/shoulda_matchers'
 require 'support/vcr'
@@ -50,7 +51,7 @@ RSpec.configure do |config|
   # You can disable this behaviour by removing the line below, and instead
   # explicitly tag your specs with their type, e.g.:
   #
-  #     RSpec.describe UsersController, :type => :controller do
+  #     describe UsersController, :type => :controller do
   #       # ...
   #     end
   #

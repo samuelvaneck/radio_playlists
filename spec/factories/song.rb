@@ -11,7 +11,7 @@ FactoryBot.define do
 
     trait :filled do
       after(:build) do |song|
-        song.artists << FactoryBot.create(:artist) if song.artists.blank?
+        song.artists << create(:artist) if song.artists.blank?
         song.fullname = "#{song.artists.map(&:name).join(' ')} #{song.fullname}"
       end
     end
