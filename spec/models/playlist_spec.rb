@@ -1,20 +1,18 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe Playlist do
-  let(:artist_one) { FactoryBot.create :artist }
-  let(:song_one) { FactoryBot.create :song, artists: [artist_one] }
-  let(:artist_two) { FactoryBot.create :artist }
-  let(:song_two) { FactoryBot.create :song, artists: [artist_two] }
-  let(:artist_three) { FactoryBot.create :artist, name: 'Robin Schulz' }
-  let(:song_three) { FactoryBot.create :song, artists: [artist_three] }
-  let(:artist_four) { FactoryBot.create :artist, name: 'Erika Sirola' }
-  let(:song_four) { FactoryBot.create :song, artists: [artist_four] }
-  let(:radio_station) { FactoryBot.create :radio_station }
-  let(:playlist_one) { FactoryBot.create :playlist, :filled, song: song_one, radio_station: }
-  let(:playlist_two) { FactoryBot.create :playlist, :filled, song: song_two, radio_station: }
-  let(:playlist_three) { FactoryBot.create :playlist, :filled, song: song_two, radio_station: }
+describe Playlist do
+  let(:artist_one) { create :artist }
+  let(:song_one) { create :song, artists: [artist_one] }
+  let(:artist_two) { create :artist }
+  let(:song_two) { create :song, artists: [artist_two] }
+  let(:artist_three) { create :artist, name: 'Robin Schulz' }
+  let(:song_three) { create :song, artists: [artist_three] }
+  let(:artist_four) { create :artist, name: 'Erika Sirola' }
+  let(:song_four) { create :song, artists: [artist_four] }
+  let(:radio_station) { create :radio_station }
+  let(:playlist_one) { create :playlist, :filled, song: song_one, radio_station: }
+  let(:playlist_two) { create :playlist, :filled, song: song_two, radio_station: }
+  let(:playlist_three) { create :playlist, :filled, song: song_two, radio_station: }
 
   describe '#search' do
     before do
@@ -59,7 +57,7 @@ RSpec.describe Playlist do
 
     context 'with a unique playlist item' do
       it 'does not fail validation' do
-        new_playlist_item = FactoryBot.build :playlist, :filled
+        new_playlist_item = build :playlist, :filled
 
         expect(new_playlist_item.valid?).to eq true
       end
@@ -67,7 +65,7 @@ RSpec.describe Playlist do
   end
 
   describe '#deduplicate' do
-    let!(:playlist_one) { FactoryBot.create :playlist, :filled }
+    let!(:playlist_one) { create :playlist, :filled }
 
     context 'if there are no duplicate entries' do
       it 'does not delete the playlist item' do
@@ -79,7 +77,7 @@ RSpec.describe Playlist do
 
     context 'if duplicate entries exists' do
       before do
-        playlist = FactoryBot.build :playlist,
+        playlist = build :playlist,
                                     :filled,
                                     radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp
@@ -95,7 +93,7 @@ RSpec.describe Playlist do
 
     context 'if there are duplicates and the song has no more playlist items' do
       before do
-        playlist = FactoryBot.build :playlist,
+        playlist = build :playlist,
                                     :filled,
                                     radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp
@@ -111,12 +109,12 @@ RSpec.describe Playlist do
 
     context 'if there are duplicates and the playlist song has more playlist items' do
       before do
-        playlist = FactoryBot.build :playlist,
+        playlist = build :playlist,
                                     :filled,
                                     radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
-        FactoryBot.create :playlist, :filled, song: playlist_one.song
+        create :playlist, :filled, song: playlist_one.song
       end
 
       it 'does not delete the song' do
@@ -128,11 +126,11 @@ RSpec.describe Playlist do
   end
 
   describe '#duplicate?' do
-    let!(:playlist_one) { FactoryBot.create :playlist, :filled }
+    let!(:playlist_one) { create :playlist, :filled }
 
     context 'with duplicates present' do
       before do
-        playlist = FactoryBot.build :playlist,
+        playlist = build :playlist,
                                     :filled,
                                     radio_station: playlist_one.radio_station,
                                     broadcast_timestamp: playlist_one.broadcast_timestamp

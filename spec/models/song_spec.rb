@@ -1,25 +1,23 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+describe Song do
+  let(:artist_1) { create :artist }
+  let(:song_1) { create :song, artists: [artist_1] }
+  let(:artist_2) { create :artist }
+  let(:song_2) { create :song, artists: [artist_2] }
+  let(:radio_station) { create :radio_station }
+  let(:playlist_1) { create :playlist, :filled, song: song_1 }
+  let(:playlist_2) { create :playlist, :filled, song: song_2, radio_station: }
+  let(:playlist_3) { create :playlist, :filled, song: song_2, radio_station: }
 
-RSpec.describe Song do
-  let(:artist_1) { FactoryBot.create :artist }
-  let(:song_1) { FactoryBot.create :song, artists: [artist_1] }
-  let(:artist_2) { FactoryBot.create :artist }
-  let(:song_2) { FactoryBot.create :song, artists: [artist_2] }
-  let(:radio_station) { FactoryBot.create :radio_station }
-  let(:playlist_1) { FactoryBot.create :playlist, :filled, song: song_1 }
-  let(:playlist_2) { FactoryBot.create :playlist, :filled, song: song_2, radio_station: }
-  let(:playlist_3) { FactoryBot.create :playlist, :filled, song: song_2, radio_station: }
-
-  let(:song_drown) { FactoryBot.create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
-  let(:artist_martin_garrix) { FactoryBot.create :artist, name: 'Martin Garrix' }
-  let(:artist_clinton_kane) { FactoryBot.create :artist, name: 'Clinton Kane' }
-  let(:song_breaking_me) { FactoryBot.create :song, title: 'Breaking Me Ft A7s', artists: [artist_topic] }
-  let(:artist_topic) { FactoryBot.create :artist, name: 'Topic' }
-  let(:song_stuck_with_u) { FactoryBot.create :song, title: 'Stuck With U', artists: [artist_justin_bieber, artist_ariana_grande] }
-  let(:artist_justin_bieber) { FactoryBot.create :artist, name: 'Justin Bieber' }
-  let(:artist_ariana_grande) { FactoryBot.create :artist, name: 'Ariana Grande' }
+  let(:song_drown) { create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
+  let(:artist_martin_garrix) { create :artist, name: 'Martin Garrix' }
+  let(:artist_clinton_kane) { create :artist, name: 'Clinton Kane' }
+  let(:song_breaking_me) { create :song, title: 'Breaking Me Ft A7s', artists: [artist_topic] }
+  let(:artist_topic) { create :artist, name: 'Topic' }
+  let(:song_stuck_with_u) { create :song, title: 'Stuck With U', artists: [artist_justin_bieber, artist_ariana_grande] }
+  let(:artist_justin_bieber) { create :artist, name: 'Justin Bieber' }
+  let(:artist_ariana_grande) { create :artist, name: 'Ariana Grande' }
 
   before do
     playlist_1
@@ -61,7 +59,7 @@ RSpec.describe Song do
 
   describe '#cleanup' do
     context 'if the song has no playlists' do
-      let!(:song_no_playlist) { FactoryBot.create :song }
+      let!(:song_no_playlist) { create :song }
       it 'destorys the song' do
         expect {
           song_no_playlist.cleanup
@@ -78,8 +76,8 @@ RSpec.describe Song do
     end
 
     context 'if the song artist has no more songs' do
-      let(:artist_one_song) { FactoryBot.create :artist }
-      let!(:song_one) { FactoryBot.create :song, artists: [artist_one_song] }
+      let(:artist_one_song) { create :artist }
+      let!(:song_one) { create :song, artists: [artist_one_song] }
       it 'does not destroy the artist' do
         expect {
           song_one.cleanup
@@ -88,13 +86,37 @@ RSpec.describe Song do
     end
 
     context 'if the song artist has more song' do
-      let(:artist_multiple_song) { FactoryBot.create :artist }
-      let!(:song_one) { FactoryBot.create :song, artists: [artist_multiple_song] }
-      let!(:song_two) { FactoryBot.create :song, artists: [artist_multiple_song] }
+      let(:artist_multiple_song) { create :artist }
+      let!(:song_one) { create :song, artists: [artist_multiple_song] }
+      let!(:song_two) { create :song, artists: [artist_multiple_song] }
       it 'destroy' do
         expect {
           song_two.cleanup
         }.to change(Artist, :count).by(0)
+      end
+    end
+  end
+
+  describe '#update_artists' do
+    let(:ed_sheeran) { create(:artist, name: 'Ed Sheeran') }
+    let(:taylor_swift) { create(:artist, name: 'Taylor Swift') }
+    let(:song) { create(:song, title: 'The Joker and the Queen', artists: [ed_sheeran]) }
+
+    before { song }
+
+    context 'when adding a new artists' do
+      it 'creates a new record in the join table' do
+        expect do
+          song.update_artists([ed_sheeran, taylor_swift])
+        end.to change(ArtistsSong, :count).by(1)
+      end
+    end
+
+    context 'when adding a duplicate artists' do
+      it 'does not create a new record in the join table' do
+        expect do
+          song.update_artists([ed_sheeran])
+        end.to change(ArtistsSong, :count).by(0)
       end
     end
   end

@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe StatusMailer, type: :mailer do
-  let(:radio_station) { FactoryBot.create :radio_station }
-  let(:playlist) { FactoryBot.create :playlist, :filled, radio_station: radio_station }
+describe StatusMailer, type: :mailer do
+  let(:radio_station) { create :radio_station }
+  let(:playlist) { create :playlist, :filled, radio_station: radio_station }
   let(:status_mail) { StatusMailer.status_mail('test@test.com', results) }
   let(:results) { { "#{radio_station.name}": radio_station.status } }
 

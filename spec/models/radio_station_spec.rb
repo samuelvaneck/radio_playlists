@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
-  let(:radio_station) { FactoryBot.create :radio_station }
-  let(:playlist_4_hours_ago) { FactoryBot.create :playlist, :filled, radio_station: radio_station, created_at: 4.hours.ago }
-  let(:playlist_1_minute_ago) { FactoryBot.create :playlist, :filled, radio_station: radio_station, created_at: 1.minute.ago }
+describe RadioStation, use_vcr: true, with_valid_token: true do
+  let(:radio_station) { create :radio_station }
+  let(:playlist_4_hours_ago) { create :playlist, :filled, radio_station: radio_station, created_at: 4.hours.ago }
+  let(:playlist_1_minute_ago) { create :playlist, :filled, radio_station: radio_station, created_at: 1.minute.ago }
 
   def processor_return_object(artist_name, title, time)
     {
@@ -81,7 +79,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#npo_api_processor' do
-    let(:radio_1) { FactoryBot.create(:radio_1) }
+    let(:radio_1) { create(:radio_1) }
 
     context 'given an address and radio station' do
       it 'creates a new playlist item' do
@@ -100,7 +98,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#talpa_api_processor' do
-    let(:sky_radio) { FactoryBot.create(:sky_radio) }
+    let(:sky_radio) { create(:sky_radio) }
 
     context 'given an address and radio station' do
       it 'creates an new playlist item' do
@@ -119,8 +117,8 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#scraper' do
-    let(:sublime_fm) { FactoryBot.create(:sublime_fm) }
-    let(:groot_nieuws_radio) { FactoryBot.create(:groot_nieuws_radio) }
+    let(:sublime_fm) { create(:sublime_fm) }
+    let(:groot_nieuws_radio) { create(:groot_nieuws_radio) }
 
     context 'if radio_station is Sublime FM' do
       it 'returns an artist_name, title and time' do
@@ -140,7 +138,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#radio_1_check' do
-    let!(:radio_1) { FactoryBot.create(:radio_1) }
+    let!(:radio_1) { create(:radio_1) }
 
     context 'when importing a song' do
       it 'creates a new playlist item' do
@@ -159,7 +157,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#radio_2_check' do
-    let!(:radio_2) { FactoryBot.create(:radio_2) }
+    let!(:radio_2) { create(:radio_2) }
 
     context 'when importing a song' do
       it 'creates a new playlist item' do
@@ -171,7 +169,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#radio_3fm_check' do
-    let!(:radio_3_fm) { FactoryBot.create(:radio_3_fm) }
+    let!(:radio_3_fm) { create(:radio_3_fm) }
 
     context 'when importing a song' do
       it 'creates a new playlist item' do
@@ -183,7 +181,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#radio_5_check' do
-    let!(:radio_5) { FactoryBot.create(:radio_5) }
+    let!(:radio_5) { create(:radio_5) }
 
     context 'when importing song' do
       it 'creates a new playlist item' do
@@ -195,7 +193,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#sky_radio_check' do
-    let!(:sky_radio) { FactoryBot.create(:sky_radio) }
+    let!(:sky_radio) { create(:sky_radio) }
 
     before do
       allow_any_instance_of(Spotify).to receive(:track).and_return([])
@@ -219,7 +217,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#radio_veronica_check' do
-    let!(:radio_veronica) { FactoryBot.create(:radio_veronica) }
+    let!(:radio_veronica) { create(:radio_veronica) }
 
     before do
       allow_any_instance_of(Spotify).to receive(:track).and_return([])
@@ -235,7 +233,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#radio_538_check' do
-    let(:radio_538) { FactoryBot.create(:radio_538) }
+    let(:radio_538) { create(:radio_538) }
 
     before do
       allow_any_instance_of(Spotify).to receive(:track).and_return([])
@@ -251,7 +249,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#radio_10_check' do
-    let!(:radio_10) { FactoryBot.create(:radio_10) }
+    let!(:radio_10) { create(:radio_10) }
 
     before do
       allow_any_instance_of(Spotify).to receive(:track).and_return([])
@@ -267,7 +265,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#q_music_check' do
-    let!(:qmusic) { FactoryBot.create(:qmusic) }
+    let!(:qmusic) { create(:qmusic) }
 
     context 'when importing song' do
       it 'creates a new playlist item' do
@@ -287,7 +285,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#sublime_fm_check' do
-    let!(:sublime_fm) { FactoryBot.create(:sublime_fm) }
+    let!(:sublime_fm) { create(:sublime_fm) }
 
     context 'when importing song' do
       it 'creates a new playlist item' do
@@ -299,7 +297,7 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#grootnieuws_radio_check' do
-    let!(:groot_nieuws_radio) { FactoryBot.create(:groot_nieuws_radio) }
+    let!(:groot_nieuws_radio) { create(:groot_nieuws_radio) }
 
     context 'when importing song' do
       it 'creates a new playlist item' do
@@ -372,11 +370,11 @@ RSpec.describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#find_or_create_song' do
-    let!(:song_in_your_eyes_robin_schulz) { FactoryBot.create :song, title: 'In Your Eyes', artists: [artist_robin_schulz, artist_alida] }
-    let!(:song_in_your_eyes_weekend) { FactoryBot.create :song, title: 'In Your Eyes', artists: [artist_the_weeknd] }
-    let!(:artist_the_weeknd) { FactoryBot.create :artist, name: 'The Weeknd' }
-    let!(:artist_robin_schulz) { FactoryBot.create :artist, name: 'Robin Schulz' }
-    let!(:artist_alida) { FactoryBot.create :artist, name: 'Alida' }
+    let!(:song_in_your_eyes_robin_schulz) { create :song, title: 'In Your Eyes', artists: [artist_robin_schulz, artist_alida] }
+    let!(:song_in_your_eyes_weekend) { create :song, title: 'In Your Eyes', artists: [artist_the_weeknd] }
+    let!(:artist_the_weeknd) { create :artist, name: 'The Weeknd' }
+    let!(:artist_robin_schulz) { create :artist, name: 'Robin Schulz' }
+    let!(:artist_alida) { create :artist, name: 'Alida' }
 
     context 'with a song present with the same name but different artist(s)' do
       it 'creates a new artist' do

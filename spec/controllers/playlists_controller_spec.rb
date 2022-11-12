@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 describe PlaylistsController do
-  let(:radio_station_one) { FactoryBot.create :radio_station }
-  let(:radio_station_two) { FactoryBot.create :radio_station }
-  let(:artist_one) { FactoryBot.create :artist }
-  let(:song_one) { FactoryBot.create :song, artists: [artist_one] }
-  let(:artist_two) { FactoryBot.create :artist }
-  let(:song_two) { FactoryBot.create :song, artists: [artist_two] }
-  let(:playlist) { FactoryBot.create :playlist, radio_station: radio_station_one, song: song_one }
-  let(:playlists) { FactoryBot.create_list :playlist, 5, radio_station: radio_station_two, song: song_two }
+  let(:radio_station_one) { create :radio_station }
+  let(:radio_station_two) { create :radio_station }
+  let(:artist_one) { create :artist }
+  let(:song_one) { create :song, artists: [artist_one] }
+  let(:artist_two) { create :artist }
+  let(:song_two) { create :song, artists: [artist_two] }
+  let(:playlist) { create :playlist, radio_station: radio_station_one, song: song_one }
+  let(:playlists) { create_list :playlist, 5, radio_station: radio_station_two, song: song_two }
 
   describe 'GET #index' do
     before do

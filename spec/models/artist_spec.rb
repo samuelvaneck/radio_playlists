@@ -1,19 +1,17 @@
 # # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe Artist do
-  let(:artist_1) { FactoryBot.create :artist }
-  let(:song_1) { FactoryBot.create :song, artists: [artist_1] }
-  let(:artist_2) { FactoryBot.create :artist }
-  let(:song_2) { FactoryBot.create :song, artists: [artist_2] }
-  let(:artist_3) { FactoryBot.create :artist }
-  let(:song_3) { FactoryBot.create :song, artists: [artist_3] }
-  let(:radio_station) { FactoryBot.create :radio_station }
-  let(:playlist_1) { FactoryBot.create :playlist, :filled, song: song_1 }
-  let(:playlist_2) { FactoryBot.create :playlist, :filled, song: song_2, radio_station: }
-  let(:playlist_3) { FactoryBot.create :playlist, :filled, song: song_3, radio_station: }
-  let(:playlist_4) { FactoryBot.create :playlist, :filled, song: song_3, radio_station: }
+describe Artist do
+  let(:artist_1) { create :artist }
+  let(:song_1) { create :song, artists: [artist_1] }
+  let(:artist_2) { create :artist }
+  let(:song_2) { create :song, artists: [artist_2] }
+  let(:artist_3) { create :artist }
+  let(:song_3) { create :song, artists: [artist_3] }
+  let(:radio_station) { create :radio_station }
+  let(:playlist_1) { create :playlist, :filled, song: song_1 }
+  let(:playlist_2) { create :playlist, :filled, song: song_2, radio_station: }
+  let(:playlist_3) { create :playlist, :filled, song: song_3, radio_station: }
+  let(:playlist_4) { create :playlist, :filled, song: song_3, radio_station: }
 
   before do
     playlist_1
@@ -61,7 +59,7 @@ RSpec.describe Artist do
 
   describe '#cleanup' do
     context 'if the artist has no songs' do
-      let!(:artist_no_songs) { FactoryBot.create :artist }
+      let!(:artist_no_songs) { create :artist }
       it 'destorys the artist' do
         expect {
           artist_no_songs.cleanup
