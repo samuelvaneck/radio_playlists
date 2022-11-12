@@ -77,10 +77,9 @@ describe Playlist do
 
     context 'if duplicate entries exists' do
       before do
-        playlist = build :playlist,
-                                    :filled,
-                                    radio_station: playlist_one.radio_station,
-                                    broadcast_timestamp: playlist_one.broadcast_timestamp
+        playlist = build :playlist, :filled,
+                         radio_station: playlist_one.radio_station,
+                         broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
       end
 
@@ -93,10 +92,9 @@ describe Playlist do
 
     context 'if there are duplicates and the song has no more playlist items' do
       before do
-        playlist = build :playlist,
-                                    :filled,
-                                    radio_station: playlist_one.radio_station,
-                                    broadcast_timestamp: playlist_one.broadcast_timestamp
+        playlist = build :playlist, :filled,
+                         radio_station: playlist_one.radio_station,
+                         broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
       end
 
@@ -109,10 +107,9 @@ describe Playlist do
 
     context 'if there are duplicates and the playlist song has more playlist items' do
       before do
-        playlist = build :playlist,
-                                    :filled,
-                                    radio_station: playlist_one.radio_station,
-                                    broadcast_timestamp: playlist_one.broadcast_timestamp
+        playlist = build :playlist, :filled,
+                         radio_station: playlist_one.radio_station,
+                         broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
         create :playlist, :filled, song: playlist_one.song
       end
@@ -130,10 +127,9 @@ describe Playlist do
 
     context 'with duplicates present' do
       before do
-        playlist = build :playlist,
-                                    :filled,
-                                    radio_station: playlist_one.radio_station,
-                                    broadcast_timestamp: playlist_one.broadcast_timestamp
+        playlist = build :playlist, :filled,
+                         radio_station: playlist_one.radio_station,
+                         broadcast_timestamp: playlist_one.broadcast_timestamp
         playlist.save(validate: false)
       end
 
