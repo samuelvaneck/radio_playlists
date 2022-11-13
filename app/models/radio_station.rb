@@ -41,7 +41,7 @@ class RadioStation < ActiveRecord::Base
     return false if track.blank? || track[:artist_name].blank?
     return false if illegal_word_in_title(track[:title])
 
-    artists, song = process_track_data(track[:artist_name], track[:title])
+    artists, song = process_track_data(track[:artist_name], track[:title], track[:spotify_url])
     return false if artists.nil? || song.nil?
 
     create_playlist(track[:broadcast_timestamp], artists, song)

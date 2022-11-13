@@ -7,15 +7,24 @@ class Spotify::Track < Spotify
 
   def initialize(args)
     super()
-    @search_artists = args[:artists]
-    @search_title = args[:title]
-    @track = find_spotify_track
+    @track = if args[:spotify_track_id]
+               @spotify_track_id = args[:spotify_track_id]
+               fetch_spotify_track
+             else
+               @search_artists = args[:artists]
+               @search_title = args[:title]
+               search_spotify_track
+             end
     @artists = set_track_artists
     @title = set_track_title
   end
 
-  def find_spotify_track
-    spotify_search_results = make_request(url)
+  def fetch_spotify_track
+    make_request(spotify_track_url)
+  end
+
+  def search_spotify_track
+    spotify_search_results = make_request(search_url)
     return if spotify_search_results.blank?
 
     single_album_tracks = filter_single_and_album_tracks(spotify_search_results)
@@ -25,8 +34,12 @@ class Spotify::Track < Spotify
 
   private
 
+  def spotify_track_url
+    URI("https://api.spotify.com/v1/tracks/#{@spotify_track_id}")
+  end
+
   # make request params
-  def url
+  def search_url
     URI("https://api.spotify.com/v1/search?q=#{search_params}&type=track")
   end
 
