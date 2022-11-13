@@ -40,8 +40,9 @@ class Song < ActiveRecord::Base
     song = Song.find_or_initialize_by(id_on_spotify: track.track['id'])
     song.assign_attributes(
       title: track.title,
-      spotify_song_url: track.track['external_urls']['spotify'],
-      spotify_artwork_url:  track.track['album']['images'][0]['url']
+      spotify_song_url: track.spotify_song_url,
+      spotify_artwork_url: track.spotify_artwork_url,
+      isrc: track.isrc
     )
     song.save
     song

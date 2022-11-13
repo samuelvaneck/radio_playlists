@@ -3,7 +3,7 @@
 # require Rails.root.join('app/services/spotify.rb')
 
 class Spotify::Track < Spotify
-  attr_reader :search_artists, :search_title, :track, :artists, :title
+  attr_reader :search_artists, :search_title, :track, :artists, :title, :isrc, :spotify_artwork_url, :spotify_song_url
 
   def initialize(args)
     super()
@@ -17,6 +17,9 @@ class Spotify::Track < Spotify
              end
     @artists = set_track_artists
     @title = set_track_title
+    @isrc = set_isrc
+    @spotify_song_url = set_spotify_song_url
+    @spotify_artwork_url = set_spotify_artwork_url
   end
 
   def fetch_spotify_track
@@ -62,6 +65,8 @@ class Spotify::Track < Spotify
   end
 
   def set_track_title
+    return if @track.blank?
+
     @track['name'] if @track.present?
   end
 
@@ -89,5 +94,23 @@ class Spotify::Track < Spotify
 
   def album_tracks(single_album_tracks)
     single_album_tracks.select { |t| t.album.album_type == 'album' }
+  end
+
+  def set_isrc
+    return if @track.blank?
+
+    @track.dig('external_ids', 'isrc')
+  end
+
+  def set_spotify_song_url
+    return if @track.blank?
+
+    @track.dig('external_urls', 'spotify')
+  end
+
+  def set_spotify_artwork_url
+    return if @track.blank?
+
+    @track.dig('album', 'images')[0]['url'] if track.dig('album', 'images').present?
   end
 end

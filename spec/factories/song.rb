@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :song do
     title { Faker::Music::UmphreysMcgee.song }
-    isrc_id { 'GBARL1800805' }
+    isrc { 'GBARL1800805' }
     id_on_spotify { '1elj43HiTzMyQwawBazPCQ' }
 
     after(:build) do |song|
