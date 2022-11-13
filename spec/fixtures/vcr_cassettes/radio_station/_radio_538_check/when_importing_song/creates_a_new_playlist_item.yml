@@ -31,36 +31,35 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sat, 05 Nov 2022 13:45:35 GMT
+      - Sun, 13 Nov 2022 14:29:06 GMT
       X-Amzn-Requestid:
-      - 2e5a873d-b1c3-4dfc-bd43-9a79bcafc4bb
+      - 92f81e18-8f8b-4840-944c-74bf11405e78
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 e64eb476d8f76c461d21278e018e194e.cloudfront.net (CloudFront), 1.1 ac059d7185137233d6f58dd3345e3798.cloudfront.net
+      - 1.1 d627b75d0c1aedd3691390ac8498d3b0.cloudfront.net (CloudFront), 1.1 043fc2faaa02eeb59193e3fa300adb6a.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
-      - AMS1-P2
+      - AMS1-C1
       - FRA50-C1
       Vary:
       - Accept-Encoding
       X-Cache:
-      - Hit from cloudfront
+      - Miss from cloudfront
       X-Amz-Cf-Id:
-      - bmrgsgGGUjeMcrJOfhiIanIzBxwegKGOY01tRmC-FDvtmeISk76CAg==
-      Age:
-      - '3'
+      - As3gV_HSzoG8KIyKld19ZtJPRuPSmSgqN5ozAJdGX9kpsuLmdlI87w==
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Radio 538","playouts":[{"broadcastDate":"2022-11-05T13:41:53Z","track":{"id":"ddaa7177-efe5-521e-a9a6-10b1806cb5c6","title":"TERUG
-        BIJ AF","artistName":"FLEMMING & RONNIE FLEX","isrc":"NLZ292200122","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLZ292200122.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:39:37Z","track":{"id":"d57f763c-06a5-5c06-866c-844766a5392d","title":"IN
-        MY MIND","artistName":"DYNORO & GIGI D''AGOSTINO","isrc":"QZ22B1859046","images":[{"type":"image","uri":"https://img.talparad.io/tracks/QZ22B1859046.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:36:00Z","track":{"id":"347a025d-85c5-556b-bfdc-ffa0d8658aa5","title":"BONES","artistName":"IMAGINE
-        DRAGONS","isrc":"USUM72201759","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM72201759.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:32:34Z","track":{"id":"083fd543-40ea-5466-842c-804afe75c6ee","title":"CELESTIAL","artistName":"ED
-        SHEERAN","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:21:30Z","track":{"id":"efd53e2d-0073-54f1-b1b3-7ff1d1aa5c15","title":"ACCIDENTALLY
-        IN LOVE","artistName":"COUNTING CROWS","isrc":"USIR10400291","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USIR10400291.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:18:44Z","track":{"id":"8f20c563-e478-597c-947f-319ab0bcaf31","title":"WHEN
-        YOU''RE GONE","artistName":"SHAWN MENDES","isrc":"USUM72205147","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM72205147.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:15:10Z","track":{"id":"af3b489d-38a2-5c4e-96c3-a38157c17b73","title":"UNHOLY","artistName":"SAM
-        SMITH & KIM PETRAS","isrc":"GBUM72205415","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBUM72205415.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:12:39Z","track":{"id":"26e5e4ba-3ba3-58fd-a449-68dea8406d05","title":"ROLL
-        THE DICE","artistName":"ARMIN VAN BUUREN FT. PHILIP STRAND","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:12:38Z","track":{"id":"8f20c563-e478-597c-947f-319ab0bcaf31","title":"WHEN
-        YOU''RE GONE","artistName":"SHAWN MENDES","isrc":"USUM72205147","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM72205147.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:07:31Z","track":{"id":"ca689620-1786-54ec-8313-6f8314d9e31a","title":"SYMPHONY","artistName":"SHEPPARD","isrc":"DEUM71600095","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEUM71600095.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sat, 05 Nov 2022 13:45:38 GMT
+      string: '{"data":{"getStation":{"title":"Radio 538","playouts":[{"broadcastDate":"2022-11-13T14:25:36Z","track":{"id":"c6e6db8f-fff0-5513-b641-1144c2f7ec5b","title":"AS
+        IT WAS","artistName":"HARRY STYLES","isrc":"USSM12200612","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM12200612.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:22:29Z","track":{"id":"b46e527e-e98e-593c-942b-ce6e59cc7b36","title":"GRIJS","artistName":"JAAP
+        REESEMA","isrc":"NLSU32200093","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLSU32200093.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:19:27Z","track":{"id":"43b776bd-f798-5a78-9fc3-2c33daf23eb5","title":"CUFF
+        IT","artistName":"BEYONCE","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:15:38Z","track":{"id":"ade4d427-224d-5fbc-a1e0-e855dadbdfb8","title":"IF
+        IT AIN''T LOVE","artistName":"LUCAS & STEVE X 4 STRINGS FT. LAGIQUE","isrc":"NLZ542201901","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLZ542201901.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:12:35Z","track":{"id":"ddaa7177-efe5-521e-a9a6-10b1806cb5c6","title":"TERUG
+        BIJ AF","artistName":"FLEMMING & RONNIE FLEX","isrc":"NLZ292200122","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLZ292200122.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:08:39Z","track":{"id":"dd7e1d01-7779-5012-be12-cf6a8ab8ec49","title":"MILLION
+        DOLLAR BABY","artistName":"AVA MAX","isrc":"USAT22206818","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAT22206818.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:04:59Z","track":{"id":"5bc8e619-1842-5e2a-b142-a7af4aefa60b","title":"CALM
+        DOWN","artistName":"REMA","isrc":"NGA3B2214004","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NGA3B2214004.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:52:39Z","track":{"id":"66c85764-8517-53b9-b8b3-b825fb2e9662","title":"10:35","artistName":"TIESTO
+        & TATE MCRAE","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:49:25Z","track":{"id":"66c85764-8517-53b9-b8b3-b825fb2e9662","title":"10:35","artistName":"TIESTO
+        & TATE MCRAE","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:49:23Z","track":{"id":"5d51867f-01e9-5cc6-a202-613ac8485da5","title":"NEVER
+        GONNA NOT DANCE AGAIN","artistName":"PINK","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sun, 13 Nov 2022 14:29:06 GMT
 recorded_with: VCR 6.1.0
