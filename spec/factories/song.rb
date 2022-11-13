@@ -3,7 +3,8 @@
 FactoryBot.define do
   factory :song do
     title { Faker::Music::UmphreysMcgee.song }
-    # fullname { Faker::Book.title }
+    isrc_id { 'GBARL1800805' }
+    id_on_spotify { '1elj43HiTzMyQwawBazPCQ' }
 
     after(:build) do |song|
       song.fullname = "#{song.artists.map(&:name).join(' ')} #{song.fullname}"
