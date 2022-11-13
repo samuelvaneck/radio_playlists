@@ -105,7 +105,7 @@ describe Song do
     before { song }
 
     context 'when adding a new artists' do
-      it 'creates a new record in the join table' do
+      it 'creates a new record in the join table ArtistsSong' do
         expect do
           song.update_artists([ed_sheeran, taylor_swift])
         end.to change(ArtistsSong, :count).by(1)
@@ -117,6 +117,36 @@ describe Song do
         expect do
           song.update_artists([ed_sheeran])
         end.to change(ArtistsSong, :count).by(0)
+      end
+    end
+
+    context 'when no artists are given as argument' do
+      it 'does not change the song artists' do
+        expect do
+          song.update_artists(nil)
+        end.to change(ArtistsSong, :count).by(0)
+      end
+    end
+
+    context 'when given a single artists as argument' do
+      before do
+        song.update_artists(taylor_swift)
+        song.reload
+      end
+
+      it 'assigns the given artist(s) as song artists' do
+        expect(song.artists).to contain_exactly(taylor_swift)
+      end
+    end
+
+    context 'when given an arrray of artists as arugments' do
+      before do
+        song.update_artists([taylor_swift])
+        song.reload
+      end
+
+      it 'assigns the given artist(s) as song artists' do
+        expect(song.artists).to contain_exactly(taylor_swift)
       end
     end
   end

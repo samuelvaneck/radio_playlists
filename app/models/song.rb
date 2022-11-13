@@ -70,8 +70,8 @@ class Song < ActiveRecord::Base
     "%#{params[:search_term]}%"
   end
 
-  def update_artists(adding_artists)
-    self.artists = Array.wrap(adding_artists)
+  def update_artists(song_artists)
+    self.artists = Array.wrap(song_artists) if song_artists.present?
   end
 
   private
