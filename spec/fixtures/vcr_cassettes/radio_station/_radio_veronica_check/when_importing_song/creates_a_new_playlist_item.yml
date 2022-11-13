@@ -31,35 +31,37 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sat, 05 Nov 2022 13:45:35 GMT
+      - Sun, 13 Nov 2022 14:29:02 GMT
       X-Amzn-Requestid:
-      - 214771a2-a31f-4f47-ad88-fba9ccdd0062
+      - 5eb04e17-1618-428e-9ad8-456905acbd08
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 e64eb476d8f76c461d21278e018e194e.cloudfront.net (CloudFront), 1.1 b4b344356515496fe04e908f6ee73f4e.cloudfront.net
+      - 1.1 32e4d419823b7f8df8417a8b18c9602c.cloudfront.net (CloudFront), 1.1 8e380527758859f940c2c93ed9fbd5d8.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
-      - AMS1-P2
+      - AMS1-C1
       - FRA50-C1
       Vary:
       - Accept-Encoding
       X-Cache:
-      - Miss from cloudfront
+      - Hit from cloudfront
       X-Amz-Cf-Id:
-      - wzJ9MN8hZtDuwR5D4w5-zqJSDEv9QDKkZBMgsuzer5FJrfEaWzvIrQ==
+      - 9_uZUjn8trQWCxh6TdazAjKHaisQzheIu0P0oyBC-GsSDSZBSdTSrg==
+      Age:
+      - '8'
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Radio Veronica","playouts":[{"broadcastDate":"2022-11-05T13:44:27Z","track":{"id":"eebc462a-fe75-5a33-9cd4-6d2d1683c434","title":"Save
-        Tonight","artistName":"Eagle Eye Cherry","isrc":"DEUE21769769","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEUE21769769.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:40:09Z","track":{"id":"7e3b300c-31db-567a-8334-36f2a8680388","title":"Whenever
-        I Call You Friend","artistName":"Kenny Loggins & Stevie Nicks","isrc":"USSM17800139","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM17800139.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:35:29Z","track":{"id":"799498a2-bcec-500e-9661-a4431eb70891","title":"Mariners
-        Apartment Complex","artistName":"Lana Del Rey","isrc":"USUG11801801","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUG11801801.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:32:26Z","track":{"id":"be29b365-0086-5391-aa22-a27640e1cc00","title":"Never
-        Be Clever","artistName":"Herman Brood & His Wild Romance","isrc":"NLA209700081","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLA209700081.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:23:57Z","track":{"id":"7afda2f4-8ea9-5af6-a92c-6b7d73a7e809","title":"They
-        Don''t Care About Us","artistName":"Michael Jackson","isrc":"USSM19500629","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM19500629.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:20:29Z","track":{"id":"abe53c21-cd23-5b8b-a21d-93b8d6ccab58","title":"Breakdown
-        Days","artistName":"White Lies","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:16:58Z","track":{"id":"5e198a12-cbe8-5eea-818d-e83998efb3e8","title":"Smoorverliefd","artistName":"Doe
-        Maar","isrc":"NLA340000038","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLA340000038.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:14:05Z","track":{"id":"123bb99c-6ab1-5f88-9419-70df7b437844","title":"Fell
-        In Love With A Boy","artistName":"Joss Stone","isrc":"USA560591820","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:13:45Z","track":{"id":"42036d07-fc94-57cd-bcb5-ec2284d765d4","title":"Fell
-        In Love With A Girl","artistName":"White Stripes","isrc":"GBBKS0100352","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBBKS0100352.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:09:50Z","track":{"id":"f1270032-d882-5638-a32b-5de416498828","title":"Baby
-        Love","artistName":"Mother''s Finest","isrc":"USSM17700650","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM17700650.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sat, 05 Nov 2022 13:45:35 GMT
+      string: '{"data":{"getStation":{"title":"Radio Veronica","playouts":[{"broadcastDate":"2022-11-13T14:23:53Z","track":{"id":"3c16d0b4-acb5-58f1-bf8d-82170eedc819","title":"Forbidden
+        Colours","artistName":"David Sylvian & Ryuichi Sakamoto","isrc":"FRZ810403406","images":[{"type":"image","uri":"https://img.talparad.io/tracks/FRZ810403406.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:23:15Z","track":{"id":"ebb16ee4-3040-5d2f-9377-00008109fa8f","title":"Sweet
+        Lui Louise","artistName":"Ironhorse","isrc":"GBLFP1588892","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:19:39Z","track":{"id":"2bffbae5-5287-5753-8bdb-8388c3dc20d7","title":"You
+        Ain''t Seen Nothing Yet","artistName":"Bachman Turner Overdrive","isrc":"DEUE21784131","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEUE21784131.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:16:55Z","track":{"id":"55fac1b8-7f1c-592b-bfb0-0cd0472c17d5","title":"Heaven
+        (Dance Version)","artistName":"Dj Sammy & Yanou & Do","isrc":"NLC281110286","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:13:02Z","track":{"id":"ab46dc3d-4ffd-56cb-bd8f-8114fec38bf9","title":"Heaven","artistName":"Bryan
+        Adams","isrc":"USAM18490004","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAM18490004.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:10:52Z","track":{"id":"d0858d6d-6c9c-57bf-bbef-1a14dacd5e89","title":"Blitzkrieg
+        Bop","artistName":"Ramones","isrc":"USWB19900895","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:06:49Z","track":{"id":"c9913e9c-aede-58aa-a28a-9218243c4442","title":"Human","artistName":"Rag
+        ''n'' Bone Man","isrc":"GBARL1600665","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBARL1600665.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:57:44Z","track":{"id":"b0187356-cdc2-521e-b692-d8efff220bbb","title":"Zeg
+        Me Dat Het Niet Zo Is","artistName":"Frank Boeijen Groep","isrc":"NLA209700121","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLA209700121.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:54:04Z","track":{"id":"82116433-8573-5bec-b4b9-88352dbeeada","title":"Kronenburg
+        Park","artistName":"Frank Boeijen Groep","isrc":"NLA200200408","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLA200200408.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:49:23Z","track":{"id":"1838fa2e-a2fe-5eea-9576-11478513608d","title":"Red
+        Right Hand","artistName":"Nick Cave & The Bad Seeds","isrc":"GBAJH9700428","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAJH9700428.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sun, 13 Nov 2022 14:29:10 GMT
 recorded_with: VCR 6.1.0

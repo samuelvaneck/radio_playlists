@@ -31,36 +31,36 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sat, 05 Nov 2022 13:45:39 GMT
+      - Sun, 13 Nov 2022 14:29:01 GMT
       X-Amzn-Requestid:
-      - d01b813f-da8e-4819-ab05-6c2a37571091
+      - 6ae5a63a-2fce-4b7b-9a26-b23ff172a74a
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 6b4954a8411e7b2a232537f8000c5c9c.cloudfront.net (CloudFront), 1.1 e345c29560592087623dbe75e8d765d6.cloudfront.net
+      - 1.1 0d37b2e69745cd9f0c5457fbf1a83128.cloudfront.net (CloudFront), 1.1 aae0a3ddd306e11f8c3d25a657078704.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
-      - AMS1-P2
+      - AMS1-C1
       - FRA50-C1
       Vary:
       - Accept-Encoding
       X-Cache:
       - Hit from cloudfront
       X-Amz-Cf-Id:
-      - o76qX7pwCp3UHurdZpzzHnxHaTNdCRcPe2pglrUYl18b26RRJHLrAg==
+      - mrhpjPTPvisVCaC2wvGxGa0llLbBySbxOTu33bvoMogLnILFnMwf-Q==
       Age:
-      - '3'
+      - '9'
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Sky Radio","playouts":[{"broadcastDate":"2022-11-05T13:44:36Z","track":{"id":"8f71ddb9-8701-54b2-a1a1-95f70649311f","title":"Forget
-        Me","artistName":"Lewis Capaldi","isrc":"DEUM72204717","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEUM72204717.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:41:22Z","track":{"id":"f1b0be56-854d-5a4e-b66e-03c71c672cbb","title":"Lemon
-        Tree","artistName":"Fool''s Garden","isrc":"DEA349502964","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEA349502964.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:37:55Z","track":{"id":"34745e85-ee4d-560f-a10d-61e5d079b111","title":"Youngblood","artistName":"5
-        Seconds Of Summer","isrc":"GBUM71800366","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBUM71800366.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:34:35Z","track":{"id":"b4b838a7-d980-54d5-99a2-f9d1f90ed242","title":"Solo
-        Para Ti","artistName":"Alvaro Soler & Topic","isrc":"DEUM72201943","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEUM72201943.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:31:05Z","track":{"id":"3533f572-0577-5021-8ae9-ecbcc4badb6c","title":"Make
-        You Feel My Love","artistName":"Adele","isrc":"GBBKS0700586","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBBKS0700586.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:22:43Z","track":{"id":"1a5011ae-3c7c-5ae9-8fb7-cbce60afed61","title":"Post
-        Malone","artistName":"Sam Feldt (feat. RANI)","isrc":"NLZ541900734","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLZ541900734.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:19:46Z","track":{"id":"39fe17dd-c8a1-5a99-a81d-b47280c206dd","title":"Fingers
-        Crossed","artistName":"Laura Spencer-Smith","isrc":"TCAFY2118876","images":[{"type":"image","uri":"https://img.talparad.io/tracks/TCAFY2118876.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:16:26Z","track":{"id":"45d500f3-9a5a-527e-a48d-015c496a044b","title":"Down
-        Under","artistName":"Men At Work","isrc":"AUSM08100002","images":[{"type":"image","uri":"https://img.talparad.io/tracks/AUSM08100002.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:13:27Z","track":{"id":"394d55f2-580b-5894-835e-a72a7c3c5b16","title":"Love
-        Myself","artistName":"Ronde","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:10:30Z","track":{"id":"628f9619-9c68-5bae-b73e-f6c79946bf6b","title":"Euphoria","artistName":"Loreen","isrc":"SEPQA1200005","images":[{"type":"image","uri":"https://img.talparad.io/tracks/SEPQA1200005.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sat, 05 Nov 2022 13:45:42 GMT
+      string: '{"data":{"getStation":{"title":"Sky Radio","playouts":[{"broadcastDate":"2022-11-13T14:22:18Z","track":{"id":"660f84df-9d59-5d3b-ba12-9630232a6aa4","title":"Hot
+        And Cold","artistName":"Katy Perry","isrc":"USCA20802544","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USCA20802544.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:19:52Z","track":{"id":"af044b29-6152-53eb-94b1-63b5a0193060","title":"Darte
+        Un Beso","artistName":"Rolf Sanchez","isrc":"NLZ292200049","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLZ292200049.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:16:00Z","track":{"id":"0210987c-49d7-5d55-b056-500e03fd219a","title":"Hold
+        My Hand","artistName":"Lady Gaga","isrc":"USUM72206231","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM72206231.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:12:35Z","track":{"id":"1c5f0913-b00d-500a-a227-4fc8d55fe82a","title":"All
+        That She Wants","artistName":"Ace Of Base","isrc":"SEVJH0803401","images":[{"type":"image","uri":"https://img.talparad.io/tracks/SEVJH0803401.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:08:52Z","track":{"id":"7fdfb1d2-7207-5b66-ada7-b9d2fad19256","title":"Have
+        It All","artistName":"Jason Mraz","isrc":"USAT21802281","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAT21802281.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:05:29Z","track":{"id":"21507385-3c76-5aa6-bb3c-ce494bca09ad","title":"Lost
+        Without You","artistName":"Kygo ft. Dean Lewis","isrc":"USRC12202284","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USRC12202284.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:01:26Z","track":{"id":"b0030593-d574-578e-a605-dd730cd09303","title":"Superheroes","artistName":"Script","isrc":"GBARL1400978","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBARL1400978.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:51:00Z","track":{"id":"5f3387b2-03c1-5bdd-b926-f3c30304c0d8","title":"Questions","artistName":"Lost
+        Frequencies ft James Arthur","isrc":"BEHP42200001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/BEHP42200001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:48:15Z","track":{"id":"aa67d9af-38a1-551b-8b8e-c880ef1d0262","title":"Empire
+        State Of Mind (Part II)","artistName":"Alicia Keys","isrc":"USJAY0900304","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:45:24Z","track":{"id":"f63ce66f-6987-5849-bf7a-72b221c2a9cb","title":"Onderweg
+        Naar Later","artistName":"Suzan & Freek","isrc":"NL1CK2100005","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NL1CK2100005.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sun, 13 Nov 2022 14:29:10 GMT
 recorded_with: VCR 6.1.0

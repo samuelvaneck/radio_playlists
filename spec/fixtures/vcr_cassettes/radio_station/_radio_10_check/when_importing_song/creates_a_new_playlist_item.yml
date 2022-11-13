@@ -31,34 +31,35 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sat, 05 Nov 2022 13:45:34 GMT
+      - Sun, 13 Nov 2022 14:29:05 GMT
       X-Amzn-Requestid:
-      - e250088b-56ff-4def-ac02-10a8eec94d93
+      - 9fd64c81-c6e0-46c3-90c0-e1b81698b466
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 32c8da10203574baccb74b8f771a7ffa.cloudfront.net (CloudFront), 1.1 e345c29560592087623dbe75e8d765d6.cloudfront.net
+      - 1.1 baaf38f0a0d54e4834bf934fa5189cea.cloudfront.net (CloudFront), 1.1 cca9137c259ad738f790039a45561cee.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
-      - AMS1-P2
+      - AMS1-C1
       - FRA50-C1
       Vary:
       - Accept-Encoding
       X-Cache:
       - Miss from cloudfront
       X-Amz-Cf-Id:
-      - TwTFmXv6ioWiHODhHT-4t50DnzwnLM2saREkoOuZmbp2L6ecyI0YHw==
+      - Z7mxy0d4NsCF383bSEmR5mzLEZtLdr_Ly8zGW6-qdr8j1hKX6dy-rg==
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Radio 10","playouts":[{"broadcastDate":"2022-11-05T13:45:13Z","track":{"id":"0426b98a-80c5-53c5-9387-5f4f8fd5cbf5","title":"Rehab","artistName":"Amy
-        Winehouse","isrc":"GBUM70603730","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBUM70603730.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:42:26Z","track":{"id":"aef1274c-2723-56fc-955a-3680ae50ba99","title":"Green
-        Green Grass","artistName":"George Ezra","isrc":"GBARL2200008","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBARL2200008.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:37:12Z","track":{"id":"443418b7-3f13-5fea-a140-ae1caabf7915","title":"Baggy
-        Trousers","artistName":"Madness","isrc":"GB7GZ0900026","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GB7GZ0900026.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:33:59Z","track":{"id":"ccaa82b2-6c13-5ef2-919f-af29da800822","title":"Kiss
-        Me","artistName":"Sixpence Non The Richer","isrc":"USWR60400390","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:24:06Z","track":{"id":"d3ed51fa-8da9-519f-84c1-0188ea7ed41a","title":"Fireflies","artistName":"Owl
-        City","isrc":"USUM70972068","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM70972068.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:19:21Z","track":{"id":"c4f5c4f2-754e-5763-803f-c3f3c408a009","title":"Friday,
-        I''m In Love","artistName":"The Cure","isrc":"GBGNS1100870","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBGNS1100870.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:15:48Z","track":{"id":"e9c288e1-df6b-568f-99ff-47d84730f354","title":"Don''t
-        Leave Me This Way","artistName":"Thelma Houston","isrc":"USMO17600547","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:08:12Z","track":{"id":"4009414b-3a59-52ad-9467-1b89a436c188","title":"Ijskoud","artistName":"Nielson","isrc":"NLG901800010","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLG901800010.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T13:04:12Z","track":{"id":"1deec267-0de6-564b-803c-3160526f4a83","title":"The
-        Final Countdown","artistName":"Europe","isrc":"USSM19803152","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-05T12:52:17Z","track":{"id":"1bccca09-5329-5fd8-b400-34b4c859ed70","title":"Better
-        Days","artistName":"Dermot Kennedy","isrc":"USUG12102831","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUG12102831.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sat, 05 Nov 2022 13:45:34 GMT
+      string: '{"data":{"getStation":{"title":"Radio 10","playouts":[{"broadcastDate":"2022-11-13T14:26:29Z","track":{"id":"43914e0c-c715-582b-ba02-e05b40eb390c","title":"When
+        Love Takes Over","artistName":"David Guetta & Kelly Rowland","isrc":"FRZID0900200","images":[{"type":"image","uri":"https://img.talparad.io/tracks/FRZID0900200.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:22:37Z","track":{"id":"9768385a-08a9-521a-b0e0-212ab7725c78","title":"You
+        Got It","artistName":"Roy Orbison","isrc":"USLIC0701008","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USLIC0701008.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:19:50Z","track":{"id":"5fa6cf73-d2e5-5205-bf76-f473bceef67b","title":"Last
+        Train Home","artistName":"John Mayer","isrc":"USSM12101687","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM12101687.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:16:04Z","track":{"id":"23f5a976-d53a-5acd-a618-11871a7b0747","title":"Mamma
+        Mia","artistName":"ABBA","isrc":"SEAYD7590001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/SEAYD7590001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:12:16Z","track":{"id":"3a56da9f-badd-55d8-aef9-8237ed32b7e9","title":"Signs","artistName":"Snoop
+        Dogg & Justin Timberlake","isrc":"USMC10400893","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USMC10400893.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:07:49Z","track":{"id":"edfac7f0-d463-5c97-a75f-428286b1ba08","title":"I
+        Don''t Want To Miss A Thing","artistName":"Aerosmith","isrc":"USSM19801054","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:03:53Z","track":{"id":"88fb20d4-be26-57dd-a1e9-6aa834cf74b2","title":"We
+        Don''t Have To Take Our Clothes Off","artistName":"Jermaine Stewart","isrc":"GBAAA8500015","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAAA8500015.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:50:30Z","track":{"id":"a415bcaf-54c1-50fc-916e-16d02cb54dd3","title":"Kon
+        Ik Nog Maar Even Bij Je Zijn","artistName":"Gordon","isrc":"NLA249600221","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLA249600221.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:45:06Z","track":{"id":"73b79840-78cd-5fe1-a1c9-7c1b5c2a3578","title":"Walking
+        In Memphis","artistName":"Marc Cohn","isrc":"USAT29900737","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAT29900737.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:42:36Z","track":{"id":"6629e9d9-1c4a-5e9c-87b0-847da046b202","title":"Love
+        Again","artistName":"Dua Lipa","isrc":"GBAHT1901302","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAHT1901302.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sun, 13 Nov 2022 14:29:05 GMT
 recorded_with: VCR 6.1.0
