@@ -7,12 +7,12 @@ class Spotify::Track < Spotify
 
   def initialize(args)
     super()
+    @search_artists = args[:artists]
+    @search_title = args[:title]
     @track = if args[:spotify_track_id]
                @spotify_track_id = args[:spotify_track_id]
                fetch_spotify_track
              else
-               @search_artists = args[:artists]
-               @search_title = args[:title]
                search_spotify_track
              end
     @artists = set_track_artists
@@ -23,7 +23,14 @@ class Spotify::Track < Spotify
   end
 
   def fetch_spotify_track
-    make_request(spotify_track_url)
+    result = make_request(spotify_track_url)
+    single_album_tracks = filter_single_and_album_tracks(result)
+    if single_album_tracks.present?
+      filtered_tracks = custom_album_rejector(single_album_tracks)
+      filtered_tracks.max_by { |track| track['popularity'] }
+    else
+      search_spotify_track
+    end
   end
 
   def search_spotify_track
@@ -32,7 +39,7 @@ class Spotify::Track < Spotify
 
     single_album_tracks = filter_single_and_album_tracks(spotify_search_results)
     filtered_tracks = custom_album_rejector(single_album_tracks)
-    @track = filtered_tracks.max_by { |track| track['popularity'] }
+    filtered_tracks.max_by { |track| track['popularity'] }
   end
 
   private
@@ -72,7 +79,13 @@ class Spotify::Track < Spotify
 
   # filter methods
   def filter_single_and_album_tracks(spotify_tracks_search)
-    spotify_tracks_search['tracks']['items'].reject { |item| item['album']['album_type'] == 'compilation' }
+    tracks = if spotify_tracks_search.dig('tracks', 'items').present?
+               spotify_tracks_search['tracks']['items']
+             elsif spotify_tracks_search.dig('album', 'album_type').present?
+               spotify_tracks_search
+             end
+
+    Array.wrap(tracks)&.reject { |item| item['album']['album_type'] == 'compilation' }
   end
 
   def custom_album_rejector(single_album_tracks)
