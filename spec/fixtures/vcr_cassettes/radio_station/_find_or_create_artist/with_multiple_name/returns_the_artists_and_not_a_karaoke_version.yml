@@ -16,7 +16,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQC-ICyWv30H44iuGe03AIWYOQ9uq3mEnuM-ofA6_aTOn8vAMb3bAq87-9AinPf0UQaN3ZFaV2pyw9ORVbu3PD3VJN01d_BA-q8STtBScaB3J70KUCg
+      - Bearer BQAVevLUcIsEBF094_Odnb-4UZVxCGPmTse4lCR50lsQ4o7moyBEGfRMLTE7qz6CP9rPeYC_NvQc8vIbbzUboQPQnARKqKdhQ6lGoRNrdlR3lfUbHgU
       Content-Type:
       - application/json
   response:
@@ -46,7 +46,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 13 Nov 2022 14:29:05 GMT
+      - Sun, 27 Nov 2022 13:19:55 GMT
       Server:
       - envoy
       Via:
@@ -246,7 +246,7 @@ http_interactions:
               "id" : "3L3s97R0738xGQ2VqB12qo",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - Alle Farben Remix",
-              "popularity" : 48,
+              "popularity" : 49,
               "preview_url" : "https://p.scdn.co/mp3-preview/67af062cee705269517043b7b6dea67ded695722?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 1,
               "type" : "track",
@@ -1024,7 +1024,7 @@ http_interactions:
               "id" : "05mXpytcquS3WoRi3cfl8d",
               "is_local" : false,
               "name" : "Drown (feat. Clinton Kane) - Matroda Remix",
-              "popularity" : 18,
+              "popularity" : 19,
               "preview_url" : "https://p.scdn.co/mp3-preview/edd04be84d9b71ef89eab394c6d72e3daadb7dd6?cid=ff70df650ee14a1fad4aed3b533e8ea4",
               "track_number" : 2,
               "type" : "track",
@@ -1037,7 +1037,7 @@ http_interactions:
             "total" : 10
           }
         }
-  recorded_at: Sun, 13 Nov 2022 14:29:05 GMT
+  recorded_at: Sun, 27 Nov 2022 13:19:55 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ
@@ -1054,7 +1054,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQC-ICyWv30H44iuGe03AIWYOQ9uq3mEnuM-ofA6_aTOn8vAMb3bAq87-9AinPf0UQaN3ZFaV2pyw9ORVbu3PD3VJN01d_BA-q8STtBScaB3J70KUCg
+      - Bearer BQAVevLUcIsEBF094_Odnb-4UZVxCGPmTse4lCR50lsQ4o7moyBEGfRMLTE7qz6CP9rPeYC_NvQc8vIbbzUboQPQnARKqKdhQ6lGoRNrdlR3lfUbHgU
       Content-Type:
       - application/json
   response:
@@ -1065,7 +1065,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=85425
+      - public, max-age=80156
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1084,7 +1084,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 13 Nov 2022 14:29:05 GMT
+      - Sun, 27 Nov 2022 13:19:55 GMT
       Server:
       - envoy
       Via:
@@ -1102,7 +1102,7 @@ http_interactions:
           },
           "followers" : {
             "href" : null,
-            "total" : 15645795
+            "total" : 15654152
           },
           "genres" : [ "dance pop", "dutch edm", "edm", "electro house", "pop", "pop dance", "progressive house", "tropical house" ],
           "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
@@ -1125,7 +1125,7 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
         }
-  recorded_at: Sun, 13 Nov 2022 14:29:05 GMT
+  recorded_at: Sun, 27 Nov 2022 13:19:55 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P
@@ -1142,7 +1142,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQC-ICyWv30H44iuGe03AIWYOQ9uq3mEnuM-ofA6_aTOn8vAMb3bAq87-9AinPf0UQaN3ZFaV2pyw9ORVbu3PD3VJN01d_BA-q8STtBScaB3J70KUCg
+      - Bearer BQAVevLUcIsEBF094_Odnb-4UZVxCGPmTse4lCR50lsQ4o7moyBEGfRMLTE7qz6CP9rPeYC_NvQc8vIbbzUboQPQnARKqKdhQ6lGoRNrdlR3lfUbHgU
       Content-Type:
       - application/json
   response:
@@ -1153,7 +1153,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=76753
+      - public, max-age=81515
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1172,7 +1172,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 13 Nov 2022 14:29:05 GMT
+      - Sun, 27 Nov 2022 13:19:55 GMT
       Server:
       - envoy
       Via:
@@ -1190,9 +1190,9 @@ http_interactions:
           },
           "followers" : {
             "href" : null,
-            "total" : 777297
+            "total" : 780529
           },
-          "genres" : [ "alt z", "gen z singer-songwriter", "pop", "uk pop" ],
+          "genres" : [ "alt z", "gen z singer-songwriter", "pop" ],
           "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
           "id" : "7okSU80WTrn4LXlyXYbX3P",
           "images" : [ {
@@ -1209,9 +1209,9 @@ http_interactions:
             "width" : 160
           } ],
           "name" : "Clinton Kane",
-          "popularity" : 67,
+          "popularity" : 68,
           "type" : "artist",
           "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
         }
-  recorded_at: Sun, 13 Nov 2022 14:29:05 GMT
+  recorded_at: Sun, 27 Nov 2022 13:19:55 GMT
 recorded_with: VCR 6.1.0
