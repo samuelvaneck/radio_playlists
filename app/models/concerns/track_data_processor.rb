@@ -82,7 +82,7 @@ module TrackDataProcessor
 
   def spotify_service_args(artist_name, title, spotify_url = nil)
     args = { artists: artist_name, title: }
-    args.merge!({ spotify_track_id: spotify_url.split('/').last }) if spotify_url
+    args[:spotify_track_id] = spotify_url.split('/').last if spotify_url
     args
   end
 end
