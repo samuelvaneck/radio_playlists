@@ -31,35 +31,34 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 13 Nov 2022 14:29:05 GMT
+      - Sun, 27 Nov 2022 13:19:42 GMT
       X-Amzn-Requestid:
-      - 9fd64c81-c6e0-46c3-90c0-e1b81698b466
+      - 3c71424b-3f2f-487a-b37e-91f081784589
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 baaf38f0a0d54e4834bf934fa5189cea.cloudfront.net (CloudFront), 1.1 cca9137c259ad738f790039a45561cee.cloudfront.net
+      - 1.1 32c8da10203574baccb74b8f771a7ffa.cloudfront.net (CloudFront), 1.1 1b0117d337408839a32bf2a49b55b3f0.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
-      - AMS1-C1
+      - AMS54-C1
       - FRA50-C1
       Vary:
       - Accept-Encoding
       X-Cache:
       - Miss from cloudfront
       X-Amz-Cf-Id:
-      - Z7mxy0d4NsCF383bSEmR5mzLEZtLdr_Ly8zGW6-qdr8j1hKX6dy-rg==
+      - wlI8D1NA1d6f86cvXr2h6BuF0Ap2wsoWT0SGhPr1obTq2QFubTHWtA==
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Radio 10","playouts":[{"broadcastDate":"2022-11-13T14:26:29Z","track":{"id":"43914e0c-c715-582b-ba02-e05b40eb390c","title":"When
-        Love Takes Over","artistName":"David Guetta & Kelly Rowland","isrc":"FRZID0900200","images":[{"type":"image","uri":"https://img.talparad.io/tracks/FRZID0900200.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:22:37Z","track":{"id":"9768385a-08a9-521a-b0e0-212ab7725c78","title":"You
-        Got It","artistName":"Roy Orbison","isrc":"USLIC0701008","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USLIC0701008.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:19:50Z","track":{"id":"5fa6cf73-d2e5-5205-bf76-f473bceef67b","title":"Last
-        Train Home","artistName":"John Mayer","isrc":"USSM12101687","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM12101687.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:16:04Z","track":{"id":"23f5a976-d53a-5acd-a618-11871a7b0747","title":"Mamma
-        Mia","artistName":"ABBA","isrc":"SEAYD7590001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/SEAYD7590001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:12:16Z","track":{"id":"3a56da9f-badd-55d8-aef9-8237ed32b7e9","title":"Signs","artistName":"Snoop
-        Dogg & Justin Timberlake","isrc":"USMC10400893","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USMC10400893.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:07:49Z","track":{"id":"edfac7f0-d463-5c97-a75f-428286b1ba08","title":"I
-        Don''t Want To Miss A Thing","artistName":"Aerosmith","isrc":"USSM19801054","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:03:53Z","track":{"id":"88fb20d4-be26-57dd-a1e9-6aa834cf74b2","title":"We
-        Don''t Have To Take Our Clothes Off","artistName":"Jermaine Stewart","isrc":"GBAAA8500015","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAAA8500015.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:50:30Z","track":{"id":"a415bcaf-54c1-50fc-916e-16d02cb54dd3","title":"Kon
-        Ik Nog Maar Even Bij Je Zijn","artistName":"Gordon","isrc":"NLA249600221","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLA249600221.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:45:06Z","track":{"id":"73b79840-78cd-5fe1-a1c9-7c1b5c2a3578","title":"Walking
-        In Memphis","artistName":"Marc Cohn","isrc":"USAT29900737","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAT29900737.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:42:36Z","track":{"id":"6629e9d9-1c4a-5e9c-87b0-847da046b202","title":"Love
-        Again","artistName":"Dua Lipa","isrc":"GBAHT1901302","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAHT1901302.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sun, 13 Nov 2022 14:29:05 GMT
+      string: '{"data":{"getStation":{"title":"Radio 10","playouts":[{"broadcastDate":"2022-11-27T13:17:52Z","track":{"id":"b429dbe0-a4d5-53d6-99df-c0ef856f5bb7","title":"I''m
+        A Believer","artistName":"Monkees","isrc":"USRH10651278","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USRH10651278.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:14:44Z","track":{"id":"bc2be4ef-c466-5d1e-8e2c-8538f5d2f4f1","title":"Walk
+        On Water","artistName":"Milk Inc.","isrc":"BEC010000054","images":[{"type":"image","uri":"https://img.talparad.io/tracks/BEC010000054.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:08:06Z","track":{"id":"06b10d7a-01e0-55de-91e3-2ccd86f27ca5","title":"A
+        Groovy Kind Of Love","artistName":"Phil Collins","isrc":"USWI19600242","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USWI19600242.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:04:18Z","track":{"id":"6bc72e0d-4d84-5822-90b2-913e853abed9","title":"Mmmbop","artistName":"Hanson","isrc":"USUM70609905","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:51:22Z","track":{"id":"ad70b2ac-72c9-563e-8f7c-7247df31b918","title":"My
+        Life Would Suck Without You","artistName":"Kelly Clarkson","isrc":"GBCTA0800348","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBCTA0800348.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:46:32Z","track":{"id":"4994a356-251d-5ff9-bdd6-bf6b3b646994","title":"I
+        Say A Little Prayer","artistName":"Aretha Franklin","isrc":"DELJ81808927","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DELJ81808927.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:43:55Z","track":{"id":"c6e6db8f-fff0-5513-b641-1144c2f7ec5b","title":"As
+        It Was","artistName":"Harry Styles","isrc":"USSM12200612","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM12200612.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:37:35Z","track":{"id":"896e7798-0a0d-582e-b1e3-5ad5b9bd4029","title":"Two
+        Can Play That Game","artistName":"Bobby Brown","isrc":"USMC19938596","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USMC19938596.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:32:58Z","track":{"id":"8e48c270-ddce-55a6-b2dd-01af40837a52","title":"We
+        Built This City","artistName":"Starship","isrc":"USI4R1052704","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USI4R1052704.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:19:38Z","track":{"id":"38067bac-1fb5-5417-9352-c934d4a1c6a1","title":"Clap
+        Your Hands","artistName":"Sia","isrc":"GBPNH1000002","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBPNH1000002.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sun, 27 Nov 2022 13:19:42 GMT
 recorded_with: VCR 6.1.0

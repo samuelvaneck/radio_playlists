@@ -31,37 +31,34 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 13 Nov 2022 14:29:02 GMT
+      - Sun, 27 Nov 2022 13:19:55 GMT
       X-Amzn-Requestid:
-      - 5eb04e17-1618-428e-9ad8-456905acbd08
+      - ea8bb28d-96f6-45a4-8c40-2fa2dd6162ee
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 32e4d419823b7f8df8417a8b18c9602c.cloudfront.net (CloudFront), 1.1 8e380527758859f940c2c93ed9fbd5d8.cloudfront.net
+      - 1.1 b83a899c16a2f53127e152fe5fc783a4.cloudfront.net (CloudFront), 1.1 b911c551065b8f78ad33b4c4564141be.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
-      - AMS1-C1
+      - AMS54-C1
       - FRA50-C1
       Vary:
       - Accept-Encoding
       X-Cache:
-      - Hit from cloudfront
+      - Miss from cloudfront
       X-Amz-Cf-Id:
-      - 9_uZUjn8trQWCxh6TdazAjKHaisQzheIu0P0oyBC-GsSDSZBSdTSrg==
-      Age:
-      - '8'
+      - N0Gb1aiIai1yoyo5YViRCp1dVMprEHDy-TfYMC9Htbun24QIaK2KXA==
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Radio Veronica","playouts":[{"broadcastDate":"2022-11-13T14:23:53Z","track":{"id":"3c16d0b4-acb5-58f1-bf8d-82170eedc819","title":"Forbidden
-        Colours","artistName":"David Sylvian & Ryuichi Sakamoto","isrc":"FRZ810403406","images":[{"type":"image","uri":"https://img.talparad.io/tracks/FRZ810403406.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:23:15Z","track":{"id":"ebb16ee4-3040-5d2f-9377-00008109fa8f","title":"Sweet
-        Lui Louise","artistName":"Ironhorse","isrc":"GBLFP1588892","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:19:39Z","track":{"id":"2bffbae5-5287-5753-8bdb-8388c3dc20d7","title":"You
-        Ain''t Seen Nothing Yet","artistName":"Bachman Turner Overdrive","isrc":"DEUE21784131","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEUE21784131.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:16:55Z","track":{"id":"55fac1b8-7f1c-592b-bfb0-0cd0472c17d5","title":"Heaven
-        (Dance Version)","artistName":"Dj Sammy & Yanou & Do","isrc":"NLC281110286","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:13:02Z","track":{"id":"ab46dc3d-4ffd-56cb-bd8f-8114fec38bf9","title":"Heaven","artistName":"Bryan
-        Adams","isrc":"USAM18490004","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAM18490004.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:10:52Z","track":{"id":"d0858d6d-6c9c-57bf-bbef-1a14dacd5e89","title":"Blitzkrieg
-        Bop","artistName":"Ramones","isrc":"USWB19900895","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T14:06:49Z","track":{"id":"c9913e9c-aede-58aa-a28a-9218243c4442","title":"Human","artistName":"Rag
-        ''n'' Bone Man","isrc":"GBARL1600665","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBARL1600665.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:57:44Z","track":{"id":"b0187356-cdc2-521e-b692-d8efff220bbb","title":"Zeg
-        Me Dat Het Niet Zo Is","artistName":"Frank Boeijen Groep","isrc":"NLA209700121","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLA209700121.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:54:04Z","track":{"id":"82116433-8573-5bec-b4b9-88352dbeeada","title":"Kronenburg
-        Park","artistName":"Frank Boeijen Groep","isrc":"NLA200200408","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLA200200408.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-13T13:49:23Z","track":{"id":"1838fa2e-a2fe-5eea-9576-11478513608d","title":"Red
-        Right Hand","artistName":"Nick Cave & The Bad Seeds","isrc":"GBAJH9700428","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAJH9700428.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sun, 13 Nov 2022 14:29:10 GMT
+      string: '{"data":{"getStation":{"title":"Radio Veronica","playouts":[{"broadcastDate":"2022-11-27T13:16:33Z","track":{"id":"f44d55f3-4a50-5417-8bed-9669387d9f00","title":"Seeing
+        Straight","artistName":"Mitch Santiago","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:11:09Z","track":{"id":"09778504-1641-54c6-9ecb-0c17e9f1d10b","title":"My
+        Lovin'' (You''re Never Gonna Get It)","artistName":"En Vogue","isrc":"USEW19200001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USEW19200001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:07:02Z","track":{"id":"aea1c7b7-809f-5a13-a137-eb3defeffcab","title":"All
+        Right Now","artistName":"Free","isrc":"GBAAN7000064","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAAN7000064.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:52:41Z","track":{"id":"cdf51d6f-4d87-5999-8ff2-4cdffb03e6d9","title":"Sing","artistName":"Travis","isrc":"GBBPF0100539","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBBPF0100539.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:48:49Z","track":{"id":"19f9a53a-b663-5e24-881f-a1793436626a","title":"Sir
+        Duke","artistName":"Stevie Wonder","isrc":"USMO17600526","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USMO17600526.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:42:57Z","track":{"id":"141cfd34-8137-5b27-8401-5a79f74d253f","title":"Music","artistName":"John
+        Miles","isrc":"GBF077620010","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBF077620010.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:36:14Z","track":{"id":"81f32022-40a9-54e5-aa15-ee5148891e75","title":"Butterfly","artistName":"Jason
+        Mraz","isrc":"USEE10800807","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USEE10800807.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:32:27Z","track":{"id":"a53ee65e-c2d5-5f51-87d0-bc425cc8f7f3","title":"Livin''
+        On A Prayer","artistName":"Bon Jovi","isrc":"USPR39402218","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USPR39402218.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:24:04Z","track":{"id":"6c5375fb-736d-5aca-835e-0fe2cb3fe8a8","title":"Regulate","artistName":"Warren
+        G & Nate Dogg & Michael Mcdonald","isrc":"USPR39401366","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USPR39401366.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:20:52Z","track":{"id":"c788c8a4-4586-5e56-b193-10baeedf5952","title":"Why
+        Can''t I Be You","artistName":"Cure","isrc":"GBALB8700001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBALB8700001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sun, 27 Nov 2022 13:19:55 GMT
 recorded_with: VCR 6.1.0

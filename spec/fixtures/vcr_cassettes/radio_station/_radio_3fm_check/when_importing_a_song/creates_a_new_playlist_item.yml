@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx/1.23.2
       Date:
-      - Sun, 13 Nov 2022 14:29:15 GMT
+      - Sun, 27 Nov 2022 13:19:49 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -33,7 +33,7 @@ http_interactions:
       Cache-Control:
       - public, s-maxage=30, max-age=5
       Etag:
-      - '"5261-/r7SHrLKVSv/RVw5eLhJXriNJzo"'
+      - '"5294-zcWVIvLyRA1LtCMDfr7u6Wekgn8"'
       Vary:
       - Accept-Encoding
       Access-Control-Allow-Methods:
@@ -42,57 +42,12 @@ http_interactions:
       - Origin,Content-Type,Accept
     body:
       encoding: ASCII-8BIT
-      string: '{"success":true,"message":null,"messages":null,"data":[{"startdatetime":"2022-11-13T15:24:31","enddatetime":"2022-11-13T15:28:43","title":"Dreams","artist":"Fleetwood
-        Mac","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/a01bcb4a-fdc1-4f31-9c39-43d213ade84b.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/a01bcb4a-fdc1-4f31-9c39-43d213ade84b.jpg","spotify_url":"https://open.spotify.com/track/0ofHAoxe9vBkTCp2UQIavz"},{"startdatetime":"2022-11-13T15:20:07","enddatetime":"2022-11-13T15:23:38","title":"Higher
-        Power","artist":"Coldplay","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273b1092c02972b0bfd91703f75","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273b1092c02972b0bfd91703f75","spotify_url":"https://open.spotify.com/track/0939D7aT18uBDS2MTjWzct"},{"startdatetime":"2022-11-13T15:16:34","enddatetime":"2022-11-13T15:20:14","title":"Scared
-        to Be Lonely","artist":"Martin Garrix/Dua Lipa","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b27364f8a309aa3c0a66a31fc374","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b27364f8a309aa3c0a66a31fc374","spotify_url":"https://open.spotify.com/track/3ebXMykcMXOcLeJ9xZ17XH"},{"startdatetime":"2022-11-13T15:12:01","enddatetime":"2022-11-13T15:16:07","title":"Money
-        (Hope Ain''t Gone)","artist":"Stone","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273ff93b673aa4ffa2e5709ca94","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273ff93b673aa4ffa2e5709ca94","spotify_url":"https://open.spotify.com/track/2gZBIM1qpCq5XlO0X3tjIs"},{"startdatetime":"2022-11-13T15:08:48","enddatetime":"2022-11-13T15:11:37","title":"Hey
-        Look Ma, I Made It","artist":"Panic! At The Disco","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/4be63024-9dda-416a-8b52-1e44df403b55.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/4be63024-9dda-416a-8b52-1e44df403b55.jpg","spotify_url":"https://open.spotify.com/track/22oEJW6r2rMb9z4IntfyEa"},{"startdatetime":"2022-11-13T15:05:45","enddatetime":"2022-11-13T15:08:58","title":"Electric
-        Life","artist":"Duncan Laurence","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273d8ddeb06a5a6284c52aab434","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273d8ddeb06a5a6284c52aab434","spotify_url":"https://open.spotify.com/track/0iLqpm5c4dGlwth5LYq2tj"},{"startdatetime":"2022-11-13T14:50:02","enddatetime":"2022-11-13T14:53:35","title":"PUMP
-        IT","artist":"The Black Eyed Peas","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/0b032a82-936a-40d4-99e8-dcd7e03c7560.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/0b032a82-936a-40d4-99e8-dcd7e03c7560.jpg","spotify_url":"https://open.spotify.com/track/4haybUxXD8OxbNg5ZjA4Ek"},{"startdatetime":"2022-11-13T14:45:48","enddatetime":"2022-11-13T14:49:37","title":"Life''s
-        Gonna Kill You (If You Let It)","artist":"Man-Made Sunshine","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/s3-npo3fm/6jbr5lk9pgj7-2022-09-28-11-32-22-debuutsingle-man-made-sunshine-lifes-gonna-kill-you-if-you-let-it.png","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/s3-npo3fm/6jbr5lk9pgj7-2022-09-28-11-32-22-debuutsingle-man-made-sunshine-lifes-gonna-kill-you-if-you-let-it.png","spotify_url":"https://open.spotify.com/track/5BU3BEHViPFjJlOvqCm5VJ"},{"startdatetime":"2022-11-13T14:40:52","enddatetime":"2022-11-13T14:43:59","title":"2
-        Be Loved (Am I Ready)","artist":"Lizzo","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/s3-npo3fm/1d8e3cs1gqbw-ab67616d0000b273fe3b1b9cb7183a94e1aafd43.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/s3-npo3fm/1d8e3cs1gqbw-ab67616d0000b273fe3b1b9cb7183a94e1aafd43.jpg","spotify_url":"https://open.spotify.com/track/2rmwqU7yzTvzkiaRV53DpT"},{"startdatetime":"2022-11-13T14:38:19","enddatetime":"2022-11-13T14:40:50","title":"EDGING","artist":"Blink
-        182","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/s3-npo3fm/10x3hawimobk-ab67616d0000b273992db40efc4367bebea586f7.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/s3-npo3fm/10x3hawimobk-ab67616d0000b273992db40efc4367bebea586f7.jpg","spotify_url":"https://open.spotify.com/track/2wVWGFVkL5I3JGsoWBx2AZ"},{"startdatetime":"2022-11-13T14:34:16","enddatetime":"2022-11-13T14:37:50","title":"Happier","artist":"Marshmello","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/1ed7b69a-f6ae-4f91-8c4c-0583903a3a29.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/1ed7b69a-f6ae-4f91-8c4c-0583903a3a29.jpg","spotify_url":"https://open.spotify.com/track/2dpaYNEQHiRxtZbfNsse99"},{"startdatetime":"2022-11-13T14:31:44","enddatetime":"2022-11-13T14:34:13","title":"Lonely","artist":"Justin
-        Bieber & Benny Blanco","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b27383b22beb73e2014b20159685","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b27383b22beb73e2014b20159685","spotify_url":"https://open.spotify.com/track/4y4spB9m0Q6026KfkAvy9Q"},{"startdatetime":"2022-11-13T14:27:41","enddatetime":"2022-11-13T14:31:13","title":"THIS
-        IS THE MOMENT","artist":"SON MIEUX","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2022-11-13T14:23:27","enddatetime":"2022-11-13T14:27:36","title":"You
-        Oughta Know","artist":"Alanis Morissette","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273242e643ea07118ecf677a6ef","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273242e643ea07118ecf677a6ef","spotify_url":"https://open.spotify.com/track/3jS7bB0oXVOwGFZn3aE5NV"},{"startdatetime":"2022-11-13T14:17:02","enddatetime":"2022-11-13T14:19:38","title":"Unholy","artist":"Kim
-        Petras/Sam Smith","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/s3-npo3fm/6ad6pdbsk63j-ab67616d0000b273a935e4689f15953311772cc4.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/s3-npo3fm/6ad6pdbsk63j-ab67616d0000b273a935e4689f15953311772cc4.jpg"},{"startdatetime":"2022-11-13T14:13:59","enddatetime":"2022-11-13T14:17:12","title":"Music
-        For a Sushi Restaurant","artist":"Harry Styles","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2732e8ed79e177ff6011076f5f0","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2732e8ed79e177ff6011076f5f0","spotify_url":"https://open.spotify.com/track/5LYMamLv12UPbemOaTPyeV"},{"startdatetime":"2022-11-13T14:09:15","enddatetime":"2022-11-13T14:12:44","title":"Supermassive
-        Black Hole","artist":"Muse","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b27328933b808bfb4cbbd0385400","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b27328933b808bfb4cbbd0385400","spotify_url":"https://open.spotify.com/track/3lPr8ghNDBLc2uZovNyLs9"},{"startdatetime":"2022-11-13T14:06:23","enddatetime":"2022-11-13T14:09:12","title":"Run","artist":"One
-        Republic","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273e3059a0e60511ca17b34b516","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273e3059a0e60511ca17b34b516","spotify_url":"https://open.spotify.com/track/7qSfU3jsym0bwL9ceXn8Ip"},{"startdatetime":"2022-11-13T13:49:49","enddatetime":"2022-11-13T13:53:33","title":"Oh
-        My God","artist":"Adele","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273c6b577e4c4a6d326354a89f7","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273c6b577e4c4a6d326354a89f7","spotify_url":"https://open.spotify.com/track/3Kkjo3cT83cw09VJyrLNwX"},{"startdatetime":"2022-11-13T13:45:36","enddatetime":"2022-11-13T13:49:54","title":"Plush","artist":"Stone
-        Temple Pilots","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/b55f5501-9b79-45a3-8327-c0bfed068154.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/b55f5501-9b79-45a3-8327-c0bfed068154.jpg","spotify_url":"https://open.spotify.com/track/3jJZVeExYzVYiV6Y9Fl3DX"},{"startdatetime":"2022-11-13T13:40:42","enddatetime":"2022-11-13T13:44:12","title":"Star
-        Walkin''","artist":"Lil Nas X","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/s3-npo3fm/osi9g3tqz01-lil-nas-x-star-walkin-1663861312.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/s3-npo3fm/osi9g3tqz01-lil-nas-x-star-walkin-1663861312.jpg","spotify_url":"https://open.spotify.com/track/38T0tPVZHcPZyhtOcCP7pF"},{"startdatetime":"2022-11-13T13:37:39","enddatetime":"2022-11-13T13:40:44","title":"Is
-        It Any Wonder","artist":"Keane","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2732ebd3c8519497dc562f8f9aa","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2732ebd3c8519497dc562f8f9aa","spotify_url":"https://open.spotify.com/track/5xT8JXJSyHYNfC11OFqzFL"},{"startdatetime":"2022-11-13T13:26:20","enddatetime":"2022-11-13T13:29:16","title":"good
-        4 u","artist":"Olivia Rodrigo","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/14e962aa-fe13-48cb-9aee-0f11608f4803.png","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/14e962aa-fe13-48cb-9aee-0f11608f4803.png","spotify_url":"https://open.spotify.com/track/6PERP62TejQjgHu81OHxgM"},{"startdatetime":"2022-11-13T13:20:15","enddatetime":"2022-11-13T13:25:21","title":"All
-        I Want","artist":"Kodaline","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/55b4e7c3-5e33-4dba-b663-2790938f102d.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/55b4e7c3-5e33-4dba-b663-2790938f102d.jpg","spotify_url":"https://open.spotify.com/track/0NlGoUyOJSuSHmngoibVAs"},{"startdatetime":"2022-11-13T13:17:02","enddatetime":"2022-11-13T13:20:06","title":"Electric","artist":"Go
-        Back To The Zoo","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/1d662dc1-65ff-49d8-b7dc-af36f3c7876d.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/1d662dc1-65ff-49d8-b7dc-af36f3c7876d.jpg","spotify_url":"https://open.spotify.com/track/2t34wdrIKeTM4curqxZU78"},{"startdatetime":"2022-11-13T13:14:00","enddatetime":"2022-11-13T13:17:04","title":"Million
-        Dollar Baby","artist":"Ava Max","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2737e894b587f5c9eda29d3f5f7","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2737e894b587f5c9eda29d3f5f7","spotify_url":"https://open.spotify.com/track/3pPN20syOYvbUuEiBpbenI"},{"startdatetime":"2022-11-13T13:08:05","enddatetime":"2022-11-13T13:11:40","title":"Oceans
-        of Darkness","artist":"War On Drugs","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/s3-npo3fm/3j2smkkiff3y-ab67616d0000b27399fee1affa82e99ec900efb3.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/s3-npo3fm/3j2smkkiff3y-ab67616d0000b27399fee1affa82e99ec900efb3.jpg","spotify_url":"https://open.spotify.com/track/5vORDyXwEqms2j4jQ8Qx17"},{"startdatetime":"2022-11-13T13:05:12","enddatetime":"2022-11-13T13:08:09","title":"3
-        Nights","artist":"Dominic Fike","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2734a42166d927b3acce345c5c0","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2734a42166d927b3acce345c5c0","spotify_url":"https://open.spotify.com/track/1tNJrcVe6gwLEiZCtprs1u"},{"startdatetime":"2022-11-13T12:51:21","enddatetime":"2022-11-13T12:55:01","title":"Sugar","artist":"Editors","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/3ff30d37-df65-4743-97c9-4e097416cc14.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/3ff30d37-df65-4743-97c9-4e097416cc14.jpg","spotify_url":"https://open.spotify.com/track/2az3iTNyJ1M1JJnsU2Gq6H"},{"startdatetime":"2022-11-13T12:48:08","enddatetime":"2022-11-13T12:50:41","title":"All
-        These Nights","artist":"Tom Grennan","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273834191af28e34c0fe7cb678b","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273834191af28e34c0fe7cb678b","spotify_url":"https://open.spotify.com/track/1VeAXUa20YkzfEi1Zk2y0o"},{"startdatetime":"2022-11-13T12:44:55","enddatetime":"2022-11-13T12:48:11","title":"Shut
-        Your Eyes","artist":"Snow Patrol","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/886dcb47-85ff-46e7-b1ea-3dc15df38be9.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/886dcb47-85ff-46e7-b1ea-3dc15df38be9.jpg","spotify_url":"https://open.spotify.com/track/36gFBZrhG5t6ow3NctrGXg"},{"startdatetime":"2022-11-13T12:39:29","enddatetime":"2022-11-13T12:42:52","title":"Warrior","artist":"Oscar
-        And The Wolf","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273981da8c453e7b26e3b559c7b","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273981da8c453e7b26e3b559c7b","spotify_url":"https://open.spotify.com/track/7vwTsX8UY5QZmPiQUmWkaL"},{"startdatetime":"2022-11-13T12:36:47","enddatetime":"2022-11-13T12:39:33","title":"Paradise","artist":"Meduza
-        Ft.Dermot Kennedy","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/b14e51ae-5178-4009-9772-37ca3289989b.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/b14e51ae-5178-4009-9772-37ca3289989b.jpg","spotify_url":"https://open.spotify.com/track/6ft4hAq6yde8jPZY2i5zLr"},{"startdatetime":"2022-11-13T12:30:21","enddatetime":"2022-11-13T12:32:56","title":"Ho
-        Hey","artist":"The Lumineers","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b27315784f5212050cf2e67f1935","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b27315784f5212050cf2e67f1935","spotify_url":"https://open.spotify.com/track/1K3LRUEcUz5FMtPYyg0F45"},{"startdatetime":"2022-11-13T12:26:48","enddatetime":"2022-11-13T12:30:17","title":"Tired","artist":"Banji","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/s3-npo3fm/6jb0kj1f6syq-slm-146088.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/s3-npo3fm/6jb0kj1f6syq-slm-146088.jpg","spotify_url":"https://open.spotify.com/track/4ed473NRwMIfcEKyzhQJwe"},{"startdatetime":"2022-11-13T12:22:25","enddatetime":"2022-11-13T12:25:39","title":"MAGIC","artist":"B.o.B.
-        ft. Rivers Cuomo","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/5675aa50-c4ce-4987-a93c-f8ca58d7fbec.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/5675aa50-c4ce-4987-a93c-f8ca58d7fbec.jpg"},{"startdatetime":"2022-11-13T12:18:32","enddatetime":"2022-11-13T12:22:29","title":"Creep","artist":"Radiohead","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/c7c3a8ad-cf01-4d0d-b444-ae110567eef2.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/c7c3a8ad-cf01-4d0d-b444-ae110567eef2.jpg","spotify_url":"https://open.spotify.com/track/70LcF31zb1H0PyJoS1Sx1r"},{"startdatetime":"2022-11-13T12:15:39","enddatetime":"2022-11-13T12:18:34","title":"Hungry
-        (For Love)","artist":"Lf System","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273067b744b2f4cf64c55a501ef","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273067b744b2f4cf64c55a501ef","spotify_url":"https://open.spotify.com/track/4Uz7te06snSlkmcIwwAvkw"},{"startdatetime":"2022-11-13T12:10:45","enddatetime":"2022-11-13T12:13:43","title":"SNAP","artist":"Rosa
-        Linn","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273a00491b5790cba0fb6534594","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273a00491b5790cba0fb6534594","spotify_url":"https://open.spotify.com/track/0QPRDC97rIQB3Jh3hrVJoH"},{"startdatetime":"2022-11-13T12:07:32","enddatetime":"2022-11-13T12:10:54","title":"Done
-        With It","artist":"Kensington","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/817f94b2-120c-4c2a-8a3f-e2a6f12ca377.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/817f94b2-120c-4c2a-8a3f-e2a6f12ca377.jpg","spotify_url":"https://open.spotify.com/track/33hDAIWk4wuIiI0FcGXN8G"},{"startdatetime":"2022-11-13T11:52:50","enddatetime":"2022-11-13T11:56:10","title":"Hall
-        Of Fame","artist":"The Script & will.i.am","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/860caf33-581c-459c-b684-11bd3596d156.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/860caf33-581c-459c-b684-11bd3596d156.jpg","spotify_url":"https://open.spotify.com/track/7wMq5n8mYSKlQIGECKUgTX"},{"startdatetime":"2022-11-13T11:49:07","enddatetime":"2022-11-13T11:52:34","title":"This
-        Is Why","artist":"Paramore","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b27394bd724b5ac47de78be093fd","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b27394bd724b5ac47de78be093fd","spotify_url":"https://open.spotify.com/track/7z84Fwf1R3Z2BwHCP620CI"},{"startdatetime":"2022-11-13T11:38:37","enddatetime":"2022-11-13T11:44:05","title":"Some
-        Might Say","artist":"Oasis","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2737a4c8c59851c88f6794c3cbf","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2737a4c8c59851c88f6794c3cbf","spotify_url":"https://open.spotify.com/track/1xxPQaR29dAf3yxaafByeD"},{"startdatetime":"2022-11-13T11:35:25","enddatetime":"2022-11-13T11:38:47","title":"Hold
-        Me Closer","artist":"Elton John & Britney Spears","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b2735d872e7b0c1ba964541f07e8","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b2735d872e7b0c1ba964541f07e8","spotify_url":"https://open.spotify.com/track/72yP0DUlWPyH8P7IoxskwN"},{"startdatetime":"2022-11-13T11:25:05","enddatetime":"2022-11-13T11:28:47","title":"Fuck
-        You","artist":"Cee Lo Green","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/521301f7-015f-4713-97e8-99f1fd937dcf.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/521301f7-015f-4713-97e8-99f1fd937dcf.jpg"},{"startdatetime":"2022-11-13T11:21:42","enddatetime":"2022-11-13T11:24:56","title":"Home","artist":"Edward
-        Sharpe & The Magnetic Zeros","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/7f9d583d-2184-4ce2-aa93-8e55b07adf45.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/7f9d583d-2184-4ce2-aa93-8e55b07adf45.jpg","spotify_url":"https://open.spotify.com/track/0cBPuDA3xUjR4Vh9o7CKy8"},{"startdatetime":"2022-11-13T11:17:18","enddatetime":"2022-11-13T11:21:52","title":"The
-        Loneliest Time","artist":"Carly Rae Jepsen/Rufus Wainwright","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273ec0a6fa2cffaa02a25c1edad","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273ec0a6fa2cffaa02a25c1edad","spotify_url":"https://open.spotify.com/track/1sV6bR42OhPi2PL7ZPHLNi"},{"startdatetime":"2022-11-13T11:10:52","enddatetime":"2022-11-13T11:14:29","title":"Walk
-        This Way","artist":"RUN DMC","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/129254d4-7d90-4c4d-9133-46e9f698e8eb.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/16890f1a-7efb-4acd-a0cc-0ef971c4ed00/129254d4-7d90-4c4d-9133-46e9f698e8eb.jpg"},{"startdatetime":"2022-11-13T11:06:59","enddatetime":"2022-11-13T11:10:38","title":"Break
-        My Heart","artist":"Dua Lipa","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273bd26ede1ae69327010d49946","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273bd26ede1ae69327010d49946","spotify_url":"https://open.spotify.com/track/017PF4Q3l4DBUiWoXk4OWT"},{"startdatetime":"2022-11-13T10:51:36","enddatetime":"2022-11-13T10:56:26","title":"Body
-        Paint","artist":"Arctic Monkeys","image_url_200x200":"https://broadcast-images.nporadio.nl/w_200,h_200/s3-npo3fm/6wmf0xgj8q4t-ab67616d00001e028187cf1b141898d7c7d04d1a.jpg","image_url_400x400":"https://broadcast-images.nporadio.nl/w_400,h_400/s3-npo3fm/6wmf0xgj8q4t-ab67616d00001e028187cf1b141898d7c7d04d1a.jpg","spotify_url":"https://open.spotify.com/track/11jRCxY01k9jvCdUru0EeP"}]}'
-  recorded_at: Sun, 13 Nov 2022 14:29:15 GMT
+      string: !binary |-
+        eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjpudWxsLCJtZXNzYWdlcyI6bnVsbCwiZGF0YSI6W3sic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTQ6MTk6MDgiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTQ6MjI6MzAiLCJ0aXRsZSI6IkhvbGQgTWUgQ2xvc2VyIiwiYXJ0aXN0IjoiRWx0b24gSm9obiAmIEJyaXRuZXkgU3BlYXJzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNWQ4NzJlN2IwYzFiYTk2NDU0MWYwN2U4IiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNWQ4NzJlN2IwYzFiYTk2NDU0MWYwN2U4Iiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNzJ5UDBEVWxXUHlIOFA3SW94c2t3TiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTQ6MTU6MjUiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTQ6MTk6MjAiLCJ0aXRsZSI6IldpbGQgR3JleSBPY2VhbiIsImFydGlzdCI6IlNhbSBGZW5kZXIiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzNjMzQzNWMzMjA4ZTUwYjhiY2M0YzhmMWUiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzNjMzQzNWMzMjA4ZTUwYjhiY2M0YzhmMWUiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8zTmhFSHh6ZkxFenZsWVBLOWhnbVBSIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxNDoxMDozMSIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxNDoxMzo0OCIsInRpdGxlIjoiU29tZWJvZHkgVG9sZCBNZSIsImFydGlzdCI6IktpbGxlcnMiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FlMzNkODRhZDViMWI0N2Y1YzdiNzNjNjNjYTBmMWZkNGQxMzFiODQiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FlMzNkODRhZDViMWI0N2Y1YzdiNzNjNjNjYTBmMWZkNGQxMzFiODQiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay83SEdUa24yYVg3TU5kS3M3blYyeEJ0In0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxNDowNzoxOSIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxNDoxMDozMCIsInRpdGxlIjoiQWJvdXQgRGFtbiBUaW1lIiwiYXJ0aXN0IjoiTGl6em8iLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMzMmEwNmFhZGFkNTA3MGM4NWQ3NmZmZWYiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMzMmEwNmFhZGFkNTA3MGM4NWQ3NmZmZWYiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay80QTJDeUozVmhDeGlRQ1lYbFY2elJMIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMzo1MjozNiIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMzo1NTowMiIsInRpdGxlIjoiSSBBaW4ndCBXb3JyaWVkIiwiYXJ0aXN0IjoiT25lUmVwdWJsaWMiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzNlYzk2ZTAwNmI4YmRmYzU4MjYxMGVjMTMiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzNlYzk2ZTAwNmI4YmRmYzU4MjYxMGVjMTMiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay80aDl3aDdpT1owR0duOFFWcDRSQU9CIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMzo0ODoyMyIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMzo1Mjo0MyIsInRpdGxlIjoiSWYgWW91IFRvbGVyYXRlIFRoaXMgWW91ciBDaGlsZHJlbiBXaWxsIEJlIE5leHQiLCJhcnRpc3QiOiJNYW5pYyBTdHJlZXQgUHJlYWNoZXJzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwLzk4MzgzNDBmLThjYzMtNGQzMi1hMGM0LTYyNTJjYjM2YzhiMS5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvOTgzODM0MGYtOGNjMy00ZDMyLWEwYzQtNjI1MmNiMzZjOGIxLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzJWbXlMeTJIUWxrZXZaWWJvWEhNNU8ifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEzOjQ1OjIwIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEzOjQ4OjE4IiwidGl0bGUiOiJTTkFQIiwiYXJ0aXN0IjoiUm9zYSBMaW5uIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYTAwNDkxYjU3OTBjYmEwZmI2NTM0NTk0IiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYTAwNDkxYjU3OTBjYmEwZmI2NTM0NTk0Iiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMFFQUkRDOTdySVFCM0poM2hyVkpvSCJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTM6Mzc6MjQiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTM6NDE6MDciLCJ0aXRsZSI6IkxhZHkiLCJhcnRpc3QiOiJNb2RqbyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC9iNGM2YmVmYS1jYjgyLTRkMTYtOWU3YS1iNGNiMmRlNDZhODYuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwL2I0YzZiZWZhLWNiODItNGQxNi05ZTdhLWI0Y2IyZGU0NmE4Ni5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay80OVgwTEFsNmZhQXVzWXEwMlBSQVk2In0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMzozNDo1MiIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMzozNzoyMyIsInRpdGxlIjoiNSBWb29yIDEyIiwiYXJ0aXN0IjoiU25lbGxlIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvczMtbnBvM2ZtL213aW42d2V0N2cxLWVjM2ZkMDJmOTdkYzA5MWI0OWUyMmQ1NTRmODkwMGQyMTAwMHgxMDAweDEuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvczMtbnBvM2ZtL213aW42d2V0N2cxLWVjM2ZkMDJmOTdkYzA5MWI0OWUyMmQ1NTRmODkwMGQyMTAwMHgxMDAweDEuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svN3ZibGZubTJUa3RWWDlMSUs2S0IzZiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTM6MzA6MzgiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTM6MzM6MzgiLCJ0aXRsZSI6IlRyaXAgU3dpdGNoIiwiYXJ0aXN0IjoiTm90aGluZyBCdXQgVGhpZXZlcyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC84YjE0YjkzNC0xNmU2LTRlZWMtOWEwZC00NTk1YWQ3NjQ1MzQuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwLzhiMTRiOTM0LTE2ZTYtNGVlYy05YTBkLTQ1OTVhZDc2NDUzNC5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8xdXFVMG5xNkRDYkpNa3RTbFV2UVY4In0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMzoyNzoyNSIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMzozMDozMyIsInRpdGxlIjoiU29mdGx5IiwiYXJ0aXN0IjoiQXJsbyBQYXJrcyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzNmOTFlNjYxMTk4MTgyZWQ4ODg4N2U1YyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzNmOTFlNjYxMTk4MTgyZWQ4ODg4N2U1YyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzNmcGZRQzc3eDN1d0VTU0o2Vm1VS00ifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEzOjIxOjEwIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEzOjI1OjU4IiwidGl0bGUiOiJTcGVlZCBvZiBTb3VuZCIsImFydGlzdCI6IkNvbGRwbGF5IiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNGUwMzYyYzIyNTg2M2Y2YWUyNDMyNjUxIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNGUwMzYyYzIyNTg2M2Y2YWUyNDMyNjUxIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svN2NsVVZjU090a05XYTU4R3c1UmZENCJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTM6MTg6NDgiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTM6MjE6MTUiLCJ0aXRsZSI6IkJhZCBNZW1vcmllcyIsImFydGlzdCI6Ik1lZHV6YS9KYW1lcyBDYXJ0ZXIvRWxsZXkgRHVoZS9GYXN0Ym95IiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMjBhYmQxM2JmODFkOGVlNDA2ODI3YzM4IiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMjBhYmQxM2JmODFkOGVlNDA2ODI3YzM4Iiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svM3JiMHRNcTQyV2ZnZ3VjUG0wSEhrQSJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTM6MTA6NTIiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTM6MTQ6MjciLCJ0aXRsZSI6Ik9jZWFucyBvZiBEYXJrbmVzcyIsImFydGlzdCI6IldhciBPbiBEcnVncyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwL3MzLW5wbzNmbS8zajJzbWtraWZmM3ktYWI2NzYxNmQwMDAwYjI3Mzk5ZmVlMWFmZmE4MmU5OWVjOTAwZWZiMy5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC9zMy1ucG8zZm0vM2oyc21ra2lmZjN5LWFiNjc2MTZkMDAwMGIyNzM5OWZlZTFhZmZhODJlOTllYzkwMGVmYjMuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNXZPUkR5WHdFcW1zMmo0alE4UXgxNyJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTM6MDc6MTkiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTM6MTA6NTQiLCJ0aXRsZSI6IkkgTmVlZCBBIERvbGxhciIsImFydGlzdCI6IkFsb2UgQmxhY2MiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvZTEyNGM0MGItNDVhMC00Y2ZiLWE5YmYtYjFjZDYyYmY5NTI2LmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC9lMTI0YzQwYi00NWEwLTRjZmItYTliZi1iMWNkNjJiZjk1MjYuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svM29VcGhkWlZQeXJzcHJaOEZnYm1RUyJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTI6NTM6MTciLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTI6NTY6NTciLCJ0aXRsZSI6IkJpZyBKZXQgUGxhbmUiLCJhcnRpc3QiOiJBbmd1cyAmIEp1bGlhIFN0b25lIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwL2UwOGZlMTlmLWVkN2UtNDBiMy1iOWVmLTRiMGEzNjAyZWViNC5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvZTA4ZmUxOWYtZWQ3ZS00MGIzLWI5ZWYtNGIwYTM2MDJlZWI0LmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzdrN2xUNEs0aFRKYzNlRUFYN2V1dWsifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEyOjUwOjE1IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEyOjUyOjU5IiwidGl0bGUiOiJMYWRhZGEgKE1vbiBEZXJuaWVyIE1vdCkiLCJhcnRpc3QiOiJDbGF1ZGUiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMzM2EyNWUwNjJhOTVlNmEwNjI0M2VkMDQiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMzM2EyNWUwNjJhOTVlNmEwNjI0M2VkMDQiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8wTFZqQmRqWnZKeWt4ZWQ0MkV4VExmIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMjo0NzoxMCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMjo1MDoyNiIsInRpdGxlIjoiQ3JhY2sgVGhlIFNodXR0ZXJzIiwiYXJ0aXN0IjoiU25vdyBQYXRyb2wiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvYWQ5OGEyOWMtMWM2MC00YzJmLTkyMTgtZDU0ZDMzYTc1YjA3LmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC9hZDk4YTI5Yy0xYzYwLTRjMmYtOTIxOC1kNTRkMzNhNzViMDcuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMHVjeVhwUUc3eEw4aXBveVUwVHMzQSJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTI6NDI6MDYiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTI6NDY6MTgiLCJ0aXRsZSI6Ik1PTkVZIChIT1BFIEFJTidUIEdPTkUpIiwiYXJ0aXN0IjoiU1RPTkUiLCJpbWFnZV91cmxfMjAweDIwMCI6bnVsbCwiaW1hZ2VfdXJsXzQwMHg0MDAiOm51bGx9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTI6Mzg6NTMiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTI6NDI6MDkiLCJ0aXRsZSI6IkFuZ2VscyBMaWtlIFlvdSIsImFydGlzdCI6Ik1pbGV5IEN5cnVzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwLzM5NTBiM2VlLWUxNTQtNGNkZC04N2ZmLTllMTZkNmRkNTc3OC5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvMzk1MGIzZWUtZTE1NC00Y2RkLTg3ZmYtOWUxNmQ2ZGQ1Nzc4LmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzFkYURSSTlhaEJvbmJXRDhZY3hPSUIifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEyOjMzOjQ5IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEyOjM2OjU2IiwidGl0bGUiOiJUaHVuZGVyIiwiYXJ0aXN0IjoiSW1hZ2luZSBEcmFnb25zIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwLzE4NGQzODY1LTk2YjctNDllNi1hYjMzLTY3MWRkNjE4NDRhYy5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvMTg0ZDM4NjUtOTZiNy00OWU2LWFiMzMtNjcxZGQ2MTg0NGFjLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzF6QjR2bWs4dEZSbU05VVVMTnpiTEIifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEyOjMwOjI2IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEyOjM0OjA2IiwidGl0bGUiOiJCYWJ5IFF1ZWVuIiwiYXJ0aXN0IjoiR29yaWxsYXoiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC9zMy1ucG8zZm0vMXcxazM0dGxjODVxLWFiNjc2MTZkMDAwMGIyNzM5NDVhZTQ3ODdkM2Y5OGNmNTM4ZGRkYzguanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvczMtbnBvM2ZtLzF3MWszNHRsYzg1cS1hYjY3NjE2ZDAwMDBiMjczOTQ1YWU0Nzg3ZDNmOThjZjUzOGRkZGM4LmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzBkRndpeVdQd0MyeU1MM1pIN0I1NlYifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEyOjI0OjMxIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEyOjI3OjQ0IiwidGl0bGUiOiJTYWZlIEFuZCBTb3VuZCIsImFydGlzdCI6IkNhcGl0YWwgQ2l0aWVzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMTNjNmNiNmE4MWM4ZGI0ZGJjOGI5OTI0IiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMTNjNmNiNmE4MWM4ZGI0ZGJjOGI5OTI0Iiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNlo4UjZVc0Z1R1hHdGlJeGlEOElTYiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTI6MjA6MTgiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTI6MjQ6NTMiLCJ0aXRsZSI6IkJpdHRlciBTd2VldCBTeW1waG9ueSIsImFydGlzdCI6IlRoZSBWZXJ2ZSIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzcwN2QxM2QzZjg3NjUyZTczN2U5NGQ0NSIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzcwN2QxM2QzZjg3NjUyZTczN2U5NGQ0NSIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzU3aURERDlOOXRUV2U3NXg2cWhTdHcifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEyOjE2OjM1IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEyOjIwOjI4IiwidGl0bGUiOiJTdHJvbmciLCJhcnRpc3QiOiJSb215IEZlYXQuIEZyZWQgQWdhaW4iLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzNjYzZmNGNiMDY5MGZkYjY3Njc5ZjNmOTkiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzNjYzZmNGNiMDY5MGZkYjY3Njc5ZjNmOTkiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay81YkYwMFZyTVkzRnduUURnb1A0R25rIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMjoxMDo1MCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMjoxNDowOCIsInRpdGxlIjoiUmVhZHkgRm9yIE1vcmUiLCJhcnRpc3QiOiJLcmV6aXAiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC9zMy1ucG8zZm0vMjRmZ2k1cm5ueDd5LW9yaWdpbmFsLmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwL3MzLW5wbzNmbS8yNGZnaTVybm54N3ktb3JpZ2luYWwuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMUlQY2xINHYzUlFUNVhZZlVTeDBXUyJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTI6MDY6NDYiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTI6MTA6NDYiLCJ0aXRsZSI6IlN0YXJsaWdodCIsImFydGlzdCI6Ik11c2UiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMyODkzM2I4MDhiZmI0Y2JiZDAzODU0MDAiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMyODkzM2I4MDhiZmI0Y2JiZDAzODU0MDAiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8zc2tuMmxhdUdrN0R4NmJWSXQ1RFZqIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMTo1MjoxNCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMTo1NTo0NCIsInRpdGxlIjoiU3RhciBXYWxraW4nIiwiYXJ0aXN0IjoiTGlsIE5hcyBYIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvczMtbnBvM2ZtL29zaTlnM3RxejAxLWxpbC1uYXMteC1zdGFyLXdhbGtpbi0xNjYzODYxMzEyLmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwL3MzLW5wbzNmbS9vc2k5ZzN0cXowMS1saWwtbmFzLXgtc3Rhci13YWxraW4tMTY2Mzg2MTMxMi5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8zOFQwdFBWWkhjUFp5aHRPY0NQN3BGIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMTo0OTozMiIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMTo1MjoxNCIsInRpdGxlIjoiSG93IDIgRGFuY2UiLCJhcnRpc3QiOiJLYWlzZXIgQ2hpZWZzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvczMtbnBvM2ZtLzY5aTg4em8yY21mZy0yMDIyLTExLTA0LTA4LTA3LTMyLTE1Njctcm91bmRjdWJlLXdlYm1haWwtc2VhcmNoLXJlc3VsdC5wbmciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC9zMy1ucG8zZm0vNjlpODh6bzJjbWZnLTIwMjItMTEtMDQtMDgtMDctMzItMTU2Ny1yb3VuZGN1YmUtd2VibWFpbC1zZWFyY2gtcmVzdWx0LnBuZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzV6UnhQV0J6bkVhNUhBYzNUUWJRTWIifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDExOjQ1OjQ5IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDExOjQ5OjE5IiwidGl0bGUiOiJUaGUgRnVuZXJhbCIsImFydGlzdCI6Ill1bmdibHVkIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYjAyOTBiY2M1YjlmOThkODU5YjRkMTVmIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYjAyOTBiY2M1YjlmOThkODU5YjRkMTVmIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMW5VMm9vUUt5azRDc1lKTUJkSUs0SiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTE6NDI6MzYiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTE6NDU6MzkiLCJ0aXRsZSI6IkknbSBFYXN5IiwiYXJ0aXN0IjoiRmFpdGggTm8gTW9yZSIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC9jODE4ODU0Mi01MTFjLTQ5NzQtYjdlNi01MmRjMGZlNmYwZDIuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwL2M4MTg4NTQyLTUxMWMtNDk3NC1iN2U2LTUyZGMwZmU2ZjBkMi5qcGcifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDExOjM3OjAyIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDExOjQwOjIxIiwidGl0bGUiOiJUaGlzIElzIFRoZSBNb21lbnQiLCJhcnRpc3QiOiJTb24gTWlldXgiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMyYzAzZTQwMjZjYzFkMjMwMzU5ODU5OGQiLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vaS5zY2RuLmNvL2ltYWdlL2FiNjc2MTZkMDAwMGIyNzMyYzAzZTQwMjZjYzFkMjMwMzU5ODU5OGQiLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay82WEtxVldGOUJQdlkybXNjbVM3UjV1In0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMTozMjoxOCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMTozNjo1MyIsInRpdGxlIjoiRW1waXJlIFN0YXRlIE9mIE1pbmQiLCJhcnRpc3QiOiJKQVkgWiBmdC4gQWxpY2lhIEtleXMiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvNzAxZjE3ZDEtYzI3MS00ZjJhLTlhYzktMjEwNGQxNWU0OTMwLmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC83MDFmMTdkMS1jMjcxLTRmMmEtOWFjOS0yMTA0ZDE1ZTQ5MzAuanBnIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMToyNjozMyIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMToyOTo0NiIsInRpdGxlIjoiRWxlY3RyaWMgTGlmZSIsImFydGlzdCI6IkR1bmNhbiBMYXVyZW5jZSIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2Q4ZGRlYjA2YTVhNjI4NGM1MmFhYjQzNCIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3M2Q4ZGRlYjA2YTVhNjI4NGM1MmFhYjQzNCIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzBpTHFwbTVjNGRHbHd0aDVMWXEydGoifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDExOjIyOjQwIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDExOjI1OjQ0IiwidGl0bGUiOiJFbGVjdHJpYyIsImFydGlzdCI6IkdvIEJhY2sgVG8gVGhlIFpvbyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC8xZDY2MmRjMS02NWZmLTQ5ZDgtYjdkYy1hZjM2ZjNjNzg3NmQuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwLzFkNjYyZGMxLTY1ZmYtNDlkOC1iN2RjLWFmMzZmM2M3ODc2ZC5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8ydDM0d2RySUtlVE00Y3VycXhaVTc4In0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMToxODo1NyIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMToyMjo0MiIsInRpdGxlIjoiTmV2ZXIgR29ubmEgTm90IERhbmNlIEFnYWluIiwiYXJ0aXN0IjoiUGluayIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwL3MzLW5wbzNmbS83aG9tYjdiMmkyNTQtYWI2NzYxNmQwMDAwYjI3M2EzNDJlZGM4ZDkwYWU2OGQ5OTMzM2JhYi5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC9zMy1ucG8zZm0vN2hvbWI3YjJpMjU0LWFiNjc2MTZkMDAwMGIyNzNhMzQyZWRjOGQ5MGFlNjhkOTkzMzNiYWIuanBnIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMToxMDo1MCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMToxNTowOCIsInRpdGxlIjoiV29uZGVyd2FsbCIsImFydGlzdCI6Ik9hc2lzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMmYyZWVlZTliNDA1ZjRkMDA0MjhkODRjIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMmYyZWVlZTliNDA1ZjRkMDA0MjhkODRjIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMXFQYkdacXBwRndMd2NCQzFKUTZWciJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTE6MDc6MDciLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTE6MTE6MDAiLCJ0aXRsZSI6Ik1vdGggVG8gQSBGbGFtZSIsImFydGlzdCI6IlN3ZWRpc2ggSG91c2UgTWFmaWEgZnQuIFRoZSBXZWVrbmQiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvZmIxOTZiMGYtYTZiZS00N2JiLWE1NmYtOWQ2YjYxZjg0NjFiLmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC9mYjE5NmIwZi1hNmJlLTQ3YmItYTU2Zi05ZDZiNjFmODQ2MWIuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMmdwV3lmdTdlWjAxenpuY0hweE90QSJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTA6NTE6MzMiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTA6NTU6MDciLCJ0aXRsZSI6IkdvIFlvdXIgT3duIFdheSIsImFydGlzdCI6IkZsZWV0d29vZCBNYWMiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvNjRkNGUyMTItZTNlNy00Mjc4LThlY2YtMjFkYWRkNmMxY2U2LmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC82NGQ0ZTIxMi1lM2U3LTQyNzgtOGVjZi0yMWRhZGQ2YzFjZTYuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMDdHdk5jVTFXZHlaSnEzWHhQMGtaYSJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTA6NDc6NTAiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTA6NTE6MzQiLCJ0aXRsZSI6IjIgQW0iLCJhcnRpc3QiOiJGb2FscyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzQ1YTk5ZTk5NTNiNzQ2ODlhZTRmZjgzZCIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzQ1YTk5ZTk5NTNiNzQ2ODlhZTRmZjgzZCIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzA0bm8wWFh4WGQzRjV1TFppM3FEWUsifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEwOjQxOjU1IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEwOjQ1OjE4IiwidGl0bGUiOiJGb3JnZXQgTWUiLCJhcnRpc3QiOiJMZXdpcyBDYXBhbGRpIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNzExZmFiM2VlMGJiZWRkZmFjNDRkN2Q2IiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczNzExZmFiM2VlMGJiZWRkZmFjNDRkN2Q2Iiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNXVTRkdnSWZITVQzb3NyQWQ5bjl5bSJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTA6Mzk6MDMiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTA6NDE6NTMiLCJ0aXRsZSI6IkdhbHdheSBHaXJsIiwiYXJ0aXN0IjoiRWQgU2hlZXJhbiIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC9lNzU2N2Q3OC00MjBmLTRmZDAtODk2My1jODhhZDk4OTRjMmMuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwL2U3NTY3ZDc4LTQyMGYtNGZkMC04OTYzLWM4OGFkOTg5NGMyYy5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8wYWZocThYQ0V4WHBxYXpYY3pUU3ZlIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMDoyNjoyMCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMDoyOToyMyIsInRpdGxlIjoiRGFucyIsImFydGlzdCI6IkRhenpsZWQgU3RpY2tzIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd18yMDAsaF8yMDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwL2RlYzg0MWZlLTQ0ZDgtNDkyMi05OGUzLTI3NGFlZDYwYjcxYS5qcGciLCJpbWFnZV91cmxfNDAweDQwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzQwMCxoXzQwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvZGVjODQxZmUtNDRkOC00OTIyLTk4ZTMtMjc0YWVkNjBiNzFhLmpwZyIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzJsQ2drZlNUVGFXTmlwWWtBdmpIQ1oifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEwOjIwOjU2IiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEwOjIzOjQ2IiwidGl0bGUiOiJCcmlnaHQgRXllcyIsImFydGlzdCI6IlJvbmTDqSIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzA0MGU0ZjYxNzBkNzMwMWIxNzkzN2U2YiIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9pLnNjZG4uY28vaW1hZ2UvYWI2NzYxNmQwMDAwYjI3MzA0MGU0ZjYxNzBkNzMwMWIxNzkzN2U2YiIsInNwb3RpZnlfdXJsIjoiaHR0cHM6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzNLWmxWQmNrVVhVM3FDbWkwaDBWSGYifSx7InN0YXJ0ZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEwOjE3OjEzIiwiZW5kZGF0ZXRpbWUiOiIyMDIyLTExLTI3VDEwOjIxOjA4IiwidGl0bGUiOiJXaWxkIEdyZXkgT2NlYW4iLCJhcnRpc3QiOiJTYW0gRmVuZGVyIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYzM0MzVjMzIwOGU1MGI4YmNjNGM4ZjFlIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczYzM0MzVjMzIwOGU1MGI4YmNjNGM4ZjFlIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svM05oRUh4emZMRXp2bFlQSzloZ21QUiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMTA6MTE6MzgiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMTA6MTU6MjAiLCJ0aXRsZSI6IlJlYWR5IE9yIE5vdCIsImFydGlzdCI6IkZ1Z2VlcyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC85ZWMzZTRkMi04OGQ4LTQ5NGUtODA4MS05ZDY1MjZkMDRlYzQuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwLzllYzNlNGQyLTg4ZDgtNDk0ZS04MDgxLTlkNjUyNmQwNGVjNC5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8zdlpPMjVHZFl1cUZyUjFrelpBRG5wIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMDowNzo0NSIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QxMDoxMTo0NCIsInRpdGxlIjoiVGFrZSBNZSBPdXQiLCJhcnRpc3QiOiJGcmFueiBGZXJkaW5hbmQiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvZDMxNWIwOWItYjVmZS00OWYxLWE3ODctMzYzZjlhMWFjNzY5LmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC9kMzE1YjA5Yi1iNWZlLTQ5ZjEtYTc4Ny0zNjNmOWExYWM3NjkuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMjBJOFJkdVpDMlBXTVdURENadXVBTiJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMDk6NTI6NTAiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMDk6NTY6MjciLCJ0aXRsZSI6IjE5OTkiLCJhcnRpc3QiOiJQcmluY2UiLCJpbWFnZV91cmxfMjAweDIwMCI6Imh0dHBzOi8vYnJvYWRjYXN0LWltYWdlcy5ucG9yYWRpby5ubC93XzIwMCxoXzIwMC8xNjg5MGYxYS03ZWZiLTRhY2QtYTBjYy0wZWY5NzFjNGVkMDAvODQxZDNmNjYtZjFjZC00YzMyLTgwMzItMmIwY2MyY2IyYmI1LmpwZyIsImltYWdlX3VybF80MDB4NDAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfNDAwLGhfNDAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC84NDFkM2Y2Ni1mMWNkLTRjMzItODAzMi0yYjBjYzJjYjJiYjUuanBnIiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svMkg3UEhWZFEzbVhxRUhYY3ZjbFRCMCJ9LHsic3RhcnRkYXRldGltZSI6IjIwMjItMTEtMjdUMDk6NDk6MzgiLCJlbmRkYXRldGltZSI6IjIwMjItMTEtMjdUMDk6NTM6MDEiLCJ0aXRsZSI6IlJ1bmF3YXkgSG9yc2VzIiwiYXJ0aXN0IjoiVGhlIEtpbGxlcnMgRnQuIFBob2ViZSBCcmlkZ2VycyIsImltYWdlX3VybF8yMDB4MjAwIjoiaHR0cHM6Ly9icm9hZGNhc3QtaW1hZ2VzLm5wb3JhZGlvLm5sL3dfMjAwLGhfMjAwLzE2ODkwZjFhLTdlZmItNGFjZC1hMGNjLTBlZjk3MWM0ZWQwMC9kNjAyZmE5ZS1lZDNhLTRmZGYtODVjOS04YWEyMDUzNTUzMTAuanBnIiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2Jyb2FkY2FzdC1pbWFnZXMubnBvcmFkaW8ubmwvd180MDAsaF80MDAvMTY4OTBmMWEtN2VmYi00YWNkLWEwY2MtMGVmOTcxYzRlZDAwL2Q2MDJmYTllLWVkM2EtNGZkZi04NWM5LThhYTIwNTM1NTMxMC5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHBzOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay8zUGVDV0RjenJHcWREMUUzbWJvazJYIn0seyJzdGFydGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QwOTo0NDo1NCIsImVuZGRhdGV0aW1lIjoiMjAyMi0xMS0yN1QwOTo0ODowMCIsInRpdGxlIjoiTGlvbmhlYXJ0IChGZWFybGVzcykiLCJhcnRpc3QiOiJKb2VsIENvcnJ5L1RvbSBHcmVubmFuIiwiaW1hZ2VfdXJsXzIwMHgyMDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMzQ5OTQ1ZmY1MzBhOTFhNDQzOThiZjE5IiwiaW1hZ2VfdXJsXzQwMHg0MDAiOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2ZDAwMDBiMjczMzQ5OTQ1ZmY1MzBhOTFhNDQzOThiZjE5Iiwic3BvdGlmeV91cmwiOiJodHRwczovL29wZW4uc3BvdGlmeS5jb20vdHJhY2svNXZsekgwcHM2V0R5YjE1OG9GVEFiMyJ9XX0=
+  recorded_at: Sun, 27 Nov 2022 13:19:49 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/tracks/0ofHAoxe9vBkTCp2UQIavz
+    uri: https://api.spotify.com/v1/search?q=Hold%20Me%20Closer%20artist:elton%20john%20britney%20spears&type=track
     body:
       encoding: US-ASCII
       string: ''
@@ -106,7 +61,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQC-ICyWv30H44iuGe03AIWYOQ9uq3mEnuM-ofA6_aTOn8vAMb3bAq87-9AinPf0UQaN3ZFaV2pyw9ORVbu3PD3VJN01d_BA-q8STtBScaB3J70KUCg
+      - Bearer BQAVevLUcIsEBF094_Odnb-4UZVxCGPmTse4lCR50lsQ4o7moyBEGfRMLTE7qz6CP9rPeYC_NvQc8vIbbzUboQPQnARKqKdhQ6lGoRNrdlR3lfUbHgU
       Content-Type:
       - application/json
   response:
@@ -136,7 +91,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 13 Nov 2022 14:29:15 GMT
+      - Sun, 27 Nov 2022 13:19:49 GMT
       Server:
       - envoy
       Via:
@@ -149,78 +104,1314 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |-
         {
-          "album" : {
-            "album_type" : "album",
-            "artists" : [ {
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+          "tracks" : {
+            "href" : "https://api.spotify.com/v1/search?query=Hold+Me+Closer+artist%3Aelton+john+britney+spears&type=track&offset=0&limit=20",
+            "items" : [ {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                  "id" : "26dSoYclwsYLMAKD3tpOr4",
+                  "name" : "Britney Spears",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4QQWpCEX4BxMXwRQmtkKY6"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4QQWpCEX4BxMXwRQmtkKY6",
+                "id" : "4QQWpCEX4BxMXwRQmtkKY6",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2735d872e7b0c1ba964541f07e8",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e025d872e7b0c1ba964541f07e8",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048515d872e7b0c1ba964541f07e8",
+                  "width" : 64
+                } ],
+                "name" : "Hold Me Closer",
+                "release_date" : "2022-08-26",
+                "release_date_precision" : "day",
+                "total_tracks" : 1,
+                "type" : "album",
+                "uri" : "spotify:album:4QQWpCEX4BxMXwRQmtkKY6"
               },
-              "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
-              "id" : "08GQAI4eElDnROBrJRGE0X",
-              "name" : "Fleetwood Mac",
-              "type" : "artist",
-              "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
-            } ],
-            "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PY", "QA", "RO", "RS", "RW", "SA", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TR", "TT", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "XK", "ZA", "ZM", "ZW" ],
-            "external_urls" : {
-              "spotify" : "https://open.spotify.com/album/0BwWUstDMUbgq2NYONRqlu"
-            },
-            "href" : "https://api.spotify.com/v1/albums/0BwWUstDMUbgq2NYONRqlu",
-            "id" : "0BwWUstDMUbgq2NYONRqlu",
-            "images" : [ {
-              "height" : 640,
-              "url" : "https://i.scdn.co/image/ab67616d0000b273e52a59a28efa4773dd2bfe1b",
-              "width" : 640
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 202245,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72205030"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/72yP0DUlWPyH8P7IoxskwN"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/72yP0DUlWPyH8P7IoxskwN",
+              "id" : "72yP0DUlWPyH8P7IoxskwN",
+              "is_local" : false,
+              "name" : "Hold Me Closer",
+              "popularity" : 86,
+              "preview_url" : "https://p.scdn.co/mp3-preview/20dbd2f390581eb21701397a07dcd94b38ae22ab?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:72yP0DUlWPyH8P7IoxskwN"
             }, {
-              "height" : 300,
-              "url" : "https://i.scdn.co/image/ab67616d00001e02e52a59a28efa4773dd2bfe1b",
-              "width" : 300
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4y1qhmoZxvSyymJ1wZCtLE"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4y1qhmoZxvSyymJ1wZCtLE",
+                "id" : "4y1qhmoZxvSyymJ1wZCtLE",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273775800e93752168c8004b59f",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02775800e93752168c8004b59f",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851775800e93752168c8004b59f",
+                  "width" : 64
+                } ],
+                "name" : "The Lockdown Sessions",
+                "release_date" : "2021-10-22",
+                "release_date_precision" : "day",
+                "total_tracks" : 18,
+                "type" : "album",
+                "uri" : "spotify:album:4y1qhmoZxvSyymJ1wZCtLE"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 202245,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72205030"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3lFwSDBCNo3CcN09UppUnm"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3lFwSDBCNo3CcN09UppUnm",
+              "id" : "3lFwSDBCNo3CcN09UppUnm",
+              "is_local" : false,
+              "name" : "Hold Me Closer",
+              "popularity" : 63,
+              "preview_url" : "https://p.scdn.co/mp3-preview/20dbd2f390581eb21701397a07dcd94b38ae22ab?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:3lFwSDBCNo3CcN09UppUnm"
             }, {
-              "height" : 64,
-              "url" : "https://i.scdn.co/image/ab67616d00004851e52a59a28efa4773dd2bfe1b",
-              "width" : 64
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                  "id" : "26dSoYclwsYLMAKD3tpOr4",
+                  "name" : "Britney Spears",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/1vN546nWNaesS0pAAL017l"
+                },
+                "href" : "https://api.spotify.com/v1/albums/1vN546nWNaesS0pAAL017l",
+                "id" : "1vN546nWNaesS0pAAL017l",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27342cb8cd843d9b42c12021894",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0242cb8cd843d9b42c12021894",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485142cb8cd843d9b42c12021894",
+                  "width" : 64
+                } ],
+                "name" : "Hold Me Closer (Acoustic)",
+                "release_date" : "2022-11-18",
+                "release_date_precision" : "day",
+                "total_tracks" : 2,
+                "type" : "album",
+                "uri" : "spotify:album:1vN546nWNaesS0pAAL017l"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 202245,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72207431"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5kXZv2JwuZ0qgqNalgwvJt"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5kXZv2JwuZ0qgqNalgwvJt",
+              "id" : "5kXZv2JwuZ0qgqNalgwvJt",
+              "is_local" : false,
+              "name" : "Hold Me Closer - Acoustic",
+              "popularity" : 57,
+              "preview_url" : "https://p.scdn.co/mp3-preview/235e60fb90be0482994f3493381b685520e9eb3c?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:5kXZv2JwuZ0qgqNalgwvJt"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                  "id" : "26dSoYclwsYLMAKD3tpOr4",
+                  "name" : "Britney Spears",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/1vN546nWNaesS0pAAL017l"
+                },
+                "href" : "https://api.spotify.com/v1/albums/1vN546nWNaesS0pAAL017l",
+                "id" : "1vN546nWNaesS0pAAL017l",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b27342cb8cd843d9b42c12021894",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e0242cb8cd843d9b42c12021894",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d0000485142cb8cd843d9b42c12021894",
+                  "width" : 64
+                } ],
+                "name" : "Hold Me Closer (Acoustic)",
+                "release_date" : "2022-11-18",
+                "release_date_precision" : "day",
+                "total_tracks" : 2,
+                "type" : "album",
+                "uri" : "spotify:album:1vN546nWNaesS0pAAL017l"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 202245,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72205030"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2lkVatzoU7xmYeUdwlCMHg"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2lkVatzoU7xmYeUdwlCMHg",
+              "id" : "2lkVatzoU7xmYeUdwlCMHg",
+              "is_local" : false,
+              "name" : "Hold Me Closer",
+              "popularity" : 39,
+              "preview_url" : "https://p.scdn.co/mp3-preview/20dbd2f390581eb21701397a07dcd94b38ae22ab?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:2lkVatzoU7xmYeUdwlCMHg"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                  "id" : "26dSoYclwsYLMAKD3tpOr4",
+                  "name" : "Britney Spears",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/6DgP9otnZw5z6daOntINxp"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/6DgP9otnZw5z6daOntINxp",
+                  "id" : "6DgP9otnZw5z6daOntINxp",
+                  "name" : "Joel Corry",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:6DgP9otnZw5z6daOntINxp"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/6cZP7F8HkDeMAsCcfCyRWa"
+                },
+                "href" : "https://api.spotify.com/v1/albums/6cZP7F8HkDeMAsCcfCyRWa",
+                "id" : "6cZP7F8HkDeMAsCcfCyRWa",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2733b94eadfd2350ac8b79f8fcd",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e023b94eadfd2350ac8b79f8fcd",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048513b94eadfd2350ac8b79f8fcd",
+                  "width" : 64
+                } ],
+                "name" : "Hold Me Closer (Joel Corry Remix)",
+                "release_date" : "2022-10-07",
+                "release_date_precision" : "day",
+                "total_tracks" : 2,
+                "type" : "album",
+                "uri" : "spotify:album:6cZP7F8HkDeMAsCcfCyRWa"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/6DgP9otnZw5z6daOntINxp"
+                },
+                "href" : "https://api.spotify.com/v1/artists/6DgP9otnZw5z6daOntINxp",
+                "id" : "6DgP9otnZw5z6daOntINxp",
+                "name" : "Joel Corry",
+                "type" : "artist",
+                "uri" : "spotify:artist:6DgP9otnZw5z6daOntINxp"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 248594,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72206569"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5KbhvaeqKIB2bZcJMyfezl"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5KbhvaeqKIB2bZcJMyfezl",
+              "id" : "5KbhvaeqKIB2bZcJMyfezl",
+              "is_local" : false,
+              "name" : "Hold Me Closer - Joel Corry Remix",
+              "popularity" : 67,
+              "preview_url" : "https://p.scdn.co/mp3-preview/0fac6c70130570729039934658983e500ed500af?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:5KbhvaeqKIB2bZcJMyfezl"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                  "id" : "26dSoYclwsYLMAKD3tpOr4",
+                  "name" : "Britney Spears",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4DBNGKCWVHaxuDNBAgTiJH"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4DBNGKCWVHaxuDNBAgTiJH",
+                  "id" : "4DBNGKCWVHaxuDNBAgTiJH",
+                  "name" : "Pink Panda",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4DBNGKCWVHaxuDNBAgTiJH"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/748pBvlgmjNQUkydydu6RO"
+                },
+                "href" : "https://api.spotify.com/v1/albums/748pBvlgmjNQUkydydu6RO",
+                "id" : "748pBvlgmjNQUkydydu6RO",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dffc9a1b99f00aa000a1302b",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dffc9a1b99f00aa000a1302b",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dffc9a1b99f00aa000a1302b",
+                  "width" : 64
+                } ],
+                "name" : "Hold Me Closer (Pink Panda Remix)",
+                "release_date" : "2022-11-04",
+                "release_date_precision" : "day",
+                "total_tracks" : 3,
+                "type" : "album",
+                "uri" : "spotify:album:748pBvlgmjNQUkydydu6RO"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4DBNGKCWVHaxuDNBAgTiJH"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4DBNGKCWVHaxuDNBAgTiJH",
+                "id" : "4DBNGKCWVHaxuDNBAgTiJH",
+                "name" : "Pink Panda",
+                "type" : "artist",
+                "uri" : "spotify:artist:4DBNGKCWVHaxuDNBAgTiJH"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 181928,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72207372"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2VOdp7fjqj5tJeOxgFKGEq"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2VOdp7fjqj5tJeOxgFKGEq",
+              "id" : "2VOdp7fjqj5tJeOxgFKGEq",
+              "is_local" : false,
+              "name" : "Hold Me Closer - Pink Panda Remix",
+              "popularity" : 57,
+              "preview_url" : "https://p.scdn.co/mp3-preview/89b2c2f85a1085586ed3ad8a95bc0bea36464c46?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:2VOdp7fjqj5tJeOxgFKGEq"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                  "id" : "26dSoYclwsYLMAKD3tpOr4",
+                  "name" : "Britney Spears",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/2WBJQGf1bT1kxuoqziH5g4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/2WBJQGf1bT1kxuoqziH5g4",
+                  "id" : "2WBJQGf1bT1kxuoqziH5g4",
+                  "name" : "Purple Disco Machine",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:2WBJQGf1bT1kxuoqziH5g4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/5xqpkbZzHhsR5KOrAzhWGU"
+                },
+                "href" : "https://api.spotify.com/v1/albums/5xqpkbZzHhsR5KOrAzhWGU",
+                "id" : "5xqpkbZzHhsR5KOrAzhWGU",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273d3b2b2ace5b5e9318f2e2b51",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02d3b2b2ace5b5e9318f2e2b51",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851d3b2b2ace5b5e9318f2e2b51",
+                  "width" : 64
+                } ],
+                "name" : "Hold Me Closer (Purple Disco Machine Remix)",
+                "release_date" : "2022-10-21",
+                "release_date_precision" : "day",
+                "total_tracks" : 3,
+                "type" : "album",
+                "uri" : "spotify:album:5xqpkbZzHhsR5KOrAzhWGU"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2WBJQGf1bT1kxuoqziH5g4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2WBJQGf1bT1kxuoqziH5g4",
+                "id" : "2WBJQGf1bT1kxuoqziH5g4",
+                "name" : "Purple Disco Machine",
+                "type" : "artist",
+                "uri" : "spotify:artist:2WBJQGf1bT1kxuoqziH5g4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 218853,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72206622"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/4uNG9ER2pDOayDd1Wq8Cjq"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/4uNG9ER2pDOayDd1Wq8Cjq",
+              "id" : "4uNG9ER2pDOayDd1Wq8Cjq",
+              "is_local" : false,
+              "name" : "Hold Me Closer - Purple Disco Machine Remix",
+              "popularity" : 56,
+              "preview_url" : "https://p.scdn.co/mp3-preview/8f0a4b4674094ce51aa07d2e41494fb32ec54755?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:4uNG9ER2pDOayDd1Wq8Cjq"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                  "id" : "26dSoYclwsYLMAKD3tpOr4",
+                  "name" : "Britney Spears",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/2WBJQGf1bT1kxuoqziH5g4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/2WBJQGf1bT1kxuoqziH5g4",
+                  "id" : "2WBJQGf1bT1kxuoqziH5g4",
+                  "name" : "Purple Disco Machine",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:2WBJQGf1bT1kxuoqziH5g4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/5xqpkbZzHhsR5KOrAzhWGU"
+                },
+                "href" : "https://api.spotify.com/v1/albums/5xqpkbZzHhsR5KOrAzhWGU",
+                "id" : "5xqpkbZzHhsR5KOrAzhWGU",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273d3b2b2ace5b5e9318f2e2b51",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02d3b2b2ace5b5e9318f2e2b51",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851d3b2b2ace5b5e9318f2e2b51",
+                  "width" : 64
+                } ],
+                "name" : "Hold Me Closer (Purple Disco Machine Remix)",
+                "release_date" : "2022-10-21",
+                "release_date_precision" : "day",
+                "total_tracks" : 3,
+                "type" : "album",
+                "uri" : "spotify:album:5xqpkbZzHhsR5KOrAzhWGU"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/2WBJQGf1bT1kxuoqziH5g4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/2WBJQGf1bT1kxuoqziH5g4",
+                "id" : "2WBJQGf1bT1kxuoqziH5g4",
+                "name" : "Purple Disco Machine",
+                "type" : "artist",
+                "uri" : "spotify:artist:2WBJQGf1bT1kxuoqziH5g4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 354920,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72206623"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/3zbKrkqZyv2TnL8kwv9UjO"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/3zbKrkqZyv2TnL8kwv9UjO",
+              "id" : "3zbKrkqZyv2TnL8kwv9UjO",
+              "is_local" : false,
+              "name" : "Hold Me Closer - Purple Disco Machine Extended Mix",
+              "popularity" : 55,
+              "preview_url" : "https://p.scdn.co/mp3-preview/57368648f3bb7f38e9a5f9325856d2d40345646c?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:3zbKrkqZyv2TnL8kwv9UjO"
+            }, {
+              "album" : {
+                "album_type" : "album",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                } ],
+                "available_markets" : [ "CA", "US" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/4bOAb70KPrcZBeoxGCf35O"
+                },
+                "href" : "https://api.spotify.com/v1/albums/4bOAb70KPrcZBeoxGCf35O",
+                "id" : "4bOAb70KPrcZBeoxGCf35O",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273eeb62fda4bf000d1183c2e74",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02eeb62fda4bf000d1183c2e74",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851eeb62fda4bf000d1183c2e74",
+                  "width" : 64
+                } ],
+                "name" : "The Lockdown Sessions",
+                "release_date" : "2021-10-22",
+                "release_date_precision" : "day",
+                "total_tracks" : 18,
+                "type" : "album",
+                "uri" : "spotify:album:4bOAb70KPrcZBeoxGCf35O"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              } ],
+              "available_markets" : [ "CA", "US" ],
+              "disc_number" : 1,
+              "duration_ms" : 202245,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72205030"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/6FAYE35RgYhYbgjf2qB3sp"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/6FAYE35RgYhYbgjf2qB3sp",
+              "id" : "6FAYE35RgYhYbgjf2qB3sp",
+              "is_local" : false,
+              "name" : "Hold Me Closer",
+              "popularity" : 39,
+              "preview_url" : "https://p.scdn.co/mp3-preview/20dbd2f390581eb21701397a07dcd94b38ae22ab?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 1,
+              "type" : "track",
+              "uri" : "spotify:track:6FAYE35RgYhYbgjf2qB3sp"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                  "id" : "26dSoYclwsYLMAKD3tpOr4",
+                  "name" : "Britney Spears",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/6DgP9otnZw5z6daOntINxp"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/6DgP9otnZw5z6daOntINxp",
+                  "id" : "6DgP9otnZw5z6daOntINxp",
+                  "name" : "Joel Corry",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:6DgP9otnZw5z6daOntINxp"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/6cZP7F8HkDeMAsCcfCyRWa"
+                },
+                "href" : "https://api.spotify.com/v1/albums/6cZP7F8HkDeMAsCcfCyRWa",
+                "id" : "6cZP7F8HkDeMAsCcfCyRWa",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b2733b94eadfd2350ac8b79f8fcd",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e023b94eadfd2350ac8b79f8fcd",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d000048513b94eadfd2350ac8b79f8fcd",
+                  "width" : 64
+                } ],
+                "name" : "Hold Me Closer (Joel Corry Remix)",
+                "release_date" : "2022-10-07",
+                "release_date_precision" : "day",
+                "total_tracks" : 2,
+                "type" : "album",
+                "uri" : "spotify:album:6cZP7F8HkDeMAsCcfCyRWa"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 202245,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72205030"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/5jQXOC8ShgkFMahTEYPoQq"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/5jQXOC8ShgkFMahTEYPoQq",
+              "id" : "5jQXOC8ShgkFMahTEYPoQq",
+              "is_local" : false,
+              "name" : "Hold Me Closer",
+              "popularity" : 45,
+              "preview_url" : "https://p.scdn.co/mp3-preview/20dbd2f390581eb21701397a07dcd94b38ae22ab?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:5jQXOC8ShgkFMahTEYPoQq"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                  "id" : "26dSoYclwsYLMAKD3tpOr4",
+                  "name" : "Britney Spears",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4DBNGKCWVHaxuDNBAgTiJH"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4DBNGKCWVHaxuDNBAgTiJH",
+                  "id" : "4DBNGKCWVHaxuDNBAgTiJH",
+                  "name" : "Pink Panda",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4DBNGKCWVHaxuDNBAgTiJH"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/748pBvlgmjNQUkydydu6RO"
+                },
+                "href" : "https://api.spotify.com/v1/albums/748pBvlgmjNQUkydydu6RO",
+                "id" : "748pBvlgmjNQUkydydu6RO",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dffc9a1b99f00aa000a1302b",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dffc9a1b99f00aa000a1302b",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dffc9a1b99f00aa000a1302b",
+                  "width" : 64
+                } ],
+                "name" : "Hold Me Closer (Pink Panda Remix)",
+                "release_date" : "2022-11-04",
+                "release_date_precision" : "day",
+                "total_tracks" : 3,
+                "type" : "album",
+                "uri" : "spotify:album:748pBvlgmjNQUkydydu6RO"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/4DBNGKCWVHaxuDNBAgTiJH"
+                },
+                "href" : "https://api.spotify.com/v1/artists/4DBNGKCWVHaxuDNBAgTiJH",
+                "id" : "4DBNGKCWVHaxuDNBAgTiJH",
+                "name" : "Pink Panda",
+                "type" : "artist",
+                "uri" : "spotify:artist:4DBNGKCWVHaxuDNBAgTiJH"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 232404,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72207373"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/7674HYxw34rJ4fNCSshMiP"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/7674HYxw34rJ4fNCSshMiP",
+              "id" : "7674HYxw34rJ4fNCSshMiP",
+              "is_local" : false,
+              "name" : "Hold Me Closer - Pink Panda Extended Mix",
+              "popularity" : 40,
+              "preview_url" : "https://p.scdn.co/mp3-preview/ad57971f7046e8771ec08a47f66e5837e039c223?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:7674HYxw34rJ4fNCSshMiP"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                  "id" : "26dSoYclwsYLMAKD3tpOr4",
+                  "name" : "Britney Spears",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/2WBJQGf1bT1kxuoqziH5g4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/2WBJQGf1bT1kxuoqziH5g4",
+                  "id" : "2WBJQGf1bT1kxuoqziH5g4",
+                  "name" : "Purple Disco Machine",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:2WBJQGf1bT1kxuoqziH5g4"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/5xqpkbZzHhsR5KOrAzhWGU"
+                },
+                "href" : "https://api.spotify.com/v1/albums/5xqpkbZzHhsR5KOrAzhWGU",
+                "id" : "5xqpkbZzHhsR5KOrAzhWGU",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273d3b2b2ace5b5e9318f2e2b51",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02d3b2b2ace5b5e9318f2e2b51",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851d3b2b2ace5b5e9318f2e2b51",
+                  "width" : 64
+                } ],
+                "name" : "Hold Me Closer (Purple Disco Machine Remix)",
+                "release_date" : "2022-10-21",
+                "release_date_precision" : "day",
+                "total_tracks" : 3,
+                "type" : "album",
+                "uri" : "spotify:album:5xqpkbZzHhsR5KOrAzhWGU"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 202245,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72205030"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/58NJ1O96HRS2oFPu4fpW3U"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/58NJ1O96HRS2oFPu4fpW3U",
+              "id" : "58NJ1O96HRS2oFPu4fpW3U",
+              "is_local" : false,
+              "name" : "Hold Me Closer",
+              "popularity" : 42,
+              "preview_url" : "https://p.scdn.co/mp3-preview/20dbd2f390581eb21701397a07dcd94b38ae22ab?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 3,
+              "type" : "track",
+              "uri" : "spotify:track:58NJ1O96HRS2oFPu4fpW3U"
+            }, {
+              "album" : {
+                "album_type" : "single",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                  "id" : "26dSoYclwsYLMAKD3tpOr4",
+                  "name" : "Britney Spears",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+                }, {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/4DBNGKCWVHaxuDNBAgTiJH"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/4DBNGKCWVHaxuDNBAgTiJH",
+                  "id" : "4DBNGKCWVHaxuDNBAgTiJH",
+                  "name" : "Pink Panda",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:4DBNGKCWVHaxuDNBAgTiJH"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/748pBvlgmjNQUkydydu6RO"
+                },
+                "href" : "https://api.spotify.com/v1/albums/748pBvlgmjNQUkydydu6RO",
+                "id" : "748pBvlgmjNQUkydydu6RO",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273dffc9a1b99f00aa000a1302b",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02dffc9a1b99f00aa000a1302b",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851dffc9a1b99f00aa000a1302b",
+                  "width" : 64
+                } ],
+                "name" : "Hold Me Closer (Pink Panda Remix)",
+                "release_date" : "2022-11-04",
+                "release_date_precision" : "day",
+                "total_tracks" : 3,
+                "type" : "album",
+                "uri" : "spotify:album:748pBvlgmjNQUkydydu6RO"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 202245,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72205030"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/2T1ebhonU9S6yhDRxtlYu3"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/2T1ebhonU9S6yhDRxtlYu3",
+              "id" : "2T1ebhonU9S6yhDRxtlYu3",
+              "is_local" : false,
+              "name" : "Hold Me Closer",
+              "popularity" : 42,
+              "preview_url" : "https://p.scdn.co/mp3-preview/20dbd2f390581eb21701397a07dcd94b38ae22ab?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 3,
+              "type" : "track",
+              "uri" : "spotify:track:2T1ebhonU9S6yhDRxtlYu3"
+            }, {
+              "album" : {
+                "album_type" : "compilation",
+                "artists" : [ {
+                  "external_urls" : {
+                    "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                  },
+                  "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                  "id" : "3PhoLpVuITZKcymswpck5b",
+                  "name" : "Elton John",
+                  "type" : "artist",
+                  "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+                } ],
+                "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/album/45F4Pmp3EJi3T6qYonm4Ml"
+                },
+                "href" : "https://api.spotify.com/v1/albums/45F4Pmp3EJi3T6qYonm4Ml",
+                "id" : "45F4Pmp3EJi3T6qYonm4Ml",
+                "images" : [ {
+                  "height" : 640,
+                  "url" : "https://i.scdn.co/image/ab67616d0000b273904e306cf32fa5dc93dd927a",
+                  "width" : 640
+                }, {
+                  "height" : 300,
+                  "url" : "https://i.scdn.co/image/ab67616d00001e02904e306cf32fa5dc93dd927a",
+                  "width" : 300
+                }, {
+                  "height" : 64,
+                  "url" : "https://i.scdn.co/image/ab67616d00004851904e306cf32fa5dc93dd927a",
+                  "width" : 64
+                } ],
+                "name" : "Diamonds (Deluxe)",
+                "release_date" : "2017-11-10",
+                "release_date_precision" : "day",
+                "total_tracks" : 54,
+                "type" : "album",
+                "uri" : "spotify:album:45F4Pmp3EJi3T6qYonm4Ml"
+              },
+              "artists" : [ {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
+                },
+                "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+                "id" : "3PhoLpVuITZKcymswpck5b",
+                "name" : "Elton John",
+                "type" : "artist",
+                "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
+              }, {
+                "external_urls" : {
+                  "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+                },
+                "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+                "id" : "26dSoYclwsYLMAKD3tpOr4",
+                "name" : "Britney Spears",
+                "type" : "artist",
+                "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+              } ],
+              "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+              "disc_number" : 1,
+              "duration_ms" : 202240,
+              "explicit" : false,
+              "external_ids" : {
+                "isrc" : "GBUM72205030"
+              },
+              "external_urls" : {
+                "spotify" : "https://open.spotify.com/track/0ijp8NwjkNmibgLr4znQK4"
+              },
+              "href" : "https://api.spotify.com/v1/tracks/0ijp8NwjkNmibgLr4znQK4",
+              "id" : "0ijp8NwjkNmibgLr4znQK4",
+              "is_local" : false,
+              "name" : "Hold Me Closer",
+              "popularity" : 37,
+              "preview_url" : "https://p.scdn.co/mp3-preview/f2a431df234f018bf71ff8fc29defc366914cf95?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
+              "type" : "track",
+              "uri" : "spotify:track:0ijp8NwjkNmibgLr4znQK4"
             } ],
-            "name" : "Rumours (Super Deluxe)",
-            "release_date" : "1977-02-04",
-            "release_date_precision" : "day",
-            "total_tracks" : 58,
-            "type" : "album",
-            "uri" : "spotify:album:0BwWUstDMUbgq2NYONRqlu"
-          },
-          "artists" : [ {
-            "external_urls" : {
-              "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
-            },
-            "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
-            "id" : "08GQAI4eElDnROBrJRGE0X",
-            "name" : "Fleetwood Mac",
-            "type" : "artist",
-            "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
-          } ],
-          "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PY", "QA", "RO", "RS", "RW", "SA", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TR", "TT", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "XK", "ZA", "ZM", "ZW" ],
-          "disc_number" : 1,
-          "duration_ms" : 257800,
-          "explicit" : false,
-          "external_ids" : {
-            "isrc" : "USWB11301111"
-          },
-          "external_urls" : {
-            "spotify" : "https://open.spotify.com/track/0ofHAoxe9vBkTCp2UQIavz"
-          },
-          "href" : "https://api.spotify.com/v1/tracks/0ofHAoxe9vBkTCp2UQIavz",
-          "id" : "0ofHAoxe9vBkTCp2UQIavz",
-          "is_local" : false,
-          "name" : "Dreams - 2004 Remaster",
-          "popularity" : 82,
-          "preview_url" : "https://p.scdn.co/mp3-preview/ba7d85c9c34599231d528a761b56e522383afa78?cid=ff70df650ee14a1fad4aed3b533e8ea4",
-          "track_number" : 2,
-          "type" : "track",
-          "uri" : "spotify:track:0ofHAoxe9vBkTCp2UQIavz"
+            "limit" : 20,
+            "next" : null,
+            "offset" : 0,
+            "previous" : null,
+            "total" : 14
+          }
         }
-  recorded_at: Sun, 13 Nov 2022 14:29:15 GMT
+  recorded_at: Sun, 27 Nov 2022 13:19:49 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X
+    uri: https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b
     body:
       encoding: US-ASCII
       string: ''
@@ -234,7 +1425,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQC-ICyWv30H44iuGe03AIWYOQ9uq3mEnuM-ofA6_aTOn8vAMb3bAq87-9AinPf0UQaN3ZFaV2pyw9ORVbu3PD3VJN01d_BA-q8STtBScaB3J70KUCg
+      - Bearer BQAVevLUcIsEBF094_Odnb-4UZVxCGPmTse4lCR50lsQ4o7moyBEGfRMLTE7qz6CP9rPeYC_NvQc8vIbbzUboQPQnARKqKdhQ6lGoRNrdlR3lfUbHgU
       Content-Type:
       - application/json
   response:
@@ -245,7 +1436,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=72585
+      - public, max-age=73105
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -264,7 +1455,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 13 Nov 2022 14:29:15 GMT
+      - Sun, 27 Nov 2022 13:19:49 GMT
       Server:
       - envoy
       Via:
@@ -278,32 +1469,120 @@ http_interactions:
       string: |-
         {
           "external_urls" : {
-            "spotify" : "https://open.spotify.com/artist/08GQAI4eElDnROBrJRGE0X"
+            "spotify" : "https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b"
           },
           "followers" : {
             "href" : null,
-            "total" : 8919567
+            "total" : 10431804
           },
-          "genres" : [ "album rock", "classic rock", "rock", "soft rock", "yacht rock" ],
-          "href" : "https://api.spotify.com/v1/artists/08GQAI4eElDnROBrJRGE0X",
-          "id" : "08GQAI4eElDnROBrJRGE0X",
+          "genres" : [ "glam rock", "mellow gold", "piano rock" ],
+          "href" : "https://api.spotify.com/v1/artists/3PhoLpVuITZKcymswpck5b",
+          "id" : "3PhoLpVuITZKcymswpck5b",
           "images" : [ {
             "height" : 640,
-            "url" : "https://i.scdn.co/image/ab6761610000e5eb249d55f2d68a44637905c57e",
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb0a7388b95df960b5c0da8970",
             "width" : 640
           }, {
             "height" : 320,
-            "url" : "https://i.scdn.co/image/ab67616100005174249d55f2d68a44637905c57e",
+            "url" : "https://i.scdn.co/image/ab676161000051740a7388b95df960b5c0da8970",
             "width" : 320
           }, {
             "height" : 160,
-            "url" : "https://i.scdn.co/image/ab6761610000f178249d55f2d68a44637905c57e",
+            "url" : "https://i.scdn.co/image/ab6761610000f1780a7388b95df960b5c0da8970",
             "width" : 160
           } ],
-          "name" : "Fleetwood Mac",
-          "popularity" : 78,
+          "name" : "Elton John",
+          "popularity" : 83,
           "type" : "artist",
-          "uri" : "spotify:artist:08GQAI4eElDnROBrJRGE0X"
+          "uri" : "spotify:artist:3PhoLpVuITZKcymswpck5b"
         }
-  recorded_at: Sun, 13 Nov 2022 14:29:16 GMT
+  recorded_at: Sun, 27 Nov 2022 13:19:49 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.spotify.com
+      Authorization:
+      - Bearer BQAVevLUcIsEBF094_Odnb-4UZVxCGPmTse4lCR50lsQ4o7moyBEGfRMLTE7qz6CP9rPeYC_NvQc8vIbbzUboQPQnARKqKdhQ6lGoRNrdlR3lfUbHgU
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=73975
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Sun, 27 Nov 2022 13:19:49 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "external_urls" : {
+            "spotify" : "https://open.spotify.com/artist/26dSoYclwsYLMAKD3tpOr4"
+          },
+          "followers" : {
+            "href" : null,
+            "total" : 11528619
+          },
+          "genres" : [ "dance pop", "pop" ],
+          "href" : "https://api.spotify.com/v1/artists/26dSoYclwsYLMAKD3tpOr4",
+          "id" : "26dSoYclwsYLMAKD3tpOr4",
+          "images" : [ {
+            "height" : 640,
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb4e7e6ded87a4e0f65b5afcec",
+            "width" : 640
+          }, {
+            "height" : 320,
+            "url" : "https://i.scdn.co/image/ab676161000051744e7e6ded87a4e0f65b5afcec",
+            "width" : 320
+          }, {
+            "height" : 160,
+            "url" : "https://i.scdn.co/image/ab6761610000f1784e7e6ded87a4e0f65b5afcec",
+            "width" : 160
+          } ],
+          "name" : "Britney Spears",
+          "popularity" : 80,
+          "type" : "artist",
+          "uri" : "spotify:artist:26dSoYclwsYLMAKD3tpOr4"
+        }
+  recorded_at: Sun, 27 Nov 2022 13:19:49 GMT
 recorded_with: VCR 6.1.0
