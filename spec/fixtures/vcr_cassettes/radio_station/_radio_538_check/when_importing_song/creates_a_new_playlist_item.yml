@@ -31,13 +31,13 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 27 Nov 2022 13:19:53 GMT
+      - Sun, 27 Nov 2022 20:15:24 GMT
       X-Amzn-Requestid:
-      - a5c941f8-d50c-4660-94c1-c6c023564d16
+      - df21eb55-c417-4e7e-a941-23319ca1f162
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 a148356b14492df0e216c234ac2c2308.cloudfront.net (CloudFront), 1.1 4e4c50c641418e6aad9ec09cb0f22844.cloudfront.net
+      - 1.1 9c7c26f5beeb09381cea450ea3581b36.cloudfront.net (CloudFront), 1.1 1bc76a14967a660022b25f573baec632.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
       - AMS54-C1
@@ -47,19 +47,18 @@ http_interactions:
       X-Cache:
       - Miss from cloudfront
       X-Amz-Cf-Id:
-      - SwYgbpUzBVszF1sJMnzHIEFN9Fyrii0T4tHL0aXRCo39Yy0mShp0Eg==
+      - 7AKsvgiz31_pyENFdSDDml51haqWda3bZSFT8GFZgS1c2nKHHUkYxg==
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Radio 538","playouts":[{"broadcastDate":"2022-11-27T13:17:32Z","track":{"id":"7ba6cb66-1b7a-5905-85e5-0687b66e3feb","title":"B.O.T.A.
-        (BADDEST OF THEM ALL)","artistName":"ELIZA ROSE & INTERPLANETARY CRIMINAL","isrc":"QZAKB2166405","images":[{"type":"image","uri":"https://img.talparad.io/tracks/QZAKB2166405.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:14:32Z","track":{"id":"f5adc4c7-1600-5444-bb0b-3f7a910f3947","title":"FERRARI","artistName":"JAMES
-        HYPE","isrc":"GB3CE2200004","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GB3CE2200004.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:10:00Z","track":{"id":"40e6f53f-85a3-53dc-80e1-8be5c9dc20d9","title":"THROUGH
-        THE LOOKING GLASS","artistName":"DI-RECT","isrc":"NLZ292200041","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:06:40Z","track":{"id":"b4b838a7-d980-54d5-99a2-f9d1f90ed242","title":"SOLO
-        PARA TI","artistName":"ALVARO SOLER & TOPIC","isrc":"DEUM72201943","images":[{"type":"image","uri":"https://img.talparad.io/tracks/DEUM72201943.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:50:08Z","track":{"id":"13f492a9-382a-5cbd-90dc-a58debb0fb34","title":"DON''T
-        CHA","artistName":"PUSSYCAT DOLLS","isrc":"USUM70504009","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM70504009.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:44:13Z","track":{"id":"5ecc4cd0-44b7-54e6-bc18-270142429bb7","title":"THE
-        LONELIEST","artistName":"MANESKIN","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:41:37Z","track":{"id":"38345cea-de15-55eb-a5f4-df4e89e47dd6","title":"THE
-        BUSINESS","artistName":"TIESTO","isrc":"CYA112000624","images":[{"type":"image","uri":"https://img.talparad.io/tracks/CYA112000624.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:37:19Z","track":{"id":"52bb4fb4-d84d-578f-8b1d-a0459133c36c","title":"STAR
-        WALKIN''","artistName":"LIL NAS X","isrc":"USSM12208810","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:33:54Z","track":{"id":"747ffcb3-a06f-59a4-8366-8ca188a024da","title":"REMIND
-        ME","artistName":"TOM GRENNAN","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:25:49Z","track":{"id":"8da82da9-30a5-5c3d-83f6-0ec3d24c302c","title":"LADADA
+      string: '{"data":{"getStation":{"title":"Radio 538","playouts":[{"broadcastDate":"2022-11-27T20:13:02Z","track":{"id":"3f4c43d6-9d0d-5388-967f-f1b3ffceaed3","title":"GET
+        OUT MY HEAD","artistName":"SHANE CODD","isrc":"QZHN42019816","images":[{"type":"image","uri":"https://img.talparad.io/tracks/QZHN42019816.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:09:44Z","track":{"id":"41b95c60-c9bc-599d-bd05-e564c57043dc","title":"THIS
+        IS THE MOMENT","artistName":"SON MIEUX","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:05:23Z","track":{"id":"8f20c563-e478-597c-947f-319ab0bcaf31","title":"WHEN
+        YOU''RE GONE","artistName":"SHAWN MENDES","isrc":"USUM72205147","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM72205147.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:02:22Z","track":{"id":"3e2bdc6c-6bb9-57e2-aeb0-df21f57d18eb","title":"I''M
+        GOOD (BLUE)","artistName":"DAVID GUETTA & BEBE REXHA","isrc":"UKWLG2200055","images":[{"type":"image","uri":"https://img.talparad.io/tracks/UKWLG2200055.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:52:10Z","track":{"id":"6bd846b7-233f-5c86-94fd-11d60d29e047","title":"MILLION
+        DOLLAR BABY","artistName":"AVA MAX","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:49:37Z","track":{"id":"c6e6db8f-fff0-5513-b641-1144c2f7ec5b","title":"AS
+        IT WAS","artistName":"HARRY STYLES","isrc":"USSM12200612","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM12200612.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:46:48Z","track":{"id":"b00e6321-ba24-510d-b106-00348524a7ec","title":"RELY
+        ON ME","artistName":"SIGALA & GABRY PONTE & ALEX GAUDINO","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:42:29Z","track":{"id":"af3b489d-38a2-5c4e-96c3-a38157c17b73","title":"UNHOLY","artistName":"SAM
+        SMITH & KIM PETRAS","isrc":"GBUM72205415","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBUM72205415.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:39:20Z","track":{"id":"aeb72541-c3d8-56a5-ba87-2260e30c2d1b","title":"RIDDLES","artistName":"KENSINGTON","isrc":"NLUB41400027","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLUB41400027.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:36:43Z","track":{"id":"8da82da9-30a5-5c3d-83f6-0ec3d24c302c","title":"LADADA
         (MON DERNIER MOT)","artistName":"CLAUDE","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sun, 27 Nov 2022 13:19:53 GMT
+  recorded_at: Sun, 27 Nov 2022 20:15:24 GMT
 recorded_with: VCR 6.1.0

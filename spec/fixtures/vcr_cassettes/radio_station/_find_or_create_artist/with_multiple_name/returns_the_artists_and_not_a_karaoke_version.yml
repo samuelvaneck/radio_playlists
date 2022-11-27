@@ -16,7 +16,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAVevLUcIsEBF094_Odnb-4UZVxCGPmTse4lCR50lsQ4o7moyBEGfRMLTE7qz6CP9rPeYC_NvQc8vIbbzUboQPQnARKqKdhQ6lGoRNrdlR3lfUbHgU
+      - Bearer BQCzHq-TWE1gS0jWoH6iiY2bkZi1UajjRW2uGrYSrBMq8oj_SiQUD3Kx1q30zjFkrOny13pyP-hyBD446qgT7IDUg0Gyl7g8ml7OaW2LxTVZwAQUTy8
       Content-Type:
       - application/json
   response:
@@ -46,7 +46,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 27 Nov 2022 13:19:55 GMT
+      - Sun, 27 Nov 2022 20:15:26 GMT
       Server:
       - envoy
       Via:
@@ -907,33 +907,33 @@ http_interactions:
                 "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
               }, {
                 "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/3ZkyzF84LNx4DAarg3DHxY"
+                  "spotify" : "https://open.spotify.com/artist/45lcbTsX07JWzmTIjcdyBz"
                 },
-                "href" : "https://api.spotify.com/v1/artists/3ZkyzF84LNx4DAarg3DHxY",
-                "id" : "3ZkyzF84LNx4DAarg3DHxY",
-                "name" : "The Subculture",
+                "href" : "https://api.spotify.com/v1/artists/45lcbTsX07JWzmTIjcdyBz",
+                "id" : "45lcbTsX07JWzmTIjcdyBz",
+                "name" : "Matroda",
                 "type" : "artist",
-                "uri" : "spotify:artist:3ZkyzF84LNx4DAarg3DHxY"
+                "uri" : "spotify:artist:45lcbTsX07JWzmTIjcdyBz"
               } ],
               "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
               "disc_number" : 1,
-              "duration_ms" : 199354,
+              "duration_ms" : 231604,
               "explicit" : false,
               "external_ids" : {
-                "isrc" : "NLM5S2000087"
+                "isrc" : "NLM5S2000848"
               },
               "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/2jLTl6iFw7b3q74dVtBWkw"
+                "spotify" : "https://open.spotify.com/track/05mXpytcquS3WoRi3cfl8d"
               },
-              "href" : "https://api.spotify.com/v1/tracks/2jLTl6iFw7b3q74dVtBWkw",
-              "id" : "2jLTl6iFw7b3q74dVtBWkw",
+              "href" : "https://api.spotify.com/v1/tracks/05mXpytcquS3WoRi3cfl8d",
+              "id" : "05mXpytcquS3WoRi3cfl8d",
               "is_local" : false,
-              "name" : "Drown (feat. Clinton Kane) - The Subculture Remix",
+              "name" : "Drown (feat. Clinton Kane) - Matroda Remix",
               "popularity" : 19,
-              "preview_url" : "https://p.scdn.co/mp3-preview/3d8b0567622ae9b8f26b2bf79ecc54996d892ddc?cid=ff70df650ee14a1fad4aed3b533e8ea4",
-              "track_number" : 5,
+              "preview_url" : "https://p.scdn.co/mp3-preview/edd04be84d9b71ef89eab394c6d72e3daadb7dd6?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 2,
               "type" : "track",
-              "uri" : "spotify:track:2jLTl6iFw7b3q74dVtBWkw"
+              "uri" : "spotify:track:05mXpytcquS3WoRi3cfl8d"
             }, {
               "album" : {
                 "album_type" : "single",
@@ -1002,33 +1002,33 @@ http_interactions:
                 "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
               }, {
                 "external_urls" : {
-                  "spotify" : "https://open.spotify.com/artist/45lcbTsX07JWzmTIjcdyBz"
+                  "spotify" : "https://open.spotify.com/artist/3ZkyzF84LNx4DAarg3DHxY"
                 },
-                "href" : "https://api.spotify.com/v1/artists/45lcbTsX07JWzmTIjcdyBz",
-                "id" : "45lcbTsX07JWzmTIjcdyBz",
-                "name" : "Matroda",
+                "href" : "https://api.spotify.com/v1/artists/3ZkyzF84LNx4DAarg3DHxY",
+                "id" : "3ZkyzF84LNx4DAarg3DHxY",
+                "name" : "The Subculture",
                 "type" : "artist",
-                "uri" : "spotify:artist:45lcbTsX07JWzmTIjcdyBz"
+                "uri" : "spotify:artist:3ZkyzF84LNx4DAarg3DHxY"
               } ],
               "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
               "disc_number" : 1,
-              "duration_ms" : 231604,
+              "duration_ms" : 199354,
               "explicit" : false,
               "external_ids" : {
-                "isrc" : "NLM5S2000848"
+                "isrc" : "NLM5S2000087"
               },
               "external_urls" : {
-                "spotify" : "https://open.spotify.com/track/05mXpytcquS3WoRi3cfl8d"
+                "spotify" : "https://open.spotify.com/track/2jLTl6iFw7b3q74dVtBWkw"
               },
-              "href" : "https://api.spotify.com/v1/tracks/05mXpytcquS3WoRi3cfl8d",
-              "id" : "05mXpytcquS3WoRi3cfl8d",
+              "href" : "https://api.spotify.com/v1/tracks/2jLTl6iFw7b3q74dVtBWkw",
+              "id" : "2jLTl6iFw7b3q74dVtBWkw",
               "is_local" : false,
-              "name" : "Drown (feat. Clinton Kane) - Matroda Remix",
+              "name" : "Drown (feat. Clinton Kane) - The Subculture Remix",
               "popularity" : 19,
-              "preview_url" : "https://p.scdn.co/mp3-preview/edd04be84d9b71ef89eab394c6d72e3daadb7dd6?cid=ff70df650ee14a1fad4aed3b533e8ea4",
-              "track_number" : 2,
+              "preview_url" : "https://p.scdn.co/mp3-preview/3d8b0567622ae9b8f26b2bf79ecc54996d892ddc?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+              "track_number" : 5,
               "type" : "track",
-              "uri" : "spotify:track:05mXpytcquS3WoRi3cfl8d"
+              "uri" : "spotify:track:2jLTl6iFw7b3q74dVtBWkw"
             } ],
             "limit" : 20,
             "next" : null,
@@ -1037,7 +1037,7 @@ http_interactions:
             "total" : 10
           }
         }
-  recorded_at: Sun, 27 Nov 2022 13:19:55 GMT
+  recorded_at: Sun, 27 Nov 2022 20:15:26 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ
@@ -1054,7 +1054,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAVevLUcIsEBF094_Odnb-4UZVxCGPmTse4lCR50lsQ4o7moyBEGfRMLTE7qz6CP9rPeYC_NvQc8vIbbzUboQPQnARKqKdhQ6lGoRNrdlR3lfUbHgU
+      - Bearer BQCzHq-TWE1gS0jWoH6iiY2bkZi1UajjRW2uGrYSrBMq8oj_SiQUD3Kx1q30zjFkrOny13pyP-hyBD446qgT7IDUg0Gyl7g8ml7OaW2LxTVZwAQUTy8
       Content-Type:
       - application/json
   response:
@@ -1065,7 +1065,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=80156
+      - public, max-age=85840
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1084,7 +1084,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 27 Nov 2022 13:19:55 GMT
+      - Sun, 27 Nov 2022 20:15:26 GMT
       Server:
       - envoy
       Via:
@@ -1125,7 +1125,7 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
         }
-  recorded_at: Sun, 27 Nov 2022 13:19:55 GMT
+  recorded_at: Sun, 27 Nov 2022 20:15:26 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P
@@ -1142,7 +1142,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQAVevLUcIsEBF094_Odnb-4UZVxCGPmTse4lCR50lsQ4o7moyBEGfRMLTE7qz6CP9rPeYC_NvQc8vIbbzUboQPQnARKqKdhQ6lGoRNrdlR3lfUbHgU
+      - Bearer BQCzHq-TWE1gS0jWoH6iiY2bkZi1UajjRW2uGrYSrBMq8oj_SiQUD3Kx1q30zjFkrOny13pyP-hyBD446qgT7IDUg0Gyl7g8ml7OaW2LxTVZwAQUTy8
       Content-Type:
       - application/json
   response:
@@ -1153,7 +1153,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=81515
+      - public, max-age=72074
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1172,7 +1172,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 27 Nov 2022 13:19:55 GMT
+      - Sun, 27 Nov 2022 20:15:26 GMT
       Server:
       - envoy
       Via:
@@ -1213,5 +1213,5 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
         }
-  recorded_at: Sun, 27 Nov 2022 13:19:55 GMT
+  recorded_at: Sun, 27 Nov 2022 20:15:26 GMT
 recorded_with: VCR 6.1.0

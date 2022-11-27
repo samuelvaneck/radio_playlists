@@ -31,13 +31,13 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 27 Nov 2022 13:19:55 GMT
+      - Sun, 27 Nov 2022 20:15:19 GMT
       X-Amzn-Requestid:
-      - e3d9e137-f348-41bb-b4a2-9508c9703a3a
+      - 2441239a-c5a0-4dfd-abc4-3d855ca23569
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 fa5a3d5abd34c6fac657b045a4dcbdc4.cloudfront.net (CloudFront), 1.1 b619a16f6f8fe9793bf642d2a8434284.cloudfront.net
+      - 1.1 9c7c26f5beeb09381cea450ea3581b36.cloudfront.net (CloudFront), 1.1 80826ca6c4fd6005aeacf5a03c8d42e8.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
       - AMS54-C1
@@ -47,23 +47,20 @@ http_interactions:
       X-Cache:
       - Hit from cloudfront
       X-Amz-Cf-Id:
-      - c3PxqZazQgP-tOKDeuki8OYaFbcUSAlTRj519kfVCEAEocnWR4LMFA==
-      Age:
-      - '2'
+      - JocmSoQZ3-lOwltymeZOtMpyG8wIhKCsWSQOH1V1Ru5ZTmeuYOwXdQ==
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Sky Radio","playouts":[{"broadcastDate":"2022-11-27T13:19:37Z","track":{"id":"74b1836f-9694-5483-8e09-2b830d61dcaa","title":"Hurricane","artistName":"Ofenbach
-        x Ella Henderson","isrc":"FR9W12128761","images":[{"type":"image","uri":"https://img.talparad.io/tracks/FR9W12128761.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:16:05Z","track":{"id":"1ffc2549-c5b8-5069-b09a-ab345ded4380","title":"Happy
-        X-Mas (War Is Over)","artistName":"John Lennon","isrc":"GBAYE7100020","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAYE7100020.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:11:37Z","track":{"id":"bf87247e-ba57-5189-8f8f-459ab1b74fd0","title":"Roller
-        Coaster","artistName":"Danny Vera","isrc":"NLB601800405","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLB601800405.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:08:14Z","track":{"id":"6951c0d0-f748-5e56-a825-160ea5eb8284","title":"Do
-        You Hear What I Hear","artistName":"Whitney Houston","isrc":"USAR19500122","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAR19500122.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:05:21Z","track":{"id":"8f20c563-e478-597c-947f-319ab0bcaf31","title":"When
-        You''re Gone","artistName":"Shawn Mendes","isrc":"USUM72204098","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM72204098.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:03:14Z","track":{"id":"6f4d4b33-0f9a-55e2-91bb-10378b3e8e3a","title":"Let
-        It Snow","artistName":"Michael Buble","isrc":"USRE10301534","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USRE10301534.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:51:54Z","track":{"id":"f73a39ce-f105-5632-ba67-428d861eb0a2","title":"Christmas
-        Eve","artistName":"Kelly Clarkson","isrc":"USAT21704314","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAT21704314.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:48:53Z","track":{"id":"5f3387b2-03c1-5bdd-b926-f3c30304c0d8","title":"Questions","artistName":"Lost
-        Frequencies ft James Arthur","isrc":"BEHP42200001","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:45:23Z","track":{"id":"9fb22789-91fc-5357-8403-b0e17e90aa02","title":"Do
-        They Know It''s Christmas","artistName":"Band Aid","isrc":"GBF088400001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBF088400001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:42:30Z","track":{"id":"3e2bdc6c-6bb9-57e2-aeb0-df21f57d18eb","title":"I''m
-        Good (Blue)","artistName":"David Guetta & Bebe Rexha","isrc":"UKWLG2200055","images":[{"type":"image","uri":"https://img.talparad.io/tracks/UKWLG2200055.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sun, 27 Nov 2022 13:19:57 GMT
+      string: '{"data":{"getStation":{"title":"Sky Radio","playouts":[{"broadcastDate":"2022-11-27T20:13:22Z","track":{"id":"939faca5-498a-5e32-a51e-cb48f99337a6","title":"Jingle
+        Bells","artistName":"Gwen Stefani","isrc":"USUM71707729","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM71707729.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:09:53Z","track":{"id":"b41818c1-a465-5daa-ad99-ff72bd48fff7","title":"Multicolor","artistName":"Son
+        Mieux","isrc":"NLV3A2200001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLV3A2200001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:06:13Z","track":{"id":"e0a110ec-222f-5433-a922-d4ca06902a63","title":"Put
+        A Little Love In Your Heart","artistName":"Annie Lennox & Al Green","isrc":"USAM18800030","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAM18800030.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:02:31Z","track":{"id":"799dc256-8d04-520c-84dc-78944cd6fac4","title":"Wonderful
+        Christmas Time","artistName":"Paul McCartney","isrc":"GBCCS8401051","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBCCS8401051.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:50:12Z","track":{"id":"e8d4ebd6-1696-548b-94a8-45f660e80872","title":"Overpass
+        Graffiti","artistName":"Ed Sheeran","isrc":"GBAHS2100673","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAHS2100673.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:48:23Z","track":{"id":"94849790-38db-551e-ba7b-8074a4975d56","title":"Let
+        It Snow Let It Snow Let It Snow","artistName":"Dean Martin","isrc":"USCA29800523","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USCA29800523.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:44:25Z","track":{"id":"b0030593-d574-578e-a605-dd730cd09303","title":"Superheroes","artistName":"Script","isrc":"GBARL1400978","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBARL1400978.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:40:06Z","track":{"id":"636e062c-ba2c-594d-bdf9-7a6cd997621d","title":"My
+        Only Wish This Year","artistName":"Britney Spears","isrc":"USJI10000522","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USJI10000522.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:35:51Z","track":{"id":"daaf4fa4-8577-5cd5-8765-efcc4b99fa1b","title":"Christmas
+        Time","artistName":"Bryan Adams","isrc":"USUMG9900538","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUMG9900538.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:32:17Z","track":{"id":"724806de-f367-5f95-aa80-0eddd0634196","title":"In
+        The Stars","artistName":"Benson Boone","isrc":"USWB12201574","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USWB12201574.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sun, 27 Nov 2022 20:15:19 GMT
 - request:
     method: get
     uri: https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile:%20%22radio-brand-web%22,%20slug:%20%22sky-radio%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile:%20%22%22,%20limit:%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D
@@ -95,13 +92,13 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 27 Nov 2022 13:19:55 GMT
+      - Sun, 27 Nov 2022 20:15:19 GMT
       X-Amzn-Requestid:
-      - e3d9e137-f348-41bb-b4a2-9508c9703a3a
+      - 2441239a-c5a0-4dfd-abc4-3d855ca23569
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 fa5a3d5abd34c6fac657b045a4dcbdc4.cloudfront.net (CloudFront), 1.1 df4167ab0949b4d2c15466bdfdc05f94.cloudfront.net
+      - 1.1 9c7c26f5beeb09381cea450ea3581b36.cloudfront.net (CloudFront), 1.1 a36403421b18ef7385d5575765e6c414.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
       - AMS54-C1
@@ -111,21 +108,20 @@ http_interactions:
       X-Cache:
       - Hit from cloudfront
       X-Amz-Cf-Id:
-      - 3-EOxS6sVMx1tLuIN6j6XtF3f1upP5bKAO80GIUgkkyfC_I4UWDM5w==
+      - FvbEMB-GkXh9OEGm3cBh_-FGDfJTu7LbTqVO-wIr3DYz4Tg844Tjcw==
       Age:
-      - '2'
+      - '1'
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Sky Radio","playouts":[{"broadcastDate":"2022-11-27T13:19:37Z","track":{"id":"74b1836f-9694-5483-8e09-2b830d61dcaa","title":"Hurricane","artistName":"Ofenbach
-        x Ella Henderson","isrc":"FR9W12128761","images":[{"type":"image","uri":"https://img.talparad.io/tracks/FR9W12128761.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:16:05Z","track":{"id":"1ffc2549-c5b8-5069-b09a-ab345ded4380","title":"Happy
-        X-Mas (War Is Over)","artistName":"John Lennon","isrc":"GBAYE7100020","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAYE7100020.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:11:37Z","track":{"id":"bf87247e-ba57-5189-8f8f-459ab1b74fd0","title":"Roller
-        Coaster","artistName":"Danny Vera","isrc":"NLB601800405","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLB601800405.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:08:14Z","track":{"id":"6951c0d0-f748-5e56-a825-160ea5eb8284","title":"Do
-        You Hear What I Hear","artistName":"Whitney Houston","isrc":"USAR19500122","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAR19500122.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:05:21Z","track":{"id":"8f20c563-e478-597c-947f-319ab0bcaf31","title":"When
-        You''re Gone","artistName":"Shawn Mendes","isrc":"USUM72204098","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM72204098.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:03:14Z","track":{"id":"6f4d4b33-0f9a-55e2-91bb-10378b3e8e3a","title":"Let
-        It Snow","artistName":"Michael Buble","isrc":"USRE10301534","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USRE10301534.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:51:54Z","track":{"id":"f73a39ce-f105-5632-ba67-428d861eb0a2","title":"Christmas
-        Eve","artistName":"Kelly Clarkson","isrc":"USAT21704314","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAT21704314.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:48:53Z","track":{"id":"5f3387b2-03c1-5bdd-b926-f3c30304c0d8","title":"Questions","artistName":"Lost
-        Frequencies ft James Arthur","isrc":"BEHP42200001","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:45:23Z","track":{"id":"9fb22789-91fc-5357-8403-b0e17e90aa02","title":"Do
-        They Know It''s Christmas","artistName":"Band Aid","isrc":"GBF088400001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBF088400001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:42:30Z","track":{"id":"3e2bdc6c-6bb9-57e2-aeb0-df21f57d18eb","title":"I''m
-        Good (Blue)","artistName":"David Guetta & Bebe Rexha","isrc":"UKWLG2200055","images":[{"type":"image","uri":"https://img.talparad.io/tracks/UKWLG2200055.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sun, 27 Nov 2022 13:19:57 GMT
+      string: '{"data":{"getStation":{"title":"Sky Radio","playouts":[{"broadcastDate":"2022-11-27T20:13:22Z","track":{"id":"939faca5-498a-5e32-a51e-cb48f99337a6","title":"Jingle
+        Bells","artistName":"Gwen Stefani","isrc":"USUM71707729","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM71707729.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:09:53Z","track":{"id":"b41818c1-a465-5daa-ad99-ff72bd48fff7","title":"Multicolor","artistName":"Son
+        Mieux","isrc":"NLV3A2200001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLV3A2200001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:06:13Z","track":{"id":"e0a110ec-222f-5433-a922-d4ca06902a63","title":"Put
+        A Little Love In Your Heart","artistName":"Annie Lennox & Al Green","isrc":"USAM18800030","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAM18800030.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:02:31Z","track":{"id":"799dc256-8d04-520c-84dc-78944cd6fac4","title":"Wonderful
+        Christmas Time","artistName":"Paul McCartney","isrc":"GBCCS8401051","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBCCS8401051.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:50:12Z","track":{"id":"e8d4ebd6-1696-548b-94a8-45f660e80872","title":"Overpass
+        Graffiti","artistName":"Ed Sheeran","isrc":"GBAHS2100673","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAHS2100673.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:48:23Z","track":{"id":"94849790-38db-551e-ba7b-8074a4975d56","title":"Let
+        It Snow Let It Snow Let It Snow","artistName":"Dean Martin","isrc":"USCA29800523","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USCA29800523.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:44:25Z","track":{"id":"b0030593-d574-578e-a605-dd730cd09303","title":"Superheroes","artistName":"Script","isrc":"GBARL1400978","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBARL1400978.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:40:06Z","track":{"id":"636e062c-ba2c-594d-bdf9-7a6cd997621d","title":"My
+        Only Wish This Year","artistName":"Britney Spears","isrc":"USJI10000522","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USJI10000522.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:35:51Z","track":{"id":"daaf4fa4-8577-5cd5-8765-efcc4b99fa1b","title":"Christmas
+        Time","artistName":"Bryan Adams","isrc":"USUMG9900538","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUMG9900538.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:32:17Z","track":{"id":"724806de-f367-5f95-aa80-0eddd0634196","title":"In
+        The Stars","artistName":"Benson Boone","isrc":"USWB12201574","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USWB12201574.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sun, 27 Nov 2022 20:15:20 GMT
 recorded_with: VCR 6.1.0

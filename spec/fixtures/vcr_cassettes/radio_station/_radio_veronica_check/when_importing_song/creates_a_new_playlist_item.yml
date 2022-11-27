@@ -31,13 +31,15 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 27 Nov 2022 13:19:55 GMT
+      - Sun, 27 Nov 2022 20:15:29 GMT
       X-Amzn-Requestid:
-      - ea8bb28d-96f6-45a4-8c40-2fa2dd6162ee
+      - 56dc7188-799c-487d-be8c-cc3e3df9d712
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
+      X-Amzn-Trace-Id:
+      - Root=1-6383c561-25804ff90b8a51d521baf3d7
       Via:
-      - 1.1 b83a899c16a2f53127e152fe5fc783a4.cloudfront.net (CloudFront), 1.1 b911c551065b8f78ad33b4c4564141be.cloudfront.net
+      - 1.1 5317564e96c9dceb46123f6c5f149a02.cloudfront.net (CloudFront), 1.1 b8eaad25e4131c15c21d3d50aac2684c.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
       - AMS54-C1
@@ -47,18 +49,18 @@ http_interactions:
       X-Cache:
       - Miss from cloudfront
       X-Amz-Cf-Id:
-      - N0Gb1aiIai1yoyo5YViRCp1dVMprEHDy-TfYMC9Htbun24QIaK2KXA==
+      - JmA-dRTCUV38K6rcIXYzIlKOiqocGmxOQvLXnqbfNK7CxG7dT2Vg5Q==
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Radio Veronica","playouts":[{"broadcastDate":"2022-11-27T13:16:33Z","track":{"id":"f44d55f3-4a50-5417-8bed-9669387d9f00","title":"Seeing
-        Straight","artistName":"Mitch Santiago","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:11:09Z","track":{"id":"09778504-1641-54c6-9ecb-0c17e9f1d10b","title":"My
-        Lovin'' (You''re Never Gonna Get It)","artistName":"En Vogue","isrc":"USEW19200001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USEW19200001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T13:07:02Z","track":{"id":"aea1c7b7-809f-5a13-a137-eb3defeffcab","title":"All
-        Right Now","artistName":"Free","isrc":"GBAAN7000064","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAAN7000064.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:52:41Z","track":{"id":"cdf51d6f-4d87-5999-8ff2-4cdffb03e6d9","title":"Sing","artistName":"Travis","isrc":"GBBPF0100539","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBBPF0100539.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:48:49Z","track":{"id":"19f9a53a-b663-5e24-881f-a1793436626a","title":"Sir
-        Duke","artistName":"Stevie Wonder","isrc":"USMO17600526","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USMO17600526.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:42:57Z","track":{"id":"141cfd34-8137-5b27-8401-5a79f74d253f","title":"Music","artistName":"John
-        Miles","isrc":"GBF077620010","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBF077620010.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:36:14Z","track":{"id":"81f32022-40a9-54e5-aa15-ee5148891e75","title":"Butterfly","artistName":"Jason
-        Mraz","isrc":"USEE10800807","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USEE10800807.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:32:27Z","track":{"id":"a53ee65e-c2d5-5f51-87d0-bc425cc8f7f3","title":"Livin''
-        On A Prayer","artistName":"Bon Jovi","isrc":"USPR39402218","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USPR39402218.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:24:04Z","track":{"id":"6c5375fb-736d-5aca-835e-0fe2cb3fe8a8","title":"Regulate","artistName":"Warren
-        G & Nate Dogg & Michael Mcdonald","isrc":"USPR39401366","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USPR39401366.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T12:20:52Z","track":{"id":"c788c8a4-4586-5e56-b193-10baeedf5952","title":"Why
-        Can''t I Be You","artistName":"Cure","isrc":"GBALB8700001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBALB8700001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sun, 27 Nov 2022 13:19:55 GMT
+      string: '{"data":{"getStation":{"title":"Radio Veronica","playouts":[{"broadcastDate":"2022-11-27T20:06:59Z","track":{"id":"b9f5c6bb-434f-58ed-b0fb-532cd707a590","title":"Let''s
+        Go All The Way","artistName":"Sly Fox","isrc":"USCA29200364","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:55:30Z","track":{"id":"ea965492-0095-560a-ae19-29be95648b9a","title":"Ooh
+        I Like It","artistName":"Creeps","isrc":"SEPQD9023070","images":[{"type":"image","uri":"https://img.talparad.io/tracks/SEPQD9023070.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:51:31Z","track":{"id":"f3124fe2-3660-5852-a2f5-dd5bfaa57dbd","title":"Jamming","artistName":"Bob
+        Marley & The Wailers","isrc":"USIR27700013","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USIR27700013.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:44:46Z","track":{"id":"fd1cfb7d-8d38-56c5-803e-265c53cc1ff8","title":"Lookin''
+        Out For Number One","artistName":"Bachman Turner Overdrive","isrc":"GBSMU7983656","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBSMU7983656.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:34:49Z","track":{"id":"db20350a-3d82-541d-9cbc-e399532dcfb9","title":"Sunday
+        Bloody Sunday (Live Under A Blood Red Sky)","artistName":"U2","isrc":"GBCBR1300064","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:28:58Z","track":{"id":"6fcbe0f1-c400-5a27-8ad3-e73df1b102b0","title":"She
+        Moves In Her Own Way","artistName":"Kooks","isrc":"GBAAA0500835","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAAA0500835.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:19:57Z","track":{"id":"959a3a4e-c2bd-5994-be37-f1c65f20b86f","title":"Built
+        And Broken","artistName":"Blackbird","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:11:45Z","track":{"id":"99421803-6f23-5d38-a533-23e74cd582cb","title":"Hold
+        On Tight","artistName":"Electric Light Orchestra","isrc":"USSM18100353","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM18100353.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:08:39Z","track":{"id":"5339b67d-240d-50e2-8048-78741e0d21e5","title":"I
+        Bet You Look Good On The Dancefloor","artistName":"Arctic Monkeys","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:02:56Z","track":{"id":"49065ed1-4fb1-524c-91f8-ad0d0bf36ba1","title":"Unbelievable","artistName":"EMF","isrc":"GBAYE9000089","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAYE9000089.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Sun, 27 Nov 2022 20:15:29 GMT
 recorded_with: VCR 6.1.0
