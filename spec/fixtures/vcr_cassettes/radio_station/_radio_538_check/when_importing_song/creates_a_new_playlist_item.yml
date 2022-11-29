@@ -31,34 +31,35 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 27 Nov 2022 20:15:24 GMT
+      - Tue, 29 Nov 2022 20:11:57 GMT
       X-Amzn-Requestid:
-      - df21eb55-c417-4e7e-a941-23319ca1f162
+      - 8ed88a9c-b407-4540-9763-d6b7e5daa726
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 9c7c26f5beeb09381cea450ea3581b36.cloudfront.net (CloudFront), 1.1 1bc76a14967a660022b25f573baec632.cloudfront.net
+      - 1.1 58bcd6f2e1bc29fb83f080f1743cfeca.cloudfront.net (CloudFront), 1.1 b3ca057e9cdd89c43806ec06db3b4046.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
-      - AMS54-C1
+      - AMS1-P2
       - FRA50-C1
       Vary:
       - Accept-Encoding
       X-Cache:
       - Miss from cloudfront
       X-Amz-Cf-Id:
-      - 7AKsvgiz31_pyENFdSDDml51haqWda3bZSFT8GFZgS1c2nKHHUkYxg==
+      - ohgv3EoUSuowbBrv1GaKx3TWUc9dt1TAAaaQzVtKym1kISjZ2c9I7g==
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Radio 538","playouts":[{"broadcastDate":"2022-11-27T20:13:02Z","track":{"id":"3f4c43d6-9d0d-5388-967f-f1b3ffceaed3","title":"GET
-        OUT MY HEAD","artistName":"SHANE CODD","isrc":"QZHN42019816","images":[{"type":"image","uri":"https://img.talparad.io/tracks/QZHN42019816.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:09:44Z","track":{"id":"41b95c60-c9bc-599d-bd05-e564c57043dc","title":"THIS
-        IS THE MOMENT","artistName":"SON MIEUX","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:05:23Z","track":{"id":"8f20c563-e478-597c-947f-319ab0bcaf31","title":"WHEN
-        YOU''RE GONE","artistName":"SHAWN MENDES","isrc":"USUM72205147","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM72205147.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:02:22Z","track":{"id":"3e2bdc6c-6bb9-57e2-aeb0-df21f57d18eb","title":"I''M
-        GOOD (BLUE)","artistName":"DAVID GUETTA & BEBE REXHA","isrc":"UKWLG2200055","images":[{"type":"image","uri":"https://img.talparad.io/tracks/UKWLG2200055.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:52:10Z","track":{"id":"6bd846b7-233f-5c86-94fd-11d60d29e047","title":"MILLION
-        DOLLAR BABY","artistName":"AVA MAX","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:49:37Z","track":{"id":"c6e6db8f-fff0-5513-b641-1144c2f7ec5b","title":"AS
-        IT WAS","artistName":"HARRY STYLES","isrc":"USSM12200612","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM12200612.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:46:48Z","track":{"id":"b00e6321-ba24-510d-b106-00348524a7ec","title":"RELY
-        ON ME","artistName":"SIGALA & GABRY PONTE & ALEX GAUDINO","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:42:29Z","track":{"id":"af3b489d-38a2-5c4e-96c3-a38157c17b73","title":"UNHOLY","artistName":"SAM
-        SMITH & KIM PETRAS","isrc":"GBUM72205415","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBUM72205415.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:39:20Z","track":{"id":"aeb72541-c3d8-56a5-ba87-2260e30c2d1b","title":"RIDDLES","artistName":"KENSINGTON","isrc":"NLUB41400027","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLUB41400027.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:36:43Z","track":{"id":"8da82da9-30a5-5c3d-83f6-0ec3d24c302c","title":"LADADA
-        (MON DERNIER MOT)","artistName":"CLAUDE","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sun, 27 Nov 2022 20:15:24 GMT
+      string: '{"data":{"getStation":{"title":"Radio 538","playouts":[{"broadcastDate":"2022-11-29T20:11:05Z","track":{"id":"5d51867f-01e9-5cc6-a202-613ac8485da5","title":"NEVER
+        GONNA NOT DANCE AGAIN","artistName":"PINK","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T20:07:41Z","track":{"id":"d46de288-65f9-59fe-b343-3b7066b07bfd","title":"IN
+        THE DARK","artistName":"PURPLE DISCO MACHINE & SOPHIE AND THE GIANTS","isrc":"AUDCB1701963","images":[{"type":"image","uri":"https://img.talparad.io/tracks/AUDCB1701963.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T20:04:30Z","track":{"id":"0fed3bbc-d349-5451-8b3c-3399ad59f4e8","title":"90S
+        KID","artistName":"DI-RECT","isrc":"NLZ292200123","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLZ292200123.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:54:08Z","track":{"id":"a520989d-f0bc-537b-9cc7-9a1d68f99b9e","title":"ANTI-HERO","artistName":"TAYLOR
+        SWIFT","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:51:03Z","track":{"id":"3e2bdc6c-6bb9-57e2-aeb0-df21f57d18eb","title":"I''M
+        GOOD (BLUE)","artistName":"DAVID GUETTA & BEBE REXHA","isrc":"UKWLG2200055","images":[{"type":"image","uri":"https://img.talparad.io/tracks/UKWLG2200055.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:47:45Z","track":{"id":"6a6669a8-8462-542f-b528-f5b8b07a6d38","title":"HIGHER
+        POWER","artistName":"COLDPLAY","isrc":"GBAYE2100379","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAYE2100379.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:45:04Z","track":{"id":"8da82da9-30a5-5c3d-83f6-0ec3d24c302c","title":"LADADA
+        (MON DERNIER MOT)","artistName":"CLAUDE","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:40:10Z","track":{"id":"52df1fb7-ac70-56e8-a550-a03fef1d757f","title":"THIS
+        IS LOVE","artistName":"WILL.I.AM & EVA SIMONS","isrc":"USUM71205294","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM71205294.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:36:57Z","track":{"id":"41b95c60-c9bc-599d-bd05-e564c57043dc","title":"THIS
+        IS THE MOMENT","artistName":"SON MIEUX","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:33:17Z","track":{"id":"6bd846b7-233f-5c86-94fd-11d60d29e047","title":"MILLION
+        DOLLAR BABY","artistName":"AVA MAX","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Tue, 29 Nov 2022 20:11:57 GMT
 recorded_with: VCR 6.1.0

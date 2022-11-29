@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 27 Nov 2022 20:15:28 GMT
+      - Tue, 29 Nov 2022 20:12:03 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -31,47 +31,52 @@ http_interactions:
       Connection:
       - keep-alive
       X-Request-Id:
-      - ff5dd99c468b373750bf1690b8ad9662
+      - be7e256151bc45b3fe84c9ccb1a8e0d4
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       X-Runtime:
-      - '0.264926'
+      - '0.242765'
       X-Powered-By:
       - Phusion Passenger(R) Enterprise
       Etag:
-      - W/"f8424d132cbe8138ea3850d8d07d7ba4"
+      - W/"f6f9f13c08c901d75884c82fb9177897"
       Status:
       - 200 OK
       X-Varnish:
-      - 1065100515 1065100440
+      - '127036129'
       Age:
-      - '22'
+      - '0'
       Via:
       - 1.1 varnish (Varnish/6.1)
       Access-Control-Allow-Origin:
       - "*"
       X-Cache:
-      - HIT-API
-      X-Cache-Hits:
-      - '3'
+      - MISS-API
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=lev%2FMI1vO7398bivDfDckjQ7DgJpRc1MwafXh%2BfR%2BUoV%2F79c2OR%2BMrbNwHqKFvJII94IrblZyoQXaPBYfZnpBTMI%2BvKxdT%2BP6mllw86Ubi7pkYnAfAC1mSETQYUec2o%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=s4h9kol54hbTmSrnoJVHGEO%2BW%2BvBhqK2LJetYaeFWJiVpTml02SVryLpvMjYP9GHGx0OctFd%2BBTFLQTCzeVCZGTGI5hypXPkpKgQWpRfHZaUq%2B1rIzDM4kyV1c0%2BCyA%3D"}],"group":"cf-nel","max_age":604800}'
       Nel:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 770d893aed430a55-AMS
+      - 771dfef7e908b8b2-AMS
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        eyJwbGF5ZWRfdHJhY2tzIjpbeyJwbGF5ZWRfYXQiOiIyMDIyLTExLTI3VDIxOjEzOjU2KzAxOjAwIiwic2x1ZyI6Imxvc3Qtd2l0aG91dC15b3UtMiIsInRpdGxlIjoiTG9zdCBXaXRob3V0IFlvdSIsInNlbGVjdG9yX2NvZGUiOiJRMTQzMTUiLCJyZWxlYXNlX3llYXIiOiIyMDIyIiwicmVjb3JkX2xhYmVsIjoiU29ueSIsImFmZmlsaWF0ZV91cmwiOiJodHRwczovL211c2ljLmFwcGxlLmNvbS9ubC9hbGJ1bS95b3VuZ2VyLWt5Z28tcmVtaXgvOTg2NDIwOTk3P2k9OTg2NDIyMjAwJnVvPTQiLCJ0aHVtYm5haWwiOiIvNC83ZC9iYy8yYi8xNTE5NDA2L3VubmFtZWQtMi5qcGciLCJzcG90aWZ5X3VybCI6Imh0dHA6Ly9vcGVuLnNwb3RpZnkuY29tL3RyYWNrLzFlR1cxWUJUMTdhNUcxaEtQV3JwVzciLCJ2aWRlb3MiOlt7InR5cGUiOiJ5b3V0dWJlIiwidGFncyI6ImRlZmF1bHQiLCJpZCI6InZTekpUSUZISTFJIn1dLCJob29rcyI6eyJtNGEiOiJodHRwczovL2F1ZGlvLXNzbC5pdHVuZXMuYXBwbGUuY29tL2l0dW5lcy1hc3NldHMvQXVkaW9QcmV2aWV3MTE1L3Y0LzdkLzQ4LzNlLzdkNDgzZTAxLTlkMTgtOGRjMi03MGYwLThlNjJlZTIxNzY3OS9temFmXzYxMDQ4OTE2OTM5NjI3MDczNzYucGx1cy5hYWMucC5tNGEifSwiYXJ0aXN0Ijp7ImlkIjo4ODI1LCJuYW1lIjoiS1lHTyAmIERFQU4gTEVXSVMiLCJvcmlnaW5hbF9uYW1lIjoiS1lHTyIsInNsdWciOiJreWdvIiwiZmFjZWJvb2tfdXJsIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2t5Z29vZmZpY2lhbCIsInR3aXR0ZXJfdXJsIjoiaHR0cHM6Ly93d3cudHdpdHRlci5jb20va3lnb211c2ljIiwiaW5zdGFncmFtX3VybCI6Imh0dHBzOi8vaW5zdGFncmFtLmNvbS9reWdvbXVzaWMiLCJ3ZWJzaXRlIjoiaHR0cDovL3d3dy5zb3VuZGNsb3VkLmNvbS9reWdvIiwicGhvdG8iOiIvNS9jNi9mZC8wMC8xMTYxMzA5L2NmZ3F6bjNjYXBvc2JqenE0b2wxLmpwZyIsImNvdW50cnkiOnsiY29kZSI6Ik5PIiwibmFtZSI6Ik5vb3J3ZWdlbiJ9fSwic3ViX2FydGlzdHMiOlt7ImFydGlzdCI6eyJpZCI6MTQzNTMsIm5hbWUiOiJERUFOIExFV0lTIiwiZmFjZWJvb2tfdXJsIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2RlYW5sZXdpc211c2ljLyIsInR3aXR0ZXJfdXJsIjoiaHR0cHM6Ly90d2l0dGVyLmNvbS9kZWFubGV3aXNtdXNpYyIsImluc3RhZ3JhbV91cmwiOiJodHRwczovL3d3dy5pbnN0YWdyYW0uY29tL2RlYW5sZXdpc211c2ljLyIsIndlYnNpdGUiOiJodHRwczovL3d3dy5kZWFubGV3aXNtdXNpYy5jb20vIiwicGhvdG8iOiIvZi82MS85Mi82OC8xMzk5ODM1L2E4NjY4OGEwZjY4YmM1ODcyMjIyMjMzOTkwYzdiMzIyLnBuZyIsImNvdW50cnkiOnsiY29kZSI6IkFVIiwibmFtZSI6IkF1c3RyYWxpw6sifX19XSwidGFncyI6W10sImN1cnJlbnRfZWRpdGlvbnMiOlt7InBvc2l0aW9uIjozOSwiZWRpdGlvbiI6eyJpZCI6NTI4NywibmFtZSI6IjI1LzExLzIwMjIifSwibGlzdCI6eyJpZCI6MjI1LCJuYW1lIjoiUW11c2ljIFRvcCA0MCJ9fV0sImFjdGl2ZV9lZGl0aW9ucyI6W10sIm5leHQiOnsic2x1ZyI6ImNyYXp5LWluLWxvdmUiLCJ0aXRsZSI6IkNyYXp5IEluIExvdmUiLCJzZWxlY3Rvcl9jb2RlIjoiODAxOC04NiIsInJlbGVhc2VfeWVhciI6IjIwMDMiLCJhZmZpbGlhdGVfdXJsIjoiaHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL25sL2FsYnVtL2NyYXp5LWluLWxvdmUvaWQyMDEyNzQzNTk/aT0yMDEyNzQ2NDQmdW89NCIsInRodW1ibmFpbCI6Ii9hL2E4L2ZkL2JiLzY0OTIvbXppLnFzbmR3ZndoLjYwMHg2MDAtNzUuanBnIiwic3BvdGlmeV91cmwiOiJodHRwOi8vb3Blbi5zcG90aWZ5LmNvbS90cmFjay81SVZ1cVhJTG94Vld2V0VQbTgySnhyIiwidmlkZW9zIjpbeyJ0eXBlIjoieW91dHViZSIsInRhZ3MiOiJkZWZhdWx0IiwiaWQiOiJWaXd0TkxVcWtNWSJ9XSwiaG9va3MiOnsibTRhIjoiaHR0cHM6Ly9hdWRpby1zc2wuaXR1bmVzLmFwcGxlLmNvbS9pdHVuZXMtYXNzZXRzL011c2ljL3Y0LzU5Lzc2LzE0LzU5NzYxNDE2LTgyMzEtYjEwYS1lZDNlLTUxOTZjNjJmYzJkNy9temFmXzg1NjY0MjkyODU1NDI5MjE1MTcucGx1cy5hYWMucC5tNGEifSwiYXJ0aXN0Ijp7ImlkIjoyMTk4LCJuYW1lIjoiQkVZT05DRSAmIEpBWS1aIiwib3JpZ2luYWxfbmFtZSI6IkJFWU9OQ8OJIiwic2x1ZyI6ImJleW9uY2UtMiIsImZhY2Vib29rX3VybCI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9iZXlvbmNlIiwidHdpdHRlcl91cmwiOiJodHRwczovL3R3aXR0ZXIuY29tLyMhL0JleW9uY2UiLCJpbnN0YWdyYW1fdXJsIjoiaHR0cHM6Ly9pbnN0YWdyYW0uY29tL2JleW9uY2UiLCJ3ZWJzaXRlIjoiaHR0cDovL3d3dy5iZXlvbmNlb25saW5lLmNvbS8iLCJwaG90byI6Ii9mL2Q2LzJiL2UzLzEyMzA0Mi9CZXlvbmNlLWFsYnVtLTQtYmV5b25jZS0zMjY1MzMwNS0xMjgwLTk2MC5qcGciLCJjb3VudHJ5Ijp7ImNvZGUiOiJVUyIsIm5hbWUiOiJWZXJlbmlnZGUgU3RhdGVuIn19LCJzdWJfYXJ0aXN0cyI6W3siYXJ0aXN0Ijp7ImlkIjoyOTU1LCJuYW1lIjoiSkFZIFogIiwiZmFjZWJvb2tfdXJsIjoiaHR0cDovL3d3dy5mYWNlYm9vay5jb20vSmF5WiIsInR3aXR0ZXJfdXJsIjoiaHR0cHM6Ly90d2l0dGVyLmNvbS8jIS9KYXlaIiwiaW5zdGFncmFtX3VybCI6IiIsIndlYnNpdGUiOiJodHRwOi8vcm9jbmF0aW9uLmNvbS9qYXl6LyIsInBob3RvIjoiLzkvMDEvMWUvMjYvMTI2NjUxL2pheXUuanBnIiwiY291bnRyeSI6eyJjb2RlIjoiVVMiLCJuYW1lIjoiVmVyZW5pZ2RlIFN0YXRlbiJ9fX1dLCJ0YWdzIjpbXX19XSwicGFnaW5hdGlvbiI6eyJuZXh0IjoiLzIuNC90cmFja3MvcGxheXM/bGltaXQ9MSZuZXh0PXRydWUmc2luY2U9MjAyMi0xMS0yNysyMSUzQTEzJTNBNTYrJTJCMDEwMCIsInByZXZpb3VzIjoiLzIuNC90cmFja3MvcGxheXM/bGltaXQ9MSZuZXh0PXRydWUmdXB0bz0yMDIyLTExLTI3KzIxJTNBMTMlM0E1NislMkIwMTAwIn19
-  recorded_at: Sun, 27 Nov 2022 20:15:28 GMT
+      string: '{"played_tracks":[{"played_at":"2022-11-29T21:11:35+01:00","slug":"airplanes-2","title":"Airplanes","selector_code":"8031-38","release_year":"2010","affiliate_url":"https://itunes.apple.com/nl/album/airplanes-feat.-hayley-williams/id365840257?i=365840290&uo=4","thumbnail":"/6/b4/8b/bb/20664/mzi.kkbzdqcj.600x600-75.jpg","spotify_url":"http://open.spotify.com/track/6lV2MSQmRIkycDScNtrBXO","videos":[{"type":"youtube","tags":"default","id":"kn6-c223DUU"}],"hooks":{"m4a":"https://audio-ssl.itunes.apple.com/itunes-assets/Music/fd/54/04/mzm.rvsstglb.aac.p.m4a"},"artist":{"id":1412,"name":"B.O.B.
+        & HAYLEY WILLIAMS","original_name":"B.O.B.","slug":"b-o-b","facebook_url":"http://www.facebook.com/Bobatl","twitter_url":"https://twitter.com/#!/bobatl","instagram_url":"","website":"http://www.bobatl.com/","photo":"/4/73/4b/a6/273/BoB.png","country":{"code":"US","name":"Verenigde
+        Staten"}},"sub_artists":[{"artist":{"id":4693,"name":"HAYLEY WILLIAMS","facebook_url":"http://www.facebook.com/pages/Hayley-Williams/202941843073000","twitter_url":"https://twitter.com/#!/yelyahwilliams/","website":"http://www.paramore.net/","photo":"/2/f8/91/48/5682/Hayley+Williams+Hayley+Sitting+On+Her+Car.jpg","country":{"code":"US","name":"Verenigde
+        Staten"}}}],"tags":[],"current_editions":[{"position":893,"edition":{"id":5201,"name":"2022"},"list":{"id":66,"name":"Q-top
+        1000"}},{"position":44,"edition":{"id":4209,"name":"2020"},"list":{"id":79,"name":"Top
+        500 van de 10''s"}},{"position":298,"edition":{"id":4175,"name":"2020"},"list":{"id":267,"name":"Q-top
+        1000: de Shout Out-editie"}}],"active_editions":[],"next":{"slug":"celestial","title":"Celestial","selector_code":"Q14423","release_year":"2022","record_label":"Warner","affiliate_url":"https://music.apple.com/be/album/celestial/1641565065?i=1641565456&uo=4","thumbnail":"/9/b2/5d/d7/1526570/1400x1400bb.jpg","spotify_url":"https://open.spotify.com/track/4zrKN5Sv8JS5mqnbVcsul7","videos":[{"type":"youtube","tags":"default","id":"23g5HBOg3Ic"}],"hooks":{"m4a":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/f2/4c/fc/f24cfc19-2d54-6c62-921d-b4427b561a67/mzaf_6797710797168953065.plus.aac.p.m4a"},"artist":{"id":1394,"name":"ED
+        SHEERAN","original_name":"ED SHEERAN","slug":"ed-sheeran","facebook_url":"http://www.facebook.com/EdSheeranMusic","twitter_url":"https://twitter.com/#!/edsheeran","instagram_url":"https://instagram.com/teddysphotos","website":"http://edsheeran.com/","photo":"/b/9c/29/49/1280490/Ed-Sheeran.jpg","country":{"code":"GB","name":"Verenigd
+        Koninkrijk"}},"sub_artists":[],"tags":[{"id":125,"name":"Ex-alarmschijf"}]}}],"pagination":{"next":"/2.4/tracks/plays?limit=1&next=true&since=2022-11-29+21%3A11%3A35+%2B0100","previous":"/2.4/tracks/plays?limit=1&next=true&upto=2022-11-29+21%3A11%3A35+%2B0100"}}'
+  recorded_at: Tue, 29 Nov 2022 20:12:03 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/tracks/1eGW1YBT17a5G1hKPWrpW7
+    uri: https://api.spotify.com/v1/tracks/6lV2MSQmRIkycDScNtrBXO
     body:
       encoding: US-ASCII
       string: ''
@@ -85,7 +90,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQCzHq-TWE1gS0jWoH6iiY2bkZi1UajjRW2uGrYSrBMq8oj_SiQUD3Kx1q30zjFkrOny13pyP-hyBD446qgT7IDUg0Gyl7g8ml7OaW2LxTVZwAQUTy8
+      - Bearer BQBHdYOTB-dZez3omzMhrV7_nD4fBkEfHCaT1gVYRSwG-T2FbJXZLEdCqA-Rs_vhaj1QQJNHswbxJcARtyzxoWlVXwL9PDM16qIDlFVrvQwKZA2lNd8
       Content-Type:
       - application/json
   response:
@@ -115,7 +120,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 27 Nov 2022 20:15:28 GMT
+      - Tue, 29 Nov 2022 20:12:03 GMT
       Server:
       - envoy
       Via:
@@ -129,95 +134,86 @@ http_interactions:
       string: |-
         {
           "album" : {
-            "album_type" : "single",
+            "album_type" : "album",
             "artists" : [ {
               "external_urls" : {
-                "spotify" : "https://open.spotify.com/artist/23fqKkggKUBHNkbKtXEls4"
+                "spotify" : "https://open.spotify.com/artist/5ndkK3dpZLKtBklKjxNQwT"
               },
-              "href" : "https://api.spotify.com/v1/artists/23fqKkggKUBHNkbKtXEls4",
-              "id" : "23fqKkggKUBHNkbKtXEls4",
-              "name" : "Kygo",
+              "href" : "https://api.spotify.com/v1/artists/5ndkK3dpZLKtBklKjxNQwT",
+              "id" : "5ndkK3dpZLKtBklKjxNQwT",
+              "name" : "B.o.B",
               "type" : "artist",
-              "uri" : "spotify:artist:23fqKkggKUBHNkbKtXEls4"
-            }, {
-              "external_urls" : {
-                "spotify" : "https://open.spotify.com/artist/3QSQFmccmX81fWCUSPTS7y"
-              },
-              "href" : "https://api.spotify.com/v1/artists/3QSQFmccmX81fWCUSPTS7y",
-              "id" : "3QSQFmccmX81fWCUSPTS7y",
-              "name" : "Dean Lewis",
-              "type" : "artist",
-              "uri" : "spotify:artist:3QSQFmccmX81fWCUSPTS7y"
+              "uri" : "spotify:artist:5ndkK3dpZLKtBklKjxNQwT"
             } ],
-            "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+            "available_markets" : [ "AG", "AL", "AM", "AR", "AU", "AZ", "BA", "BB", "BG", "BN", "BO", "BR", "BS", "BW", "BZ", "CA", "CL", "CO", "CR", "CV", "CW", "CY", "CZ", "DK", "DM", "DO", "EC", "EE", "ES", "FI", "FJ", "FM", "FR", "GD", "GH", "GM", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IL", "IT", "JM", "JP", "KE", "KG", "KH", "KN", "KR", "KZ", "LA", "LC", "LK", "LT", "LV", "MD", "ME", "MK", "MN", "MO", "MT", "MU", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NO", "NZ", "PA", "PE", "PG", "PH", "PL", "PT", "PY", "RO", "RS", "SE", "SG", "SI", "SK", "SR", "SV", "SZ", "TD", "TH", "TJ", "TL", "TR", "TT", "TW", "UA", "UG", "US", "UY", "VC", "VE", "VN", "XK", "ZA", "ZW" ],
             "external_urls" : {
-              "spotify" : "https://open.spotify.com/album/3aWYlSAu7ES9Hc9ATloTXI"
+              "spotify" : "https://open.spotify.com/album/7apLPYT8szV1IqTxyVSy5P"
             },
-            "href" : "https://api.spotify.com/v1/albums/3aWYlSAu7ES9Hc9ATloTXI",
-            "id" : "3aWYlSAu7ES9Hc9ATloTXI",
+            "href" : "https://api.spotify.com/v1/albums/7apLPYT8szV1IqTxyVSy5P",
+            "id" : "7apLPYT8szV1IqTxyVSy5P",
             "images" : [ {
               "height" : 640,
-              "url" : "https://i.scdn.co/image/ab67616d0000b273cf28c546512553f691385e01",
+              "url" : "https://i.scdn.co/image/ab67616d0000b273484d121f0e2d2caf87d5d10b",
               "width" : 640
             }, {
               "height" : 300,
-              "url" : "https://i.scdn.co/image/ab67616d00001e02cf28c546512553f691385e01",
+              "url" : "https://i.scdn.co/image/ab67616d00001e02484d121f0e2d2caf87d5d10b",
               "width" : 300
             }, {
               "height" : 64,
-              "url" : "https://i.scdn.co/image/ab67616d00004851cf28c546512553f691385e01",
+              "url" : "https://i.scdn.co/image/ab67616d00004851484d121f0e2d2caf87d5d10b",
               "width" : 64
             } ],
-            "name" : "Lost Without You (with Dean Lewis)",
-            "release_date" : "2022-07-08",
+            "name" : "B.o.B Presents: The Adventures of Bobby Ray",
+            "release_date" : "2010-04-27",
             "release_date_precision" : "day",
-            "total_tracks" : 2,
+            "total_tracks" : 12,
             "type" : "album",
-            "uri" : "spotify:album:3aWYlSAu7ES9Hc9ATloTXI"
+            "uri" : "spotify:album:7apLPYT8szV1IqTxyVSy5P"
           },
           "artists" : [ {
             "external_urls" : {
-              "spotify" : "https://open.spotify.com/artist/23fqKkggKUBHNkbKtXEls4"
+              "spotify" : "https://open.spotify.com/artist/5ndkK3dpZLKtBklKjxNQwT"
             },
-            "href" : "https://api.spotify.com/v1/artists/23fqKkggKUBHNkbKtXEls4",
-            "id" : "23fqKkggKUBHNkbKtXEls4",
-            "name" : "Kygo",
+            "href" : "https://api.spotify.com/v1/artists/5ndkK3dpZLKtBklKjxNQwT",
+            "id" : "5ndkK3dpZLKtBklKjxNQwT",
+            "name" : "B.o.B",
             "type" : "artist",
-            "uri" : "spotify:artist:23fqKkggKUBHNkbKtXEls4"
+            "uri" : "spotify:artist:5ndkK3dpZLKtBklKjxNQwT"
           }, {
             "external_urls" : {
-              "spotify" : "https://open.spotify.com/artist/3QSQFmccmX81fWCUSPTS7y"
+              "spotify" : "https://open.spotify.com/artist/6Rx1JKzBrSzoKQtmbVmBnM"
             },
-            "href" : "https://api.spotify.com/v1/artists/3QSQFmccmX81fWCUSPTS7y",
-            "id" : "3QSQFmccmX81fWCUSPTS7y",
-            "name" : "Dean Lewis",
+            "href" : "https://api.spotify.com/v1/artists/6Rx1JKzBrSzoKQtmbVmBnM",
+            "id" : "6Rx1JKzBrSzoKQtmbVmBnM",
+            "name" : "Hayley Williams",
             "type" : "artist",
-            "uri" : "spotify:artist:3QSQFmccmX81fWCUSPTS7y"
+            "uri" : "spotify:artist:6Rx1JKzBrSzoKQtmbVmBnM"
           } ],
-          "available_markets" : [ "AD", "AE", "AG", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BN", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CA", "CD", "CG", "CH", "CI", "CL", "CM", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "ES", "FI", "FJ", "FM", "FR", "GA", "GB", "GD", "GE", "GH", "GM", "GN", "GQ", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IN", "IQ", "IS", "IT", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MR", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NZ", "OM", "PA", "PE", "PG", "PH", "PK", "PL", "PS", "PT", "PW", "PY", "QA", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SR", "ST", "SV", "SZ", "TD", "TG", "TH", "TJ", "TL", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VN", "VU", "WS", "XK", "ZA", "ZM", "ZW" ],
+          "available_markets" : [ "AG", "AL", "AM", "AR", "AU", "AZ", "BA", "BB", "BG", "BN", "BO", "BR", "BS", "BW", "BZ", "CA", "CL", "CO", "CR", "CV", "CW", "CY", "CZ", "DK", "DM", "DO", "EC", "EE", "ES", "FI", "FJ", "FM", "FR", "GD", "GH", "GM", "GR", "GT", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IL", "IT", "JM", "JP", "KE", "KG", "KH", "KN", "KR", "KZ", "LA", "LC", "LK", "LT", "LV", "MD", "ME", "MK", "MN", "MO", "MT", "MU", "MX", "MY", "MZ", "NA", "NE", "NG", "NI", "NO", "NZ", "PA", "PE", "PG", "PH", "PL", "PT", "PY", "RO", "RS", "SE", "SG", "SI", "SK", "SR", "SV", "SZ", "TD", "TH", "TJ", "TL", "TR", "TT", "TW", "UA", "UG", "US", "UY", "VC", "VE", "VN", "XK", "ZA", "ZW" ],
           "disc_number" : 1,
-          "duration_ms" : 203609,
-          "explicit" : false,
+          "duration_ms" : 180480,
+          "explicit" : true,
           "external_ids" : {
-            "isrc" : "USRC12202284"
+            "isrc" : "USAT21000477"
           },
           "external_urls" : {
-            "spotify" : "https://open.spotify.com/track/1eGW1YBT17a5G1hKPWrpW7"
+            "spotify" : "https://open.spotify.com/track/6lV2MSQmRIkycDScNtrBXO"
           },
-          "href" : "https://api.spotify.com/v1/tracks/1eGW1YBT17a5G1hKPWrpW7",
-          "id" : "1eGW1YBT17a5G1hKPWrpW7",
+          "href" : "https://api.spotify.com/v1/tracks/6lV2MSQmRIkycDScNtrBXO",
+          "id" : "6lV2MSQmRIkycDScNtrBXO",
           "is_local" : false,
-          "name" : "Lost Without You (with Dean Lewis)",
-          "popularity" : 72,
-          "preview_url" : "https://p.scdn.co/mp3-preview/c25e69af0b4c4bdca976dd308ec0f6b306c1b355?cid=ff70df650ee14a1fad4aed3b533e8ea4",
-          "track_number" : 1,
+          "name" : "Airplanes (feat. Hayley Williams of Paramore)",
+          "popularity" : 75,
+          "preview_url" : "https://p.scdn.co/mp3-preview/25709034709338a0e028405e34887d6f3eaae36d?cid=ff70df650ee14a1fad4aed3b533e8ea4",
+          "track_number" : 4,
           "type" : "track",
-          "uri" : "spotify:track:1eGW1YBT17a5G1hKPWrpW7"
+          "uri" : "spotify:track:6lV2MSQmRIkycDScNtrBXO"
         }
-  recorded_at: Sun, 27 Nov 2022 20:15:28 GMT
+  recorded_at: Tue, 29 Nov 2022 20:12:03 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/artists/23fqKkggKUBHNkbKtXEls4
+    uri: https://api.spotify.com/v1/artists/5ndkK3dpZLKtBklKjxNQwT
     body:
       encoding: US-ASCII
       string: ''
@@ -231,7 +227,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQCzHq-TWE1gS0jWoH6iiY2bkZi1UajjRW2uGrYSrBMq8oj_SiQUD3Kx1q30zjFkrOny13pyP-hyBD446qgT7IDUg0Gyl7g8ml7OaW2LxTVZwAQUTy8
+      - Bearer BQBHdYOTB-dZez3omzMhrV7_nD4fBkEfHCaT1gVYRSwG-T2FbJXZLEdCqA-Rs_vhaj1QQJNHswbxJcARtyzxoWlVXwL9PDM16qIDlFVrvQwKZA2lNd8
       Content-Type:
       - application/json
   response:
@@ -242,7 +238,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=83824
+      - public, max-age=82773
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -261,7 +257,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 27 Nov 2022 20:15:28 GMT
+      - Tue, 29 Nov 2022 20:12:03 GMT
       Server:
       - envoy
       Via:
@@ -275,37 +271,37 @@ http_interactions:
       string: |-
         {
           "external_urls" : {
-            "spotify" : "https://open.spotify.com/artist/23fqKkggKUBHNkbKtXEls4"
+            "spotify" : "https://open.spotify.com/artist/5ndkK3dpZLKtBklKjxNQwT"
           },
           "followers" : {
             "href" : null,
-            "total" : 8200311
+            "total" : 2021856
           },
-          "genres" : [ "edm", "pop", "pop dance", "tropical house" ],
-          "href" : "https://api.spotify.com/v1/artists/23fqKkggKUBHNkbKtXEls4",
-          "id" : "23fqKkggKUBHNkbKtXEls4",
+          "genres" : [ "atl hip hop", "dance pop", "hip hop", "pop", "pop rap", "rap", "southern hip hop" ],
+          "href" : "https://api.spotify.com/v1/artists/5ndkK3dpZLKtBklKjxNQwT",
+          "id" : "5ndkK3dpZLKtBklKjxNQwT",
           "images" : [ {
             "height" : 640,
-            "url" : "https://i.scdn.co/image/ab6761610000e5eb85eca1ac80d81edbec725938",
+            "url" : "https://i.scdn.co/image/ab6761610000e5eb3b6f1762e81e53df14990f57",
             "width" : 640
           }, {
             "height" : 320,
-            "url" : "https://i.scdn.co/image/ab6761610000517485eca1ac80d81edbec725938",
+            "url" : "https://i.scdn.co/image/ab676161000051743b6f1762e81e53df14990f57",
             "width" : 320
           }, {
             "height" : 160,
-            "url" : "https://i.scdn.co/image/ab6761610000f17885eca1ac80d81edbec725938",
+            "url" : "https://i.scdn.co/image/ab6761610000f1783b6f1762e81e53df14990f57",
             "width" : 160
           } ],
-          "name" : "Kygo",
-          "popularity" : 79,
+          "name" : "B.o.B",
+          "popularity" : 72,
           "type" : "artist",
-          "uri" : "spotify:artist:23fqKkggKUBHNkbKtXEls4"
+          "uri" : "spotify:artist:5ndkK3dpZLKtBklKjxNQwT"
         }
-  recorded_at: Sun, 27 Nov 2022 20:15:28 GMT
+  recorded_at: Tue, 29 Nov 2022 20:12:03 GMT
 - request:
     method: get
-    uri: https://api.spotify.com/v1/artists/3QSQFmccmX81fWCUSPTS7y
+    uri: https://api.spotify.com/v1/artists/6Rx1JKzBrSzoKQtmbVmBnM
     body:
       encoding: US-ASCII
       string: ''
@@ -319,7 +315,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQCzHq-TWE1gS0jWoH6iiY2bkZi1UajjRW2uGrYSrBMq8oj_SiQUD3Kx1q30zjFkrOny13pyP-hyBD446qgT7IDUg0Gyl7g8ml7OaW2LxTVZwAQUTy8
+      - Bearer BQBHdYOTB-dZez3omzMhrV7_nD4fBkEfHCaT1gVYRSwG-T2FbJXZLEdCqA-Rs_vhaj1QQJNHswbxJcARtyzxoWlVXwL9PDM16qIDlFVrvQwKZA2lNd8
       Content-Type:
       - application/json
   response:
@@ -330,7 +326,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=83320
+      - public, max-age=73325
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -349,7 +345,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 27 Nov 2022 20:15:28 GMT
+      - Tue, 29 Nov 2022 20:12:03 GMT
       Server:
       - envoy
       Via:
@@ -363,32 +359,32 @@ http_interactions:
       string: |-
         {
           "external_urls" : {
-            "spotify" : "https://open.spotify.com/artist/3QSQFmccmX81fWCUSPTS7y"
+            "spotify" : "https://open.spotify.com/artist/6Rx1JKzBrSzoKQtmbVmBnM"
           },
           "followers" : {
             "href" : null,
-            "total" : 2296898
+            "total" : 574924
           },
-          "genres" : [ "australian pop", "pop" ],
-          "href" : "https://api.spotify.com/v1/artists/3QSQFmccmX81fWCUSPTS7y",
-          "id" : "3QSQFmccmX81fWCUSPTS7y",
+          "genres" : [ "art pop", "indie pop" ],
+          "href" : "https://api.spotify.com/v1/artists/6Rx1JKzBrSzoKQtmbVmBnM",
+          "id" : "6Rx1JKzBrSzoKQtmbVmBnM",
           "images" : [ {
             "height" : 640,
-            "url" : "https://i.scdn.co/image/ab6761610000e5eb8890cb31ef645d18f10ae473",
+            "url" : "https://i.scdn.co/image/ab6761610000e5ebca3aa12c1b46ff911ad53104",
             "width" : 640
           }, {
             "height" : 320,
-            "url" : "https://i.scdn.co/image/ab676161000051748890cb31ef645d18f10ae473",
+            "url" : "https://i.scdn.co/image/ab67616100005174ca3aa12c1b46ff911ad53104",
             "width" : 320
           }, {
             "height" : 160,
-            "url" : "https://i.scdn.co/image/ab6761610000f1788890cb31ef645d18f10ae473",
+            "url" : "https://i.scdn.co/image/ab6761610000f178ca3aa12c1b46ff911ad53104",
             "width" : 160
           } ],
-          "name" : "Dean Lewis",
-          "popularity" : 78,
+          "name" : "Hayley Williams",
+          "popularity" : 64,
           "type" : "artist",
-          "uri" : "spotify:artist:3QSQFmccmX81fWCUSPTS7y"
+          "uri" : "spotify:artist:6Rx1JKzBrSzoKQtmbVmBnM"
         }
-  recorded_at: Sun, 27 Nov 2022 20:15:28 GMT
+  recorded_at: Tue, 29 Nov 2022 20:12:03 GMT
 recorded_with: VCR 6.1.0

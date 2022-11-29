@@ -31,36 +31,28 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 27 Nov 2022 20:15:19 GMT
+      - Tue, 29 Nov 2022 20:11:56 GMT
       X-Amzn-Requestid:
-      - 2441239a-c5a0-4dfd-abc4-3d855ca23569
+      - e2c21c20-1800-45e6-be58-ebfafbd8992f
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 9c7c26f5beeb09381cea450ea3581b36.cloudfront.net (CloudFront), 1.1 b61409af370dbf025ffc910b1252c65e.cloudfront.net
+      - 1.1 bab8148a65b29113f79cf2725076287c.cloudfront.net (CloudFront), 1.1 80779e7124f8d44ce2216c35ac5328a8.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
-      - AMS54-C1
+      - AMS1-P2
       - FRA50-C1
       Vary:
       - Accept-Encoding
       X-Cache:
       - Hit from cloudfront
       X-Amz-Cf-Id:
-      - 9lp-xuSJxFH0vxGB4J7ywXQed4zZSWTQmvHq2qMkjpCepAIUd03jkQ==
+      - f4eExnIHkQ7nOuCv_GUL9VFhpoknG4M-8lMJLt79C8leweExx4oe5w==
       Age:
-      - '9'
+      - '2'
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Sky Radio","playouts":[{"broadcastDate":"2022-11-27T20:13:22Z","track":{"id":"939faca5-498a-5e32-a51e-cb48f99337a6","title":"Jingle
-        Bells","artistName":"Gwen Stefani","isrc":"USUM71707729","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM71707729.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:09:53Z","track":{"id":"b41818c1-a465-5daa-ad99-ff72bd48fff7","title":"Multicolor","artistName":"Son
-        Mieux","isrc":"NLV3A2200001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLV3A2200001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:06:13Z","track":{"id":"e0a110ec-222f-5433-a922-d4ca06902a63","title":"Put
-        A Little Love In Your Heart","artistName":"Annie Lennox & Al Green","isrc":"USAM18800030","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAM18800030.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T20:02:31Z","track":{"id":"799dc256-8d04-520c-84dc-78944cd6fac4","title":"Wonderful
-        Christmas Time","artistName":"Paul McCartney","isrc":"GBCCS8401051","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBCCS8401051.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:50:12Z","track":{"id":"e8d4ebd6-1696-548b-94a8-45f660e80872","title":"Overpass
-        Graffiti","artistName":"Ed Sheeran","isrc":"GBAHS2100673","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAHS2100673.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:48:23Z","track":{"id":"94849790-38db-551e-ba7b-8074a4975d56","title":"Let
-        It Snow Let It Snow Let It Snow","artistName":"Dean Martin","isrc":"USCA29800523","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USCA29800523.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:44:25Z","track":{"id":"b0030593-d574-578e-a605-dd730cd09303","title":"Superheroes","artistName":"Script","isrc":"GBARL1400978","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBARL1400978.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:40:06Z","track":{"id":"636e062c-ba2c-594d-bdf9-7a6cd997621d","title":"My
-        Only Wish This Year","artistName":"Britney Spears","isrc":"USJI10000522","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USJI10000522.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:35:51Z","track":{"id":"daaf4fa4-8577-5cd5-8765-efcc4b99fa1b","title":"Christmas
-        Time","artistName":"Bryan Adams","isrc":"USUMG9900538","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUMG9900538.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:32:17Z","track":{"id":"724806de-f367-5f95-aa80-0eddd0634196","title":"In
-        The Stars","artistName":"Benson Boone","isrc":"USWB12201574","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USWB12201574.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sun, 27 Nov 2022 20:15:28 GMT
+      string: !binary |-
+        eyJkYXRhIjp7ImdldFN0YXRpb24iOnsidGl0bGUiOiJTa3kgUmFkaW8iLCJwbGF5b3V0cyI6W3siYnJvYWRjYXN0RGF0ZSI6IjIwMjItMTEtMjlUMjA6MTA6MTNaIiwidHJhY2siOnsiaWQiOiI5NzA1MDYyMy01YzY1LTVjZGItOGMzZC01MzBkYTkxYjQ1NWIiLCJ0aXRsZSI6IkFsbCBBbG9uZSBPbiBDaHJpc3RtYXMiLCJhcnRpc3ROYW1lIjoiRGFybGVuZSBMb3ZlIiwiaXNyYyI6IlVTQVY3MDUwMDI5OCIsImltYWdlcyI6W3sidHlwZSI6ImltYWdlIiwidXJpIjoiaHR0cHM6Ly9pbWcudGFscGFyYWQuaW8vdHJhY2tzL1VTQVY3MDUwMDI5OC5qcGciLCJfX3R5cGVuYW1lIjoiSW1hZ2UifV0sIl9fdHlwZW5hbWUiOiJUcmFjayJ9LCJfX3R5cGVuYW1lIjoiUGxheW91dCJ9LHsiYnJvYWRjYXN0RGF0ZSI6IjIwMjItMTEtMjlUMjA6MDY6MjRaIiwidHJhY2siOnsiaWQiOiIyNGJlMGRkZS0wMTJlLTVjOGQtOGIxMC04YjU3Y2FkYzJmMTkiLCJ0aXRsZSI6Ik1lcnJ5IENocmlzdG1hcyBFdmVyeW9uZSIsImFydGlzdE5hbWUiOiJTaGFraW4nIFN0ZXZlbnMiLCJpc3JjIjoiR0JCQk04NTAwMDEzIiwiaW1hZ2VzIjpbXSwiX190eXBlbmFtZSI6IlRyYWNrIn0sIl9fdHlwZW5hbWUiOiJQbGF5b3V0In0seyJicm9hZGNhc3REYXRlIjoiMjAyMi0xMS0yOVQyMDowNDoxMFoiLCJ0cmFjayI6eyJpZCI6IjVlOWM1MGU4LTc1ZDMtNThkMi05N2U3LTU3NGM2ZjY0ZDllZSIsInRpdGxlIjoiU2FudGEgQ2xhdXMgSXMgQ29taW5nIFRvIFRvd24iLCJhcnRpc3ROYW1lIjoiS3lsaWUgTWlub2d1ZSBGdCBGcmFuayBTaW5hdHJhIiwiaXNyYyI6IlVTUkgxMDkwMzM2NSIsImltYWdlcyI6W3sidHlwZSI6ImltYWdlIiwidXJpIjoiaHR0cHM6Ly9pbWcudGFscGFyYWQuaW8vdHJhY2tzL1VTUkgxMDkwMzM2NS5qcGciLCJfX3R5cGVuYW1lIjoiSW1hZ2UifV0sIl9fdHlwZW5hbWUiOiJUcmFjayJ9LCJfX3R5cGVuYW1lIjoiUGxheW91dCJ9LHsiYnJvYWRjYXN0RGF0ZSI6IjIwMjItMTEtMjlUMjA6MDA6NDJaIiwidHJhY2siOnsiaWQiOiI5ZmIyMjc4OS05MWZjLTUzNTctODQwMy1iMGUxN2U5MGFhMDIiLCJ0aXRsZSI6IkRvIFRoZXkgS25vdyBJdCdzIENocmlzdG1hcyIsImFydGlzdE5hbWUiOiJCYW5kIEFpZCIsImlzcmMiOiJHQkYwODg0MDAwMDEiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9HQkYwODg0MDAwMDEuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI5VDE5OjUxOjA4WiIsInRyYWNrIjp7ImlkIjoiNGY3NzFmNDQtNjE3Yy01YTA1LWFlNjAtYjBiYjM0MTM1N2MxIiwidGl0bGUiOiJTYW50YSdzIFBhcnR5IiwiYXJ0aXN0TmFtZSI6Ik5pY2sgJiBTaW1vbiIsImlzcmMiOiJOTEg1OTA5MDAyMjUiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9OTEg1OTA5MDAyMjUuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI5VDE5OjQ5OjIyWiIsInRyYWNrIjp7ImlkIjoiYjRmYjA5OTMtMDJhNS01YTQ2LTlhNTAtODBkN2IyZGMxMmMwIiwidGl0bGUiOiJIb2xseSBKb2xseSBDaHJpc3RtYXMiLCJhcnRpc3ROYW1lIjoiTWVnaGFuIFRyYWlub3IiLCJpc3JjIjoiVVNTTTEyMDA1MjI1IiwiaW1hZ2VzIjpbeyJ0eXBlIjoiaW1hZ2UiLCJ1cmkiOiJodHRwczovL2ltZy50YWxwYXJhZC5pby90cmFja3MvVVNTTTEyMDA1MjI1LmpwZyIsIl9fdHlwZW5hbWUiOiJJbWFnZSJ9XSwiX190eXBlbmFtZSI6IlRyYWNrIn0sIl9fdHlwZW5hbWUiOiJQbGF5b3V0In0seyJicm9hZGNhc3REYXRlIjoiMjAyMi0xMS0yOVQxOTo0NTozN1oiLCJ0cmFjayI6eyJpZCI6ImQ2ZmM3N2VlLWQyYjktNWQ0Ny1iMmE4LTY1ZGNkYTJiZDc2NSIsInRpdGxlIjoiV2hlcmUgQXJlIFlvdSBDaHJpc3RtYXM/IiwiYXJ0aXN0TmFtZSI6IkZhaXRoIEhpbGwiLCJpc3JjIjoiVVNJUjEwMDAxMzA5IiwiaW1hZ2VzIjpbeyJ0eXBlIjoiaW1hZ2UiLCJ1cmkiOiJodHRwczovL2ltZy50YWxwYXJhZC5pby90cmFja3MvVVNJUjEwMDAxMzA5LmpwZyIsIl9fdHlwZW5hbWUiOiJJbWFnZSJ9XSwiX190eXBlbmFtZSI6IlRyYWNrIn0sIl9fdHlwZW5hbWUiOiJQbGF5b3V0In0seyJicm9hZGNhc3REYXRlIjoiMjAyMi0xMS0yOVQxOTo0MzoyM1oiLCJ0cmFjayI6eyJpZCI6IjIyMzBkYjUwLWY3NjEtNWMyZS1hNDgzLTE3MTc1YTMwNGJjOCIsInRpdGxlIjoiSmluZ2xlIEJlbGwgUm9jayIsImFydGlzdE5hbWUiOiJCb2JieSBIZWxtcyIsImlzcmMiOiJHQlcySzExMTA5NzIiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9HQlcySzExMTA5NzIuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI5VDE5OjQwOjEzWiIsInRyYWNrIjp7ImlkIjoiODJhZDZiOTctMWI5NC01MmIxLTlkNDAtMTc5ZWNlYjI0ZDk3IiwidGl0bGUiOiJDb21pbmcgSG9tZSBXaXRoIFNhbnRhIiwiYXJ0aXN0TmFtZSI6Ik9HM05FKHdpdGggVENTKSIsImlzcmMiOiJOTFExNjIxMDI3NTEiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9OTFExNjIxMDI3NTEuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI5VDE5OjM3OjQyWiIsInRyYWNrIjp7ImlkIjoiNTJlMWQ2YmUtZTMwZS01NGQxLWI2ODYtMDYxMzA0ZmI0MDJjIiwidGl0bGUiOiJMZXQgSXQgU25vdyBMZXQgSXQgU25vd0xldCBJdCBTbm93IChTa3kgSW50cm8pIiwiYXJ0aXN0TmFtZSI6Ik1pY2hhZWwgQnVibMOpIiwiaXNyYyI6Im51bGwiLCJpbWFnZXMiOltdLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifV0sIl9fdHlwZW5hbWUiOiJTdGF0aW9uIn19fQ==
+  recorded_at: Tue, 29 Nov 2022 20:11:58 GMT
 recorded_with: VCR 6.1.0

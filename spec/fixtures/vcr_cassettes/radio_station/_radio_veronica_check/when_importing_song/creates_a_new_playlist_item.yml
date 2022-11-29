@@ -31,36 +31,33 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 27 Nov 2022 20:15:29 GMT
+      - Tue, 29 Nov 2022 20:11:54 GMT
       X-Amzn-Requestid:
-      - 56dc7188-799c-487d-be8c-cc3e3df9d712
+      - 8b719a24-9d7d-4e97-b16c-e452b7558920
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
-      X-Amzn-Trace-Id:
-      - Root=1-6383c561-25804ff90b8a51d521baf3d7
       Via:
-      - 1.1 5317564e96c9dceb46123f6c5f149a02.cloudfront.net (CloudFront), 1.1 b8eaad25e4131c15c21d3d50aac2684c.cloudfront.net
+      - 1.1 6b8ac2d6d64dc42007741d312e2d73aa.cloudfront.net (CloudFront), 1.1 adf2154fc698566cbee2ffdab8c37922.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
-      - AMS54-C1
+      - AMS1-P2
       - FRA50-C1
       Vary:
       - Accept-Encoding
       X-Cache:
       - Miss from cloudfront
       X-Amz-Cf-Id:
-      - JmA-dRTCUV38K6rcIXYzIlKOiqocGmxOQvLXnqbfNK7CxG7dT2Vg5Q==
+      - JN728TJbPv7luVlHHitSU_uLTRTJRNBW59Cf_Ytlw4qsMcIx5EP5mg==
     body:
       encoding: ASCII-8BIT
-      string: '{"data":{"getStation":{"title":"Radio Veronica","playouts":[{"broadcastDate":"2022-11-27T20:06:59Z","track":{"id":"b9f5c6bb-434f-58ed-b0fb-532cd707a590","title":"Let''s
-        Go All The Way","artistName":"Sly Fox","isrc":"USCA29200364","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:55:30Z","track":{"id":"ea965492-0095-560a-ae19-29be95648b9a","title":"Ooh
-        I Like It","artistName":"Creeps","isrc":"SEPQD9023070","images":[{"type":"image","uri":"https://img.talparad.io/tracks/SEPQD9023070.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:51:31Z","track":{"id":"f3124fe2-3660-5852-a2f5-dd5bfaa57dbd","title":"Jamming","artistName":"Bob
-        Marley & The Wailers","isrc":"USIR27700013","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USIR27700013.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:44:46Z","track":{"id":"fd1cfb7d-8d38-56c5-803e-265c53cc1ff8","title":"Lookin''
-        Out For Number One","artistName":"Bachman Turner Overdrive","isrc":"GBSMU7983656","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBSMU7983656.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:34:49Z","track":{"id":"db20350a-3d82-541d-9cbc-e399532dcfb9","title":"Sunday
-        Bloody Sunday (Live Under A Blood Red Sky)","artistName":"U2","isrc":"GBCBR1300064","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:28:58Z","track":{"id":"6fcbe0f1-c400-5a27-8ad3-e73df1b102b0","title":"She
-        Moves In Her Own Way","artistName":"Kooks","isrc":"GBAAA0500835","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAAA0500835.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:19:57Z","track":{"id":"959a3a4e-c2bd-5994-be37-f1c65f20b86f","title":"Built
-        And Broken","artistName":"Blackbird","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:11:45Z","track":{"id":"99421803-6f23-5d38-a533-23e74cd582cb","title":"Hold
-        On Tight","artistName":"Electric Light Orchestra","isrc":"USSM18100353","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM18100353.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:08:39Z","track":{"id":"5339b67d-240d-50e2-8048-78741e0d21e5","title":"I
-        Bet You Look Good On The Dancefloor","artistName":"Arctic Monkeys","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-27T19:02:56Z","track":{"id":"49065ed1-4fb1-524c-91f8-ad0d0bf36ba1","title":"Unbelievable","artistName":"EMF","isrc":"GBAYE9000089","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAYE9000089.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
-  recorded_at: Sun, 27 Nov 2022 20:15:29 GMT
+      string: '{"data":{"getStation":{"title":"Radio Veronica","playouts":[{"broadcastDate":"2022-11-29T20:08:27Z","track":{"id":"41ef2628-59e1-5c48-8ec0-0201ad7d5d01","title":"Heart
+        Of Stone","artistName":"Dave Stewart","isrc":"USEE19900986","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USEE19900986.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T20:04:40Z","track":{"id":"aa5b4feb-5dc6-58f3-8471-922317d5bd6d","title":"Say
+        Say Say","artistName":"Paul Mccartney & Michael Jackson","isrc":"FR6V80583250","images":[{"type":"image","uri":"https://img.talparad.io/tracks/FR6V80583250.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:54:10Z","track":{"id":"0ff41594-bd30-5ba1-bec7-39e54b2a335a","title":"Psycho
+        Killer","artistName":"Talking Heads","isrc":"USWB19900858","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:50:17Z","track":{"id":"d1c34c83-7b2f-5559-a82c-767adb922395","title":"Jerusalem","artistName":"Anouk","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:43:43Z","track":{"id":"ff7216fe-7276-587a-af1b-93879592cfa9","title":"Overload","artistName":"Sugababes","isrc":"GBAAP0000540","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAAP0000540.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:39:33Z","track":{"id":"1ffbf88b-1c60-56cb-91fb-c65353328b83","title":"Love
+        Will Get You There","artistName":"Inhaler","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:35:13Z","track":{"id":"08833b76-939a-556a-b5ee-c038586d35b5","title":"What
+        You''re Proposing","artistName":"Status Quo","isrc":"GBF088000784","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBF088000784.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:29:51Z","track":{"id":"22e37083-7b23-50ea-a351-82f226b95c5f","title":"Never
+        Ever","artistName":"All Saints","isrc":"GBAAP9700230","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAAP9700230.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:21:19Z","track":{"id":"466ad75c-20ef-58f3-af0b-2735e0181850","title":"Suburbs","artistName":"Arcade
+        Fire","isrc":"GBUM71018417","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBUM71018417.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:16:45Z","track":{"id":"ec919c29-fed5-513c-b9eb-f61c2c29ca31","title":"You
+        Can Call Me Al","artistName":"Paul Simon","isrc":"USSM11002274","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USSM11002274.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Tue, 29 Nov 2022 20:11:54 GMT
 recorded_with: VCR 6.1.0

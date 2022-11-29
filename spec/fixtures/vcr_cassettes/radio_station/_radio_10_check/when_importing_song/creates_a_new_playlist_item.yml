@@ -31,26 +31,35 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Sun, 27 Nov 2022 20:15:26 GMT
+      - Tue, 29 Nov 2022 20:11:58 GMT
       X-Amzn-Requestid:
-      - 58511768-ab14-4c0f-b9d2-4fc3b443f307
+      - b6ef4dc8-53ad-4f9a-81f3-9abc7fd73a1a
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 24475cc722041223cf99f56b55432566.cloudfront.net (CloudFront), 1.1 630336d6cdf08cf266841fd503dc03d0.cloudfront.net
+      - 1.1 32c8da10203574baccb74b8f771a7ffa.cloudfront.net (CloudFront), 1.1 fbbc548a3de404eb87126afd4e3999ba.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
-      - AMS54-C1
+      - AMS1-P2
       - FRA50-C1
       Vary:
       - Accept-Encoding
       X-Cache:
       - Miss from cloudfront
       X-Amz-Cf-Id:
-      - 4Q0y_nYXcxZQDNKRMJ3GAWH4ogvRb05OhR3rSuLfuHc2mBGcolGWqQ==
+      - jqENd5h5A5BvVwpuc2FpWYy6r_O5SRk452Ub8FM86tOUcpy7gIryaA==
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        eyJkYXRhIjp7ImdldFN0YXRpb24iOnsidGl0bGUiOiJSYWRpbyAxMCIsInBsYXlvdXRzIjpbeyJicm9hZGNhc3REYXRlIjoiMjAyMi0xMS0yN1QyMDowOTo1OVoiLCJ0cmFjayI6eyJpZCI6IjRkOTQ4YjFkLTg3MDAtNTJmNy04MDQzLTZhNjFkYjJlMWRhNSIsInRpdGxlIjoiRXRlcm5hbCBGbGFtZSIsImFydGlzdE5hbWUiOiJUaGUgQmFuZ2xlcyIsImlzcmMiOiJVU1NNMTg3MDAyMTYiLCJpbWFnZXMiOltdLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI3VDIwOjA3OjIzWiIsInRyYWNrIjp7ImlkIjoiY2U3MGQyYzQtOTc4ZS01YjYxLWJiNjktYzEyMDg1ZTk1MDMwIiwidGl0bGUiOiJIb3cgRG8gSSBTYXkgR29vZGJ5ZSIsImFydGlzdE5hbWUiOiJEZWFuIExld2lzIiwiaXNyYyI6IkFVVU03MjIwMDE3MiIsImltYWdlcyI6W3sidHlwZSI6ImltYWdlIiwidXJpIjoiaHR0cHM6Ly9pbWcudGFscGFyYWQuaW8vdHJhY2tzL0FVVU03MjIwMDE3Mi5qcGciLCJfX3R5cGVuYW1lIjoiSW1hZ2UifV0sIl9fdHlwZW5hbWUiOiJUcmFjayJ9LCJfX3R5cGVuYW1lIjoiUGxheW91dCJ9LHsiYnJvYWRjYXN0RGF0ZSI6IjIwMjItMTEtMjdUMjA6MDQ6NDJaIiwidHJhY2siOnsiaWQiOiI0Y2MyMzQwZC1iNDE0LTU1MDItYTg2MC00OWQxNGUwMzExOWEiLCJ0aXRsZSI6Ikl0J3MgQSBNYW4ncyBXb3JsZCIsImFydGlzdE5hbWUiOiJKYW1lcyBCcm93biIsImlzcmMiOiJHQkJYUzExNjk2MjAiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9HQkJYUzExNjk2MjAuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI3VDE5OjUxOjU3WiIsInRyYWNrIjp7ImlkIjoiMzU3NTc1ZjEtOGQ1ZC01ZGE4LTk3ZmItOTA4ZWM2ZGQ3MjU3IiwidGl0bGUiOiJIYXZlbid0IE1ldCBZb3UgWWV0IiwiYXJ0aXN0TmFtZSI6Ik1pY2hhZWwgQnVibMOpIiwiaXNyYyI6IlVTUkUxMDkwMTc1NCIsImltYWdlcyI6W3sidHlwZSI6ImltYWdlIiwidXJpIjoiaHR0cHM6Ly9pbWcudGFscGFyYWQuaW8vdHJhY2tzL1VTUkUxMDkwMTc1NC5qcGciLCJfX3R5cGVuYW1lIjoiSW1hZ2UifV0sIl9fdHlwZW5hbWUiOiJUcmFjayJ9LCJfX3R5cGVuYW1lIjoiUGxheW91dCJ9LHsiYnJvYWRjYXN0RGF0ZSI6IjIwMjItMTEtMjdUMTk6NDg6NTFaIiwidHJhY2siOnsiaWQiOiJkNWVmNmEwMy0yMzI2LTU0YTUtOTdjNS03ZGIyZTM4OTQ2NDQiLCJ0aXRsZSI6IlRoZSBTaWduIiwiYXJ0aXN0TmFtZSI6IkFjZSBPZiBCYXNlIiwiaXNyYyI6IlNFVkpIMDgwMzQwNCIsImltYWdlcyI6W3sidHlwZSI6ImltYWdlIiwidXJpIjoiaHR0cHM6Ly9pbWcudGFscGFyYWQuaW8vdHJhY2tzL1NFVkpIMDgwMzQwNC5qcGciLCJfX3R5cGVuYW1lIjoiSW1hZ2UifV0sIl9fdHlwZW5hbWUiOiJUcmFjayJ9LCJfX3R5cGVuYW1lIjoiUGxheW91dCJ9LHsiYnJvYWRjYXN0RGF0ZSI6IjIwMjItMTEtMjdUMTk6NDM6NTBaIiwidHJhY2siOnsiaWQiOiIwODRkZmFkNS0xZGMyLTVlMzktYTAyYi1hN2MwMjFlYTMxYjYiLCJ0aXRsZSI6IkRlIFZlcnpvZW5pbmciLCJhcnRpc3ROYW1lIjoiRnJhbmsgQm9laWplbiBHcm9lcCIsImlzcmMiOiJOTEEyMDA0MDAxNzYiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9OTEEyMDA0MDAxNzYuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI3VDE5OjM4OjUzWiIsInRyYWNrIjp7ImlkIjoiNmU4NmVjMDEtMjRkMS01OWE1LTlhODktMzZmZGZiNThiYzc0IiwidGl0bGUiOiJCb29naWUgV29uZGVybGFuZCIsImFydGlzdE5hbWUiOiJFYXJ0aCBXaW5kICYgRmlyZSIsImlzcmMiOiJVU1Q3Vzk2MDA1OTQiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9VU1Q3Vzk2MDA1OTQuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI3VDE5OjM1OjA5WiIsInRyYWNrIjp7ImlkIjoiY2NiMjQxNWItMGFkMC01YzI1LWI2YzUtZGM2YTdlMDM0ZTlhIiwidGl0bGUiOiJOZXh0IFRvIE1lIiwiYXJ0aXN0TmFtZSI6Iklsc2UgRGVMYW5nZSIsImlzcmMiOiJOTFVNNzEwMDA5NzMiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9OTFVNNzEwMDA5NzMuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI3VDE5OjI1OjE3WiIsInRyYWNrIjp7ImlkIjoiN2Q5OGE0MjMtOWNkNy01NDc0LWI0NjctMzE4OGMwMGE2NmIxIiwidGl0bGUiOiJXaW50ZXIgSW4gQW1lcmljYSIsImFydGlzdE5hbWUiOiJSZW5lIEZyb2dlciIsImlzcmMiOiJOTFEyNzE3MDAyMDgiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9OTFEyNzE3MDAyMDguanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI3VDE5OjE5OjU4WiIsInRyYWNrIjp7ImlkIjoiZjc2NDJkNTktNDNmZS01NTdhLTkyZmUtNmI4YWZkOWMwNjQ5IiwidGl0bGUiOiJTd2VldCBBYm91dCBNZSIsImFydGlzdE5hbWUiOiJHYWJyaWVsbGEgQ2lsbWkiLCJpc3JjIjoiR0JVTTcwNzA5NjI2IiwiaW1hZ2VzIjpbeyJ0eXBlIjoiaW1hZ2UiLCJ1cmkiOiJodHRwczovL2ltZy50YWxwYXJhZC5pby90cmFja3MvR0JVTTcwNzA5NjI2LmpwZyIsIl9fdHlwZW5hbWUiOiJJbWFnZSJ9XSwiX190eXBlbmFtZSI6IlRyYWNrIn0sIl9fdHlwZW5hbWUiOiJQbGF5b3V0In1dLCJfX3R5cGVuYW1lIjoiU3RhdGlvbiJ9fX0=
-  recorded_at: Sun, 27 Nov 2022 20:15:26 GMT
+      string: '{"data":{"getStation":{"title":"Radio 10","playouts":[{"broadcastDate":"2022-11-29T20:11:43Z","track":{"id":"a01e0a51-7d9b-5830-b767-2433ffeb0726","title":"Dreadlock
+        Holiday","artistName":"10cc","isrc":"GBF087800002","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBF087800002.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T20:05:23Z","track":{"id":"c68c0c5d-8df6-5432-bf7d-e8743dd34486","title":"Halfway
+        Gone","artistName":"Lifehouse","isrc":"USUM70903932","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM70903932.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T20:02:04Z","track":{"id":"8c049f50-203f-5276-b9c0-267a7b449588","title":"Love
+        Me Just A Little Bit More","artistName":"Dolly Dots","isrc":"NLA808300004","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLA808300004.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:50:54Z","track":{"id":"5e015cb9-4b3f-5a6d-9034-502aaa57d1fc","title":"Irgendwie
+        Irgendwo Irgendwan","artistName":"Nena","isrc":"DEE869901718","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:46:54Z","track":{"id":"a21f3b36-a145-5ab0-9fe6-0d8fb2c0fc3e","title":"When
+        Smokey Sings","artistName":"ABC","isrc":"GBF088700614","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBF088700614.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:42:57Z","track":{"id":"4d4b5437-e96a-5488-9094-35772bb00165","title":"You''re
+        The One For Me","artistName":"D-Train","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:37:21Z","track":{"id":"675f2f87-0d15-5b0f-a233-33e575330f7a","title":"Englishman
+        In New York","artistName":"Sting","isrc":"USAM18700040","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAM18700040.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:33:36Z","track":{"id":"e90e8e7d-39c0-577d-8bdc-b83fc486a913","title":"The
+        Only Way is Up","artistName":"Yazz","isrc":"GBAKW0201571","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAKW0201571.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:24:49Z","track":{"id":"81e42bcc-f85f-55f1-ba22-2128688adf18","title":"Surrender","artistName":"Swing
+        Out Sister","isrc":"GBF080080250","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBF080080250.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-11-29T19:21:14Z","track":{"id":"97358925-5c77-5c83-b9c5-0bb9c37ecc25","title":"The
+        Whole Of The Moon","artistName":"Waterboys","isrc":"GBAYK8500003","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAYK8500003.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Tue, 29 Nov 2022 20:11:58 GMT
 recorded_with: VCR 6.1.0
