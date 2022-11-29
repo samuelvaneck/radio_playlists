@@ -16,7 +16,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQCzHq-TWE1gS0jWoH6iiY2bkZi1UajjRW2uGrYSrBMq8oj_SiQUD3Kx1q30zjFkrOny13pyP-hyBD446qgT7IDUg0Gyl7g8ml7OaW2LxTVZwAQUTy8
+      - Bearer BQBHdYOTB-dZez3omzMhrV7_nD4fBkEfHCaT1gVYRSwG-T2FbJXZLEdCqA-Rs_vhaj1QQJNHswbxJcARtyzxoWlVXwL9PDM16qIDlFVrvQwKZA2lNd8
       Content-Type:
       - application/json
   response:
@@ -46,7 +46,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 27 Nov 2022 20:15:26 GMT
+      - Tue, 29 Nov 2022 20:11:56 GMT
       Server:
       - envoy
       Via:
@@ -1037,7 +1037,7 @@ http_interactions:
             "total" : 10
           }
         }
-  recorded_at: Sun, 27 Nov 2022 20:15:26 GMT
+  recorded_at: Tue, 29 Nov 2022 20:11:56 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ
@@ -1054,7 +1054,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQCzHq-TWE1gS0jWoH6iiY2bkZi1UajjRW2uGrYSrBMq8oj_SiQUD3Kx1q30zjFkrOny13pyP-hyBD446qgT7IDUg0Gyl7g8ml7OaW2LxTVZwAQUTy8
+      - Bearer BQBHdYOTB-dZez3omzMhrV7_nD4fBkEfHCaT1gVYRSwG-T2FbJXZLEdCqA-Rs_vhaj1QQJNHswbxJcARtyzxoWlVXwL9PDM16qIDlFVrvQwKZA2lNd8
       Content-Type:
       - application/json
   response:
@@ -1065,7 +1065,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=85840
+      - public, max-age=84201
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1084,7 +1084,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 27 Nov 2022 20:15:26 GMT
+      - Tue, 29 Nov 2022 20:11:56 GMT
       Server:
       - envoy
       Via:
@@ -1102,7 +1102,7 @@ http_interactions:
           },
           "followers" : {
             "href" : null,
-            "total" : 15654152
+            "total" : 15655212
           },
           "genres" : [ "dance pop", "dutch edm", "edm", "electro house", "pop", "pop dance", "progressive house", "tropical house" ],
           "href" : "https://api.spotify.com/v1/artists/60d24wfXkVzDSfLS6hyCjZ",
@@ -1125,7 +1125,7 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:60d24wfXkVzDSfLS6hyCjZ"
         }
-  recorded_at: Sun, 27 Nov 2022 20:15:26 GMT
+  recorded_at: Tue, 29 Nov 2022 20:11:56 GMT
 - request:
     method: get
     uri: https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P
@@ -1142,7 +1142,7 @@ http_interactions:
       Host:
       - api.spotify.com
       Authorization:
-      - Bearer BQCzHq-TWE1gS0jWoH6iiY2bkZi1UajjRW2uGrYSrBMq8oj_SiQUD3Kx1q30zjFkrOny13pyP-hyBD446qgT7IDUg0Gyl7g8ml7OaW2LxTVZwAQUTy8
+      - Bearer BQBHdYOTB-dZez3omzMhrV7_nD4fBkEfHCaT1gVYRSwG-T2FbJXZLEdCqA-Rs_vhaj1QQJNHswbxJcARtyzxoWlVXwL9PDM16qIDlFVrvQwKZA2lNd8
       Content-Type:
       - application/json
   response:
@@ -1153,7 +1153,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
-      - public, max-age=72074
+      - public, max-age=72623
       X-Robots-Tag:
       - noindex, nofollow
       Access-Control-Allow-Origin:
@@ -1172,7 +1172,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Date:
-      - Sun, 27 Nov 2022 20:15:26 GMT
+      - Tue, 29 Nov 2022 20:11:56 GMT
       Server:
       - envoy
       Via:
@@ -1190,9 +1190,9 @@ http_interactions:
           },
           "followers" : {
             "href" : null,
-            "total" : 780529
+            "total" : 781422
           },
-          "genres" : [ "alt z", "gen z singer-songwriter", "pop" ],
+          "genres" : [ "alt z", "gen z singer-songwriter", "pop", "post-teen pop" ],
           "href" : "https://api.spotify.com/v1/artists/7okSU80WTrn4LXlyXYbX3P",
           "id" : "7okSU80WTrn4LXlyXYbX3P",
           "images" : [ {
@@ -1213,5 +1213,5 @@ http_interactions:
           "type" : "artist",
           "uri" : "spotify:artist:7okSU80WTrn4LXlyXYbX3P"
         }
-  recorded_at: Sun, 27 Nov 2022 20:15:26 GMT
+  recorded_at: Tue, 29 Nov 2022 20:11:57 GMT
 recorded_with: VCR 6.1.0
