@@ -7,6 +7,7 @@ class Spotify::Track < Spotify
 
   def initialize(args)
     super()
+    @args = args
     @search_artists = args[:artists]
     @search_title = args[:title]
     @track = if args[:spotify_track_id]
@@ -39,6 +40,12 @@ class Spotify::Track < Spotify
     return if spotify_search_results.blank?
 
     single_album_tracks = filter_single_and_album_tracks(spotify_search_results)
+    if single_album_tracks.blank?
+      @search_title = @args[:title]
+      spotify_search_results = make_request(search_url)
+      single_album_tracks = filter_single_and_album_tracks(spotify_search_results)
+    end
+
     filtered_tracks = custom_album_rejector(single_album_tracks)
     filtered_tracks.max_by { |track| track['popularity'] }
   end
@@ -65,17 +72,17 @@ class Spotify::Track < Spotify
 
   # setter methods
   def set_track_artists
-    return if @track.blank?
+    return if track.blank? || track['artists'].blank?
 
-    @track['album']['artists'].map do |artist|
+    track['artists'].map do |artist|
       Spotify::Artist.new({ id_on_spotify: artist['id'] }).info
     end
   end
 
   def set_track_title
-    return if @track.blank?
+    return if track.blank?
 
-    @track['name'] if @track.present?
+    track['name'] if track.present?
   end
 
   # filter methods
