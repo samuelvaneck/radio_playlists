@@ -60,7 +60,6 @@ class Spotify
     request['Authorization'] = "Bearer #{@token}"
     request['Content-Type'] = 'application/json'
 
-
     JSON(https.request(request).body)
   rescue StandardError => e
     if attempts < 3
