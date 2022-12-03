@@ -6,6 +6,8 @@ require 'net/http'
 class Isrc
   ENDPOINT = 'https://isrcsearch.ifpi.org/api/v1/search'
 
+  attr_reader :title, :artist_name
+
   def initialize(args = {})
     @args = args
   end
@@ -28,20 +30,31 @@ class Isrc
     request['sec-fetch-site'] = 'same-origin'
     request['x-csrftoken'] = ENV['ISRC_X_CSRF_TOKEN']
     request.body = request_body
-
     response = https.request(request)
-    puts response.read_body
+
+    handle_response(response)
   end
 
   def request_body
     {
-      'searchFields ':
+      'searchFields':
         {
-          'isrcCode ': @args[:isrc_code]
+          'isrcCode': @args[:isrc_code]
         },
       'showReleases': false,
       'start': 0,
       'number': 1
     }.to_json
+  end
+
+  def handle_response(response)
+    if response.try(:code) == '200'
+      @title = JSON(response.read_body)['displayDocs'][0]['trackTitle']
+      @artist_name = JSON(response.read_body)['displayDocs'][0]['artistName']
+      true
+    else
+      Rails.logger.error JSON(response.read_body)
+      false
+    end
   end
 end
