@@ -52,7 +52,7 @@ module TrackDataProcessor
                song
              end
 
-    result.is_a?(Song) ? result : result.first
+    result.is_a?(Song) ? result : result.max_by(&:played)
   end
 
   def query_songs(artists, title)

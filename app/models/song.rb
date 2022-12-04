@@ -75,6 +75,10 @@ class Song < ActiveRecord::Base
     self.artists = Array.wrap(song_artists) if song_artists.present?
   end
 
+  def played
+    playlists.size
+  end
+
   private
 
   def find_same_songs(song)
