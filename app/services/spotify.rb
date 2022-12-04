@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Spotify
-  attr_accessor :search_artists, :search_title, :token
+  attr_reader :token
 
   class TokenCreationError < StandardError; end
 
