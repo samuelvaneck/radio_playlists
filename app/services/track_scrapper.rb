@@ -5,6 +5,7 @@ require 'open-uri'
 require 'net/http'
 
 class TrackScrapper
+  attr_reader :artist_name, :title, :broadcast_timestamp, :spotify_url, :isrc_code
 
   def initialize(radio_station)
     @radio_station = radio_station
@@ -12,12 +13,6 @@ class TrackScrapper
 
   def latest_track
     send(@radio_station.processor.to_sym)
-    {
-      artist_name: @artist_name,
-      title: @title,
-      broadcast_timestamp: @broadcast_timestamp,
-      spotify_url: @spotify_url
-    }
   end
 
   private
@@ -32,10 +27,13 @@ class TrackScrapper
     @title = CGI.unescapeHTML(track['title']).titleize
     @broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['startdatetime'])
     @spotify_url = track['spotify_url']
+    true
   rescue Net::ReadTimeout => _e
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
+    false
   rescue Net::OpenTimeout => _e
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
+    false
   rescue StandardError => e
     Rails.logger.info e
     false
@@ -48,14 +46,18 @@ class TrackScrapper
     raise StandardError if json.blank?
     raise StandardError, json['errors'] if json['errors'].present?
 
-    track = json['data']['getStation']['playouts'][0]
-    @artist_name = track['track']['artistName']
-    @title = track['track']['title']
+    track = json.dig('data', 'getStation', 'playouts')[0]
+    @artist_name = track.dig('track', 'artistName').titleize
+    @title = track.dig('track', 'title').titleize
     @broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['broadcastDate'])
+    @isrc_code = track.dig('track', 'isrc')
+    true
   rescue Net::ReadTimeout => _e
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
+    false
   rescue Net::OpenTimeout => _e
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (OpenTimeout)"
+    false
   rescue StandardError => e
     Rails.logger.info e.try(:message)
     false
@@ -63,13 +65,14 @@ class TrackScrapper
 
   def qmusic_api_processor
     json = JSON(make_request)
-    raise StandardError if json.blank?
+    return false if json.blank?
 
     track = json['played_tracks'][0]
     @broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['played_at'])
     @artist_name = track['artist']['name'].titleize
-    @title = track['title']
+    @title = track['title'].titleize
     @spotify_url = track['spotify_url']
+    true
   end
 
   def scraper
@@ -87,13 +90,16 @@ class TrackScrapper
       @artist_name = playlist.search('.play_artist')[-1].text.strip
       @title = playlist.search('.play_title')[-1].text.strip
       time = playlist.search('.play_time')[-1].text.strip
+      true
     when 'Groot Nieuws Radio'
       doc = Nokogiri::HTML(URI(@radio_station.url).open)
       @artist_name = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[2]').text.split.map(&:capitalize).join(' ')
       @title = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[3]').text.split.map(&:capitalize).join(' ')
       time = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[1]/span').text
+      true
     else
       Rails.logger.info "Radio station #{@radio_station.name} not found in SCRAPER"
+      false
     end
 
     @broadcast_timestamp = Time.find_zone('Amsterdam').parse("#{date_string} #{time}")

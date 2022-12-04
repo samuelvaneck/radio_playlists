@@ -37,16 +37,17 @@ class RadioStation < ActiveRecord::Base
   end
 
   def import_song
-    track = TrackScrapper.new(self).latest_track
-    return false if track.blank? || track[:artist_name].blank?
-    return false if illegal_word_in_title(track[:title])
+    scrapper = TrackScrapper.new(self)
+    return false unless scrapper.latest_track
+    return false if illegal_word_in_title(scrapper.title) || scrapper.artist_name.blank?
 
-    artists, song = process_track_data(track[:artist_name], track[:title], track[:spotify_url])
+    artists, song = process_track_data(scrapper.artist_name, scrapper.title, scrapper.spotify_url)
     return false if artists.nil? || song.nil?
 
-    create_playlist(track[:broadcast_timestamp], artists, song)
+    create_playlist(scrapper.broadcast_timestamp, artists, song)
   rescue StandardError => e
     Sentry.capture_exception(e)
+    Rails.logger.error "Error while importing song from #{name}: #{e.message}"
     nil
   end
 
