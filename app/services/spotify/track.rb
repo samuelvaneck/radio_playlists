@@ -3,7 +3,7 @@
 # require Rails.root.join('app/services/spotify.rb')
 
 class Spotify::Track < Spotify
-  attr_reader :search_artists, :search_title, :track, :artists, :title, :isrc, :spotify_artwork_url, :spotify_song_url
+  attr_reader :track, :artists, :title, :isrc, :spotify_artwork_url, :spotify_song_url
 
   def initialize(args)
     super()
