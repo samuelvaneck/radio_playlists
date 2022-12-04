@@ -82,17 +82,10 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     let(:radio_1) { create(:radio_1) }
 
     context 'given an address and radio station' do
-      it 'creates a new playlist item' do
-        track_data = TrackScrapper.new(radio_1).latest_track
+      let(:track_data) { TrackScrapper.new(radio_1).latest_track }
 
-        if track_data.is_a?(Hash)
-          expect(track_data).to be_an_instance_of(Hash)
-          [:artist_name, :title, :broadcast_timestamp].each do |key|
-            expect(track_data).to have_key(key)
-          end
-        else
-          expect(track_data).to eq false
-        end
+      it 'creates a new playlist item' do
+        expect(track_data).to eq true
       end
     end
   end
@@ -101,17 +94,10 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     let(:sky_radio) { create(:sky_radio) }
 
     context 'given an address and radio station' do
-      it 'creates an new playlist item' do
-        track_data = TrackScrapper.new(sky_radio).latest_track
+      let(:track_data) { TrackScrapper.new(sky_radio).latest_track }
 
-        if track_data.is_a?(Hash)
-          expect(track_data).to be_an_instance_of(Hash)
-          [:artist_name, :title, :broadcast_timestamp].each do |key|
-            expect(track_data).to have_key(key)
-          end
-        else
-          expect(track_data).to eq false
-        end
+      it 'creates an new playlist item' do
+        expect(track_data).to eq true
       end
     end
   end
@@ -124,7 +110,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'returns an artist_name, title and time' do
         track_data = TrackScrapper.new(sublime_fm).latest_track
 
-        expect(track_data.count).to eq 4 if track_data.present?
+        expect(track_data).to eq true
       end
     end
 
@@ -132,7 +118,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
       it 'returns an artist_name, titile and time' do
         track_data = TrackScrapper.new(groot_nieuws_radio).latest_track
 
-        expect(track_data.count).to eq 4 if track_data.present?
+        expect(track_data).to eq true
       end
     end
   end
