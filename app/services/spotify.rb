@@ -66,7 +66,7 @@ class Spotify
       attempts += 1
       retry
     else
-      Sentry.capture(e)
+      Sentry.capture_exception(e)
       nil
     end
   end
