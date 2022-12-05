@@ -4,9 +4,9 @@ require 'uri'
 require 'net/http'
 
 class Isrc
-  ENDPOINT = 'https://isrcsearch.ifpi.org/api/v1/search'
+  ENDPOINT = 'https://musicbrainz.org/ws/2/recording/'
 
-  attr_reader :title, :artist_name
+  attr_reader :title, :artist_names
 
   def initialize(args = {})
     @args = args
@@ -17,40 +17,22 @@ class Isrc
   end
 
   def make_request
-    url = URI(ENDPOINT)
+    url = URI("#{ENDPOINT}?query=isrc:#{@args[:isrc]}&fmt=json")
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
-
-    request = Net::HTTP::Post.new(url)
-    request['content-type'] = 'application/json;charset=UTF-8'
-    request['cookie'] = "_ga=GA1.2.61660241.1668346333; csrftoken=#{ENV['ISRC_SESSION_CSRF_TOKEN']}; sessionid=#{ENV['ISRC_SESSION_ID']};; sessionid=#{ENV['ISRC_SESSION_ID']}"
-    request['origin'] = 'https://isrcsearch.ifpi.org'
-    request['referer'] = 'https://isrcsearch.ifpi.org/'
-    request['sec-fetch-mode'] = 'cors'
-    request['sec-fetch-site'] = 'same-origin'
-    request['x-csrftoken'] = ENV['ISRC_X_CSRF_TOKEN']
-    request.body = request_body
+    request = Net::HTTP::Get.new(url)
+    request['Content-Type'] = 'application/json'
+    request['User-Agent'] = 'RadioPlaylistsRuntime/1.0.0 (https://playlists.samuelvaneck.com)'
     response = https.request(request)
 
     handle_response(response)
   end
 
-  def request_body
-    {
-      'searchFields':
-        {
-          'isrcCode': @args[:isrc_code]
-        },
-      'showReleases': false,
-      'start': 0,
-      'number': 1
-    }.to_json
-  end
-
   def handle_response(response)
     if response.try(:code) == '200'
-      @title = JSON(response.read_body)['displayDocs'][0]['trackTitle']
-      @artist_name = JSON(response.read_body)['displayDocs'][0]['artistName']
+      recording = JSON.parse(response.body)['recordings'][0]
+      @title = recording['title']
+      @artist_names = recording['artist-credit'].map { |artist| artist['name'] }
       true
     else
       Rails.logger.error JSON(response.read_body)
