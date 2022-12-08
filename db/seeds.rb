@@ -17,7 +17,7 @@ radio_stations = [
     name: 'Sublime FM',
     url: 'https://sublime.nl/sublime-playlist/',
     processor: 'scraper',
-    stream_url: 'https://icecast-qmusicnl-cdp.triple-it.nl/Qmusic_nl_live.mp3'
+    stream_url: 'https://25323.live.streamtheworld.com/SUBLIME.mp3'
   },
   {
     name: 'Radio 5',
