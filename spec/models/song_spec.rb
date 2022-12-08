@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: songs
+#
+#  id                  :bigint           not null, primary key
+#  title               :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  fullname            :text
+#  spotify_song_url    :string
+#  spotify_artwork_url :string
+#  id_on_spotify       :string
+#  isrc                :string
+#
 describe Song do
   let(:artist_1) { create :artist }
   let(:song_1) { create :song, artists: [artist_1] }

@@ -14,10 +14,9 @@
 #  spotify_artwork_url :string
 #  id_on_spotify       :string
 #
-class ArtistSerializer
-  include FastJsonapi::ObjectSerializer
 
-  attributes :id, :name, :spotify_artist_url, :spotify_artwork_url
-
-  has_many :songs
+FactoryBot.define do
+  factory :artist do
+    name { Faker::Music.band }
+  end
 end

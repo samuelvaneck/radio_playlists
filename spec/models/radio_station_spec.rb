@@ -1,5 +1,18 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: radio_stations
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  genre      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  url        :text
+#  processor  :string
+#  stream_url :string
+#
 describe RadioStation, use_vcr: true, with_valid_token: true do
   let(:radio_station) { create :radio_station }
   let(:playlist_4_hours_ago) { create :playlist, :filled, radio_station: radio_station, created_at: 4.hours.ago }

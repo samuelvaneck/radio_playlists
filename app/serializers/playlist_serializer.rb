@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
-# serializer for generaplaylist
+# == Schema Information
+#
+# Table name: playlists
+#
+#  id                  :bigint           not null, primary key
+#  song_id             :bigint
+#  radio_station_id    :bigint
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  broadcast_timestamp :datetime
+#
 class PlaylistSerializer
   include FastJsonapi::ObjectSerializer
 

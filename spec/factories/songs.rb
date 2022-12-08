@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: songs
+#
+#  id                  :bigint           not null, primary key
+#  title               :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  fullname            :text
+#  spotify_song_url    :string
+#  spotify_artwork_url :string
+#  id_on_spotify       :string
+#  isrc                :string
+#
+
 FactoryBot.define do
   factory :song do
     title { Faker::Music::UmphreysMcgee.song }

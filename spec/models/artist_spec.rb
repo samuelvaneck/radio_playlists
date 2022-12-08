@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: artists
+#
+#  id                  :bigint           not null, primary key
+#  name                :string
+#  image               :string
+#  genre               :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  spotify_artist_url  :string
+#  spotify_artwork_url :string
+#  id_on_spotify       :string
+#
 # # frozen_string_literal: true
 
 describe Artist do

@@ -1,5 +1,16 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: playlists
+#
+#  id                  :bigint           not null, primary key
+#  song_id             :bigint
+#  radio_station_id    :bigint
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  broadcast_timestamp :datetime
+#
 describe Playlist do
   let(:artist_one) { create :artist }
   let(:song_one) { create :song, artists: [artist_one] }

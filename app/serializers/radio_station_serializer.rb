@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
-# serializer for radio_stations
+# == Schema Information
+#
+# Table name: radio_stations
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  genre      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  url        :text
+#  processor  :string
+#  stream_url :string
+#
 class RadioStationSerializer
   include FastJsonapi::ObjectSerializer
 

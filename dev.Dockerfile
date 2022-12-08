@@ -6,7 +6,7 @@ RUN apk --update add --virtual build-dependencies \
     postgresql-dev \
     libxml2 libxml2-dev libxslt libxslt-dev libc-dev linux-headers \
     libcurl curl curl-dev less \
-    nodejs yarn tzdata bash \
+    nodejs yarn tzdata bash ffmpeg \
       && rm -rf /var/cache/lists/*_*
 
 ENV RUBYOPT='-W0'
