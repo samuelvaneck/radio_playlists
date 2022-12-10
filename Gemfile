@@ -20,7 +20,7 @@ gem 'sidekiq-scheduler', '~> 4.0'
 gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'uri', '~> 0.11.0'
+gem 'uri', '~> 0.12.0'
 gem 'will_paginate'
 
 gem 'jsbundling-rails', '~> 1.0'
