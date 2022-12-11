@@ -23,6 +23,8 @@ services:
       context: .
       dockerfile: dev.Dockerfile
     command: bundle exec sidekiq -C config/sidekiq.yml
+    environment:
+      - SONG_RECOGNIZER_URL=http://song_recognizer:8080
     volumes:
       - .:/app
 
@@ -43,10 +45,15 @@ services:
     environment:
       - RAILS_LOG_TO_STDOUT=true
       - DOCKER_COMPOSE=true
-      # - WEBPACKER_DEV_SERVER_HOST=webpacker
       - NODE_ENV=development
     tty: true
     stdin_open: true
+
+  song_recognizer:
+    image: ghcr.io/samuelvaneck/song_recognizer:latest
+    hostname: song-recognizer
+    volumes:
+      - ./tmp/audio:/app/audio
 
   selenium:
     image: selenium/standalone-chrome-debug
