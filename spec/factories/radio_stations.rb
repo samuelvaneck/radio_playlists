@@ -17,7 +17,7 @@
 FactoryBot.define do
   factory :radio_station do
     name { Faker::Name.name }
-    url { Faker::Internet.domain_name(subdomain: true, domain: "example") }
+    url { Faker::Internet.domain_name(subdomain: true, domain: 'example') }
     processor { ['npo_api_processor', 'talpa_api_processor', 'qmusic_api_processor', 'scraper'].sample }
   end
 
