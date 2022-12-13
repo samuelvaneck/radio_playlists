@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: artists_songs
+#
+#  song_id   :bigint           not null
+#  artist_id :bigint           not null
+#
 describe ArtistsSong, type: :model do
   let(:artists_song) { create(:artists_song) }
 

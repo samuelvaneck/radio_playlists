@@ -7,10 +7,11 @@ gem 'health_bit'
 gem 'json', '~> 2.6.1'
 gem 'jsonapi-serializer', '~> 2.2.0'
 gem 'jbuilder', '~> 2.10'
+gem 'mailjet'
 gem 'nokogiri', '>= 1.10.9'
+gem 'open3', '~> 0.1.1'
 gem 'pg'
 gem 'puma', '~> 6.0'
-gem 'mailjet'
 gem 'rails', '~> 7.0', '>= 7.0.1'
 gem 'responders'
 gem 'sentry-ruby'
@@ -66,6 +67,7 @@ group :test do
 end
 
 group :development do
+  gem 'annotate'
   gem 'letter_opener'
   gem 'spring'
   gem 'web-console'

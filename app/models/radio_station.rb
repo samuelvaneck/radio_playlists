@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: radio_stations
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  genre      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  url        :text
+#  processor  :string
+#  stream_url :string
+#
+
 class RadioStation < ActiveRecord::Base
   has_many :playlists
   has_many :songs, through: :playlists
@@ -53,6 +67,22 @@ class RadioStation < ActiveRecord::Base
 
   def zero_playlist_items
     Playlist.where(radio_station: self).count.zero?
+  end
+
+  def recognize_song
+    recognizer = SongRecognizer.new(self)
+    return unless recognizer.recognized?
+
+    Rails.logger.info "Title: #{recognizer.title}"
+    Rails.logger.info "Artist: #{recognizer.artist_name}"
+  end
+
+  def audio_file_name
+    name.downcase.tr(' ', '_')
+  end
+
+  def audio_file_path
+    "tmp/audio/#{audio_file_name}.mp3"
   end
 
   private

@@ -1,9 +1,23 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: radio_stations
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  genre      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  url        :text
+#  processor  :string
+#  stream_url :string
+#
+
 FactoryBot.define do
   factory :radio_station do
     name { Faker::Name.name }
-    url { Faker::Internet.domain_name(subdomain: true, domain: "example") }
+    url { Faker::Internet.domain_name(subdomain: true, domain: 'example') }
     processor { ['npo_api_processor', 'talpa_api_processor', 'qmusic_api_processor', 'scraper'].sample }
   end
 
