@@ -24,7 +24,7 @@ radio_stations = [
     url: 'https://www.nporadio5.nl/api/tracks',
     processor: 'npo_api_processor',
     stream_url: 'https://icecast.omroep.nl/radio5-bb-mp3'
-   },
+  },
   {
     name: 'Radio 3FM',
     url: 'https://www.npo3fm.nl/api/tracks',

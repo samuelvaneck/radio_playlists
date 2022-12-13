@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'resolv'
+
 class SongRecognizer
   attr_reader :audio_stream, :result, :title, :artist_name
 
@@ -19,7 +21,8 @@ class SongRecognizer
   private
 
   def make_request
-    url = URI("http://#{Resolv.getaddress('song_recognizer')}:8080/radio_station/#{@radio_station.audio_file_name}")
+    ip_address = Resolv.getaddress('song_recognizer')
+    url = URI("http://#{ip_address}:8080/radio_station/#{@radio_station.audio_file_name}")
     http = Net::HTTP.new(url.host, url.port)
     request = Net::HTTP::Get.new(url)
     http.request(request)
