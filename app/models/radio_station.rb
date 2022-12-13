@@ -69,6 +69,22 @@ class RadioStation < ActiveRecord::Base
     Playlist.where(radio_station: self).count.zero?
   end
 
+  def recognize_song
+    recognizer = SongRecognizer.new(self)
+    return unless recognizer.recognized?
+
+    Rails.logger.info "Title: #{recognizer.title}"
+    Rails.logger.info "Artist: #{recognizer.artist_name}"
+  end
+
+  def audio_file_name
+    name.downcase.tr(' ', '_')
+  end
+
+  def audio_file_path
+    "tmp/audio/#{audio_file_name}.mp3"
+  end
+
   private
 
   def create_playlist(broadcast_timestamp, artists, song)

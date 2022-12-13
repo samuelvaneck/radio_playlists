@@ -1,34 +1,38 @@
 # frozen_string_literal: true
 
 class SongRecognizer
-  attr_reader :audio_stream, :result
-
-  ENDPOINT =
+  attr_reader :audio_stream, :result, :title, :artist_name
 
   def initialize(radio_station)
     @radio_station = radio_station
-    output_file = Rails.root.join("tmp/#{radio_station.name}.mp3")
-    @audio_stream = AudioStreamFfmpeg.new(radio_station.stream_url, output_file)
+    output_file = Rails.root.join(@radio_station.audio_file_path)
+    @audio_stream = AudioStream::Mp3.new(@radio_station.stream_url, output_file)
   end
 
-  def recognize
+  def recognized?
     audio_stream.capture
     response = make_request
+    audio_stream.delete_file
     handle_response(response)
   end
 
   private
 
   def make_request
-    url = URI.new("#{ENV['SONG_RECOGNIZER_URL']}/radio_station/#{radio_station.name}")
+    url = URI("http://#{Resolv.getaddress('song_recognizer')}:8080/radio_station/#{@radio_station.audio_file_name}")
     http = Net::HTTP.new(url.host, url.port)
-    request = Net::HTTP::Post.new(url)
-    response = http.request(request)
-    handle_response(response)
+    request = Net::HTTP::Get.new(url)
+    http.request(request)
   end
 
   def handle_response(response)
-    @result = JSON.parse(response.body)
-    response.code == 200
+    @result = JSON.parse(response.body).with_indifferent_access
+    if response.code == '200'
+      @title = result.dig(:result, :track, :title)
+      @artist_name = result.dig(:result, :track, :subtitle)
+      true
+    else
+      false
+    end
   end
 end
