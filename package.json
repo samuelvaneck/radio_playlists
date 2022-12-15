@@ -12,7 +12,7 @@
     "autoprefixer": "^10.4.13",
     "build": "^0.1.4",
     "core-js": "^3.26.1",
-    "css-loader": "^6.7.2",
+    "css-loader": "^6.7.3",
     "d3": "^7.7.0",
     "esbuild": "0.16.1",
     "file-loader": "^6.2.0",
