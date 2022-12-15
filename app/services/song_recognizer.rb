@@ -24,7 +24,7 @@ class SongRecognizer
     ip_address = Resolv.getaddress('song_recognizer')
     url = URI("http://#{ip_address}:8080/radio_station/#{@radio_station.audio_file_name}")
     http = Net::HTTP.new(url.host, url.port)
-    http.require_ssl = false
+    http.use_ssl = false
     request = Net::HTTP::Get.new(url)
     http.request(request)
   end
