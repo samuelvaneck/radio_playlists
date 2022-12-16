@@ -9,8 +9,7 @@ class SongRecognizer
   def initialize(radio_station)
     @radio_station = radio_station
     output_file = @radio_station.audio_file_path
-    metadata_file = @radio_station.metadata_file_path
-    @audio_stream = AudioStream::Mp3.new(@radio_station.stream_url, output_file, metadata_file)
+    @audio_stream = AudioStream::Mp3.new(@radio_station.stream_url, output_file)
     @api_artists, @api_title = api_details
   end
 

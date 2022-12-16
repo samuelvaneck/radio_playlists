@@ -3,10 +3,9 @@
 class AudioStream
   attr_reader :command, :output_file, :url, :stream_title
 
-  def initialize(url, output_file, metadata_file)
+  def initialize(url, output_file)
     @url = url
     @output_file = output_file
-    @metadata_file = metadata_file
   end
 
   def capture
@@ -15,7 +14,6 @@ class AudioStream
       Rails.logger.info "stdout: #{stdout.read}"
       Rails.logger.info "stderr: #{stderr.read}"
     end
-    @stream_title = `cat #{@metadata_file} | grep streamTitle`
   end
 
   def delete_file

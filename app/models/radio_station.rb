@@ -85,10 +85,6 @@ class RadioStation < ActiveRecord::Base
     Rails.root.join("tmp/audio/#{audio_file_name}.mp3")
   end
 
-  def metadata_file_path
-    Rails.root.join("tmp/audio/#{audio_file_name}.txt")
-  end
-
   private
 
   def create_playlist(broadcast_timestamp, artists, song)
