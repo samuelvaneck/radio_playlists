@@ -21,8 +21,7 @@ class SongRecognizer
   private
 
   def make_request
-    ip_address = Resolv.getaddress('song_recognizer')
-    url = URI("http://#{ip_address}:8080/radio_station/#{@radio_station.audio_file_name}")
+    url = URI("#{ENV['SONG_RECOGNIZER_URL']}/radio_station/#{@radio_station.audio_file_name}")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = false
     request = Net::HTTP::Get.new(url)
