@@ -10,7 +10,7 @@ class SongRecognizer
     @radio_station = radio_station
     output_file = @radio_station.audio_file_path
     @audio_stream = AudioStream::Mp3.new(@radio_station.stream_url, output_file)
-    @api_artists, @api_title = api_details
+    @api_artists, @api_title = scrapper_song
   end
 
   def recognized?
@@ -53,7 +53,7 @@ class SongRecognizer
     jarow.getDistance("#{@artist_name} #{@title}", "#{@api_artists} #{@api_title}")
   end
 
-  def api_details
+  def scrapper_song
     scrapper = TrackScrapper.new(@radio_station)
     return false unless scrapper.latest_track
 
