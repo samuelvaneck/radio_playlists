@@ -23,7 +23,7 @@ class SongRecognizer
   def make_request
     url = URI("#{ENV['SONG_RECOGNIZER_URL']}/radio_station/#{@radio_station.audio_file_name}")
     http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = false
+    http.use_ssl = Rails.env.production?
     request = Net::HTTP::Get.new(url)
     http.request(request)
   end
