@@ -82,7 +82,11 @@ class RadioStation < ActiveRecord::Base
   end
 
   def audio_file_path
-    "tmp/audio/#{audio_file_name}.mp3"
+    Rails.root.join("tmp/audio/#{audio_file_name}.mp3")
+  end
+
+  def metadata_file_path
+    Rails.root.join("tmp/audio/#{audio_file_name}.txt")
   end
 
   private

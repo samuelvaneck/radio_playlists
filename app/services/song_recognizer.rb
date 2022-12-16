@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
 require 'resolv'
+require 'fuzzystringmatch'
 
 class SongRecognizer
   attr_reader :audio_stream, :result, :title, :artist_name
 
   def initialize(radio_station)
     @radio_station = radio_station
-    output_file = Rails.root.join(@radio_station.audio_file_path)
-    @audio_stream = AudioStream::Mp3.new(@radio_station.stream_url, output_file)
+    output_file = @radio_station.audio_file_path
+    metadata_file = @radio_station.metadata_file_path
+    @audio_stream = AudioStream::Mp3.new(@radio_station.stream_url, output_file, metadata_file)
+    @api_artists, @api_title = api_details
   end
 
   def recognized?
@@ -33,9 +36,28 @@ class SongRecognizer
     if response.code == '200'
       @title = result.dig(:result, :track, :title)
       @artist_name = result.dig(:result, :track, :subtitle)
+      SongRecognizerLog.create(
+        radio_station: @radio_station,
+        song_match:,
+        recognizer_song_fullname: "#{@artist_name} - #{@title}",
+        api_song_fullname: "#{@api_artists} - #{@api_title}",
+        result: @result
+      )
       true
     else
       false
     end
+  end
+
+  def song_match
+    jarow = FuzzyStringMatch::JaroWinkler.create(:pure)
+    jarow.getDistance("#{@artist_name} #{@title}", "#{@api_artists} #{@api_title}")
+  end
+
+  def api_details
+    scrapper = TrackScrapper.new(@radio_station)
+    return false unless scrapper.latest_track
+
+    [scrapper.artist_name, scrapper.title]
   end
 end
