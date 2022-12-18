@@ -18,6 +18,7 @@ class RadioStation < ActiveRecord::Base
   has_many :playlists
   has_many :songs, through: :playlists
   has_many :artists, through: :songs
+  has_many :song_recognizer_logs
 
   validates :url, :processor, presence: true
 
@@ -67,6 +68,10 @@ class RadioStation < ActiveRecord::Base
 
   def zero_playlist_items
     Playlist.where(radio_station: self).count.zero?
+  end
+
+  def enqueue_recognize_song
+    RadioStationRecognizeSongJob.perform_later(id)
   end
 
   def recognize_song

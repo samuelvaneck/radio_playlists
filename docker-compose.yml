@@ -23,8 +23,6 @@ services:
       context: .
       dockerfile: dev.Dockerfile
     command: bundle exec sidekiq -C config/sidekiq.yml
-    environment:
-      - SONG_RECOGNIZER_URL=http://song_recognizer:8080
     volumes:
       - .:/app
 
