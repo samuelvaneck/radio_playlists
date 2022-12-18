@@ -61,7 +61,7 @@ class SongRecognizer
   end
 
   def set_audio_stream
-    extension = @radio_station.stream_url.split('.').last
+    extension = @radio_station.stream_url.split(/\.|-/).last
     "AudioStream::#{extension.camelcase}".constantize.new(@radio_station.stream_url, @output_file)
   end
 end
