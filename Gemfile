@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '3.1.2'
 
 gem 'dotenv-rails'
+gem 'fuzzy-string-match'
 gem 'health_bit'
 gem 'json', '~> 2.6.1'
 gem 'jsonapi-serializer', '~> 2.2.0'
