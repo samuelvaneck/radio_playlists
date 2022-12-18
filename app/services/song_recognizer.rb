@@ -8,8 +8,8 @@ class SongRecognizer
 
   def initialize(radio_station)
     @radio_station = radio_station
-    output_file = @radio_station.audio_file_path
-    @audio_stream = AudioStream::Mp3.new(@radio_station.stream_url, output_file)
+    @output_file = @radio_station.audio_file_path
+    @audio_stream = set_audio_stream
     @api_artists, @api_title = scrapper_song
   end
 
@@ -36,11 +36,10 @@ class SongRecognizer
       @title = result.dig(:result, :track, :title)
       @artist_name = result.dig(:result, :track, :subtitle)
       SongRecognizerLog.create(
-        radio_station: @radio_station,
+        radio_station_id: @radio_station.id,
         song_match:,
         recognizer_song_fullname: "#{@artist_name} - #{@title}",
-        api_song_fullname: "#{@api_artists} - #{@api_title}",
-        result: @result
+        api_song_fullname: "#{@api_artists} - #{@api_title}"
       )
       true
     else
@@ -50,7 +49,8 @@ class SongRecognizer
 
   def song_match
     jarow = FuzzyStringMatch::JaroWinkler.create(:pure)
-    jarow.getDistance("#{@artist_name} #{@title}", "#{@api_artists} #{@api_title}")
+    distance = jarow.getDistance("#{@artist_name} #{@title}".downcase, "#{@api_artists} #{@api_title}".downcase)
+    (distance * 100).to_i
   end
 
   def scrapper_song
@@ -58,5 +58,10 @@ class SongRecognizer
     return false unless scrapper.latest_track
 
     [scrapper.artist_name, scrapper.title]
+  end
+
+  def set_audio_stream
+    extension = @radio_station.stream_url.split('.').last
+    "AudioStream::#{extension.camelcase}".constantize.new(@radio_station.stream_url, @output_file)
   end
 end

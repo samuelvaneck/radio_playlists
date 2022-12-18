@@ -7,7 +7,6 @@
 #  song_match               :integer
 #  recognizer_song_fullname :string
 #  api_song_fullname        :string
-#  result                   :jsonb
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #

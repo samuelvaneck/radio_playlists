@@ -95,7 +95,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_141917) do
     t.integer "song_match"
     t.string "recognizer_song_fullname"
     t.string "api_song_fullname"
-    t.jsonb "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["radio_station_id"], name: "index_song_recognizer_logs_on_radio_station_id"

@@ -5,7 +5,6 @@ class CreateSongRecognizerLogs < ActiveRecord::Migration[7.0]
       t.integer :song_match
       t.string :recognizer_song_fullname
       t.string :api_song_fullname
-      t.jsonb :result
 
       t.timestamps
     end
