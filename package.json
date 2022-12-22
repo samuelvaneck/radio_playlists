@@ -16,7 +16,7 @@
     "d3": "^7.7.0",
     "esbuild": "0.16.1",
     "file-loader": "^6.2.0",
-    "jquery": "^3.6.2",
+    "jquery": "^3.6.3",
     "mini-css-extract-plugin": "^2.7.2",
     "pinia": "^2.0.28",
     "postcss": "^8.4.20",
