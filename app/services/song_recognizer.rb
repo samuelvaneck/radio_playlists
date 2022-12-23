@@ -15,36 +15,38 @@ class SongRecognizer
 
   def recognized?
     audio_stream.capture
-    response = make_request
+    response = run_song_recognizer
     audio_stream.delete_file
     handle_response(response)
   end
 
   private
 
-  def make_request
-    url = URI("#{ENV['SONG_RECOGNIZER_URL']}/radio_station/#{@radio_station.audio_file_name}")
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = Rails.env.production?
-    request = Net::HTTP::Get.new(url)
-    http.request(request)
+  def run_song_recognizer
+    command = "songrec audio-file-to-recognized-song #{@output_file}"
+    Open3.popen3(command) do |_stdin, stdout, stderr, _wait_thr|
+      output = stdout.read
+      error = stderr.read
+      output.presence || error
+    end
   end
 
   def handle_response(response)
-    @result = JSON.parse(response.body).with_indifferent_access
-    if response.code == '200'
-      @title = result.dig(:result, :track, :title)
-      @artist_name = result.dig(:result, :track, :subtitle)
-      SongRecognizerLog.create(
-        radio_station_id: @radio_station.id,
-        song_match:,
-        recognizer_song_fullname: "#{@artist_name} - #{@title}",
-        api_song_fullname: "#{@api_artists} - #{@api_title}"
-      )
-      true
-    else
-      false
-    end
+    @result = JSON.parse(response).with_indifferent_access
+    return false if @result[:matches].blank?
+
+    @title = @result.dig(:track, :title)
+    @artist_name = @result.dig(:track, :subtitle)
+    SongRecognizerLog.create(
+      radio_station_id: @radio_station.id,
+      song_match:,
+      recognizer_song_fullname: "#{@artist_name} - #{@title}",
+      api_song_fullname: "#{@api_artists} - #{@api_title}"
+    )
+    true
+  rescue StandardError => e
+    Rails.logger.error "SongRecognizer error: #{e.message}"
+    false
   end
 
   def song_match
