@@ -72,9 +72,9 @@ class Spotify::Track < Spotify
 
   # setter methods
   def set_track_artists
-    return if track.blank? || track['artists'].blank?
+    return if track.blank? || track['album'].blank? || track['album']['artists'].blank?
 
-    track['artists'].map do |artist|
+    track['album']['artists'].map do |artist|
       Spotify::Artist.new({ id_on_spotify: artist['id'] }).info
     end
   end

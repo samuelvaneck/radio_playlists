@@ -46,10 +46,11 @@ class Artist < ActiveRecord::Base
   def self.spotify_track_to_artist(track)
     track.artists.map do |track_artist|
       artist = Artist.find_or_initialize_by(id_on_spotify: track_artist['id']) || Artist.find_or_initialize_by(name: track_artist['name'])
+      spotify_artwork_url = track_artist['images'][0]['url'] if track_artist['images'].present?
       artist.assign_attributes(
         name: track_artist['name'],
-        spotify_artist_url: track_artist['external_urls']['spotify'],
-        spotify_artwork_url: track_artist['images'][0]['url'],
+        spotify_artist_url: track_artist.dig('external_urls', 'spotify'),
+        spotify_artwork_url:,
         id_on_spotify: track_artist['id']
       )
       artist.save
