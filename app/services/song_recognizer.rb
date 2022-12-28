@@ -4,13 +4,13 @@ require 'resolv'
 require 'fuzzystringmatch'
 
 class SongRecognizer
-  attr_reader :audio_stream, :result, :title, :artist_name
+  attr_reader :audio_stream, :result, :title, :artist_name, :broadcast_timestamp, :spotify_url, :isrc
 
   def initialize(radio_station)
     @radio_station = radio_station
     @output_file = @radio_station.audio_file_path
     @audio_stream = set_audio_stream
-    @api_artists, @api_title = scrapper_song
+    @broadcast_timestamp = Time.zone.now
   end
 
   def recognized?
@@ -35,35 +35,23 @@ class SongRecognizer
     @result = JSON.parse(response).with_indifferent_access
     return false if @result[:matches].blank?
 
+    @spotify_url = set_spotify_url
+    @isrc = @result.dig(:track, :isrc)
     @title = @result.dig(:track, :title)
     @artist_name = @result.dig(:track, :subtitle)
-    SongRecognizerLog.create(
-      radio_station_id: @radio_station.id,
-      song_match:,
-      recognizer_song_fullname: "#{@artist_name} - #{@title}",
-      api_song_fullname: "#{@api_artists} - #{@api_title}"
-    )
     true
   rescue StandardError => e
     Rails.logger.error "SongRecognizer error: #{e.message}"
     false
   end
 
-  def song_match
-    jarow = FuzzyStringMatch::JaroWinkler.create(:pure)
-    distance = jarow.getDistance("#{@artist_name} #{@title}".downcase, "#{@api_artists} #{@api_title}".downcase)
-    (distance * 100).to_i
-  end
-
-  def scrapper_song
-    scrapper = TrackScrapper.new(@radio_station)
-    return false unless scrapper.latest_track
-
-    [scrapper.artist_name, scrapper.title]
-  end
-
   def set_audio_stream
     extension = @radio_station.stream_url.split(/\.|-/).last
     "AudioStream::#{extension.camelcase}".constantize.new(@radio_station.stream_url, @output_file)
+  end
+
+  def set_spotify_url
+    spotify_provider = @result.dig(:track, :hub, :providers).select { |p| p[:type] == 'SPOTIFY' }
+    spotify_provider.dig(0, :actions, 0, :uri)
   end
 end
