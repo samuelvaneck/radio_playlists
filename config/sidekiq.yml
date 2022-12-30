@@ -1,9 +1,9 @@
 ---
-  :concurrency: 2
+  :concurrency: 20
   :max_retries: 3
   :schedule:
-    CheckAllRadioStationsJob:
-      cron: '*/3 * * * *' # every 3 minutes
+    ImportSongsAllRadioStationsJob:
+      cron: '* * * * *' # every 3 minutes
       queue: default
       enabled: true
     SendStatusEmail:
@@ -12,10 +12,6 @@
       enabled: true
     ChartCreationJob:
       cron: '10 0 * * *' # at 0:10 am
-      queue: default
-      enabled: true
-    SongRecognizerJob:
-      cron: '* * * * *'
       queue: default
       enabled: true
   :sidekiq_default_hooks: true

@@ -51,10 +51,6 @@ class Playlist < ActiveRecord::Base
     "%#{params[:search_term]}%"
   end
 
-  def self.last_played_song(radio_station, song, broadcast_timestamp)
-    where(radio_station:, song:, broadcast_timestamp:).order(created_at: :desc).first
-  end
-
   def self.add_playlist(radio_station, song, broadcast_timestamp)
     create(radio_station:, song:, broadcast_timestamp:)
   end

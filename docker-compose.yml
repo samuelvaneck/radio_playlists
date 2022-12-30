@@ -47,12 +47,6 @@ services:
     tty: true
     stdin_open: true
 
-  song_recognizer:
-    image: ghcr.io/samuelvaneck/song_recognizer:latest
-    hostname: song-recognizer
-    volumes:
-      - ./tmp/audio:/app/audio
-
   selenium:
     image: selenium/standalone-chrome-debug
     ports:

@@ -123,6 +123,7 @@ GEM
     faker (3.1.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
+    foreman (0.87.2)
     formatador (1.1.0)
     fugit (1.7.1)
       et-orbi (~> 1, >= 1.2.7)
@@ -417,6 +418,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  foreman
   fuzzy-string-match
   guard-rspec
   health_bit

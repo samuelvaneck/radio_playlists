@@ -52,14 +52,13 @@ class RadioStation < ActiveRecord::Base
   end
 
   def import_song
-    scrapper = TrackScrapper.new(self)
-    return false unless scrapper.latest_track
-    return false if illegal_word_in_title(scrapper.title) || scrapper.artist_name.blank?
+    importing_song = recognize_song || scrape_song
+    return false if illegal_word_in_title(importing_song.title) || importing_song.artist_name.blank?
 
-    artists, song = process_track_data(scrapper.artist_name, scrapper.title, scrapper.spotify_url)
+    artists, song = process_track_data(importing_song.artist_name, importing_song.title, importing_song.spotify_url)
     return false if artists.nil? || song.nil?
 
-    create_playlist(scrapper.broadcast_timestamp, artists, song)
+    create_playlist(importing_song.broadcast_timestamp, artists, song)
   rescue StandardError => e
     Sentry.capture_exception(e)
     Rails.logger.error "Error while importing song from #{name}: #{e.message}"
@@ -76,10 +75,16 @@ class RadioStation < ActiveRecord::Base
 
   def recognize_song
     recognizer = SongRecognizer.new(self)
-    return unless recognizer.recognized?
+    return nil unless recognizer.recognized?
 
-    Rails.logger.info "Title: #{recognizer.title}"
-    Rails.logger.info "Artist: #{recognizer.artist_name}"
+    recognizer
+  end
+
+  def scrape_song
+    scrapper = TrackScrapper.new(self)
+    return nil unless scrapper.latest_track
+
+    scrapper
   end
 
   def audio_file_name
@@ -90,10 +95,14 @@ class RadioStation < ActiveRecord::Base
     Rails.root.join("tmp/audio/#{audio_file_name}.mp3")
   end
 
+  def last_played_song
+    Playlist.where(radio_station: self).order(created_at: :desc).first&.song
+  end
+
   private
 
   def create_playlist(broadcast_timestamp, artists, song)
-    if Playlist.last_played_song(self, song, broadcast_timestamp).blank?
+    if last_played_song != song
       add_song(broadcast_timestamp, artists, song)
     else
       Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{name}"
