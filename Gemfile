@@ -69,6 +69,7 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'foreman'
   gem 'letter_opener'
   gem 'spring'
   gem 'web-console'

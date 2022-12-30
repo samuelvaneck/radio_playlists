@@ -136,7 +136,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#radio_1_check' do
+  xdescribe '#radio_1_check' do
     let!(:radio_1) { create(:radio_1) }
 
     context 'when importing a song' do
@@ -155,7 +155,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#radio_2_check' do
+  xdescribe '#radio_2_check' do
     let!(:radio_2) { create(:radio_2) }
 
     context 'when importing a song' do
@@ -167,7 +167,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#radio_3fm_check' do
+  xdescribe '#radio_3fm_check' do
     let!(:radio_3_fm) { create(:radio_3_fm) }
 
     context 'when importing a song' do
@@ -179,7 +179,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#radio_5_check' do
+  xdescribe '#radio_5_check' do
     let!(:radio_5) { create(:radio_5) }
 
     context 'when importing song' do
@@ -191,7 +191,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#sky_radio_check' do
+  xdescribe '#sky_radio_check' do
     let!(:sky_radio) { create(:sky_radio) }
 
     before do
@@ -215,7 +215,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#radio_veronica_check' do
+  xdescribe '#radio_veronica_check' do
     let!(:radio_veronica) { create(:radio_veronica) }
 
     before do
@@ -231,7 +231,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#radio_538_check' do
+  xdescribe '#radio_538_check' do
     let(:radio_538) { create(:radio_538) }
 
     before do
@@ -247,7 +247,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#radio_10_check' do
+  xdescribe '#radio_10_check' do
     let!(:radio_10) { create(:radio_10) }
 
     before do
@@ -263,7 +263,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#q_music_check' do
+  xdescribe '#q_music_check' do
     let!(:qmusic) { create(:qmusic) }
 
     context 'when importing song' do
@@ -283,7 +283,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#sublime_fm_check' do
+  xdescribe '#sublime_fm_check' do
     let!(:sublime_fm) { create(:sublime_fm) }
 
     context 'when importing song' do
@@ -295,7 +295,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#grootnieuws_radio_check' do
+  xdescribe '#grootnieuws_radio_check' do
     let!(:groot_nieuws_radio) { create(:groot_nieuws_radio) }
 
     context 'when importing song' do

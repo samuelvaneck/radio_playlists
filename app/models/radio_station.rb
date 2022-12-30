@@ -95,10 +95,14 @@ class RadioStation < ActiveRecord::Base
     Rails.root.join("tmp/audio/#{audio_file_name}.mp3")
   end
 
+  def last_played_song
+    Playlist.where(radio_station: self).order(created_at: :desc).first&.song
+  end
+
   private
 
   def create_playlist(broadcast_timestamp, artists, song)
-    if Playlist.last_played_song(self, song, broadcast_timestamp).blank?
+    if last_played_song != song
       add_song(broadcast_timestamp, artists, song)
     else
       Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{name}"

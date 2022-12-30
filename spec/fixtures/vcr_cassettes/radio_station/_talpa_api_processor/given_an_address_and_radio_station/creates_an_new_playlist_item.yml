@@ -31,13 +31,13 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Tue, 29 Nov 2022 20:11:56 GMT
+      - Fri, 30 Dec 2022 13:53:20 GMT
       X-Amzn-Requestid:
-      - e2c21c20-1800-45e6-be58-ebfafbd8992f
+      - e23ff709-3adf-421d-8955-24256fa43bd1
       X-Amzn-Appsync-Tokensconsumed:
       - '1'
       Via:
-      - 1.1 bab8148a65b29113f79cf2725076287c.cloudfront.net (CloudFront), 1.1 80779e7124f8d44ce2216c35ac5328a8.cloudfront.net
+      - 1.1 ba77f90aac0ddbc2c4c2c02062fac762.cloudfront.net (CloudFront), 1.1 8f4bc83dd77c2931f6260310f57dde66.cloudfront.net
         (CloudFront)
       X-Amz-Cf-Pop:
       - AMS1-P2
@@ -45,14 +45,21 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Cache:
-      - Hit from cloudfront
+      - Miss from cloudfront
       X-Amz-Cf-Id:
-      - f4eExnIHkQ7nOuCv_GUL9VFhpoknG4M-8lMJLt79C8leweExx4oe5w==
-      Age:
-      - '2'
+      - xoB4eW90YaEFA71XfDOsN2S_8BYP8oCK9-mAamBf1N4dQ7eFB2EPNQ==
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        eyJkYXRhIjp7ImdldFN0YXRpb24iOnsidGl0bGUiOiJTa3kgUmFkaW8iLCJwbGF5b3V0cyI6W3siYnJvYWRjYXN0RGF0ZSI6IjIwMjItMTEtMjlUMjA6MTA6MTNaIiwidHJhY2siOnsiaWQiOiI5NzA1MDYyMy01YzY1LTVjZGItOGMzZC01MzBkYTkxYjQ1NWIiLCJ0aXRsZSI6IkFsbCBBbG9uZSBPbiBDaHJpc3RtYXMiLCJhcnRpc3ROYW1lIjoiRGFybGVuZSBMb3ZlIiwiaXNyYyI6IlVTQVY3MDUwMDI5OCIsImltYWdlcyI6W3sidHlwZSI6ImltYWdlIiwidXJpIjoiaHR0cHM6Ly9pbWcudGFscGFyYWQuaW8vdHJhY2tzL1VTQVY3MDUwMDI5OC5qcGciLCJfX3R5cGVuYW1lIjoiSW1hZ2UifV0sIl9fdHlwZW5hbWUiOiJUcmFjayJ9LCJfX3R5cGVuYW1lIjoiUGxheW91dCJ9LHsiYnJvYWRjYXN0RGF0ZSI6IjIwMjItMTEtMjlUMjA6MDY6MjRaIiwidHJhY2siOnsiaWQiOiIyNGJlMGRkZS0wMTJlLTVjOGQtOGIxMC04YjU3Y2FkYzJmMTkiLCJ0aXRsZSI6Ik1lcnJ5IENocmlzdG1hcyBFdmVyeW9uZSIsImFydGlzdE5hbWUiOiJTaGFraW4nIFN0ZXZlbnMiLCJpc3JjIjoiR0JCQk04NTAwMDEzIiwiaW1hZ2VzIjpbXSwiX190eXBlbmFtZSI6IlRyYWNrIn0sIl9fdHlwZW5hbWUiOiJQbGF5b3V0In0seyJicm9hZGNhc3REYXRlIjoiMjAyMi0xMS0yOVQyMDowNDoxMFoiLCJ0cmFjayI6eyJpZCI6IjVlOWM1MGU4LTc1ZDMtNThkMi05N2U3LTU3NGM2ZjY0ZDllZSIsInRpdGxlIjoiU2FudGEgQ2xhdXMgSXMgQ29taW5nIFRvIFRvd24iLCJhcnRpc3ROYW1lIjoiS3lsaWUgTWlub2d1ZSBGdCBGcmFuayBTaW5hdHJhIiwiaXNyYyI6IlVTUkgxMDkwMzM2NSIsImltYWdlcyI6W3sidHlwZSI6ImltYWdlIiwidXJpIjoiaHR0cHM6Ly9pbWcudGFscGFyYWQuaW8vdHJhY2tzL1VTUkgxMDkwMzM2NS5qcGciLCJfX3R5cGVuYW1lIjoiSW1hZ2UifV0sIl9fdHlwZW5hbWUiOiJUcmFjayJ9LCJfX3R5cGVuYW1lIjoiUGxheW91dCJ9LHsiYnJvYWRjYXN0RGF0ZSI6IjIwMjItMTEtMjlUMjA6MDA6NDJaIiwidHJhY2siOnsiaWQiOiI5ZmIyMjc4OS05MWZjLTUzNTctODQwMy1iMGUxN2U5MGFhMDIiLCJ0aXRsZSI6IkRvIFRoZXkgS25vdyBJdCdzIENocmlzdG1hcyIsImFydGlzdE5hbWUiOiJCYW5kIEFpZCIsImlzcmMiOiJHQkYwODg0MDAwMDEiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9HQkYwODg0MDAwMDEuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI5VDE5OjUxOjA4WiIsInRyYWNrIjp7ImlkIjoiNGY3NzFmNDQtNjE3Yy01YTA1LWFlNjAtYjBiYjM0MTM1N2MxIiwidGl0bGUiOiJTYW50YSdzIFBhcnR5IiwiYXJ0aXN0TmFtZSI6Ik5pY2sgJiBTaW1vbiIsImlzcmMiOiJOTEg1OTA5MDAyMjUiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9OTEg1OTA5MDAyMjUuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI5VDE5OjQ5OjIyWiIsInRyYWNrIjp7ImlkIjoiYjRmYjA5OTMtMDJhNS01YTQ2LTlhNTAtODBkN2IyZGMxMmMwIiwidGl0bGUiOiJIb2xseSBKb2xseSBDaHJpc3RtYXMiLCJhcnRpc3ROYW1lIjoiTWVnaGFuIFRyYWlub3IiLCJpc3JjIjoiVVNTTTEyMDA1MjI1IiwiaW1hZ2VzIjpbeyJ0eXBlIjoiaW1hZ2UiLCJ1cmkiOiJodHRwczovL2ltZy50YWxwYXJhZC5pby90cmFja3MvVVNTTTEyMDA1MjI1LmpwZyIsIl9fdHlwZW5hbWUiOiJJbWFnZSJ9XSwiX190eXBlbmFtZSI6IlRyYWNrIn0sIl9fdHlwZW5hbWUiOiJQbGF5b3V0In0seyJicm9hZGNhc3REYXRlIjoiMjAyMi0xMS0yOVQxOTo0NTozN1oiLCJ0cmFjayI6eyJpZCI6ImQ2ZmM3N2VlLWQyYjktNWQ0Ny1iMmE4LTY1ZGNkYTJiZDc2NSIsInRpdGxlIjoiV2hlcmUgQXJlIFlvdSBDaHJpc3RtYXM/IiwiYXJ0aXN0TmFtZSI6IkZhaXRoIEhpbGwiLCJpc3JjIjoiVVNJUjEwMDAxMzA5IiwiaW1hZ2VzIjpbeyJ0eXBlIjoiaW1hZ2UiLCJ1cmkiOiJodHRwczovL2ltZy50YWxwYXJhZC5pby90cmFja3MvVVNJUjEwMDAxMzA5LmpwZyIsIl9fdHlwZW5hbWUiOiJJbWFnZSJ9XSwiX190eXBlbmFtZSI6IlRyYWNrIn0sIl9fdHlwZW5hbWUiOiJQbGF5b3V0In0seyJicm9hZGNhc3REYXRlIjoiMjAyMi0xMS0yOVQxOTo0MzoyM1oiLCJ0cmFjayI6eyJpZCI6IjIyMzBkYjUwLWY3NjEtNWMyZS1hNDgzLTE3MTc1YTMwNGJjOCIsInRpdGxlIjoiSmluZ2xlIEJlbGwgUm9jayIsImFydGlzdE5hbWUiOiJCb2JieSBIZWxtcyIsImlzcmMiOiJHQlcySzExMTA5NzIiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9HQlcySzExMTA5NzIuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI5VDE5OjQwOjEzWiIsInRyYWNrIjp7ImlkIjoiODJhZDZiOTctMWI5NC01MmIxLTlkNDAtMTc5ZWNlYjI0ZDk3IiwidGl0bGUiOiJDb21pbmcgSG9tZSBXaXRoIFNhbnRhIiwiYXJ0aXN0TmFtZSI6Ik9HM05FKHdpdGggVENTKSIsImlzcmMiOiJOTFExNjIxMDI3NTEiLCJpbWFnZXMiOlt7InR5cGUiOiJpbWFnZSIsInVyaSI6Imh0dHBzOi8vaW1nLnRhbHBhcmFkLmlvL3RyYWNrcy9OTFExNjIxMDI3NTEuanBnIiwiX190eXBlbmFtZSI6IkltYWdlIn1dLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifSx7ImJyb2FkY2FzdERhdGUiOiIyMDIyLTExLTI5VDE5OjM3OjQyWiIsInRyYWNrIjp7ImlkIjoiNTJlMWQ2YmUtZTMwZS01NGQxLWI2ODYtMDYxMzA0ZmI0MDJjIiwidGl0bGUiOiJMZXQgSXQgU25vdyBMZXQgSXQgU25vd0xldCBJdCBTbm93IChTa3kgSW50cm8pIiwiYXJ0aXN0TmFtZSI6Ik1pY2hhZWwgQnVibMOpIiwiaXNyYyI6Im51bGwiLCJpbWFnZXMiOltdLCJfX3R5cGVuYW1lIjoiVHJhY2sifSwiX190eXBlbmFtZSI6IlBsYXlvdXQifV0sIl9fdHlwZW5hbWUiOiJTdGF0aW9uIn19fQ==
-  recorded_at: Tue, 29 Nov 2022 20:11:58 GMT
+      string: '{"data":{"getStation":{"title":"Sky Radio","playouts":[{"broadcastDate":"2022-12-30T13:51:43Z","track":{"id":"e1f3fbbb-fbc3-5363-8ddd-5db734e767a6","title":"Anyone
+        For You (Sky Radio edit)","artistName":"George Ezra","isrc":"GBARL2200007","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBARL2200007.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-12-30T13:47:50Z","track":{"id":"d0418c8a-c073-5c0a-b222-55e00dab99f1","title":"Despacito","artistName":"Luis
+        Fonsi  ft Daddy Yankee","isrc":"USUM71607007","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USUM71607007.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-12-30T13:44:01Z","track":{"id":"1deec267-0de6-564b-803c-3160526f4a83","title":"The
+        Final Countdown","artistName":"Europe","isrc":"USSM18600860","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-12-30T13:40:17Z","track":{"id":"499ea491-3c7a-51f7-8ae7-92f475eb9547","title":"Never
+        Gonna Not Dance Again","artistName":"Pink","isrc":"null","images":[],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-12-30T13:36:44Z","track":{"id":"32709bef-b261-5d19-b2fb-f2fd60d8e513","title":"Valerie","artistName":"Amy
+        Winehouse","isrc":"GBKTX0900775","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBKTX0900775.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-12-30T13:33:28Z","track":{"id":"be1480a0-2a26-552d-9800-a2dd095da2c5","title":"Hypnotized","artistName":"Purple
+        Disco Machine & Sophie and the Giants","isrc":"AUDCB1701555","images":[{"type":"image","uri":"https://img.talparad.io/tracks/AUDCB1701555.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-12-30T13:30:03Z","track":{"id":"b41818c1-a465-5daa-ad99-ff72bd48fff7","title":"Multicolor","artistName":"Son
+        Mieux","isrc":"NLV3A2200001","images":[{"type":"image","uri":"https://img.talparad.io/tracks/NLV3A2200001.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-12-30T13:21:34Z","track":{"id":"e4753609-4041-584d-a849-64a05c92e513","title":"Stop","artistName":"Spice
+        Girls","isrc":"GBAAA9710053","images":[{"type":"image","uri":"https://img.talparad.io/tracks/GBAAA9710053.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-12-30T13:18:26Z","track":{"id":"1b5cf004-4d49-5c37-ad67-87ac6ddfdcf3","title":"High
+        Hopes","artistName":"Panic! At The Disco","isrc":"USAT21801174","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USAT21801174.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"},{"broadcastDate":"2022-12-30T13:14:49Z","track":{"id":"cfb92d4a-8f11-5f90-ac25-b70b84701f98","title":"Dancing
+        Feet","artistName":"Kygo ft. DNCE","isrc":"USRC12200139","images":[{"type":"image","uri":"https://img.talparad.io/tracks/USRC12200139.jpg","__typename":"Image"}],"__typename":"Track"},"__typename":"Playout"}],"__typename":"Station"}}}'
+  recorded_at: Fri, 30 Dec 2022 13:53:20 GMT
 recorded_with: VCR 6.1.0
