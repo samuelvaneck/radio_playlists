@@ -10,12 +10,16 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  broadcast_timestamp :datetime
+#  scraper_import      :boolean          default(FALSE)
 #
 
 class Playlist < ActiveRecord::Base
   belongs_to :song
   belongs_to :radio_station
   has_many :artists, through: :song
+
+  scope :scraper_imported, -> { where(scraper_import: true) }
+  scope :recognizer_imported, -> { where(scraper_import: false) }
 
   validate :today_unique_playlist_item
 
@@ -51,8 +55,8 @@ class Playlist < ActiveRecord::Base
     "%#{params[:search_term]}%"
   end
 
-  def self.add_playlist(radio_station, song, broadcast_timestamp)
-    create(radio_station:, song:, broadcast_timestamp:)
+  def self.add_playlist(radio_station, song, broadcast_timestamp, scraper_import)
+    create(radio_station:, song:, broadcast_timestamp:, scraper_import:)
   end
 
   private

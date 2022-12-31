@@ -10,6 +10,7 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  broadcast_timestamp :datetime
+#  scraper_import      :boolean          default(FALSE)
 #
 
 FactoryBot.define do

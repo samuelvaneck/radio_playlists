@@ -58,7 +58,8 @@ class RadioStation < ActiveRecord::Base
     artists, song = process_track_data(importing_song.artist_name, importing_song.title, importing_song.spotify_url)
     return false if artists.nil? || song.nil?
 
-    create_playlist(importing_song.broadcast_timestamp, artists, song)
+    scraper_import = importing_song.is_a?(TrackScrapper)
+    create_playlist(importing_song.broadcast_timestamp, artists, song, scraper_import)
   rescue StandardError => e
     Sentry.capture_exception(e)
     Rails.logger.error "Error while importing song from #{name}: #{e.message}"
@@ -96,25 +97,51 @@ class RadioStation < ActiveRecord::Base
   end
 
   def last_played_song
-    Playlist.where(radio_station: self).order(created_at: :desc).first&.song
+    playlists.order(created_at: :desc).first&.song
+  end
+
+  def songs_played_last_hour
+    playlists.where(created_at: 1.hour.ago..Time.zone.now).map(&:song)
   end
 
   private
 
-  def create_playlist(broadcast_timestamp, artists, song)
-    if last_played_song != song
-      add_song(broadcast_timestamp, artists, song)
+  def create_playlist(broadcast_timestamp, artists, song, scraper_import)
+    if scraper_import
+      import_from_scraper(broadcast_timestamp, artists, song)
+    elsif last_played_song != song
+      add_song(broadcast_timestamp, artists, song, false)
     else
       Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{name}"
     end
   end
 
-  def add_song(broadcast_timestamp, artists, song)
-    Playlist.add_playlist(self, song, broadcast_timestamp)
+  def add_song(broadcast_timestamp, artists, song, scraper_import)
+    Playlist.add_playlist(self, song, broadcast_timestamp, scraper_import)
     song.update_artists(artists)
     artists_names = Array.wrap(artists).map(&:name).join(', ')
     artists_ids = Array.wrap(artists).map(&:id).join(' ')
 
     Rails.logger.info "Saved #{song.title} (#{song.id}) from #{artists_names} (#{artists_ids}) on #{name}!"
+  end
+
+  def import_from_scraper(broadcast_timestamp, artists, song)
+    last_added_scraper_song = playlists.scraper_imported&.order(created_at: :desc)&.first&.song
+    song_matches = songs_played_last_hour.map do |played_song|
+      song_match(played_song, song)
+    end
+    if song_matches.map { |n| n > 80 }.any? || last_added_scraper_song == song
+      Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{name}"
+    else
+      add_song(broadcast_timestamp, artists, song, true)
+    end
+  end
+
+  def song_match(played_song, importing_song)
+    played_song_fullname = "#{played_song.artists.map(&:name).join(' ')} #{played_song.title}".downcase
+    importing_song_fullname = "#{importing_song.artists.map(&:name).join(' ')} #{importing_song.title}".downcase
+    jarow = FuzzyStringMatch::JaroWinkler.create(:pure)
+    distance = jarow.getDistance(played_song_fullname, importing_song_fullname)
+    (distance * 100).to_i
   end
 end
