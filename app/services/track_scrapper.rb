@@ -94,6 +94,7 @@ class TrackScrapper
       doc = Nokogiri::HTML(URI(@radio_station.url).open)
       @artist_name = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[2]').text.split.map(&:capitalize).join(' ')
       @title = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[3]').text.split.map(&:capitalize).join(' ')
+      @title.gsub!('&amp;', '&')
       time = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[1]/span').text
     else
       Rails.logger.info "Radio station #{@radio_station.name} not found in SCRAPER"
