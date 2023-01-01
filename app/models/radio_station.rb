@@ -109,7 +109,7 @@ class RadioStation < ActiveRecord::Base
   def create_playlist(broadcast_timestamp, artists, song, scraper_import)
     if scraper_import
       import_from_scraper(broadcast_timestamp, artists, song)
-    elsif last_played_song != song
+    elsif last_played_song != song && !any_song_matches?(song)
       add_song(broadcast_timestamp, artists, song, false)
     else
       Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{name}"
@@ -127,13 +127,21 @@ class RadioStation < ActiveRecord::Base
 
   def import_from_scraper(broadcast_timestamp, artists, song)
     last_added_scraper_song = playlists.scraper_imported&.order(created_at: :desc)&.first&.song
-    song_matches = songs_played_last_hour.map do |played_song|
-      song_match(played_song, song)
-    end
-    if song_matches.map { |n| n > 80 }.any? || last_added_scraper_song == song
+    if any_song_matches?(song) || last_added_scraper_song == song
       Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{name}"
     else
       add_song(broadcast_timestamp, artists, song, true)
+    end
+  end
+
+  ### check if any song played last hour matches the song we are importing
+  def any_song_matches?(importing_song)
+    song_matches(importing_song).map { |n| n > 80 }.any?
+  end
+
+  def song_matches(importing_song)
+    songs_played_last_hour.map do |played_song|
+      song_match(played_song, importing_song)
     end
   end
 
