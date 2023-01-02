@@ -37,8 +37,8 @@ class SongRecognizer
 
     @spotify_url = set_spotify_url
     @isrc = @result.dig(:track, :isrc)
-    @title = @result.dig(:track, :title)
-    @artist_name = @result.dig(:track, :subtitle)
+    @title = set_title
+    @artist_name = set_artist_name
     true
   rescue StandardError => e
     Rails.logger.error "SongRecognizer error: #{e.message}"
@@ -53,5 +53,19 @@ class SongRecognizer
   def set_spotify_url
     spotify_provider = @result.dig(:track, :hub, :providers).select { |p| p[:type] == 'SPOTIFY' }
     spotify_provider.dig(0, :actions, 0, :uri)
+  end
+
+  def set_title
+    result_title = @result.dig(:track, :title)
+    jarow = FuzzyStringMatch::JaroWinkler.create(:pure)
+    distance = (jarow.getDistance(result_title, @audio_stream.stream_title) * 100).to_i
+    distance > 80 ? result_title : @audio_stream.stream_title
+  end
+
+  def set_artist_name
+    result_artist = @result.dig(:track, :subtitle)
+    jarow = FuzzyStringMatch::JaroWinkler.create(:pure)
+    distance = (jarow.getDistance(result_artist, @audio_stream.stream_artist) * 100).to_i
+    distance > 80 ? result_artist : @audio_stream.stream_artist
   end
 end
