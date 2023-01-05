@@ -15,4 +15,6 @@
 
 class SongRecognizerLog < ApplicationRecord
   belongs_to :radio_station
+
+  scope :outdated, -> { where('created_at < ?', 1.day.ago) }
 end
