@@ -59,7 +59,7 @@ class RadioStation < ActiveRecord::Base
     artists, song = process_track_data(importing_song.artist_name, importing_song.title, importing_song.spotify_url)
     return false if artists.nil? || song.nil?
 
-    scraper_import = importing_song.is_a?(TrackScrapper)
+    scraper_import = importing_song.is_a?(TrackScraper)
     create_playlist(importing_song.broadcast_timestamp, artists, song, scraper_import)
   rescue StandardError => e
     Sentry.capture_exception(e)
@@ -83,8 +83,8 @@ class RadioStation < ActiveRecord::Base
   end
 
   def scrape_song
-    scrapper = TrackScrapper.new(self)
-    return nil unless scrapper.latest_track
+    scrapper = "TrackScraper::#{processor.camelcase}".constantize.new(self)
+    return nil unless scrapper.last_played_song
 
     scrapper
   end

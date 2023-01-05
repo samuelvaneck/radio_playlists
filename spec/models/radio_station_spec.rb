@@ -95,7 +95,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     let(:radio_1) { create(:radio_1) }
 
     context 'given an address and radio station' do
-      let(:track_data) { TrackScrapper.new(radio_1).latest_track }
+      let(:track_data) { TrackScraper.new(radio_1).latest_track }
 
       it 'creates a new playlist item' do
         expect(track_data).to eq true
@@ -107,7 +107,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     let(:sky_radio) { create(:sky_radio) }
 
     context 'given an address and radio station' do
-      let(:track_data) { TrackScrapper.new(sky_radio).latest_track }
+      let(:track_data) { TrackScraper.new(sky_radio).latest_track }
 
       it 'creates an new playlist item' do
         expect(track_data).to eq true
@@ -121,7 +121,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
 
     context 'if radio_station is Sublime FM' do
       it 'returns an artist_name, title and time' do
-        track_data = TrackScrapper.new(sublime_fm).latest_track
+        track_data = TrackScraper.new(sublime_fm).latest_track
 
         expect(track_data).to eq true
       end
@@ -129,7 +129,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
 
     context 'if radio_station is Groot Nieuws RAdio' do
       it 'returns an artist_name, titile and time' do
-        track_data = TrackScrapper.new(groot_nieuws_radio).latest_track
+        track_data = TrackScraper.new(groot_nieuws_radio).latest_track
 
         expect(track_data).to eq true
       end
