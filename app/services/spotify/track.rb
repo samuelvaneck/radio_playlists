@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# require Rails.root.join('app/services/spotify.rb')
-
 class Spotify::Track < Spotify
   attr_reader :track, :artists, :title, :isrc, :spotify_artwork_url, :spotify_song_url
 

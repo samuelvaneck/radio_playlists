@@ -15,7 +15,10 @@ class AudioStream
       @stdout = stdout.read
       @stderr = stderr.read
     end
-    @stream_artist, @stream_title = @stderr.lines.grep(Regexp.new('StreamTitle'))[0].split(':')[1].split('-')
+    std_out_stream_title = @stderr.lines.grep(Regexp.new('StreamTitle'))[0]
+    return if std_out_stream_title.blank?
+
+    @stream_artist, @stream_title = std_out_stream_title.split(':')[1].split('-')
     @stream_artist.strip! if @stream_artist.present?
     @stream_title.strip! if @stream_title.present?
   end
