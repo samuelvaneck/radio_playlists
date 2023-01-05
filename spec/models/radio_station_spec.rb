@@ -95,7 +95,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     let(:radio_1) { create(:radio_1) }
 
     context 'given an address and radio station' do
-      let(:track_data) { TrackScraper.new(radio_1).latest_track }
+      let(:track_data) { "TrackScraper::#{radio_1.processor.camelcase}".constantize.new(radio_1).last_played_song }
 
       it 'creates a new playlist item' do
         expect(track_data).to eq true
@@ -107,7 +107,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     let(:sky_radio) { create(:sky_radio) }
 
     context 'given an address and radio station' do
-      let(:track_data) { TrackScraper.new(sky_radio).latest_track }
+      let(:track_data) { "TrackScraper::#{sky_radio.processor.camelcase}".constantize.new(sky_radio).last_played_song }
 
       it 'creates an new playlist item' do
         expect(track_data).to eq true
@@ -120,17 +120,17 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     let(:groot_nieuws_radio) { create(:groot_nieuws_radio) }
 
     context 'if radio_station is Sublime FM' do
-      it 'returns an artist_name, title and time' do
-        track_data = TrackScraper.new(sublime_fm).latest_track
+      let(:track_data) { "TrackScraper::#{sublime_fm.processor.camelcase}".constantize.new(sublime_fm).last_played_song }
 
+      it 'returns an artist_name, title and time' do
         expect(track_data).to eq true
       end
     end
 
-    context 'if radio_station is Groot Nieuws RAdio' do
-      it 'returns an artist_name, titile and time' do
-        track_data = TrackScraper.new(groot_nieuws_radio).latest_track
+    context 'if radio_station is Groot Nieuws Radio' do
+      let(:track_data) { "TrackScraper::#{groot_nieuws_radio.processor.camelcase}".constantize.new(groot_nieuws_radio).last_played_song }
 
+      it 'returns an artist_name, titile and time' do
         expect(track_data).to eq true
       end
     end
