@@ -51,11 +51,7 @@ class Isrc::Ifpi < Isrc
       'number': 1
     }.to_json
     request.body = body
-
     response = https.request(request)
-
-
-    binding.pry
   end
 
   private
@@ -74,33 +70,4 @@ class Isrc::Ifpi < Isrc
     tag = doc.search('script')[5]
     tag.content.match(/csrfmiddlewaretoken = "(?<csrf_token>.*?)"/)[:csrf_token]
   end
-
-  # def search
-  #   make_request
-  # end
-
-  # def make_request
-  #   # api/v1/search
-  #   url = URI("#{ENDPOINT}?isrc=#{@args[:isrc]}")
-  #   https = Net::HTTP.new(url.host, url.port)
-  #   https.use_ssl = true
-  #   request = Net::HTTP::Get.new(url)
-  #   request['Content-Type'] = 'application/json'
-  #   request['User-Agent'] = 'RadioPlaylistsRuntime/1.0.0 (https://playlists.samuelvaneck.com)'
-  #   response = https.request(request)
-
-  #   handle_response(response)
-  # end
-
-  # def handle_response(response)
-  #   if response.try(:code) == '200'
-  #     track = JSON.parse(response.body)['track']
-  #     @title = track['title']
-  #     @artist_names = track['artists'].map { |artist| artist['name'] }
-  #     true
-  #   else
-  #     Rails.logger.error JSON(response.read_body)
-  #     false
-  #   end
-  # end
 end
