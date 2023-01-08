@@ -23,9 +23,9 @@ class Spotify::Track < Spotify
 
   def fetch_spotify_track
     result = make_request(spotify_track_url)
-    single_album_tracks = filter_single_and_album_tracks(result)
-    if single_album_tracks.present?
-      filtered_tracks = custom_album_rejector(single_album_tracks)
+    tracks = filter_tracks(result)
+    if tracks.present?
+      filtered_tracks = custom_album_rejector(tracks)
       filtered_tracks.max_by { |track| track['popularity'] }
     else
       @search_title = result['name']
@@ -37,14 +37,14 @@ class Spotify::Track < Spotify
     spotify_search_results = make_request(search_url)
     return if spotify_search_results.blank?
 
-    single_album_tracks = filter_single_and_album_tracks(spotify_search_results)
-    if single_album_tracks.blank?
+    tracks = filter_tracks(spotify_search_results)
+    if tracks.blank?
       @search_title = @args[:title]
       spotify_search_results = make_request(search_url)
-      single_album_tracks = filter_single_and_album_tracks(spotify_search_results)
+      tracks = filter_tracks(spotify_search_results)
     end
 
-    filtered_tracks = custom_album_rejector(single_album_tracks)
+    filtered_tracks = custom_album_rejector(tracks)
     filtered_tracks.max_by { |track| track['popularity'] }
   end
 
@@ -84,14 +84,18 @@ class Spotify::Track < Spotify
   end
 
   # filter methods
-  def filter_single_and_album_tracks(spotify_tracks_search)
+  def filter_tracks(spotify_tracks_search)
     tracks = if spotify_tracks_search.dig('tracks', 'items').present?
                spotify_tracks_search['tracks']['items']
              elsif spotify_tracks_search.dig('album', 'album_type').present?
                spotify_tracks_search
              end
 
-    Array.wrap(tracks)&.reject { |item| item['album']['album_type'] == 'compilation' }
+    Array.wrap(tracks)&.reject do |item|
+      item_artist_names = item['artists'].map { |artist| artist['name'] }
+      different_artists = item_artist_names.join(', ') != @args[:artists]
+      item['album']['album_type'] == 'compilation' && different_artists
+    end
   end
 
   def custom_album_rejector(single_album_tracks)
