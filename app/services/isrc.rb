@@ -4,39 +4,22 @@ require 'uri'
 require 'net/http'
 
 class Isrc
-  ENDPOINT = 'https://musicbrainz.org/ws/2/recording/'
-
-  attr_reader :title, :artist_names
+  attr_reader :title, :artist_names, :isrc_code
 
   def initialize(args = {})
     @args = args
   end
 
-  def search
-    make_request
-  end
-
-  def make_request
-    url = URI("#{ENDPOINT}?query=isrc:#{@args[:isrc]}&fmt=json")
-    https = Net::HTTP.new(url.host, url.port)
+  def make_request(args = {})
+    method = args[:method] || 'get'
+    https = Net::HTTP.new(args[:url].host, args[:url].port)
     https.use_ssl = true
-    request = Net::HTTP::Get.new(url)
-    request['Content-Type'] = 'application/json'
-    request['User-Agent'] = 'RadioPlaylistsRuntime/1.0.0 (https://playlists.samuelvaneck.com)'
-    response = https.request(request)
-
-    handle_response(response)
-  end
-
-  def handle_response(response)
-    if response.try(:code) == '200'
-      recording = JSON.parse(response.body)['recordings'][0]
-      @title = recording['title']
-      @artist_names = recording['artist-credit'].map { |artist| artist['name'] }
-      true
-    else
-      Rails.logger.error JSON(response.read_body)
-      false
-    end
+    request = if method == 'get'
+                Net::HTTP::Get.new(args[:url], args[:headers])
+              else
+                Net::HTTP::Post.new(args[:url], args[:headers])
+              end
+    request.body = request_body if method == 'post'
+    https.request(request)
   end
 end
