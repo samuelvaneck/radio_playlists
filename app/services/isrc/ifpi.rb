@@ -80,9 +80,11 @@ class Isrc::Ifpi < Isrc
       data = JSON.parse(response.body).with_indifferent_access
       return false if data[:displayDocs].blank?
 
-      @title = data.dig(:displayDocs, 0, :trackTitle)
-      @artist_names = data.dig(:displayDocs, 0, :artistName)
-      @isrc_code = data.dig(:displayDocs, 0, :id)
+      track = data.dig(:displayDocs, 0)
+      @title = track[:trackTitle]
+      @title += " (#{track[:recordingVersion]})" if track[:recordingVersion].present?
+      @artist_names = track[:artistName]
+      @isrc_code = track[:id]
       true
     else
       Rails.logger.error(response.try(:body))
