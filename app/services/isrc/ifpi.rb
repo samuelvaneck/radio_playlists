@@ -8,7 +8,7 @@ class Isrc::Ifpi < Isrc
     authorize
   end
 
-  def data
+  def lookup
     url = URI("#{ENDPOINT}/api/v1/search")
     response = make_request(url:, headers: request_headers, method: 'post')
     handle_response(response)

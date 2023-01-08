@@ -3,7 +3,7 @@
 class Isrc::MusicBrainz < Isrc
   ENDPOINT = 'https://musicbrainz.org/ws/2/recording/'
 
-  def data
+  def lookup
     url = URI("#{ENDPOINT}?query=isrc:#{@args[:isrc_code]}&fmt=json")
     response = make_request(url:, headers: request_headers)
     handle_response(response)
