@@ -2,9 +2,9 @@
 module TrackDataProcessor
   extend ActiveSupport::Concern
 
-  def process_track_data(artist_name, title, spotify_url = nil)
+  def process_track_data(artist_name, title, spotify_url = nil, isrc_code = nil)
     generate_sentry_breadcrumb(artist_name, title)
-    args = spotify_service_args(artist_name, title, spotify_url)
+    args = spotify_service_args(artist_name, title, spotify_url, isrc_code)
     track = Spotify.new(args).track
     artists = find_or_create_artist(artist_name, track)
     song = find_or_create_song(title, track, artists)
@@ -80,9 +80,14 @@ module TrackDataProcessor
     Sentry.add_breadcrumb(crumb)
   end
 
-  def spotify_service_args(artist_name, title, spotify_url = nil)
+  def spotify_service_args(artist_name, title, spotify_url = nil, isrc_code = nil)
     args = { artists: artist_name, title: }
-    args[:spotify_track_id] = spotify_url.split('/').last if spotify_url
+    if spotify_url&.match?(/\Aspotify:search/)
+      args[:spotify_search_url] = spotify_url
+    elsif spotify_url
+      args[:spotify_track_id] = spotify_url.split('/').last
+    end
+    args[:isrc_code] = isrc_code if isrc_code.present?
     args
   end
 end
