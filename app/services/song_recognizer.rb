@@ -4,7 +4,7 @@ require 'resolv'
 require 'fuzzystringmatch'
 
 class SongRecognizer
-  attr_reader :audio_stream, :result, :title, :artist_name, :broadcast_timestamp, :spotify_url, :isrc
+  attr_reader :audio_stream, :result, :title, :artist_name, :broadcast_timestamp, :spotify_url, :isrc_code
 
   def initialize(radio_station)
     @radio_station = radio_station
@@ -36,7 +36,7 @@ class SongRecognizer
     return false if @result[:matches].blank?
 
     @spotify_url = set_spotify_url
-    @isrc = @result.dig(:track, :isrc)
+    @isrc_code = @result.dig(:track, :isrc)
     @title = @result.dig(:track, :title)
     @artist_name = @result.dig(:track, :subtitle)
     create_song_recognizer_log
