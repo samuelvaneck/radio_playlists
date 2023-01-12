@@ -65,7 +65,7 @@ class Spotify::Track < Spotify
     elsif @args[:spotify_search_url]
       @args[:spotify_search_url].split('spotify:search:').last
     else
-      CGI.scape("#{@search_title} artist:#{split_artists}")
+      CGI.escape("#{@search_title} artist:#{split_artists}")
     end
   end
 
