@@ -53,6 +53,7 @@ class RadioStation < ActiveRecord::Base
 
   def import_song
     importing_song = recognize_song || scrape_song
+    return false if importing_song.blank?
     return false if illegal_word_in_title(importing_song.title) || importing_song.artist_name.blank?
 
     artists, song = process_track_data(importing_song.artist_name, importing_song.title, importing_song.spotify_url, importing_song.isrc_code)
