@@ -2,8 +2,9 @@ source 'https://rubygems.org'
 
 ruby '3.1.2'
 
-gem 'dotenv-rails'
-gem 'fuzzy-string-match'
+gem 'charlock_holmes', '~> 0.7.7'
+gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
+gem 'fuzzy-string-match', '~> 1.0', '>= 1.0.1'
 gem 'health_bit'
 gem 'json', '~> 2.6.1'
 gem 'jsonapi-serializer', '~> 2.2.0'
