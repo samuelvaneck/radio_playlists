@@ -97,6 +97,7 @@ class Spotify::Track < Spotify
              elsif spotify_tracks_search.dig('album', 'album_type').present?
                spotify_tracks_search
              end
+    return if tracks.blank?
 
     Array.wrap(tracks)&.reject do |item|
       item_artist_names = item['artists'].map { |artist| artist['name'] }

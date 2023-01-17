@@ -87,6 +87,12 @@ class Song < ActiveRecord::Base
   end
 
   def update_artists(song_artists)
+    crumb = Sentry::Breadcrumb.new(
+      category: 'import_song',
+      data: { song_id: id, song_title: title, song_artists: song_artists },
+      level: 'info'
+    )
+    Sentry.add_breadcrumb(crumb)
     self.artists = Array.wrap(song_artists) if song_artists.present?
   end
 
