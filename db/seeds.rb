@@ -62,6 +62,12 @@ radio_stations = [
     name: 'Radio Veronica',
     processor: 'talpa_api_processor',
     stream_url: 'https://icecast.samuelvaneck.com/veronica.mp3'
+  },
+  {
+    name: 'SLAM!',
+    url: 'https://api.slam.nl/api/live?brand=slam',
+    processor: 'slam_api_processor',
+    stream_url: 'https://icecast.samuelvaneck.com/slam.mp3'
   }
 ]
 
