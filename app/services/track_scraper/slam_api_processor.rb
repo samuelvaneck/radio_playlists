@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
-class TrackScraper::NpoApiProcessor < TrackScraper
+class TrackScraper::SlamApiProcessor < TrackScraper
   def last_played_song
     uri = URI @radio_station.url
     json = JSON(make_request).with_indifferent_access
     raise StandardError if json.blank?
 
-    track = json[:data][0]
-    @artist_name = CGI.unescapeHTML(track[:artist]).titleize
-    @title = CGI.unescapeHTML(track[:title]).titleize
-    @broadcast_timestamp = Time.find_zone('Amsterdam').parse(track[:startdatetime])
-    @spotify_url = track[:spotify_url]
+    track = json[:data][:song]
+    @artist_name = track[:artist].titleize
+    @title = track[:title].titleize
+    @broadcast_timestamp = Time.zone.now
     true
   rescue Net::ReadTimeout => _e
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"
