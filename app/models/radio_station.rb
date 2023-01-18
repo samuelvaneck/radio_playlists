@@ -94,7 +94,8 @@ class RadioStation < ActiveRecord::Base
   end
 
   def audio_file_path
-    Rails.root.join("tmp/audio/#{audio_file_name}.mp3")
+    sanitize_file_name = ActiveStorage::Filename.new("#{audio_file_name}.mp3").sanitized
+    Rails.root.join("tmp/audio/#{sanitize_file_name}")
   end
 
   def last_played_song

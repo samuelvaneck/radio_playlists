@@ -74,6 +74,12 @@ radio_stations = [
     url: 'https://api.kink.nl/static/now-playing.json',
     processor: 'kink_api_processor',
     stream_url: 'https://icecast.samuelvaneck.com/kink.mp3'
+  },
+  {
+    name: '100% NL',
+    url: 'https://api.100p.nl/api/live?brand=100pnl',
+    processor: 'slam_api_processor',
+    stream_url: 'https://icecast.samuelvaneck.com/100pnl.mp3'
   }
 ]
 
