@@ -68,6 +68,12 @@ radio_stations = [
     url: 'https://api.slam.nl/api/live?brand=slam',
     processor: 'slam_api_processor',
     stream_url: 'https://icecast.samuelvaneck.com/slam.mp3'
+  },
+  {
+    name: 'KINK',
+    url: 'https://api.kink.nl/static/now-playing.json',
+    processor: 'kink_api_processor',
+    stream_url: 'https://icecast.samuelvaneck.com/kink.mp3'
   }
 ]
 
