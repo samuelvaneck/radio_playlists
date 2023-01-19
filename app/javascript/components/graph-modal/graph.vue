@@ -21,9 +21,7 @@
       }
     },
     created() {
-      this.colourScale = d3
-        .scaleOrdinal()
-        .range(["#5EAFC6", "#FE9922", "#93c464", "#75739F"]);
+      this.colourScale = d3.scaleOrdinal(d3.schemeCategory10);
     },
     watch: {
       graphTime: function(newValue) {
