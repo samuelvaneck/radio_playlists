@@ -93,7 +93,7 @@ class Spotify::Track < Spotify
     return if tracks.blank?
 
     Array.wrap(tracks)&.reject do |item|
-      item_artist_names = item['artists'].map { |artist| artist['name'] }
+      item_artist_names = item['album']['artists'].map { |artist| artist['name'] }
       different_artists = item_artist_names.join(', ') != @args[:artists]
       item['album']['album_type'] == 'compilation' && different_artists
     end
@@ -101,9 +101,8 @@ class Spotify::Track < Spotify
 
   def custom_album_rejector(single_album_tracks)
     track_filters = ENV['TRACK_FILTERS'].split(',')
-    single_album_tracks.reject do |t|
-      artist_names = t['artists'].map { |artist| artist['name'] }
-                                 .join.downcase.split
+    single_album_tracks.reject do |track|
+      artist_names = track['album']['artists'].map { |artist| artist['name'] }.join.downcase.split
       (track_filters - artist_names).count < track_filters.count
     end
   end
