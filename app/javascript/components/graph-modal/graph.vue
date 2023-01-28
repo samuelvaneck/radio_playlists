@@ -11,6 +11,7 @@
 
 <script>
   import * as d3 from 'd3';
+  import { interpolateSpectral } from 'd3-scale-chromatic';
 
   export default {
     props: ['object', 'graphTime'],
@@ -50,7 +51,7 @@
               xDomain: d3.groupSort(data.slice(0, -1), D => d3.sum(D, d => -d.value), d => d.date),
               yLabel: 'Counts',
               zDomain: radioStationNames,
-              colors: d3.schemeSpectral[radioStationNames.length],
+              colors: radioStationNames.map((d, i) => { return interpolateSpectral(i/radioStationNames.length) }),
               width: 500,
               height: 500,
               radioStationNamesLegend: uniqueStationNames,
@@ -80,7 +81,7 @@
               order = d3.stackOrderNone, // stack order method
               yFormat, // a format specifier string for the y-axis
               yLabel, // a label for the y-axis
-              colors = d3.schemeTableau10, // array of colors
+              colors = radioStationNames.map((d, i) => { return interpolateSpectral(i/radioStationNames.length) }), // array of colors
               legendHeightPosition = 10, // position of the legend, in pixels
               radioStationNamesLegend = [] // array of radio station names to display in the legend
             } = {}) {
