@@ -69,6 +69,7 @@ group :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'annotate'
   gem 'foreman'
   gem 'letter_opener'
