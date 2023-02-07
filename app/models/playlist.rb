@@ -27,7 +27,8 @@ class Playlist < ActiveRecord::Base
     start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
     end_time =  params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
 
-    playlists = Playlist.where('created_at > ? AND created_at < ?', start_time, end_time)
+    playlists = Playlist.joins(:song, :artists)
+                        .where('playlists.created_at > ? AND playlists.created_at < ?', start_time, end_time)
                         .includes(:radio_station, :artists, song: [:artists])
                         .order(created_at: :DESC)
     playlists.where!(search_query, search_value(params), search_value(params)) if params[:search_term].present?
