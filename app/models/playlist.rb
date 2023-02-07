@@ -32,7 +32,7 @@ class Playlist < ActiveRecord::Base
     playlists.where!('radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
     playlists.where!('playlists.created_at > ?', start_time)
     playlists.where!('playlists.created_at < ?', end_time)
-    playlists.includes(:radio_station, :artists, song: [:artists]).uniq
+    playlists.uniq
   end
 
   def deduplicate
