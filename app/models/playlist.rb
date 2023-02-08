@@ -24,7 +24,7 @@ class Playlist < ActiveRecord::Base
   validate :today_unique_playlist_item
 
   def self.search(params)
-    start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
+    start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.day.ago
     end_time =  params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
 
     playlists = Playlist.where('playlists.created_at > ? AND playlists.created_at < ?', start_time, end_time)
