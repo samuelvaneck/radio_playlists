@@ -1,4 +1,4 @@
-FROM ruby:3.1.2-bullseye
+FROM ruby:3.2.1-bullseye
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.1.2'
+ruby '3.2.1'
 
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
