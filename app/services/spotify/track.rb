@@ -43,6 +43,7 @@ class Spotify::Track < Spotify
       spotify_search_results = make_request(search_url)
       tracks = filter_tracks(spotify_search_results)
     end
+    return if tracks.blank?
 
     filtered_tracks = custom_album_rejector(tracks)
     filtered_tracks.max_by { |track| track['popularity'] }
