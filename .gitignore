@@ -71,3 +71,7 @@ spec/examples.txt
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# anything from IntelliJ
+*.ima
+.idea
