@@ -17,12 +17,11 @@ class Spotify
   private
 
   def get_token(cache: true)
-    if cache
-      Rails.cache.fetch(token_cache_key, expires_in: 1.hour) { create_token }
-    else
-      Rails.cache.write(token_cache_key, token = create_token, expires_in: 1.hour)
-      token
-    end
+    # if cache
+    #   Rails.cache.fetch(token_cache_key, expires_in: 1.hour) { create_token }
+    # else
+      create_token
+    # end
   rescue Errno::EACCES => e
     Sentry.capture_exception(e)
     get_token(cache: false)
