@@ -2,7 +2,7 @@
   "name": "playlists",
   "private": true,
   "dependencies": {
-    "@headlessui/vue": "^1.7.13",
+    "@headlessui/vue": "^1.7.14",
     "@hotwired/stimulus": "3.2.1",
     "@hotwired/turbo-rails": "7.2.4",
     "@tailwindcss/aspect-ratio": "^0.4.2",
