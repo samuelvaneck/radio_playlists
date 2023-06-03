@@ -7,6 +7,7 @@ module TrackDataProcessor
     args = spotify_service_args(artist_name, title, spotify_url, isrc_code)
     # track = Spotify.new(args).track
     track = Spotify::Track::Finder.new(args)
+    track.execute
     artists = find_or_create_artist(artist_name, track)
     song = find_or_create_song(title, track, artists)
     [artists, song]
