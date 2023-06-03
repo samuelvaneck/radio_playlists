@@ -5,7 +5,9 @@ module TrackDataProcessor
   def process_track_data(artist_name, title, spotify_url = nil, isrc_code = nil)
     generate_sentry_breadcrumb(artist_name, title)
     args = spotify_service_args(artist_name, title, spotify_url, isrc_code)
-    track = Spotify.new(args).track
+    # track = Spotify.new(args).track
+    track = Spotify::Track::Finder.new(args)
+    track.execute
     artists = find_or_create_artist(artist_name, track)
     song = find_or_create_song(title, track, artists)
     [artists, song]

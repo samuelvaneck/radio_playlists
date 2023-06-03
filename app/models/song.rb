@@ -25,9 +25,9 @@ class Song < ActiveRecord::Base
   after_commit :update_fullname, on: %i[create update]
 
   MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'
-  TRACK_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
+  ARTISTS_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
   public_constant :MULTIPLE_ARTIST_REGEX
-  public_constant :TRACK_FILTERS
+  public_constant :ARTISTS_FILTERS
 
   def self.search_title(title)
     where('title ILIKE ?', "%#{title}%")
