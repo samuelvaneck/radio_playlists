@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '3.2.2'
 
+gem 'bootsnap', require: false
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 gem 'fuzzy-string-match', '~> 1.0', '>= 1.0.1'
