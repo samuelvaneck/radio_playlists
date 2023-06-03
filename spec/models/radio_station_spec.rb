@@ -360,7 +360,8 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
   describe '#find_or_create_artist' do
     context 'with multiple name' do
       it 'returns the artists and not a karaoke version' do
-        spotify_track = Spotify::Track.new(artists: 'Martin Garrix & Clinton Kane', title: 'Drown')
+        spotify_track = Spotify::Track::Finder.new(artists: 'Martin Garrix & Clinton Kane', title: 'Drown')
+        spotify_track.execute
         result = described_class.new.find_or_create_artist('Martin Garrix & Clinton Kane', spotify_track)
 
         expect(result.map(&:name)).to contain_exactly 'Martin Garrix', 'Clinton Kane'
