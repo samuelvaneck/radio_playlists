@@ -8,7 +8,7 @@ module Spotify
         @artists = args[:artists]
       end
 
-      def execute
+      def generate
         URI("https://api.spotify.com/v1/search?q=#{search_params}&type=track")
       end
 

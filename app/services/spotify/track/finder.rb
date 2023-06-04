@@ -2,6 +2,7 @@ module Spotify
   module Track
     class Finder < Base
       attr_reader :track, :artists, :title, :isrc, :spotify_artwork_url, :spotify_song_url, :query_result, :filter_result, :tracks
+      POPULARITY_TYPES = %w[album single compilation].freeze
 
       def initialize(args)
         super
@@ -14,7 +15,8 @@ module Spotify
         @track = if args[:spotify_track_id]
                    fetch_spotify_track
                  else
-                   search_spotify_track
+                   # search_spotify_track
+                   best_result
                  end
         @artists = set_track_artists
         @title = set_track_title
@@ -37,7 +39,9 @@ module Spotify
           most_popular_track
         else
           @search_title = result['name']
-          search_spotify_track
+          @query_result = nil
+          # search_spotify_track
+          best_result
         end
       end
 
@@ -62,10 +66,82 @@ module Spotify
         most_popular_track
       end
 
+      def album_tracks
+        @query_result ||= make_request(search_url)
+        Filter::AlbumTracks.new(tracks: @query_result).filter
+      end
+
+      def most_popular_album_track
+        @tracks = album_tracks
+        most_popular_track
+      end
+
+      def most_popular_album_track_link
+        most_popular_album_track&.dig('external_urls', 'spotify')
+      end
+
+      def most_popular_album_track_popularity
+        most_popular_album_track&.dig('popularity')
+      end
+
+      def single_tracks
+        @query_result ||= make_request(search_url)
+        Filter::SingleTracks.new(tracks: @query_result).filter
+      end
+
+      def most_popular_single_track
+        @tracks = single_tracks
+        most_popular_track
+      end
+
+      def most_popular_single_track_link
+        most_popular_single_track&.dig('external_urls', 'spotify')
+      end
+
+      def most_popular_single_track_popularity
+        most_popular_single_track&.dig('popularity')
+      end
+
+      def compilation_tracks
+        @query_result ||= make_request(search_url)
+        Filter::CompilationTracks.new(tracks: @filter_result).filter
+      end
+
+      def most_popular_compilation_track
+        @tracks = compilation_tracks
+        most_popular_track
+      end
+
+      def most_popular_compilation_track_link
+        most_popular_compilation_track&.dig('external_urls', 'spotify')
+      end
+
+      def most_popular_compilation_track_popularity
+        most_popular_compilation_track&.dig('popularity')
+      end
+
+      def popularity_results
+        result = {}
+        POPULARITY_TYPES.each do |type|
+          popularity = send("most_popular_#{type}_track_popularity".to_sym)
+          next if popularity.nil?
+
+          result[type] = popularity
+        end
+
+        result
+      end
+
+      def best_result
+        result = popularity_results.key(popularity_results.values.max)
+
+        send("most_popular_#{result}_track".to_sym)
+      end
+
       private
 
       def search_url
-        SearchUrl.new(title: @search_title, artists: @search_artists).execute
+        SearchUrl.new(title: @search_title, artists: @search_artists).generate
       end
 
       # setter methods
@@ -81,19 +157,6 @@ module Spotify
         return if @track.blank?
 
         @track['name'] if @track.present?
-      end
-
-
-      def single_over_albums(single_album_tracks)
-        single_tracks(single_album_tracks) || album_tracks(single_album_tracks)
-      end
-
-      def single_tracks(single_album_tracks)
-        single_album_tracks.select { |t| t.album.album_type == 'single' }
-      end
-
-      def album_tracks(single_album_tracks)
-        single_album_tracks.select { |t| t.album.album_type == 'album' }
       end
 
       def set_isrc
