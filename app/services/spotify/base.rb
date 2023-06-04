@@ -31,8 +31,7 @@ module Spotify
       items.map do |item|
         item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }.join(' ')
         item_full_name = "#{item['name']} #{item_artist_names}"
-        distance = (JaroWinkler.distance(item_full_name, "#{args[:title]} #{args[:artists]}") * 100).round(2)
-        item['match'] = distance
+        item['match'] = string_distance(item_full_name)
         item
       end
     end
@@ -41,6 +40,10 @@ module Spotify
 
     def token
       Spotify::Token.new.get_token
+    end
+
+    def string_distance(item_string)
+      JaroWinkler.distance(item_string, "#{args[:title]} #{args[:artists]}") * 100
     end
   end
 end
