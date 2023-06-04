@@ -30,9 +30,9 @@ module Spotify
       items = Spotify::Track::Filter::ResultsDigger.new(tracks:).execute
       items.map do |item|
         item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }.join(' ')
-        item_full_name = "#{item['name']} ##{item_artist_names}"
+        item_full_name = "#{item['name']} #{item_artist_names}"
         distance = (JaroWinkler.distance(item_full_name, "#{args[:title]} #{args[:artists]}") * 100).round(2)
-        item['string_match'] = distance
+        item['match'] = distance
         item
       end
     end
