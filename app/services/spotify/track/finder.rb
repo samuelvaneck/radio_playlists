@@ -138,6 +138,11 @@ module Spotify
         send("most_popular_#{result}_track".to_sym)
       end
 
+      # test purpose
+      def request_results_with_string_match
+        make_request_with_sting_match(search_url)
+      end
+
       private
 
       def search_url

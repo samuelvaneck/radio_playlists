@@ -25,7 +25,21 @@ module Spotify
       end
     end
 
-    private def token
+    def make_request_with_sting_match(url)
+      tracks = make_request(url)
+      items = Spotify::Track::Filter::ResultsDigger.new(tracks:).execute
+      items.map do |item|
+        item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }.join(' ')
+        item_full_name = "#{item['name']} ##{item_artist_names}"
+        distance = (JaroWinkler.distance(item_full_name, "#{args[:title]} #{args[:artists]}") * 100).round(2)
+        item['string_match'] = distance
+        item
+      end
+    end
+
+    private
+
+    def token
       Spotify::Token.new.get_token
     end
   end
