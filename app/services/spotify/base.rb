@@ -25,14 +25,15 @@ module Spotify
       end
     end
 
-    def make_request_with_sting_match(url)
+    def make_request_with_match(url)
       tracks = make_request(url)
       items = Spotify::Track::Filter::ResultsDigger.new(tracks:).execute
-      items.map do |item|
-        item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }.join(' ')
-        item_full_name = "#{item['name']} #{item_artist_names}"
-        item['match'] = string_distance(item_full_name)
-        item
+
+      if tracks&.dig('tracks', 'items').present?
+        tracks['tracks']['items'] = add_match(items)
+        tracks
+      elsif tracks&.dig('album', 'album_type').present?
+        tracks
       end
     end
 
@@ -43,7 +44,18 @@ module Spotify
     end
 
     def string_distance(item_string)
-      JaroWinkler.distance(item_string, "#{args[:title]} #{args[:artists]}") * 100
+      (JaroWinkler.distance(item_string, "#{args[:title]} #{args[:artists]}") * 100).to_i
+    end
+
+    def add_match(items)
+      items.map do |item|
+        item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }.join(' ')
+        item_full_name = "#{item['name']} #{item_artist_names}"
+        distance = string_distance(item_full_name)
+        item['title_distance'] = distance
+        item['match'] = item['popularity'] + distance
+        item
+      end
     end
   end
 end
