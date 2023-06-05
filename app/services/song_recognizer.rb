@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'resolv'
-require 'fuzzystringmatch'
 
 class SongRecognizer
   attr_reader :audio_stream, :result, :title, :artist_name, :broadcast_timestamp, :spotify_url, :isrc_code
@@ -68,21 +67,6 @@ class SongRecognizer
   def song_match
     full_result = "#{@result.dig(:track, :subtitle)} #{@result.dig(:track, :title)}"
     full_stream = "#{@audio_stream.stream_artist} #{@audio_stream.stream_title}"
-    jarow = FuzzyStringMatch::JaroWinkler.create(:pure)
-    (jarow.getDistance(full_result, full_stream) * 100).to_i
-  end
-
-  def set_title
-    result_title = @result.dig(:track, :title)
-    jarow = FuzzyStringMatch::JaroWinkler.create(:pure)
-    distance = (jarow.getDistance(result_title, @audio_stream.stream_title) * 100).to_i
-    distance > 80 ? result_title : @audio_stream.stream_title
-  end
-
-  def set_artist_name
-    result_artist = @result.dig(:track, :subtitle)
-    jarow = FuzzyStringMatch::JaroWinkler.create(:pure)
-    distance = (jarow.getDistance(result_artist, @audio_stream.stream_artist) * 100).to_i
-    distance > 80 ? result_artist : @audio_stream.stream_artist
+    (JaroWinkler.distance(full_result, full_stream) * 100).to_i
   end
 end

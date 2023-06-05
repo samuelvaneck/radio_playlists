@@ -2,7 +2,7 @@ module Spotify
   module Track
     class Finder < Base
       attr_reader :track, :artists, :title, :isrc, :spotify_artwork_url, :spotify_song_url, :query_result, :filter_result, :tracks
-      POPULARITY_TYPES = %w[album single compilation].freeze
+      TRACK_TYPES = %w[album single compilation].freeze
 
       def initialize(args)
         super
@@ -16,7 +16,7 @@ module Spotify
                    fetch_spotify_track
                  else
                    # search_spotify_track
-                   best_result
+                   best_match
                  end
         @artists = set_track_artists
         @title = set_track_title
@@ -46,7 +46,7 @@ module Spotify
       end
 
       def search_spotify_track
-        @query_result = make_request(search_url)
+        @query_result = make_request_with_match(search_url)
         return if @query_result.blank?
 
         # sets @filter_result
@@ -54,7 +54,7 @@ module Spotify
         filter_same_artists
         if @filter_result.blank?
           @search_title = @args[:title]
-          @query_result = make_request(search_url)
+          @query_result = make_request_with_match(search_url)
 
           # sets @filter_result
           dig_for_usable_tracks
@@ -67,7 +67,7 @@ module Spotify
       end
 
       def album_tracks
-        @query_result ||= make_request(search_url)
+        @query_result ||= make_request_with_match(search_url)
         Filter::AlbumTracks.new(tracks: @query_result).filter
       end
 
@@ -84,8 +84,17 @@ module Spotify
         most_popular_album_track&.dig('popularity')
       end
 
+      def best_matching_album_track
+        @tracks = album_tracks
+        best_match_track
+      end
+
+      def best_matching_album_match
+        best_matching_album_track&.dig('match')
+      end
+
       def single_tracks
-        @query_result ||= make_request(search_url)
+        @query_result ||= make_request_with_match(search_url)
         Filter::SingleTracks.new(tracks: @query_result).filter
       end
 
@@ -102,8 +111,17 @@ module Spotify
         most_popular_single_track&.dig('popularity')
       end
 
+      def best_matching_single_track
+        @tracks = single_tracks
+        best_match_track
+      end
+
+      def best_matching_single_match
+        best_matching_single_track&.dig('match')
+      end
+
       def compilation_tracks
-        @query_result ||= make_request(search_url)
+        @query_result ||= make_request_with_match(search_url)
         Filter::CompilationTracks.new(tracks: @filter_result).filter
       end
 
@@ -120,9 +138,18 @@ module Spotify
         most_popular_compilation_track&.dig('popularity')
       end
 
+      def best_matching_compilation_track
+        @tracks = compilation_tracks
+        best_match_track
+      end
+
+      def best_matching_compilation_match
+        best_matching_compilation_track&.dig('match')
+      end
+
       def popularity_results
         result = {}
-        POPULARITY_TYPES.each do |type|
+        TRACK_TYPES.each do |type|
           popularity = send("most_popular_#{type}_track_popularity".to_sym)
           next if popularity.nil?
 
@@ -134,8 +161,23 @@ module Spotify
 
       def best_result
         result = popularity_results.key(popularity_results.values.max)
-
         send("most_popular_#{result}_track".to_sym)
+      end
+
+      def match_results
+        result = {}
+        TRACK_TYPES.each do |type|
+          match = send("best_matching_#{type}_match".to_sym)
+          next if match.nil?
+
+          result[type] = match
+        end
+        result
+      end
+
+      def best_match
+        result = match_results.key(match_results.values.max)
+        send("best_matching_#{result}_track".to_sym)
       end
 
       private
@@ -179,6 +221,10 @@ module Spotify
 
       def most_popular_track
         MostPopular.new(tracks: @tracks).execute
+      end
+
+      def best_match_track
+        BestMatch.new(tracks: @tracks).execute
       end
 
       def dig_for_usable_tracks
