@@ -180,11 +180,6 @@ module Spotify
         send("best_matching_#{result}_track".to_sym)
       end
 
-      # test purpose
-      def request_results_with_match
-        make_request_with_match(search_url)
-      end
-
       private
 
       def search_url
