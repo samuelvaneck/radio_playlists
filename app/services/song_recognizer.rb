@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'resolv'
-require 'fuzzystringmatch'
 
 class SongRecognizer
   attr_reader :audio_stream, :result, :title, :artist_name, :broadcast_timestamp, :spotify_url, :isrc_code
