@@ -150,8 +150,6 @@ class RadioStation < ActiveRecord::Base
   def song_match(played_song, importing_song)
     played_song_fullname = "#{played_song.artists.map(&:name).join(' ')} #{played_song.title}".downcase
     importing_song_fullname = "#{importing_song.artists.map(&:name).join(' ')} #{importing_song.title}".downcase
-    jarow = FuzzyStringMatch::JaroWinkler.create(:pure)
-    distance = jarow.getDistance(played_song_fullname, importing_song_fullname)
-    (distance * 100).to_i
+    (JaroWinkler.distance(played_song_fullname, importing_song_fullname) * 100).to_i
   end
 end
