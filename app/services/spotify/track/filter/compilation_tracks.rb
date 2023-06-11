@@ -8,14 +8,6 @@ module Spotify
           @tracks = args[:tracks]
         end
 
-        def filter
-          return [] if @tracks.blank?
-
-          dig_for_usable_tracks.select do |track|
-            track.dig('album', 'album_type') == 'compilation'
-          end
-        end
-
         def same_artists_filter
           SameArtistsFilter.new(tracks: filter).execute
         end
@@ -24,7 +16,29 @@ module Spotify
           MostPopular.new(tracks: same_artists_filter).execute
         end
 
+        def most_popular_track
+          @tracks = filter
+          MostPopular.new(tracks: @tracks).execute
+        end
+
+        def best_matching
+          best_matching_track&.dig('match')
+        end
+
+        def best_matching_track
+          @tracks = filter
+          BestMatch.new(tracks: @tracks).execute
+        end
+
         private
+
+        def filter
+          return [] if @tracks.blank?
+
+          dig_for_usable_tracks.select do |track|
+            track.dig('album', 'album_type') == 'compilation'
+          end
+        end
 
         def dig_for_usable_tracks
           ResultsDigger.new(tracks: @tracks).execute
