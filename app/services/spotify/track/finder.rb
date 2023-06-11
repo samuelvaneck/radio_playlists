@@ -41,12 +41,12 @@ module Spotify
           @search_title = result['name']
           @query_result = nil
           # search_spotify_track
-          best_result
+          best_match
         end
       end
 
       def search_spotify_track
-        @query_result = make_request_with_match(search_url)
+        @query_result ||= query_result
         return if @query_result.blank?
 
         # sets @filter_result
@@ -66,108 +66,14 @@ module Spotify
         most_popular_track
       end
 
-      def album_tracks
+      def query_result
         @query_result ||= make_request_with_match(search_url)
-        Filter::AlbumTracks.new(tracks: @query_result).filter
-      end
-
-      def most_popular_album_track
-        @tracks = album_tracks
-        most_popular_track
-      end
-
-      def most_popular_album_track_link
-        most_popular_album_track&.dig('external_urls', 'spotify')
-      end
-
-      def most_popular_album_track_popularity
-        most_popular_album_track&.dig('popularity')
-      end
-
-      def best_matching_album_track
-        @tracks = album_tracks
-        best_match_track
-      end
-
-      def best_matching_album_match
-        best_matching_album_track&.dig('match')
-      end
-
-      def single_tracks
-        @query_result ||= make_request_with_match(search_url)
-        Filter::SingleTracks.new(tracks: @query_result).filter
-      end
-
-      def most_popular_single_track
-        @tracks = single_tracks
-        most_popular_track
-      end
-
-      def most_popular_single_track_link
-        most_popular_single_track&.dig('external_urls', 'spotify')
-      end
-
-      def most_popular_single_track_popularity
-        most_popular_single_track&.dig('popularity')
-      end
-
-      def best_matching_single_track
-        @tracks = single_tracks
-        best_match_track
-      end
-
-      def best_matching_single_match
-        best_matching_single_track&.dig('match')
-      end
-
-      def compilation_tracks
-        @query_result ||= make_request_with_match(search_url)
-        Filter::CompilationTracks.new(tracks: @filter_result).filter
-      end
-
-      def most_popular_compilation_track
-        @tracks = compilation_tracks
-        most_popular_track
-      end
-
-      def most_popular_compilation_track_link
-        most_popular_compilation_track&.dig('external_urls', 'spotify')
-      end
-
-      def most_popular_compilation_track_popularity
-        most_popular_compilation_track&.dig('popularity')
-      end
-
-      def best_matching_compilation_track
-        @tracks = compilation_tracks
-        best_match_track
-      end
-
-      def best_matching_compilation_match
-        best_matching_compilation_track&.dig('match')
-      end
-
-      def popularity_results
-        result = {}
-        TRACK_TYPES.each do |type|
-          popularity = send("most_popular_#{type}_track_popularity".to_sym)
-          next if popularity.nil?
-
-          result[type] = popularity
-        end
-
-        result
-      end
-
-      def best_result
-        result = popularity_results.key(popularity_results.values.max)
-        send("most_popular_#{result}_track".to_sym)
       end
 
       def match_results
         result = {}
         TRACK_TYPES.each do |type|
-          match = send("best_matching_#{type}_match".to_sym)
+          match = type_to_filter_class(type).new(tracks: @query_result).best_matching
           next if match.nil?
 
           result[type] = match
@@ -176,8 +82,9 @@ module Spotify
       end
 
       def best_match
-        result = match_results.key(match_results.values.max)
-        send("best_matching_#{result}_track".to_sym)
+        @query_result ||= query_result
+        type = match_results.key(match_results.values.max)
+        type_to_filter_class(type).new(tracks: @query_result).best_matching_track
       end
 
       private
@@ -219,14 +126,6 @@ module Spotify
         @track.dig('album', 'images')[0]['url'] if track.dig('album', 'images').present?
       end
 
-      def most_popular_track
-        MostPopular.new(tracks: @tracks).execute
-      end
-
-      def best_match_track
-        BestMatch.new(tracks: @tracks).execute
-      end
-
       def dig_for_usable_tracks
         @filter_result = Spotify::Track::Filter::ResultsDigger.new(tracks: @query_result).execute
       end
@@ -237,6 +136,10 @@ module Spotify
 
       def reject_custom_albums
         @tracks = Spotify::Track::Filter::CustomAlbumRejector.new(tracks: @filter_result).execute
+      end
+
+      def type_to_filter_class(type)
+        ('Spotify::Track::Filter::' + type.humanize + 'Tracks').constantize
       end
     end
   end
