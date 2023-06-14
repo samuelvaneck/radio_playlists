@@ -38,9 +38,8 @@ module Spotify
           reject_custom_albums
           most_popular_track
         else
-          @search_title = result['name']
+          @search_title = @query_result['name']
           @query_result = nil
-          # search_spotify_track
           best_match
         end
       end
