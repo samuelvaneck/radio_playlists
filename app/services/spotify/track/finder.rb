@@ -15,7 +15,6 @@ module Spotify
         @track = if args[:spotify_track_id]
                    fetch_spotify_track
                  else
-                   # search_spotify_track
                    best_match
                  end
         @artists = set_track_artists
@@ -44,27 +43,6 @@ module Spotify
         end
       end
 
-      def search_spotify_track
-        @query_result ||= query_result
-        return if @query_result.blank?
-
-        # sets @filter_result
-        dig_for_usable_tracks
-        filter_same_artists
-        if @filter_result.blank?
-          @search_title = @args[:title]
-          @query_result = make_request_with_match(search_url)
-
-          # sets @filter_result
-          dig_for_usable_tracks
-          filter_same_artists
-        end
-        return if @filter_result.blank?
-
-        reject_custom_albums
-        most_popular_track
-      end
-
       def query_result
         @query_result ||= make_request_with_match(search_url)
       end
@@ -83,6 +61,8 @@ module Spotify
       def best_match
         @query_result ||= query_result
         type = match_results.key(match_results.values.max)
+        return nil if type.blank?
+
         type_to_filter_class(type).new(tracks: @query_result).best_matching_track
       end
 
