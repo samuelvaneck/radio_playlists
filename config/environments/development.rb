@@ -13,18 +13,12 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = true
 
-    config.cache_store = :redis_cache_store, { url: ENV['REDIS_CACHE_URL'] }
-    config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
-    }
-  else
-    config.action_controller.perform_caching = false
-
-    config.cache_store = :null_store
-  end
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_CACHE_URL'] }
+  config.public_file_server.headers = {
+    'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
+  }
 
   # mailer options
   config.action_mailer.delivery_method = :letter_opener
