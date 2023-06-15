@@ -1,5 +1,6 @@
 class SongRecognizerCache
   attr_reader :radio_station_id, :title, :artist_name
+  
   def initialize(**args)
     @radio_station_id = args[:radio_station_id]
     @title = args[:title]
@@ -18,6 +19,7 @@ class SongRecognizerCache
   end
 
   private
+
   def cache_key
     "#{@radio_station_id}-#{@artist_name.downcase.gsub(/\W/, '')}-#{@title.downcase.gsub(/\W/, '')}"
   end
