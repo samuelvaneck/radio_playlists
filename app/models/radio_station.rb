@@ -91,7 +91,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def audio_file_name
-    name.downcase.tr(' ', '_')
+    name.downcase.gsub(/\W/, '')
   end
 
   def audio_file_path
