@@ -55,7 +55,7 @@ class RadioStation < ActiveRecord::Base
     importing_song = recognize_song || scrape_song
     return false if importing_song.blank?
     return false if illegal_word_in_title(importing_song.title) || importing_song.artist_name.blank?
-    return false unless song_recognized_twice?(title: importing_song.title, artist: importing_song.artist_name)
+    return false unless song_recognized_twice?(title: importing_song.title, artist_name: importing_song.artist_name)
 
     artists, song = process_track_data(importing_song.artist_name, importing_song.title, importing_song.spotify_url, importing_song.isrc_code)
     return false if artists.nil? || song.nil?
@@ -115,7 +115,7 @@ class RadioStation < ActiveRecord::Base
     elsif last_played_song != song && !any_song_matches?(song)
       add_song(broadcast_timestamp, artists, song, false)
     else
-      Rails.logger.info "#{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{name}"
+      Rails.logger.info "*** #{song.title} from #{Array.wrap(artists).map(&:name).join(', ')} last song on #{name} ***"
     end
   end
 
@@ -125,7 +125,7 @@ class RadioStation < ActiveRecord::Base
     artists_names = Array.wrap(artists).map(&:name).join(', ')
     artists_ids = Array.wrap(artists).map(&:id).join(' ')
 
-    Rails.logger.info "Saved #{song.title} (#{song.id}) from #{artists_names} (#{artists_ids}) on #{name}!"
+    Rails.logger.info "*** Saved #{song.title} (#{song.id}) from #{artists_names} (#{artists_ids}) on #{name}! ***"
   end
 
   def import_from_scraper(broadcast_timestamp, artists, song)
@@ -154,16 +154,7 @@ class RadioStation < ActiveRecord::Base
     (JaroWinkler.distance(played_song_fullname, importing_song_fullname) * 100).to_i
   end
 
-  def song_recognized_twice?(title:, artist:)
-    cache_key = "#{id}-#{artist.downcase.gsub(/\W/, '')}-#{title.downcase.gsub(/\W/, '')}"
-    if Rails.cache.exist?(cache_key)
-      Rails.cache.delete_matched("#{id}*")
-      true
-    else
-      # first delete any existing keys from radio station before write
-      Rails.cache.delete_matched("#{id}*")
-      Rails.cache.write(cache_key, Time.zone.now.to_i)
-      false
-    end
+  def song_recognized_twice?(title:, artist_name:)
+    SongRecognizerCache.new(radio_station_id: id, title:, artist_name:).recognized_twice?
   end
 end
