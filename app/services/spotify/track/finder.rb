@@ -2,6 +2,7 @@ module Spotify
   module Track
     class Finder < Base
       attr_reader :track, :artists, :title, :isrc, :spotify_artwork_url, :spotify_song_url, :query_result, :filter_result, :tracks
+
       TRACK_TYPES = %w[album single compilation].freeze
 
       def initialize(args)
@@ -27,7 +28,7 @@ module Spotify
       end
 
       def fetch_spotify_track
-        @query_result = FindById.new(@spotify_track_id).execute
+        @query_result = FindById.new(id_on_spotify: @spotify_track_id).execute
 
         # set the @filter_result
         dig_for_usable_tracks
@@ -118,7 +119,7 @@ module Spotify
       end
 
       def type_to_filter_class(type)
-        ('Spotify::Track::Filter::' + type.humanize + 'Tracks').constantize
+        "Spotify::Track::Filter::#{type.humanize}Tracks".constantize
       end
     end
   end

@@ -5,8 +5,9 @@ module Spotify
 
       SPOTIFY_TRACKS_URL = 'https://api.spotify.com/v1/tracks'.freeze
 
-      def  initialize(id_on_spotify)
-        @id_on_spotify = @id_on_spotify
+      def  initialize(args)
+        super
+        @id_on_spotify = args[:id_on_spotify]
       end
 
       def execute
@@ -14,7 +15,7 @@ module Spotify
       end
 
       private def url
-        URI("#{SPOTIFY_TRACKS_URL}/#{@spotify_track_id}")
+        URI("#{SPOTIFY_TRACKS_URL}/#{@id_on_spotify}")
       end
     end
   end

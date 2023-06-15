@@ -5,7 +5,9 @@ module Spotify
     SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/api/token'.freeze
 
     attr_reader :cache
+
     def initialize(cache: true)
+      super
       @cache = cache
     end
 

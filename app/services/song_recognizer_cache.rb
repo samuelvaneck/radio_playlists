@@ -1,6 +1,6 @@
 class SongRecognizerCache
   attr_reader :radio_station_id, :title, :artist_name
-  
+
   def initialize(**args)
     @radio_station_id = args[:radio_station_id]
     @title = args[:title]

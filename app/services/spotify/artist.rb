@@ -1,9 +1,11 @@
 # frozen_string_literal: true
+
 module Spotify
   class Artist < Base
     attr_reader :id_on_spotify
 
     def initialize(args)
+      super
       @id_on_spotify = args[:id_on_spotify]
     end
 
@@ -18,4 +20,3 @@ module Spotify
     end
   end
 end
-

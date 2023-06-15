@@ -2,6 +2,7 @@ module Spotify
   module Track
     class SearchUrl < Base
       attr_reader :title, :artists
+
       def initialize(args)
         super
         @title = args[:title]
