@@ -15,8 +15,9 @@ class SongRecognizer
   def recognized?
     audio_stream.capture
     response = run_song_recognizer
-    audio_stream.delete_file
     handle_response(response)
+  ensure
+    audio_stream.delete_file
   end
 
   private
