@@ -121,6 +121,10 @@ module Spotify
       def type_to_filter_class(type)
         "Spotify::Track::Filter::#{type.humanize}Tracks".constantize
       end
+
+      def most_popular_track
+        Spotify::Track::MostPopular.new(tracks: @tracks).execute
+      end
     end
   end
 end
