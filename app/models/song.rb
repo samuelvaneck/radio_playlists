@@ -100,6 +100,21 @@ class Song < ActiveRecord::Base
     playlists.size
   end
 
+  def self.most_played
+    query = "SELECT song.id,
+                    song.title,
+                    song.fullname,
+                    song.id_on_spotify,
+                    song.spotify_song_url,
+                    song.spotify_artwork_url,
+                    COUNT(*) AS counter
+             FROM playlists AS playlist
+               INNER JOIN songs AS song ON playlist.song_id = song.id
+             GROUP BY song.id, song.title
+             ORDER BY counter DESC"
+    Song.find_by_sql(query)
+  end
+
   private
 
   def find_same_songs(song)
