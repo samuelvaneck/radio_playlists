@@ -100,18 +100,31 @@ class Song < ActiveRecord::Base
     playlists.size
   end
 
-  def self.most_played
-    query = "SELECT song.id,
-                    song.title,
-                    song.fullname,
-                    song.id_on_spotify,
-                    song.spotify_song_url,
-                    song.spotify_artwork_url,
-                    COUNT(*) AS counter
-             FROM playlists AS playlist
-               INNER JOIN songs AS song ON playlist.song_id = song.id
-             GROUP BY song.id, song.title
-             ORDER BY counter DESC"
+  def self.most_played(params)
+    start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
+    end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
+    where_radio_station = params[:radio_station_id].present? ? "AND playlists.radio_station_id = #{params[:radio_station_id]}" : ''
+    where_song = params[:search_term].present? ? "AND songs.title ILIKE '%#{params[:search_term]}%' OR artists.name ILIKE '%#{params[:search_term]}%'" : ''
+
+    query = <<~SQL
+      SELECT songs.id,
+             songs.title,
+             songs.fullname,
+             songs.id_on_spotify,
+             songs.spotify_song_url,
+             songs.spotify_artwork_url,
+             COUNT(*) AS counter
+      FROM playlists
+        INNER JOIN songs ON playlists.song_id = songs.id
+        INNER JOIN artists_songs ON artists_songs.song_id = songs.id
+        INNER JOIN (SELECT * FROM artists) AS artists ON artists.id = artists_songs.artist_id
+      WHERE (playlists.created_at > date_trunc('second'::text, '#{start_time}'::timestamp with time zone) 
+         AND playlists.created_at < date_trunc('second'::text, '#{end_time}'::timestamp with time zone))
+         #{where_radio_station}
+         #{where_song}
+      GROUP BY songs.id, songs.title
+      ORDER BY counter DESC
+    SQL
     Song.find_by_sql(query)
   end
 

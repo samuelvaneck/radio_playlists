@@ -4,7 +4,7 @@ class SongsController < ApplicationController
   before_action :set_song, only: %i[show graph_data]
 
   def index
-    songs = Song.most_played
+    songs = Song.most_played(params)
     songs = paginate_and_serialize(songs)
     render json: songs
   end
