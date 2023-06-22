@@ -24,21 +24,33 @@ class Artist < ActiveRecord::Base
 
   validates :name, presence: true
 
-  def self.search(params)
+  def self.most_played(params)
     start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
     end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
+    where_radio_station = params[:radio_station_id].present? ? "AND playlists.radio_station_id = #{params[:radio_station_id]}" : ''
+    where_artist = params[:search_term].present? ? "AND artists.name ILIKE '%#{params[:search_term]}%'" : ''
 
-    artists = Artist.joins(:playlists)
-                    .where('playlists.created_at > ? AND playlists.created_at < ?', start_time, end_time)
-    artists.where!('artists.name ILIKE ?', "%#{params[:search_term]}%") if params[:search_term].present?
-    artists.where!('playlists.radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
-    artists
-  end
+    query = <<~SQL
+      SELECT artists.id,
+             artists.name,
+             artists.image,
+             artists.id_on_spotify,
+             artists.spotify_artist_url,
+             artists.spotify_artwork_url,
+             COUNT(*) AS counter
+      FROM playlists
+        INNER JOIN songs ON playlists.song_id = songs.id
+        INNER JOIN artists_songs ON artists_songs.song_id = songs.id
+        INNER JOIN artists ON artists.id = artists_songs.artist_id
+      WHERE (playlists.created_at > date_trunc('second'::text, '#{start_time}'::timestamp with time zone) 
+         AND playlists.created_at < date_trunc('second'::text, '#{end_time}'::timestamp with time zone))
+         #{where_radio_station}
+         #{where_artist}
+      GROUP BY artists.id, artists.name
+      ORDER BY counter DESC
+    SQL
 
-  def self.group_and_count(artists)
-    artists.group(:artist_id)
-           .count.sort_by { |_artist_id, counter| counter }
-           .reverse
+    find_by_sql(query)
   end
 
   def self.spotify_track_to_artist(track)

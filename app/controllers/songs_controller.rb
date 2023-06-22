@@ -4,8 +4,7 @@ class SongsController < ApplicationController
   before_action :set_song, only: %i[show graph_data]
 
   def index
-    songs = Song.search(params)
-    songs = Song.group_and_count(songs)
+    songs = Song.most_played(params)
     songs = paginate_and_serialize(songs)
     render json: songs
   end
@@ -22,9 +21,9 @@ class SongsController < ApplicationController
 
   def paginate_and_serialize(songs)
     songs.paginate(page: params[:page], per_page: 10)
-         .map do |song_id, counter|
-           serialized_song = SongSerializer.new(Song.find(song_id)).serializable_hash
-           [serialized_song, counter]
+         .map do |song|
+           serialized_song = SongSerializer.new(song).serializable_hash
+           [serialized_song, song.counter]
          end
   end
 
