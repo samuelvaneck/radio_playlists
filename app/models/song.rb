@@ -29,27 +29,38 @@ class Song < ActiveRecord::Base
   public_constant :MULTIPLE_ARTIST_REGEX
   public_constant :ARTISTS_FILTERS
 
+  def self.most_played(params)
+    start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
+    end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
+    where_radio_station = params[:radio_station_id].present? ? "AND playlists.radio_station_id = #{params[:radio_station_id]}" : ''
+    where_song = params[:search_term].present? ? "AND songs.title ILIKE '%#{params[:search_term]}%' OR artists.name ILIKE '%#{params[:search_term]}%'" : ''
+
+    query = <<~SQL
+      SELECT songs.id,
+             songs.title,
+             songs.fullname,
+             songs.id_on_spotify,
+             songs.spotify_song_url,
+             songs.spotify_artwork_url,
+             COUNT(*) AS counter
+      FROM playlists
+        INNER JOIN songs ON playlists.song_id = songs.id
+        INNER JOIN artists_songs ON artists_songs.song_id = songs.id
+        INNER JOIN (SELECT * FROM artists) AS artists ON artists.id = artists_songs.artist_id
+      WHERE (playlists.created_at > date_trunc('second'::text, '#{start_time}'::timestamp with time zone) 
+         AND playlists.created_at < date_trunc('second'::text, '#{end_time}'::timestamp with time zone))
+         #{where_radio_station}
+         #{where_song}
+      GROUP BY songs.id, songs.title
+      ORDER BY counter DESC
+    SQL
+
+    find_by_sql(query)
+  end
+
   def self.search_title(title)
     where('title ILIKE ?', "%#{title}%")
   end
-
-  # def self.search(params)
-  #   start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
-  #   end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
-  #
-  #   songs = Playlist.where('playlists.created_at > ? AND playlists.created_at < ? ', start_time, end_time)
-  #                   .includes(:radio_station, :artists, song: [:artists])
-  #                   .references(:artists, :song)
-  #   songs.where!(search_query, search_value(params), search_value(params)) if params[:search_term].present?
-  #   songs.where!('radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
-  #   songs.distinct
-  # end
-  #
-  # def self.group_and_count(songs)
-  #   songs.group(:song_id)
-  #        .count.sort_by { |_song_id, counter| counter }
-  #        .reverse
-  # end
 
   def self.spotify_track_to_song(track)
     song = Song.find_or_initialize_by(id_on_spotify: track.track['id'])
@@ -78,14 +89,6 @@ class Song < ActiveRecord::Base
     end
   end
 
-  # def self.search_query
-  #   'songs.title ILIKE ? OR artists.name ILIKE ?'
-  # end
-
-  # def self.search_value(params)
-  #   "%#{params[:search_term]}%"
-  # end
-
   def update_artists(song_artists)
     crumb = Sentry::Breadcrumb.new(
       category: 'import_song',
@@ -98,35 +101,6 @@ class Song < ActiveRecord::Base
 
   def played
     playlists.size
-  end
-
-  def self.most_played(params)
-    start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
-    end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
-    where_radio_station = params[:radio_station_id].present? ? "AND playlists.radio_station_id = #{params[:radio_station_id]}" : ''
-    where_song = params[:search_term].present? ? "AND songs.title ILIKE '%#{params[:search_term]}%' OR artists.name ILIKE '%#{params[:search_term]}%'" : ''
-
-    query = <<~SQL
-      SELECT songs.id,
-             songs.title,
-             songs.fullname,
-             songs.id_on_spotify,
-             songs.spotify_song_url,
-             songs.spotify_artwork_url,
-             COUNT(*) AS counter
-      FROM playlists
-        INNER JOIN songs ON playlists.song_id = songs.id
-        INNER JOIN artists_songs ON artists_songs.song_id = songs.id
-        INNER JOIN (SELECT * FROM artists) AS artists ON artists.id = artists_songs.artist_id
-      WHERE (playlists.created_at > date_trunc('second'::text, '#{start_time}'::timestamp with time zone) 
-         AND playlists.created_at < date_trunc('second'::text, '#{end_time}'::timestamp with time zone))
-         #{where_radio_station}
-         #{where_song}
-      GROUP BY songs.id, songs.title
-      ORDER BY counter DESC
-    SQL
-
-    find_by_sql(query)
   end
 
   private
