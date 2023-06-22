@@ -33,23 +33,23 @@ class Song < ActiveRecord::Base
     where('title ILIKE ?', "%#{title}%")
   end
 
-  def self.search(params)
-    start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
-    end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
-
-    songs = Playlist.where('playlists.created_at > ? AND playlists.created_at < ? ', start_time, end_time)
-                    .includes(:radio_station, :artists, song: [:artists])
-                    .references(:artists, :song)
-    songs.where!(search_query, search_value(params), search_value(params)) if params[:search_term].present?
-    songs.where!('radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
-    songs.distinct
-  end
-
-  def self.group_and_count(songs)
-    songs.group(:song_id)
-         .count.sort_by { |_song_id, counter| counter }
-         .reverse
-  end
+  # def self.search(params)
+  #   start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
+  #   end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
+  #
+  #   songs = Playlist.where('playlists.created_at > ? AND playlists.created_at < ? ', start_time, end_time)
+  #                   .includes(:radio_station, :artists, song: [:artists])
+  #                   .references(:artists, :song)
+  #   songs.where!(search_query, search_value(params), search_value(params)) if params[:search_term].present?
+  #   songs.where!('radio_station_id = ?', params[:radio_station_id]) if params[:radio_station_id].present?
+  #   songs.distinct
+  # end
+  #
+  # def self.group_and_count(songs)
+  #   songs.group(:song_id)
+  #        .count.sort_by { |_song_id, counter| counter }
+  #        .reverse
+  # end
 
   def self.spotify_track_to_song(track)
     song = Song.find_or_initialize_by(id_on_spotify: track.track['id'])
@@ -78,13 +78,13 @@ class Song < ActiveRecord::Base
     end
   end
 
-  def self.search_query
-    'songs.title ILIKE ? OR artists.name ILIKE ?'
-  end
+  # def self.search_query
+  #   'songs.title ILIKE ? OR artists.name ILIKE ?'
+  # end
 
-  def self.search_value(params)
-    "%#{params[:search_term]}%"
-  end
+  # def self.search_value(params)
+  #   "%#{params[:search_term]}%"
+  # end
 
   def update_artists(song_artists)
     crumb = Sentry::Breadcrumb.new(
@@ -125,7 +125,8 @@ class Song < ActiveRecord::Base
       GROUP BY songs.id, songs.title
       ORDER BY counter DESC
     SQL
-    Song.find_by_sql(query)
+
+    find_by_sql(query)
   end
 
   private
