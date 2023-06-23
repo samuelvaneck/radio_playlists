@@ -31,7 +31,8 @@ class Artist < ActiveRecord::Base
     where_artist = params[:search_term].present? ? "AND artists.name ILIKE '%#{params[:search_term]}%'" : ''
 
     query = <<~SQL
-      SELECT artists.id,
+      SELECT DISTINCT
+             artists.id,
              artists.name,
              artists.image,
              artists.id_on_spotify,
