@@ -43,7 +43,7 @@ class Song < ActiveRecord::Base
              songs.id_on_spotify,
              songs.spotify_song_url,
              songs.spotify_artwork_url,
-             COUNT(*) AS counter
+             COUNT(DISTINCT playlists.id) AS counter
       FROM playlists
         INNER JOIN songs ON playlists.song_id = songs.id
         INNER JOIN artists_songs ON artists_songs.song_id = songs.id
