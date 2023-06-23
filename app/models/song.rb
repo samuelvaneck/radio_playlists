@@ -36,7 +36,8 @@ class Song < ActiveRecord::Base
     where_song = params[:search_term].present? ? "AND songs.title ILIKE '%#{params[:search_term]}%' OR artists.name ILIKE '%#{params[:search_term]}%'" : ''
 
     query = <<~SQL
-      SELECT songs.id,
+      SELECT DISTINCT
+             songs.id,
              songs.title,
              songs.fullname,
              songs.id_on_spotify,
