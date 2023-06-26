@@ -51,7 +51,7 @@ module Spotify
       def match_results
         result = {}
         TRACK_TYPES.each do |type|
-          match = type_to_filter_class(type).new(tracks: @query_result).best_matching
+          match = type_to_filter_class(type).new(tracks: @query_result, artists: @search_artists).best_matching
           next if match.nil?
 
           result[type] = match
@@ -64,7 +64,7 @@ module Spotify
         type = match_results.key(match_results.values.max)
         return nil if type.blank?
 
-        type_to_filter_class(type).new(tracks: @query_result).best_matching_track
+        type_to_filter_class(type).new(tracks: @query_result, artists: @search_artists).best_matching_track
       end
 
       private
@@ -77,7 +77,14 @@ module Spotify
       def set_track_artists
         return if @track.blank? || @track['album'].blank? || @track['album']['artists'].blank?
 
-        @track['album']['artists'].map do |artist|
+        album_artists = @track['album']['artists'].map { |artist| artist['name'] }
+        artists = if album_artists.include?('Various Artists')
+                    @track['artists']
+                  else
+                    @track['album']['artists']
+                  end
+
+        artists.map do |artist|
           Spotify::Artist.new({ id_on_spotify: artist['id'] }).info
         end
       end

@@ -2,10 +2,11 @@ module Spotify
   module Track
     module Filter
       class CompilationTracks
-        attr_reader :tracks
+        attr_reader :tracks, :artists
 
         def initialize(args)
           @tracks = args[:tracks]
+          @artists = args[:artists]
         end
 
         def same_artists_filter
@@ -31,6 +32,10 @@ module Spotify
         end
 
         private
+
+        def filter_for_same_artists
+          SameArtistsFilter.new(tracks: filter, artists: @artists).execute
+        end
 
         def filter
           return [] if @tracks.blank?

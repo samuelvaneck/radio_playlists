@@ -2,14 +2,11 @@ module Spotify
   module Track
     module Filter
       class AlbumTracks
-        attr_reader :tracks
+        attr_reader :tracks, :artists
 
         def initialize(args)
           @tracks = args[:tracks]
-        end
-
-        def same_artists_filter
-          SameArtistsFilter.new(tracks: filter).execute
+          @artists = args[:artists]
         end
 
         def most_popular
@@ -31,6 +28,10 @@ module Spotify
         end
 
         private
+
+        def filter_for_same_artists
+          SameArtistsFilter.new(tracks: filter, artists: @artists).execute
+        end
 
         def filter
           return [] if @tracks.blank?

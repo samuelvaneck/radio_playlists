@@ -2,10 +2,11 @@ module Spotify
   module Track
     module Filter
       class SingleTracks
-        attr_reader :tracks
+        attr_reader :tracks, :artists
 
         def initialize(args)
           @tracks = args[:tracks]
+          @artists = args[:artists]
         end
 
         def same_artists_filter
@@ -32,8 +33,8 @@ module Spotify
 
         private
 
-        def dig_for_usable_tracks
-          ResultsDigger.new(tracks: @tracks).execute
+        def filter_for_same_artists
+          SameArtistsFilter.new(tracks: filter, artists: @artists).execute
         end
 
         def filter
@@ -42,6 +43,10 @@ module Spotify
           dig_for_usable_tracks.select do |track|
             track.dig('album', 'album_type') == 'single'
           end
+        end
+
+        def dig_for_usable_tracks
+          ResultsDigger.new(tracks: @tracks).execute
         end
       end
     end
