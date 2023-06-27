@@ -404,7 +404,7 @@ GEM
     unicode-display_width (2.4.2)
     uniform_notifier (1.16.0)
     uri (0.12.1)
-    vcr (6.1.0)
+    vcr (6.2.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
