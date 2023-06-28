@@ -41,8 +41,19 @@ module Spotify
           return [] if @tracks.blank?
 
           dig_for_usable_tracks.select do |track|
-            track.dig('album', 'album_type') == 'single'
+            same_artists = track_artist_names(track) == @artists
+            track.dig('album', 'album_type') == 'single' && same_artists
           end
+        end
+
+        def track_artist_names(track)
+          album_artists = track['album']['artists'].map { |artist| artist['name'] }
+          artists = if album_artists.include?('Various Artists')
+                      track['artists']
+                    else
+                      track['album']['artists']
+                    end
+          artists.map { |artist| artist['name'] }.join(', ')
         end
 
         def dig_for_usable_tracks
