@@ -24,6 +24,16 @@ class Song < ActiveRecord::Base
   has_many :radio_stations, through: :playlists
   after_commit :update_fullname, on: %i[create update]
 
+  scope :played_between, lambda { |start_time, end_time|
+    where('playlists.created_at > ? AND playlists.created_at < ? ', start_time, end_time)
+  }
+  scope :played_on, lambda { |radio_station|
+    where('playlists.radio_station_id = ?', radio_station.id) if radio_station
+  }
+  scope :matching, lambda { |search_term|
+    joins(:artists).where('title ILIKE ? OR artists.name ILIKE ?', "%#{search_term}%", "%#{search_term}%") if search_term
+  }
+
   MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'
   ARTISTS_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
   public_constant :MULTIPLE_ARTIST_REGEX
@@ -32,31 +42,21 @@ class Song < ActiveRecord::Base
   def self.most_played(params)
     start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
     end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
-    where_radio_station = params[:radio_station_id].present? ? "AND playlists.radio_station_id = #{params[:radio_station_id]}" : ''
-    where_song = params[:search_term].present? ? "AND songs.title ILIKE '%#{params[:search_term]}%' OR artists.name ILIKE '%#{params[:search_term]}%'" : ''
+    radio_station = RadioStation.find(params[:radio_station_id]) if params[:radio_station_id].present?
 
-    query = <<~SQL
-      SELECT DISTINCT
-             songs.id,
-             songs.title,
-             songs.fullname,
-             songs.id_on_spotify,
-             songs.spotify_song_url,
-             songs.spotify_artwork_url,
-             COUNT(DISTINCT playlists.id) AS counter
-      FROM playlists
-        INNER JOIN songs ON playlists.song_id = songs.id
-        INNER JOIN artists_songs ON artists_songs.song_id = songs.id
-        INNER JOIN (SELECT * FROM artists) AS artists ON artists.id = artists_songs.artist_id
-      WHERE (playlists.created_at > date_trunc('second'::text, '#{start_time}'::timestamp with time zone) 
-         AND playlists.created_at < date_trunc('second'::text, '#{end_time}'::timestamp with time zone))
-         #{where_radio_station}
-         #{where_song}
-      GROUP BY songs.id, songs.title
-      ORDER BY counter DESC
-    SQL
-
-    find_by_sql(query)
+    Song.joins(:playlists)
+        .played_between(start_time, end_time)
+        .played_on(radio_station)
+        .matching(params[:search_term])
+        .select("songs.id,
+                 songs.title,
+                 songs.fullname,
+                 songs.id_on_spotify,
+                 songs.spotify_song_url,
+                 songs.spotify_artwork_url,
+                 COUNT(DISTINCT playlists.id) AS COUNTER")
+        .group(:id)
+        .order("COUNTER DESC")
   end
 
   def self.search_title(title)
