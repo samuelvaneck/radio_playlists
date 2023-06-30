@@ -15,7 +15,7 @@
 #  isrc                :string
 #
 
-class Song < ActiveRecord::Base
+class Song < ApplicationRecord
   include GraphConcern
 
   has_many :artists_songs
@@ -24,12 +24,6 @@ class Song < ActiveRecord::Base
   has_many :radio_stations, through: :playlists
   after_commit :update_fullname, on: %i[create update]
 
-  scope :played_between, lambda { |start_time, end_time|
-    where('playlists.created_at > ? AND playlists.created_at < ? ', start_time, end_time)
-  }
-  scope :played_on, lambda { |radio_station|
-    where('playlists.radio_station_id = ?', radio_station.id) if radio_station
-  }
   scope :matching, lambda { |search_term|
     joins(:artists).where('title ILIKE ? OR artists.name ILIKE ?', "%#{search_term}%", "%#{search_term}%") if search_term
   }
@@ -40,13 +34,10 @@ class Song < ActiveRecord::Base
   public_constant :ARTISTS_FILTERS
 
   def self.most_played(params)
-    start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
-    end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
-    radio_station = RadioStation.find(params[:radio_station_id]) if params[:radio_station_id].present?
-
     Song.joins(:playlists)
-        .played_between(start_time, end_time)
-        .played_on(radio_station)
+        .played_between(parsed_time(time: params[:start_time], fallback: 1.week.ago),
+                        parsed_time(time: params[:end_time], fallback: Time.zone.now))
+        .played_on(parsed_radio_station(params[:radio_station_id]))
         .matching(params[:search_term])
         .select("songs.id,
                  songs.title,
@@ -56,7 +47,7 @@ class Song < ActiveRecord::Base
                  songs.spotify_artwork_url,
                  COUNT(DISTINCT playlists.id) AS COUNTER")
         .group(:id)
-        .order("COUNTER DESC")
+        .order('COUNTER DESC')
   end
 
   def self.search_title(title)

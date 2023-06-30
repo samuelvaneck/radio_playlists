@@ -15,43 +15,32 @@
 #  id_on_spotify       :string
 #
 
-class Artist < ActiveRecord::Base
+class Artist < ApplicationRecord
   include GraphConcern
 
   has_many :artists_songs
   has_many :songs, through: :artists_songs
   has_many :playlists, through: :songs
 
+  scope :matching, ->(search_term) { where!('artists.name ILIKE ?', "%#{search_term}%") if search_term.present? }
+
   validates :name, presence: true
 
   def self.most_played(params)
-    start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.week.ago
-    end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
-    where_radio_station = params[:radio_station_id].present? ? "AND playlists.radio_station_id = #{params[:radio_station_id]}" : ''
-    where_artist = params[:search_term].present? ? "AND artists.name ILIKE '%#{params[:search_term]}%'" : ''
-
-    query = <<~SQL
-      SELECT DISTINCT
-             artists.id,
-             artists.name,
-             artists.image,
-             artists.id_on_spotify,
-             artists.spotify_artist_url,
-             artists.spotify_artwork_url,
-             COUNT(DISTINCT playlists.id) AS counter
-      FROM playlists
-        INNER JOIN songs ON playlists.song_id = songs.id
-        INNER JOIN artists_songs ON artists_songs.song_id = songs.id
-        INNER JOIN artists ON artists.id = artists_songs.artist_id
-      WHERE (playlists.created_at > date_trunc('second'::text, '#{start_time}'::timestamp with time zone) 
-         AND playlists.created_at < date_trunc('second'::text, '#{end_time}'::timestamp with time zone))
-         #{where_radio_station}
-         #{where_artist}
-      GROUP BY artists.id, artists.name
-      ORDER BY counter DESC
-    SQL
-
-    find_by_sql(query)
+    Artist.joins(:playlists)
+          .played_between(parsed_time(time: params[:start_time], fallback: 1.week.ago),
+                          parsed_time(time: params[:end_time], fallback: Time.zone.now))
+          .played_on(parsed_radio_station(params[:radio_station_id]))
+          .matching(params[:search_term])
+          .select("artists.id,
+                   artists.name,
+                   artists.image,
+                   artists.id_on_spotify,
+                   artists.spotify_artist_url,
+                   artists.spotify_artwork_url,
+                   COUNT(DISTINCT playlists.id) AS counter")
+          .group(:id)
+          .order('COUNTER DESC')
   end
 
   def self.spotify_track_to_artist(track)

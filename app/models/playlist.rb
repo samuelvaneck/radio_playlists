@@ -13,44 +13,26 @@
 #  scraper_import      :boolean          default(FALSE)
 #
 
-class Playlist < ActiveRecord::Base
+class Playlist < ApplicationRecord
   belongs_to :song
   belongs_to :radio_station
   has_many :artists, through: :song
 
   scope :scraper_imported, -> { where(scraper_import: true) }
   scope :recognizer_imported, -> { where(scraper_import: false) }
+  scope :matching, lambda { |search_term|
+    joins(:artists, song: [:artists]).where('songs.title ILIKE ? OR artists.name ILIKE ?', "%#{search_term}%", "%#{search_term}%") if search_term
+  }
 
   validate :today_unique_playlist_item
 
   def self.last_played(params)
-    start_time = params[:start_time].present? ? Time.zone.strptime(params[:start_time], '%Y-%m-%dT%R') : 1.day.ago
-    end_time = params[:end_time].present? ? Time.zone.strptime(params[:end_time], '%Y-%m-%dT%R') : Time.zone.now
-    where_radio_station = params[:radio_station_id].present? ? "AND playlists.radio_station_id = #{params[:radio_station_id]}" : ''
-    where_song = params[:search_term].present? ? "AND songs.title ILIKE '%#{params[:search_term]}%' OR artists.name ILIKE '%#{params[:search_term]}%'" : ''
-
-    query = <<~SQL
-      SELECT 
-        playlists.id,
-        playlists.song_id,
-        playlists.radio_station_id,
-        playlists.created_at,
-        playlists.broadcast_timestamp,
-        playlists.scraper_import
-      FROM playlists
-        INNER JOIN songs ON playlists.song_id = songs.id
-        INNER JOIN radio_stations ON playlists.radio_station_id = radio_stations.id
-        INNER JOIN artists_songs ON songs.id = artists_songs.song_id 
-        INNER JOIN artists ON artists.id = artists_songs.artist_id
-      WHERE (playlists.created_at > date_trunc('second'::text, '#{start_time}'::timestamp with time zone) 
-         AND playlists.created_at < date_trunc('second'::text, '#{end_time}'::timestamp with time zone))
-         #{where_radio_station}
-         #{where_song}
-      GROUP BY playlists.id
-      ORDER BY playlists.broadcast_timestamp DESC
-    SQL
-
-    find_by_sql(query)
+    Playlist.played_between(parsed_time(time: params[:start_time], fallback: 1.week.ago),
+                            parsed_time(time: params[:end_time], fallback: Time.zone.now))
+            .played_on(parsed_radio_station(params[:radio_station_id]))
+            .matching(params[:search_term])
+            .group(:id)
+            .order(created_at: :desc)
   end
 
   def deduplicate
