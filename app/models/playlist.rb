@@ -27,7 +27,7 @@ class Playlist < ApplicationRecord
   validate :today_unique_playlist_item
 
   def self.last_played(params)
-    Playlist.played_between(parsed_time(time: params[:start_time], fallback: 1.week.ago),
+    Playlist.played_between(parsed_time(time: params[:start_time], fallback: 1.day.ago),
                             parsed_time(time: params[:end_time], fallback: Time.zone.now))
             .played_on(parsed_radio_station(params[:radio_station_id]))
             .matching(params[:search_term])
