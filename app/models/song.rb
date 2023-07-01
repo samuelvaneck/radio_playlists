@@ -17,6 +17,7 @@
 
 class Song < ApplicationRecord
   include GraphConcern
+  include DateConcern
 
   has_many :artists_songs
   has_many :artists, through: :artists_songs
@@ -35,9 +36,9 @@ class Song < ApplicationRecord
 
   def self.most_played(params)
     Song.joins(:playlists)
-        .played_between(parsed_time(time: params[:start_time], fallback: 1.week.ago),
-                        parsed_time(time: params[:end_time], fallback: Time.zone.now))
-        .played_on(parsed_radio_station(params[:radio_station_id]))
+        .played_between(date_from_params(time: params[:start_time], fallback: 1.week.ago),
+                        date_from_params(time: params[:end_time], fallback: Time.zone.now))
+        .played_on(params[:radio_station_id])
         .matching(params[:search_term])
         .select("songs.id,
                  songs.title,

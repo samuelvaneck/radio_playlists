@@ -14,6 +14,8 @@
 #
 
 class Playlist < ApplicationRecord
+  include DateConcern
+
   belongs_to :song
   belongs_to :radio_station
   has_many :artists, through: :song
@@ -27,9 +29,9 @@ class Playlist < ApplicationRecord
   validate :today_unique_playlist_item
 
   def self.last_played(params)
-    Playlist.played_between(parsed_time(time: params[:start_time], fallback: 1.day.ago),
-                            parsed_time(time: params[:end_time], fallback: Time.zone.now))
-            .played_on(parsed_radio_station(params[:radio_station_id]))
+    Playlist.played_between(date_from_params(time: params[:start_time], fallback: 1.day.ago),
+                            date_from_params(time: params[:end_time], fallback: Time.zone.now))
+            .played_on(params[:radio_station_id])
             .matching(params[:search_term])
             .group(:id)
             .order(created_at: :desc)
