@@ -37,7 +37,7 @@ describe Artist do
   describe '#search' do
     context 'with search term params present' do
       it 'only returns the artists matching the search term' do
-        results = Artist.search({ search_term: artist_1.name })
+        results = Artist.most_played({ search_term: artist_1.name })
 
         expect(results).to include artist_1
       end
@@ -45,29 +45,10 @@ describe Artist do
 
     context 'with radio_station_id params present' do
       it 'only returns the artists played on the radio_station' do
-        results = Artist.search({ radio_station_id: radio_station.id })
+        results = Artist.most_played({ radio_station_id: radio_station.id })
 
         expect(results).to include artist_2, artist_3
       end
-    end
-  end
-
-  describe '#group_and_count' do
-    let(:result) do
-      Artist.group_and_count(Artist.joins(:playlists).all)
-    end
-    let(:third_artist) do
-      [artist_3.id, 2]
-    end
-    let(:second_artist) do
-      [artist_2.id, 1]
-    end
-    let(:first_artist) do
-      [artist_1.id, 1]
-    end
-
-    it 'groups and counts the artist' do
-      expect(result).to include third_artist, second_artist, first_artist
     end
   end
 

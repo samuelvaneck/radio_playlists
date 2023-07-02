@@ -37,19 +37,19 @@ describe Playlist do
       it 'returns the playlists artist name or song title that matches the search terms' do
         expected = [playlist_one]
 
-        expect(described_class.search({ search_term: song_one.title })).to eq expected
+        expect(described_class.last_played({ search_term: song_one.title })).to eq expected
       end
     end
 
     context 'with radio_stations params' do
       it 'returns the playlist played on the radio station' do
-        expect(described_class.search({ radio_station_id: radio_station.id })).to include playlist_two, playlist_three
+        expect(described_class.last_played({ radio_station_id: radio_station.id })).to include playlist_two, playlist_three
       end
     end
 
     context 'with no params' do
       it 'returns all the playlists' do
-        expect(described_class.search({})).to include playlist_one, playlist_two, playlist_three
+        expect(described_class.last_played({})).to include playlist_one, playlist_two, playlist_three
       end
     end
   end

@@ -24,6 +24,7 @@ module Spotify
         @isrc = set_isrc
         @spotify_song_url = set_spotify_song_url
         @spotify_artwork_url = set_spotify_artwork_url
+        @title_distance = set_title_distance
 
         @track
       end
@@ -112,6 +113,12 @@ module Spotify
         return if @track.blank?
 
         @track.dig('album', 'images')[0]['url'] if track.dig('album', 'images').present?
+      end
+
+      def set_title_distance
+        return if @track.blank?
+
+        @track['title_distance']
       end
 
       def dig_for_usable_tracks

@@ -39,35 +39,29 @@ describe Song do
     playlist_3
   end
 
-  describe '#search' do
+  describe '#self.most_played' do
     context 'with search term params present' do
-      it 'only returns the songs matching the search term' do
-        results = Song.search({ search_term: song_1.title })
+      subject(:most_played_with_search_term) do
+        Song.most_played({ search_term: song_1.title })
+      end
 
-        expect(results).to eq [playlist_1]
+      it 'only returns the songs matching the search term' do
+        expect(most_played_with_search_term).to contain_exactly song_1
       end
     end
 
     context 'with radio_station_id params present' do
-      it 'only returns the songs played on the radio station' do
-        results = Song.search({ radio_station_id: radio_station.id })
-
-        expect(results).to include playlist_2, playlist_3
+      subject(:most_played_with_radio_station_id) do
+        Song.most_played({ radio_station_id: radio_station.id })
       end
-    end
-  end
 
-  describe '#group_and_count' do
-    let(:result) { Song.group_and_count(Playlist.all) }
-    let(:second_song) do
-      [song_2.id, 2]
-    end
-    let(:first_song) do
-      [song_1.id, 1]
-    end
+      it 'only returns the songs played on the radio station' do
+        expect(most_played_with_radio_station_id).to contain_exactly song_2
+      end
 
-    it 'groups and counts the songs' do
-      expect(result).to eq [second_song, first_song]
+      it 'adds a counter attribute on the song' do
+        expect(most_played_with_radio_station_id[0].counter).to eq 2
+      end
     end
   end
 
