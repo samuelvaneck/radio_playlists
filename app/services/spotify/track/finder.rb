@@ -11,6 +11,7 @@ module Spotify
         @search_title = args[:title]
         @spotify_track_id = args[:spotify_track_id]
         @spotify_search_url = args[:spotify_url]
+        @search_isrc = args[:isrc_code]
       end
 
       def execute
@@ -72,7 +73,10 @@ module Spotify
       private
 
       def search_url
-        SearchUrl.new(title: @search_title, artists: @search_artists, spotify_url: @spotify_search_url).generate
+        SearchUrl.new(title: @search_title,
+                      artists: @search_artists,
+                      spotify_url: @spotify_search_url,
+                      isrc: @search_isrc).generate
       end
 
       # setter methods

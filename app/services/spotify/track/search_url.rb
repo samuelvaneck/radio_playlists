@@ -1,13 +1,14 @@
 module Spotify
   module Track
     class SearchUrl < Base
-      attr_reader :title, :artists
+      attr_reader :title, :artists, :spotify_url, :isrc
 
       def initialize(args)
         super
         @title = args[:title]
         @artists = args[:artists]
         @spotify_url = args[:spotify_url]
+        @isrc =args[:isrc]
       end
 
       def generate
@@ -19,7 +20,7 @@ module Spotify
       def search_params
         return @spotify_url if @spotify_url.present?
 
-        CGI.escape("#{@title} artist:#{split_artists}")
+        CGI.escape("#{@title} track:#{@title} artist:#{split_artists}")
       end
 
       def split_artists
