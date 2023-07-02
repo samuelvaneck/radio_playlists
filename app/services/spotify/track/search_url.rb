@@ -7,6 +7,7 @@ module Spotify
         super
         @title = args[:title]
         @artists = args[:artists]
+        @spotify_url = args[:spotify_url]
       end
 
       def generate
@@ -16,6 +17,8 @@ module Spotify
       private
 
       def search_params
+        return @spotify_url if @spotify_url.present?
+
         CGI.escape("#{@title} artist:#{split_artists}")
       end
 
