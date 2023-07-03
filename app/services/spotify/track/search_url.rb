@@ -27,7 +27,7 @@ module Spotify
                  else
                    "#{@title.downcase} track:#{@title.downcase} artist:#{split_artists}"
                  end
-        params += " isrc:#{@isrc}" if @isrc.present?
+        params += " isrc:#{@isrc}" if @isrc.present? && @spotify_url.blank?
         params.gsub(' ', '%20')
       end
 
