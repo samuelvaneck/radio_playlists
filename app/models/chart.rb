@@ -37,12 +37,12 @@ class Chart < ApplicationRecord
   private
 
   def yesterdays_songs_chart
-    songs = Song.search({ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
+    songs = Song.most_played({ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
     Song.group_and_count(songs)
   end
 
   def yesterdays_artists_chart
-    artists = Artist.search({ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
+    artists = Artist.most_played({ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
     Artist.group_and_count(artists)
   end
 
