@@ -20,15 +20,15 @@ module Spotify
       private
 
       def search_params
-        # return @spotify_url if @spotify_url.present?
-
         params = if title_has_featuring_artists?
                    "#{title_without_featuring_artists} track:#{title_without_featuring_artists} artist:#{split_artists_with_featuring_artists}"
+                 elsif @spotify_url.present?
+                   @spotify_url
                  else
                    "#{@title.downcase} track:#{@title.downcase} artist:#{split_artists}"
                  end
         params += " isrc:#{@isrc}" if @isrc.present?
-        params.gsub(" ", "%20")
+        params.gsub(' ', '%20')
       end
 
       def split_artists
