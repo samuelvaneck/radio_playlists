@@ -3,14 +3,14 @@ module Spotify
     class SearchUrl < Base
       attr_reader :title, :artists, :spotify_url, :isrc
 
-      FEATURING_REGEX = /\(feat\..+\)/.freeze
+      FEATURING_REGEX = /\(feat\..+\)/
 
       def initialize(args)
         super
         @title = args[:title]
         @artists = args[:artists]
         @spotify_url = args[:spotify_url]
-        @isrc =args[:isrc]
+        @isrc = args[:isrc]
       end
 
       def generate
@@ -44,7 +44,7 @@ module Spotify
         return @title unless title_has_featuring_artists?
 
         regex = Regexp.new(FEATURING_REGEX)
-        title.scan(regex).map { |i| i.split("(feat.")[1] }[0].strip.gsub(')', '').downcase
+        title.scan(regex).map { |i| i.split('(feat.')[1] }[0].strip.delete(')').downcase
       end
 
       def title_has_featuring_artists?
