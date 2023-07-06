@@ -4,13 +4,15 @@ module Spotify
       attr_reader :track, :artists, :title, :isrc, :spotify_artwork_url, :spotify_song_url, :query_result, :filter_result, :tracks
 
       TRACK_TYPES = %w[album single compilation].freeze
+      FEATURING_REGEX = /\(feat\..+\)/
 
       def initialize(args)
         super
         @search_artists = args[:artists]
         @search_title = args[:title]
         @spotify_track_id = args[:spotify_track_id]
-        @spotify_search_url = args[:spotify_url]
+        @spotify_search_url = args[:spotify_search_url]
+        @search_isrc = args[:isrc_code]
       end
 
       def execute
@@ -72,7 +74,10 @@ module Spotify
       private
 
       def search_url
-        SearchUrl.new(title: @search_title, artists: @search_artists, spotify_url: @spotify_search_url).generate
+        SearchUrl.new(title: @search_title,
+                      artists: @search_artists,
+                      spotify_url: @spotify_search_url,
+                      isrc: @search_isrc).generate
       end
 
       # setter methods
@@ -80,7 +85,7 @@ module Spotify
         return if @track.blank? || @track['album'].blank? || @track['album']['artists'].blank?
 
         album_artists = @track['album']['artists'].map { |artist| artist['name'] }
-        artists = if album_artists.include?('Various Artists')
+        artists = if title_has_featuring_artists? || album_artists.include?('Various Artists')
                     @track['artists']
                   else
                     @track['album']['artists']
@@ -139,6 +144,10 @@ module Spotify
 
       def most_popular_track
         Spotify::Track::MostPopular.new(tracks: @tracks).execute
+      end
+
+      def title_has_featuring_artists?
+        @search_title.match?(Regexp.new(FEATURING_REGEX))
       end
     end
   end
