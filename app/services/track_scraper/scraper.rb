@@ -16,12 +16,6 @@ class TrackScraper::Scraper < TrackScraper
       @artist_name = playlist.search('.play_artist')[-1].text.strip
       @title = playlist.search('.play_title')[-1].text.strip
       time = playlist.search('.play_time')[-1].text.strip
-    when 'Groot Nieuws Radio'
-      doc = Nokogiri::HTML(URI(@radio_station.url).open)
-      @artist_name = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[2]').text.split.map(&:capitalize).join(' ')
-      @title = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[3]').text.split.map(&:capitalize).join(' ')
-      @title = CGI::unescapeHTML(@title)
-      time = doc.xpath('//*[@id="anchor-sticky"]/article/div/div/div[2]/div[1]/div[1]/span').text
     else
       Rails.logger.info "Radio station #{@radio_station.name} not found in SCRAPER"
     end
