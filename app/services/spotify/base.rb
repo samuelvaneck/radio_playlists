@@ -49,6 +49,8 @@ module Spotify
 
     def add_match(items)
       items.map do |item|
+        next if item.blank?
+
         item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }.join(' ')
         item_full_name = "#{item['name']} #{item_artist_names}"
         distance = string_distance(item_full_name)
