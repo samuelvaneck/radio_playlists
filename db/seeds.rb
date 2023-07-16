@@ -39,8 +39,8 @@ radio_stations = [
   },
   {
     name: 'Groot Nieuws Radio',
-    url: 'https://www.grootnieuwsradio.nl/net-gedraaid',
-    processor: 'scraper',
+    url: 'https://www.grootnieuwsradio.nl/_next/data/qDlbcoGX8H4TWq5datpzf/index.json',
+    processor: 'gnr_api_processor',
     stream_url: 'https://icecast.samuelvaneck.com/gnr.mp3'
   },
   {
