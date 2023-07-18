@@ -4,6 +4,6 @@ class ChartCreationJob < ApplicationJob
   queue_as :default
 
   def perform
-    Chart.create_yesterdays_charts
+    Chart.create_yesterday_charts
   end
 end

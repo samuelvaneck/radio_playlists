@@ -18,15 +18,15 @@ class Chart < ApplicationRecord
   scope :songs_charts, -> { where(chart_type: 'songs') }
   scope :artists_charts, -> { where(chart_type: 'artists') }
 
-  def self.create_yesterdays_charts
-    create_yesterdays_chart('songs')
-    create_yesterdays_chart('artists')
+  def self.create_yesterday_charts
+    create_yesterday_chart('songs')
+    create_yesterday_chart('artists')
   end
 
-  def self.create_yesterdays_chart(chart_type)
+  def self.create_yesterday_chart(chart_type)
     chart = Chart.new(date: 1.day.ago.beginning_of_day, chart_type:)
-    chart.chart = chart.__send__("yesterdays_#{chart_type}_chart".to_sym)
-    chart.save
+    chart.chart = chart.__send__("yesterday_#{chart_type}_chart".to_sym)
+    chart.save!
   end
 
   def position(object_id)
@@ -36,11 +36,11 @@ class Chart < ApplicationRecord
 
   private
 
-  def yesterdays_songs_chart
+  def yesterday_songs_chart
     Song.most_played({ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
   end
 
-  def yesterdays_artists_chart
+  def yesterday_artists_chart
     Artist.most_played({ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
   end
 
