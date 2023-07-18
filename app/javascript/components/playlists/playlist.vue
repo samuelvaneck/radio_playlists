@@ -5,14 +5,17 @@
         <span v-if='loading'>
           <LoadingBar class='image' v-bind:height='"190px"' v-bind:width='"90%"' />
         </span>
-        <span>
+        <span v-if="!!song.spotify_artwork_url">
           <img :src='song.spotify_artwork_url' class='image' />
         </span>
+        <span v-else>
+          <img :src='lpIcon' class="image" />
+        </span>
       </div>
-      <div class='badgeWrapper'>
-        <div class='primaryBadge badgeAnime'>
-          <div class='mt-2 flex flex-row'>
-            <div v-if="!!song.spotify_song_url" class='ml-auto'>
+      <div v-if="!!song.spotify_song_url" class='ml-auto'>
+        <div class='badgeWrapper'>
+          <div class='primaryBadge badgeAnime'>
+            <div class='mt-2 flex flex-row'>
               <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
             </div>
           </div>
@@ -74,7 +77,8 @@
       return {
         songArtworkUrl: null,
         loading: true,
-        spotifyLogo: null
+        spotifyLogo: null,
+        lpIcon: null
       }
     },
     methods: {
@@ -111,10 +115,15 @@
       },
       getSpotifyImage() {
         this.spotifyLogo = document.getElementById('section-1').getAttribute('data-spotify-logo-url')
+      },
+      getLpIcon() {
+        this.lpIcon = document.getElementById('section-1').getAttribute('data-lp-icon')
+        console.log(this.lpIcon)
       }
     },
     mounted: function() {
       this.getSpotifyImage()
+      this.getLpIcon()
     }
   }
 </script>

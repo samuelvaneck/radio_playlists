@@ -9,12 +9,10 @@
           <img :src='song.data.attributes.spotify_artwork_url' class='image' />
         </span>
       </div>
-      <div class='badgeWrapper'>
+      <div v-if='!!song && !!song.data.attributes.spotify_song_url' class='badgeWrapper'>
         <div class='primaryBadge badgeAnime'>
-          <div v-if='!!song && !!song.data.attributes.spotify_song_url' class='mt-2 flex flex-row'>
-            <div class=''>
-              <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
-            </div>
+          <div class='mt-2 flex flex-row'>
+            <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
           </div>
         </div>
       </div>

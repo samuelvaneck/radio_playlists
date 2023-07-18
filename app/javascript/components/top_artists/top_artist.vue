@@ -2,19 +2,15 @@
   <div class='wrapper wrapperAnime' @click="handleClickCard">
     <div class='header'>
       <div class='imageWrapper'>
-        <span v-if='loading'>
-
-        </span>
+        <span v-if='loading'></span>
         <span v-else-if='!!artist'>
           <img :src='spotifyArtworkUrl' class='image' />
         </span>
       </div>
-      <div class='badgeWrapper'>
+      <div v-if='!!artist && !!artist.data.attributes.spotify_artist_url' class='badgeWrapper'>
         <div class='primaryBadge badgeAnime'>
-          <div v-if='!!artist && !!artist.data.attributes.spotify_artist_url' class='mt-2 d-flex flex-row'>
-            <div class=''>
-              <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
-            </div>
+          <div class='mt-2 d-flex flex-row'>
+            <img :src='spotifyLogo' class='spotify-btn' v-on:click='handleClickSpotifyBtn' />
           </div>
         </div>
       </div>
