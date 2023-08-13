@@ -44,7 +44,7 @@ module Spotify
     end
 
     def string_distance(item_string)
-      (JaroWinkler.distance(item_string, "#{args[:title]} #{args[:artists]}") * 100).to_i
+      (JaroWinkler.distance(item_string, "#{args[:artists]} #{args[:title]}") * 100).to_i
     end
 
     def add_match(items)
@@ -52,7 +52,7 @@ module Spotify
         next if item.blank?
 
         item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }.join(' ')
-        item_full_name = "#{item['name']} #{item_artist_names}"
+        item_full_name = "#{item_artist_names} #{item['name']}"
         distance = string_distance(item_full_name)
         item['title_distance'] = distance
         item['match'] = item['popularity'] + (distance * 1.1)
