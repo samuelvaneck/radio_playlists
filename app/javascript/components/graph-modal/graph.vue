@@ -100,7 +100,7 @@
                 'day': '%H',
                 'week': '%a',
                 'month': '%e',
-                'year': '%b',
+                'year': '%b %g',
                 'all': '%b %g'
               }
 
