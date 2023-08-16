@@ -83,7 +83,7 @@ module TrackDataProcessor
 
   def spotify_service_args(artist_name, title, spotify_url = nil, isrc_code = nil)
     args = { artists: artist_name, title: }
-    if spotify_url&.match?(/\Aspotify:search/)
+    if spotify_url&.start_with?('spotify:search')
       args[:spotify_search_url] = spotify_url
     elsif spotify_url
       args[:spotify_track_id] = spotify_url.split('/').last
