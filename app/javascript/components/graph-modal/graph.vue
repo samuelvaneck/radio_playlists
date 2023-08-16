@@ -66,7 +66,7 @@
               title, // given d in data, returns the title text
               marginTop = 30, // top margin, in pixels
               marginRight = 0, // right margin, in pixels
-              marginBottom = 30, // bottom margin, in pixels
+              marginBottom = 40, // bottom margin, in pixels
               marginLeft = 40, // left margin, in pixels
               width = 640, // outer width, in pixels
               height = 400, // outer height, in pixels
@@ -101,7 +101,7 @@
                 'week': '%a',
                 'month': '%e',
                 'year': '%b',
-                'all': '%d'
+                'all': '%b %g'
               }
 
               // Compute default x- and z-domains, and unique them.

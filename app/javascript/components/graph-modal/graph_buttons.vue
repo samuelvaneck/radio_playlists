@@ -4,7 +4,7 @@
     <button class="grow graph-button button-active" @click="handleClickButton">Week</button>
     <button class="grow graph-button" @click="handleClickButton">Month</button>
     <button class="grow graph-button" @click="handleClickButton">Year</button>
-    <button class="grow graph-button button-disabled">All</button>
+    <button class="grow graph-button" @click="handleClickButton">All</button>
   </div>
 </template>
 

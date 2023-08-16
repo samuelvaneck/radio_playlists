@@ -8,7 +8,7 @@ module GraphConcern
     week: '%Y-%m-%d',
     month: '%Y-%m-%d',
     year: '%Y-%m-01',
-    all: '%Y-%m-%d'
+    all: '%Y-%m-01'
   }.freeze
   TIME_STEPS = {
     day: 1.hour,
