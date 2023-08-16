@@ -7,7 +7,7 @@ module GraphConcern
     day: '%Y-%m-%dT%H:00',
     week: '%Y-%m-%d',
     month: '%Y-%m-%d',
-    year: '%Y-%m-%d',
+    year: '%Y-%m-01',
     all: '%Y-%m-%d'
   }.freeze
   TIME_STEPS = {

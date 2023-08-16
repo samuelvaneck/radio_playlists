@@ -99,8 +99,8 @@
               const xAxisTimeFormat = {
                 'day': '%H',
                 'week': '%a',
-                'month': '%d',
-                'year': '%d',
+                'month': '%e',
+                'year': '%b',
                 'all': '%d'
               }
 
@@ -239,7 +239,12 @@
 
               svg.append("g")
                   .attr("transform", `translate(0,${yScale(0)})`)
-                  .call(xAxis);
+                  .call(xAxis)
+                  .selectAll("text")
+                  .style("text-anchor", "end")
+                  .attr("dx", "-.8em")
+                  .attr("dy", ".15em")
+                  .attr("transform", "rotate(-65)");
 
               return Object.assign(svg.node(), {scales: {color}});
             }
