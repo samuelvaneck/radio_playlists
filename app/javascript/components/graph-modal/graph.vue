@@ -99,7 +99,7 @@
               const xAxisTimeFormat = {
                 'day': '%H',
                 'week': '%a',
-                'month': '%e',
+                'month': '%e %b',
                 'year': '%b %g',
                 'all': '%b %g'
               }
