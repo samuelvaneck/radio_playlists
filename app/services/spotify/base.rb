@@ -55,7 +55,7 @@ module Spotify
         item_full_name = "#{item_artist_names} #{item['name']}"
         distance = string_distance(item_full_name)
         item['title_distance'] = distance
-        item['match'] = item['popularity'] + (distance * 1.1)
+        item['match'] = item['popularity'] + (distance * 2)
         item
       end
     end
