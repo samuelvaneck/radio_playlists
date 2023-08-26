@@ -34,7 +34,7 @@ class Playlist < ApplicationRecord
             .played_on(params[:radio_station_id])
             .matching(params[:search_term])
             .group(:id)
-            .order(created_at: :desc)
+            .order(broadcast_timestamp: :desc)
   end
 
   def deduplicate

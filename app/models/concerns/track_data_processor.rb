@@ -61,17 +61,6 @@ module TrackDataProcessor
     Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', title.downcase)
   end
 
-  def illegal_word_in_title(title)
-    # catch more then 4 digits, forward slashes, 2 single qoutes,
-    # reklame/reclame/nieuws/pingel and 2 dots
-    if title.match(/\d{4,}|\/|'{2,}|(reklame|reclame|nieuws|pingel)|\.{2,}/i)
-      Rails.logger.info "Found illegal word in #{title}"
-      true
-    else
-      false
-    end
-  end
-
   def generate_sentry_breadcrumb(artist_name, title)
     crumb = Sentry::Breadcrumb.new(
       category: 'import_song',

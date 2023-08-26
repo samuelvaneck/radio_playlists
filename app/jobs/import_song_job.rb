@@ -6,7 +6,7 @@ class ImportSongJob
   def perform(id)
     radio_station = RadioStation.find(id)
     Rails.logger.info "****** Import song #{radio_station.name} ******"
-    radio_station.import_song
+    SongImporter.new(radio_station: radio_station).import
   rescue StandardError => e
     Rails.logger.info "****** Error #{e} ******"
   end
