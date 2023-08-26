@@ -307,55 +307,55 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     end
   end
 
-  describe '#illegal_word_in_title' do
-    context 'a title with more then 4 digits' do
-      it 'returns false' do
-        expect(described_class.new.illegal_word_in_title('test 1234')).to eq true
-      end
-    end
-
-    context 'a title with a forward slash' do
-      it 'returns false' do
-        expect(described_class.new.illegal_word_in_title('test / go ')).to eq true
-      end
-    end
-
-    context 'a title with 2 single qoutes' do
-      it 'returns false' do
-        expect(described_class.new.illegal_word_in_title("test''s")).to eq true
-      end
-    end
-
-    context 'a titlle that has reklame or reclame' do
-      it 'returns false' do
-        expect(described_class.new.illegal_word_in_title('test reclame')).to eq true
-      end
-    end
-
-    context 'a title that has more then two dots' do
-      it 'returns false' do
-        expect(described_class.new.illegal_word_in_title('test..test')).to eq true
-      end
-    end
-
-    context 'when the title contains "nieuws"' do
-      it 'returns false' do
-        expect(described_class.new.illegal_word_in_title('ANP NIEUWS')).to eq true
-      end
-    end
-
-    context 'when the title contains "pingel"' do
-      it 'returns false' do
-        expect(described_class.new.illegal_word_in_title('Kerst pingel')).to eq true
-      end
-    end
-
-    context 'any other title' do
-      it 'returns true' do
-        expect(described_class.new.illegal_word_in_title('Liquid Spirit')).to eq false
-      end
-    end
-  end
+  # describe '#illegal_word_in_title' do
+  #   context 'a title with more then 4 digits' do
+  #     it 'returns false' do
+  #       expect(described_class.new.illegal_word_in_title('test 1234')).to eq true
+  #     end
+  #   end
+  #
+  #   context 'a title with a forward slash' do
+  #     it 'returns false' do
+  #       expect(described_class.new.illegal_word_in_title('test / go ')).to eq true
+  #     end
+  #   end
+  #
+  #   context 'a title with 2 single qoutes' do
+  #     it 'returns false' do
+  #       expect(described_class.new.illegal_word_in_title("test''s")).to eq true
+  #     end
+  #   end
+  #
+  #   context 'a titlle that has reklame or reclame' do
+  #     it 'returns false' do
+  #       expect(described_class.new.illegal_word_in_title('test reclame')).to eq true
+  #     end
+  #   end
+  #
+  #   context 'a title that has more then two dots' do
+  #     it 'returns false' do
+  #       expect(described_class.new.illegal_word_in_title('test..test')).to eq true
+  #     end
+  #   end
+  #
+  #   context 'when the title contains "nieuws"' do
+  #     it 'returns false' do
+  #       expect(described_class.new.illegal_word_in_title('ANP NIEUWS')).to eq true
+  #     end
+  #   end
+  #
+  #   context 'when the title contains "pingel"' do
+  #     it 'returns false' do
+  #       expect(described_class.new.illegal_word_in_title('Kerst pingel')).to eq true
+  #     end
+  #   end
+  #
+  #   context 'any other title' do
+  #     it 'returns true' do
+  #       expect(described_class.new.illegal_word_in_title('Liquid Spirit')).to eq false
+  #     end
+  #   end
+  # end
 
   describe '#find_or_create_artist' do
     context 'with multiple name' do

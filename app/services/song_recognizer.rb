@@ -32,7 +32,7 @@ class SongRecognizer
   end
 
   def handle_response(response)
-    @result = JSON.parse(response).with_indifferent_access
+    @result = JSON.parse(response)&.with_indifferent_access
     return false if @result[:matches].blank?
 
     @spotify_url = set_spotify_url
