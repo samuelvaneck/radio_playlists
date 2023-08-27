@@ -87,12 +87,15 @@ class SongImporter
   end
 
   def create_playlist
-    if scraper_import
-      import_from_scraper
-    elsif @radio_station.last_played_song != @song && !any_song_matches?
+    importer = if scraper_import
+                 SongImporter::ScraperImporter.new(radio_station: @radio_station, artists: @artists, song: @song)
+               else
+                 SongImporter::RecognizerImporter.new(radio_station: @radio_station, artists: @artists, song: @song)
+               end
+    if importer.may_import_song?
       add_song
     else
-      Rails.logger.info "*** #{@song.title} from #{artists_names} last song on #{@radio_station.name} ***"
+      importer.broadcast_error_message
     end
   end
 
