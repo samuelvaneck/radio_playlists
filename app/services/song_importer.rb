@@ -7,8 +7,8 @@ class SongImporter
   end
 
   def import
-    @importing_song = recognize_song || scrape_song
-    if @importing_song.blank?
+    @played_song = recognize_song || scrape_song
+    if @played_song.blank?
       Rails.logger.info('No importing song')
       return false
     elsif artist_name.blank?
@@ -20,10 +20,10 @@ class SongImporter
     elsif !song_recognized_twice?
       Rails.logger.info("#{title} from #{artist_name} recognized once on #{@radio_station.name}")
       return false
+    elsif artists.nil? || song.nil?
+      Rails.logger.info("No artists or song found for #{title} on #{@radio_station.name}")
+      false
     end
-
-    @artists, @song = @radio_station.process_track_data(artist_name, title, spotify_url, isrc_code)
-    return false if @artists.nil? || @song.nil?
 
     create_playlist
   rescue StandardError => e
@@ -35,23 +35,31 @@ class SongImporter
   private
 
   def title
-    @title ||= @importing_song.title
+    @title ||= @played_song.title
   end
 
   def artist_name
-    @artist_name ||= @importing_song.artist_name
+    @artist_name ||= @played_song.artist_name
   end
 
   def spotify_url
-    @spotify_url ||= @importing_song.spotify_url
+    @spotify_url ||= @played_song.spotify_url
   end
 
   def isrc_code
-    @isrc_code ||= @importing_song.isrc_code
+    @isrc_code ||= @played_song.isrc_code
   end
 
   def broadcast_timestamp
-    @broadcast_timestamp ||= @importing_song.broadcast_timestamp
+    @broadcast_timestamp ||= @played_song.broadcast_timestamp
+  end
+
+  def artists
+    @artists ||= TrackExtractor::ArtistsExtractor.new(played_song: @played_song)
+  end
+
+  def song
+    @song ||= TrackExtractor::SongExtractor.new(played_song: @played_song, artists:)
   end
 
   def recognize_song
@@ -82,19 +90,19 @@ class SongImporter
   end
 
   def scraper_import
-    @scraper_import ||= @importing_song.is_a?(TrackScraper)
+    @scraper_import ||= @played_song.is_a?(TrackScraper)
   end
 
   def create_playlist
-    importer = if scraper_import
-                 SongImporter::ScraperImporter.new(radio_station: @radio_station, artists: @artists, song: @song)
-               else
-                 SongImporter::RecognizerImporter.new(radio_station: @radio_station, artists: @artists, song: @song)
-               end
-    if importer.may_import_song?
+    @importer = if scraper_import
+                  SongImporter::ScraperImporter.new(radio_station: @radio_station, artists: @artists, song: @song)
+                else
+                  SongImporter::RecognizerImporter.new(radio_station: @radio_station, artists: @artists, song: @song)
+                end
+    if @importer.may_import_song?
       add_song
     else
-      importer.broadcast_error_message
+      @importer.broadcast_error_message
     end
   end
 
