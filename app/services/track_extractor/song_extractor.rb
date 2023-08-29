@@ -2,14 +2,13 @@
 
 class TrackExtractor::SongExtractor < TrackExtractor
   def extract
-    @track = spotify_track
     find_or_create_song
   end
 
   private
 
   def find_or_create_song
-    if @track.present? && @track&.track&.present?
+    if @track.present? && @track&.track.present?
       Song.spotify_track_to_song(@track)
     else
       songs = Song.where('lower(title) = ?', title.downcase)
@@ -30,8 +29,8 @@ class TrackExtractor::SongExtractor < TrackExtractor
              elsif query_songs
                query_songs
              else
-               song = Song.new(title:, artists:)
-               song.artists << artists
+               song = Song.new(title:, artists: @artists)
+               song.artists << @artists
                song
              end
 

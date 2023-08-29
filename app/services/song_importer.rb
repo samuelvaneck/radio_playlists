@@ -55,11 +55,15 @@ class SongImporter
   end
 
   def artists
-    @artists ||= TrackExtractor::ArtistsExtractor.new(played_song: @played_song)
+    @artists ||= TrackExtractor::ArtistsExtractor.new(played_song: @played_song, track: spotify_track).extract
   end
 
   def song
-    @song ||= TrackExtractor::SongExtractor.new(played_song: @played_song, artists:)
+    @song ||= TrackExtractor::SongExtractor.new(played_song: @played_song, track: spotify_track, artists:).extract
+  end
+
+  def spotify_track
+    @track ||= TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
   end
 
   def recognize_song

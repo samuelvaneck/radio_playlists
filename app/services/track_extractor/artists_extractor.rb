@@ -2,7 +2,6 @@
 
 class TrackExtractor::ArtistsExtractor < TrackExtractor
   def extract
-    @track = spotify_track
     find_or_create_artist
   end
 
