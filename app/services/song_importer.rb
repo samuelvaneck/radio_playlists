@@ -18,7 +18,7 @@ class SongImporter
       Rails.logger.info("Found illegal word in #{title}")
       return false
     elsif !song_recognized_twice?
-      Rails.logger.info("#{title} from #{artists_names} recognized once on #{@radio_station.name}")
+      Rails.logger.info("#{title} from #{artist_name} recognized once on #{@radio_station.name}")
       return false
     end
 
@@ -69,9 +69,8 @@ class SongImporter
   end
 
   def illegal_word_in_title
-    # catch more then 4 digits, forward slashes, 2 single qoutes,
-    # reklame/reclame/nieuws/pingel and 2 dots
-    if title.match(/\d{4,}|\/|'{2,}|(reklame|reclame|nieuws|pingel)|\.{2,}/i)
+    # 2 single qoutes, reklame/reclame/nieuws/pingel and 2 dots
+    if title.match(/'{2,}|(reklame|reclame|nieuws|pingel)|\.{2,}/i)
       true
     else
       false
@@ -101,7 +100,7 @@ class SongImporter
 
   def add_song
     Playlist.add_playlist(@radio_station, @song, broadcast_timestamp, scraper_import)
-    @song.update_artists(@artists) # if different_artists?
+    @song.update_artists(@artists) if different_artists?
 
     Rails.logger.info "*** Saved #{@song.title} (#{@song.id}) from #{artists_names} (#{artists_ids_to_s}) on #{@radio_station.name}! ***"
   end
@@ -116,7 +115,7 @@ class SongImporter
   end
 
   def different_artists?
-    (@song.artist_ids - Array.wrap(@artists).map(&:id)).present?
+    @song.artist_ids.sort != Array.wrap(@artists).map(&:id).sort
   end
 
   def artists_names
