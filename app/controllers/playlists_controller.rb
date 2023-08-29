@@ -4,8 +4,13 @@ class PlaylistsController < ApplicationController
   respond_to :html, :js
 
   def index
-    playlists = Playlist.last_played(params)
+    respond_with PlaylistSerializer.new(playlists.paginate(page: params[:page], per_page: 10))
+                                   .serializable_hash.to_json
+  end
 
-    respond_with PlaylistSerializer.new(playlists.paginate(page: params[:page], per_page: 10)).serializable_hash.to_json
+  private
+
+  def playlists
+    Playlist.last_played(params)
   end
 end

@@ -101,7 +101,7 @@ class SongImporter
 
   def add_song
     Playlist.add_playlist(@radio_station, @song, broadcast_timestamp, scraper_import)
-    @song.update_artists(@artists) if different_artists?
+    @song.update_artists(@artists) # if different_artists?
 
     Rails.logger.info "*** Saved #{@song.title} (#{@song.id}) from #{artists_names} (#{artists_ids_to_s}) on #{@radio_station.name}! ***"
   end
