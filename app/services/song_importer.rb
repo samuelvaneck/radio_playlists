@@ -99,9 +99,9 @@ class SongImporter
 
   def create_playlist
     @importer = if scraper_import
-                  SongImporter::ScraperImporter.new(radio_station: @radio_station, artists: @artists, song: @song)
+                  SongImporter::ScraperImporter.new(radio_station: @radio_station, artists:, song:)
                 else
-                  SongImporter::RecognizerImporter.new(radio_station: @radio_station, artists: @artists, song: @song)
+                  SongImporter::RecognizerImporter.new(radio_station: @radio_station, artists:, song:)
                 end
     if @importer.may_import_song?
       add_song
@@ -111,19 +111,10 @@ class SongImporter
   end
 
   def add_song
-    Playlist.add_playlist(@radio_station, @song, broadcast_timestamp, scraper_import)
-    @song.update_artists(@artists) if different_artists?
+    Playlist.add_playlist(@radio_station, song, broadcast_timestamp, scraper_import)
+    song.update_artists(@artists) if different_artists?
 
-    Rails.logger.info "*** Saved #{@song.title} (#{@song.id}) from #{artists_names} (#{artists_ids_to_s}) on #{@radio_station.name}! ***"
-  end
-
-  def import_from_scraper
-    last_added_scraper_song = @radio_station.playlists.scraper_imported&.order(created_at: :desc)&.first&.song
-    if any_song_matches? || last_added_scraper_song == @song
-      Rails.logger.info "#{@song.title} from #{artists_names} last song on #{@radio_station.name}"
-    else
-      add_song
-    end
+    Rails.logger.info "*** Saved #{song.title} (#{song.id}) from #{artists_names} (#{artists_ids_to_s}) on #{@radio_station.name}! ***"
   end
 
   def different_artists?
