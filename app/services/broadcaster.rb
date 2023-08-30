@@ -27,7 +27,7 @@ class Broadcaster
     new(message: "No artists or song found for #{title} on #{radio_station_name}", color: 'red').broadcast
   end
 
-  def self.error_during_import(error_message:, rado_station_name:)
+  def self.error_during_import(error_message:, radio_station_name:)
     new(message: "Error while importing song from #{radio_station_name}: #{error_message}", color: 'red').broadcast
   end
 
