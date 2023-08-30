@@ -17,7 +17,7 @@
     "d3-scale-chromatic": "^3.0.0",
     "esbuild": "0.16.1",
     "file-loader": "^6.2.0",
-    "jquery": "^3.7.0",
+    "jquery": "^3.7.1",
     "mini-css-extract-plugin": "^2.7.6",
     "pinia": "^2.1.6",
     "postcss": "^8.4.28",
