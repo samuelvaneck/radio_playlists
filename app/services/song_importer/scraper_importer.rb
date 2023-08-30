@@ -8,7 +8,7 @@ class SongImporter::ScraperImporter < SongImporter
   end
 
   def may_import_song?
-    not_last_added_song || !any_song_matches?
+    not_last_added_song && !any_song_matches?
   end
 
   def broadcast_error_message
