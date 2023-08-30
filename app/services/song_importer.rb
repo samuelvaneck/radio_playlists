@@ -9,26 +9,26 @@ class SongImporter
   def import
     @played_song = recognize_song || scrape_song
     if @played_song.blank?
-      Rails.logger.info('No importing song')
+      Broadcaster.no_importing_song
       return false
     elsif artist_name.blank?
-      Rails.logger.info('No importing artists')
+      Broadcaster.no_importing_artists
       return false
     elsif illegal_word_in_title
-      Rails.logger.info("Found illegal word in #{title}")
+      Broadcaster.illegal_word_in_title(title:)
       return false
     elsif !song_recognized_twice?
-      Rails.logger.info("#{title} from #{artist_name} recognized once on #{@radio_station.name}")
+      Broadcaster.not_recognized_twice(title:, artist_name:, radio_station_name: @radio_station.name)
       return false
     elsif artists.nil? || song.nil?
-      Rails.logger.info("No artists or song found for #{title} on #{@radio_station.name}")
+      Broadcaster.no_artists_or_song(title:, radio_station_name: @radio_station.name)
       false
     end
 
     create_playlist
   rescue StandardError => e
     Sentry.capture_exception(e)
-    Rails.logger.error "Error while importing song from #{@radio_station.name}: #{e.message}"
+    Broadcaster.error_during_import(error_message: e.message, radio_station_name: @radio_station.name)
     nil
   end
 
@@ -114,7 +114,7 @@ class SongImporter
     Playlist.add_playlist(@radio_station, song, broadcast_timestamp, scraper_import)
     song.update_artists(@artists) if different_artists?
 
-    Rails.logger.info "*** Saved #{song.title} (#{song.id}) from #{artists_names} (#{artists_ids_to_s}) on #{@radio_station.name}! ***"
+    Broadcaster.song_added(title: song.title, song_id: song.id, artists_names:, artist_ids: artists_ids_to_s, radio_station_name: @radio_station.name)
   end
 
   def different_artists?

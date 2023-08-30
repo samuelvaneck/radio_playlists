@@ -12,7 +12,7 @@ class SongImporter::ScraperImporter < SongImporter
   end
 
   def broadcast_error_message
-    Rails.logger.info "#{@song.title} from #{artists_names} last song on #{@radio_station.name}"
+    Broadcaster.last_song(title: song.title, artists_names:, radio_station_name: @radio_station.name)
   end
 
   private
