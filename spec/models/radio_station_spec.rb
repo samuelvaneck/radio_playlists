@@ -357,50 +357,50 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
   #   end
   # end
 
-  describe '#find_or_create_artist' do
-    context 'with multiple name' do
-      it 'returns the artists and not a karaoke version' do
-        spotify_track = Spotify::Track::Finder.new(artists: 'Martin Garrix & Clinton Kane', title: 'Drown')
-        spotify_track.execute
-        result = described_class.new.find_or_create_artist('Martin Garrix & Clinton Kane', spotify_track)
+  # describe '#find_or_create_artist' do
+  #   context 'with multiple name' do
+  #     it 'returns the artists and not a karaoke version' do
+  #       spotify_track = Spotify::Track::Finder.new(artists: 'Martin Garrix & Clinton Kane', title: 'Drown')
+  #       spotify_track.execute
+  #       result = described_class.new.find_or_create_artist('Martin Garrix & Clinton Kane', spotify_track)
+  #
+  #       expect(result.map(&:name)).to contain_exactly 'Martin Garrix', 'Clinton Kane'
+  #     end
+  #   end
+  # end
 
-        expect(result.map(&:name)).to contain_exactly 'Martin Garrix', 'Clinton Kane'
-      end
-    end
-  end
-
-  describe '#find_or_create_song' do
-    let!(:song_in_your_eyes_robin_schulz) { create :song, title: 'In Your Eyes', artists: [artist_robin_schulz, artist_alida] }
-    let!(:song_in_your_eyes_weekend) { create :song, title: 'In Your Eyes', artists: [artist_the_weeknd] }
-    let!(:artist_the_weeknd) { create :artist, name: 'The Weeknd' }
-    let!(:artist_robin_schulz) { create :artist, name: 'Robin Schulz' }
-    let!(:artist_alida) { create :artist, name: 'Alida' }
-
-    context 'with a song present with the same name but different artist(s)' do
-      it 'creates a new artist' do
-        song = described_class.new.song_check([song_in_your_eyes_robin_schulz], [artist_the_weeknd], 'In Your Eyes')
-
-        expect(song.artists).to contain_exactly artist_the_weeknd
-      end
-    end
-
-    context 'when the song is present with the same artist(s)' do
-      it 'doesnt create a new artist' do
-        song = described_class.new.song_check([song_in_your_eyes_weekend], [artist_the_weeknd], 'In Your Eyes')
-
-        expect(song.artists).to contain_exactly artist_the_weeknd
-      end
-    end
-
-    context 'when the title is differently capitalized' do
-      it 'it doesnt create a new song but finds the existing one' do
-        song = nil
-        expect do
-          song = described_class.new.song_check([song_in_your_eyes_weekend], [artist_the_weeknd], 'In your eyes')
-        end.to change(Playlist, :count).by(0)
-
-        expect(song.title).to eq 'In Your Eyes'
-      end
-    end
-  end
+  # describe '#find_or_create_song' do
+  #   let!(:song_in_your_eyes_robin_schulz) { create :song, title: 'In Your Eyes', artists: [artist_robin_schulz, artist_alida] }
+  #   let!(:song_in_your_eyes_weekend) { create :song, title: 'In Your Eyes', artists: [artist_the_weeknd] }
+  #   let!(:artist_the_weeknd) { create :artist, name: 'The Weeknd' }
+  #   let!(:artist_robin_schulz) { create :artist, name: 'Robin Schulz' }
+  #   let!(:artist_alida) { create :artist, name: 'Alida' }
+  #
+  #   context 'with a song present with the same name but different artist(s)' do
+  #     it 'creates a new artist' do
+  #       song = described_class.new.song_check([song_in_your_eyes_robin_schulz], [artist_the_weeknd], 'In Your Eyes')
+  #
+  #       expect(song.artists).to contain_exactly artist_the_weeknd
+  #     end
+  #   end
+  #
+  #   context 'when the song is present with the same artist(s)' do
+  #     it 'doesnt create a new artist' do
+  #       song = described_class.new.song_check([song_in_your_eyes_weekend], [artist_the_weeknd], 'In Your Eyes')
+  #
+  #       expect(song.artists).to contain_exactly artist_the_weeknd
+  #     end
+  #   end
+  #
+  #   context 'when the title is differently capitalized' do
+  #     it 'it doesnt create a new song but finds the existing one' do
+  #       song = nil
+  #       expect do
+  #         song = described_class.new.song_check([song_in_your_eyes_weekend], [artist_the_weeknd], 'In your eyes')
+  #       end.to change(Playlist, :count).by(0)
+  #
+  #       expect(song.title).to eq 'In Your Eyes'
+  #     end
+  #   end
+  # end
 end

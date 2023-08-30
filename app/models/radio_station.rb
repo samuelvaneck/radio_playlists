@@ -22,8 +22,6 @@ class RadioStation < ActiveRecord::Base
 
   validates :url, :processor, presence: true
 
-  include TrackDataProcessor
-
   def status
     return 'warning' if zero_playlist_items
 

@@ -7,51 +7,63 @@ class SongImporter
   end
 
   def import
-    @importing_song = recognize_song || scrape_song
-    if @importing_song.blank?
-      Rails.logger.info('No importing song')
+    @played_song = recognize_song || scrape_song
+    if @played_song.blank?
+      Broadcaster.no_importing_song
       return false
     elsif artist_name.blank?
-      Rails.logger.info('No importing artists')
+      Broadcaster.no_importing_artists
       return false
     elsif illegal_word_in_title
-      Rails.logger.info("Found illegal word in #{title}")
+      Broadcaster.illegal_word_in_title(title:)
       return false
     elsif !song_recognized_twice?
-      Rails.logger.info("#{title} from #{artist_name} recognized once on #{@radio_station.name}")
+      Broadcaster.not_recognized_twice(title:, artist_name:, radio_station_name: @radio_station.name)
       return false
+    elsif artists.nil? || song.nil?
+      Broadcaster.no_artists_or_song(title:, radio_station_name: @radio_station.name)
+      false
     end
-
-    @artists, @song = @radio_station.process_track_data(artist_name, title, spotify_url, isrc_code)
-    return false if @artists.nil? || @song.nil?
 
     create_playlist
   rescue StandardError => e
     Sentry.capture_exception(e)
-    Rails.logger.error "Error while importing song from #{@radio_station.name}: #{e.message}"
+    Broadcaster.error_during_import(error_message: e.message, radio_station_name: @radio_station.name)
     nil
   end
 
   private
 
   def title
-    @title ||= @importing_song.title
+    @title ||= @played_song.title
   end
 
   def artist_name
-    @artist_name ||= @importing_song.artist_name
+    @artist_name ||= @played_song.artist_name
   end
 
   def spotify_url
-    @spotify_url ||= @importing_song.spotify_url
+    @spotify_url ||= @played_song.spotify_url
   end
 
   def isrc_code
-    @isrc_code ||= @importing_song.isrc_code
+    @isrc_code ||= @played_song.isrc_code
   end
 
   def broadcast_timestamp
-    @broadcast_timestamp ||= @importing_song.broadcast_timestamp
+    @broadcast_timestamp ||= @played_song.broadcast_timestamp
+  end
+
+  def artists
+    @artists ||= TrackExtractor::ArtistsExtractor.new(played_song: @played_song, track: spotify_track).extract
+  end
+
+  def song
+    @song ||= TrackExtractor::SongExtractor.new(played_song: @played_song, track: spotify_track, artists:).extract
+  end
+
+  def spotify_track
+    @track ||= TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
   end
 
   def recognize_song
@@ -82,36 +94,27 @@ class SongImporter
   end
 
   def scraper_import
-    @scraper_import ||= @importing_song.is_a?(TrackScraper)
+    @scraper_import ||= @played_song.is_a?(TrackScraper)
   end
 
   def create_playlist
-    importer = if scraper_import
-                 SongImporter::ScraperImporter.new(radio_station: @radio_station, artists: @artists, song: @song)
-               else
-                 SongImporter::RecognizerImporter.new(radio_station: @radio_station, artists: @artists, song: @song)
-               end
-    if importer.may_import_song?
+    @importer = if scraper_import
+                  SongImporter::ScraperImporter.new(radio_station: @radio_station, artists:, song:)
+                else
+                  SongImporter::RecognizerImporter.new(radio_station: @radio_station, artists:, song:)
+                end
+    if @importer.may_import_song?
       add_song
     else
-      importer.broadcast_error_message
+      @importer.broadcast_error_message
     end
   end
 
   def add_song
-    Playlist.add_playlist(@radio_station, @song, broadcast_timestamp, scraper_import)
-    @song.update_artists(@artists) if different_artists?
+    Playlist.add_playlist(@radio_station, song, broadcast_timestamp, scraper_import)
+    song.update_artists(@artists) if different_artists?
 
-    Rails.logger.info "*** Saved #{@song.title} (#{@song.id}) from #{artists_names} (#{artists_ids_to_s}) on #{@radio_station.name}! ***"
-  end
-
-  def import_from_scraper
-    last_added_scraper_song = @radio_station.playlists.scraper_imported&.order(created_at: :desc)&.first&.song
-    if any_song_matches? || last_added_scraper_song == @song
-      Rails.logger.info "#{@song.title} from #{artists_names} last song on #{@radio_station.name}"
-    else
-      add_song
-    end
+    Broadcaster.song_added(title: song.title, song_id: song.id, artists_names:, artist_ids: artists_ids_to_s, radio_station_name: @radio_station.name)
   end
 
   def different_artists?
