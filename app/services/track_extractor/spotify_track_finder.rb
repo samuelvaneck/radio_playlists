@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 class TrackExtractor::SpotifyTrackFinder < TrackExtractor
   def find
+    return if played_song.blank?
+
     track = Spotify::Track::Finder.new(spotify_service_args)
     track.execute
     track

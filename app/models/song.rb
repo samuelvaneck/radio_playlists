@@ -28,6 +28,7 @@ class Song < ApplicationRecord
   scope :matching, lambda { |search_term|
     joins(:artists).where('title ILIKE ? OR artists.name ILIKE ?', "%#{search_term}%", "%#{search_term}%") if search_term
   }
+  scope :with_iscr, lambda { |isrc| where(isrc: isrc) }
 
   MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'
   ARTISTS_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
@@ -53,18 +54,6 @@ class Song < ApplicationRecord
 
   def self.search_title(title)
     where('title ILIKE ?', "%#{title}%")
-  end
-
-  def self.spotify_track_to_song(track)
-    song = Song.find_or_initialize_by(id_on_spotify: track.track['id'])
-    song.assign_attributes(
-      title: track.title,
-      spotify_song_url: track.spotify_song_url,
-      spotify_artwork_url: track.spotify_artwork_url,
-      isrc: track.isrc
-    )
-    song.save
-    song
   end
 
   def cleanup

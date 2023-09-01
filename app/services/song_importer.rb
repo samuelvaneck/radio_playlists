@@ -22,7 +22,7 @@ class SongImporter
       return false
     elsif artists.nil? || song.nil?
       Broadcaster.no_artists_or_song(title:, radio_station_name: @radio_station.name)
-      false
+      return false
     end
 
     create_playlist
@@ -112,7 +112,7 @@ class SongImporter
 
   def add_song
     Playlist.add_playlist(@radio_station, song, broadcast_timestamp, scraper_import)
-    song.update_artists(@artists) if different_artists?
+    song.update_artists(artists) if different_artists?
 
     Broadcaster.song_added(title: song.title, song_id: song.id, artists_names:, artist_ids: artists_ids_to_s, radio_station_name: @radio_station.name)
   end
@@ -122,11 +122,11 @@ class SongImporter
   end
 
   def artists_names
-    Array.wrap(@artists).map(&:name).join(', ')
+    Array.wrap(artists).map(&:name).join(', ')
   end
 
   def artists_ids_to_s
-    Array.wrap(@artists).map(&:id).join(' ')
+    Array.wrap(artists).map(&:id).join(' ')
   end
 
   ### check if any song played last hour matches the song we are importing

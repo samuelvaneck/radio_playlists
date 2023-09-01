@@ -9,7 +9,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
 
   def find_or_create_song
     if @track.present? && @track&.track.present?
-      Song.spotify_track_to_song(@track)
+      find_by_track
     else
       songs = Song.where('lower(title) = ?', title.downcase)
       song_check(songs)
@@ -40,5 +40,31 @@ class TrackExtractor::SongExtractor < TrackExtractor
   def query_songs
     artist_ids = Array.wrap(@artists.instance_of?(Array) ? @artists.map(&:id) : @artists.id)
     Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', title.downcase)
+  end
+
+  def find_by_track
+    existing_song.presence || Song.create(song_attributes)
+  end
+
+  def existing_song
+    Song.find_by(id_on_spotify:)
+  end
+
+  def id_on_spotify
+    @track&.track['id']
+  end
+
+  def isrc
+    @track.isrc
+  end
+
+  def song_attributes
+    {
+      title: @track.title,
+      spotify_song_url: @track.spotify_song_url,
+      spotify_artwork_url: @track.spotify_artwork_url,
+      id_on_spotify:,
+      isrc:
+    }
   end
 end
