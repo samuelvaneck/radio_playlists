@@ -2,7 +2,7 @@
 
 class SongImporter::ScraperImporter < SongImporter
   attr_reader :artists, :song
-  
+
   def initialize(radio_station:, artists:, song:)
     @radio_station = radio_station
     @artists = artists

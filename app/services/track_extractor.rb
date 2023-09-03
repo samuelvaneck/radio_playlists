@@ -12,26 +12,18 @@ class TrackExtractor
   private
 
   def title
-    return if played_song.blank?
-
     @title ||= played_song.title
   end
 
   def artist_name
-    return if played_song.blank?
-
     @artist_name ||= played_song.artist_name
   end
 
   def spotify_url
-    return if played_song.blank?
-
     @spotify_url ||= played_song.spotify_url
   end
 
   def isrc_code
-    return if played_song.blank?
-
     @isrc_code ||= played_song.isrc_code
   end
 end

@@ -28,7 +28,7 @@ class Song < ApplicationRecord
   scope :matching, lambda { |search_term|
     joins(:artists).where('title ILIKE ? OR artists.name ILIKE ?', "%#{search_term}%", "%#{search_term}%") if search_term
   }
-  scope :with_iscr, lambda { |isrc| where(isrc: isrc) }
+  scope :with_iscr, ->(isrc) { where(isrc: isrc) }
 
   MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'
   ARTISTS_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
