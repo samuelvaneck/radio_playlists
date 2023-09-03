@@ -84,6 +84,12 @@ radio_stations = [
     url: 'https://api.100p.nl/api/live?brand=100pnl',
     processor: 'slam_api_processor',
     stream_url: 'https://icecast.samuelvaneck.com/100pnl.mp3'
+  },
+  {
+    name: 'JOE',
+    url: 'https://api.joe.nl/2.0/tracks/plays?limit=1',
+    processor: 'qmusic_api_processor',
+    stream_url: 'https://icecast.samuelvaneck.com/joe.mp3'
   }
 ]
 
