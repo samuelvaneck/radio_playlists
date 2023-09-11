@@ -4,7 +4,7 @@ class ImportSongsAllRadioStationsJob < ApplicationJob
   queue_as :default
 
   def perform
-    RadioStation.all.each do |radio_station|
+    RadioStation.all.find_each do |radio_station|
       ImportSongJob.perform_async(radio_station.id)
       sleep 2
     end

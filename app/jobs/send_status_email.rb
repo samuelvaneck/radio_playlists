@@ -5,7 +5,7 @@ class SendStatusEmail < ApplicationJob
 
   def perform
     results = {}
-    RadioStation.all.each do |radio_station|
+    RadioStation.all.find_each do |radio_station|
       next if radio_station.blank?
 
       results[radio_station.status] ||= []
