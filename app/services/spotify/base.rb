@@ -14,7 +14,9 @@ module Spotify
       request['Authorization'] = "Bearer #{token}"
       request['Content-Type'] = 'application/json'
 
-      JSON(https.request(request).body)
+      Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
+        JSON(https.request(request).body)
+      end
     rescue StandardError => e
       if attempts < 3
         attempts += 1
@@ -26,16 +28,14 @@ module Spotify
     end
 
     def make_request_with_match(url)
-      Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
-        tracks = make_request(url)
-        items = Spotify::Track::Filter::ResultsDigger.new(tracks:).execute
+      tracks = make_request(url)
+      items = Spotify::Track::Filter::ResultsDigger.new(tracks:).execute
 
-        if tracks&.dig('tracks', 'items').present?
-          tracks['tracks']['items'] = add_match(items)
-          tracks
-        elsif tracks&.dig('album', 'album_type').present?
-          tracks
-        end
+      if tracks&.dig('tracks', 'items').present?
+        tracks['tracks']['items'] = add_match(items)
+        tracks
+      elsif tracks&.dig('album', 'album_type').present?
+        tracks
       end
     end
 
