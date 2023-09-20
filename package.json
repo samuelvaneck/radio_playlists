@@ -20,7 +20,7 @@
     "jquery": "^3.7.1",
     "mini-css-extract-plugin": "^2.7.6",
     "pinia": "^2.1.6",
-    "postcss": "^8.4.29",
+    "postcss": "^8.4.30",
     "postcss-import": "15.0.1",
     "regenerator-runtime": "^0.13.11",
     "sass": "^1.67.0",
