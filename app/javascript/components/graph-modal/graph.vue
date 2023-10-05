@@ -33,7 +33,15 @@
     },
     methods: {
       renderChart(timeValue = 'week') {
-        const objectType = this.object.hasOwnProperty('artists') ? 'songs' : 'artists';
+        let objectType;
+        if (!this.object.hasOwnProperty('artists') && !this.object.hasOwnProperty('songs')) {
+          objectType = 'songs'
+        } else if (this.object.hasOwnProperty('artists')) {
+          objectType = 'songs'
+        } else if (!this.object.hasOwnProperty('artists')) {
+          objectType = 'artists'
+        }
+
         fetch(`/${objectType}/${this.object.id}/graph_data?time=${timeValue}`)
           .then(response => response.json())
           .then(data => {

@@ -118,7 +118,6 @@
       },
       getLpIcon() {
         this.lpIcon = document.getElementById('section-1').getAttribute('data-lp-icon')
-        console.log(this.lpIcon)
       }
     },
     mounted: function() {
