@@ -34,6 +34,14 @@ class Chart < ApplicationRecord
     chart_index.blank? ? -1 : chart_index[0]
   end
 
+  def self.latest_song_chart
+    Chart.where('created_at > ?', Time.zone.now.beginning_of_day).where(chart_type: 'songs')[0]
+  end
+
+  def self.latest_artist_chart
+    Chart.where('created_at > ?', Time.zone.now.beginning_of_day).where(chart_type: 'artists')[0]
+  end
+
   private
 
   def yesterday_songs_chart
