@@ -29,17 +29,17 @@ class Chart < ApplicationRecord
     chart.save!
   end
 
-  def position(object_id)
-    chart_index = chart.map.with_index { |idx, i| return i if idx[0] == Integer(object_id, 10) }.compact
-    chart_index.blank? ? -1 : chart_index[0]
-  end
-
   def self.latest_song_chart
     Chart.where('created_at > ?', Time.zone.now.beginning_of_day).where(chart_type: 'songs')[0]
   end
 
   def self.latest_artist_chart
     Chart.where('created_at > ?', Time.zone.now.beginning_of_day).where(chart_type: 'artists')[0]
+  end
+
+  def position(object_id)
+    chart_index = chart.map.with_index { |idx, i| return i if idx[0] == Integer(object_id, 10) }.compact
+    chart_index.blank? ? -1 : chart_index[0]
   end
 
   private
