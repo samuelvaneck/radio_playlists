@@ -42,7 +42,13 @@ module GraphConcern
     end
 
     def graph_begin_date(time_value)
-      1.send(time_value.to_sym).ago
+      time = 1.send(time_value.to_sym).ago
+      case time_value
+      when 'day', 'week', 'month'
+        time.beginning_of_day
+      else
+        time.beginning_of_month
+      end
     end
 
     def playlists_time_slot_query
