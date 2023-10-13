@@ -1,3 +1,3 @@
 echo $CR_PAT | docker login ghcr.io --username samuelvaneck --password-stdin
-docker build -t ghcr.io/samuelvaneck/radio_playlists:latest .
+docker build -t ghcr.io/samuelvaneck/radio_playlists:latest --platform linux/amd64,linux/arm64 .
 docker push ghcr.io/samuelvaneck/radio_playlists:latest
