@@ -90,6 +90,12 @@ radio_stations = [
     url: 'https://api.joe.nl/2.0/tracks/plays?limit=1',
     processor: 'qmusic_api_processor',
     stream_url: 'https://icecast.samuelvaneck.com/joe.mp3'
+  },
+  {
+    name: 'Radio4All',
+    url: '',
+    processor: '',
+    stream_url: 'https://icecast.samuelvaneck.com/radio4all.mp3'
   }
 ]
 

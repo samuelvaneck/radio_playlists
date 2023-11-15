@@ -20,7 +20,8 @@ class RadioStation < ActiveRecord::Base
   has_many :artists, through: :songs
   has_many :song_recognizer_logs
 
-  validates :url, :processor, presence: true
+  validates :url, :processor, :name, presence: true
+  validates :name, uniqueness: true
 
   def status
     return 'warning' if zero_playlist_items
