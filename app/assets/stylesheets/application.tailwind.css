@@ -83,4 +83,26 @@
   .button-disabled {
     @apply opacity-50 cursor-not-allowed;
   }
+
+  .chart-image-container {
+    background-size: cover;
+    position: relative;
+    height: 100px; /* Some height */
+    width: 100px;
+  }
+
+  .chart-number {
+    color: white;
+    font-size: 50px; /* Responsive font size */
+    font-weight: bold;
+    margin: 0 auto; /* Center the text container */
+    padding: 10px;
+    width: 100%;
+    position: absolute;
+    text-align: center; /* Center text */
+    top: 85%; /* Position text in the middle */
+    left: 90%; /* Position text in the middle */
+    transform: translate(-50%, -50%); /* Position text in the middle */
+    mix-blend-mode: screen; /* This makes the cutout text possible */
+  }
 }

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
   resources :charts, only: %i[show]
 
-  root 'playlists#index'
+  root 'home#index'
 
   mount Sidekiq::Web => '/sidekiq'
   mount HealthBit.rack => '/health'

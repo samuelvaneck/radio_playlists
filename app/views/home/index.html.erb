@@ -1,0 +1,30 @@
+<div class="w-80">
+  <h1>Playlists</h1>
+  <div class="flex justify-between">
+    <%- @songs.each_with_index do |song, idx| %>
+      <div class="mx-5 my-5">
+        <div class="chart-image-container" style="background-image:url(<%= image_url(song.spotify_artwork_url) %>)">
+          <div class="chart-number"><%= idx+1 %></div>
+        </div>
+        <div>
+          <span><%= song.title %></span>
+          -
+          <span><%= song.artists.map(&:name).join(' ') %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="flex justify-between">
+    <%- @radio_stations.each do |radio_station| %>
+      <div class="mx-5 my-5">
+        <span><%= radio_station.name %></span>
+        -
+        <span><%= radio_station.status %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
