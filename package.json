@@ -2,7 +2,6 @@
   "name": "playlists",
   "private": true,
   "dependencies": {
-    "@headlessui/vue": "^1.7.17",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "7.2.4",
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -17,27 +16,17 @@
     "d3-scale-chromatic": "^3.0.0",
     "esbuild": "^0.19.8",
     "file-loader": "^6.2.0",
-    "jquery": "^3.7.1",
-    "mini-css-extract-plugin": "^2.7.7",
-    "pinia": "^2.1.7",
-    "postcss": "^8.4.33",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss": "^8.4.31",
     "postcss-import": "15.0.1",
     "regenerator-runtime": "^0.13.11",
     "sass": "^1.70.0",
     "sass-loader": "^13.3.3",
-    "tailwindcss": "^3.4.1",
-    "vue": "^3.4.15",
-    "vue-loader": "^17.4.2",
-    "webpack": "^5.90.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-fix-style-only-entries": "^0.6.1",
-    "webpack-remove-empty-scripts": "^1.0.4"
+    "tailwindcss": "^3.4.1"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/tailwind.css --minify"
   },
-  "devDependencies": {
-    "@vue/compiler-sfc": "^3.4.15"
-  }
+  "devDependencies": {}
 }
