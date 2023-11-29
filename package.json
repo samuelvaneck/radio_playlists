@@ -15,7 +15,7 @@
     "css-loader": "^6.9.1",
     "d3": "^7.8.5",
     "d3-scale-chromatic": "^3.0.0",
-    "esbuild": "0.16.1",
+    "esbuild": "^0.19.8",
     "file-loader": "^6.2.0",
     "jquery": "^3.7.1",
     "mini-css-extract-plugin": "^2.7.7",
@@ -34,7 +34,7 @@
     "webpack-remove-empty-scripts": "^1.0.4"
   },
   "scripts": {
-    "build": "webpack --config ./config/webpack/webpack.config.js",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/tailwind.css --minify"
   },
   "devDependencies": {
