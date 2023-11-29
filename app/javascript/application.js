@@ -31,3 +31,4 @@ document.addEventListener('DOMContentLoaded', () => {
   app.component('graphModal', GraphModal);
   app.mount('#app');
 })
+import "./controllers"
