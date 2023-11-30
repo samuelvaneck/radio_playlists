@@ -84,11 +84,21 @@
     @apply opacity-50 cursor-not-allowed;
   }
 
+  .tab-btn.active {
+    @apply dark:text-blue-500 dark:border-blue-500 text-blue-600 border-blue-600;
+  }
+
+  .tab-btn {
+    @apply hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 border-transparent;
+  }
+
   .chart-image-container {
     background-size: cover;
     position: relative;
-    height: 100px; /* Some height */
-    width: 100px;
+    height: 150px; /* Some height */
+    width: 150px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .chart-number {
@@ -101,7 +111,7 @@
     position: absolute;
     text-align: center; /* Center text */
     top: 85%; /* Position text in the middle */
-    left: 90%; /* Position text in the middle */
+    left: 50%; /* Position text in the middle */
     transform: translate(-50%, -50%); /* Position text in the middle */
     mix-blend-mode: screen; /* This makes the cutout text possible */
   }

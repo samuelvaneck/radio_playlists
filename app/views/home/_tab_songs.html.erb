@@ -1,0 +1,18 @@
+<!--  Songs -->
+<div class="tab-content mt-5" id='tab-songs'>
+  <div class="flex flex-col sm:flex-row">
+    <%- @songs.each_with_index do |song, idx| %>
+      <div class="flex-1">
+        <div class="w-full">
+          <div class="chart-image-container" style="background-image:url(<%= image_url(song.spotify_artwork_url) %>)">
+            <div class="chart-number"><%= (idx+1).to_s.rjust(3, '0') %></div>
+          </div>
+        </div>
+        <ul class="list-none text-center">
+          <li><%= song.title %></li>
+          <li class="italic text-sm"><%= song.artists.map(&:name).join(' ') %></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

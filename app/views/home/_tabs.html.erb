@@ -1,0 +1,44 @@
+<div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+  <ul class="flex -mb-px">
+    <li class="flex-auto me-2">
+      <button class="active inline-block p-4 border-b-2 rounded-t-lg tab-active tab-btn" data-tab="tab-songs">
+        Songs
+      </button>
+    </li>
+    <li class="flex-auto me-2">
+      <button class="inline-block p-4 border-b-2 rounded-t-lg tab-btn" data-tab="tab-artists">
+        Artists
+      </button>
+    </li>
+    <li class="flex-auto me-2">
+      <button class="inline-block p-4 border-b-2 rounded-t-lg tab-btn" data-tab="tab-radio-stations">
+        Radio stations
+      </button>
+    </li>
+  </ul>
+</div>
+
+<script>
+    // JavaScript to handle tab switching
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove 'active' class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                // Hide all tab contents
+                tabContents.forEach(content => content.classList.add('hidden'));
+
+                // Add 'active' class to the clicked button
+                button.classList.add('active');
+
+                // Show the corresponding tab content
+                const tabId = button.getAttribute('data-tab');
+                const tabContent = document.getElementById(tabId);
+                tabContent.classList.remove('hidden');
+            });
+        });
+    });
+</script>
