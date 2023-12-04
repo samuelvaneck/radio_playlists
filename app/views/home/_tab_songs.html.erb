@@ -4,7 +4,7 @@
     <%- @songs.each_with_index do |song, idx| %>
       <div class="flex flex-col md:flex-row">
         <!-- Image container -->
-        <div class="h-32 bg-cover w-32 bg-center relative origin-center rounded-md" style="background-image: url(<%= image_url(song.spotify_artwork_url) %>)">
+        <div class="h-32 bg-center bg-no-repeat md:bg-cover w-full md:w-32 relative origin-center rounded-md" style="background-image: url(<%= image_url(song.spotify_artwork_url) %>)">
           <!-- Text Container -->
           <div class="absolute inset-0 flex items-center justify-center">
             <div class="text-white text-center">
