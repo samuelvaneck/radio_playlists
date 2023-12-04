@@ -1,17 +1,28 @@
 <!--  Songs -->
 <div class="tab-content mt-5" id='tab-songs'>
-  <div class="flex flex-col sm:flex-row">
+  <div class="grid md:grid-cols-3 gap-4 sm:grid-cols-1 2xl:grid-cols-4">
     <%- @songs.each_with_index do |song, idx| %>
-      <div class="flex-1">
-        <div class="w-full">
-          <div class="chart-image-container" style="background-image:url(<%= image_url(song.spotify_artwork_url) %>)">
-            <div class="chart-number"><%= (idx+1).to_s.rjust(3, '0') %></div>
+      <div class="flex flex-col md:flex-row">
+        <!-- Image container -->
+        <div class="h-32 bg-cover w-32 bg-center relative origin-center rounded-md" style="background-image: url(<%= image_url(song.spotify_artwork_url) %>)">
+          <!-- Text Container -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-white text-center">
+              <div class="chart-number"><%= (idx+1).to_s.rjust(3, '0') %></div>
+            </div>
           </div>
         </div>
-        <ul class="list-none text-center">
-          <li><%= song.title %></li>
-          <li class="italic text-sm"><%= song.artists.map(&:name).join(' ') %></li>
-        </ul>
+        <div class="flex-1 ml-3 h-32">
+          <div class="flex flex-row md:flex-col">
+            <div class="flex-none h-16 w-3/4 md:w-full">
+              <div><%= song.title %></div>
+              <div class="italic text-sm"><%= song.artists.map(&:name).join(' ') %></div>
+            </div>
+            <div class="flex-auto mt-0 md:mt-5">
+              <button class="soft-button">Click!</button>
+            </div>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
