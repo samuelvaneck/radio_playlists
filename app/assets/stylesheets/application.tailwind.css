@@ -121,6 +121,6 @@
   }
 
   .search-input {
-    @apply w-32 h-12 px-2 transition-all duration-300 border border-gray-300 rounded-lg focus:w-80 focus:outline-none focus:border-blue-500
+    @apply w-32 h-12 px-2 transition-all duration-300 border border-gray-300 rounded-lg focus:w-80 focus:outline-none focus:border-slate-600
   }
 }
