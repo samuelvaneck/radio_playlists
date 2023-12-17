@@ -103,7 +103,7 @@
 
   .chart-number {
     color: white;
-    font-size: 50px; /* Responsive font size */
+    font-size: 150%; /* Responsive font size */
     font-weight: bold;
     margin: 0 auto; /* Center the text container */
     padding: 10px;
