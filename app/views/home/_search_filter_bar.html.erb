@@ -1,7 +1,7 @@
 <div class="flex flex-row justify-end my-2">
   <!-- search input -->
   <div class="mr-2">
-    <input type="text" class="search-input shadow-md" placeholder="Search"/>
+    <input type="text" id='search-input' class="search-input shadow-md" placeholder="Search"/>
   </div>
   <!-- filter icon -->
   <div class="mr-2">
@@ -30,3 +30,45 @@
     <% end %>
   </div>
 </div>
+
+<script>
+    function hashToUrlParameters(hash) {
+        const params = [];
+
+        for (const key in hash) {
+            if (hash.hasOwnProperty(key)) {
+                const encodedKey = encodeURIComponent(key);
+                const encodedValue = encodeURIComponent(hash[key]);
+                params.push(`${encodedKey}=${encodedValue}`);
+            }
+        }
+
+        return params.join('&');
+    }
+
+    let timeoutId;
+
+    function handleSearchInput(event) {
+        // Clear the previous timeout, if any
+        clearTimeout(timeoutId);
+
+        // Set a new timeout to wait for half a second before making the fetch request
+        timeoutId = setTimeout(async () => {
+            const searchPath = document.getElementsByClassName("tab-btn active")[0].getAttribute("data-search-url");
+            const value = event.target.value;
+            const params = { search_term: value };
+            const url = searchPath + "?" + hashToUrlParameters(params);
+
+            const response = await fetch(url)
+            const result = await response.json();
+            console.log(result);
+        }, 500)
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', handleSearchInput)
+    });
+
+
+</script>
