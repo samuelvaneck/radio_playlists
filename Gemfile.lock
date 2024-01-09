@@ -240,7 +240,7 @@ GEM
       shellany (~> 0.0)
     open3 (0.1.2)
     parallel (1.24.0)
-    parser (3.3.0.0)
+    parser (3.3.0.2)
       ast (~> 2.4.1)
       racc
     pg (1.5.4)
@@ -314,7 +314,7 @@ GEM
       redis-client (>= 0.17.0)
     redis-client (0.18.0)
       connection_pool
-    regexp_parser (2.8.3)
+    regexp_parser (2.9.0)
     reline (0.4.2)
       io-console (~> 0.5)
     responders (3.1.1)
@@ -364,7 +364,7 @@ GEM
       rubocop (~> 1.41)
     rubocop-factory_bot (2.25.0)
       rubocop (~> 1.33)
-    rubocop-performance (1.20.1)
+    rubocop-performance (1.20.2)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.30.0, < 2.0)
     rubocop-rails (2.23.1)
