@@ -38,6 +38,6 @@
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/tailwind.css --minify"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.4.5"
+    "@vue/compiler-sfc": "^3.4.7"
   }
 }
