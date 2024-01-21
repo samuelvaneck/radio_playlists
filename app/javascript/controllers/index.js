@@ -4,11 +4,14 @@
 
 import { application } from "./application"
 
+import GraphController from "./graph_controller"
+application.register("graph", GraphController)
+
+import PaginationController from "./pagination_controller"
+application.register("pagination", PaginationController)
+
 import SearchController from "./search_controller"
 application.register("search", SearchController)
 
 import ViewController from "./view_controller"
 application.register("view", ViewController)
-
-import PaginationController from './pagination_controller'
-application.register('pagination', PaginationController)

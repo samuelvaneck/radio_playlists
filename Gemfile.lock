@@ -541,7 +541,7 @@ DEPENDENCIES
   sprockets-rails
   stackprof
   stimulus-rails
-  tailwindcss-rails (~> 2.0)
+  tailwindcss-rails
   timecop
   turbolinks
   uglifier

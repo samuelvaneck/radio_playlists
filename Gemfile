@@ -34,7 +34,7 @@ gem 'cssbundling-rails', '~> 1.0'
 # Stimulas with Hotwire
 gem 'stimulus-rails'
 gem 'hotwire-rails'
-gem "tailwindcss-rails", "~> 2.0"
+gem 'tailwindcss-rails'
 
 # Until mail gem is updated
 # https://github.com/mikel/mail/pull/1439

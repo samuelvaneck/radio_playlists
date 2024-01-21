@@ -18,17 +18,19 @@ module.exports = {
       xl: '1280px',
       '2xl': '1536px',
     },
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      black: colors.black,
-      white: colors.white,
-      gray: colors.slate,
-      green: colors.emerald,
-      purple: colors.violet,
-      yellow: colors.amber,
-      pink: colors.fuchsia,
-      red: colors.red
+    extend: {
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        black: colors.black,
+        white: colors.white,
+        gray: colors.slate,
+        green: colors.emerald,
+        purple: colors.violet,
+        yellow: colors.amber,
+        pink: colors.fuchsia,
+        red: colors.red
+      },
     },
     flexGrow: {
       0: '0',
