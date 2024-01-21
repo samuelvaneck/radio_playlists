@@ -3,6 +3,8 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+import SearchController from './search_controller'
+application.register('search', SearchController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import ViewController from "./view_controller";
+application.register("view", ViewController)

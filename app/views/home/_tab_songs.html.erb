@@ -1,8 +1,4 @@
 <!--  Songs -->
-<div class="tab-content my-5" id='tab-songs'>
-  <% if params[:view].blank? || params[:view] == 'tiles' %>
-    <%= render 'songs/song_tiles' %>
-  <% elsif params[:view] == 'rows' %>
-    <%= render 'songs/song_bars' %>
-  <% end %>
-</div>
+<%= turbo_frame_tag 'tab-songs', class: 'tab-content my-5' do %>
+  <div class="border-t-4 border-blue-500 border-solid rounded-full h-16 w-16 animate-spin"></div>
+<% end %>

@@ -1,7 +1,9 @@
 <div class="flex flex-row justify-end my-2">
   <!-- search input -->
   <div class="mr-2">
-    <input type="text" id='search-input' class="search-input shadow-md" placeholder="Search"/>
+    <%= form_for songs_path, method: :get, data: { controller: 'search', action: 'input->search#submit' } do %>
+        <%= text_field_tag 'search-input', nil, placeholder: 'Search....', class: 'search-input shadow-md' %>
+    <% end %>
   </div>
   <!-- filter icon -->
   <div class="mr-2">
@@ -12,63 +14,5 @@
     </button>
   </div>
   <!-- view button -->
-  <div>
-    <% if params[:view] == 'rows' %>
-      <!-- tiles -->
-      <%= link_to root_path(view: 'tiles'), { class: 'inline-flex items-center px-4 py-2 rounded-md border border-slate-300 shadow-md transition transition-duration-300 hover:bg-slate-300', title: 'tiles' } do %>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-          <path class="text-slate-700" stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-        </svg>
-      <% end  %>
-    <%- elsif params[:view].blank? || params[:view] == 'tiles' %>
-      <!-- rows -->
-      <%= link_to root_path(view: 'rows'), { class: 'inline-flex items-center px-4 py-2 rounded-md border border-slate-300 shadow-md transition transition-duration-300 hover:bg-slate-300', title: 'rows' } do %>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-          <path class="text-slate-700" stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-        </svg>
-      <% end  %>
-    <% end %>
-  </div>
+  <%= render partial: 'home/view_buttons/view_button' %>
 </div>
-
-<script>
-    function hashToUrlParameters(hash) {
-        const params = [];
-
-        for (const key in hash) {
-            if (hash.hasOwnProperty(key)) {
-                const encodedKey = encodeURIComponent(key);
-                const encodedValue = encodeURIComponent(hash[key]);
-                params.push(`${encodedKey}=${encodedValue}`);
-            }
-        }
-
-        return params.join('&');
-    }
-
-    let timeoutId;
-
-    function handleSearchInput(event) {
-        // Clear the previous timeout, if any
-        clearTimeout(timeoutId);
-
-        // Set a new timeout to wait for half a second before making the fetch request
-        timeoutId = setTimeout(async () => {
-            const searchPath = document.getElementsByClassName("tab-btn active")[0].getAttribute("data-search-url");
-            const value = event.target.value;
-            const params = { search_term: value };
-            const url = searchPath + "?" + hashToUrlParameters(params);
-
-            const response = await fetch(url)
-            const result = await response.json();
-            console.log(result);
-        }, 500)
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const searchInput = document.getElementById('search-input');
-        searchInput.addEventListener('input', handleSearchInput)
-    });
-
-
-</script>

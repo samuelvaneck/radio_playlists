@@ -1,0 +1,18 @@
+<div data-controller="view">
+  <% if params[:view] == 'rows' %>
+    <%= render 'home/view_buttons/tiles' %>
+  <%- elsif params[:view].blank? || params[:view] == 'tiles' %>
+    <%= render 'home/view_buttons/rows' %>
+  <% end %>
+</div>
+
+<script>
+    function handleViewButtonClick(event) {
+
+    }
+
+    document.addEventListener("turbo:render", function () {
+        const viewButton = document.getElementById('view-button');
+        viewButton.addEventListener('click', handleViewButtonClick)
+    });
+</script>
