@@ -14,18 +14,18 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
-      colors: {
-        transparent: 'transparent',
-        current: 'currentColor',
-        black: colors.black,
-        white: colors.white,
-        gray: colors.slate,
-        green: colors.emerald,
-        purple: colors.violet,
-        yellow: colors.amber,
-        pink: colors.fuchsia,
-        red: colors.red
-      },
+    },
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      black: colors.black,
+      white: colors.white,
+      gray: colors.slate,
+      green: colors.emerald,
+      purple: colors.violet,
+      yellow: colors.amber,
+      pink: colors.fuchsia,
+      red: colors.red
     },
   },
   plugins: [

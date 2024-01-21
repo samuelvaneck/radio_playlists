@@ -114,4 +114,12 @@ module PlaylistHelper
       Playlist.where('artist_id = ? AND radio_station_id = ?', top_artist, radio_station_id).count
     end
   end
+
+  def song_index(idx, page = 1)
+    if page == 0
+      idx + 1
+    else
+      ((page - 1) * 24) + idx + 1
+    end
+  end
 end

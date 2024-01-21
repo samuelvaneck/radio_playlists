@@ -19,6 +19,8 @@ export default class extends Controller {
       const params = { search_term: value, view: view };
       const url = searchPath + "?" + this.hashToUrlParameters(params);
 
+      
+
       fetch(url, { headers: { Accept: 'text/vnd.turbo-stream.html' } })
           .then(response => response.text())
           .then(html => Turbo.renderStreamMessage(html))

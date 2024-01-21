@@ -1,4 +1,6 @@
 <!--  Songs -->
-<%= turbo_frame_tag 'tab-songs', class: 'tab-content my-5' do %>
-  <div class="border-t-4 border-blue-500 border-solid rounded-full h-16 w-16 animate-spin"></div>
-<% end %>
+<div data-controller="pagination" data-action="scroll->pagination#scroll" data-pagination-url-value="<%= songs_url %>" data-pagination-page-value="<%= 2 %>" style="overflow-y: scroll;height: calc(100vh - 185px)">
+  <%= turbo_frame_tag 'tab-songs', class: 'tab-content my-5' do %>
+    <div class="border-t-4 border-blue-500 border-solid rounded-full h-16 w-16 animate-spin"></div>
+  <% end %>
+</div>

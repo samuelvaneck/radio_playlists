@@ -5,7 +5,8 @@
       <!-- Text Container -->
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="text-white text-center">
-          <div class="chart-number"><%= (idx+1).to_s.rjust(3, '0') %></div>
+          <div class="chart-number"><%= (song_index(idx, params[:page].to_i)).to_s.rjust(3, '0') %></div>
+
         </div>
       </div>
     </div>
