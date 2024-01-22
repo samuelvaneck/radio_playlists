@@ -1,5 +1,5 @@
 <div id='modal-wrapper' class="hidden">
-  <div class="fixed inset-0 backdrop-blur-sm bg-gray-500 bg-opacity-50 transition-opacity" />
+  <div data-controller="graph" data-action="click->graph#closeModal" class="fixed inset-0 backdrop-blur-sm bg-gray-500 bg-opacity-50 transition-opacity" />
 
   <div class="fixed z-10 inset-0 overflow-y-auto">
     <div class="flex items-center sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-            <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" v-on:click="close">Close</button>
+            <button type="button" data-controller="graph" data-action='click->graph#closeModal' class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">Close</button>
           </div>
         </div>
       </div>
