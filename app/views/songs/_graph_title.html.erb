@@ -1,0 +1,7 @@
+<div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+  <%= image_tag(song.spotify_artwork_url) %>
+</div>
+<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+  <h3><%= song.title %></h3>
+  <h5 class="text-gray-500"><%= song.artists.map(&:name).join(' - ') %></h5>
+</div>

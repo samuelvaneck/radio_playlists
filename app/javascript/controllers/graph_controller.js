@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import * as d3 from 'd3';
 import { interpolateSpectral } from 'd3-scale-chromatic';
+import { get } from "@rails/request.js"
 
 // Connects to data-controller="graph"
 export default class extends Controller {
@@ -22,6 +23,7 @@ export default class extends Controller {
     modal.setAttribute('data-graph-data-url', url)
     const data = await this.graphData(url)
     this.renderChart(data, this.timeValue)
+    this.renderGraphTitle()
 
     modal.classList.remove('hidden')
   }
@@ -62,6 +64,11 @@ export default class extends Controller {
       button.classList.remove('button-active');
     }
     btn.classList.add('button-active');
+  }
+
+  renderGraphTitle(url) {
+    const objectUrl = new URL(this.url.replace('/graph_data', ''))
+    get(objectUrl.toString(), { responseKind: 'turbo-stream' })
   }
 
   renderChart(data, timeValue) {

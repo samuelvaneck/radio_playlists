@@ -20,7 +20,9 @@ class SongsController < ApplicationController
   end
 
   def show
-    render json: SongSerializer.new(@song).serializable_hash.to_json
+    render turbo_stream: [
+      turbo_stream.update('graph-title', partial: 'songs/graph_title', locals: { song: @song })
+    ]
   end
 
   def graph_data
