@@ -20,15 +20,13 @@
               </div>
             </div>
             <!-- graph buttons -->
-            <!--
             <div class="flex sm:items-start mt-2">
-              <button class="grow graph-button" >Day</button>
-              <button class="grow graph-button button-active" >Week</button>
-              <button class="grow graph-button">Month</button>
-              <button class="grow graph-button">Year</button>
-              <button class="grow graph-button">All</button>
+              <button class="grow graph-button" data-controller="graph" data-action="click->graph#reRenderChart" data-graph-time-param="day">Day</button>
+              <button class="grow graph-button button-active" data-controller="graph" data-action="click->graph#reRenderChart" data-graph-time-param="week">Week</button>
+              <button class="grow graph-button" data-controller="graph" data-action="click->graph#reRenderChart" data-graph-time-param="month">Month</button>
+              <button class="grow graph-button" data-controller="graph" data-action="click->graph#reRenderChart" data-graph-time-param="year">Year</button>
+              <button class="grow graph-button" data-controller="graph" data-action="click->graph#reRenderChart" data-graph-time-param="all">All</button>
             </div>
-            -->
             <!-- graph -->
             <div class="sm:flex sm:items-start mt-2">
               <div class='flex flex-col'>

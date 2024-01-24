@@ -19,14 +19,28 @@ export default class extends Controller {
     const modal = document.getElementById('modal-wrapper')
     const url = new URL(this.url)
 
+    modal.setAttribute('data-graph-data-url', url)
     const data = await this.graphData(url)
     this.renderChart(data, this.timeValue)
 
     modal.classList.remove('hidden')
   }
 
+  async reRenderChart(event) {
+    const modal = document.getElementById('modal-wrapper')
+    const url = new URL(modal.getAttribute('data-graph-data-url'))
+    const clickedBtn = this.element
+
+    this.timeValue = event.params.time
+    const data = await this.graphData(url)
+    this.clearChart()
+    this.setActiveBtn(clickedBtn)
+    this.renderChart(data, this.timeValue)
+  }
+
   closeModal() {
     const modal = document.getElementById('modal-wrapper')
+    modal.removeAttribute('data-graph-data-url')
     modal.classList.add('hidden')
     this.clearChart()
   }
@@ -40,6 +54,14 @@ export default class extends Controller {
   clearChart() {
     document.getElementById('graph').getElementsByTagName('svg')[0].innerHTML = '';
     document.getElementById('legend').getElementsByTagName('svg')[0].innerHTML = '';
+  }
+
+  setActiveBtn(btn) {
+    const buttons = document.getElementsByClassName('graph-button');
+    for (let button of buttons) {
+      button.classList.remove('button-active');
+    }
+    btn.classList.add('button-active');
   }
 
   renderChart(data, timeValue) {
