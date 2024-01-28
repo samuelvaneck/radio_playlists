@@ -4,8 +4,18 @@ class ArtistsController < ApplicationController
   before_action :set_artist, only: %i[show graph_data]
   def index
     artists = Artist.most_played(params)
-    artists = paginate_and_serialize(artists)
-    render json: artists
+    @artists = artists.paginate(page: params[:page], per_page: 24)
+
+    if params[:page].present?
+      render turbo_stream: [
+        turbo_stream.append('tab-artists', partial: 'artists/index', locals: { params: })
+      ]
+    else
+      render turbo_stream: [
+        turbo_stream.update('tab-artists', partial: 'artists/index', locals: { params: }),
+        turbo_stream.replace('view-button', partial: 'home/view_buttons/view_button', locals: { params: })
+      ]
+    end
   end
 
   def show

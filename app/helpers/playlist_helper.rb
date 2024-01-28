@@ -115,7 +115,7 @@ module PlaylistHelper
     end
   end
 
-  def song_index(idx, page = 1)
+  def item_index(idx, page = 1)
     if page == 0
       idx + 1
     else

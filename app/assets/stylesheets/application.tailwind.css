@@ -92,6 +92,11 @@
     @apply hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 border-transparent;
   }
 
+  .active-tab-content-wrapper {
+    overflow-y: scroll;
+    height: calc(100vh - 185px);
+  }
+
   .chart-image-container {
     background-size: cover;
     position: relative;

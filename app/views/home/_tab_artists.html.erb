@@ -1,3 +1,8 @@
-<div class="tab-content hidden" id='tab-artists'>
-  Artists
+<!--  Artists -->
+<div data-controller="pagination" data-action="scroll->pagination#scroll" data-pagination-url-value="<%= artists_url %>" data-pagination-page-value="<%= 2 %>" style="overflow-y: scroll;height: calc(100vh - 185px)">
+  <%= turbo_frame_tag 'tab-artists',  class: 'tab-content hidden my-5' do %>
+    <div class="flex justify-center items-center h-screen">
+      <div class="border-t-4 border-blue-600 border-solid rounded-full h-16 w-16 animate-spin"></div>
+    </div>
+  <% end %>
 </div>

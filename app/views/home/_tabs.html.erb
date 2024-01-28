@@ -25,11 +25,14 @@
         const tabContents = document.querySelectorAll('.tab-content');
 
         tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (event) => {
                 // Remove 'active' class from all buttons
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 // Hide all tab contents
-                tabContents.forEach(content => content.classList.add('hidden'));
+                tabContents.forEach(tabContent => {
+                    tabContent.classList.add('hidden')
+                    tabContent.parentNode.classList.remove('active-tab-content-wrapper')
+                });
 
                 // Add 'active' class to the clicked button
                 button.classList.add('active');
@@ -38,6 +41,13 @@
                 const tabId = button.getAttribute('data-tab');
                 const tabContent = document.getElementById(tabId);
                 tabContent.classList.remove('hidden');
+                tabContent.parentNode.classList.add('active-tab-content-wrapper');
+
+                url = new URL(button.dataset.searchUrl)
+
+                fetch(url, { headers: { Accept: 'text/vnd.turbo-stream.html' } })
+                  .then(response => response.text())
+                  .then(html => Turbo.renderStreamMessage(html))
             });
         });
     });
