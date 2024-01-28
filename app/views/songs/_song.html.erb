@@ -1,5 +1,5 @@
-<% if params[:view].blank? || params[:view] == 'tiles' %>
-  <%= render partial: 'songs/song_tiles', locals: { song:, idx: } %>
-<% elsif params[:view] == 'rows' %>
+<% if params[:view].blank? || params[:view] == 'rows' %>
   <%= render partial: 'songs/song_rows', locals: { song:, idx: } %>
+<% elsif params[:view] == 'tiles' %>
+  <%= render partial: 'songs/song_tiles', locals: { song:, idx: } %>
 <% end %>
