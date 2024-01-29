@@ -73,14 +73,63 @@
   }
 
   .graph-button {
-    @apply bg-white hover:bg-gray-100 text-gray-800 text-tiny mr-1 py-2 px-4 border border-gray-400 rounded shadow;
+    @apply border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white text-tiny mr-1 px-4 py-2 rounded shadow;
   }
 
   .button-active {
-    @apply border-b-4;
+    @apply bg-blue-500 text-white;
   }
 
   .button-disabled {
     @apply opacity-50 cursor-not-allowed;
+  }
+
+  .tab-btn.active {
+    @apply dark:text-blue-500 dark:border-blue-500 text-blue-600 border-blue-600;
+  }
+
+  .tab-btn {
+    @apply hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 border-transparent;
+  }
+
+  .active-tab-content-wrapper {
+    overflow-y: scroll;
+    height: calc(100vh - 185px);
+  }
+
+  .chart-image-container {
+    background-size: cover;
+    position: relative;
+    height: 150px; /* Some height */
+    width: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .chart-number {
+    color: white;
+    font-size: 150%; /* Responsive font size */
+    font-weight: bold;
+    margin: 0 auto; /* Center the text container */
+    padding: 10px;
+    width: 100%;
+    position: absolute;
+    text-align: center; /* Center text */
+    top: 85%; /* Position text in the middle */
+    left: 50%; /* Position text in the middle */
+    transform: translate(-50%, -50%); /* Position text in the middle */
+    mix-blend-mode: screen; /* This makes the cutout text possible */
+  }
+
+  .soft-button {
+    @apply py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:hover:bg-blue-900 dark:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600
+  }
+
+  .search-input {
+    @apply w-32 h-12 px-2 transition-all duration-300 border border-gray-300 rounded-lg focus:w-80 focus:outline-none focus:border-slate-600
+  }
+
+  .badge-gray {
+    @apply inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10
   }
 }

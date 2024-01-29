@@ -5,12 +5,24 @@ class SongsController < ApplicationController
 
   def index
     songs = Song.most_played(params)
-    songs = paginate_and_serialize(songs)
-    render json: songs
+    @songs = songs.paginate(page: params[:page], per_page: 24)
+
+    if params[:page].present?
+      render turbo_stream: [
+        turbo_stream.append('tab-songs', partial: 'songs/index', locals: { params: })
+      ]
+    else
+      render turbo_stream: [
+        turbo_stream.update('tab-songs', partial: 'songs/index', locals: { params: }),
+        turbo_stream.replace('view-button', partial: 'home/view_buttons/view_button', locals: { params: })
+      ]
+    end
   end
 
   def show
-    render json: SongSerializer.new(@song).serializable_hash.to_json
+    render turbo_stream: [
+      turbo_stream.update('graph-title', partial: 'songs/graph_title', locals: { song: @song })
+    ]
   end
 
   def graph_data
@@ -18,16 +30,6 @@ class SongsController < ApplicationController
   end
 
   private
-
-  def paginate_and_serialize(songs)
-    songs.paginate(page: params[:page], per_page: 10)
-         .map do |song|
-
-
-           serialized_song = SongSerializer.new(song).serializable_hash
-           [serialized_song, song.counter]
-         end
-  end
 
   def set_song
     @song = Song.find params[:id]

@@ -1,0 +1,8 @@
+<!-- Radio stations -->
+<div class="active-tab-content-wrapper" data-controller="pagination" data-action="scroll->pagination#scroll" data-pagination-url-value="<%= playlists_url %>" data-pagination-page-value="<%= 2 %>">
+  <%= turbo_frame_tag 'tab-playlists', class: 'tab-content hidden my-5' do %>
+    <div class="flex justify-center items-center h-screen">
+      <div class="border-t-4 border-blue-600 border-solid rounded-full h-16 w-16 animate-spin"></div>
+    </div>
+  <% end %>
+</div>

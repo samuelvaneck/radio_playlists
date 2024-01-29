@@ -31,6 +31,11 @@ gem 'will_paginate'
 gem 'jsbundling-rails', '~> 1.0'
 gem 'cssbundling-rails', '~> 1.0'
 
+# Stimulas with Hotwire
+gem 'stimulus-rails'
+gem 'hotwire-rails'
+gem 'tailwindcss-rails'
+
 # Until mail gem is updated
 # https://github.com/mikel/mail/pull/1439
 gem 'net-smtp', require: false

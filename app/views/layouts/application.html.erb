@@ -9,15 +9,15 @@
 
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
-  <%= javascript_include_tag 'application', "data-turbo-track": "reload", defer: true %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   <%= stylesheet_link_tag 'tailwind', "data-turbo-track": "reload", media: 'all' %>
 
   <%= favicon_link_tag 'radio.png' %>
   <%= favicon_link_tag 'radio.png', rel: 'apple-touch-icon', type: 'image/png' %>
 </head>
 <body>
-
-<%= yield %>
-
+    <main class="container mx-auto mt-4 px-5 flex">
+        <%= yield %>
+    </main>
 </body>
 </html>

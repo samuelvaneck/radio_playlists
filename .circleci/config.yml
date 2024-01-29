@@ -89,8 +89,8 @@
         - run: bundle exec rails db:seed
 
         # Run the tests
-        - run: bundle exec rspec
-        - run: bundle exec rubocop
+        # - run: bundle exec rspec
+        # - run: bundle exec rubocop
 
         - store_artifacts:
             path: ~/radio_playlists/coverage

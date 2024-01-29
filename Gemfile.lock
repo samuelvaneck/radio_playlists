@@ -164,6 +164,10 @@ GEM
     hashdiff (1.0.1)
     health_bit (0.2.0)
       rack
+    hotwire-rails (0.1.3)
+      rails (>= 6.0.0)
+      stimulus-rails
+      turbo-rails
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -423,11 +427,19 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     stackprof (0.2.26)
+    stimulus-rails (1.2.2)
+      railties (>= 6.0.0)
     stringio (3.1.0)
+    tailwindcss-rails (2.0.32-arm64-darwin)
+      railties (>= 6.0.0)
     thor (1.3.0)
     tilt (2.3.0)
     timecop (0.9.8)
     timeout (0.4.1)
+    turbo-rails (1.5.0)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -489,6 +501,7 @@ DEPENDENCIES
   foreman
   guard-rspec
   health_bit
+  hotwire-rails
   jaro_winkler
   jbuilder (~> 2.10)
   jsbundling-rails (~> 1.0)
@@ -527,6 +540,8 @@ DEPENDENCIES
   spring
   sprockets-rails
   stackprof
+  stimulus-rails
+  tailwindcss-rails
   timecop
   turbolinks
   uglifier

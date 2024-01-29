@@ -2,42 +2,27 @@
   "name": "playlists",
   "private": true,
   "dependencies": {
-    "@headlessui/vue": "^1.7.17",
-    "@hotwired/stimulus": "3.2.1",
-    "@hotwired/turbo-rails": "7.2.4",
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.0-beta.1",
+    "@rails/request.js": "^0.0.9",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.17",
     "build": "^0.1.4",
-    "core-js": "^3.35.1",
-    "css-loader": "^6.9.1",
     "d3": "^7.8.5",
     "d3-scale-chromatic": "^3.0.0",
-    "esbuild": "0.16.1",
-    "file-loader": "^6.2.0",
-    "jquery": "^3.7.1",
-    "mini-css-extract-plugin": "^2.7.7",
-    "pinia": "^2.1.7",
+    "esbuild": "^0.19.8",
     "postcss": "^8.4.33",
-    "postcss-import": "15.0.1",
-    "regenerator-runtime": "^0.13.11",
-    "sass": "^1.70.0",
-    "sass-loader": "^13.3.3",
-    "tailwindcss": "^3.4.1",
-    "vue": "^3.4.15",
-    "vue-loader": "^17.4.2",
-    "webpack": "^5.90.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-fix-style-only-entries": "^0.6.1",
-    "webpack-remove-empty-scripts": "^1.0.4"
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^16.0.0",
+    "postcss-nested": "^6.0.1",
+    "tailwindcss": "^3.4.1"
   },
   "scripts": {
-    "build": "webpack --config ./config/webpack/webpack.config.js",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/tailwind.css --minify"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/tailwind.css"
   },
-  "devDependencies": {
-    "@vue/compiler-sfc": "^3.4.15"
-  }
+  "devDependencies": {}
 }
