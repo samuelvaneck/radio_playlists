@@ -1,17 +1,16 @@
 <div class="block shadow-md transition duration-300 hover:bg-slate-300 p-1 rounded-md">
-  <div class="flex flex-col md:flex-row mb-1">
+  <div class="flex flex-row mb-1">
     <!-- Image container -->
-    <div class="h-32 bg-center bg-no-repeat md:bg-cover w-full md:w-32 relative origin-center rounded-tl-md" style="background-image: url(<%= image_url(song.spotify_artwork_url) %>)">
-      <!-- Text Container -->
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="text-white text-center">
-          <div class="chart-number"><%= (item_index(idx, params[:page].to_i)).to_s.rjust(3, '0') %></div>
-        </div>
-      </div>
+    <div class="h-16 w-16 md:h-32 md:w-32 rounded-tl-md">
+      <div><%= image_tag(song.spotify_artwork_url) %></div>
     </div>
-    <div class="flex-1 sm:mt-3 sm:ml-0 md:mt-0 md:ml-2 h-32">
-      <div class="flex flex-row md:flex-col">
-        <div class="flex-none h-16 w-3/4 md:w-full">
+    <div class="flex-1 mt-0 ml-2 h-16">
+      <div class="flex flex-col">
+        <div class="flex-none h-16  w-full">
+          <p>
+            <span class="badge-gray"><%= (item_index(idx, params[:page].to_i)).to_s.rjust(3, '0') %></span>
+            <span class="badge-gray"><%= song.counter %>x</span>
+          </p>
           <h3 class="text-md font-semibold"><%= song.title %></h3>
           <p class="text-sm text-gray-500"><%= song.artists.map(&:name).join(' ') %></p>
         </div>

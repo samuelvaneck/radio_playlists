@@ -1,24 +1,23 @@
-<li class="flex flex-col md:flex-row items-center mb-1 shadow-md transition duration-300 hover:bg-slate-300 p-1 rounded-md">
+<li class="flex flex-row items-center mb-1 shadow-md transition duration-300 hover:bg-slate-300 p-1 rounded-md">
   <div class="w-16">
     <!-- image container -->
-    <div class="h-16 bg-center bg-no-repeat w-16 relative origin-center rounded-l-md" style="background-image: url(<%= image_url(song.spotify_artwork_url) %>)">
-      <!-- Text Container -->
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="text-white text-center">
-          <div class="chart-number"><%= (item_index(idx, params[:page].to_i)).to_s.rjust(3, '0') %></div>
-        </div>
-      </div>
+    <div class="h-16 w-16 rounded-l-md">
+      <div><%= image_tag(song.spotify_artwork_url) %></div>
     </div>
   </div>
 
   <!-- text section -->
-  <div class="flex-grow md:ml-2">
+  <div class="flex-grow ml-2">
+    <p>
+      <span class="badge-gray"><%= (item_index(idx, params[:page].to_i)).to_s.rjust(3, '0') %></span>
+      <span class="badge-gray"><%= song.counter %>x</span>
+    </p>
     <h4 class="text-md font-semibold"><%= song.title %></h4>
     <p class="text-sm text-gray-500"><%= song.artists.map(&:name).join(' ') %></p>
   </div>
 
   <!-- Buttons -->
-  <div class="w-full md:w-64 space-x-2 md:order-1">
+  <div class="w-32 md:w-64 space-x-2 order-1">
     <div class="flex items-center justify-center">
       <!-- spotify icon -->
       <button class="flex-1 flex items-center justify-center py-3 bg-slate-100 rounded-bl-md">
