@@ -46,7 +46,7 @@ export default class extends Controller {
         const view = document.getElementById('view-button').dataset.current;
         const url = new URL(this.urlValue);
         url.searchParams.set('page', this.pageValue);
-        url.searchParams.set('search_value', value)
+        url.searchParams.set('search_term', value)
         url.searchParams.set('view', view)
 
         await get(url.toString(), {
