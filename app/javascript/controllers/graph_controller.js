@@ -54,8 +54,9 @@ export default class extends Controller {
   }
 
   clearChart() {
-    document.getElementById('graph').getElementsByTagName('svg')[0].innerHTML = '';
-    document.getElementById('legend').getElementsByTagName('svg')[0].innerHTML = '';
+    document.getElementById('graph').getElementsByTagName('svg')[0].innerHTML = ''
+    document.getElementById('legend').getElementsByTagName('svg')[0].innerHTML = ''
+    this.setActiveBtn(document.getElementById('graph-btn-week'))
   }
 
   setActiveBtn(btn) {
