@@ -53,10 +53,12 @@ export default class extends Controller {
     const view = document.getElementById('view-button').dataset.current
     const time = event.target.dataset.filterTimeParam
     const url = new URL(searchPath);
+    const radioStationId = document.getElementById('selected-radio-station').dataset.selectedRadioStationId
 
     url.searchParams.set('search_term', value)
     url.searchParams.set('view', view)
     url.searchParams.set('start_time', time)
+    url.searchParams.set('radio_station_id', radioStationId)
 
     this.showLoader()
     this.closeModal()
@@ -87,16 +89,26 @@ export default class extends Controller {
 
     url.searchParams.set('search_term', value)
     url.searchParams.set('view', view)
-    url.searchParams.set('radio_station_id', radioStationId)
+    if (radioStationId !== 'all') {
+      url.searchParams.set('radio_station_id', radioStationId)
+    }
 
     if (selectedRadioStation.getElementsByTagName('img').length > 0) {
       selectedRadioStation.getElementsByTagName('img')[0].remove()
     }
-    img.className = "h-5 w-5 flex-shrink-0 rounded-full";
-    img.src = radioStationLogo
-    selectedRadioStation.prepend(img);
+    if (radioStationId !== 'all') {
+      img.className = "h-5 w-5 flex-shrink-0 rounded-full";
+      img.src = radioStationLogo
+      selectedRadioStation.prepend(img);
+    }
 
-    document.getElementById('selected-radio-station-name').innerHTML = radioStationName
+    if (radioStationId !== 'all') {
+      document.getElementById('selected-radio-station-name').innerHTML = radioStationName
+      document.getElementById('selected-radio-station').dataset.selectedRadioStationId = radioStationId
+    } else {
+      document.getElementById('selected-radio-station-name').innerHTML = "All"
+      document.getElementById('selected-radio-station').dataset.selectedRadioStationId = ""
+    }
 
     this.showLoader()
     this.closeModal()
