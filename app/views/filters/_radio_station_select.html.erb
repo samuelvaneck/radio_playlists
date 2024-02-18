@@ -23,7 +23,7 @@
             data-modal-radio-station-name="<%= radio_station.name %>"
             data-modal-radio-station-logo="<%= image_path(radio_station.logo_path) %>">
           <div class="flex items-center">
-            <%= image_tag image_path(radio_station.logo_path), class: "h-5 w-5 flex-shrink-0 rounded-full" %>
+            <%= image_tag radio_station.logo_path, class: "h-5 w-5 flex-shrink-0 rounded-full" %>
             <span class="font-normal ml-3 block truncate"><%= radio_station.name %></span>
           </div>
         </li>

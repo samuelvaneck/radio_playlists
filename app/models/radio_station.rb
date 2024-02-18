@@ -77,7 +77,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def logo_path
-    "images/radio_station_logos/#{audio_file_name}.png"
+    "radio_station_logos/#{audio_file_name}.png"
   end
 
   def last_played_song
