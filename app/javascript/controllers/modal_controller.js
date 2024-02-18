@@ -3,34 +3,57 @@ import * as d3 from 'd3';
 import { interpolateSpectral } from 'd3-scale-chromatic';
 import { get } from "@rails/request.js"
 
-// Connects to data-controller="graph"
+// Connects to data-controller="modal"
 export default class extends Controller {
   static value = {
     url: String,
+    modalName: String,
     colourScale: Array,
     timeValue: String,
+    modal: HTMLElement,
+    modalContent: HTMLElement
   }
   initialize() {
     this.colourScale = d3.scaleOrdinal(d3.schemeCategory10)
   }
 
-  async openModal() {
-    this.url = this.element.dataset.graphUrl;
+  openModal(event) {
+    this.modalName = this.element.dataset.modalName
+    this.modal = document.getElementById('modal-wrapper')
+
+    switch (this.modalName) {
+      case 'graph':
+        this.setupAndRenderGraph()
+        this.modalContent = document.getElementById('graph-modal-content')
+        break;
+      case 'filter':
+        this.modalContent = document.getElementById('filter-modal-content')
+        break;
+    }
+
+    this.modal.classList.remove('hidden')
+    console.log(this.modalContent)
+    this.modalContent.classList.remove('hidden')
+  }
+
+  async setupAndRenderGraph() {
+    this.url = this.element.dataset.graphUrl
     this.timeValue = 'week'
-    const modal = document.getElementById('modal-wrapper')
     const url = new URL(this.url)
 
-    modal.setAttribute('data-graph-data-url', url)
+    this.modal.setAttribute('data-modal-data-url', url)
     const data = await this.graphData(url)
     this.renderChart(data, this.timeValue)
     this.renderGraphTitle()
+  }
 
-    modal.classList.remove('hidden')
+  applyFilter() {
+    console.log('hit')
   }
 
   async reRenderChart(event) {
     const modal = document.getElementById('modal-wrapper')
-    const url = new URL(modal.getAttribute('data-graph-data-url'))
+    const url = new URL(modal.getAttribute('data-modal-data-url'))
     const clickedBtn = this.element
 
     this.timeValue = event.params.time
@@ -41,9 +64,14 @@ export default class extends Controller {
   }
 
   closeModal() {
-    const modal = document.getElementById('modal-wrapper')
-    modal.removeAttribute('data-graph-data-url')
-    modal.classList.add('hidden')
+    this.modal = document.getElementById('modal-wrapper')
+    const modalContents = document.getElementsByClassName('modal-content')
+
+    this.modal.removeAttribute('data-modal-data-url')
+    this.modal.classList.add('hidden')
+    for (let modalContent of modalContents) {
+      modalContent.classList.add('hidden')
+    }
     this.clearChart()
   }
 

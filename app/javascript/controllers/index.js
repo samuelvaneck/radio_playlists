@@ -4,8 +4,8 @@
 
 import { application } from "./application"
 
-import GraphController from "./graph_controller"
-application.register("graph", GraphController)
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
 
 import PaginationController from "./pagination_controller"
 application.register("pagination", PaginationController)
