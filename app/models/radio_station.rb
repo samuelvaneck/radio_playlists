@@ -76,6 +76,10 @@ class RadioStation < ActiveRecord::Base
     Rails.root.join("tmp/audio/#{sanitize_file_name}")
   end
 
+  def logo_path
+    "images/radio_station_logos/#{audio_file_name}.png"
+  end
+
   def last_played_song
     playlists.order(created_at: :desc).first&.song
   end
