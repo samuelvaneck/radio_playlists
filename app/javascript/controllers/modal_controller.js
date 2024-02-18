@@ -47,8 +47,21 @@ export default class extends Controller {
     this.renderGraphTitle()
   }
 
-  applyFilter() {
-    console.log('hit')
+  async applyFilter(event) {
+    const searchPath = document.getElementsByClassName("tab-btn active")[0].getAttribute("data-search-url")
+    const value = document.getElementById('search-input').value
+    const view = document.getElementById('view-button').dataset.current
+    const time = event.target.dataset.filterTimeParam
+    const url = new URL(searchPath);
+
+    url.searchParams.set('search_term', value)
+    url.searchParams.set('view', view)
+    url.searchParams.set('start_time', time)
+
+    this.closeModal()
+    await get(url.toString(), {
+      responseKind: 'turbo-stream'
+    })
   }
 
   async reRenderChart(event) {
