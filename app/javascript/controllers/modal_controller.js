@@ -76,14 +76,27 @@ export default class extends Controller {
 
   async selectRadioStation(event) {
     const radioStationId = event.target.closest('li').dataset.modalRadioStationId
+    const radioStationName = event.target.closest('li').dataset.modalRadioStationName
+    const selectedRadioStation = document.getElementById('selected-radio-station')
+    const radioStationLogo = event.target.closest('li').dataset.modalRadioStationLogo
     const searchPath = document.getElementsByClassName("tab-btn active")[0].getAttribute("data-search-url")
     const value = document.getElementById('search-input').value
     const view = document.getElementById('view-button').dataset.current
     const url = new URL(searchPath);
+    const img = document.createElement("img");
 
     url.searchParams.set('search_term', value)
     url.searchParams.set('view', view)
     url.searchParams.set('radio_station_id', radioStationId)
+
+    if (selectedRadioStation.getElementsByTagName('img').length > 0) {
+      selectedRadioStation.getElementsByTagName('img')[0].remove()
+    }
+    img.className = "h-5 w-5 flex-shrink-0 rounded-full";
+    img.src = radioStationLogo
+    selectedRadioStation.prepend(img);
+
+    document.getElementById('selected-radio-station-name').innerHTML = radioStationName
 
     this.showLoader()
     this.closeModal()
@@ -124,6 +137,7 @@ export default class extends Controller {
     for (let modalContent of modalContents) {
       modalContent.classList.add('hidden')
     }
+    document.getElementById('radio-station-select-list').classList.add('hidden')
     this.clearChart()
   }
 
