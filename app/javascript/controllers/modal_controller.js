@@ -28,11 +28,11 @@ export default class extends Controller {
         break;
       case 'filter':
         this.modalContent = document.getElementById('filter-modal-content')
+          this.modal
         break;
     }
 
     this.modal.classList.remove('hidden')
-    console.log(this.modalContent)
     this.modalContent.classList.remove('hidden')
   }
 
@@ -58,12 +58,51 @@ export default class extends Controller {
     url.searchParams.set('view', view)
     url.searchParams.set('start_time', time)
 
+    this.showLoader()
     this.closeModal()
     await get(url.toString(), {
       responseKind: 'turbo-stream'
-    })
+    }).then(() => { this.hideLoader() })
   }
 
+  openRadioStationSelect() {
+    const selectList = document.getElementById('radio-station-select-list')
+    if (selectList.classList.contains('hidden')) {
+      selectList.classList.remove('hidden')
+    } else {
+      selectList.classList.add('hidden')
+    }
+  }
+
+  async selectRadioStation(event) {
+    const radioStationId = event.target.closest('li').dataset.modalRadioStationId
+    const searchPath = document.getElementsByClassName("tab-btn active")[0].getAttribute("data-search-url")
+    const value = document.getElementById('search-input').value
+    const view = document.getElementById('view-button').dataset.current
+    const url = new URL(searchPath);
+
+    url.searchParams.set('search_term', value)
+    url.searchParams.set('view', view)
+    url.searchParams.set('radio_station_id', radioStationId)
+
+    this.showLoader()
+    this.closeModal()
+    await get(url.toString(), {
+      responseKind: 'turbo-stream'
+    }).then(() => { this.hideLoader() })
+  }
+
+  showLoader() {
+    const loader = document.getElementById('loader')
+    loader.classList.remove('hidden');
+  }
+
+  hideLoader() {
+    const loader = document.getElementById('loader')
+    loader.classList.add('hidden');
+  }
+
+  // graph methods
   async reRenderChart(event) {
     const modal = document.getElementById('modal-wrapper')
     const url = new URL(modal.getAttribute('data-modal-data-url'))
