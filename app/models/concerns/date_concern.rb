@@ -10,6 +10,7 @@ module DateConcern
       return 1.week.ago if time == 'week'
       return 1.month.ago if time == 'month'
       return 1.year.ago if time == 'year'
+      return 100.years.ago if time == 'all'
 
       Time.zone.strptime(time, '%Y-%m-%dT%R')
     end
