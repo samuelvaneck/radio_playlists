@@ -2,7 +2,13 @@
   <div class="w-16">
     <!-- image container -->
     <div class="h-16 w-16 rounded-l-md overflow-hidden">
-      <div><%= image_tag(song.spotify_artwork_url) %></div>
+      <div>
+        <% if song.spotify_artwork_url.present? %>
+          <%= image_tag(song.spotify_artwork_url) %>
+        <% else %>
+          <%= image_tag('lp_icon.svg') %>
+        <% end %>
+      </div>
     </div>
   </div>
 

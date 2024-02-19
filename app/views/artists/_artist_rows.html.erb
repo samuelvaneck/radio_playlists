@@ -3,7 +3,11 @@
     <!-- image container -->
     <div class="h-16 w-16 rounded-l-md overflow-hidden">
       <div>
-        <%= image_tag(artist.spotify_artwork_url) %>
+        <% if artist.spotify_artwork_url.present? %>
+          <%= image_tag(artist.spotify_artwork_url) %>
+        <% else %>
+          <%= image_tag('lp_icon.svg') %>
+        <% end %>
       </div>
     </div>
   </div>

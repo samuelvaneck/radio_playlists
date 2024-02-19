@@ -2,7 +2,13 @@
   <div class="flex flex-row mb-1">
     <!-- Image container -->
     <div class="h-16 w-16 md:h-32 md:w-32 rounded-tl-md overflow-hidden">
-      <div><%= image_tag(song.spotify_artwork_url) %></div>
+      <div>
+        <% if song.spotify_artwork_url.present? %>
+          <%= image_tag(song.spotify_artwork_url) %>
+        <% else %>
+          <%= image_tag('lp_icon.svg') %>
+        <% end %>
+      </div>
     </div>
     <div class="flex-1 mt-0 ml-2 h-16">
       <div class="flex flex-col">
