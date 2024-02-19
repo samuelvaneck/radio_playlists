@@ -44,10 +44,16 @@ export default class extends Controller {
     async _fetchNewPage() {
         const value = document.getElementById('search-input').value;
         const view = document.getElementById('view-button').dataset.current;
+        const radioStationId = document.getElementById('selected-radio-station').dataset.selectedRadioStationId
+        const timeValue = document.getElementById('filter-modal-content')
+                                         .getElementsByClassName('button-active')[0]
+                                         .dataset.filterTimeParam
         const url = new URL(this.urlValue);
         url.searchParams.set('page', this.pageValue);
         url.searchParams.set('search_term', value)
         url.searchParams.set('view', view)
+        url.searchParams.set('radio_station_id', radioStationId)
+        url.searchParams.set('start_time', timeValue)
 
         await get(url.toString(), {
             responseKind: 'turbo-stream'
