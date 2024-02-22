@@ -74,6 +74,8 @@ class SongImporter
   end
 
   def scrape_song
+    return nil if @radio_station.url.blank? || @radio_station.processor.blank?
+
     scrapper = "TrackScraper::#{@radio_station.processor.camelcase}".constantize.new(@radio_station)
     return nil unless scrapper.last_played_song
 

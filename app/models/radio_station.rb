@@ -20,7 +20,7 @@ class RadioStation < ActiveRecord::Base
   has_many :artists, through: :songs
   has_many :song_recognizer_logs
 
-  validates :url, :processor, :name, presence: true
+  validates :name, presence: true
   validates :name, uniqueness: true
 
   def status
