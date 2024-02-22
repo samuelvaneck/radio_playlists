@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  overflow-y: hidden;
+}
+
 @layer components {
   .wrapper {
     @apply bg-white hover:bg-gray-800 shadow-xl hover:shadow-none cursor-pointer w-48 h-auto rounded-3xl flex flex-col items-center justify-center;
