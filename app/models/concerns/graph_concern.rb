@@ -42,7 +42,7 @@ module GraphConcern
     end
 
     def graph_begin_date(time_value)
-      1.send(time_value.to_sym).ago
+      1.send(time_value.to_sym).ago.beginning_of_day
     end
 
     def playlists_time_slot_query
