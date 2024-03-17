@@ -2,12 +2,31 @@ import * as React from 'react'
 import Tab from './Tab'
 import { useState } from "react";
 
-function TabGroup() {
-    const tabs = [["Songs", "/songs"], ["Artists", "/artists"], ["Radio stations", "/playlists"]]
+function TabGroup(props) {
+    const tabs = props.tabs
     const [selectedTab, setSelectedTab] = useState(0)
 
-    const handleTabClick = (tab) => {
-        setSelectedTab(tab)
+    const handleTabClick = (event, tabIndex) => {
+        const tabContents = document.querySelectorAll('.tab-content');
+        const tabName = tabs[tabIndex][0].toLowerCase()
+        const searchPath = tabs[tabIndex][1]
+        const button = event.target
+        const tabId = button.getAttribute('data-tab');
+        const tabContent = document.getElementById(tabId);
+
+        setSelectedTab(tabIndex)
+        tabContents.forEach(tabContent => {
+            tabContent.classList.add('hidden')
+            tabContent.parentNode.classList.remove('active-tab-content-wrapper')
+        })
+
+        tabContent.classList.remove('hidden');
+        tabContent.parentNode.classList.add('active-tab-content-wrapper');
+
+        const url = new URL(searchPath)
+        fetch(url, { headers: { Accept: 'text/vnd.turbo-stream.html' } })
+            .then(response => response.text())
+            .then(html => Turbo.renderStreamMessage(html))
     }
 
     return (
@@ -20,6 +39,7 @@ function TabGroup() {
                                 searchPath={tab[1]}
                                 tabIndex={index}
                                 activeTab={selectedTab}
+                                dataTabAttribute={tab[2]}
                                 onTabClick={handleTabClick} />
                 })}
             </ul>
