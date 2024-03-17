@@ -4,10 +4,11 @@ module.exports = {
   mode: 'jit',
   enabled: ["production", "staging"].includes(process.env.NODE_ENV),
   content: [
-    '/app/**/*.html.erb',
+    './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
-    './app/javascript/**/*.js',
-    "./app/javascript/**/*.vue"
+    './app/assets/stylesheets/**/*.css',
+    './app/javascript/**/*.jsx',
+    './app/assets/builds/**/*.js'
   ],
   darkMode: 'media',
   theme: {

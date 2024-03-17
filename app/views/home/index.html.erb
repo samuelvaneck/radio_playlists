@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Playlists</h1>
   <div class="w-full">
-    <%= render 'tabs' %>
+    <x-tab-group props-json='{ "tabs": [["Songs", "<%= songs_url %>", "tab-songs"], ["Artists", "<%= artists_url %>", "tab-artists"], ["Radio stations", "<%= playlists_url %>", "tab-playlists"]] }'  %>></x-tab-group>
     <%= render 'search_filter_bar' %>
     <%= render 'tab_songs' %>
     <%= render 'tab_artists' %>
