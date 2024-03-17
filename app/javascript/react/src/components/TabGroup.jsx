@@ -8,10 +8,8 @@ function TabGroup(props) {
 
     const handleTabClick = (event, tabIndex) => {
         const tabContents = document.querySelectorAll('.tab-content');
-        const tabName = tabs[tabIndex][0].toLowerCase()
         const searchPath = tabs[tabIndex][1]
-        const button = event.target
-        const tabId = button.getAttribute('data-tab');
+        const tabId = tabs[tabIndex][2]
         const tabContent = document.getElementById(tabId);
 
         setSelectedTab(tabIndex)
@@ -39,7 +37,6 @@ function TabGroup(props) {
                                 searchPath={tab[1]}
                                 tabIndex={index}
                                 activeTab={selectedTab}
-                                dataTabAttribute={tab[2]}
                                 onTabClick={handleTabClick} />
                 })}
             </ul>
