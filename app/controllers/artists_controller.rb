@@ -6,16 +6,23 @@ class ArtistsController < ApplicationController
     artists = Artist.most_played(params)
     @artists = artists.paginate(page: params[:page], per_page: 24)
 
-    if params[:page].present?
-      render turbo_stream: [
-        turbo_stream.append('tab-artists', partial: 'artists/index', locals: { params: })
-      ]
-    else
-      render turbo_stream: [
-        turbo_stream.update('tab-artists', partial: 'artists/index', locals: { params: }),
-        turbo_stream.replace('view-button', partial: 'home/view_buttons/view_button', locals: { params: })
-      ]
+    respond_to do |format|
+      format.turbo_stream do
+        if params[:page].present?
+          render turbo_stream: [
+            turbo_stream.append('tab-artists', partial: 'artists/index', locals: { params: })
+          ]
+        else
+          render turbo_stream: [
+            turbo_stream.update('tab-artists', partial: 'artists/index', locals: { params: }),
+            turbo_stream.replace('view-button', partial: 'home/view_buttons/view_button', locals: { params: })
+          ]
+        end
+      end
+
+      format.json { render json: ArtistSerializer.new(@artists).serializable_hash.to_json }
     end
+
   end
 
   def show
