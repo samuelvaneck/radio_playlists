@@ -22,6 +22,7 @@ class SongSerializer
              :fullname,
              :spotify_song_url,
              :spotify_artwork_url,
+             :counter,
              :artists
 
   def artists
