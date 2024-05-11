@@ -25,7 +25,7 @@ class PlaylistsController < ApplicationController
   private
 
   def playlists
-    Playlist.last_played(params)
+    Playlist.includes([:song, :radio_station]).last_played(params)
   end
 
   def pagination_data

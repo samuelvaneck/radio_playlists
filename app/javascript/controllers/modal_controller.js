@@ -58,7 +58,7 @@ export default class extends Controller {
     url.searchParams.set('search_term', value)
     url.searchParams.set('view', view)
     url.searchParams.set('start_time', time)
-    url.searchParams.set('radio_station_id', radioStationId)
+    url.searchParams.set('radio_station_ids', radioStationId)
 
     this.showLoader()
     this.closeModal()
@@ -90,7 +90,7 @@ export default class extends Controller {
     url.searchParams.set('search_term', value)
     url.searchParams.set('view', view)
     if (radioStationId !== 'all') {
-      url.searchParams.set('radio_station_id', radioStationId)
+      url.searchParams.set('radio_station_ids', radioStationId)
     }
 
     if (selectedRadioStation.getElementsByTagName('img').length > 0) {

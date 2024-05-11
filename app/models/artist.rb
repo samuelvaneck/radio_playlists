@@ -31,7 +31,7 @@ class Artist < ApplicationRecord
     Artist.joins(:playlists)
           .played_between(date_from_params(time: params[:start_time], fallback: 1.week.ago),
                           date_from_params(time: params[:end_time], fallback: Time.zone.now))
-          .played_on(params[:radio_station_id])
+          .played_on(params[:radio_station_ids])
           .matching(params[:search_term])
           .select("artists.id,
                    artists.name,

@@ -4,7 +4,7 @@ class SongsController < ApplicationController
   before_action :song, only: %i[show graph_data]
 
   def index
-    songs = Song.most_played(params)
+    songs = Song.includes([:artists]).most_played(params)
     @songs = songs.paginate(page: params[:page], per_page: 24)
 
     respond_to do |format|
