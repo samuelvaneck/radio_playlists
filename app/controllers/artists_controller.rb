@@ -20,7 +20,7 @@ class ArtistsController < ApplicationController
         end
       end
 
-      format.json { render json: ArtistSerializer.new(@artists).serializable_hash.to_json }
+      format.json { render json: ArtistSerializer.new(@artists).serializable_hash.merge(pagination_data).to_json }
     end
 
   end
@@ -37,15 +37,13 @@ class ArtistsController < ApplicationController
 
   private
 
-  def paginate_and_serialize(artists)
-    artists.paginate(page: params[:page], per_page: 10)
-            .map do |artist|
-              serialized_artist = ArtistSerializer.new(artist).serializable_hash
-              [serialized_artist, artist.counter]
-            end
-  end
-
   def set_artist
     @artist = Artist.find params[:id]
+  end
+
+  def pagination_data
+    return {} if @artists.blank?
+
+    { total_entries: @artists.total_entries || 0, total_pages: @artists.total_pages || 0, current_page: @artists.current_page }
   end
 end

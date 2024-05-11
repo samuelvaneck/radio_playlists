@@ -21,7 +21,7 @@ class SongsController < ApplicationController
         end
       end
 
-      format.json { render json: SongSerializer.new(@songs).serializable_hash.to_json }
+      format.json { render json: SongSerializer.new(@songs).serializable_hash.merge(pagination_data).to_json }
     end
   end
 
@@ -45,5 +45,11 @@ class SongsController < ApplicationController
 
   def song
     @song = Song.find params[:id]
+  end
+
+  def pagination_data
+    return {} if @songs.blank?
+
+    { total_entries: @songs.total_entries || 0, total_pages: @songs.total_pages || 0, current_page: @songs.current_page }
   end
 end

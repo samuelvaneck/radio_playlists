@@ -18,7 +18,7 @@ class PlaylistsController < ApplicationController
         end
       end
 
-      format.json { render json: PlaylistSerializer.new(@playlists).serializable_hash.to_json }
+      format.json { render json: PlaylistSerializer.new(@playlists).serializable_hash.merge(pagination_data).to_json }
     end
   end
 
@@ -26,5 +26,11 @@ class PlaylistsController < ApplicationController
 
   def playlists
     Playlist.last_played(params)
+  end
+
+  def pagination_data
+    return {} if @playlists.blank?
+
+    { total_entries: @playlists.total_entries || 0, total_pages: @playlists.total_pages || 0, current_page: @playlists.current_page }
   end
 end
