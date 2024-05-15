@@ -22,8 +22,11 @@ class SongSerializer
              :fullname,
              :spotify_song_url,
              :spotify_artwork_url,
-             :counter,
              :artists
+
+  attribute :counter do |object|
+    object.counter if object.respond_to?(:counter)
+  end
 
   def artists
     object.artists.map do |artist|
