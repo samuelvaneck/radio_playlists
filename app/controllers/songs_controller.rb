@@ -38,7 +38,7 @@ class SongsController < ApplicationController
   end
 
   def graph_data
-    render json: @song.graph_data(params[:time])
+    render json: @song.graph_data(params[:time] || params[:start_time])
   end
 
   private
