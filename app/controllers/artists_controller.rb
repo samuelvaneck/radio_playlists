@@ -32,7 +32,7 @@ class ArtistsController < ApplicationController
   end
 
   def graph_data
-    render json: @artist.graph_data(params[:time])
+    render json: @artist.graph_data(params[:time] || params[:start_time])
   end
 
   private
