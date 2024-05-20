@@ -13,7 +13,7 @@ class RadioStationsController < ApplicationController
   end
 
   def status
-    respond_with @radio_station.status_data
+    render json: @radio_station.status_data
   end
 
   private
