@@ -6,8 +6,7 @@ module Api
       before_action :set_radio_station, except: %i[index]
 
       def index
-        radio_stations = RadioStation.all
-        render json: RadioStationSerializer.new(radio_stations).serializable_hash.to_json
+        render json: RadioStationSerializer.new(RadioStation.all).serializable_hash.to_json
       end
 
       def show
