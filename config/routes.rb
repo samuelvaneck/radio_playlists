@@ -19,18 +19,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :playlists, only: %i[index show]
-  resources :artists, only: %i[index show] do
-    get :graph_data, on: :member
-  end
-  resources :songs, only: %i[index show] do
-    get :graph_data, on: :member
-  end
-  resources :radio_stations, only: %i[index show] do
-    get :status, on: :member
-  end
-  resources :charts, only: %i[show]
-
   mount Sidekiq::Web => '/sidekiq'
   mount HealthBit.rack => '/health'
 end

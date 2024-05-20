@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-describe SongsController do
+describe Api::V1::SongsController do
   let(:artist) { create :artist }
   let(:song) { create :song, artists: [artist] }
-  let(:playlist_1) { create :playlist, :filled, song: }
-  let(:playlist_2) { create :playlist, :filled, song: }
-  let(:playlists) { create_list :playlist, 5, :filled }
+  let!(:playlist_1) { create :playlist, :filled, song: }
+  let!(:playlist_2) { create :playlist, :filled, song: }
+  let!(:playlists) { create_list :playlist, 5, :filled }
 
   describe 'GET #index' do
     context 'with no search params' do
@@ -19,9 +19,6 @@ describe SongsController do
       end
 
       before do
-        playlist_1
-        playlist_2
-        playlists
         get :index, params: { format: :json }
       end
 
@@ -38,12 +35,6 @@ describe SongsController do
       let(:json) { JSON.parse(response.body) }
       let(:serialized_song) { SongSerializer.new(Song.find(song.id)).serializable_hash.as_json }
 
-      before do
-        playlist_1
-        playlist_2
-        playlists
-      end
-
       it 'only returns the search song' do
         get :index, params: { format: :json, search_term: song.title }
         json = JSON.parse(response.body)
@@ -55,12 +46,6 @@ describe SongsController do
     context 'filtering by radio station' do
       let(:json) { JSON.parse(response.body) }
       let(:serialized_song) { SongSerializer.new(Song.find(song.id)).serializable_hash.as_json }
-
-      before do
-        playlist_1
-        playlist_2
-        playlists
-      end
 
       it 'only returns the songs that are played by the radio_station' do
         get :index, params: { format: :json, radio_station_id: playlist_1.radio_station.id }

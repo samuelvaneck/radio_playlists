@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe ArtistsController do
+describe Api::V1::ArtistsController do
   let(:artist) { create :artist }
   let(:song) { create :song, artists: [artist] }
   let(:playlist_1) { create :playlist, :filled, song: }

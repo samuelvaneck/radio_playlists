@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe PlaylistsController do
+describe Api::V1::PlaylistsController do
   let(:radio_station_one) { create :radio_station }
   let(:radio_station_two) { create :radio_station }
   let(:artist_one) { create :artist }
