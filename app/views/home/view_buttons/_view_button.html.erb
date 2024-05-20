@@ -1,7 +1,0 @@
-<div data-controller="view">
-  <% if params[:view] == 'tiles' %>
-    <%= render 'home/view_buttons/rows' %>
-  <%- elsif params[:view].blank? || params[:view] == 'rows' %>
-    <%= render 'home/view_buttons/tiles' %>
-  <% end %>
-</div>

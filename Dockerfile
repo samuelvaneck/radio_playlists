@@ -14,8 +14,9 @@ RUN apt-get update -qq && \
 
 RUN wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | tee /etc/apt/trusted.gpg.d/songrec.asc
 RUN add-apt-repository 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu focal main'
-RUN apt update --allow-insecure-repositories
-RUN apt install songrec -y --allow-unauthenticated
+# RUN apt update --allow-insecure-repositories
+# RUN apt install songrec -y --allow-unauthenticated
+RUN apt install songrec -y
 RUN apt auto-clean && apt auto-remove
 
 ARG RAILS_ENV=production
@@ -34,4 +35,3 @@ RUN bundle config set deployment 'true'
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle config set --local without 'development test'
 RUN bundle install --jobs "$(nproc --all)" --retry 3
-RUN SECRET_KEY_BASE=1 RAILS_BUILD=1 bundle exec rails assets:precompile --jobs "$(nproc --all)"

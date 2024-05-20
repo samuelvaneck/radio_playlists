@@ -1,5 +1,0 @@
-<% if params[:view].blank? || params[:view] == 'rows' %>
-  <%= render partial: 'playlists/playlist_rows', locals: { playlist:, idx: } %>
-<% elsif params[:view] == 'tiles' %>
-  <%= render partial: 'playlists/playlist_tiles', locals: { playlist:, idx: } %>
-<% end %>

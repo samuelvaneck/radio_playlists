@@ -111,8 +111,6 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    cssbundling-rails (1.4.0)
-      railties (>= 6.0.0)
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.1.0)
@@ -164,10 +162,6 @@ GEM
     hashdiff (1.1.0)
     health_bit (0.2.0)
       rack
-    hotwire-rails (0.1.3)
-      rails (>= 6.0.0)
-      stimulus-rails
-      turbo-rails
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -178,11 +172,6 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jaro_winkler (1.5.6)
-    jbuilder (2.12.0)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
-    jsbundling-rails (1.3.0)
-      railties (>= 6.0.0)
     json (2.6.3)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
@@ -250,11 +239,6 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.6)
-    propshaft (0.8.0)
-      actionpack (>= 7.0.0)
-      activesupport (>= 7.0.0)
-      rack
-      railties (>= 7.0.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -330,9 +314,6 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.7)
       io-console (~> 0.5)
-    responders (3.1.1)
-      actionpack (>= 5.2)
-      railties (>= 5.2)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -434,26 +415,12 @@ GEM
       tilt (~> 2.0)
     spring (4.2.1)
     stackprof (0.2.26)
-    stimulus-rails (1.2.2)
-      railties (>= 6.0.0)
     stringio (3.1.0)
     strscan (3.1.0)
-    tailwindcss-rails (2.6.0-aarch64-linux)
-      railties (>= 7.0.0)
-    tailwindcss-rails (2.6.0-arm64-darwin)
-      railties (>= 7.0.0)
-    tailwindcss-rails (2.6.0-x86_64-darwin)
-      railties (>= 7.0.0)
-    tailwindcss-rails (2.6.0-x86_64-linux)
-      railties (>= 7.0.0)
     thor (1.3.1)
     tilt (2.3.0)
     timecop (0.9.8)
     timeout (0.4.1)
-    turbo-rails (1.5.0)
-      actionpack (>= 6.0.0)
-      activejob (>= 6.0.0)
-      railties (>= 6.0.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -506,7 +473,6 @@ DEPENDENCIES
   capybara
   charlock_holmes (~> 0.7.7)
   concurrent-ruby
-  cssbundling-rails (~> 1.0)
   database_cleaner
   dotenv-rails (~> 2.8, >= 2.8.1)
   factory_bot_rails
@@ -514,10 +480,7 @@ DEPENDENCIES
   foreman
   guard-rspec
   health_bit
-  hotwire-rails
   jaro_winkler
-  jbuilder (~> 2.10)
-  jsbundling-rails (~> 1.0)
   json (~> 2.6.1)
   jsonapi-serializer (~> 2.2.0)
   launchy
@@ -530,7 +493,6 @@ DEPENDENCIES
   nokogiri (>= 1.10.9)
   open3 (~> 0.1.1)
   pg
-  propshaft
   pry-byebug
   pry-rails
   puma (~> 6.4)
@@ -538,7 +500,6 @@ DEPENDENCIES
   rails (~> 7.0, >= 7.0.1)
   rails-controller-testing
   redis
-  responders
   rspec-rails
   rubocop
   rubocop-performance
@@ -554,8 +515,6 @@ DEPENDENCIES
   sinatra
   spring
   stackprof
-  stimulus-rails
-  tailwindcss-rails
   timecop
   turbolinks
   uglifier

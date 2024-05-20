@@ -28,4 +28,3 @@ RUN gem install bundler
 RUN yarn install --check-files
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle install  --jobs "$(nproc --all)"
-RUN bundle exec rake assets:precompile --jobs "$(nproc --all)"

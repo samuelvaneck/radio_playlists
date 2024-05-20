@@ -9,17 +9,14 @@ gem 'health_bit'
 gem 'jaro_winkler'
 gem 'json', '~> 2.6.1'
 gem 'jsonapi-serializer', '~> 2.2.0'
-gem 'jbuilder', '~> 2.10'
 gem 'mailjet'
 gem 'nokogiri', '>= 1.10.9'
 gem 'open3', '~> 0.1.1'
 gem 'pg'
-gem 'propshaft'
 gem 'puma', '~> 6.4'
 gem 'rack-cors', '~> 2.0', '>= 2.0.2'
 gem 'rails', '~> 7.0', '>= 7.0.1'
 gem 'redis'
-gem 'responders'
 gem 'sentry-ruby'
 gem 'sentry-rails'
 gem 'sidekiq'
@@ -28,14 +25,6 @@ gem 'turbolinks'
 gem 'uglifier'
 gem 'uri', '~> 0.12.0'
 gem 'will_paginate'
-
-gem 'jsbundling-rails', '~> 1.0'
-gem 'cssbundling-rails', '~> 1.0'
-
-# Stimulas with Hotwire
-gem 'stimulus-rails'
-gem 'hotwire-rails'
-gem 'tailwindcss-rails'
 
 # Until mail gem is updated
 # https://github.com/mikel/mail/pull/1439
