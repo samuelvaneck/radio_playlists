@@ -46,12 +46,3 @@ services:
       - NODE_ENV=development
     tty: true
     stdin_open: true
-
-  selenium:
-    image: selenium/standalone-chrome-debug
-    ports:
-      - 4444:4444
-      - 5900:5900
-    environment:
-      SCREEN_WIDTH: 1920
-      SCREEN_HEIGHT: 1080

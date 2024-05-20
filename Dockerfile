@@ -14,8 +14,9 @@ RUN apt-get update -qq && \
 
 RUN wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | tee /etc/apt/trusted.gpg.d/songrec.asc
 RUN add-apt-repository 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu focal main'
-RUN apt update --allow-insecure-repositories
-RUN apt install songrec -y --allow-unauthenticated
+# RUN apt update --allow-insecure-repositories
+# RUN apt install songrec -y --allow-unauthenticated
+RUN apt install songrec -y
 RUN apt auto-clean && apt auto-remove
 
 ARG RAILS_ENV=production
