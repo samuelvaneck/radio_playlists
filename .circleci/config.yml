@@ -1,30 +1,10 @@
-
-# version: 2
-# jobs:
-# build:
-#   working_directory: /tmp
-#   steps:
-#     - run:
-#         name: Creating Dummy Artifacts
-#         command: |
-#           echo "my artifact file" > /tmp/art-1;
-#           mkdir /tmp/artifacts;
-#           echo "my artifact files in a dir" > /tmp/artifacts/art-2;
-
-#     - store_artifacts:
-#         path: /tmp/art-1
-#         destination: artifact-file
-
-#     - store_artifacts:
-#         path: /tmp/artifacts
-
 ---
   version: 2
   jobs:
     build:
       working_directory: ~/radio_playlists
       docker:
-        - image: cimg/ruby:3.3.0-browsers
+        - image: cimg/ruby:3.3.0
           environment:
             POSTGRES_HOST: localhost
             POSTGRES_USER: radio_playlists
@@ -46,20 +26,11 @@
           name: Restore bundle cache
           key: radio_playlists-{{ checksum "Gemfile.lock" }}
 
-        - type: cache-restore
-          name: Restore Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-
         # install bundler
-        - run: gem install bundler:2.2.33
+        - run: gem install bundler:2.4.10
 
         # Bundle install dependencies
         - run: bundle install --path vendor/bundle
-
-        # add yarn
-        - run: yarn install --cache-folder ~/.cache/yarn
-        - run: yarn build
-        - run: yarn build:css
 
         # Cache Dependencies
         - type: cache-save
@@ -67,12 +38,6 @@
           key: radio_playlists-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-
-        - type: cache-save
-          name: Store yarn cache
-          key: radio_playlists-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.yarn-cache
 
         # Wait for DB
         - run: dockerize -wait tcp://localhost:5432 -timeout 1m
