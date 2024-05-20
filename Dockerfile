@@ -34,4 +34,3 @@ RUN bundle config set deployment 'true'
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle config set --local without 'development test'
 RUN bundle install --jobs "$(nproc --all)" --retry 3
-RUN SECRET_KEY_BASE=1 RAILS_BUILD=1 bundle exec rails assets:precompile --jobs "$(nproc --all)"
