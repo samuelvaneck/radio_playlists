@@ -23,30 +23,19 @@ class RadioStation < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
-  def status
-    return 'warning' if zero_playlist_items
-
-    last_created.created_at > 3.hour.ago ? 'ok' : 'warning'
-  end
-
   def status_data
     return {} if zero_playlist_items
 
     {
       id:,
       name:,
-      status:,
-      last_created_at: last_created&.created_at,
-      track_info: "#{last_created&.song&.artists&.map(&:name)&.join(' & ')} - #{last_created&.song&.title}",
-      total_created: todays_added_items&.count
+      last_played_song_at: last_played_song.broadcasted_at,
+      track_info: "#{last_played_song&.artists&.map(&:name)&.join(' & ')} - #{last_played_song&.title}",
+      total_created: today_added_items&.count
     }
   end
 
-  def last_created
-    Playlist.where(radio_station: self).order(created_at: :desc).first
-  end
-
-  def todays_added_items
+  def today_added_items
     Playlist.where(radio_station: self, created_at: 1.day.ago..Time.zone.now)
   end
 

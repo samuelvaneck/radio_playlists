@@ -34,11 +34,11 @@ module GraphConcern
       end_date = 1.day.ago.end_of_day
       result = playlists
       result = result.where(playlists_time_slot_query, begin_date, end_date) unless time_value == 'all'
-      result.sort_by(&:broadcast_timestamp)
+      result.sort_by(&:broadcasted_at)
     end
 
     def min_max_date(results, strftime_value)
-      results.map { |result| result.broadcast_timestamp.strftime(strftime_value) }.minmax
+      results.map { |result| result.broadcasted_at.strftime(strftime_value) }.minmax
     end
 
     def graph_begin_date(time_value)
@@ -52,10 +52,10 @@ module GraphConcern
     def format_graph_data(playlists, strftime_value)
       # result['2022-01-01'][radio_station_id]'] = 1
       playlists.each_with_object({}) do |playlist, result|
-        broadcast_timestamp, radio_station_id = playlist.values_at(:broadcast_timestamp, :radio_station_id)
-        result[broadcast_timestamp.strftime(strftime_value)] ||= {}
-        result[broadcast_timestamp.strftime(strftime_value)][radio_station_id] ||= []
-        result[broadcast_timestamp.strftime(strftime_value)][radio_station_id] << playlist
+        broadcasted_at, radio_station_id = playlist.values_at(:broadcasted_at, :radio_station_id)
+        result[broadcasted_at.strftime(strftime_value)] ||= {}
+        result[broadcasted_at.strftime(strftime_value)][radio_station_id] ||= []
+        result[broadcasted_at.strftime(strftime_value)][radio_station_id] << playlist
       end
     end
 

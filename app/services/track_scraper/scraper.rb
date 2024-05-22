@@ -20,7 +20,7 @@ class TrackScraper::Scraper < TrackScraper
       Rails.logger.info "Radio station #{@radio_station.name} not found in SCRAPER"
     end
 
-    @broadcast_timestamp = Time.find_zone('Amsterdam').parse("#{date_string} #{time}")
+    @broadcasted_at = Time.find_zone('Amsterdam').parse("#{date_string} #{time}")
     true
   end
 end

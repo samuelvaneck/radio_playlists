@@ -10,7 +10,7 @@
       SendStatusEmail:
         cron: '0 2 * * *' # at 2am
         queue: default
-        enabled: true
+        enabled: false
       ChartCreationJob:
         cron: '10 0 * * *' # at 0:10 am
         queue: default

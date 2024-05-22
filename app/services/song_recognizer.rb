@@ -3,13 +3,13 @@
 require 'resolv'
 
 class SongRecognizer
-  attr_reader :audio_stream, :result, :title, :artist_name, :broadcast_timestamp, :spotify_url, :isrc_code
+  attr_reader :audio_stream, :result, :title, :artist_name, :broadcasted_at, :spotify_url, :isrc_code
 
   def initialize(radio_station)
     @radio_station = radio_station
     @output_file = @radio_station.audio_file_path
     @audio_stream = set_audio_stream
-    @broadcast_timestamp = Time.zone.now
+    @broadcasted_at = Time.zone.now
   end
 
   def recognized?

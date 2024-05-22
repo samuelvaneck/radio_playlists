@@ -9,7 +9,7 @@ class TrackScraper::NpoApiProcessor < TrackScraper
     track = json[:data][0]
     @artist_name = CGI.unescapeHTML(track[:artist]).titleize
     @title = CGI.unescapeHTML(track[:title]).titleize
-    @broadcast_timestamp = Time.find_zone('Amsterdam').parse(track[:startdatetime])
+    @broadcasted_at = Time.find_zone('Amsterdam').parse(track[:startdatetime])
     @spotify_url = track[:spotify_url]
     true
   rescue Net::ReadTimeout => _e
