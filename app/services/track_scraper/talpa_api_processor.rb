@@ -11,7 +11,7 @@ class TrackScraper::TalpaApiProcessor < TrackScraper
     track = json.dig('data', 'getStation', 'playouts')[0]
     @artist_name = track.dig('track', 'artistName').titleize
     @title = track.dig('track', 'title').titleize
-    @broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['broadcastDate'])
+    @broadcasted_at = Time.find_zone('Amsterdam').parse(track['broadcastDate'])
     @isrc_code = track.dig('track', 'isrc')
     true
   rescue Net::ReadTimeout => _e

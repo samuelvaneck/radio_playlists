@@ -9,7 +9,7 @@ class TrackScraper::KinkApiProcessor < TrackScraper
     track = json[:extended][:kink]
     @artist_name = track[:artist].titleize
     @title = track[:title].titleize
-    @broadcast_timestamp = Time.zone.now
+    @broadcasted_at = Time.zone.now
     true
   rescue Net::ReadTimeout => _e
     Rails.logger.info "#{uri.host}:#{uri.port} is NOT reachable (ReadTimeout)"

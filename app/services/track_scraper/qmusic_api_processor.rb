@@ -6,7 +6,7 @@ class TrackScraper::QmusicApiProcessor < TrackScraper
     return false if json.blank?
 
     track = json['played_tracks'][0]
-    @broadcast_timestamp = Time.find_zone('Amsterdam').parse(track['played_at'])
+    @broadcasted_at = Time.find_zone('Amsterdam').parse(track['played_at'])
     @artist_name = track['artist']['name'].titleize
     @title = track['title'].titleize
     @spotify_url = track['spotify_url']

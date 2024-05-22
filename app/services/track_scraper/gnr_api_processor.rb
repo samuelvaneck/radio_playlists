@@ -9,7 +9,7 @@ class TrackScraper::GnrApiProcessor < TrackScraper
     track = json[:pageProps][:homepage][:played_tracks][:data][0]
     @artist_name = track[:track][:data][:artist]
     @title = track[:track][:data][:title].titleize
-    @broadcast_timestamp = Time.zone.now
+    @broadcasted_at = Time.zone.now
     true
   rescue Net::ReadTimeout => _e
     Rails.logger.info "#{@uri.host}:#{@uri.port} is NOT reachable (ReadTimeout)"

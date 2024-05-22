@@ -50,8 +50,8 @@ class SongImporter
     @isrc_code ||= @played_song.isrc_code
   end
 
-  def broadcast_timestamp
-    @broadcast_timestamp ||= @played_song.broadcast_timestamp
+  def broadcasted_at
+    @broadcasted_at ||= @played_song.broadcasted_at
   end
 
   def artists
@@ -113,7 +113,7 @@ class SongImporter
   end
 
   def add_song
-    Playlist.add_playlist(@radio_station, song, broadcast_timestamp, scraper_import)
+    Playlist.add_playlist(@radio_station, song, broadcasted_at, scraper_import)
     song.update_artists(artists) if different_artists?
 
     Broadcaster.song_added(title: song.title, song_id: song.id, artists_names:, artist_ids: artists_ids_to_s, radio_station_name: @radio_station.name)

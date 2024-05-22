@@ -9,7 +9,7 @@
 #  radio_station_id    :bigint
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  broadcast_timestamp :datetime
+#  broadcasted_at      :datetime
 #  scraper_import      :boolean          default(FALSE)
 #
 
@@ -47,18 +47,18 @@ class Playlist < ApplicationRecord
   end
 
   def duplicate?
-    Playlist.where(radio_station:, broadcast_timestamp:).count > 1
+    Playlist.where(radio_station:, broadcasted_at:).count > 1
   end
 
-  def self.add_playlist(radio_station, song, broadcast_timestamp, scraper_import)
-    create(radio_station:, song:, broadcast_timestamp:, scraper_import:)
+  def self.add_playlist(radio_station, song, broadcasted_at, scraper_import)
+    create(radio_station:, song:, broadcasted_at:, scraper_import:)
   end
 
   private
 
   def today_unique_playlist_item
     exisiting_record = Playlist.joins(:song, :radio_station)
-                               .where('broadcast_timestamp = ? AND radio_stations.id = ?', broadcast_timestamp, radio_station_id)
+                               .where('broadcasted_at = ? AND radio_stations.id = ?', broadcasted_at, radio_station_id)
                                .present?
     errors.add(:base, 'none unique playlist') if exisiting_record
   end

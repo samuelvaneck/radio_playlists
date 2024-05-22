@@ -9,14 +9,14 @@
 #  radio_station_id    :bigint
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  broadcast_timestamp :datetime
+#  broadcasted_at      :datetime
 #  scraper_import      :boolean          default(FALSE)
 #
 class PlaylistSerializer
   include FastJsonapi::ObjectSerializer
 
   attributes :id,
-             :broadcast_timestamp,
+             :broadcasted_at,
              :created_at,
              :song,
              :radio_station,

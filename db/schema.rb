@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_31_131831) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_22_181905) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,10 +74,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_31_131831) do
     t.bigint "radio_station_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.datetime "broadcast_timestamp", precision: nil
+    t.datetime "broadcasted_at", precision: nil
     t.boolean "scraper_import", default: false
     t.index ["radio_station_id"], name: "index_playlists_on_radio_station_id"
-    t.index ["song_id", "radio_station_id", "broadcast_timestamp"], name: "playlist_radio_song_time", unique: true
+    t.index ["song_id", "radio_station_id", "broadcasted_at"], name: "playlist_radio_song_time", unique: true
     t.index ["song_id"], name: "index_playlists_on_song_id"
   end
 
