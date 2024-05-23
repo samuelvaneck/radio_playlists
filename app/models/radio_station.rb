@@ -29,7 +29,7 @@ class RadioStation < ActiveRecord::Base
     {
       id:,
       name:,
-      last_played_song_at: last_played_song.broadcasted_at,
+      last_played_song_at: playlists.order(created_at: :desc).first&.broadcasted_at,
       track_info: "#{last_played_song&.artists&.map(&:name)&.join(' & ')} - #{last_played_song&.title}",
       total_created: today_added_items&.count
     }
@@ -72,6 +72,16 @@ class RadioStation < ActiveRecord::Base
 
   def last_played_song
     playlists.order(created_at: :desc).first&.song
+  end
+
+  def self.last_played_songs
+    all.map do |radio_station|
+      {
+        id: radio_station.id,
+        name: radio_station.name,
+        last_played_song: radio_station.last_played_song
+      }
+    end
   end
 
   def songs_played_last_hour

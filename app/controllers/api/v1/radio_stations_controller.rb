@@ -3,7 +3,7 @@
 module Api
   module V1
     class RadioStationsController < ApiController
-      before_action :set_radio_station, except: %i[index]
+      before_action :set_radio_station, only: %i[show status]
 
       def index
         render json: RadioStationSerializer.new(RadioStation.all).serializable_hash.to_json
@@ -15,6 +15,10 @@ module Api
 
       def status
         render json: @radio_station.status_data
+      end
+
+      def last_played_songs
+        render json: RadioStation.last_played_songs.to_json
       end
 
       private
