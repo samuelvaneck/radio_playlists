@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       end
       resources :radio_stations, only: %i[index show] do
         get :status, on: :member
+        get :last_played_songs, on: :collection
       end
     end
   end
