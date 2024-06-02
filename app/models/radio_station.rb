@@ -71,7 +71,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def last_played_song
-    playlists.order(created_at: :desc).first&.song
+    Song.find_by(id: last_played_song_id)
   end
 
   def self.last_played_songs
@@ -79,12 +79,16 @@ class RadioStation < ActiveRecord::Base
       {
         id: radio_station.id,
         name: radio_station.name,
-        last_played_song: radio_station.last_played_song
+        last_played_song: SongSerializer.new(radio_station.last_played_song).serializable_hash
       }
     end
   end
 
   def songs_played_last_hour
     playlists.where(created_at: 1.hour.ago..Time.zone.now).map(&:song)
+  end
+
+  def update_last_played_song_id(song_id)
+    update(last_played_song_id: song_id)
   end
 end
