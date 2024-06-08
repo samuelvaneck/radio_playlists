@@ -82,6 +82,9 @@ class RadioStation < ActiveRecord::Base
       {
         id: radio_station.id,
         name: radio_station.name,
+        slug: radio_station.slug,
+        stream_url: radio_station.stream_url,
+        country_code: radio_station.country_code,
         last_played_song: SongSerializer.new(radio_station.last_played_song).serializable_hash
       }
     end
