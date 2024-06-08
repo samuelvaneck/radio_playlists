@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_02_082241) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_08_140208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,6 +90,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_02_082241) do
     t.string "processor"
     t.string "stream_url"
     t.integer "last_played_song_id"
+    t.string "slug"
+    t.string "country_code"
   end
 
   create_table "song_recognizer_logs", force: :cascade do |t|
