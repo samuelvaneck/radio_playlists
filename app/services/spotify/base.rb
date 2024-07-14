@@ -46,7 +46,7 @@ module Spotify
     end
 
     def string_distance(item_string)
-      (JaroWinkler.distance(item_string, "#{args[:artists]} #{args[:title]}") * 100).to_i
+      (JaroWinkler.similarity(item_string, "#{args[:artists]} #{args[:title]}") * 100).to_i
     end
 
     def add_match(items)

@@ -74,7 +74,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def last_played_song
-    Song.find_by(id: last_played_song_id)
+    playlists.order(created_at: :desc).first
   end
 
   def self.last_played_songs
@@ -85,7 +85,7 @@ class RadioStation < ActiveRecord::Base
         slug: radio_station.slug,
         stream_url: radio_station.stream_url,
         country_code: radio_station.country_code,
-        last_played_song: SongSerializer.new(radio_station.last_played_song).serializable_hash
+        last_played_song: PlaylistSerializer.new(radio_station.last_played_song).serializable_hash
       }
     end
   end
