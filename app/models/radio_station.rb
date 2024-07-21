@@ -73,6 +73,10 @@ class RadioStation < ActiveRecord::Base
     "radio_station_logos/#{audio_file_name}.png"
   end
 
+  def last_played_song
+    playlists.order(created_at: :desc)&.first&.song
+  end
+
   def last_added_playlists
     playlists.where(id: last_added_playlist_ids).order(created_at: :desc)
   end
