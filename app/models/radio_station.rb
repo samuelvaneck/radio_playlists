@@ -4,17 +4,17 @@
 #
 # Table name: radio_stations
 #
-#  id                  :bigint           not null, primary key
-#  name                :string
-#  genre               :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  url                 :text
-#  processor           :string
-#  stream_url          :string
-#  last_played_song_id :integer
-#  slug                :string
-#  country_code        :string
+#  id                      :bigint           not null, primary key
+#  name                    :string
+#  genre                   :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  url                     :text
+#  processor               :string
+#  stream_url              :string
+#  slug                    :string
+#  country_code            :string
+#  last_added_playlist_ids :jsonb
 #
 
 class RadioStation < ActiveRecord::Base
@@ -73,8 +73,8 @@ class RadioStation < ActiveRecord::Base
     "radio_station_logos/#{audio_file_name}.png"
   end
 
-  def last_played_song
-    playlists.order(created_at: :desc).first
+  def last_added_playlists
+    playlists.where(id: last_added_playlist_ids).order(created_at: :desc)
   end
 
   def self.last_played_songs
@@ -85,7 +85,7 @@ class RadioStation < ActiveRecord::Base
         slug: radio_station.slug,
         stream_url: radio_station.stream_url,
         country_code: radio_station.country_code,
-        last_played_song: PlaylistSerializer.new(radio_station.last_played_song).serializable_hash
+        last_played_song: PlaylistSerializer.new(radio_station.last_added_playlists).serializable_hash
       }
     end
   end
@@ -94,7 +94,11 @@ class RadioStation < ActiveRecord::Base
     playlists.where(created_at: 1.hour.ago..Time.zone.now).map(&:song)
   end
 
-  def update_last_played_song_id(song_id)
-    update(last_played_song_id: song_id)
+  def update_last_added_playlist_ids(playlist_id)
+    current_last_added_playlist_ids = Array.wrap(last_added_playlist_ids)
+    current_last_added_playlist_ids << playlist_id
+    current_last_added_playlist_ids.shift if current_last_added_playlist_ids.count > 3
+
+    update(last_added_playlist_ids: current_last_added_playlist_ids)
   end
 end

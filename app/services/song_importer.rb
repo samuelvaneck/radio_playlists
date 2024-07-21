@@ -113,8 +113,8 @@ class SongImporter
   end
 
   def add_song
-    Playlist.add_playlist(@radio_station, song, broadcasted_at, scraper_import)
-    @radio_station.update_last_played_song_id(song.id)
+    added_playlist = Playlist.add_playlist(@radio_station, song, broadcasted_at, scraper_import)
+    @radio_station.update_last_added_playlist_ids(added_playlist.id)
     song.update_artists(artists) if different_artists?
 
     Broadcaster.song_added(title: song.title, song_id: song.id, artists_names:, artist_ids: artists_ids_to_s, radio_station_name: @radio_station.name)
