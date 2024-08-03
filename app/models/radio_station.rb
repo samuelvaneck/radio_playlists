@@ -23,6 +23,8 @@ class RadioStation < ActiveRecord::Base
   has_many :artists, through: :songs
   has_many :song_recognizer_logs
 
+  default_scope -> { order(name: :asc) }
+
   validates :name, presence: true
   validates :name, uniqueness: true
 
