@@ -76,7 +76,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def last_played_song
-    playlists.order(created_at: :desc)&.first&.song
+    last_added_playlists.first&.song
   end
 
   def last_added_playlists
@@ -103,7 +103,7 @@ class RadioStation < ActiveRecord::Base
   def update_last_added_playlist_ids(playlist_id)
     current_last_added_playlist_ids = Array.wrap(last_added_playlist_ids)
     current_last_added_playlist_ids << playlist_id
-    current_last_added_playlist_ids.shift if current_last_added_playlist_ids.count > 3
+    current_last_added_playlist_ids.shift if current_last_added_playlist_ids.count > 12
 
     update(last_added_playlist_ids: current_last_added_playlist_ids)
   end
