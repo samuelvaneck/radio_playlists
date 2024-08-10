@@ -22,7 +22,8 @@ class Song < ApplicationRecord
   has_many :artists_songs
   has_many :artists, through: :artists_songs
   has_many :playlists
-  has_many :radio_stations, through: :playlists
+  has_many :radio_station_songs
+  has_many :radio_stations, through: :radio_station_songs
   after_commit :update_fullname, on: %i[create update]
 
   scope :matching, lambda { |search_term|
