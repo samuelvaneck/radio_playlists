@@ -104,14 +104,7 @@ class RadioStation < ActiveRecord::Base
   def new_songs_played_for_period(time_value)
     period_start = 1.send(time_value.to_sym).ago
     period_end = Time.current
-
-    song_played_within(period_start..period_end).select do |song|
-      song.playlists.pluck(:broadcasted_at).min.between?(period_start, period_end)
-    end
-  end
-
-  private def song_played_within(time_period)
-    playlists.includes(:song).where(created_at: [time_period]).map(&:song).uniq
+    radio_station_songs.where(first_broadcasted_at: [period_start..period_end]).map(&:song)
   end
 
   def update_last_added_playlist_ids(playlist_id)
