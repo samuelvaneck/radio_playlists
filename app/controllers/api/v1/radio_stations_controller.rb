@@ -22,7 +22,10 @@ module Api
       end
 
       def new_played_songs
-        render json: @radio_station.new_songs_played_for_period(params[:time]).to_json
+        return render json: { error: 'Time parameter is required' }, status: :bad_request if time_param_blank?
+
+        new_played_songs = @radio_station.new_songs_played_for_period(params[:time])
+        render json: SongSerializer.new(new_played_songs).serializable_hash.to_json
       end
 
       private
@@ -30,6 +33,9 @@ module Api
       def set_radio_station
         @radio_station = RadioStation.find params[:id]
       end
+
+      def time_param_blank?
+        params[:time].blank?
     end
   end
 end
