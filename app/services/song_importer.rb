@@ -116,6 +116,7 @@ class SongImporter
     added_playlist = Playlist.add_playlist(@radio_station, song, broadcasted_at, scraper_import)
     @radio_station.update_last_added_playlist_ids(added_playlist.id)
     song.update_artists(artists) if different_artists?
+    @radio_station.songs << song if @radio_station.songs.exclude?(song)
 
     Broadcaster.song_added(title: song.title, song_id: song.id, artists_names:, artist_ids: artists_ids_to_s, radio_station_name: @radio_station.name)
   end

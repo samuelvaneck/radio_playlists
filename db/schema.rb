@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_21_192048) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_10_140610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_21_192048) do
     t.index ["song_id"], name: "index_playlists_on_song_id"
   end
 
+  create_table "radio_station_songs", force: :cascade do |t|
+    t.bigint "song_id", null: false
+    t.bigint "radio_station_id", null: false
+    t.datetime "first_broadcasted_at"
+    t.index ["radio_station_id"], name: "index_radio_station_songs_on_radio_station_id"
+    t.index ["song_id", "radio_station_id"], name: "index_radio_station_songs_on_song_id_and_radio_station_id", unique: true
+    t.index ["song_id"], name: "index_radio_station_songs_on_song_id"
+  end
+
   create_table "radio_stations", force: :cascade do |t|
     t.string "name"
     t.string "genre"
@@ -119,5 +128,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_21_192048) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "playlists", "radio_stations"
   add_foreign_key "playlists", "songs"
+  add_foreign_key "radio_station_songs", "radio_stations"
+  add_foreign_key "radio_station_songs", "songs"
   add_foreign_key "song_recognizer_logs", "radio_stations"
 end
