@@ -110,7 +110,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   private def song_played_within(time_period)
-    playlists.includes(:song).where(created_at: [time_period]).map(&:song)
+    playlists.includes(:song).where(created_at: [time_period]).map(&:song).uniq
   end
 
   def update_last_added_playlist_ids(playlist_id)
