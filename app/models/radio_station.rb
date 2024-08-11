@@ -43,7 +43,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def self.new_songs_played_for_period(params)
-    time_value = params[:time]
+    time_value = params[:start_time]
     period_start = time_value == 'all' ? nil : 1.send(time_value.to_sym).ago
     period_end = Time.current
 

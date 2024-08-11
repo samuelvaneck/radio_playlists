@@ -40,11 +40,11 @@ module Api
       end
 
       def time_param_blank?
-        params[:time].blank?
+        params[:start_time].blank?
       end
 
       def correct_time_params?
-        params[:time].in?(%w[day week month year all])
+        params[:start_time].in?(%w[day week month year all])
       end
     end
   end
