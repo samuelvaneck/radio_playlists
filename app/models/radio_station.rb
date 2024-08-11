@@ -50,7 +50,11 @@ class RadioStation < ActiveRecord::Base
     RadioStationSong.includes(:radio_station, song: :artists)
                     .played_between(period_start, period_end)
                     .played_on(params[:radio_station_ids])
-                    .order(first_broadcasted_at: :desc)
+                    .sort do |a, b|
+                      a_sorted = a.song.playlists.where(radio_station_id: a.radio_station_id).count
+                      b_sorted = b.song.playlists.where(radio_station_id: b.radio_station_id).count
+                      b_sorted <=> a_sorted
+                    end
   end
 
   def status_data
