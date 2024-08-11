@@ -36,8 +36,6 @@ class Song < ApplicationRecord
   public_constant :MULTIPLE_ARTIST_REGEX
   public_constant :ARTISTS_FILTERS
 
-  attr_accessor :counter
-
   def self.most_played(params)
     Song.joins(:playlists, :artists)
         .played_between(date_from_params(time: params[:start_time], fallback: 1.week.ago),

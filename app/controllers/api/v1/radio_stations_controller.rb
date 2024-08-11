@@ -29,8 +29,10 @@ module Api
           return render json: { error: error_message }, status: :bad_request
         end
 
-        new_played_songs = RadioStation.new_songs_played_for_period(params)
-        render json: RadioStationSongSerializer.new(new_played_songs).serializable_hash.to_json
+        render json: RadioStationSongSerializer.new(new_played_items)
+                                               .serializable_hash
+                                               .merge(pagination_data(new_played_items))
+                                               .to_json
       end
 
       private
@@ -45,6 +47,10 @@ module Api
 
       def correct_time_params?
         params[:start_time].in?(%w[day week month year all])
+      end
+
+      def new_played_items
+        @new_played_items ||= RadioStation.new_songs_played_for_period(params).paginate(page: params[:page], per_page: 24)
       end
     end
   end
