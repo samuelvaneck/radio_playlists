@@ -29,6 +29,30 @@ class RadioStation < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
+  def self.last_played_songs
+    all.map do |radio_station|
+      {
+        id: radio_station.id,
+        name: radio_station.name,
+        slug: radio_station.slug,
+        stream_url: radio_station.stream_url,
+        country_code: radio_station.country_code,
+        last_played_song: PlaylistSerializer.new(radio_station.last_added_playlists).serializable_hash
+      }
+    end
+  end
+
+  def self.new_songs_played_for_period(params)
+    time_value = params[:time]
+    period_start = time_value == 'all' ? nil : 1.send(time_value.to_sym).ago
+    period_end = Time.current
+
+    RadioStationSong.includes(:radio_station, song: :artists)
+                    .played_between(period_start, period_end)
+                    .played_on(params[:radio_station_ids])
+                    .order(first_broadcasted_at: :desc)
+  end
+
   def status_data
     return {} if zero_playlist_items
 
@@ -84,27 +108,8 @@ class RadioStation < ActiveRecord::Base
     playlists.where(id: last_added_playlist_ids).order(created_at: :desc)
   end
 
-  def self.last_played_songs
-    all.map do |radio_station|
-      {
-        id: radio_station.id,
-        name: radio_station.name,
-        slug: radio_station.slug,
-        stream_url: radio_station.stream_url,
-        country_code: radio_station.country_code,
-        last_played_song: PlaylistSerializer.new(radio_station.last_added_playlists).serializable_hash
-      }
-    end
-  end
-
   def songs_played_last_hour
     playlists.where(created_at: 1.hour.ago..Time.zone.now).map(&:song)
-  end
-
-  def new_songs_played_for_period(time_value)
-    period_start = time_value == 'all' ? nil : 1.send(time_value.to_sym).ago
-    period_end = Time.current
-    radio_station_songs.where(first_broadcasted_at: [period_start..period_end]).map(&:song)
   end
 
   def update_last_added_playlist_ids(playlist_id)
