@@ -42,6 +42,7 @@ class Broadcaster
 
   def broadcast
     Rails.logger.info(color.present? ? colorized_message : message)
+    nil
   end
 
   def colorized_message

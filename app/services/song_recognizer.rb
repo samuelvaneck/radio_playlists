@@ -68,6 +68,6 @@ class SongRecognizer
   def song_match
     full_result = "#{@result.dig(:track, :subtitle)} #{@result.dig(:track, :title)}"
     full_stream = "#{@audio_stream.stream_artist} #{@audio_stream.stream_title}"
-    (JaroWinkler.distance(full_result, full_stream) * 100).to_i
+    (JaroWinkler.similarity(full_result, full_stream) * 100).to_i
   end
 end

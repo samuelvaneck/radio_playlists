@@ -20,6 +20,6 @@ class SongImporter::Matcher < SongImporter
   def song_match(played_song)
     played_song_fullname = "#{played_song.artists.map(&:name).join(' ')} #{played_song.title}".downcase
     song_fullname = "#{@song.artists.map(&:name).join(' ')} #{@song.title}".downcase
-    (JaroWinkler.distance(played_song_fullname, song_fullname) * 100).to_i
+    (JaroWinkler.similarity(played_song_fullname, song_fullname) * 100).to_i
   end
 end
