@@ -25,9 +25,9 @@ class TrackExtractor::SongExtractor < TrackExtractor
     result = if song_by_artists_and_title.present?
                song_by_artists_and_title
              elsif song_by_artists_and_title.blank? && @artists.blank?
-               Song.find_or_create_by(title:)
+               Song.find_or_create_by(song_attributes)
              else
-               song = Song.new(title:)
+               song = Song.new(song_attributes)
                Array.wrap(@artists).each { |artist| song.artists << artist }
                song
              end
@@ -45,19 +45,31 @@ class TrackExtractor::SongExtractor < TrackExtractor
     @find_by_track ||= Song.find_by(id_on_spotify:).presence || Song.find_by(isrc:).presence
   end
 
+  def title
+    @track&.title || super
+  end
+
   def id_on_spotify
     @track&.track['id']
   end
 
   def isrc
-    @track.isrc
+    @track&.isrc
+  end
+
+  def spotify_song_url
+    @track&.spotify_song_url
+  end
+
+  def spotify_artwork_url
+    @track&.spotify_artwork_url
   end
 
   def song_attributes
     {
-      title: @track.title,
-      spotify_song_url: @track.spotify_song_url,
-      spotify_artwork_url: @track.spotify_artwork_url,
+      title:,
+      spotify_song_url:,
+      spotify_artwork_url:,
       id_on_spotify:,
       isrc:
     }
