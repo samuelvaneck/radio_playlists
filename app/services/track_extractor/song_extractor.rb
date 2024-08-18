@@ -8,8 +8,8 @@ class TrackExtractor::SongExtractor < TrackExtractor
   private
 
   def find_or_create_song
-    if @track.present? && @track&.track.present?
-      find_or_create_by_track
+    if @track.present? && @track&.track.present? && find_by_track.present?
+      find_by_track
     else
       find_or_create_by_title
     end
@@ -41,8 +41,8 @@ class TrackExtractor::SongExtractor < TrackExtractor
                                        .where('lower(title) LIKE ?', title.downcase)
   end
 
-  def find_or_create_by_track
-    Song.find_by(id_on_spotify:).presence || Song.find_by(isrc:).presence || Song.create(song_attributes)
+  def find_by_track
+    @find_by_track ||= Song.find_by(id_on_spotify:).presence || Song.find_by(isrc:).presence
   end
 
   def id_on_spotify
