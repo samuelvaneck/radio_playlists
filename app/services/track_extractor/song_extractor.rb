@@ -50,7 +50,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
   end
 
   def id_on_spotify
-    @track&.track['id']
+    @track&.id
   end
 
   def isrc

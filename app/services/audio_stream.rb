@@ -18,7 +18,7 @@ class AudioStream
     utf8_stream_title = convert_stderr_to_utf8
     return if utf8_stream_title.blank?
 
-    @stream_artist, @stream_title = utf8_stream_title.split(':')[1].split('-')
+    @stream_artist, @stream_title = utf8_stream_title.split(':')&.[](1)&.split('-')
     @stream_artist.strip! if @stream_artist.present?
     @stream_title.strip! if @stream_title.present?
   end
