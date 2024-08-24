@@ -64,11 +64,11 @@ class Song < ApplicationRecord
 
   def self.find_and_remove_absolute_songs
     Song.all.each do |song|
-      songs = find_same_songs(song)
-      correct_song = songs.last
-      next if songs.count <= 1 || correct_song.blank?
+      songs = song.find_same_songs
+      most_played_song = songs.max_by(&:played)
+      next if songs.count <= 1 || most_played_song.blank?
 
-      remove_absolute_songs(songs, correct_song)
+      remove_absolute_songs(songs, most_played_song)
     end
   end
 
@@ -86,21 +86,30 @@ class Song < ApplicationRecord
     playlists.size
   end
 
-  private
-
-  def find_same_songs(song)
-    artist_ids = song.artists.map(&:id)
-    Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', song.title.downcase)
+  def find_same_songs
+    artist_ids = artists.pluck(:id)
+    Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', title.downcase)
   end
 
-  def remove_absolute_songs(songs, correct_song)
-    songs.map(&:id).each do |id|
-      next if id == correct_song.id
+  private
 
-      absolute_song = Song.find(id) rescue next
-      gps = Playlist.where(song: absolute_song)
-      gps.each { |gp| gp.update_attribute('song_id', correct_song.id) }
-      absolute_song.cleanup
+  def remove_absolute_songs(songs, most_played_song)
+    songs.each do |song|
+      next if song.id == most_played_song.id
+
+      Playlist.where(song: song).each do |playlist|
+        playlist.update_column(:song_id, most_played_song.id)
+      end
+      RadioStation.each do |radio_station|
+        playlists = Playlist.where(song: [song, most_played_song], radio_station:)
+        most_played_song_radio_station = RadioStationSong.find_by(song: most_played_song, radio_station:)
+        most_played_song_radio_station.update_column(
+          :first_broadcasted_at,
+          playlists.minimum(:broadcasted_at)
+        )
+        RadioStationSong.where(song: song, radio_station:).destroy_all
+      end
+      song.cleanup
     end
   end
 
