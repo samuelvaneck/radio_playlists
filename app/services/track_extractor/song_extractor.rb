@@ -14,7 +14,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
       find_or_create_by_title
     end
   rescue StandardError => e
-    Sentry.capture_exception(e)
+    ExceptionNotifier.notify_new_relic(e)
     nil
   end
 

@@ -18,7 +18,7 @@ module Spotify
         create_token
       end
     rescue Errno::EACCES => e
-      Sentry.capture_exception(e)
+      ExceptionNotifier.notify_new_relic(e)
       @cache = false
       get_token
     end

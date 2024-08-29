@@ -27,7 +27,7 @@ class SongImporter
 
     create_playlist
   rescue StandardError => e
-    Sentry.capture_exception(e)
+    ExceptionNotifier.notify_new_relic(e)
     Broadcaster.error_during_import(error_message: e.message, radio_station_name: @radio_station.name)
     nil
   end

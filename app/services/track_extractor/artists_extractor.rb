@@ -14,7 +14,7 @@ class TrackExtractor::ArtistsExtractor < TrackExtractor
       Artist.find_or_initialize_by(name: artist_name)
     end
   rescue StandardError => e
-    Sentry.capture_exception(e)
+    ExceptionNotifier.notify_new_relic(e)
     nil
   end
 end

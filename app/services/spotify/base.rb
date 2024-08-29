@@ -22,7 +22,7 @@ module Spotify
         attempts += 1
         retry
       else
-        Sentry.capture_exception(e)
+        ExceptionNotifier.notify_new_relic(e)
         nil
       end
     end
