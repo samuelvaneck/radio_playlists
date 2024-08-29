@@ -9,7 +9,7 @@
 #
 
 class RadioStationSong < ApplicationRecord
-  before_save :set_first_broadcasted_at
+  before_create :set_first_broadcasted_at, if: -> { first_broadcasted_at.blank? }
 
   belongs_to :song
   belongs_to :radio_station
@@ -29,6 +29,6 @@ class RadioStationSong < ApplicationRecord
   end
 
   def lookup_first_broadcasted_at
-    song.playlists.find_by(radio_station_id:).broadcasted_at
+    song.playlists.where(radio_station_id:).minimum(:broadcasted_at)
   end
 end
