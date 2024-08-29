@@ -80,6 +80,7 @@ class Song < ApplicationRecord
     Song.find_each do |song|
       song.find_and_remove_obsolete_song
     rescue StandardError => e
+      Rails.logger.error("Song: #{song.id} - #{song.fullname}")
       Rails.logger.error("Error: #{e.message}")
       next
     end
