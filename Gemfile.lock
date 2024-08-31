@@ -120,7 +120,6 @@ GEM
     date (3.3.4)
     diff-lcs (1.5.1)
     docile (1.4.0)
-    domain_name (0.6.20240107)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -137,6 +136,11 @@ GEM
       railties (>= 5.0.0)
     faker (3.4.2)
       i18n (>= 1.8.11, < 2)
+    faraday (2.11.0)
+      faraday-net_http (>= 2.0, < 3.4)
+      logger
+    faraday-net_http (3.3.0)
+      net-http
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-aarch64-linux-musl)
     ffi (1.17.0-arm-linux-gnu)
@@ -171,9 +175,6 @@ GEM
     hashdiff (1.1.0)
     health_bit (0.2.0)
       rack
-    http-accept (1.7.0)
-    http-cookie (1.0.6)
-      domain_name (~> 0.5)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
@@ -203,17 +204,14 @@ GEM
       net-imap
       net-pop
       net-smtp
-    mailjet (1.7.11)
+    mailjet (1.8.0)
       activesupport (>= 5.0.0)
+      faraday (~> 2.1)
       rack (>= 1.4.0)
-      rest-client (>= 2.1.0)
       yajl-ruby
     marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.1.0)
-    mime-types (3.5.2)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.0702)
     mini_mime (1.1.5)
     minitest (5.25.1)
     msgpack (1.7.2)
@@ -221,6 +219,8 @@ GEM
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.2.0)
     nenv (0.3.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.15)
       date
       net-protocol
@@ -230,7 +230,6 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
-    netrc (0.11.0)
     newrelic_rpm (9.13.0)
     nio4r (2.7.3)
     nokogiri (1.16.7-aarch64-linux)
@@ -329,11 +328,6 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.9)
       io-console (~> 0.5)
-    rest-client (2.1.0)
-      http-accept (>= 1.7.0, < 2.0)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 4.0)
-      netrc (~> 0.8)
     rexml (3.3.6)
       strscan
     rspec (3.13.0)
