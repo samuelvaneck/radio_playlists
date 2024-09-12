@@ -5,7 +5,7 @@ radio_stations = [
     name: 'Radio 2',
     url: 'https://www.nporadio2.nl/api/tracks',
     processor: 'npo_api_processor',
-    stream_url: 'https://icecast.samuelvaneck.com/radio2.mp3',,
+    stream_url: 'https://icecast.samuelvaneck.com/radio2.mp3',
     slug: 'radio-2',
     country_code: 'NLD'
   },
