@@ -52,7 +52,7 @@ Rails.application.configure do
   config.action_mailer.preview_path ||= defined?(Rails.root) ? "#{Rails.root}/spec/mailers/previews" : nil
 
   # Store files locally.
-  config.active_storage.service = :local
+  # config.active_storage.service = :local
 
   config.log_level = :debug
   logger           = ActiveSupport::Logger.new(STDOUT)
