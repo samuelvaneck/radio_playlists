@@ -1,6 +1,4 @@
 require_relative "boot"
-
-# require "rails/all"
 require "rails"
 
 # Serves as documentation of frameworks that would have been loaded by rails/all, but which we don't use.
