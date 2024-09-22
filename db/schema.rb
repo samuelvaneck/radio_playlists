@@ -83,15 +83,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_22_134307) do
 
   create_table "radio_station_classifiers", force: :cascade do |t|
     t.bigint "radio_station_id", null: false
-    t.integer "danceable"
-    t.integer "energy"
-    t.integer "speech"
-    t.integer "acoustic"
-    t.integer "instrumental"
-    t.integer "live"
-    t.integer "valance"
+    t.integer "danceable", default: 0
+    t.integer "energy", default: 0
+    t.integer "speech", default: 0
+    t.integer "acoustic", default: 0
+    t.integer "instrumental", default: 0
+    t.integer "live", default: 0
+    t.integer "valence", default: 0
     t.string "day_part"
-    t.jsonb "tags"
+    t.jsonb "tags", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["radio_station_id"], name: "index_radio_station_classifiers_on_radio_station_id"
