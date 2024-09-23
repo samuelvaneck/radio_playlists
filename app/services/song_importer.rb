@@ -118,8 +118,8 @@ class SongImporter
     song.update_artists(artists) if different_artists?
     @radio_station.songs << song if @radio_station.songs.exclude?(song)
 
+    RadioStationClassifierJob.perform_async(song.id_on_spotify, @radio_station.id)
     Broadcaster.song_added(title: song.title, song_id: song.id, artists_names:, artist_ids: artists_ids_to_s, radio_station_name: @radio_station.name)
-    RadioStationClassifierJob.perform_async(id_on_spotify: song.id_on_spotify, radio_station_id: @radio_station.id)
   end
 
   def different_artists?

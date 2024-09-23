@@ -1,30 +1,20 @@
-class RadioStationClassifierJob < ApplicationJob
-  queue_as :default
+class RadioStationClassifierJob
+  include Sidekiq::Job
 
   AUDIO_FEATURES = %w[danceability energy speechiness acousticness instrumentalness liveness valence].freeze
-  AUDIO_FEATURE_TO_CLASSIFIER = {
-    'danceability' => :danceable,
-    'energy' => :energy,
-    'speechiness' => :speech,
-    'acousticness' => :acoustic,
-    'instrumentalness' => :instrumental,
-    'liveness' => :live,
-    'valence' => :valence
-  }.freeze
 
-  def perform(args)
-    audio_features = fetch_audio_features(args[:id_on_spotify])
-    classifier = find_or_initialize_classifier(args[:radio_station_id])
+  def perform(id_on_spotify, radio_station_id)
+    audio_features = fetch_audio_features(id_on_spotify)
+    classifier = find_or_initialize_classifier(radio_station_id)
 
     update_classifier_with_audio_features(classifier, audio_features)
     classifier.tempo = ((classifier.tempo * classifier.counter) + audio_features['tempo']) / (classifier.counter + 1)
     classifier.counter += 1
     classifier.save
 
-    update_radio_station_tags(args)
-    Rails.logger.info "Radio station classifier for radio station #{args[:radio_station_id]} updated"
+    update_radio_station_tags(id_on_spotify: id_on_spotify, radio_station_id: radio_station_id)
+    Rails.logger.info "Radio station classifier for radio station #{radio_station_id} updated"
   end
-
   private
 
   def fetch_audio_features(id_on_spotify)
@@ -40,7 +30,8 @@ class RadioStationClassifierJob < ApplicationJob
 
   def update_classifier_with_audio_features(classifier, audio_features)
     AUDIO_FEATURES.each do |feature|
-      classifier[AUDIO_FEATURE_TO_CLASSIFIER[feature]] += 1 if audio_features[feature] > 0.5
+      classifier[feature] += 1 if audio_features[feature] > 0.5
+      classifier["#{feature}_average"] = ((classifier["#{feature}_average"] * classifier.counter) + audio_features[feature]) / (classifier.counter + 1)
     end
   end
 
