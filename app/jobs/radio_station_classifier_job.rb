@@ -17,7 +17,7 @@ class RadioStationClassifierJob < ApplicationJob
     classifier = find_or_initialize_classifier(args[:radio_station_id])
 
     update_classifier_with_audio_features(classifier, audio_features)
-    update_classifier_with_tags(classifier, args)
+    update_radio_station_tags(args)
 
     classifier.save
   end
@@ -41,11 +41,14 @@ class RadioStationClassifierJob < ApplicationJob
     end
   end
 
-  def update_classifier_with_tags(classifier, args)
+  def update_radio_station_tags(args)
     tags = track_artists_tags(args)
+    radio_station = RadioStation.find(args[:radio_station_id])
+
     tags.each do |tag|
-      classifier.tags[tag] ||= 0
-      classifier.tags[tag] += 1
+      tag = Tag.find_or_initialize_by(name: tag, taggable: radio_station)
+      tag.counter += 1
+      tag.save
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_22_134307) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_23_034040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -138,6 +138,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_22_134307) do
     t.string "spotify_artwork_url"
     t.string "id_on_spotify"
     t.string "isrc"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "counter", default: 0
+    t.string "taggable_type", null: false
+    t.bigint "taggable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "taggable_id", "taggable_type"], name: "index_tags_on_name_and_taggable_id_and_taggable_type", unique: true
+    t.index ["taggable_type", "taggable_id"], name: "index_tags_on_taggable"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
