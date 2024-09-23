@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_10_140610) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_23_034040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_140610) do
     t.index ["song_id"], name: "index_playlists_on_song_id"
   end
 
+  create_table "radio_station_classifiers", force: :cascade do |t|
+    t.bigint "radio_station_id", null: false
+    t.string "day_part", null: false
+    t.integer "danceability", default: 0
+    t.decimal "danceability_average", precision: 5, scale: 3, default: "0.0"
+    t.integer "energy", default: 0
+    t.decimal "energy_average", precision: 5, scale: 3, default: "0.0"
+    t.integer "speechiness", default: 0
+    t.decimal "speechiness_average", precision: 5, scale: 3, default: "0.0"
+    t.integer "acousticness", default: 0
+    t.decimal "acousticness_average", precision: 5, scale: 3, default: "0.0"
+    t.integer "instrumentalness", default: 0
+    t.decimal "instrumentalness_average", precision: 5, scale: 3, default: "0.0"
+    t.integer "liveness", default: 0
+    t.decimal "liveness_average", precision: 5, scale: 3, default: "0.0"
+    t.integer "valence", default: 0
+    t.decimal "valence_average", precision: 5, scale: 3, default: "0.0"
+    t.decimal "tempo", precision: 5, scale: 2, default: "0.0"
+    t.integer "counter", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["radio_station_id", "day_part"], name: "idx_on_radio_station_id_day_part_3fdb6160cd", unique: true
+    t.index ["radio_station_id"], name: "index_radio_station_classifiers_on_radio_station_id"
+  end
+
   create_table "radio_station_songs", force: :cascade do |t|
     t.bigint "song_id", null: false
     t.bigint "radio_station_id", null: false
@@ -124,10 +149,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_140610) do
     t.string "isrc"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "counter", default: 0
+    t.string "taggable_type", null: false
+    t.bigint "taggable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "taggable_id", "taggable_type"], name: "index_tags_on_name_and_taggable_id_and_taggable_type", unique: true
+    t.index ["taggable_type", "taggable_id"], name: "index_tags_on_taggable"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "playlists", "radio_stations"
   add_foreign_key "playlists", "songs"
+  add_foreign_key "radio_station_classifiers", "radio_stations"
   add_foreign_key "radio_station_songs", "radio_stations"
   add_foreign_key "radio_station_songs", "songs"
   add_foreign_key "song_recognizer_logs", "radio_stations"

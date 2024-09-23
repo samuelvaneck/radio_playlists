@@ -23,6 +23,7 @@ Rails.application.configure do
   # mailer options
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -49,7 +50,7 @@ Rails.application.configure do
   config.action_mailer.show_previews = true
 
   # If you're using RSpec make sure to add the link changing where the previews path is.
-  config.action_mailer.preview_path ||= defined?(Rails.root) ? "#{Rails.root}/spec/mailers/previews" : nil
+  # config.action_mailer.preview_path ||= defined?(Rails.root) ? "#{Rails.root}/spec/mailers/previews" : nil
 
   # Store files locally.
   # config.active_storage.service = :local
