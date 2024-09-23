@@ -11,8 +11,9 @@
 #  instrumental     :integer          default(0)
 #  live             :integer          default(0)
 #  valence          :integer          default(0)
-#  day_part         :string
-#  tags             :jsonb
+#  day_part         :string           not null
+#  tempo            :decimal(5, 2)    default(0.0)
+#  counter          :integer          default(0)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #

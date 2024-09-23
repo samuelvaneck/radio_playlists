@@ -90,10 +90,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_23_034040) do
     t.integer "instrumental", default: 0
     t.integer "live", default: 0
     t.integer "valence", default: 0
-    t.string "day_part"
-    t.jsonb "tags", default: {}
+    t.string "day_part", null: false
+    t.decimal "tempo", precision: 5, scale: 2, default: "0.0"
+    t.integer "counter", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["radio_station_id", "day_part"], name: "idx_on_radio_station_id_day_part_3fdb6160cd", unique: true
     t.index ["radio_station_id"], name: "index_radio_station_classifiers_on_radio_station_id"
   end
 

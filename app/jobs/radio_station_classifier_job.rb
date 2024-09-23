@@ -17,9 +17,12 @@ class RadioStationClassifierJob < ApplicationJob
     classifier = find_or_initialize_classifier(args[:radio_station_id])
 
     update_classifier_with_audio_features(classifier, audio_features)
-    update_radio_station_tags(args)
-
+    classifier.tempo = ((classifier.tempo * classifier.counter) + audio_features['tempo']) / (classifier.counter + 1)
+    classifier.counter += 1
     classifier.save
+
+    update_radio_station_tags(args)
+    Rails.logger.info "Radio station classifier for radio station #{args[:radio_station_id]} updated"
   end
 
   private

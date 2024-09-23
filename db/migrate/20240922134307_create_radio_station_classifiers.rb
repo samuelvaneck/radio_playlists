@@ -9,8 +9,10 @@ class CreateRadioStationClassifiers < ActiveRecord::Migration[7.2]
       t.integer :instrumental, default: 0
       t.integer :live, default: 0
       t.integer :valence, default: 0
-      t.string :day_part
-      t.jsonb :tags, default: {}
+      t.string :day_part, null: false
+      t.decimal :tempo, precision: 5, scale: 2, default: 0.0
+      t.integer :counter, default: 0
+      t.index %i[radio_station_id day_part], unique: true
 
       t.timestamps
     end
