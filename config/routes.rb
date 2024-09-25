@@ -14,6 +14,8 @@ Rails.application.routes.draw do
         get :graph_data, on: :member
       end
       resources :radio_stations, only: %i[index show] do
+        get :data, on: :member
+        get :classifiers, on: :member
         get :status, on: :member
         get :last_played_songs, on: :collection
         get :new_played_songs, on: :collection

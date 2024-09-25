@@ -1,4 +1,8 @@
 ---
+  :queues:
+    - critical
+    - default
+    - low
   :concurrency: 20
   :max_retries: 3
   :scheduler:

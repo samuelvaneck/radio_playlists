@@ -3,7 +3,7 @@
 module Api
   module V1
     class RadioStationsController < ApiController
-      before_action :set_radio_station, only: %i[show status]
+      before_action :set_radio_station, only: %i[show status data classifiers]
 
       def index
         render json: RadioStationSerializer.new(RadioStation.all).serializable_hash.to_json
@@ -15,6 +15,14 @@ module Api
 
       def status
         render json: @radio_station.status_data
+      end
+
+      def data
+        render json: @radio_station.data
+      end
+
+      def classifiers
+        render json: RadioStationClassifierSerializer.new(@radio_station.radio_station_classifiers).serializable_hash.to_json
       end
 
       def last_played_songs
