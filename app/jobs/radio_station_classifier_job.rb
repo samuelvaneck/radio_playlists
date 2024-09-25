@@ -5,6 +5,8 @@ class RadioStationClassifierJob
   AUDIO_FEATURES = %w[danceability energy speechiness acousticness instrumentalness liveness valence].freeze
 
   def perform(id_on_spotify, radio_station_id)
+    return if id_on_spotify.blank?
+
     audio_features = fetch_audio_features(id_on_spotify)
     classifier = find_or_initialize_classifier(radio_station_id)
 
