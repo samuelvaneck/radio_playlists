@@ -125,4 +125,18 @@ class RadioStation < ActiveRecord::Base
 
     update(last_added_playlist_ids: current_last_added_playlist_ids)
   end
+
+  def data
+    {
+      id: id,
+      name: name,
+      genre: genre,
+      url: url,
+      processor: processor,
+      stream_url: stream_url,
+      country_code: country_code,
+      last_added_playlist_ids: last_added_playlist_ids,
+      last_played_song: PlaylistSerializer.new(last_added_playlists).serializable_hash
+    }
+  end
 end

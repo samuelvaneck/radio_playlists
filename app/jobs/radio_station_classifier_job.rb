@@ -1,5 +1,6 @@
 class RadioStationClassifierJob
   include Sidekiq::Job
+  sidekiq_options queue: 'low'
 
   AUDIO_FEATURES = %w[danceability energy speechiness acousticness instrumentalness liveness valence].freeze
 
