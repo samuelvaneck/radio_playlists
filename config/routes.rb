@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :playlists, only: %i[index show]
       resources :artists, only: %i[index show] do
         get :graph_data, on: :member
+        get :songs, on: :member
       end
       resources :songs, only: %i[index show] do
         get :graph_data, on: :member
