@@ -13,6 +13,7 @@
 #  spotify_artwork_url :string
 #  id_on_spotify       :string
 #  isrc                :string
+#  spotify_preview_url :string
 #
 
 class Song < ApplicationRecord
