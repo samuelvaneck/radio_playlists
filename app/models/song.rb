@@ -13,6 +13,7 @@
 #  spotify_artwork_url :string
 #  id_on_spotify       :string
 #  isrc                :string
+#  spotify_preview_url :string
 #
 
 class Song < ApplicationRecord
@@ -48,6 +49,7 @@ class Song < ApplicationRecord
                  songs.id_on_spotify,
                  songs.spotify_song_url,
                  songs.spotify_artwork_url,
+                 songs.spotify_preview_url,
                  COUNT(DISTINCT playlists.id) AS COUNTER")
         .group(:id)
         .order('COUNTER DESC')

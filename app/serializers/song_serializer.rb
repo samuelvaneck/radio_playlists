@@ -13,6 +13,7 @@
 #  spotify_artwork_url :string
 #  id_on_spotify       :string
 #  isrc                :string
+#  spotify_preview_url :string
 #
 class SongSerializer
   include FastJsonapi::ObjectSerializer
@@ -22,6 +23,7 @@ class SongSerializer
              :fullname,
              :spotify_song_url,
              :spotify_artwork_url,
+             :spotify_preview_url,
              :artists
 
   attribute :counter do |object|
