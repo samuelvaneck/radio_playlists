@@ -23,6 +23,7 @@ class SongSerializer
              :fullname,
              :spotify_song_url,
              :spotify_artwork_url,
+             :spotify_preview_url,
              :artists
 
   attribute :counter do |object|

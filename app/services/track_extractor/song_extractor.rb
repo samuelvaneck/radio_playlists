@@ -2,7 +2,9 @@
 
 class TrackExtractor::SongExtractor < TrackExtractor
   def extract
-    find_or_create_song
+    @song = find_or_create_song
+    maybe_update_preview_url(@song)
+    @song
   end
 
   private
@@ -16,6 +18,12 @@ class TrackExtractor::SongExtractor < TrackExtractor
   rescue StandardError => e
     ExceptionNotifier.notify_new_relic(e)
     nil
+  end
+
+  def maybe_update_preview_url(song)
+    return unless song.spotify_preview_url.blank? && @track&.spotify_preview_url.present?
+
+    song.update(spotify_preview_url: @track&.spotify_preview_url)
   end
 
   # Methode for checking if there are songs with the same title.
@@ -65,11 +73,16 @@ class TrackExtractor::SongExtractor < TrackExtractor
     @track&.spotify_artwork_url
   end
 
+  def spotify_preview_url
+    @track&.spotify_preview_url
+  end
+
   def song_attributes
     {
       title:,
       spotify_song_url:,
       spotify_artwork_url:,
+      spotify_preview_url:,
       id_on_spotify:,
       isrc:
     }

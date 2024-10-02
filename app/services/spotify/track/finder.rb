@@ -1,7 +1,9 @@
 module Spotify
   module Track
     class Finder < Base
-      attr_reader :track, :artists, :title, :id, :isrc, :spotify_artwork_url, :spotify_song_url, :query_result, :filter_result, :tracks
+      attr_reader :track, :artists, :title, :id, :isrc, :spotify_artwork_url,
+                  :spotify_song_url, :query_result, :filter_result, :tracks,
+                  :spotify_preview_url
 
       TRACK_TYPES = %w[album single compilation].freeze
       FEATURING_REGEX = /\(feat\..+\)/
@@ -26,6 +28,7 @@ module Spotify
         @isrc = set_isrc
         @spotify_song_url = set_spotify_song_url
         @spotify_artwork_url = set_spotify_artwork_url
+        @spotify_preview_url = set_spotify_preview_url
         @title_distance = set_title_distance
         @id = set_id
 
@@ -125,6 +128,12 @@ module Spotify
         return if @track.blank?
 
         @track.dig('album', 'images')[0]['url'] if track.dig('album', 'images').present?
+      end
+
+      def set_spotify_preview_url
+        return if @track.blank?
+
+        @track['preview_url']
       end
 
       def set_title_distance
