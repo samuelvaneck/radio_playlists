@@ -31,6 +31,7 @@ class Song < ApplicationRecord
     joins(:artists).where('title ILIKE ? OR artists.name ILIKE ?', "%#{search_term}%", "%#{search_term}%") if search_term
   }
   scope :with_iscr, ->(isrc) { where(isrc: isrc) }
+  scope :with_id_on_spotify, -> { where.not(id_on_spotify: nil) }
 
   MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'
   ARTISTS_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
@@ -102,6 +103,12 @@ class Song < ApplicationRecord
   def find_same_songs
     artist_ids = artists.pluck(:id)
     Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', title.downcase)
+  end
+
+  def spotify_track
+    return if id_on_spotify.blank?
+
+    @spotify_track ||= Spotify::Track::FindById.new(id_on_spotify: id_on_spotify).execute
   end
 
   private
