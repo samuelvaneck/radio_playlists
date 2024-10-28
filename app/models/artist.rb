@@ -22,6 +22,7 @@ class Artist < ApplicationRecord
   has_many :artists_songs
   has_many :songs, through: :artists_songs
   has_many :playlists, through: :songs
+  has_many :chart_positions, as: :positianable
 
   scope :matching, ->(search_term) { where!('artists.name ILIKE ?', "%#{search_term}%") if search_term.present? }
 
