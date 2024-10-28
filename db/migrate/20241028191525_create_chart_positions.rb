@@ -9,6 +9,5 @@ class CreateChartPositions < ActiveRecord::Migration[7.2]
     end
 
     add_index :chart_positions, [:positianable_id, :positianable_type]
-    add_reference :charts, :chart_positions, foreign_key: true
   end
 end

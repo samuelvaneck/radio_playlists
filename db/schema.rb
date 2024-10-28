@@ -78,8 +78,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_191525) do
     t.string "chart_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "chart_positions_id"
-    t.index ["chart_positions_id"], name: "index_charts_on_chart_positions_id"
   end
 
   create_table "playlists", force: :cascade do |t|
@@ -177,7 +175,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_191525) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chart_positions", "charts"
-  add_foreign_key "charts", "chart_positions", column: "chart_positions_id"
   add_foreign_key "playlists", "radio_stations"
   add_foreign_key "playlists", "songs"
   add_foreign_key "radio_station_classifiers", "radio_stations"
