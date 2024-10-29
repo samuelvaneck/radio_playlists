@@ -30,6 +30,7 @@ class Chart < ApplicationRecord
     chart.__send__("yesterday_#{chart_type}_chart".to_sym).each_with_index do |chart_item, i|
       position = chart.chart_positions.build
       position.positianable = chart_item
+      position.counts = chart_item.counter
       position.position = i + 1
       position.save!
     end

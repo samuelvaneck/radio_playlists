@@ -63,6 +63,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_28_191525) do
 
   create_table "chart_positions", force: :cascade do |t|
     t.bigint "position", null: false
+    t.bigint "counts", default: 0, null: false
     t.bigint "positianable_id", null: false
     t.string "positianable_type", null: false
     t.bigint "chart_id", null: false

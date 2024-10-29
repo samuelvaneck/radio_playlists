@@ -4,6 +4,7 @@
 #
 #  id                :bigint           not null, primary key
 #  position          :bigint           not null
+#  counts            :bigint           default(0), not null
 #  positianable_id   :bigint           not null
 #  positianable_type :string           not null
 #  chart_id          :bigint           not null
