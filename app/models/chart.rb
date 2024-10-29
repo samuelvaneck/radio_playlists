@@ -13,7 +13,9 @@
 #
 
 class Chart < ApplicationRecord
-  validates :date, :chart, :chart_type, presence: true
+  has_many :chart_positions, dependent: :destroy
+
+  validates :date, :chart_type, presence: true
 
   scope :songs_charts, -> { where(chart_type: 'songs') }
   scope :artists_charts, -> { where(chart_type: 'artists') }
@@ -25,7 +27,14 @@ class Chart < ApplicationRecord
 
   def self.create_yesterday_chart(chart_type)
     chart = Chart.new(date: 1.day.ago.beginning_of_day, chart_type:)
-    chart.chart = chart.__send__("yesterday_#{chart_type}_chart".to_sym)
+    chart.__send__("yesterday_#{chart_type}_chart".to_sym).each_with_index do |chart_item, i|
+      position = chart.chart_positions.build
+      position.positianable = chart_item
+      position.counts = chart_item.counter
+      position.position = i + 1
+      position.save!
+    end
+
     chart.save!
   end
 

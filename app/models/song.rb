@@ -25,6 +25,7 @@ class Song < ApplicationRecord
   has_many :playlists
   has_many :radio_station_songs, dependent: :destroy
   has_many :radio_stations, through: :radio_station_songs
+  has_many :chart_positions, as: :positianable
   after_commit :update_fullname, on: %i[create update]
 
   scope :matching, lambda { |search_term|

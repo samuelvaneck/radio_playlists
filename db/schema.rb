@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_02_101056) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_28_191525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_101056) do
     t.index ["artist_id", "song_id"], name: "index_artists_songs_on_artist_id_and_song_id", unique: true
     t.index ["artist_id"], name: "index_artists_songs_on_artist_id"
     t.index ["song_id"], name: "index_artists_songs_on_song_id"
+  end
+
+  create_table "chart_positions", force: :cascade do |t|
+    t.bigint "position", null: false
+    t.bigint "counts", default: 0, null: false
+    t.bigint "positianable_id", null: false
+    t.string "positianable_type", null: false
+    t.bigint "chart_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chart_id"], name: "index_chart_positions_on_chart_id"
+    t.index ["positianable_id", "positianable_type"], name: "index_chart_positions_on_positianable_id_and_positianable_type"
   end
 
   create_table "charts", force: :cascade do |t|
@@ -163,6 +175,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_101056) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chart_positions", "charts"
   add_foreign_key "playlists", "radio_stations"
   add_foreign_key "playlists", "songs"
   add_foreign_key "radio_station_classifiers", "radio_stations"
