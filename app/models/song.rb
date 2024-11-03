@@ -57,6 +57,10 @@ class Song < ApplicationRecord
         .order('COUNTER DESC')
   end
 
+  def self.most_played_group_by(column, params)
+    most_played(params).group_by(&column)
+  end
+
   def self.search_title(title)
     where('title ILIKE ?', "%#{title}%")
   end
