@@ -46,9 +46,27 @@ class Chart < ApplicationRecord
     Chart.where('created_at > ?', Time.zone.now.beginning_of_day).where(chart_type: 'artists')[0]
   end
 
-  def position(object_id)
-    chart_index = chart.map.with_index { |idx, i| return i if idx[0] == Integer(object_id, 10) }.compact
-    chart_index.blank? ? -1 : chart_index[0]
+  def self.recreate_last_year_charts
+    (Date.parse('2024-01-01')..Date.parse('2024-11-03')).each do |date|
+      [Song, Artist].each do |chart_type|
+        chart = Chart.new(date: date, chart_type:)
+        index = 1
+        start_time = (date - 1).beginning_of_day.strftime('%FT%R')
+        end_time = (date -1).end_of_day.strftime('%FT%R')
+        chart_type.most_played_group_by(:counter, start_time: , end_time:).each do |counter, chart_items|
+          chart_items.each do |chart_item|
+            position = chart.chart_positions.build
+            position.positianable = chart_item
+            position.counts = counter
+            position.position = index
+            position.save!
+          end
+          index += 1
+        end
+
+        chart.save!
+      end
+    end
   end
 
   private
