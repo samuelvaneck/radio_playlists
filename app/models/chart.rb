@@ -76,11 +76,11 @@ class Chart < ApplicationRecord
   private
 
   def yesterday_songs_chart
-    Song.most_played_group_by(:counter,{ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
+    Song.most_played_group_by(:counter, { start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
   end
 
   def yesterday_artists_chart
-    Artist.most_played_group_by({ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
+    Artist.most_played_group_by(:counter, { start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
   end
 
   def yesterday_beginning_of_day
