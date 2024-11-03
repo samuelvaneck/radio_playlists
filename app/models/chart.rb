@@ -27,12 +27,16 @@ class Chart < ApplicationRecord
 
   def self.create_yesterday_chart(chart_type)
     chart = Chart.new(date: 1.day.ago.beginning_of_day, chart_type:)
-    chart.__send__("yesterday_#{chart_type}_chart".to_sym).each_with_index do |chart_item, i|
-      position = chart.chart_positions.build
-      position.positianable = chart_item
-      position.counts = chart_item.counter
-      position.position = i + 1
-      position.save!
+    index = 1
+    chart.__send__("yesterday_#{chart_type}_chart".to_sym).each do |counter, chart_items|
+      chart_items.each do |chart_item|
+        position = chart.chart_positions.build
+        position.positianable = chart_item
+        position.counts = counter
+        position.position = index
+        position.save!
+      end
+      index += 1
     end
 
     chart.save!
@@ -72,11 +76,11 @@ class Chart < ApplicationRecord
   private
 
   def yesterday_songs_chart
-    Song.most_played({ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
+    Song.most_played_group_by(:counter,{ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
   end
 
   def yesterday_artists_chart
-    Artist.most_played({ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
+    Artist.most_played_group_by({ start_time: yesterday_beginning_of_day, end_time: yesterday_end_of_day })
   end
 
   def yesterday_beginning_of_day

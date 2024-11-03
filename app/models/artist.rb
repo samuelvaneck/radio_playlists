@@ -45,6 +45,10 @@ class Artist < ApplicationRecord
           .order('COUNTER DESC')
   end
 
+  def self.most_played_group_by(column, params)
+    self.most_played(params).group_by(&column)
+  end
+
   def self.spotify_track_to_artist(track)
     track.artists.map do |track_artist|
       artist = Artist.find_or_initialize_by(id_on_spotify: track_artist['id']) || Artist.find_or_initialize_by(name: track_artist['name'])
