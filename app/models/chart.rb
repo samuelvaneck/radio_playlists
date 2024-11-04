@@ -5,8 +5,7 @@
 # Table name: charts
 #
 #  id         :bigint           not null, primary key
-#  date       :datetime
-#  chart      :jsonb
+#  date       :date
 #  chart_type :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -51,7 +50,7 @@ class Chart < ApplicationRecord
   end
 
   def self.recreate_last_year_charts
-    (Date.parse('2024-01-01')..Date.parse('2024-11-03')).each do |date|
+    (Date.parse('2023-01-01')..Date.parse('2023-12-31')).each do |date|
       [Song, Artist].each do |chart_type|
         chart = Chart.new(date: date, chart_type:)
         index = 1
