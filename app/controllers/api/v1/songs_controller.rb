@@ -20,6 +20,10 @@ module Api
         render json: song.graph_data(params[:time] || params[:start_time])
       end
 
+      def chart_positions
+        render json: ChartPosition.item_positions_with_date(song)
+      end
+
       private
 
       def songs

@@ -15,21 +15,26 @@ class AudioStream
       @stdout = stdout.read
       @stderr = stderr.read
     end
-    utf8_stream_title = convert_stderr_to_utf8
+    utf8_stream_title = Regexp.new('StreamTitle')
     return if utf8_stream_title.blank?
 
     @stream_artist, @stream_title = utf8_stream_title.split(':')&.[](1)&.split('-')
     @stream_artist.strip! if @stream_artist.present?
     @stream_title.strip! if @stream_title.present?
+  rescue StandardError => e
+    Rails.logger.error "Error capturing stream: #{e.message}"
+    @stream_artist = nil
+    @stream_title = nil
   end
 
   def delete_file
     File.delete(@output_file) if File.exist?(@output_file)
   end
 
-  def convert_stderr_to_utf8
-    detection = CharlockHolmes::EncodingDetector.detect(@stderr)
-    utf8_encoded_content = CharlockHolmes::Converter.convert(@stderr, detection[:encoding], 'UTF-8')
-    utf8_encoded_content.lines.grep(Regexp.new('StreamTitle'))[0]
-  end
+  # TODO: fix after ability to install charlock_holmes gem
+  # def convert_stderr_to_utf8
+  #   detection = CharlockHolmes::EncodingDetector.detect(@stderr)
+  #   utf8_encoded_content = CharlockHolmes::Converter.convert(@stderr, detection[:encoding], 'UTF-8')
+  #   utf8_encoded_content.lines.grep(Regexp.new('StreamTitle'))[0]
+  # end
 end

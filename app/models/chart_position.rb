@@ -19,15 +19,18 @@ class ChartPosition < ApplicationRecord
 
   def self.item_position_on_day(item, date)
     chart = Chart.find_by(date: date)
-    return -1 unless chart
+    return 0 unless chart
 
-    chart.chart_positions.find_by(positianable: item)&.position || -1
+    chart.chart_positions.find_by(positianable: item)&.position || 0
   end
 
   def self.item_positions_with_date(item)
-    chart_positions = ChartPosition.where(positianable: item)
-    chart_positions.map do |chart_position|
-      { date: chart_position.chart.date, position: chart_position.position }
+    chart_positions = item.chart_positions
+    min_date, max_date = chart_positions.joins(:chart).pluck('charts.date').minmax
+
+    (min_date..max_date).map do |date|
+      position = chart_positions.joins(:chart).find_by(charts: { date: date })&.position || 0
+      { date: date, position: position }
     end
   end
 end

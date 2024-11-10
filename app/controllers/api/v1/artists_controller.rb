@@ -23,6 +23,10 @@ module Api
         render json: SongSerializer.new(artist.songs).serializable_hash.to_json
       end
 
+      def chart_positions
+        render json: ChartPosition.item_positions_with_date(artist)
+      end
+
       private
 
       def artists
