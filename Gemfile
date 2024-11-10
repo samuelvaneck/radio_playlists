@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '3.3.5'
 
 gem 'bootsnap', require: false
-gem 'charlock_holmes', '~> 0.7.7'
+# gem 'charlock_holmes', '~> 0.7.7'
 gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 gem 'health_bit'
 gem 'jaro_winkler'
