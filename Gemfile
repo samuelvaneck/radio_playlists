@@ -33,7 +33,6 @@ gem 'net-smtp', require: false
 gem 'net-pop', require: false
 gem 'net-imap', require: false
 
-
 group :development, :test do
   gem 'concurrent-ruby'
   gem 'factory_bot_rails'
