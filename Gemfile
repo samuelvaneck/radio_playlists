@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.3.5'
+ruby '3.3.6'
 
 gem 'bootsnap', require: false
 # gem 'charlock_holmes', '~> 0.7.7'
@@ -32,7 +32,6 @@ gem 'will_paginate'
 gem 'net-smtp', require: false
 gem 'net-pop', require: false
 gem 'net-imap', require: false
-
 
 group :development, :test do
   gem 'concurrent-ruby'
