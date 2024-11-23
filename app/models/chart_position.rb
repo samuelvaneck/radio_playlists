@@ -24,6 +24,10 @@ class ChartPosition < ApplicationRecord
     chart.chart_positions.find_by(positianable: item)&.position || 0
   end
 
+  # returns the chart positions for an item on each day
+  #
+  # @item [Song | Artist] the item to get the chart positions for
+  # @return [Array<Hash>] array of hashes with keys date and position
   def self.item_positions_with_date(item)
     chart_positions = item.chart_positions
     return [] if chart_positions.blank?
