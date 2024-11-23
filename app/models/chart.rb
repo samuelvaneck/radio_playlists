@@ -28,14 +28,19 @@ class Chart < ApplicationRecord
     chart = Chart.new(date: 1.day.ago.beginning_of_day, chart_type:)
     index = 1
     chart.__send__("yesterday_#{chart_type}_chart".to_sym).each do |counter, chart_items|
+      # reorder chart items by the number of playlists they were played in the last month
+      chart_items = chart_items.sort_by do |item|
+        -item.playlists.where('broadcasted_at >= ? AND broadcasted_at <= ?', 1.month.ago, end_time).count
+      end
+
       chart_items.each do |chart_item|
         position = chart.chart_positions.build
         position.positianable = chart_item
         position.counts = counter
         position.position = index
         position.save!
+        index += 1
       end
-      index += 1
     end
 
     chart.save!
@@ -49,22 +54,27 @@ class Chart < ApplicationRecord
     Chart.where('created_at > ?', Time.zone.now.beginning_of_day).where(chart_type: 'artists')[0]
   end
 
-  def self.recreate_last_year_charts
-    (Date.parse('2023-01-01')..Date.parse('2023-12-31')).each do |date|
+  def self.recreate_past_charts
+    (Date.parse('2021-01-17')..Date.today).each do |date|
       [Song, Artist].each do |chart_type|
         chart = Chart.new(date: date, chart_type:)
         index = 1
-        start_time = (date - 1).beginning_of_day.strftime('%FT%R')
+        start_time = (date - 1).beginning_of_day
         end_time = (date -1).end_of_day.strftime('%FT%R')
-        chart_type.most_played_group_by(:counter, start_time: , end_time:).each do |counter, chart_items|
+        chart_type.most_played_group_by(:counter, start_time: start_time.strftime('%FT%R'), end_time:).each do |counter, chart_items|
+          # reorder chart items by the number of playlists they were played in the last month
+          chart_items = chart_items.sort_by do |item|
+            -item.playlists.where('broadcasted_at >= ? AND broadcasted_at <= ?', (start_time - 1.month), end_time).count
+          end
+
           chart_items.each do |chart_item|
             position = chart.chart_positions.build
             position.positianable = chart_item
             position.counts = counter
             position.position = index
             position.save!
+            index += 1
           end
-          index += 1
         end
 
         chart.save!
