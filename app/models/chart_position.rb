@@ -35,7 +35,9 @@ class ChartPosition < ApplicationRecord
     min_date, max_date = chart_positions.joins(:chart).pluck('charts.date').minmax
     (min_date..max_date).map do |date|
       position = chart_positions.joins(:chart).find_by(charts: { date: date })&.position || 0
-      { date: date, position: position }
+      counts = chart_positions.joins(:chart).find_by(charts: { date: date })&.counts || 0
+
+      { date: date, position: position, counts: counts }
     end
   end
 end
