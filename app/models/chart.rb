@@ -30,7 +30,7 @@ class Chart < ApplicationRecord
     chart.__send__("yesterday_#{chart_type}_chart".to_sym).each do |counter, chart_items|
       # reorder chart items by the number of playlists they were played in the last month
       chart_items = chart_items.sort_by do |item|
-        -item.playlists.where('broadcasted_at >= ? AND broadcasted_at <= ?', 1.week.ago, yesterday_end_of_day).count
+        -item.playlists.where('broadcasted_at >= ? AND broadcasted_at <= ?', 1.week.ago, 1.day.ago.end_of_day.strftime('%FT%R')).count
       end
 
       chart_items.each do |chart_item|
