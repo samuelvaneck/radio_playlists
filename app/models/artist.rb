@@ -67,4 +67,12 @@ class Artist < ApplicationRecord
   def cleanup
     destroy if songs.blank?
   end
+
+  def played
+    playlists.size
+  end
+
+  def update_chart_positions
+    update(cached_chart_positions: ChartPosition.item_positions_with_date(self))
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_15_145744) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_15_172041) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_15_145744) do
     t.string "spotify_artist_url"
     t.string "spotify_artwork_url"
     t.string "id_on_spotify"
+    t.jsonb "cached_chart_positions", default: []
   end
 
   create_table "artists_songs", id: false, force: :cascade do |t|
