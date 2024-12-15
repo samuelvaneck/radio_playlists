@@ -4,16 +4,17 @@
 #
 # Table name: songs
 #
-#  id                  :bigint           not null, primary key
-#  title               :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  fullname            :text
-#  spotify_song_url    :string
-#  spotify_artwork_url :string
-#  id_on_spotify       :string
-#  isrc                :string
-#  spotify_preview_url :string
+#  id                     :bigint           not null, primary key
+#  title                  :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  fullname               :text
+#  spotify_song_url       :string
+#  spotify_artwork_url    :string
+#  id_on_spotify          :string
+#  isrc                   :string
+#  spotify_preview_url    :string
+#  cached_chart_positions :jsonb
 #
 
 class Song < ApplicationRecord
@@ -93,6 +94,7 @@ class Song < ApplicationRecord
       next
     end
   end
+  
   def find_and_remove_obsolete_song
     songs = find_same_songs
     most_played_song = songs.max_by(&:played)
@@ -114,6 +116,10 @@ class Song < ApplicationRecord
     return if id_on_spotify.blank?
 
     @spotify_track ||= Spotify::Track::FindById.new(id_on_spotify: id_on_spotify).execute
+  end
+
+  def update_chart_positions
+    update(cached_chart_positions: ChartPosition.item_positions_with_date(self))
   end
 
   private

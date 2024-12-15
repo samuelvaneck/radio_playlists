@@ -39,6 +39,7 @@ class Chart < ApplicationRecord
         position.counts = counter
         position.position = index
         position.save!
+        SongUpdateChartPositionsJob.perform_later(chart_item.id) if chart_type == 'songs'
         index += 1
       end
     end
