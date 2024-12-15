@@ -17,7 +17,7 @@
         enabled: false
       ChartCreationJob:
         cron: '10 0 * * *' # at 0:10 am
-        queue: default
+        queue: low
         enabled: true
       CleanUpJob:
         cron: '0 0 * * *' # midnight

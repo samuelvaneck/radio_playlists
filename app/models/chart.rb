@@ -39,7 +39,7 @@ class Chart < ApplicationRecord
         position.counts = counter
         position.position = index
         position.save!
-        UpdateItemChartPositionsJob.perform_later(chart_item.id)
+        UpdateItemChartPositionsJob.perform_async(chart_item.id)
         index += 1
       end
     end
