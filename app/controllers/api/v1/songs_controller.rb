@@ -21,7 +21,7 @@ module Api
       end
 
       def chart_positions
-        render json: ChartPosition.item_positions_with_date(song)
+        render json: song.cached_chart_positions.presence || ChartPosition.item_positions_with_date(song)
       end
 
       private

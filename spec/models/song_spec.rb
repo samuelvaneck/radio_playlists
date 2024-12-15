@@ -4,16 +4,17 @@
 #
 # Table name: songs
 #
-#  id                  :bigint           not null, primary key
-#  title               :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  fullname            :text
-#  spotify_song_url    :string
-#  spotify_artwork_url :string
-#  id_on_spotify       :string
-#  isrc                :string
-#  spotify_preview_url :string
+#  id                     :bigint           not null, primary key
+#  title                  :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  fullname               :text
+#  spotify_song_url       :string
+#  spotify_artwork_url    :string
+#  id_on_spotify          :string
+#  isrc                   :string
+#  spotify_preview_url    :string
+#  cached_chart_positions :jsonb
 #
 describe Song do
   let(:artist_1) { create :artist }
