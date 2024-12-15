@@ -3,7 +3,7 @@
 module Api
   module V1
     class ArtistsController < ApiController
-      before_action :artist, only: %i[show graph_data songs]
+      before_action :artist, only: %i[show graph_data songs chart_positions]
       def index
         render json: ArtistSerializer.new(artists)
                                      .serializable_hash
@@ -24,7 +24,9 @@ module Api
       end
 
       def chart_positions
-        render json: ChartPosition.item_positions_with_date(artist)
+        artist.update_chart_positions if artist.update_cached_positions?
+
+        render json: artist.reload.cached_chart_positions.presence || []
       end
 
       private
