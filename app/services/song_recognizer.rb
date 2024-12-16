@@ -16,6 +16,9 @@ class SongRecognizer
     audio_stream.capture
     response = run_song_recognizer
     handle_response(response)
+  rescue StandardError => e
+    Rails.logger.error "SongRecognizer error: #{e.message}"
+    false
   ensure
     audio_stream.delete_file
   end
