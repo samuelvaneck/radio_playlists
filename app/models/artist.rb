@@ -31,7 +31,7 @@ class Artist < ApplicationRecord
 
   validates :name, presence: true
 
-  def self.most_played(params)
+  def self.most_played(params = {})
     Artist.joins(:playlists)
           .played_between(date_from_params(time: params[:start_time], fallback: 1.week.ago),
                           date_from_params(time: params[:end_time], fallback: Time.zone.now))

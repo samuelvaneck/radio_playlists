@@ -33,6 +33,8 @@ class RadioStationClassifierJob
 
   def update_classifier_with_audio_features(classifier, audio_features)
     AUDIO_FEATURES.each do |feature|
+      next if audio_features[feature].nil?
+
       classifier[feature] += 1 if audio_features[feature] > 0.5
       classifier["#{feature}_average"] = ((classifier["#{feature}_average"] * classifier.counter) + audio_features[feature]) / (classifier.counter + 1)
     end

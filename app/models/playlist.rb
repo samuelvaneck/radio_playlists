@@ -28,7 +28,7 @@ class Playlist < ApplicationRecord
 
   validate :today_unique_playlist_item
 
-  def self.last_played(params)
+  def self.last_played(params = {})
     Playlist.joins(:song)
             .played_between(date_from_params(time: params[:start_time], fallback: 1.day.ago),
                             date_from_params(time: params[:end_time], fallback: Time.zone.now))
