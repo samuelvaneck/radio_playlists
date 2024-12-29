@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ruby:3.4.1-bookworm
+FROM --platform=linux/amd64 ruby:3.3.6-bullseye
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add
@@ -9,11 +9,11 @@ RUN apt-get update -qq && \
                        software-properties-common \
                        ffmpeg \
                        libpq-dev \
-                       yarn \
-                       python3-launchpadlib
+                       yarn
+
 
 RUN wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | tee /etc/apt/trusted.gpg.d/songrec.asc
-RUN add-apt-repository 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main'
+RUN add-apt-repository 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu focal main'
 # RUN apt update --allow-insecure-repositories
 # RUN apt install songrec -y --allow-unauthenticated
 RUN apt update
