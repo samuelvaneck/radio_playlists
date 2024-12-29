@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 class CleanUpJob < ApplicationJob
   queue_as :default
 

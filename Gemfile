@@ -4,6 +4,7 @@ ruby '3.4.1'
 
 gem 'bootsnap', require: false
 gem 'charlock_holmes', '~> 0.7.7'
+gem 'csv', '~> 3.3', '>= 3.3.2'
 gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 gem 'health_bit'
 gem 'jaro_winkler'
