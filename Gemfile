@@ -49,7 +49,7 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'rspec-rails'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 4.27'
   gem 'stackprof'
   gem 'webdrivers'
 end
