@@ -25,7 +25,7 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler', '~> 5.0'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'uri', '~> 0.12.0'
+gem 'uri', '~> 1.0.2'
 gem 'will_paginate'
 
 # Until mail gem is updated
