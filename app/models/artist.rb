@@ -74,9 +74,4 @@ class Artist < ApplicationRecord
   def played
     playlists.size
   end
-
-  def update_chart_positions
-    update(cached_chart_positions: ChartPosition.item_positions_with_date(self),
-           cached_chart_positions_updated_at: Time.zone.now)
-  end
 end
