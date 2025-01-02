@@ -400,6 +400,10 @@ GEM
       rufus-scheduler (~> 3.2)
       sidekiq (>= 6, < 8)
       tilt (>= 1.4.0, < 3)
+    sidekiq-unique-jobs (8.0.10)
+      concurrent-ruby (~> 1.0, >= 1.0.5)
+      sidekiq (>= 7.0.0, < 8.0.0)
+      thor (>= 1.0, < 3.0)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -526,6 +530,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   sidekiq-scheduler (~> 5.0)
+  sidekiq-unique-jobs (~> 8.0)
   simplecov
   sinatra
   spring
