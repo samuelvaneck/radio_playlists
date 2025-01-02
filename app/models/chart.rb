@@ -15,6 +15,7 @@ class Chart < ApplicationRecord
   has_many :chart_positions, dependent: :destroy
 
   validates :date, :chart_type, presence: true
+  validates :date, uniqueness: { scope: :chart_type, message: 'Chart already exists for this date' }
 
   scope :songs_charts, -> { where(chart_type: 'songs') }
   scope :artists_charts, -> { where(chart_type: 'artists') }
