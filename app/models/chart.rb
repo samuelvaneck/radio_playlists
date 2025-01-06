@@ -26,7 +26,8 @@ class Chart < ApplicationRecord
   end
 
   def self.create_yesterday_chart(chart_type)
-    chart = Chart.new(date: 1.day.ago.beginning_of_day, chart_type:)
+    date = 1.day.ago.beginning_of_day
+    chart = Chart.new(date:, chart_type:)
     index = 1
     chart.__send__("yesterday_#{chart_type}_chart".to_sym).each do |counter, chart_items|
       # reorder chart items by the number of playlists they were played in the last month
@@ -40,7 +41,11 @@ class Chart < ApplicationRecord
         position.counts = counter
         position.position = index
         position.save!
-        UpdateItemChartPositionsJob.perform_async({ 'item_id' => chart_item.id, 'item_type' => chart_type })
+        UpdateItemChartPositionsJob.perform_async({ 'item_id' => chart_item.id,
+                                                    'item_type' => chart_type,
+                                                    'chart_date' => date,
+                                                    'chart_position' => index,
+                                                    'chart_counts' => counter })
         index += 1
       end
     end
