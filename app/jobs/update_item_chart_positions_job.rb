@@ -4,7 +4,7 @@ class UpdateItemChartPositionsJob
   sidekiq_options queue: 'low', lock: :until_executed
 
   def perform(args)
-    @args = args
+    @args = HashWithIndifferentAccess.new(JSON.parse(args))
     return if item.nil?
 
     chart_positions = current_chart_positions
@@ -13,12 +13,12 @@ class UpdateItemChartPositionsJob
     new_chart_positions = if chart_positions.blank?
                             [parsed_chart_positions]
                           # When the last chart position date is the day before the current date, add the new chart position
-                          elsif (last_chart_position_date + 1.day) == Date.parse(@args['chart_date'])
+                          elsif (last_chart_position_date + 1.day) == Date.parse(@args[:chart_date])
                             chart_positions << parsed_chart_positions
                             chart_positions
                           # when the last chart position date is not the day before the current date, fill in the missing days
                           else
-                            (last_chart_position_date + 1.day).upto(Date.parse(@args['chart_date']) - 1.day) do |date|
+                            (last_chart_position_date + 1.day).upto(Date.parse(@args[:chart_date]) - 1.day) do |date|
                               chart_positions << { date: date.to_s, position: 0, counts: 0 }
                             end
                             chart_positions << parsed_chart_positions
@@ -31,7 +31,7 @@ class UpdateItemChartPositionsJob
   private
 
   def item
-    @item ||= @args['item_type'].singularize.classify.constantize.find(@args['item_id'])
+    @item ||= @args[:item_type].singularize.classify.constantize.find(@args[:item_id])
   end
 
   def current_chart_positions
@@ -43,6 +43,6 @@ class UpdateItemChartPositionsJob
   end
 
   def parsed_chart_positions
-    { date: @args['chart_date'], position: @args['chart_position'], counts: @args['chart_counts'] }
+    { date: @args[:chart_date], position: @args[:chart_position], counts: @args[:chart_counts] }
   end
 end

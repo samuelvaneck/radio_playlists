@@ -27,31 +27,9 @@ class Chart < ApplicationRecord
 
   def self.create_yesterday_chart(chart_type)
     date = 1.day.ago.beginning_of_day
-    chart = Chart.new(date:, chart_type:)
-    index = 1
-    chart.__send__("yesterday_#{chart_type}_chart".to_sym).each do |counter, chart_items|
-      # reorder chart items by the number of playlists they were played in the last month
-      chart_items = chart_items.sort_by do |item|
-        -item.playlists.where('broadcasted_at >= ? AND broadcasted_at <= ?', 1.week.ago, 1.day.ago.end_of_day.strftime('%FT%R')).count
-      end
+    chart = Chart.create!(date:, chart_type:)
 
-      chart_items.each do |chart_item|
-        position = chart.chart_positions.build
-        position.positianable = chart_item
-        position.counts = counter
-        position.position = index
-        position.save!
-        job_args = { 'item_id' => chart_item.id,
-                     'item_type' => chart_type,
-                     'chart_date' => date,
-                     'chart_position' => index,
-                     'chart_counts' => counter }
-        UpdateItemChartPositionsJob.perform_async(job_args)
-        index += 1
-      end
-    end
-
-    chart.save!
+    chart.create_chart_positions
   end
 
   def self.latest_song_chart
@@ -86,6 +64,31 @@ class Chart < ApplicationRecord
         end
 
         chart.save!
+      end
+    end
+  end
+
+  def create_chart_positions
+    index = 1
+    __send__("yesterday_#{chart_type}_chart".to_sym).each do |counter, chart_items|
+      # reorder chart items by the number of playlists they were played in the last month
+      chart_items = chart_items.sort_by do |item|
+        -item.playlists.where('broadcasted_at >= ? AND broadcasted_at <= ?', 1.week.ago, 1.day.ago.end_of_day.strftime('%FT%R')).count
+      end
+
+      chart_items.each do |chart_item|
+        position = chart_positions.build
+        position.positianable = chart_item
+        position.counts = counter
+        position.position = index
+        position.save!
+        job_args = { item_id: chart_item.id,
+                     item_type: chart_type,
+                     chart_date: date,
+                     chart_position: index,
+                     chart_counts: counter }
+        UpdateItemChartPositionsJob.perform_async(job_args.to_json)
+        index += 1
       end
     end
   end
