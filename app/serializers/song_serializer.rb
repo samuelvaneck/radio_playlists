@@ -16,6 +16,7 @@
 #  spotify_preview_url               :string
 #  cached_chart_positions            :jsonb
 #  cached_chart_positions_updated_at :datetime
+#  id_on_youtube                     :string
 #
 class SongSerializer
   include FastJsonapi::ObjectSerializer
