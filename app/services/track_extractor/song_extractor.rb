@@ -4,6 +4,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
   def extract
     @song = find_or_create_song
     maybe_update_preview_url(@song)
+    maybe_update_id_on_youtube(@song)
     @song
   end
 
@@ -24,6 +25,10 @@ class TrackExtractor::SongExtractor < TrackExtractor
     return unless song.spotify_preview_url.blank? && @track&.spotify_preview_url.present?
 
     song.update(spotify_preview_url: @track&.spotify_preview_url)
+  end
+
+  def maybe_update_id_on_youtube(song)
+    song.update(id_on_youtube: id_on_youtube) if song.id_on_youtube.blank? || song.id_on_youtube != id_on_youtube
   end
 
   # Methode for checking if there are songs with the same title.
@@ -77,6 +82,11 @@ class TrackExtractor::SongExtractor < TrackExtractor
     @track&.spotify_preview_url
   end
 
+  def id_on_youtube
+    args = { artists: @artists.pluck(:name).join(' '), title: title }
+    @id_on_youtube ||= Youtube::Search.new(args).find_id
+  end
+
   def song_attributes
     {
       title:,
@@ -84,7 +94,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
       spotify_artwork_url:,
       spotify_preview_url:,
       id_on_spotify:,
-      isrc:
+      isrc:,
     }
   end
 end

@@ -3,9 +3,20 @@ module Youtube
     BASE_URL = 'https://www.googleapis.com/youtube/v3/search'
     API_KEY = ENV['YOUTUBE_API_KEY']
 
+    attr_reader :args
+
     def initialize(args)
       @args = args
     end
+
+    def find_id
+      response = make_request
+      only_official_with_same_title = Youtube::Filter.new(videos: response['items'], title: @args[:title])
+                                                     .only_official
+                                                     .with_same_title
+      only_official_with_same_title.dig(0, 'id', 'videoId')
+    end
+
     def make_request
       url = URI("#{BASE_URL}?part=#{part}&key=#{API_KEY}&type=#{type}&videoCategoryId=#{video_category_id}&q=#{query}")
       https = Net::HTTP.new(url.host, url.port)
