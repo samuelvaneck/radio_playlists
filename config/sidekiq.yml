@@ -8,7 +8,7 @@
   :scheduler:
     :schedule:
       ImportSongsAllRadioStationsJob:
-        cron: '* * * * *' # every 3 minutes
+        cron: '* * * * *' # every minute
         queue: default
         enabled: true
       SendStatusEmail:
@@ -21,6 +21,10 @@
         enabled: true
       CleanUpJob:
         cron: '0 0 * * *' # midnight
+        queue: default
+        enabled: true
+      YoutubeImportJob:
+        cron: '*/3 * * * *' # every 3 minutes
         queue: default
         enabled: true
   :sidekiq_default_hooks: true
