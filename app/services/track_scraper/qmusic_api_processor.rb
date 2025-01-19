@@ -13,10 +13,9 @@ class TrackScraper::QmusicApiProcessor < TrackScraper
     true
   end
 
-  def make_request
-    uri = URI @radio_station.url
-    api_header = { 'x-api-key': ENV['QMUSIC_API_KEY'] }
-    response = Net::HTTP.get_response(uri, api_header)
+  def make_request(url = @radio_station.url)
+    uri = URI(url)
+    response = Net::HTTP.get_response(uri)
     JSON.parse(response.body)
   end
 end
