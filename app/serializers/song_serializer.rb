@@ -34,7 +34,7 @@ class SongSerializer
     object.counter if object.respond_to?(:counter)
   end
 
-  def artists
+  attribute :artists do |object|
     object.artists.map do |artist|
       ArtistSerializer.new(artist)
     end
