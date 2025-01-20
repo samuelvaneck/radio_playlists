@@ -59,7 +59,7 @@ class YoutubeScrapeImportJob
   end
 
   def artist_name
-    @artist_name ||= @response.dig('played_tracks', 0, 'artist', 'name').titleize
+    @artist_name ||= @response&.dig('played_tracks', 0, 'artist', 'name').titleize
   end
 
   def song_title
@@ -67,7 +67,10 @@ class YoutubeScrapeImportJob
   end
 
   def id_on_spotify
-    @id_on_spotify ||= @response.dig('played_tracks', 0, 'spotify_url').split('/').last
+    spotify_url = @response.dig('played_tracks', 0, 'spotify_url')
+    return nil if spotify_url.blank?q
+
+    @id_on_spotify ||= spotify_url('/').last
   end
 
   def id_on_youtube
