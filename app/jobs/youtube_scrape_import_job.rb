@@ -68,7 +68,7 @@ class YoutubeScrapeImportJob
 
   def id_on_spotify
     spotify_url = @response.dig('played_tracks', 0, 'spotify_url')
-    return nil if spotify_url.blank?q
+    return nil if spotify_url.blank?
 
     @id_on_spotify ||= spotify_url('/').last
   end
