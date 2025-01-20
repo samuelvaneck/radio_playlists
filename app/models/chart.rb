@@ -33,11 +33,11 @@ class Chart < ApplicationRecord
   end
 
   def self.latest_song_chart
-    Chart.where('created_at > ?', Time.zone.now.beginning_of_day).where(chart_type: 'songs')[0]
+    Chart.where(chart_type: 'songs').order(date: :desc).first
   end
 
   def self.latest_artist_chart
-    Chart.where('created_at > ?', Time.zone.now.beginning_of_day).where(chart_type: 'artists')[0]
+    Chart.where(chart_type: 'artists').order(date: :desc).first
   end
 
   def self.recreate_past_charts
