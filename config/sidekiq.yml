@@ -23,7 +23,7 @@
         cron: '0 0 * * *' # midnight
         queue: default
         enabled: true
-      YoutubeImportJob:
+      YoutubeScrapeImportJob:
         cron: '*/3 * * * *' # every 3 minutes
         queue: default
         enabled: true

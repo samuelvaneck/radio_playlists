@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class YoutubeImportJob
+class YoutubeScrapeImportJob
   include Sidekiq::Worker
 
   def perform
@@ -24,6 +24,9 @@ class YoutubeImportJob
 
       clear_instance_variables
     end
+  rescue StandardError => e
+    Rails.logger.error "Error in YoutubeImportJob: #{e.message}"
+    nil
   ensure
     clear_instance_variables
   end
