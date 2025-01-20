@@ -11,9 +11,9 @@ module Youtube
 
     def find_id
       response = make_request
-      only_official_with_same_title = Youtube::Filter.new(videos: response['items'], title: @args[:title])
-                                                     .only_official
-                                                     .with_same_title
+      only_official = Youtube::Filter.new(videos: response['items'], title: @args[:title]).only_official
+      only_official_with_same_title = Youtube::Filter.new(videos: only_official, title: @args[:title]).with_same_title
+
       only_official_with_same_title.dig(0, 'id', 'videoId')
     end
 

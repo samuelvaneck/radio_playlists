@@ -26,8 +26,4 @@ class TrackExtractor
   def isrc_code
     @isrc_code ||= played_song.isrc_code
   end
-
-  def id_on_youtube
-    @id_on_youtube ||= played_song.id_on_youtube
-  end
 end

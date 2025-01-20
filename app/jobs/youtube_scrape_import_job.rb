@@ -18,7 +18,7 @@ class YoutubeScrapeImportJob
       song ||= Song.find_by(fullname: "#{artist_name} #{song_title}")
 
       if song.present? && song.id_on_youtube.blank?
-        Rails.logger.info "Updating #{artist_name} #{song_title} with id_on_youtube: #{id_on_youtube}"
+        Rails.logger.info("Updating #{artist_name} #{song_title} with id_on_youtube: #{id_on_youtube}")
         song.update(id_on_youtube:)
       end
 
@@ -26,6 +26,7 @@ class YoutubeScrapeImportJob
     end
   rescue StandardError => e
     Rails.logger.error "Error in YoutubeImportJob: #{e.message}"
+    ExceptionNotifier.notify_new_relic(e, 'YoutubeScrapeImportJob')
     nil
   ensure
     clear_instance_variables
