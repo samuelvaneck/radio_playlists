@@ -56,6 +56,7 @@ class Song < ApplicationRecord
                  songs.spotify_song_url,
                  songs.spotify_artwork_url,
                  songs.spotify_preview_url,
+                 songs.id_on_youtube,
                  COUNT(DISTINCT playlists.id) AS COUNTER")
         .group(:id)
         .order('COUNTER DESC')

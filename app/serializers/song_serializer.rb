@@ -27,6 +27,7 @@ class SongSerializer
              :spotify_song_url,
              :spotify_artwork_url,
              :spotify_preview_url,
+             :id_on_youtube,
              :artists
 
   attribute :counter do |object|
