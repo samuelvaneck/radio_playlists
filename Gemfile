@@ -31,9 +31,9 @@ gem 'will_paginate'
 
 # Until mail gem is updated
 # https://github.com/mikel/mail/pull/1439
-gem 'net-smtp', require: false
-gem 'net-pop', require: false
-gem 'net-imap', require: false
+gem 'net-smtp'
+gem 'net-pop'
+gem 'net-imap'
 
 group :development, :test do
   gem 'concurrent-ruby'
