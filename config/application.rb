@@ -1,28 +1,18 @@
 require_relative "boot"
+
 require "rails"
-
-# Serves as documentation of frameworks that would have been loaded by rails/all, but which we don't use.
-# [
-#   'action_cable/engine',
-#   'action_mailbox/engine',
-#   'action_text/engine',
-#   'active_job/railtie',
-#   'action_view/railtie'
-# ]
-
-# Load frameworks we are using
-%w[
-  active_record/railtie
-  action_controller/railtie
-  action_mailer/railtie
-  active_storage/engine
-  rails/test_unit/railtie
-].each do |railtie|
-  require railtie
-rescue LoadError => exception
-  # Rails really swallows errors by default.
-  puts "Could not load #{railtie}: #{exception}"
-end
+# Pick the frameworks you want:
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+require "active_storage/engine"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+# require "action_mailbox/engine"
+# require "action_text/engine"
+require "action_view/railtie"
+# require "action_cable/engine"
+require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -31,7 +21,7 @@ Bundler.require(*Rails.groups)
 module RadioPlaylists
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.2
+    config.load_defaults 8.0
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -44,7 +34,7 @@ module RadioPlaylists
     # in config/environments, which are processed later.
     #
     config.time_zone = "Amsterdam"
-
+    # config.eager_load_paths << Rails.root.join("extras")
     config.after_initialize do
       puts "Database: #{Rails.configuration.database_configuration.dig(Rails.env, 'database')}"
     end
