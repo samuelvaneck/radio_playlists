@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :admins
   namespace :api do
     namespace :v1 do
+      devise_for :admins, controllers: { sessions: 'api/v1/admins/sessions' }
       resources :playlists, only: %i[index show]
       resources :artists, only: %i[index show] do
         get :graph_data, on: :member
