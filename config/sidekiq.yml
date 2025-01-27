@@ -27,10 +27,10 @@
         cron: '*/3 * * * *' # every 3 minutes
         queue: default
         enabled: true
-#      YoutubeApiImportJob:
-#        cron: '*/15 * * * *' # every 15 minutes
-#        queue: default
-#        enabled: true
+      YoutubeApiImportJob:
+        cron: '*/15 * * * *' # every 15 minutes
+        queue: default
+        enabled: true
   :sidekiq_default_hooks: true
   :sidekiq_pid: File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid')
   :sidekiq_env: fetch(:rack_env, fetch(:rails_env, fetch(:stage)))
