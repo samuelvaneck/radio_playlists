@@ -58,7 +58,7 @@ module Api
           data[:token] = current_token
 
           render json: {
-            status: {code: 200, message: 'Logged in sucessfully.'},
+            status: { code: 200, message: 'Logged in sucessfully.' },
             data: data
           }, status: :ok
         end
