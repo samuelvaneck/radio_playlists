@@ -18,7 +18,7 @@ module Api
           data[:token] = current_token
 
           render json: {
-            status: { code: 200, message: 'Logged in sucessfully.' },
+            status: { code: 200, message: 'Logged in successfully' },
             data: data
           }, status: :ok
         end
@@ -32,7 +32,7 @@ module Api
           else
             render json: {
               status: 401,
-              message: "Couldn't find an active session."
+              message: "Couldn't find an active session"
             }, status: :unauthorized
           end
         end
