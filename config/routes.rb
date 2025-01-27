@@ -4,8 +4,12 @@ require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
-  namespace :api do
+  devise_for :admins
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      devise_for :admins, controllers: { sessions: 'api/v1/admins/auth_token' }
+      get 'admins/current', to: 'admins/current_admin#show'
+
       resources :playlists, only: %i[index show]
       resources :artists, only: %i[index show] do
         get :graph_data, on: :member
