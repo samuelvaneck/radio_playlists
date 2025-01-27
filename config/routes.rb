@@ -5,9 +5,10 @@ require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
   devise_for :admins
-  namespace :api do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      devise_for :admins, controllers: { sessions: 'api/v1/admins/sessions' }
+      devise_for :admins, controllers: { sessions: 'api/v1/admins/auth_token' }
+
       resources :playlists, only: %i[index show]
       resources :artists, only: %i[index show] do
         get :graph_data, on: :member
