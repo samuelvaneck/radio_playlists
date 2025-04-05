@@ -415,7 +415,6 @@ Style/StringLiterals:
     - 'config/environments/test.rb'
     - 'config/initializers/assets.rb'
     - 'config/puma.rb'
-    - 'spec/factories/song_recognizer_logs.rb'
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).

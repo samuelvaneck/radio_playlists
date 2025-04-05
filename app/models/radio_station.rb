@@ -22,7 +22,6 @@ class RadioStation < ActiveRecord::Base
   has_many :radio_station_songs
   has_many :songs, through: :radio_station_songs
   has_many :artists, through: :songs
-  has_many :song_recognizer_logs
   has_many :radio_station_classifiers, dependent: :destroy
   has_many :tags, dependent: :destroy, as: :taggable
 
