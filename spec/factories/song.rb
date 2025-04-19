@@ -21,19 +21,18 @@
 
 FactoryBot.define do
   factory :song do
-    title { Faker::Music::UmphreysMcgee.song }
-    isrc { 'GBARL1800805' }
-    id_on_spotify { '1elj43HiTzMyQwawBazPCQ' }
+    title { Faker::Music::RockBand.song }
+    isrc { Faker::Alphanumeric.alphanumeric(number: 12).upcase }
+    id_on_spotify { Faker::Alphanumeric.alphanumeric(number: 22) }
+    spotify_song_url { Faker::Internet.url(host: 'open.spotify.com', path: "/track/#{id_on_spotify}") }
+    spotify_artwork_url { Faker::Internet.url(host: 'i.scdn.co', path: '/image/random') }
+    spotify_preview_url { Faker::Internet.url(host: 'p.scdn.co', path: '/mp3-preview/random') }
+    id_on_youtube { Faker::Alphanumeric.alphanumeric(number: 11) }
+
 
     after(:build) do |song|
-      song.fullname = "#{song.artists.map(&:name).join(' ')} #{song.fullname}"
-    end
-
-    trait :filled do
-      after(:build) do |song|
-        song.artists << create(:artist) if song.artists.blank?
-        song.fullname = "#{song.artists.map(&:name).join(' ')} #{song.fullname}"
-      end
+      song.artists << build(:artist) if song.artists.blank?
+      song.fullname =  "#{song.artists.map(&:name).join(' ')} #{song.title}"
     end
   end
 end

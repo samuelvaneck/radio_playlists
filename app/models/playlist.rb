@@ -34,7 +34,7 @@ class Playlist < ApplicationRecord
                             date_from_params(time: params[:end_time], fallback: Time.zone.now))
             .played_on(params[:radio_station_ids])
             .matching(params[:search_term])
-            .group(:id, 'songs.id', 'radio_stations.id')
+            .group(:id)
             .order(created_at: :desc)
   end
 

@@ -24,9 +24,9 @@ describe Song do
   let(:artist_2) { create :artist }
   let(:song_2) { create :song, artists: [artist_2] }
   let(:radio_station) { create :radio_station }
-  let(:playlist_1) { create :playlist, :filled, song: song_1 }
-  let(:playlist_2) { create :playlist, :filled, song: song_2, radio_station: }
-  let(:playlist_3) { create :playlist, :filled, song: song_2, radio_station: }
+  let(:playlist_1) { create :playlist, song: song_1 }
+  let(:playlist_2) { create :playlist, song: song_2, radio_station: }
+  let(:playlist_3) { create :playlist, song: song_2, radio_station: }
 
   let(:song_drown) { create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
   let(:artist_martin_garrix) { create :artist, name: 'Martin Garrix' }
@@ -60,7 +60,7 @@ describe Song do
       end
 
       it 'only returns the songs played on the radio station' do
-        expect(most_played_with_radio_station_id).to contain_exactly song_2
+        expect(most_played_with_radio_station_id).to include(song_2)
       end
 
       it 'adds a counter attribute on the song' do

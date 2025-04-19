@@ -52,9 +52,7 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'rspec-rails'
-  gem 'selenium-webdriver', '~> 4.27'
   gem 'stackprof'
-  gem 'webdrivers'
 end
 
 group :test do

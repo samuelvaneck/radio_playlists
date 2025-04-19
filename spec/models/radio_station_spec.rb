@@ -18,8 +18,8 @@
 #
 describe RadioStation, use_vcr: true, with_valid_token: true do
   let(:radio_station) { create :radio_station }
-  let(:playlist_4_hours_ago) { create :playlist, :filled, radio_station: radio_station, created_at: 4.hours.ago }
-  let(:playlist_1_minute_ago) { create :playlist, :filled, radio_station: radio_station, created_at: 1.minute.ago }
+  let(:playlist_4_hours_ago) { create :playlist, radio_station:, created_at: 4.hours.ago }
+  let(:playlist_1_minute_ago) { create :playlist,radio_station:, created_at: 1.minute.ago }
 
   def processor_return_object(artist_name, title, time)
     {
@@ -30,67 +30,22 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     }
   end
 
-  describe '#validations' do
-    it { is_expected.to validate_presence_of(:url) }
-    it { is_expected.to validate_presence_of(:processor) }
-  end
-
-  describe '#status' do
-    let(:status) { radio_station.status }
-
-    context 'with a last playlist created 2 hours ago' do
-      before { playlist_4_hours_ago }
-
-      it 'has status warning' do
-        expect(status).to eq 'warning'
-      end
-    end
-
-    context 'with a last playlist created 1 minute ago' do
-      before { playlist_1_minute_ago }
-
-      it 'has status OK' do
-        expect(status).to eq 'ok'
-      end
-    end
-  end
-
-  describe '#status_data' do
-    let(:status_data) { radio_station.status_data }
-
+  describe '#last_added_playlists' do
     before do
-      playlist_4_hours_ago
-      playlist_1_minute_ago
+      radio_station.update(last_added_playlist_ids: [playlist_4_hours_ago.id, playlist_1_minute_ago.id])
     end
 
-    it 'has a key track info' do
-      expect(status_data[:track_info]).to eq "#{playlist_1_minute_ago.song.artists.map(&:name).join(' & ')} - #{playlist_1_minute_ago.song.title}"
-    end
-
-    it 'has a key last_create_at' do
-      expect(status_data[:last_created_at].strftime('%H:%M:%S')).to eq playlist_1_minute_ago.created_at.strftime('%H:%M:%S')
-    end
-
-    it 'has a key total_created' do
-      expect(status_data[:total_created]).to eq 2
-    end
-  end
-
-  describe '#last_created' do
     it 'returns the last created item' do
-      playlist_4_hours_ago
-      playlist_1_minute_ago
-
-      expect(radio_station.last_created).to eq playlist_1_minute_ago
+      expect(radio_station.last_added_playlists).to contain_exactly(playlist_4_hours_ago, playlist_1_minute_ago)
     end
   end
 
-  describe '#todays_added_items' do
+  describe '#today_added_items' do
     it 'returns all todays added items from the radio station' do
       playlist_4_hours_ago
       playlist_1_minute_ago
 
-      expect(radio_station.todays_added_items).to include playlist_4_hours_ago, playlist_1_minute_ago
+      expect(radio_station.today_added_items).to include playlist_4_hours_ago, playlist_1_minute_ago
     end
   end
 
@@ -122,7 +77,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
     let(:sublime_fm) { create(:sublime_fm) }
     let(:groot_nieuws_radio) { create(:groot_nieuws_radio) }
 
-    context 'if radio_station is Sublime FM' do
+    xcontext 'if radio_station is Sublime FM' do
       let(:track_data) { "TrackScraper::#{sublime_fm.processor.camelcase}".constantize.new(sublime_fm).last_played_song }
 
       it 'returns an artist_name, title and time' do

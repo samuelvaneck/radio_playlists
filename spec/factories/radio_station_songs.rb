@@ -9,8 +9,8 @@
 #
 FactoryBot.define do
   factory :radio_station_song do
-    song { nil }
-    radio_station { nil }
-    first_broadcasted_at { "2024-08-10 16:06:10" }
+    song { build(:song) }
+    radio_station { build(:radio_station) }
+    first_broadcasted_at { 1.week.ago }
   end
 end

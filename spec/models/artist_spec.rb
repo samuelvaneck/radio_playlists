@@ -23,10 +23,10 @@ describe Artist do
   let(:artist_3) { create :artist }
   let(:song_3) { create :song, artists: [artist_3] }
   let(:radio_station) { create :radio_station }
-  let(:playlist_1) { create :playlist, :filled, song: song_1 }
-  let(:playlist_2) { create :playlist, :filled, song: song_2, radio_station: }
-  let(:playlist_3) { create :playlist, :filled, song: song_3, radio_station: }
-  let(:playlist_4) { create :playlist, :filled, song: song_3, radio_station: }
+  let(:playlist_1) { create :playlist, song: song_1 }
+  let(:playlist_2) { create :playlist, song: song_2, radio_station: }
+  let(:playlist_3) { create :playlist, song: song_3, radio_station: }
+  let(:playlist_4) { create :playlist, song: song_3, radio_station: }
 
   before do
     playlist_1
