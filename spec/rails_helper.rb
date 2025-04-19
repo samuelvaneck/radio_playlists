@@ -5,8 +5,6 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 # Add additional requires below this line. Rails is not loaded until this point!
-require 'capybara/rspec'
-require 'capybara/rails'
 require 'timecop'
 require 'support/factory_bot'
 require 'support/fake_spotify'
@@ -43,17 +41,3 @@ RSpec.configure do |config|
   config.include(ActiveSupport::Testing::Assertions)
   config.include FactoryBot::Syntax::Methods
 end
-
-Capybara.register_driver(:headless_chrome) do |app|
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: %w[headless disable-gpu] }
-  )
-
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :chrome,
-    desired_capabilities: capabilities
-  )
-end
-
-Capybara.javascript_driver = :headless_chrome

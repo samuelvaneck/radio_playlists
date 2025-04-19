@@ -49,16 +49,17 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rails-controller-testing'
   gem 'rubocop'
+  gem 'rubocop-factory_bot'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
   gem 'rspec-rails'
   gem 'stackprof'
 end
 
 group :test do
   gem 'brakeman'
-  gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   # Sinatra is used to mock requests
