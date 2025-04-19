@@ -90,10 +90,11 @@ describe Song do
     context 'if the song artist has no more songs' do
       let(:artist_one_song) { create :artist }
       let!(:song_one) { create :song, artists: [artist_one_song] }
+
       it 'does not destroy the artist' do
         expect {
           song_one.cleanup
-        }.to change(Artist, :count).by(-1)
+        }.not_to change(Artist, :count)
       end
     end
 
