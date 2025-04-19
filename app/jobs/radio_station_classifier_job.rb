@@ -1,8 +1,17 @@
 class RadioStationClassifierJob
+  AUDIO_FEATURES = %w[danceability energy speechiness acousticness instrumentalness liveness valence].freeze
+  AUDIO_FEATURE_TO_CLASSIFIER = {
+    'danceability' => :danceable,
+    'energy' => :energy,
+    'speechiness' => :speech,
+    'acousticness' => :acoustic,
+    'instrumentalness' => :instrumental,
+    'liveness' => :live,
+    'valence' => :valence
+  }.freeze
+
   include Sidekiq::Job
   sidekiq_options queue: 'low'
-
-  AUDIO_FEATURES = %w[danceability energy speechiness acousticness instrumentalness liveness valence].freeze
 
   def perform(id_on_spotify, radio_station_id)
     return if id_on_spotify.blank?
@@ -18,17 +27,15 @@ class RadioStationClassifierJob
     update_radio_station_tags(id_on_spotify: id_on_spotify, radio_station_id: radio_station_id)
     Rails.logger.info "Radio station classifier for radio station #{radio_station_id} updated"
   end
+
   private
 
   def fetch_audio_features(id_on_spotify)
-    Spotify::AudioFeature.new(id_on_spotify: id_on_spotify).get_audio_features
+    Spotify::AudioFeature.new(id_on_spotify: id_on_spotify).audio_features
   end
 
   def find_or_initialize_classifier(radio_station_id)
-    RadioStationClassifier.lock.find_or_initialize_by(
-      radio_station_id: radio_station_id,
-      day_part: day_part(Time.now)
-    )
+    RadioStationClassifier.lock.find_or_initialize_by(radio_station_id:, day_part: day_part(Time.zone.now))
   end
 
   def update_classifier_with_audio_features(classifier, audio_features)
@@ -36,7 +43,8 @@ class RadioStationClassifierJob
       next if audio_features[feature].nil?
 
       classifier[feature] += 1 if audio_features[feature] > 0.5
-      classifier["#{feature}_average"] = ((classifier["#{feature}_average"] * classifier.counter) + audio_features[feature]) / (classifier.counter + 1)
+      average = ((classifier["#{feature}_average"] * classifier.counter) + audio_features[feature]) / (classifier.counter + 1)
+      classifier["#{feature}_average"] = average
     end
   end
 
@@ -81,21 +89,6 @@ class RadioStationClassifierJob
   end
 
   def audio_feature_to_classifier(feature)
-    case feature
-    when 'danceability'
-      :danceable
-    when 'energy'
-      :energy
-    when 'speechiness'
-      :speech
-    when 'acousticness'
-      :acoustic
-    when 'instrumentalness'
-      :instrumental
-    when 'liveness'
-      :live
-    when 'valence'
-      :valence
-    end
+    AUDIO_FEATURE_TO_CLASSIFIER[feature]
   end
 end

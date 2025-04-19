@@ -21,9 +21,9 @@ class ArtistSerializer
 
   attributes :id, :name, :spotify_artist_url, :spotify_artwork_url
 
+  has_many :songs
+
   attribute :counter do |object|
     object.counter if object.respond_to?(:counter)
   end
-
-  has_many :songs
 end

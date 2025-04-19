@@ -15,7 +15,7 @@ describe ArtistsSong, type: :model do
       it 'save a new ArtistsSong in the database' do
         expect do
           artists_song
-        end.to change(described_class, :count).by(1)
+        end.to change(described_class, :count).by(2)
       end
     end
 

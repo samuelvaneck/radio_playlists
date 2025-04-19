@@ -4,8 +4,10 @@ inherit_from: .rubocop_todo.yml
 # Require rubocop gems here
 ################################################################################
 require:
+  - rubocop-factory_bot
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
   - rubocop-performance
 ################################################################################
 # Add more cops from here as we go: https://docs.rubocop.org/rubocop/index.html

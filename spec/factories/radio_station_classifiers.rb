@@ -34,7 +34,7 @@ FactoryBot.define do
     instrumental { 1 }
     live { 1 }
     valance { 1 }
-    day_part { "MyString" }
-    tags { "" }
+    day_part { 'MyString' }
+    tags { '' }
   end
 end

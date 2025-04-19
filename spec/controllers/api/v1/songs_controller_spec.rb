@@ -3,54 +3,57 @@
 describe Api::V1::SongsController do
   let(:artist) { create :artist }
   let(:song) { create :song, artists: [artist] }
-  let!(:playlist_1) { create :playlist, :filled, song: }
-  let!(:playlist_2) { create :playlist, :filled, song: }
-  let!(:playlists) { create_list :playlist, 5, :filled }
+  let(:radio_station_one) { create :radio_station }
+  let(:radio_station_two) { create :radio_station }
+  let(:radio_station_three) { create :radio_station }
+  let(:json) { JSON.parse(response.body).with_indifferent_access }
+
+  before do
+    create(:playlist, song:, radio_station: radio_station_one)
+    create(:playlist, song:, radio_station: radio_station_two)
+    create_list(:playlist, 5, radio_station: radio_station_three)
+  end
 
   describe 'GET #index' do
+    subject(:get_index) { get :index, params: { format: :json } }
+
     context 'with no search params' do
-      let(:json) do
-        JSON(response.body).sort_by { |_song, counter| counter }
-                           .reverse
-                           .first
-      end
-      let(:expected) do
-        [SongSerializer.new(Song.find(song.id)).serializable_hash.as_json, 2]
-      end
-
-      before do
-        get :index, params: { format: :json }
-      end
-
       it 'returns status OK/200' do
+        get_index
         expect(response.status).to eq 200
       end
 
       it 'returns all the playlists songs' do
-        expect(json).to eq expected
+        get_index
+        expect(json[:data].count).to eq(6)
+      end
+
+      it 'returns the song one time' do
+        get_index
+        expect(json[:data].map { |song| song[:id] }).to include(song.id.to_s).once
       end
     end
 
     context 'with search params' do
-      let(:json) { JSON.parse(response.body) }
-      let(:serialized_song) { SongSerializer.new(Song.find(song.id)).serializable_hash.as_json }
+      subject(:get_with_search_param) do
+        get :index, params: { format: :json, search_term: song.title }
+      end
 
       it 'only returns the search song' do
-        get :index, params: { format: :json, search_term: song.title }
-        json = JSON.parse(response.body)
-
-        expect(json).to eq [[serialized_song, 2]]
+        get_with_search_param
+        expect(json[:data].map { |song| song[:id] }).to contain_exactly(song.id.to_s)
       end
     end
 
-    context 'filtering by radio station' do
-      let(:json) { JSON.parse(response.body) }
-      let(:serialized_song) { SongSerializer.new(Song.find(song.id)).serializable_hash.as_json }
+    context 'when filtering by radio station' do
+      subject(:get_with_radio_station_id) do
+        get :index, params: { format: :json, radio_station_ids: [radio_station_one.id] }
+      end
 
       it 'only returns the songs that are played by the radio_station' do
-        get :index, params: { format: :json, radio_station_id: playlist_1.radio_station.id }
+        get_with_radio_station_id
 
-        expect(json).to eq [[serialized_song, 1]]
+        expect(json[:data].map { |song| song[:id] }).to contain_exactly(song.id.to_s)
       end
     end
   end

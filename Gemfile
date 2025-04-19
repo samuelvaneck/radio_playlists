@@ -8,6 +8,7 @@ gem 'csv', '~> 3.3', '>= 3.3.2'
 gem 'devise'
 gem 'devise-jwt'
 gem 'dotenv-rails', '~> 3.1', '>= 2.8.1'
+gem 'faraday', '~> 2.13'
 gem 'health_bit'
 gem 'jaro_winkler'
 gem 'json', '~> 2.10.2'
@@ -48,18 +49,17 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rails-controller-testing'
   gem 'rubocop'
+  gem 'rubocop-factory_bot'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
   gem 'rspec-rails'
-  gem 'selenium-webdriver', '~> 4.27'
   gem 'stackprof'
-  gem 'webdrivers'
 end
 
 group :test do
   gem 'brakeman'
-  gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   # Sinatra is used to mock requests

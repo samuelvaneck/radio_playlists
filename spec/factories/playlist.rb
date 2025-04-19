@@ -14,14 +14,15 @@
 #
 
 FactoryBot.define do
-  factory :playlist do
-    broadcast_timestamp { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now) }
-  end
+  factory :playlist, class: 'Playlist' do
+    broadcasted_at { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now) }
+    radio_station { create(:radio_station) }
+    song { create(:song) }
 
-  trait :filled do
     after(:build) do |playlist|
-      playlist.radio_station ||= build(:radio_station)
-      playlist.song ||= create(:song, :filled)
+      song = playlist.song
+      radio_station = playlist.radio_station
+      song.radio_stations << radio_station unless song.radio_stations.include?(radio_station)
     end
   end
 end

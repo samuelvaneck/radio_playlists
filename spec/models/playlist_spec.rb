@@ -22,9 +22,9 @@ describe Playlist do
   let(:artist_four) { create :artist, name: 'Erika Sirola' }
   let(:song_four) { create :song, artists: [artist_four] }
   let(:radio_station) { create :radio_station }
-  let(:playlist_one) { create :playlist, :filled, song: song_one, radio_station: }
-  let(:playlist_two) { create :playlist, :filled, song: song_two, radio_station: }
-  let(:playlist_three) { create :playlist, :filled, song: song_two, radio_station: }
+  let(:playlist_one) { create :playlist, song: song_one, radio_station: }
+  let(:playlist_two) { create :playlist, song: song_two, radio_station: }
+  let(:playlist_three) { create :playlist, song: song_two, radio_station: }
 
   describe '#search' do
     before do
@@ -43,7 +43,7 @@ describe Playlist do
 
     context 'with radio_stations params' do
       it 'returns the playlist played on the radio station' do
-        expect(described_class.last_played({ radio_station_id: radio_station.id })).to include playlist_two, playlist_three
+        expect(described_class.last_played({ radio_station_ids: [radio_station.id] })).to include playlist_two, playlist_three
       end
     end
 
@@ -59,39 +59,39 @@ describe Playlist do
 
     context 'with an already playlist existing item' do
       it 'fails validation' do
-        new_playlist_item = described_class.new(broadcast_timestamp: playlist_one.broadcast_timestamp,
+        new_playlist_item = described_class.new(broadcasted_at: playlist_one.broadcasted_at,
                                                 song: playlist_one.song,
                                                 radio_station: playlist_one.radio_station)
 
-        expect(new_playlist_item.valid?).to eq false
+        expect(new_playlist_item.valid?).to be false
       end
     end
 
     context 'with a unique playlist item' do
       it 'does not fail validation' do
-        new_playlist_item = build :playlist, :filled
+        new_playlist_item = build :playlist
 
-        expect(new_playlist_item.valid?).to eq true
+        expect(new_playlist_item.valid?).to be true
       end
     end
   end
 
   describe '#deduplicate' do
-    let!(:playlist_one) { create :playlist, :filled }
+    let!(:playlist_one) { create :playlist }
 
     context 'if there are no duplicate entries' do
       it 'does not delete the playlist item' do
         expect do
           playlist_one.deduplicate
-        end.to change(described_class, :count).by(0)
+        end.not_to change(described_class, :count)
       end
     end
 
     context 'if duplicate entries exists' do
       before do
-        playlist = build :playlist, :filled,
+        playlist = build(:playlist,
                          radio_station: playlist_one.radio_station,
-                         broadcast_timestamp: playlist_one.broadcast_timestamp
+                         broadcasted_at: playlist_one.broadcasted_at)
         playlist.save(validate: false)
       end
 
@@ -104,9 +104,9 @@ describe Playlist do
 
     context 'if there are duplicates and the song has no more playlist items' do
       before do
-        playlist = build :playlist, :filled,
+        playlist = build(:playlist,
                          radio_station: playlist_one.radio_station,
-                         broadcast_timestamp: playlist_one.broadcast_timestamp
+                         broadcasted_at: playlist_one.broadcasted_at)
         playlist.save(validate: false)
       end
 
@@ -119,40 +119,40 @@ describe Playlist do
 
     context 'if there are duplicates and the playlist song has more playlist items' do
       before do
-        playlist = build :playlist, :filled,
+        playlist = build(:playlist,
                          radio_station: playlist_one.radio_station,
-                         broadcast_timestamp: playlist_one.broadcast_timestamp
+                         broadcasted_at: playlist_one.broadcasted_at)
         playlist.save(validate: false)
-        create :playlist, :filled, song: playlist_one.song
+        create(:playlist, song: playlist_one.song)
       end
 
       it 'does not delete the song' do
         expect do
           playlist_one.deduplicate
-        end.to change(Song, :count).by(0)
+        end.not_to change(Song, :count)
       end
     end
   end
 
   describe '#duplicate?' do
-    let!(:playlist_one) { create :playlist, :filled }
+    let!(:playlist_one) { create(:playlist) }
 
     context 'with duplicates present' do
       before do
-        playlist = build :playlist, :filled,
+        playlist = build(:playlist,
                          radio_station: playlist_one.radio_station,
-                         broadcast_timestamp: playlist_one.broadcast_timestamp
+                         broadcasted_at: playlist_one.broadcasted_at)
         playlist.save(validate: false)
       end
 
       it 'returns true' do
-        expect(playlist_one.duplicate?).to eq true
+        expect(playlist_one.duplicate?).to be true
       end
     end
 
     context 'without duplicates' do
       it 'returns false' do
-        expect(playlist_one.duplicate?).to eq false
+        expect(playlist_one.duplicate?).to be false
       end
     end
   end

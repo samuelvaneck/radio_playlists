@@ -1,6 +1,6 @@
 module Spotify
   class AudioFeature < Base
-    def get_audio_features
+    def audio_features
       make_request(url)
     end
 
