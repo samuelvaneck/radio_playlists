@@ -13,9 +13,7 @@ module Api
       private
 
       def playlists
-        @playlists ||= Playlist.includes([:song, :radio_station])
-                               .last_played(params)
-                               .paginate(page: params[:page], per_page: 12)
+        @playlists ||= Playlist.includes([:song, :radio_station]).last_played(params).paginate(page: params[:page], per_page: 12)
       end
     end
   end
