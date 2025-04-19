@@ -19,14 +19,14 @@
 #  id_on_youtube                     :string
 #
 describe Song do
-  let(:artist_1) { create :artist }
-  let(:song_1) { create :song, artists: [artist_1] }
-  let(:artist_2) { create :artist }
-  let(:song_2) { create :song, artists: [artist_2] }
+  let(:artist_one) { create :artist }
+  let(:song_one) { create :song, artists: [artist_one] }
+  let(:artist_two) { create :artist }
+  let(:song_two) { create :song, artists: [artist_two] }
   let(:radio_station) { create :radio_station }
-  let(:playlist_1) { create :playlist, song: song_1 }
-  let(:playlist_2) { create :playlist, song: song_2, radio_station: }
-  let(:playlist_3) { create :playlist, song: song_2, radio_station: }
+  let(:playlist_one) { create :playlist, song: song_one }
+  let(:playlist_two) { create :playlist, song: song_two, radio_station: }
+  let(:playlist_three) { create :playlist, song: song_two, radio_station: }
 
   let(:song_drown) { create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
   let(:artist_martin_garrix) { create :artist, name: 'Martin Garrix' }
@@ -38,19 +38,19 @@ describe Song do
   let(:artist_ariana_grande) { create :artist, name: 'Ariana Grande' }
 
   before do
-    playlist_1
-    playlist_2
-    playlist_3
+    playlist_one
+    playlist_two
+    playlist_three
   end
 
   describe '#self.most_played' do
     context 'with search term params present' do
       subject(:most_played_with_search_term) do
-        Song.most_played({ search_term: song_1.title })
+        Song.most_played({ search_term: song_one.title })
       end
 
       it 'only returns the songs matching the search term' do
-        expect(most_played_with_search_term).to contain_exactly song_1
+        expect(most_played_with_search_term).to contain_exactly song_one
       end
     end
 
@@ -60,7 +60,7 @@ describe Song do
       end
 
       it 'only returns the songs played on the radio station' do
-        expect(most_played_with_radio_station_id).to include(song_2)
+        expect(most_played_with_radio_station_id).to include(song_two)
       end
 
       it 'adds a counter attribute on the song' do
@@ -82,8 +82,8 @@ describe Song do
     context 'if the song has playlist' do
       it 'does not destroy the song' do
         expect {
-          song_1.cleanup
-        }.to change(Song, :count).by(0)
+          song_one.cleanup
+        }.not_to change(Song, :count)
       end
     end
 
@@ -104,7 +104,7 @@ describe Song do
       it 'destroy' do
         expect {
           song_two.cleanup
-        }.to change(Artist, :count).by(0)
+        }.not_to change(Artist, :count)
       end
     end
   end
@@ -128,7 +128,7 @@ describe Song do
       it 'does not create a new record in the join table' do
         expect do
           song.update_artists([ed_sheeran])
-        end.to change(ArtistsSong, :count).by(0)
+        end.not_to change(ArtistsSong, :count)
       end
     end
 
@@ -136,7 +136,7 @@ describe Song do
       it 'does not change the song artists' do
         expect do
           song.update_artists(nil)
-        end.to change(ArtistsSong, :count).by(0)
+        end.not_to change(ArtistsSong, :count)
       end
     end
 

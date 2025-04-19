@@ -41,7 +41,7 @@ describe Api::V1::ArtistsController do
       end
     end
 
-    context 'filtering by radio station' do
+    context 'when filtering by radio station' do
       it 'only returns the artists that are played by the radio station' do
         get :index, params: { format: :json, radio_station_ids: [radio_station_one.id] }
 

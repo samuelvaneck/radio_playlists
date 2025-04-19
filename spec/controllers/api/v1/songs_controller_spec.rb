@@ -45,7 +45,7 @@ describe Api::V1::SongsController do
       end
     end
 
-    context 'filtering by radio station' do
+    context 'when filtering by radio station' do
       subject(:get_with_radio_station_id) do
         get :index, params: { format: :json, radio_station_ids: [radio_station_one.id] }
       end

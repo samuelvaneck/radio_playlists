@@ -29,10 +29,9 @@ FactoryBot.define do
     spotify_preview_url { Faker::Internet.url(host: 'p.scdn.co', path: '/mp3-preview/random') }
     id_on_youtube { Faker::Alphanumeric.alphanumeric(number: 11) }
 
-
     after(:build) do |song|
       song.artists << build(:artist) if song.artists.blank?
-      song.fullname =  "#{song.artists.map(&:name).join(' ')} #{song.title}"
+      song.fullname = "#{song.artists.map(&:name).join(' ')} #{song.title}"
     end
   end
 end

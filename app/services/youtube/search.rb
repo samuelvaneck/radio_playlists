@@ -1,6 +1,12 @@
+# frozen_string_literal: true
+
+# Args to pass to the Youtube::Search class
+# { artists: song.artists.pluck(:name).join(' '), title: song.title }
+# E.g. Youtube::Search.new({ artists:'Walking On Cars' title: 'Speeding Cars'}).find_id
+#
 module Youtube
   class Search
-    BASE_URL = 'https://www.googleapis.com/youtube/v3/search'
+    BASE_URL = 'https://www.googleapis.com/youtube/v3/search'.freeze
     API_KEY = ENV['YOUTUBE_API_KEY']
 
     attr_reader :args
@@ -18,16 +24,31 @@ module Youtube
     end
 
     def make_request
-      url = URI("#{BASE_URL}?part=#{part}&key=#{API_KEY}&type=#{type}&videoCategoryId=#{video_category_id}&q=#{query}")
-      https = Net::HTTP.new(url.host, url.port)
-      https.use_ssl = true
-      request = Net::HTTP::Get.new(url)
-      hande_response(https.request(request))
-    rescue StandardError => e
+      response = Faraday.get(BASE_URL) do |req|
+        req.params['part'] = part
+        req.params['key'] = API_KEY
+        req.params['type'] = type
+        req.params['videoCategoryId'] = video_category_id
+        req.params['q'] = query
+      end
+
+      handle_response(response)
+    rescue Faraday::Error => e
       Rails.logger.error(e.message)
       ExceptionNotifier.notify_new_relic(e)
       []
     end
+    # def make_request
+    #   url = URI("#{BASE_URL}?part=#{part}&key=#{API_KEY}&type=#{type}&videoCategoryId=#{video_category_id}&q=#{query}")
+    #   https = Net::HTTP.new(url.host, url.port)
+    #   https.use_ssl = true
+    #   request = Net::HTTP::Get.new(url)
+    #   hande_response(https.request(request))
+    # rescue StandardError => e
+    #   Rails.logger.error(e.message)
+    #   ExceptionNotifier.notify_new_relic(e)
+    #   []
+    # end
 
     private
 
@@ -50,10 +71,9 @@ module Youtube
       10
     end
 
-    def hande_response(response)
-      case response.code.to_i
-      when 200
-        JSON(response.body)
+    def handle_response(response)
+      if response.success?
+        JSON.parse(response.body)
       else
         Rails.logger.error("Youtube API failed with status: #{response.code}")
         []

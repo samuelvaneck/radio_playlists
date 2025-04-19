@@ -16,31 +16,31 @@
 #
 
 describe Artist do
-  let(:artist_1) { create :artist }
-  let(:song_1) { create :song, artists: [artist_1] }
-  let(:artist_2) { create :artist }
-  let(:song_2) { create :song, artists: [artist_2] }
-  let(:artist_3) { create :artist }
-  let(:song_3) { create :song, artists: [artist_3] }
+  let(:artist_one) { create :artist }
+  let(:song_one) { create :song, artists: [artist_one] }
+  let(:artist_two) { create :artist }
+  let(:song_two) { create :song, artists: [artist_two] }
+  let(:artist_three) { create :artist }
+  let(:song_three) { create :song, artists: [artist_three] }
   let(:radio_station) { create :radio_station }
-  let(:playlist_1) { create :playlist, song: song_1 }
-  let(:playlist_2) { create :playlist, song: song_2, radio_station: }
-  let(:playlist_3) { create :playlist, song: song_3, radio_station: }
-  let(:playlist_4) { create :playlist, song: song_3, radio_station: }
+  let(:playlist_one) { create :playlist, song: song_one }
+  let(:playlist_two) { create :playlist, song: song_two, radio_station: }
+  let(:playlist_three) { create :playlist, song: song_three, radio_station: }
+  let(:playlist_four) { create :playlist, song: song_three, radio_station: }
 
   before do
-    playlist_1
-    playlist_2
-    playlist_3
-    playlist_4
+    playlist_one
+    playlist_two
+    playlist_three
+    playlist_four
   end
 
   describe '#search' do
     context 'with search term params present' do
       it 'only returns the artists matching the search term' do
-        results = Artist.most_played({ search_term: artist_1.name })
+        results = Artist.most_played({ search_term: artist_one.name })
 
-        expect(results).to include artist_1
+        expect(results).to include artist_one
       end
     end
 
@@ -48,7 +48,7 @@ describe Artist do
       it 'only returns the artists played on the radio_station' do
         results = Artist.most_played({ radio_station_id: radio_station.id })
 
-        expect(results).to include artist_2, artist_3
+        expect(results).to include artist_two, artist_three
       end
     end
   end
@@ -56,7 +56,7 @@ describe Artist do
   describe '#cleanup' do
     context 'if the artist has no songs' do
       let!(:artist_no_songs) { create :artist }
-      it 'destorys the artist' do
+      it 'destroys the artist' do
         expect {
           artist_no_songs.cleanup
         }.to change(Artist, :count).by(-1)
@@ -66,8 +66,8 @@ describe Artist do
     context 'if the artist has songs' do
       it 'does not destroy the artist' do
         expect {
-          artist_1.cleanup
-        }.to change(Artist, :count).by(0)
+          artist_one.cleanup
+        }.not_to change(Artist, :count)
       end
     end
   end

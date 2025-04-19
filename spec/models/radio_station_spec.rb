@@ -16,10 +16,10 @@
 #  country_code            :string
 #  last_added_playlist_ids :jsonb
 #
-describe RadioStation, use_vcr: true, with_valid_token: true do
+describe RadioStation, :use_vcr, :with_valid_token do
   let(:radio_station) { create :radio_station }
   let(:playlist_4_hours_ago) { create :playlist, radio_station:, created_at: 4.hours.ago }
-  let(:playlist_1_minute_ago) { create :playlist,radio_station:, created_at: 1.minute.ago }
+  let(:playlist_1_minute_ago) { create :playlist, radio_station:, created_at: 1.minute.ago }
 
   def processor_return_object(artist_name, title, time)
     {
@@ -50,46 +50,46 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
   end
 
   describe '#npo_api_processor' do
-    let(:radio_1) { RadioStation.find_by(name: 'Radio 1') || create(:radio_1) }
+    let(:radio_1) { described_class.find_by(name: 'Radio 1') || create(:radio_1) }
 
     context 'given an address and radio station' do
-      let(:track_data) { "TrackScraper::#{radio_1.processor.camelcase}".constantize.new(radio_1).last_played_song }
+      let(:track_data) { "TrackScraper::#{radio_1.processor&.camelcase}".constantize.new(radio_1).last_played_song }
 
       it 'creates a new playlist item' do
-        expect(track_data).to eq true
+        expect(track_data).to be true
       end
     end
   end
 
   describe '#talpa_api_processor' do
-    let(:sky_radio) { RadioStation.find_by(name: 'Sky Radio') || create(:sky_radio) }
+    let(:sky_radio) { described_class.find_by(name: 'Sky Radio') || create(:sky_radio) }
 
     context 'given an address and radio station' do
-      let(:track_data) { "TrackScraper::#{sky_radio.processor.camelcase}".constantize.new(sky_radio).last_played_song }
+      let(:track_data) { "TrackScraper::#{sky_radio.processor&.camelcase}".constantize.new(sky_radio).last_played_song }
 
       it 'creates an new playlist item' do
-        expect(track_data).to eq true
+        expect(track_data).to be true
       end
     end
   end
 
   describe '#scraper' do
     let(:sublime_fm) { create(:sublime_fm) }
-    let(:groot_nieuws_radio) { RadioStation.find_by(name: 'Groot Nieuws Radio') || create(:groot_nieuws_radio) }
+    let(:groot_nieuws_radio) { described_class.find_by(name: 'Groot Nieuws Radio') || create(:groot_nieuws_radio) }
 
     xcontext 'if radio_station is Sublime FM' do
-      let(:track_data) { "TrackScraper::#{sublime_fm.processor.camelcase}".constantize.new(sublime_fm).last_played_song }
+      let(:track_data) { "TrackScraper::#{sublime_fm.processor&.camelcase}".constantize.new(sublime_fm).last_played_song }
 
       it 'returns an artist_name, title and time' do
-        expect(track_data).to eq true
+        expect(track_data).to be true
       end
     end
 
     xcontext 'if radio_station is Groot Nieuws Radio' do
-      let(:track_data) { "TrackScraper::#{groot_nieuws_radio.processor.camelcase}".constantize.new(groot_nieuws_radio).last_played_song }
+      let(:track_data) { "TrackScraper::#{groot_nieuws_radio.processor&.camelcase}".constantize.new(groot_nieuws_radio).last_played_song }
 
       it 'returns an artist_name, titile and time' do
-        expect(track_data).to eq true
+        expect(track_data).to be true
       end
     end
   end
@@ -108,7 +108,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
         radio_1.import_song
         expect do
           radio_1.import_song
-        end.to change(Playlist, :count).by(0)
+        end.not_to change(Playlist, :count)
       end
     end
   end
@@ -168,7 +168,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
 
         expect do
           sky_radio.import_song
-        end.to change(Playlist, :count).by(0)
+        end.not_to change(Playlist, :count)
       end
     end
   end
@@ -236,7 +236,7 @@ describe RadioStation, use_vcr: true, with_valid_token: true do
 
         expect do
           qmusic.import_song
-        end.to change(Playlist, :count).by(0)
+        end.not_to change(Playlist, :count)
       end
     end
   end

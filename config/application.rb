@@ -36,7 +36,7 @@ module RadioPlaylists
     config.time_zone = "Amsterdam"
     # config.eager_load_paths << Rails.root.join("extras")
     config.after_initialize do
-      puts "Database: #{Rails.configuration.database_configuration.dig(Rails.env, 'database')}"
+      Rails.logger.info("Database: #{Rails.configuration.database_configuration.dig(Rails.env, 'database')}")
     end
   end
 end

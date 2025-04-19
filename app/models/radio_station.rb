@@ -75,9 +75,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def stack_prof_import_song
-    StackProf.run(mode: :cpu, out: 'tmp/stackprof-cpu-import-song.dump', raw: true) do
-      import_song
-    end
+    StackProf.run(mode: :cpu, out: 'tmp/stackprof-cpu-import-song.dump', raw: true)
   end
 
   def import_song
@@ -93,7 +91,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def audio_file_name
-    name.downcase.gsub(/\W/, '')
+    name&.downcase&.gsub(/\W/, '')
   end
 
   def audio_file_path

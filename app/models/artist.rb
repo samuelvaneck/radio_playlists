@@ -49,7 +49,7 @@ class Artist < ApplicationRecord
   end
 
   def self.most_played_group_by(column, params)
-    self.most_played(params).group_by(&column)
+    most_played(params).group_by(&column)
   end
 
   def self.spotify_track_to_artist(track)

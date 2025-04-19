@@ -63,7 +63,7 @@ describe Playlist do
                                                 song: playlist_one.song,
                                                 radio_station: playlist_one.radio_station)
 
-        expect(new_playlist_item.valid?).to eq false
+        expect(new_playlist_item.valid?).to be false
       end
     end
 
@@ -71,7 +71,7 @@ describe Playlist do
       it 'does not fail validation' do
         new_playlist_item = build :playlist
 
-        expect(new_playlist_item.valid?).to eq true
+        expect(new_playlist_item.valid?).to be true
       end
     end
   end
@@ -83,7 +83,7 @@ describe Playlist do
       it 'does not delete the playlist item' do
         expect do
           playlist_one.deduplicate
-        end.to change(described_class, :count).by(0)
+        end.not_to change(described_class, :count)
       end
     end
 
@@ -129,7 +129,7 @@ describe Playlist do
       it 'does not delete the song' do
         expect do
           playlist_one.deduplicate
-        end.to change(Song, :count).by(0)
+        end.not_to change(Song, :count)
       end
     end
   end
@@ -146,13 +146,13 @@ describe Playlist do
       end
 
       it 'returns true' do
-        expect(playlist_one.duplicate?).to eq true
+        expect(playlist_one.duplicate?).to be true
       end
     end
 
     context 'without duplicates' do
       it 'returns false' do
-        expect(playlist_one.duplicate?).to eq false
+        expect(playlist_one.duplicate?).to be false
       end
     end
   end

@@ -99,7 +99,7 @@ class Song < ApplicationRecord
       next
     end
   end
-  
+
   def find_and_remove_obsolete_song
     songs = find_same_songs
     most_played_song = songs.max_by(&:played)
@@ -114,7 +114,7 @@ class Song < ApplicationRecord
 
   def find_same_songs
     artist_ids = artists.pluck(:id)
-    Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', title.downcase)
+    Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', title&.downcase)
   end
 
   def spotify_track

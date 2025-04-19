@@ -13,6 +13,5 @@
 #
 FactoryBot.define do
   factory :chart_position do
-    
   end
 end

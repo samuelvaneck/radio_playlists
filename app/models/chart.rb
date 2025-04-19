@@ -41,12 +41,12 @@ class Chart < ApplicationRecord
   end
 
   def self.recreate_past_charts
-    (Date.parse('2021-01-17')..Date.today).each do |date|
+    (Date.parse('2021-01-17')..Time.zone.today).each do |date|
       [Song, Artist].each do |chart_type|
         chart = Chart.new(date: date, chart_type:)
         index = 1
         start_time = (date - 1).beginning_of_day
-        end_time = (date -1).end_of_day.strftime('%FT%R')
+        end_time = (date - 1).end_of_day.strftime('%FT%R')
         chart_type.most_played_group_by(:counter, start_time: start_time.strftime('%FT%R'), end_time:).each do |counter, chart_items|
           # reorder chart items by the number of playlists they were played in the last month
           chart_items = chart_items.sort_by do |item|
