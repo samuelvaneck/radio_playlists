@@ -10,8 +10,7 @@ module Spotify
       attempts ||= 1
 
       Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
-        response = Faraday.get(url) do |req|
-          req.response :json
+        response = connection.get(url) do |req|
           req.headers['Authorization'] = "Bearer #{token}"
           req.headers['Content-Type'] = 'application/json'
         end
@@ -24,6 +23,7 @@ module Spotify
         retry
       else
         ExceptionNotifier.notify_new_relic(e)
+        Rails.logger.error(e.message)
         nil
       end
     end
@@ -41,6 +41,12 @@ module Spotify
     end
 
     private
+
+    def connection
+      Faraday.new(url: 'https://api.spotify.com') do |conn|
+        conn.response :json
+      end
+    end
 
     def token
       Spotify::Token.new.token
