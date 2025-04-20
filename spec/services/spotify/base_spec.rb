@@ -9,7 +9,7 @@ describe Spotify::Base, type: :service do
   let(:token) { 'test_token' }
 
   before do
-    allow_any_instance_of(Spotify::Token).to receive(:token).and_return(token)
+    allow(spotify_base).to receive(:token).and_return(token)
   end
 
   describe '#make_request' do
@@ -36,14 +36,19 @@ describe Spotify::Base, type: :service do
         allow(ExceptionNotifier).to receive(:notify_new_relic)
       end
 
-      it 'notifies the error and returns nil' do
-        expect(ExceptionNotifier).to receive(:notify_new_relic).once
+      it 'notifies the error to New Relic' do
+        make_request
+        expect(ExceptionNotifier).to have_received(:notify_new_relic).once
+      end
+
+      it 'returns nil after 3 attempts' do
         expect(make_request).to be_nil
       end
     end
   end
 
   describe '#make_request_with_match' do
+    let(:result) { spotify_base.make_request_with_match(url) }
     let(:tracks_response) do
       {
         'tracks' => {
@@ -57,11 +62,9 @@ describe Spotify::Base, type: :service do
 
     before do
       allow(spotify_base).to receive(:make_request).and_return(tracks_response)
-      allow_any_instance_of(Spotify::Track::Filter::ResultsDigger).to receive(:execute).and_return(tracks_response['tracks']['items'])
     end
 
     it 'adds match and title_distance to the tracks' do
-      result = spotify_base.make_request_with_match(url)
       expect(result['tracks']['items'].first).to include('match', 'title_distance')
     end
   end

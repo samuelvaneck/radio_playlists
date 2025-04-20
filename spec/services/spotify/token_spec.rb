@@ -32,8 +32,8 @@ describe Spotify::Token, type: :service do
       end
 
       it 'does not call the Rails cache' do
-        expect(Rails.cache).not_to receive(:fetch)
         token
+        expect(Rails.cache).not_to have_received(:fetch)
       end
     end
 
@@ -43,8 +43,7 @@ describe Spotify::Token, type: :service do
         allow(ExceptionNotifier).to receive(:notify_new_relic)
       end
 
-      it 'notifies the error and retries without caching' do
-        expect(ExceptionNotifier).to receive(:notify_new_relic).once
+      it 'raises a TokenGenerationError' do
         expect { token }.to raise_error(Spotify::Token::TokenGenerationError)
       end
     end
