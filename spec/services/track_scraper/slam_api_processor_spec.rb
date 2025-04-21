@@ -8,7 +8,7 @@ describe TrackScraper::SlamApiProcessor, type: :service do
 
     let(:slam_api_processor) { described_class.new(radio_station) }
     let(:radio_station) do
-      RadioStation.find_by(name: 'Slam! FM') || create(:slam)
+      RadioStation.find_by(name: 'SLAM!') || create(:slam)
     end
     let(:response) do
       {

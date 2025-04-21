@@ -8,7 +8,7 @@ describe TrackScraper::NpoApiProcessor, type: :service do
 
     let(:npo_api_processor) { described_class.new(radio_station) }
     let(:radio_station) do
-      RadioStation.find_by(name: 'NPO Radio 2') || create(:radio_2)
+      RadioStation.find_by(name: 'Radio 2') || create(:npo_radio_two)
     end
     let(:response) do
       {

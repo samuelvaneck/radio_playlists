@@ -8,7 +8,7 @@ describe TrackScraper::KinkApiProcessor, type: :service do
 
     let(:kink_api_processor) { described_class.new(radio_station) }
     let(:radio_station) do
-      RadioStation.find_by(name: 'Kink') || create(:kink)
+      RadioStation.find_by(name: 'KINK').presence || create(:kink)
     end
     let(:response) do
       {

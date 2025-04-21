@@ -30,7 +30,7 @@ FactoryBot.define do
     processor { 'npo_api_processor' }
   end
 
-  factory :radio_2, parent: :radio_station do
+  factory :npo_radio_two, parent: :radio_station do
     name { 'Radio 2' }
     url { 'https://www.nporadio2.nl/api/tracks' }
     processor { 'npo_api_processor' }
