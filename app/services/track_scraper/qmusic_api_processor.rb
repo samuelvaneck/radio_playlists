@@ -3,7 +3,7 @@
 class TrackScraper::QmusicApiProcessor < TrackScraper
   def last_played_song
     response = make_request
-    return false if response.blank?
+    raise StandardError if response.blank?
 
     track = response[:played_tracks][0]
     @broadcasted_at = Time.find_zone('Amsterdam').parse(track[:played_at])
@@ -15,6 +15,6 @@ class TrackScraper::QmusicApiProcessor < TrackScraper
   rescue StandardError => e
     Rails.logger.info(e.message)
     ExceptionNotifier.notify_new_relic(e)
-    nil
+    false
   end
 end
