@@ -114,12 +114,12 @@ describe RadioStation, :use_vcr, :with_valid_token do
   end
 
   xdescribe '#radio_2_check' do
-    let!(:radio_two) { create(:npo_radio_two) }
+    let!(:radio_2) { create(:radio_2) }
 
     context 'when importing a song' do
       it 'creates a new playlist item' do
         expect do
-          radio_two.import_song
+          radio_2.import_song
         end.to change(Playlist, :count).by(1)
       end
     end

@@ -1,9 +1,8 @@
 module Spotify
   class Token < Base
-    class TokenGenerationError < StandardError; end
+    class TokenCreationError < StandardError; end
 
-    BASE_URL = 'https://accounts.spotify.com'.freeze
-    AUTH_PATH = '/api/token'.freeze
+    SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/api/token'.freeze
 
     attr_reader :cache
 
@@ -12,46 +11,36 @@ module Spotify
       @cache = cache
     end
 
-    def token
+    def get_token
       if @cache
-        Rails.cache.fetch(token_cache_key, expires_in: 1.hour) { generate_token }
+        Rails.cache.fetch(token_cache_key, expires_in: 1.hour) { create_token }
       else
-        generate_token
+        create_token
       end
-    rescue Errno::EACCES, TokenGenerationError => e
+    rescue Errno::EACCES => e
       ExceptionNotifier.notify_new_relic(e)
-      raise e
+      @cache = false
+      get_token
     end
 
-    private
+    def create_token
+      https = Net::HTTP.new(token_url.host, token_url.port)
+      https.use_ssl = true
+      request = Net::HTTP::Post.new(token_url)
+      request['Authorization'] = "Basic #{auth_str_base64}"
+      request['Content-Type'] = 'application/x-www-form-urlencoded'
+      request.body = 'grant_type=client_credentials'
 
-    def generate_token
-      response = connection.post(AUTH_PATH) do |req|
-        req.headers['Authorization'] = "Basic #{auth_str_base64}"
-        req.body = 'grant_type=client_credentials'
-      rescue Faraday::Error => e
-        output_error(e)
-        raise TokenGenerationError, 'Failed to create token'
-      end
-
-      response.body['access_token']
+      response = https.request(request)
+      JSON(response.body)['access_token']
     end
 
     def token_cache_key
       [:spotify_token]
     end
 
-    def connection
-      Faraday.new(BASE_URL) do |builder|
-        builder.response :json
-        builder.request :url_encoded
-      end
-    end
-
-    def output_error(error)
-      ExceptionNotifier.notify_new_relic(error)
-      Rails.logger.error(error.response[:body])
-      Rails.logger.error(error.response[:status])
+    def token_url
+      URI(SPOTIFY_AUTH_URL)
     end
 
     def auth_str_base64

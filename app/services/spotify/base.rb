@@ -8,14 +8,14 @@ module Spotify
 
     def make_request(url)
       attempts ||= 1
+      https = Net::HTTP.new(url.host, url.port)
+      https.use_ssl = true
+      request = Net::HTTP::Get.new(url)
+      request['Authorization'] = "Bearer #{token}"
+      request['Content-Type'] = 'application/json'
 
       Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
-        response = connection.get(url) do |req|
-          req.headers['Authorization'] = "Bearer #{token}"
-          req.headers['Content-Type'] = 'application/json'
-        end
-
-        response.body
+        JSON(https.request(request).body)
       end
     rescue StandardError => e
       if attempts < 3
@@ -23,7 +23,6 @@ module Spotify
         retry
       else
         ExceptionNotifier.notify_new_relic(e)
-        Rails.logger.error(e.message)
         nil
       end
     end
@@ -42,14 +41,8 @@ module Spotify
 
     private
 
-    def connection
-      Faraday.new(url: 'https://api.spotify.com') do |conn|
-        conn.response :json
-      end
-    end
-
     def token
-      Spotify::Token.new.token
+      Spotify::Token.new.get_token
     end
 
     def string_distance(item_string)
