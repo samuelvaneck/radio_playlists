@@ -19,6 +19,8 @@ Radio Playlists is a Ruby on Rails application designed listen to and process th
 - **Database**: PostgreSQL (or other supported databases)
 - **Song Recognition**: SongRec
 - **Song enrichment**: Spotify API
+- **Audio Processing**: FFMpeg
+- **Sidekiq**: For background job processing
 - **Monitoring**: New Relic
 - **Web Scraping**: Nokogiri
 
@@ -38,3 +40,33 @@ Radio Playlists is a Ruby on Rails application designed listen to and process th
    ```bash
    git clone https://github.com/samuelvaneck/radio_playlists.git
    cd radio_playlists# radio_playlists
+   ```
+2. Install Ruby gems:
+   ```bash
+   bundle install
+   ```
+3. Install SongRec:
+   Follow the installation on https://github.com/marin-m/SongRec
+4. Install FFMpeg:
+   Follow the installation on https://ffmpeg.org/download.html
+5. Create, migrate and seed the database:
+   ```bash
+   rails db:create
+   rails db:schema:load
+   rails db:seed
+   ```
+6. Start  the Rails server:
+   ```bash
+   rails server
+   ```
+7. Start the Sidekiq worker:
+   ```bash
+    bundle exec sidekiq
+    ```
+   
+OR 
+
+Run the code in docker
+   ```bash
+   docker-compose up
+   ```
