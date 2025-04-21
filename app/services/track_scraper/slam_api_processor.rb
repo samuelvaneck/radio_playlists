@@ -2,7 +2,6 @@
 
 class TrackScraper::SlamApiProcessor < TrackScraper
   def last_played_song
-    uri = URI @radio_station.url
     response = make_request
     raise StandardError if response.blank?
 

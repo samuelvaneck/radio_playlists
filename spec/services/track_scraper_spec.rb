@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe TrackScraper, type: :service do
-  let(:radio_station) { double('RadioStation', name: 'Test Station', url: 'http://example.com/api') }
+  let(:radio_station) { instance_double(RadioStation, name: 'Test Station', url: 'https://example.com/api') }
   let(:track_scraper) { described_class.new(radio_station) }
 
   describe '#make_request' do
@@ -14,7 +14,7 @@ describe TrackScraper, type: :service do
       let(:response) { instance_double(Faraday::Response, success?: true, body: response_body) }
 
       before do
-        allow(Faraday).to receive(:new).and_return(double(get: response))
+        allow(Faraday).to receive(:new).and_return(instance_double(Faraday::Connection, get: response))
       end
 
       it 'returns the parsed response body' do
@@ -26,7 +26,7 @@ describe TrackScraper, type: :service do
       let(:response) { instance_double(Faraday::Response, success?: false, status: 500) }
 
       before do
-        allow(Faraday).to receive(:new).and_return(double(get: response))
+        allow(Faraday).to receive(:new).and_return(instance_double(Faraday::Connection, get: response))
         allow(Rails.logger).to receive(:error)
       end
 
