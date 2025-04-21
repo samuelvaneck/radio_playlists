@@ -14,13 +14,25 @@ class TrackScraper
   private
 
   def make_request(additional_headers = nil)
-    uri = URI @radio_station.url
-    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', open_timeout: 3, read_timeout: 3) do |http|
-      headers = { 'Content-Type': 'application/json' }
-      headers.merge!(additional_headers) if additional_headers.present?
-      request = Net::HTTP::Get.new(uri, headers)
-      response = http.request(request)
-      response.code == '200' ? response.body : []
+    response = connection.get(@radio_station.url) do |req|
+      req.headers['Content-Type'] = 'application/json'
+      req.headers.merge!(additional_headers) if additional_headers
+    end
+    handle_response(response)
+  end
+
+  def connection
+    Faraday.new(@radio_station.url) do |conn|
+      conn.response :json
+    end
+  end
+
+  def handle_response(response)
+    if response.success?
+      response.body.with_indifferent_access
+    else
+      Rails.logger.error("Error fetching data from #{@radio_station.name}: #{response.status}")
+      []
     end
   end
 end
