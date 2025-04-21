@@ -30,7 +30,7 @@ FactoryBot.define do
     processor { 'npo_api_processor' }
   end
 
-  factory :npo_radio_two, parent: :radio_station do
+  factory :radio_2, parent: :radio_station do
     name { 'Radio 2' }
     url { 'https://www.nporadio2.nl/api/tracks' }
     processor { 'npo_api_processor' }
@@ -76,9 +76,6 @@ FactoryBot.define do
     name { 'Qmusic' }
     url { 'https://api.qmusic.nl/2.4/tracks/plays?limit=1&next=true' }
     processor { 'qmusic_api_processor' }
-    stream_url { 'https://icecast.samuelvaneck.com/qmusic.mp3' }
-    slug { 'qmusic' }
-    country_code { 'NLD' }
   end
 
   factory :sublime_fm, parent: :radio_station do
@@ -91,23 +88,5 @@ FactoryBot.define do
     name { 'Groot Nieuws Radio' }
     url { 'https://www.grootnieuwsradio.nl/muziek/playlist' }
     processor { 'scraper' }
-  end
-
-  factory :slam, parent: :radio_station do
-    name { 'SLAM!' }
-    url { 'https://api.slam.nl/api/live?brand=slam' }
-    processor { 'slam_api_processor' }
-    stream_url { 'https://icecast.samuelvaneck.com/slam.mp3' }
-    slug { 'slam' }
-    country_code { 'NLD' }
-  end
-
-  factory :kink, parent: :radio_station do
-    name { 'KINK' }
-    url { 'https://api.kink.nl/api/live?brand=kink' }
-    processor { 'kink_api_processor' }
-    stream_url { 'https://icecast.samuelvaneck.com/kink.mp3' }
-    slug { 'kink' }
-    country_code { 'NLD' }
   end
 end

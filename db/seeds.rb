@@ -51,7 +51,7 @@ radio_stations = [
   },
   {
     name: 'Groot Nieuws Radio',
-    url: 'https://new-api.grootnieuwsradio.nl/static/now-playing.json',
+    url: 'https://www.grootnieuwsradio.nl/_next/data/qDlbcoGX8H4TWq5datpzf/index.json',
     processor: 'gnr_api_processor',
     stream_url: 'https://icecast.samuelvaneck.com/gnr.mp3',
     slug: 'groot-nieuws-radio',
