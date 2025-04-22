@@ -5,8 +5,9 @@ class YoutubeScrapeImportJob
 
   def perform
     radio_station_url.each do |url|
-      return nil if response(url).blank?
-      return nil if id_on_youtube.blank?
+      @response = response(url)
+      next nil if @response.blank?
+      next nil if id_on_youtube.blank?
 
       if song.present? && song.id_on_youtube.blank?
         Rails.logger.info("Updating #{artist_name} #{song_title} with id_on_youtube: #{id_on_youtube}")
@@ -34,47 +35,51 @@ class YoutubeScrapeImportJob
 
   def clear_instance_variables
     @response = nil
-    @make_request = nil
-    @artist_name = nil
-    @song_title = nil
-    @id_on_spotify = nil
-    @youtube_video_id = nil
+    @song = nil
   end
 
   def response(url)
-    @response ||= make_request(url)
+    make_request(url)
   end
 
   def make_request(url)
-    @make_request ||= TrackScraper::QmusicApiProcessor.new(nil).make_request(url)
+    response = connection.get(url) do |req|
+      req.headers['Content-Type'] = 'application/json'
+    end
+    response.body.with_indifferent_access
   end
 
   def artist_name
-    @artist_name ||= @response&.dig('played_tracks', 0, 'artist', 'name')&.titleize
+    @response&.dig(:played_tracks, 0, :artist, :name)&.titleize
   end
 
   def song_title
-    @song_title ||= @response&.dig('played_tracks', 0, 'title')&.titleize
+    @response&.dig(:played_tracks, 0, :title)&.titleize
   end
 
   def id_on_spotify
-    spotify_url = @response&.dig('played_tracks', 0, 'spotify_url')
+    spotify_url = @response&.dig(:played_tracks, 0, :spotify_url)
     return nil if spotify_url.blank?
 
-    @id_on_spotify ||= spotify_url('/').last
+    spotify_url('/').last
   end
 
   def id_on_youtube
-    return @youtube_video_id if @youtube_video_id.present?
-
-    youtube_video = @response&.dig('played_tracks', 0, 'videos')
-                             &.find { |video| video['type'] == 'youtube' }
+    youtube_video = @response&.dig(:played_tracks, 0, :videos)
+                             &.find { |video| video[:type] == 'youtube' }
     return nil if youtube_video.blank?
 
-    @youtube_video_id = youtube_video['id']
+    youtube_video['id']
   end
 
   def song
-    @song ||= Song.find_by(id_on_spotify:) || Song.find_by(fullname: "#{artist_name} #{song_title}")
+    Song.find_by(id_on_spotify:) || Song.find_by(fullname: "#{artist_name} #{song_title}")
+  end
+
+  def connection
+    Faraday.new do |conn|
+      conn.response :json
+      conn.adapter :net_http
+    end
   end
 end

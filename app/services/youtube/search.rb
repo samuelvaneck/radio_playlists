@@ -75,7 +75,7 @@ module Youtube
       if response.success?
         JSON.parse(response.body)
       else
-        Rails.logger.error("Youtube API failed with status: #{response.code}")
+        Rails.logger.error("Youtube API failed with status: #{response.status}")
         []
       end
     end
