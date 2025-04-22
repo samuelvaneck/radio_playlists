@@ -28,6 +28,7 @@ FactoryBot.define do
     spotify_artwork_url { Faker::Internet.url(host: 'i.scdn.co', path: '/image/random') }
     spotify_preview_url { Faker::Internet.url(host: 'p.scdn.co', path: '/mp3-preview/random') }
     id_on_youtube { Faker::Alphanumeric.alphanumeric(number: 11) }
+    artists { [build(:artist)] }
 
     after(:build) do |song|
       song.artists << build(:artist) if song.artists.blank?
