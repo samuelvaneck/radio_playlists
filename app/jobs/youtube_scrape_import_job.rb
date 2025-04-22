@@ -61,7 +61,7 @@ class YoutubeScrapeImportJob
     spotify_url = @response&.dig(:played_tracks, 0, :spotify_url)
     return nil if spotify_url.blank?
 
-    spotify_url('/').last
+    spotify_url.split('/').last
   end
 
   def id_on_youtube
