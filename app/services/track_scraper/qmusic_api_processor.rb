@@ -6,6 +6,8 @@ class TrackScraper::QmusicApiProcessor < TrackScraper
     raise StandardError if response.blank?
 
     track = response[:played_tracks][0]
+    return false if track.blank?
+
     @broadcasted_at = Time.find_zone('Amsterdam').parse(track[:played_at])
     @artist_name = track[:artist][:name].titleize
     @title = track[:title].titleize

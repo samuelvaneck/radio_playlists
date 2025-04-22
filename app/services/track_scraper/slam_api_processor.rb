@@ -6,6 +6,8 @@ class TrackScraper::SlamApiProcessor < TrackScraper
     raise StandardError if response.blank?
 
     track = response[:data][:song]
+    return false if track.blank?
+
     @artist_name = track[:artist].titleize
     @title = track[:title].titleize
     @broadcasted_at = Time.zone.now

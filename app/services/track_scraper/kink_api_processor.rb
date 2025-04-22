@@ -6,6 +6,8 @@ class TrackScraper::KinkApiProcessor < TrackScraper
     raise StandardError if response.blank?
 
     track = response[:extended][:kink]
+    return false if track.blank?
+
     @artist_name = track[:artist].titleize
     @title = track[:title].titleize
     @broadcasted_at = Time.zone.now

@@ -6,6 +6,8 @@ class TrackScraper::GnrApiProcessor < TrackScraper
     raise StandardError if response.blank?
 
     track = response.dig(:stations, :gnr)
+    return false if track.blank?
+
     @artist_name = track[:artist]
     @title = track[:title].titleize
     @broadcasted_at = Time.zone.now

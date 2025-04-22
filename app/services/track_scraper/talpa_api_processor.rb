@@ -8,6 +8,8 @@ class TrackScraper::TalpaApiProcessor < TrackScraper
     raise StandardError, response[:errors] if response[:errors].present?
 
     track = response.dig(:data, :getStation, :playouts)[0]
+    return false if track.blank?
+
     @artist_name = track.dig(:track, :artistName).titleize
     @title = track.dig(:track, :title).titleize
     @broadcasted_at = Time.find_zone('Amsterdam').parse(track[:broadcastDate])

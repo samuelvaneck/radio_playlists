@@ -6,6 +6,8 @@ class TrackScraper::NpoApiProcessor < TrackScraper
     raise StandardError if response.blank?
 
     track = response.dig(:data, 0)
+    return false if track.blank?
+
     @artist_name = CGI.unescapeHTML(track[:artist]).titleize
     @title = CGI.unescapeHTML(track[:title]).titleize
     @broadcasted_at = Time.find_zone('Amsterdam').parse(track[:startdatetime])
