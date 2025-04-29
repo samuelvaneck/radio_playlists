@@ -8,7 +8,7 @@
 #  title                             :string
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
-#  fullname                          :text
+#  search_text                       :text
 #  spotify_song_url                  :string
 #  spotify_artwork_url               :string
 #  id_on_spotify                     :string
@@ -23,7 +23,7 @@ class SongSerializer
 
   attributes :id,
              :title,
-             :fullname,
+             :search_text,
              :spotify_song_url,
              :spotify_artwork_url,
              :spotify_preview_url,

@@ -163,4 +163,29 @@ describe Song do
       end
     end
   end
+
+  describe '#set_search_text' do
+    let(:artist) { create(:artist, name: 'Ed Sheeran') }
+    let(:song) { create(:song, title: 'Shape of You', artists: [artist]) }
+
+    it 'updates search_text before song creation' do
+      expect(song.reload.search_text).to eq('Ed Sheeran Shape of You')
+    end
+  end
+
+  describe '#update_search_text' do
+    let(:artist) { create(:artist, name: 'Ed Sheeran') }
+    let(:song) { create(:song, title: 'Shape of You', artists: [artist]) }
+
+    it 'updates search_text when the title changes' do
+      song.update(title: 'Perfect')
+      expect(song.reload.search_text).to eq('Ed Sheeran Perfect')
+    end
+
+    it 'updates search_text when an artist is added' do
+      new_artist = create(:artist, name: 'Beyoncé')
+      song.update_artists([artist, new_artist])
+      expect(song.reload.search_text).to eq('Ed Sheeran Beyoncé Shape of You')
+    end
+  end
 end
