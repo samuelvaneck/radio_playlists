@@ -8,7 +8,7 @@
 #  title                             :string
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
-#  fullname                          :text
+#  search_text                       :text
 #  spotify_song_url                  :string
 #  spotify_artwork_url               :string
 #  id_on_spotify                     :string
@@ -30,7 +30,9 @@ class Song < ApplicationRecord
   has_many :radio_station_songs, dependent: :destroy
   has_many :radio_stations, through: :radio_station_songs
   has_many :chart_positions, as: :positianable
-  after_commit :update_fullname, on: %i[create update]
+
+  before_create :set_search_text
+  after_commit :update_search_text, on: [:update], if: :saved_change_to_title?
 
   scope :matching, lambda { |search_term|
     joins(:artists).where('title ILIKE ? OR artists.name ILIKE ?', "%#{search_term}%", "%#{search_term}%") if search_term
@@ -51,7 +53,7 @@ class Song < ApplicationRecord
         .matching(params[:search_term])
         .select("songs.id,
                  songs.title,
-                 songs.fullname,
+                 songs.search_text,
                  songs.id_on_spotify,
                  songs.spotify_song_url,
                  songs.spotify_artwork_url,
@@ -77,13 +79,10 @@ class Song < ApplicationRecord
   end
 
   def update_artists(song_artists)
-    crumb = Sentry::Breadcrumb.new(
-      category: 'import_song',
-      data: { song_id: id, song_title: title, song_artists: song_artists },
-      level: 'info'
-    )
-    Sentry.add_breadcrumb(crumb)
-    self.artists = Array.wrap(song_artists) if song_artists.present?
+    return if song_artists.blank?
+
+    self.artists = Array.wrap(song_artists)
+    update_search_text
   end
 
   def played
@@ -94,8 +93,7 @@ class Song < ApplicationRecord
     Song.find_each do |song|
       song.find_and_remove_obsolete_song
     rescue StandardError => e
-      Rails.logger.error("Song: #{song.id} - #{song.fullname}")
-      Rails.logger.error("Error: #{e.message}")
+      Rails.logger.error("Song: #{song.id} - #{song.search_text}. Error: #{e.message}")
       next
     end
   end
@@ -106,7 +104,7 @@ class Song < ApplicationRecord
     songs = songs.reject { |song| song == most_played_song }
     return if [songs, most_played_song].flatten.count <= 1 || most_played_song.blank?
 
-    Rails.logger.info("Removing absolute songs for #{most_played_song.fullname}")
+    Rails.logger.info("Removing absolute songs for #{most_played_song.search_text}")
     update_playlists_obsolete_songs(songs, most_played_song)
     cleanup_radio_station_songs(songs, most_played_song)
     remove_absolute_songs(songs)
@@ -146,7 +144,13 @@ class Song < ApplicationRecord
     end
   end
 
-  def update_fullname
-    update_column(:fullname, "#{Array.wrap(artists).map(&:name).join(' ')} #{title}")
+  def set_search_text
+    return if search_text.present?
+
+    self.search_text = "#{artists.map(&:name).join(' ')} #{title}"
+  end
+
+  def update_search_text
+    update_column(:search_text, "#{artists.pluck(:name).join(' ')} #{title}")
   end
 end

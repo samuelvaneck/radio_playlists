@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_05_051828) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_29_191308) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -170,7 +170,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_051828) do
     t.string "title"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.text "fullname"
+    t.text "search_text"
     t.string "spotify_song_url"
     t.string "spotify_artwork_url"
     t.string "id_on_spotify"

@@ -73,7 +73,7 @@ class YoutubeScrapeImportJob
   end
 
   def song
-    Song.find_by(id_on_spotify:) || Song.find_by(fullname: "#{artist_name} #{song_title}")
+    Song.find_by(id_on_spotify:) || Song.find_by(search_text: "#{artist_name} #{song_title}")
   end
 
   def connection

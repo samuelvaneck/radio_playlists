@@ -8,7 +8,7 @@
 #  title                             :string
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
-#  fullname                          :text
+#  search_text                       :text
 #  spotify_song_url                  :string
 #  spotify_artwork_url               :string
 #  id_on_spotify                     :string
@@ -32,7 +32,6 @@ FactoryBot.define do
 
     after(:build) do |song|
       song.artists << build(:artist) if song.artists.blank?
-      song.fullname = "#{song.artists.map(&:name).join(' ')} #{song.title}"
     end
   end
 end
