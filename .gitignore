@@ -13,18 +13,11 @@
 /tmp
 ||||||| merged common ancestors
 =======
-*.rbc
-capybara-*.html
-/log
 /tmp
-/db/*.sqlite3
-/db/*.sqlite3-journal
 /public/system
-/coverage/
 /spec/tmp
 **.orig
 rerun.txt
-pickle-email-*.html
 dump.rdb
 .Ds_Store
 public/assets
@@ -69,6 +62,9 @@ yarn-debug.log*
 .yarn-integrity
 spec/examples.txt
 .env
+
+# Coverage and test results
+/coverage
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
