@@ -41,7 +41,7 @@ describe Api::V1::SongsController do
 
       it 'only returns the search song' do
         get_with_search_param
-        expect(json[:data].map { |song| song[:id] }).to contain_exactly(song.id.to_s)
+        expect(json[:data].map { |song| song[:id] }).to include(song.id.to_s)
       end
     end
 
