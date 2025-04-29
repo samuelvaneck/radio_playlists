@@ -50,7 +50,7 @@ class Chart < ApplicationRecord
         chart_type.most_played_group_by(:counter, start_time: start_time.strftime('%FT%R'), end_time:).each do |counter, chart_items|
           # reorder chart items by the number of playlists they were played in the last month
           chart_items = chart_items.sort_by do |item|
-            -item.playlists.where('broadcasted_at >= ? AND broadcasted_at <= ?', (start_time - 1.week), end_time).count
+            -item.playlists.where('broadcasted_at >= ? AND broadcasted_at <= ?', start_time - 1.week, end_time).count
           end
 
           chart_items.each do |chart_item|
