@@ -122,11 +122,11 @@ radio_stations = [
     country_code: 'NLD'
   },
   {
-    name: 'Radio4All',
+    name: 'Yoursafe Radio',
     url: '',
     processor: '',
-    stream_url: 'https://icecast.samuelvaneck.com/radio4all.mp3',
-    slug: 'radio4all',
+    stream_url: 'https://stream.yoursaferadio.nl/audio',
+    slug: 'yoursafe-radio',
     country_code: 'NLD'
   }
 ]
