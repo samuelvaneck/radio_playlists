@@ -70,7 +70,7 @@ Rails.application.configure do
   config.web_console.permissions = '172.16.0.1/12'
 
   config.after_initialize do
-    Bullet.enable = false # error NameError (uninitialized constant Bullet::Rack::Utils):
+    Bullet.enable = true
     Bullet.alert = false
     Bullet.bullet_logger = true
     Bullet.console = true

@@ -50,7 +50,11 @@ class SongRecognizer
 
   def set_audio_stream
     extension = @radio_station.stream_url.split(/\.|-/).last
-    "AudioStream::#{extension.camelcase}".constantize.new(@radio_station.stream_url, @output_file)
+    if extension.match?(/m3u8/)
+      AudioStream::M3u8.new(@radio_station.stream_url, @output_file)
+    else
+      AudioStream::Mp3.new(@radio_station.stream_url, @output_file)
+    end
   end
 
   def set_spotify_url
