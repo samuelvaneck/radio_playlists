@@ -197,7 +197,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jaro_winkler (1.6.1)
-    json (2.10.2)
+    json (2.12.0)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
     jwt (2.10.1)
@@ -546,7 +546,7 @@ DEPENDENCIES
   guard-rspec
   health_bit
   jaro_winkler
-  json (~> 2.10.2)
+  json (~> 2.12.0)
   jsonapi-serializer (~> 2.2.0)
   launchy
   letter_opener
