@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ruby:3.4.2-bookworm
+FROM --platform=linux/amd64 ruby:3.4.3-bookworm
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add
