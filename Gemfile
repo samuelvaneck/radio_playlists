@@ -71,8 +71,8 @@ group :test do
 end
 
 group :development do
+  gem 'annotaterb'
   gem 'bullet'
-  gem 'annotate'
   gem 'foreman'
   gem 'letter_opener'
   gem 'spring'
