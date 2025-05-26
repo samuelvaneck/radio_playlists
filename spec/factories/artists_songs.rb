@@ -4,8 +4,14 @@
 #
 # Table name: artists_songs
 #
-#  song_id   :bigint           not null
 #  artist_id :bigint           not null
+#  song_id   :bigint           not null
+#
+# Indexes
+#
+#  index_artists_songs_on_artist_id              (artist_id)
+#  index_artists_songs_on_artist_id_and_song_id  (artist_id,song_id) UNIQUE
+#  index_artists_songs_on_song_id                (song_id)
 #
 
 FactoryBot.define do
