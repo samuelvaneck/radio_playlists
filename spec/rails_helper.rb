@@ -40,4 +40,5 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.include(ActiveSupport::Testing::Assertions)
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end
