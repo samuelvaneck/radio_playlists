@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ruby:3.4.3-bookworm
+FROM ruby:3.4.3-bookworm
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add
@@ -35,4 +35,5 @@ RUN gem install bundler
 RUN bundle config set deployment 'true'
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle config set --local without 'development test'
+RUN bundle lock --add-platform ruby
 RUN bundle install --jobs "$(nproc --all)" --retry 3
