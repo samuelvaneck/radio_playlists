@@ -69,8 +69,8 @@ class Song < ApplicationRecord
     most_played(params).group_by(&column)
   end
 
-  def self.search_title(title)
-    where('title ILIKE ?', "%#{title}%")
+  def self.search(search_term)
+    where('search_text ILIKE ?', "%#{search_term}%")
   end
 
   def cleanup
