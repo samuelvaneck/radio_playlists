@@ -7,11 +7,14 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    origins 'localhost:3000', '127.0.0.1:3000',
+            'playlists.samuelvaneck.com',
+            'playlists-admin.samuelvaneck.com'
 
-    resource '*',
+    resource '/api/v1/*',
              headers: :any,
              methods: [:get, :post, :put, :patch, :delete, :options, :head],
-             expose: %w[Authorization]
+             expose: %w[Authorization],
+             credentials: true
   end
 end
