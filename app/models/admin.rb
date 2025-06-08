@@ -37,6 +37,8 @@ class Admin < ApplicationRecord
 
   after_create :set_uuid
 
+  has_many :refresh_tokens, dependent: :destroy
+
   private
 
   def set_uuid
