@@ -171,6 +171,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_24_151233) do
     t.jsonb "last_added_air_play_ids"
   end
 
+  create_table "refresh_tokens", force: :cascade do |t|
+    t.bigint "admin_id", null: false
+    t.string "token", null: false
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_refresh_tokens_on_admin_id"
+    t.index ["token"], name: "index_refresh_tokens_on_token", unique: true
+  end
+
   create_table "songs", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: nil, null: false
@@ -209,4 +219,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_24_151233) do
   add_foreign_key "radio_station_classifiers", "radio_stations"
   add_foreign_key "radio_station_songs", "radio_stations"
   add_foreign_key "radio_station_songs", "songs"
+  add_foreign_key "refresh_tokens", "admins"
 end
