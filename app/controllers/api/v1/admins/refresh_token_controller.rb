@@ -3,7 +3,7 @@
 module Api
   module V1
     module Admins
-      class RefreshTokensController < ApplicationController
+      class RefreshTokenController < ApplicationController
         def create
           refresh_token = RefreshToken.find_by(token: params[:refresh_token])
 
