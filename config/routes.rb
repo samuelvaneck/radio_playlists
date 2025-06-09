@@ -4,7 +4,7 @@ require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
-  devise_for :admins
+  devise_for :admins, skip: [:registrations, :passwords, :confirmations, :unlocks]
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       devise_for :admins, controllers: { sessions: 'api/v1/admins/auth_token' }

@@ -5,19 +5,13 @@ module Api
     module Admins
       class AuthTokenController < Devise::SessionsController
         respond_to :json
-        skip_before_action :verify_signed_out_user, only: [:destroy]
+        before_action :destroy_refresh_token, only: [:destroy]
 
         # POST /resource/sign_in
         def create
           return render json: { response: 'Authentication required' }, status: :unauthorized unless current_admin
 
           respond_with(current_admin)
-        end
-
-        # DELETE /resource/sign_out
-        def destroy
-          destroy_refresh_token
-          super
         end
 
         private
@@ -38,15 +32,10 @@ module Api
         end
 
         def create_refresh_token
-          return if cookies.encrypted[:refresh_token].present?
+          return if session[:refresh_token].present?
 
           refresh_token = current_admin.refresh_tokens.create!
-          cookies.encrypted[:refresh_token] = {
-            value: refresh_token.token,
-            httponly: true,
-            secure: Rails.env.production?,
-            expires: 2.weeks.from_now
-          }
+          session[:refresh_token] = refresh_token.token
         end
 
         def respond_to_on_destroy
@@ -54,9 +43,9 @@ module Api
         end
 
         def destroy_refresh_token
-          return if cookies.encrypted[:refresh_token].blank?
+          return if session[:refresh_token].blank?
 
-          refresh_token = current_admin.refresh_tokens.find_by(token: cookies.encrypted[:refresh_token])
+          refresh_token = current_admin.refresh_tokens.find_by(token: session[:refresh_token])
           return unless refresh_token
 
           refresh_token.destroy
