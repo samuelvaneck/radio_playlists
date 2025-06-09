@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '3.4.4'
 
+gem 'activerecord-session_store', '~> 2.2'
 gem 'bootsnap', require: false
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'csv', '~> 3.3', '>= 3.3.2'
