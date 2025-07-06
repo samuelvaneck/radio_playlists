@@ -12,16 +12,16 @@ describe ApplicationController, type: :controller do
   let(:session_id) { SecureRandom.hex(16) }
 
   before do
-    allow(controller).to receive(:current_admin).and_return(admin)
+    sign_in admin
     request.session_options[:id] = session_id
     request.session_options[:skip] = false
   end
 
   context 'when none exists' do
     it 'creates a new refresh token' do
-      expect {
+      expect do
         controller.maybe_set_refresh_token?
-      }.to change(RefreshToken, :count).by(1)
+      end.to change(RefreshToken, :count).by(1)
     end
 
     it 'sets the refresh token in the session' do
@@ -33,9 +33,9 @@ describe ApplicationController, type: :controller do
   context 'when the session is skipped' do
     it 'does not create a new token' do
       request.session_options[:skip] = true
-      expect {
+      expect do
         controller.maybe_set_refresh_token?
-      }.not_to change(RefreshToken, :count)
+      end.not_to change(RefreshToken, :count)
     end
   end
 
@@ -47,9 +47,9 @@ describe ApplicationController, type: :controller do
     end
 
     it 'removes old refresh token' do
-      expect {
+      expect do
         controller.maybe_set_refresh_token?
-      }.to change(RefreshToken, :count).by(0) # one destroyed, one created
+      end.not_to change(RefreshToken, :count) # one destroyed, one created
     end
   end
 
@@ -61,9 +61,9 @@ describe ApplicationController, type: :controller do
     end
 
     it 'does nothing' do
-      expect {
+      expect do
         controller.maybe_set_refresh_token?
-      }.not_to change(RefreshToken, :count)
+      end.not_to change(RefreshToken, :count)
     end
   end
 end
