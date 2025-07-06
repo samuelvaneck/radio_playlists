@@ -8,11 +8,13 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  admin_id   :bigint           not null
+#  session_id :string           not null
 #
 # Indexes
 #
-#  index_refresh_tokens_on_admin_id  (admin_id)
-#  index_refresh_tokens_on_token     (token) UNIQUE
+#  index_refresh_tokens_on_admin_id    (admin_id)
+#  index_refresh_tokens_on_session_id  (session_id) UNIQUE
+#  index_refresh_tokens_on_token       (token) UNIQUE
 #
 # Foreign Keys
 #
