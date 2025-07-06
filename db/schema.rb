@@ -175,9 +175,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_24_151233) do
     t.bigint "admin_id", null: false
     t.string "token", null: false
     t.datetime "expires_at"
+    t.string "session_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_refresh_tokens_on_admin_id"
+    t.index ["session_id"], name: "index_refresh_tokens_on_session_id", unique: true
     t.index ["token"], name: "index_refresh_tokens_on_token", unique: true
   end
 

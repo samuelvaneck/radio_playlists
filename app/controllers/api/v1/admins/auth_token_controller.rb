@@ -5,7 +5,6 @@ module Api
     module Admins
       class AuthTokenController < Devise::SessionsController
         respond_to :json
-        before_action :destroy_refresh_token, only: [:destroy]
 
         # POST /resource/sign_in
         def create
@@ -14,12 +13,18 @@ module Api
           respond_with(current_admin)
         end
 
+        protected
+
+        def verify_signed_out_user
+          super
+          destroy_refresh_tokens
+        end
+
         private
 
         def respond_with(admin, _opts = {})
           data = AdminSerializer.new(admin).serializable_hash[:data][:attributes]
           data[:token] = current_token
-          create_refresh_token
 
           render json: {
             status: { code: 200, message: 'Logged in successfully' },
@@ -31,25 +36,13 @@ module Api
           request.env['warden-jwt_auth.token']
         end
 
-        def create_refresh_token
-          return if session[:refresh_token].present?
-
-          refresh_token = current_admin.refresh_tokens.create!
-          session[:refresh_token] = refresh_token.token
-        end
-
         def respond_to_on_destroy
           render json: { message: 'Logged out successfully' }, status: :ok
         end
 
-        def destroy_refresh_token
-          return if session[:refresh_token].blank?
-
-          refresh_token = current_admin.refresh_tokens.find_by(token: session[:refresh_token])
-          return unless refresh_token
-
-          refresh_token.destroy
-          cookies.delete(:refresh_token)
+        def destroy_refresh_tokens
+          refresh_token = session.delete(:refresh_token)
+          refresh_token.destroy if refresh_token.present?
         end
       end
     end
