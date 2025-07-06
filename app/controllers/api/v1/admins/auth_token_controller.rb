@@ -41,8 +41,10 @@ module Api
         end
 
         def destroy_refresh_tokens
-          refresh_token = session.delete(:refresh_token)
-          refresh_token.destroy if refresh_token.present?
+          session_token = session.delete(:refresh_token)
+          session_id = request.session_options[:id]
+          refresh_token = RefreshToken.find_by(token: session_token[:token], session_id:, admin: current_admin)
+          refresh_token&.destroy
         end
       end
     end
