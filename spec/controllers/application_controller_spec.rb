@@ -12,7 +12,7 @@ describe ApplicationController, type: :controller do
   let(:session_id) { SecureRandom.hex(16) }
 
   before do
-    sign_in admin
+    sign_in(admin)
     request.session_options[:id] = session_id
     request.session_options[:skip] = false
   end
@@ -57,7 +57,7 @@ describe ApplicationController, type: :controller do
     let(:token) { RefreshToken.create!(admin:, session_id:) }
 
     before do
-      session[:refresh_token] = { refresh_token: token.token, expires_at: 1.hour.ago }
+      session[:refresh_token] = { token: token.token, expires_at: 1.hour.ago }
     end
 
     it 'does nothing' do
