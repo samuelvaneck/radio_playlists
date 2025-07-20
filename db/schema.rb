@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_29_191308) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_20_202928) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -78,6 +78,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_29_191308) do
     t.string "id_on_spotify"
     t.jsonb "cached_chart_positions", default: []
     t.datetime "cached_chart_positions_updated_at"
+    t.index ["name"], name: "index_artists_on_name"
   end
 
   create_table "artists_songs", id: false, force: :cascade do |t|
@@ -148,6 +149,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_29_191308) do
     t.bigint "song_id", null: false
     t.bigint "radio_station_id", null: false
     t.datetime "first_broadcasted_at"
+    t.index ["first_broadcasted_at"], name: "index_radio_station_songs_on_first_broadcasted_at"
     t.index ["radio_station_id"], name: "index_radio_station_songs_on_radio_station_id"
     t.index ["song_id", "radio_station_id"], name: "index_radio_station_songs_on_song_id_and_radio_station_id", unique: true
     t.index ["song_id"], name: "index_radio_station_songs_on_song_id"
@@ -179,6 +181,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_29_191308) do
     t.jsonb "cached_chart_positions", default: []
     t.datetime "cached_chart_positions_updated_at"
     t.string "id_on_youtube"
+    t.index ["search_text"], name: "index_songs_on_search_text"
   end
 
   create_table "tags", force: :cascade do |t|

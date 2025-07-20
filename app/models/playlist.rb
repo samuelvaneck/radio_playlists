@@ -34,7 +34,7 @@ class Playlist < ApplicationRecord
   scope :scraper_imported, -> { where(scraper_import: true) }
   scope :recognizer_imported, -> { where(scraper_import: false) }
   scope :matching, lambda { |search_term|
-    joins(:song, :artists).where('songs.title ILIKE ? OR artists.name ILIKE ?', "%#{search_term}%", "%#{search_term}%") if search_term.present?
+    joins(:song).where('songs.search_text ILIKE ?', "%#{search_term}%") if search_term.present?
   }
 
   validate :today_unique_playlist_item
