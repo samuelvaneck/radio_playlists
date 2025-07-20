@@ -35,7 +35,7 @@ class Song < ApplicationRecord
   after_commit :update_search_text, on: [:update], if: :saved_change_to_title?
 
   scope :matching, lambda { |search_term|
-    joins(:artists).where('title ILIKE ? OR artists.name ILIKE ?', "%#{search_term}%", "%#{search_term}%") if search_term
+    where('songs.search_text ILIKE ?', "%#{search_term}%") if search_term.present?
   }
   scope :with_iscr, ->(isrc) { where(isrc: isrc) }
   scope :with_id_on_spotify, -> { where.not(id_on_spotify: nil) }
@@ -46,7 +46,7 @@ class Song < ApplicationRecord
   public_constant :ARTISTS_FILTERS
 
   def self.most_played(params = {})
-    Song.joins(:playlists, :artists)
+    Song.joins(:playlists)
         .played_between(date_from_params(time: params[:start_time], fallback: 1.week.ago),
                         date_from_params(time: params[:end_time], fallback: Time.zone.now))
         .played_on(params[:radio_station_ids])
