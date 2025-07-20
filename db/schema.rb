@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_29_191308) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_20_195545) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -179,6 +179,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_29_191308) do
     t.jsonb "cached_chart_positions", default: []
     t.datetime "cached_chart_positions_updated_at"
     t.string "id_on_youtube"
+    t.index ["search_text"], name: "index_songs_on_search_text"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -200,4 +201,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_29_191308) do
   add_foreign_key "radio_station_classifiers", "radio_stations"
   add_foreign_key "radio_station_songs", "radio_stations"
   add_foreign_key "radio_station_songs", "songs"
+  add_foreign_key "refresh_tokens", "admins"
 end
