@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_20_202426) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_20_202928) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -149,6 +149,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_20_202426) do
     t.bigint "song_id", null: false
     t.bigint "radio_station_id", null: false
     t.datetime "first_broadcasted_at"
+    t.index ["first_broadcasted_at"], name: "index_radio_station_songs_on_first_broadcasted_at"
     t.index ["radio_station_id"], name: "index_radio_station_songs_on_radio_station_id"
     t.index ["song_id", "radio_station_id"], name: "index_radio_station_songs_on_song_id_and_radio_station_id", unique: true
     t.index ["song_id"], name: "index_radio_station_songs_on_song_id"
@@ -202,5 +203,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_20_202426) do
   add_foreign_key "radio_station_classifiers", "radio_stations"
   add_foreign_key "radio_station_songs", "radio_stations"
   add_foreign_key "radio_station_songs", "songs"
-  add_foreign_key "refresh_tokens", "admins"
 end
