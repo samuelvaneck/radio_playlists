@@ -51,8 +51,8 @@ class RadioStation < ActiveRecord::Base
     RadioStationSong.includes(:radio_station, song: :artists)
                     .played_between(period_start, period_end)
                     .played_on(params[:radio_station_ids])
-                    .joins('"INNER" JOIN playlists ON playlists.song_id = radio_station_songs.song_id
-                                                   AND playlists.radio_station_id = radio_station_songs.radio_station_id')
+                    .joins('INNER JOIN playlists ON playlists.song_id = radio_station_songs.song_id
+                                                 AND playlists.radio_station_id = radio_station_songs.radio_station_id')
                     .select('radio_station_songs.*, COUNT(playlists.id) AS playlists_count')
                     .group('radio_station_songs.id')
                     .order('playlists_count DESC')
