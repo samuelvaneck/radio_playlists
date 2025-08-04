@@ -42,8 +42,12 @@ module Api
 
         def destroy_refresh_tokens
           session_token = session.delete(:refresh_token)
+          return if session_token.blank?
+
           refresh_token = RefreshToken.find_by(token: session_token[:token], session_id:, admin: current_admin)
           refresh_token&.destroy
+        rescue JWT::DecodeError => e
+          Rails.logger.error("JWT Decode Error: #{e.message}")
         end
       end
     end

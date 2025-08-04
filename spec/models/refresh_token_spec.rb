@@ -26,13 +26,14 @@ require 'rails_helper'
 
 describe RefreshToken, type: :model do
   let(:admin) { create(:admin) }
+  let(:session_id) { SecureRandom.hex(16) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:admin) }
   end
 
   describe 'callbacks' do
-    let(:refresh_token) { create(:refresh_token, admin:) }
+    let(:refresh_token) { create(:refresh_token, admin:, session_id:) }
 
     it 'generates a token before creation' do
       expect(refresh_token.token).to be_present
@@ -44,7 +45,7 @@ describe RefreshToken, type: :model do
   end
 
   describe '#expired?' do
-    let(:refresh_token) { create(:refresh_token, admin:, expires_at:) }
+    let(:refresh_token) { create(:refresh_token, admin:, expires_at:, session_id:) }
 
     context 'when the token is expired' do
       let(:expires_at) { 1.day.ago }

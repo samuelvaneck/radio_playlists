@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def session_id
-    request.session_options[:id]
+    request.session_options[:id].to_s
   end
 
   private
