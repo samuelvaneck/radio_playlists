@@ -4,10 +4,11 @@ require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
-  devise_for :admins
+  devise_for :admins, skip: [:registrations, :passwords, :confirmations, :unlocks]
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       devise_for :admins, controllers: { sessions: 'api/v1/admins/auth_token' }
+      post 'admins/reauthorize', to: 'admins/reauthorize#create'
       get 'admins/current', to: 'admins/current_admin#show'
       get 'admins/songs', to: 'admins/songs#index'
       patch 'admins/songs/:id', to: 'admins/songs#update'
