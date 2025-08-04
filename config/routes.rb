@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       devise_for :admins, controllers: { sessions: 'api/v1/admins/auth_token' }
-      post 'admins/refresh_token', to: 'admins/refresh_tokens#create'
+      post 'admins/reauthorize', to: 'admins/reauthorize#create'
       get 'admins/current', to: 'admins/current_admin#show'
       get 'admins/songs', to: 'admins/songs#index'
       patch 'admins/songs/:id', to: 'admins/songs#update'
