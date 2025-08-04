@@ -14,6 +14,8 @@ describe Api::V1::Admins::SongsController, type: :controller do
   describe 'GET #index' do
     subject(:get_index) { get :index, params: { format: :json } }
 
+    let(:ordered_song_ids) { Song.order(created_at: :desc).pluck(:id).map(&:to_s) }
+
     context 'when there are songs' do
       before { create_list(:song, 3) }
 
@@ -25,6 +27,11 @@ describe Api::V1::Admins::SongsController, type: :controller do
       it 'returns all songs' do
         get_index
         expect(json[:data].count).to eq(3)
+      end
+
+      it 'returns the songs in descending order of creation' do
+        get_index
+        expect(json[:data].map { |s| s[:id] }).to eq(ordered_song_ids)
       end
     end
 
