@@ -41,6 +41,10 @@ class SongSerializer
     object.counter if object.respond_to?(:counter)
   end
 
+  attribute :position do |object|
+    object.position if object.respond_to?(:position)
+  end
+
   attribute :artists do |object|
     object.artists.map do |artist|
       options = { fields: { artist: %i[id name] } }

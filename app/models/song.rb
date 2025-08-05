@@ -52,7 +52,10 @@ class Song < ApplicationRecord
   public_constant :ARTISTS_FILTERS
 
   def self.most_played(params = {})
+    one_day_ago = 1.day.ago.to_date.to_s
+
     Song.joins(:playlists)
+        .includes([:artists])
         .played_between(date_from_params(time: params[:start_time], fallback: 1.week.ago),
                         date_from_params(time: params[:end_time], fallback: Time.zone.now))
         .played_on(params[:radio_station_ids])
@@ -66,10 +69,17 @@ class Song < ApplicationRecord
                  songs.spotify_preview_url,
                  songs.id_on_youtube,
                  songs.release_date,
-                 COUNT(DISTINCT playlists.id) AS COUNTER")
-        # .from('songs')
+                 (SELECT (elem->>'position')::int
+                  FROM jsonb_array_elements(songs.cached_chart_positions) AS elem
+                  WHERE elem->>'date' = '#{one_day_ago}' LIMIT 1)
+                  AS position,
+                 (SELECT (elem->>'counts')::int
+                  FROM jsonb_array_elements(songs.cached_chart_positions) AS elem
+                  WHERE elem->>'date' = '#{one_day_ago}' LIMIT 1)
+                  AS counter"
+        )
         .group('songs.id, songs.title')
-        .order('COUNTER DESC')
+        .order('COUNTER DESC NULLS LAST')
   end
 
   def self.most_played_group_by(column, params)
