@@ -86,8 +86,7 @@ class Song < ApplicationRecord
                      ),
                      COUNT(playlists.id)
                    ) DESC NULLS LAST
-                 ) AS position"
-        )
+                 ) AS position")
         .group('songs.id, songs.title')
         .order('COUNTER DESC NULLS LAST')
   end
