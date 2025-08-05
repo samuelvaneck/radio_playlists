@@ -52,7 +52,7 @@ class Song < ApplicationRecord
   public_constant :ARTISTS_FILTERS
 
   def self.most_played(params = {})
-    one_day_ago = 1.day.ago.to_date.to_s
+    start_date = date_from_params(time: params[:start_time], fallback: 1.week.ago)&.to_date.to_s
 
     Song.joins(:playlists)
         .includes([:artists])
@@ -69,14 +69,24 @@ class Song < ApplicationRecord
                  songs.spotify_preview_url,
                  songs.id_on_youtube,
                  songs.release_date,
-                 (SELECT (elem->>'position')::int
-                  FROM jsonb_array_elements(songs.cached_chart_positions) AS elem
-                  WHERE elem->>'date' = '#{one_day_ago}' LIMIT 1)
-                  AS position,
-                 (SELECT (elem->>'counts')::int
-                  FROM jsonb_array_elements(songs.cached_chart_positions) AS elem
-                  WHERE elem->>'date' = '#{one_day_ago}' LIMIT 1)
-                  AS counter"
+                 COALESCE(
+                   (
+                     SELECT SUM((elem->>'counts')::int)
+                     FROM jsonb_array_elements(songs.cached_chart_positions) AS elem
+                     WHERE elem->>'date' >= '#{start_date}'
+                   ),
+                   COUNT(playlists.id)
+                 ) AS counter,
+                 ROW_NUMBER() OVER (ORDER BY
+                   COALESCE(
+                     (
+                       SELECT SUM((elem->>'counts')::int)
+                       FROM jsonb_array_elements(songs.cached_chart_positions) AS elem
+                       WHERE elem->>'date' >= '#{start_date}'
+                     ),
+                     COUNT(playlists.id)
+                   ) DESC NULLS LAST
+                 ) AS position"
         )
         .group('songs.id, songs.title')
         .order('COUNTER DESC NULLS LAST')
