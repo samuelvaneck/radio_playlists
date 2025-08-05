@@ -121,6 +121,7 @@ module Spotify
 
       def set_release_date
         return if @track.blank?
+        return if @track.dig('album', 'release_date_precision') != 'day'
 
         @track.dig('album', 'release_date')
       end
