@@ -13,7 +13,7 @@ describe RadioStationTracksScraperJob, type: :job do
   end
 
   before do
-    allow(job).to receive(:make_request).and_return(response_data)
+    allow(job).to receive(:response).and_return(response_data)
   end
 
   describe '#perform' do

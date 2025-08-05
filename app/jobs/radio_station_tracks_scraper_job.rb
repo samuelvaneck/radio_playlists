@@ -8,17 +8,8 @@ class RadioStationTracksScraperJob
       @response = response(url)
       next nil if @response.blank?
 
-      if song.present? && song.id_on_youtube.blank? && id_on_youtube.present?
-        Rails.logger.info("Updating #{artist_name} #{song_title} with id_on_youtube: #{id_on_youtube}")
-        song.update(id_on_youtube:)
-      end
-
-      if artist.present?
-        updates = {}
-        updates[:instagram_url] = artist_instagram_url if artist_instagram_url.present?
-        updates[:website_url] = artist_website_url if artist_website_url.present?
-        artist.update(updates) if updates.any?
-      end
+      maybe_update_id_on_youtube
+      maybe_update_artist_website_and_instagram
 
       clear_instance_variables
     end
@@ -31,6 +22,22 @@ class RadioStationTracksScraperJob
   end
 
   private
+
+  def maybe_update_id_on_youtube
+    return unless song.present? && song.id_on_youtube.blank? && id_on_youtube.present?
+
+    Rails.logger.info("Updating #{artist_name} #{song_title} with id_on_youtube: #{id_on_youtube}")
+    song.update(id_on_youtube:)
+  end
+
+  def maybe_update_artist_website_and_instagram
+    return unless song.present? && artist.present?
+
+    updates = {}
+    updates[:website_url] = artist_website_url if artist_website_url.present?
+    updates[:instagram_url] = artist_instagram_url if artist_instagram_url.present?
+    artist.update(updates) if updates.any?
+  end
 
   def radio_station_url
     %w[https://api.qmusic.nl/2.4/tracks/plays?limit=1
@@ -45,14 +52,17 @@ class RadioStationTracksScraperJob
   end
 
   def response(url)
-    make_request(url)
-  end
-
-  def make_request(url)
     response = connection.get(url) do |req|
       req.headers['Content-Type'] = 'application/json'
     end
     response.body.with_indifferent_access
+  end
+
+  def connection
+    Faraday.new do |conn|
+      conn.response :json
+      conn.adapter :net_http
+    end
   end
 
   def artist_name
@@ -92,12 +102,5 @@ class RadioStationTracksScraperJob
 
   def artist
     song.artists.find_by(name: artist_name)
-  end
-
-  def connection
-    Faraday.new do |conn|
-      conn.response :json
-      conn.adapter :net_http
-    end
   end
 end
