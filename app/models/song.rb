@@ -10,6 +10,7 @@
 #  id_on_spotify                     :string
 #  id_on_youtube                     :string
 #  isrc                              :string
+#  release_date                      :date
 #  search_text                       :text
 #  spotify_artwork_url               :string
 #  spotify_preview_url               :string
@@ -20,7 +21,8 @@
 #
 # Indexes
 #
-#  index_songs_on_search_text  (search_text)
+#  index_songs_on_release_date  (release_date)
+#  index_songs_on_search_text   (search_text)
 #
 
 class Song < ApplicationRecord
