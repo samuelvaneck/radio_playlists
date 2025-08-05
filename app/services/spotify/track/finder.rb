@@ -3,7 +3,7 @@ module Spotify
     class Finder < Base
       attr_reader :track, :artists, :title, :id, :isrc, :spotify_artwork_url,
                   :spotify_song_url, :query_result, :filter_result, :tracks,
-                  :spotify_preview_url
+                  :spotify_preview_url, :release_date
 
       TRACK_TYPES = %w[album single compilation].freeze
       FEATURING_REGEX = /\(feat\..+\)/
