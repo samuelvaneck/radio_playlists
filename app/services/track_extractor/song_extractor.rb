@@ -96,7 +96,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
       spotify_preview_url:,
       id_on_spotify:,
       isrc:,
-      release_date:,
+      release_date:
     }
   end
 end
