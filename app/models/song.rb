@@ -65,6 +65,7 @@ class Song < ApplicationRecord
                  songs.spotify_artwork_url,
                  songs.spotify_preview_url,
                  songs.id_on_youtube,
+                 songs.release_date,
                  COUNT(DISTINCT playlists.id) AS COUNTER")
         # .from('songs')
         .group('songs.id, songs.title')
