@@ -31,6 +31,7 @@ module Spotify
         @spotify_preview_url = set_spotify_preview_url
         @title_distance = set_title_distance
         @id = set_id
+        @release_date = set_release_date
 
         @track
       end
@@ -116,6 +117,12 @@ module Spotify
         return if @track.blank?
 
         @track['id']
+      end
+
+      def set_release_date
+        return if @track.blank?
+
+        @track.dig('album', 'release_date')
       end
 
       def set_spotify_song_url
