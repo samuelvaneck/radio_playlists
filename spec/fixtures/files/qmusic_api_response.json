@@ -1,0 +1,126 @@
+{
+  "played_tracks": [
+    {
+      "duration": 179,
+      "video_playing": false,
+      "played_at": "2025-08-05T11:00:47+02:00",
+      "slug": "sapphire",
+      "title": "Sapphire",
+      "selector_code": "Q15887",
+      "hooks": {
+        "m4a": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5c/1e/9f/5c1e9f60-d71c-931e-7905-72ac4f65d47f/mzaf_8175237079772215454.plus.aac.p.m4a",
+        "default": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5c/1e/9f/5c1e9f60-d71c-931e-7905-72ac4f65d47f/mzaf_8175237079772215454.plus.aac.p.m4a"
+      },
+      "thumbnail": "/1/e5/0a/cf/115489/Ed-Sheeran-Sapphire-Artwork.jpg",
+      "images": {
+        "default": "/1/e5/0a/cf/115489/Ed-Sheeran-Sapphire-Artwork.jpg"
+      },
+      "affiliate_url": "https://music.apple.com/nl/album/sapphire/1811175532?i=1811175544&uo=4",
+      "apple_music_url": "https://music.apple.com/nl/album/sapphire/1811175532?i=1811175544&uo=4",
+      "release_year": "2025",
+      "record_label": "Warner",
+      "publisher": "",
+      "spotify_url": "https://open.spotify.com/track/4Q0qVhFQa7j6jRKzo3HDmP",
+      "videos": [
+        {
+          "type": "youtube",
+          "tags": "default",
+          "id": "JgDNFQ2RaLQ"
+        }
+      ],
+      "artist": {
+        "name": "ED SHEERAN",
+        "original_name": "ED SHEERAN",
+        "id": 1394,
+        "slug": "ed-sheeran",
+        "bio": "",
+        "photo": "/f/01/6e/59/1394/MC04Mjk3LmpwZWc.jpeg",
+        "images": {
+          "default": "/f/01/6e/59/1394/MC04Mjk3LmpwZWc.jpeg"
+        },
+        "website": "http://edsheeran.com/",
+        "website_url": "http://edsheeran.com/",
+        "country": {
+          "code": "GB",
+          "name": "Verenigd Koninkrijk"
+        },
+        "instagram_url": "https://instagram.com/teddysphotos"
+      },
+      "sub_artists": [],
+      "tags": [
+        {
+          "id": 3,
+          "name": "Hit intro"
+        },
+        {
+          "id": 125,
+          "name": "Ex-alarmschijf"
+        }
+      ],
+      "current_editions": [
+        {
+          "position": 11,
+          "edition": {
+            "id": 6754,
+            "name": "01/08/2025"
+          },
+          "list": {
+            "id": 225,
+            "name": "Qmusic Top 40"
+          }
+        }
+      ],
+      "active_editions": [],
+      "next": {
+        "slug": "broken-wings-2",
+        "title": "Broken Wings",
+        "selector_code": "6105-13",
+        "hooks": {
+          "m4a": "https://audio-ssl.itunes.apple.com/itunes-assets/Music/67/c1/9e/mzm.sbygrsbq.aac.p.m4a",
+          "default": "https://audio-ssl.itunes.apple.com/itunes-assets/Music/67/c1/9e/mzm.sbygrsbq.aac.p.m4a"
+        },
+        "thumbnail": "/6/8c/fb/8f/9681/R-512886-1139411704.jpeg",
+        "images": {
+          "default": "/6/8c/fb/8f/9681/R-512886-1139411704.jpeg"
+        },
+        "affiliate_url": "https://itunes.apple.com/nl/album/broken-wings/id311932413?i=311932416&uo=4",
+        "apple_music_url": "https://itunes.apple.com/nl/album/broken-wings/id311932413?i=311932416&uo=4",
+        "release_year": "1986",
+        "record_label": null,
+        "publisher": null,
+        "spotify_url": "http://open.spotify.com/track/78FHUZRbFDCG6VkRAQdFLm",
+        "videos": [
+          {
+            "type": "youtube",
+            "tags": "default",
+            "id": "nKhN1t_7PEY"
+          }
+        ],
+        "artist": {
+          "name": "MR. MISTER",
+          "original_name": "MR. MISTER",
+          "id": 1455,
+          "slug": "mr-mister",
+          "bio": "",
+          "photo": "/0/a1/bf/96/1455/LTMwNjIuanBlZw.jpeg",
+          "images": {
+            "default": "/0/a1/bf/96/1455/LTMwNjIuanBlZw.jpeg"
+          },
+          "website": "http://www.richardpagemusic.com/music/",
+          "website_url": "http://www.richardpagemusic.com/music/",
+          "country": {
+            "code": "AF",
+            "name": "Afghanistan"
+          },
+          "instagram_url": null
+        },
+        "sub_artists": [],
+        "tags": []
+      }
+    }
+  ],
+  "pagination": {
+    "next": "/2.4/tracks/plays?limit=1&next=true&since=2025-08-05+11%3A00%3A47+%2B0200",
+    "previous": "/2.4/tracks/plays?limit=1&next=true&upto=2025-08-05+11%3A00%3A47+%2B0200"
+  }
+}

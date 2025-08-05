@@ -1,17 +1,23 @@
 # frozen_string_literal: true
 
-class YoutubeScrapeImportJob
+class RadioStationTracksScraperJob
   include Sidekiq::Worker
 
   def perform
     radio_station_url.each do |url|
       @response = response(url)
       next nil if @response.blank?
-      next nil if id_on_youtube.blank?
 
-      if song.present? && song.id_on_youtube.blank?
+      if song.present? && song.id_on_youtube.blank? && id_on_youtube.present?
         Rails.logger.info("Updating #{artist_name} #{song_title} with id_on_youtube: #{id_on_youtube}")
         song.update(id_on_youtube:)
+      end
+
+      if artist.present?
+        updates = {}
+        updates[:instagram_url] = artist_instagram_url if artist_instagram_url.present?
+        updates[:website_url] = artist_website_url if artist_website_url.present?
+        artist.update(updates) if updates.any?
       end
 
       clear_instance_variables
@@ -27,8 +33,8 @@ class YoutubeScrapeImportJob
   private
 
   def radio_station_url
-    %w[https://api.qmusic.nl/2.4/tracks/plays?limit=1&next=true
-       https://api.qmusic.be/2.4/tracks/plays?limit=1&next=true
+    %w[https://api.qmusic.nl/2.4/tracks/plays?limit=1
+       https://api.qmusic.be/2.4/tracks/plays?limit=1
        https://api.joe.nl/2.0/tracks/plays?limit=1
        https://api.joe.be/2.0/tracks/plays?limit=1]
   end
@@ -57,6 +63,14 @@ class YoutubeScrapeImportJob
     @response&.dig(:played_tracks, 0, :title)&.titleize
   end
 
+  def artist_website_url
+    @response&.dig(:played_tracks, 0, :artist, :website_url)
+  end
+
+  def artist_instagram_url
+    @response&.dig(:played_tracks, 0, :artist, :instagram_url)
+  end
+
   def id_on_spotify
     spotify_url = @response&.dig(:played_tracks, 0, :spotify_url)
     return nil if spotify_url.blank?
@@ -73,7 +87,11 @@ class YoutubeScrapeImportJob
   end
 
   def song
-    Song.find_by(id_on_spotify:) || Song.find_by(search_text: "#{artist_name} #{song_title}")
+    @song ||= Song.find_by(id_on_spotify:) || Song.find_by(search_text: "#{artist_name} #{song_title}")
+  end
+
+  def artist
+    song.artists.find_by(name: artist_name)
   end
 
   def connection
