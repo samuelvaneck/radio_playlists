@@ -25,7 +25,7 @@
 class ArtistSerializer
   include FastJsonapi::ObjectSerializer
 
-  attributes :id, :name, :spotify_artist_url, :spotify_artwork_url
+  attributes :id, :name, :spotify_artist_url, :spotify_artwork_url, :instagram_url, :website_url
 
   has_many :songs
 
