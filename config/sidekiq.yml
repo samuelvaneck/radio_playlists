@@ -19,7 +19,7 @@
         cron: '10 0 * * *' # at 0:10 am
         queue: low
         enabled: true
-      YoutubeScrapeImportJob:
+      RadioStationTracksScraperJob:
         cron: '*/3 * * * *' # every 3 minutes
         queue: default
         enabled: true
