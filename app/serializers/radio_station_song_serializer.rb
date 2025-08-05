@@ -9,6 +9,7 @@
 #
 # Indexes
 #
+#  index_radio_station_songs_on_first_broadcasted_at          (first_broadcasted_at)
 #  index_radio_station_songs_on_radio_station_id              (radio_station_id)
 #  index_radio_station_songs_on_song_id                       (song_id)
 #  index_radio_station_songs_on_song_id_and_radio_station_id  (song_id,radio_station_id) UNIQUE

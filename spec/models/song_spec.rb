@@ -18,6 +18,10 @@
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
 #
+# Indexes
+#
+#  index_songs_on_search_text  (search_text)
+#
 describe Song do
   let(:artist_one) { create :artist }
   let(:song_one) { create :song, artists: [artist_one] }

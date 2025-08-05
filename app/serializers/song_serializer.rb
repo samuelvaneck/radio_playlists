@@ -5,18 +5,22 @@
 # Table name: songs
 #
 #  id                                :bigint           not null, primary key
+#  cached_chart_positions            :jsonb
+#  cached_chart_positions_updated_at :datetime
+#  id_on_spotify                     :string
+#  id_on_youtube                     :string
+#  isrc                              :string
+#  search_text                       :text
+#  spotify_artwork_url               :string
+#  spotify_preview_url               :string
+#  spotify_song_url                  :string
 #  title                             :string
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
-#  search_text                       :text
-#  spotify_song_url                  :string
-#  spotify_artwork_url               :string
-#  id_on_spotify                     :string
-#  isrc                              :string
-#  spotify_preview_url               :string
-#  cached_chart_positions            :jsonb
-#  cached_chart_positions_updated_at :datetime
-#  id_on_youtube                     :string
+#
+# Indexes
+#
+#  index_songs_on_search_text  (search_text)
 #
 class SongSerializer
   include FastJsonapi::ObjectSerializer
