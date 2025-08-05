@@ -11,17 +11,7 @@ describe TrackScraper::QmusicApiProcessor, type: :service do
       RadioStation.find_by(name: 'Qmusic') || create(:qmusic)
     end
     let(:response) do
-      {
-        played_tracks: [
-          {
-            played_at: '2023-10-01T12:00:00+02:00',
-            artist: { name: 'Test Artist' },
-            title: 'Test Title',
-            spotify_url: 'https://open.spotify.com/track/test',
-            videos: [{ id: 'test_youtube_id' }]
-          }
-        ]
-      }
+      JSON.parse(file_fixture('qmusic_api_response.json').read).with_indifferent_access
     end
 
     before do
@@ -33,27 +23,37 @@ describe TrackScraper::QmusicApiProcessor, type: :service do
 
       it 'sets the broadcasted_at timestamp' do
         last_played_song
-        expect(qmusic_api_processor.instance_variable_get(:@broadcasted_at)).to eq(Time.find_zone('Amsterdam').parse('2023-10-01T12:00:00+02:00'))
+        expect(qmusic_api_processor.instance_variable_get(:@broadcasted_at)).to eq(Time.find_zone('Amsterdam').parse('2025-08-05T11:00:47+02:00'))
       end
 
       it 'sets the artist name' do
         last_played_song
-        expect(qmusic_api_processor.instance_variable_get(:@artist_name)).to eq('Test Artist')
+        expect(qmusic_api_processor.instance_variable_get(:@artist_name)).to eq('Ed Sheeran')
       end
 
       it 'sets the title' do
         last_played_song
-        expect(qmusic_api_processor.instance_variable_get(:@title)).to eq('Test Title')
+        expect(qmusic_api_processor.instance_variable_get(:@title)).to eq('Sapphire')
       end
 
       it 'sets the Spotify URL' do
         last_played_song
-        expect(qmusic_api_processor.instance_variable_get(:@spotify_url)).to eq('https://open.spotify.com/track/test')
+        expect(qmusic_api_processor.instance_variable_get(:@spotify_url)).to eq('https://open.spotify.com/track/4Q0qVhFQa7j6jRKzo3HDmP')
       end
 
       it 'sets the YouTube ID' do
         last_played_song
-        expect(qmusic_api_processor.instance_variable_get(:@youtube_id)).to eq('test_youtube_id')
+        expect(qmusic_api_processor.instance_variable_get(:@youtube_id)).to eq('JgDNFQ2RaLQ')
+      end
+
+      it 'sets the website URL' do
+        last_played_song
+        expect(qmusic_api_processor.instance_variable_get(:@website_url)).to eq('http://edsheeran.com/')
+      end
+
+      it 'sets the Instagram URL' do
+        last_played_song
+        expect(qmusic_api_processor.instance_variable_get(:@instagram_url)).to eq('https://instagram.com/teddysphotos')
       end
 
       it 'returns true' do
