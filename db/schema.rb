@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_05_133837) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_06_063217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -184,6 +184,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_05_133837) do
     t.datetime "cached_chart_positions_updated_at"
     t.string "id_on_youtube"
     t.date "release_date"
+    t.string "release_date_precision"
     t.index ["release_date"], name: "index_songs_on_release_date"
     t.index ["search_text"], name: "index_songs_on_search_text"
   end

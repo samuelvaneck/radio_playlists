@@ -35,6 +35,7 @@ class SongSerializer
              :spotify_preview_url,
              :id_on_youtube,
              :release_date,
+             :release_date_precision,
              :artists
 
   attribute :counter do |object|

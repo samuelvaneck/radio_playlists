@@ -2,8 +2,8 @@ module Spotify
   module Track
     class Finder < Base
       attr_reader :track, :artists, :title, :id, :isrc, :spotify_artwork_url,
-                  :spotify_song_url, :query_result, :filter_result, :tracks,
-                  :spotify_preview_url, :release_date
+                  :spotify_song_url, :spotify_query_result, :filter_result, :tracks,
+                  :spotify_preview_url, :release_date, :release_date_precision
 
       TRACK_TYPES = %w[album single compilation].freeze
       FEATURING_REGEX = /\(feat\..+\)/
@@ -32,12 +32,13 @@ module Spotify
         @title_distance = set_title_distance
         @id = set_id
         @release_date = set_release_date
+        @release_date_precision = set_release_date_precision
 
         @track
       end
 
       def fetch_spotify_track
-        @query_result = FindById.new(id_on_spotify: @spotify_track_id).execute
+        @spotify_query_result = FindById.new(id_on_spotify: @spotify_track_id).execute
 
         # set the @filter_result
         dig_for_usable_tracks
@@ -47,20 +48,20 @@ module Spotify
           reject_custom_albums
           most_popular_track
         else
-          @search_title = @query_result['name']
-          @query_result = nil
+          @search_title = @spotify_query_result['name']
+          @spotify_query_result = nil
           best_match
         end
       end
 
-      def query_result
-        @query_result ||= make_request_with_match(search_url)
+      def spotify_query_result
+        @spotify_query_result ||= make_request_with_match(search_url)
       end
 
       def match_results
         result = {}
         TRACK_TYPES.each do |type|
-          match = type_to_filter_class(type).new(tracks: @query_result, artists: @search_artists).best_matching
+          match = type_to_filter_class(type).new(tracks: @spotify_query_result, artists: @search_artists).best_matching
           next if match.nil?
 
           result[type] = match
@@ -69,11 +70,11 @@ module Spotify
       end
 
       def best_match
-        @query_result ||= query_result
+        @spotify_query_result ||= spotify_query_result
         type = match_results.key(match_results.values.max)
         return nil if type.blank?
 
-        type_to_filter_class(type).new(tracks: @query_result, artists: @search_artists).best_matching_track
+        type_to_filter_class(type).new(tracks: @spotify_query_result, artists: @search_artists).best_matching_track
       end
 
       private
@@ -121,9 +122,18 @@ module Spotify
 
       def set_release_date
         return if @track.blank?
-        return if @track.dig('album', 'release_date_precision') != 'day'
 
-        @track.dig('album', 'release_date')
+        if @track.dig('album', 'release_date_precision') != 'day'
+          @track.dig('album', 'release_date')
+        elsif @track.dig('album', 'release_date_precision') == 'year'
+          @track.dig('album', 'release_date') + '-01-01'
+        end
+      end
+
+      def set_release_date_precision
+        return if @track.blank?
+
+        @track.dig('album', 'release_date_precision')
       end
 
       def set_spotify_song_url
@@ -151,7 +161,7 @@ module Spotify
       end
 
       def dig_for_usable_tracks
-        @filter_result = Spotify::Track::Filter::ResultsDigger.new(tracks: @query_result).execute
+        @filter_result = Spotify::Track::Filter::ResultsDigger.new(tracks: @spotify_query_result).execute
       end
 
       def filter_same_artists

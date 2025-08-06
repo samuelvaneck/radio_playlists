@@ -15,7 +15,8 @@ describe TrackExtractor::SongExtractor do
       spotify_song_url: 'https://open.spotify.com/track/spotify123',
       spotify_artwork_url: 'https://i.scdn.co/image/artwork',
       spotify_preview_url: 'https://p.scdn.co/mp3-preview/preview',
-      release_date: '2023-01-01'
+      release_date: '2023-01-01',
+      release_date_precision: 'day'
     )
   end
   let(:played_song) do
@@ -86,6 +87,13 @@ describe TrackExtractor::SongExtractor do
           extractor.extract
           existing_song.reload
         end.to change(existing_song, :release_date).to(Date.parse('2023-01-01'))
+      end
+
+      it 'updates the release date precision if missing' do
+        expect do
+          extractor.extract
+          existing_song.reload
+        end.to change(existing_song, :release_date_precision).to('day')
       end
     end
   end

@@ -30,7 +30,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
   def maybe_update_release_date(song)
     return unless song.release_date.blank? && release_date.present?
 
-    song.update(release_date:)
+    song.update(release_date:, release_date_precision:)
   end
 
   # Methode for checking if there are songs with the same title.
@@ -88,6 +88,10 @@ class TrackExtractor::SongExtractor < TrackExtractor
     @track&.release_date
   end
 
+  def release_date_precision
+    @track&.release_date_precision
+  end
+
   def song_attributes
     {
       title:,
@@ -96,7 +100,8 @@ class TrackExtractor::SongExtractor < TrackExtractor
       spotify_preview_url:,
       id_on_spotify:,
       isrc:,
-      release_date:
+      release_date:,
+      release_date_precision:,
     }
   end
 end

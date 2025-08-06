@@ -66,6 +66,7 @@ class Song < ApplicationRecord
                  songs.spotify_preview_url,
                  songs.id_on_youtube,
                  songs.release_date,
+                 songs.release_date_precision,
                  COUNT(playlists.id) AS counter,
                  ROW_NUMBER() OVER (ORDER BY COUNT(playlists.id) DESC NULLS LAST) AS position")
         .group('songs.id, songs.title')
