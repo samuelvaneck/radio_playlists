@@ -28,7 +28,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
   end
 
   def maybe_update_release_date(song)
-    return unless song.release_date.blank? && release_date.present?
+    return if song.release_date.present? || release_date.blank?
 
     song.update(release_date:, release_date_precision:)
   end

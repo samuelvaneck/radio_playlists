@@ -59,6 +59,10 @@ describe TrackExtractor::SongExtractor do
       it 'sets the release date' do
         expect(song.release_date).to eq(Date.parse('2023-01-01'))
       end
+
+      it 'sets the release date precision' do
+        expect(song.release_date_precision).to eq('day')
+      end
     end
 
     context 'when song exists' do
