@@ -101,7 +101,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
       id_on_spotify:,
       isrc:,
       release_date:,
-      release_date_precision:,
+      release_date_precision:
     }
   end
 end
