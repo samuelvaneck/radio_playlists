@@ -126,7 +126,7 @@ module Spotify
         if @track.dig('album', 'release_date_precision') != 'day'
           @track.dig('album', 'release_date')
         elsif @track.dig('album', 'release_date_precision') == 'year'
-          @track.dig('album', 'release_date') + '-01-01'
+          "#{@track.dig('album', 'release_date')}-01-01"
         end
       end
 
