@@ -110,7 +110,7 @@ module Spotify
                   end
 
         artists.map do |artist|
-          Spotify::Artist.new({ id_on_spotify: artist['id'] }).info
+          Spotify::ArtistFinder.new({ id_on_spotify: artist['id'] }).info
         end
       end
 

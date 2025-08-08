@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Spotify
-  class Artist < Base
+  class ArtistFinder < Base
     attr_reader :id_on_spotify
 
     def initialize(args)
