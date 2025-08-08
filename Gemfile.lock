@@ -470,7 +470,7 @@ GEM
       rack-protection (= 4.1.1)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    spring (4.3.0)
+    spring (4.4.0)
     stackprof (0.2.27)
     stringio (3.1.7)
     thor (1.4.0)
