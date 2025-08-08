@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Spotify::TrackFinder::Finder, :use_vcr do
+describe Spotify::TrackFinder::Result, :use_vcr do
   subject(:finder) { described_class.new(artists:, title:, spotify_search_url:, spotify_track_id:) }
 
   let(:artists) { 'Ed Sheeran' }

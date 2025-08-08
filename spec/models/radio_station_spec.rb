@@ -318,7 +318,7 @@ describe RadioStation, :use_vcr, :with_valid_token do
   # describe '#find_or_create_artist' do
   #   context 'with multiple name' do
   #     it 'returns the artists and not a karaoke version' do
-  #       spotify_track = Spotify::TrackFinder::Finder.new(artists: 'Martin Garrix & Clinton Kane', title: 'Drown')
+  #       spotify_track = Spotify::TrackFinder::Result.new(artists: 'Martin Garrix & Clinton Kane', title: 'Drown')
   #       spotify_track.execute
   #       result = described_class.new.find_or_create_artist('Martin Garrix & Clinton Kane', spotify_track)
   #
