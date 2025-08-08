@@ -1,6 +1,6 @@
 module Spotify
   module TrackFinder
-    class Finder < Base
+    class Result < Base
       attr_reader :track, :artists, :title, :id, :isrc, :spotify_artwork_url,
                   :spotify_song_url, :spotify_query_result, :filter_result, :tracks,
                   :spotify_preview_url, :release_date, :release_date_precision
@@ -22,7 +22,6 @@ module Spotify
                  else
                    best_match
                  end
-
 
         @artists = set_track_artists
         @title = set_track_title

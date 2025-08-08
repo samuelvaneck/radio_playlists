@@ -88,7 +88,7 @@ Layout/TrailingWhitespace:
 # Offense count: 1
 Lint/DuplicateMethods:
   Exclude:
-    - 'app/services/spotify/track_finder/finder.rb'
+    - 'app/services/spotify/track_finder/result.rb'
 
 # Offense count: 3
 # Configuration parameters: AllowedParentClasses.
@@ -212,7 +212,7 @@ RSpec/PendingWithoutReason:
 # Offense count: 2
 RSpec/SubjectStub:
   Exclude:
-    - 'spec/services/spotify/track_finder/finder_spec.rb'
+    - 'spec/services/spotify/track_finder/result_spec.rb'
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
