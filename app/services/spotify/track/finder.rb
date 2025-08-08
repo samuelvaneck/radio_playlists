@@ -14,7 +14,6 @@ module Spotify
         @search_title = args[:title]
         @spotify_track_id = args[:spotify_track_id]
         @spotify_search_url = args[:spotify_search_url]
-        @search_isrc = args[:isrc_code]
       end
 
       def execute
@@ -58,23 +57,36 @@ module Spotify
         @spotify_query_result ||= make_request_with_match(search_url)
       end
 
-      def match_results
+      # Returns a hash with the best matching score for each type
+      # e.g. { 'album' => 124, 'single' => 269, 'compilation' => 75 }
+      # The best matching scores are determined by the number of matching artists and the title distance.
+      # Returns an empty hash if no matches are found.
+      #
+      # @return [Hash, nil]
+      def match_score_results
         result = {}
-        TRACK_TYPES.each do |type|
-          match = type_to_filter_class(type).new(tracks: @spotify_query_result, artists: @search_artists).best_matching
-          next if match.nil?
+        album_matches = Spotify::Track::Filter::AlbumTracks.new(tracks: spotify_query_result, artists: @search_artists).best_matching
+        single_matches = Spotify::Track::Filter::SingleTracks.new(tracks: spotify_query_result, artists: @search_artists).best_matching
+        compilation_matches = Spotify::Track::Filter::CompilationTracks.new(tracks: spotify_query_result, artists: @search_artists).best_matching
 
-          result[type] = match
-        end
+        result['album'] = album_matches if album_matches.present?
+        result['single'] = single_matches if single_matches.present?
+        result['compilation'] = compilation_matches if compilation_matches.present?
+
         result
       end
 
+      # Returns the best matching track based on the match_score_results.
+      # It uses the highest score from match_score_results to determine the type of track to filter
+      # and then returns the best matching track from that type.
+      #
+      # @return [Spotify::Track, nil]
       def best_match
         @spotify_query_result ||= spotify_query_result
-        type = match_results.key(match_results.values.max)
+        type = match_score_results.key(match_score_results.values.max)
         return nil if type.blank?
 
-        type_to_filter_class(type).new(tracks: @spotify_query_result, artists: @search_artists).best_matching_track
+        type_to_filter_class(type).new(tracks: spotify_query_result, artists: @search_artists).best_matching_track
       end
 
       private
@@ -82,8 +94,7 @@ module Spotify
       def search_url
         SearchUrl.new(title: @search_title,
                       artists: @search_artists,
-                      spotify_url: @spotify_search_url,
-                      isrc: @search_isrc).generate
+                      spotify_url: @spotify_search_url).generate
       end
 
       # setter methods

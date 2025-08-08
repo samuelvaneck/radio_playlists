@@ -11,6 +11,8 @@ module Spotify
 
         # return the correct search results for different spotify requests
         def execute
+          return [] if @tracks.blank?
+
           if @tracks.dig('tracks', 'items').present?
             @tracks['tracks']['items']
           elsif @tracks.dig('album', 'album_type').present?

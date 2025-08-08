@@ -9,8 +9,7 @@ describe Spotify::Track::SearchUrl do
         described_class.new(
           title: 'Test Song',
           artists: 'Test Artist',
-          spotify_url: 'spotify:search:test+query',
-          isrc: nil
+          spotify_url: 'spotify:search:test+query'
         )
       end
 
@@ -25,8 +24,7 @@ describe Spotify::Track::SearchUrl do
         described_class.new(
           title: 'Test Song',
           artists: 'Test Artist',
-          spotify_url: nil,
-          isrc: nil
+          spotify_url: nil
         )
       end
 
@@ -41,8 +39,7 @@ describe Spotify::Track::SearchUrl do
         described_class.new(
           title: 'Test Song',
           artists: 'Artist1 & Artist2',
-          spotify_url: nil,
-          isrc: nil
+          spotify_url: nil
         )
       end
 
