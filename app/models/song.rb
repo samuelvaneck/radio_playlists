@@ -126,7 +126,7 @@ class Song < ApplicationRecord
   def spotify_track
     return if id_on_spotify.blank?
 
-    @spotify_track ||= Spotify::Track::FindById.new(id_on_spotify: id_on_spotify).execute
+    @spotify_track ||= Spotify::TrackFinder::FindById.new(id_on_spotify: id_on_spotify).execute
   end
 
   private

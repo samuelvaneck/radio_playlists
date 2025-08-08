@@ -30,7 +30,7 @@ module Spotify
 
     def make_request_with_match(url)
       tracks = make_request(url)
-      items = Spotify::Track::Filter::ResultsDigger.new(tracks:).execute
+      items = Spotify::TrackFinder::Filter::ResultsDigger.new(tracks:).execute
 
       if tracks&.dig('tracks', 'items').present?
         tracks['tracks']['items'] = add_match(items)

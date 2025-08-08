@@ -3,7 +3,7 @@ class TrackExtractor::SpotifyTrackFinder < TrackExtractor
   def find
     return if played_song.blank?
 
-    track = Spotify::Track::Finder.new(spotify_service_args)
+    track = Spotify::TrackFinder::Finder.new(spotify_service_args)
     track.execute
     track
   end
