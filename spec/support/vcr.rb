@@ -5,6 +5,20 @@ require 'vcr'
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
+  config.filter_sensitive_data('<SPOTIFY_ACCESS_TOKEN>') do |interaction|
+    # Replace access_token in JSON response bodies
+    interaction.response.body[/"access_token":"([^"]+)"/, 1]
+  end
+
+  config.filter_sensitive_data('<SPOTIFY_BEARER_TOKEN>') do |interaction|
+    # Replace Bearer tokens in Authorization headers
+    interaction.request.headers['Authorization']&.first&.match(/Bearer (.+)/)&.captures&.first
+  end
+
+  config.filter_sensitive_data('<SPOTIFY_BASIC_TOKEN>') do |interaction|
+    # Replace Bearer tokens in Authorization headers
+    interaction.request.headers['Authorization']&.first&.match(/Basic (.+)/)&.captures&.first
+  end
 end
 
 RSpec.configure do |config|

@@ -17,7 +17,6 @@ class TrackExtractor::SpotifyTrackFinder < TrackExtractor
     elsif spotify_url
       args[:spotify_track_id] = spotify_url.split('/').last
     end
-    args[:isrc_code] = isrc_code if isrc_code.present?
     args
   end
 end

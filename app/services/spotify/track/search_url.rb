@@ -1,14 +1,13 @@
 module Spotify
   module Track
     class SearchUrl < Base
-      attr_reader :title, :artists, :spotify_url, :isrc
+      attr_reader :title, :artists, :spotify_url
 
       def initialize(args)
         super
         @title = args[:title]
         @artists = args[:artists]
         @spotify_url = args[:spotify_url]
-        @isrc = args[:isrc]
       end
 
       def generate
