@@ -1,0 +1,467 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Basic <SPOTIFY_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Aug 2025 14:25:12 GMT
+      Content-Type:
+      - application/json
+      Request-Id:
+      - ea2ef9ec-cbf6-4b20-ac68-4a28d8213591
+      Set-Cookie:
+      - __Host-device_id=AQAwsdzKgNIBNvKlOuRdBJBE92b6BCe2JYsZw6x_Gle2Ngt0X4HJHRBevRmXUcXpFYcUS1gBY0IHx3-shUaSKdA658Rb5qViZk4;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 3accfd1e4c90d963
+      X-Envoy-Upstream-Service-Time:
+      - '11'
+      Server:
+      - envoy
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<SPOTIFY_ACCESS_TOKEN>","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 08 Aug 2025 14:25:12 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/tracks/4zrKN5Sv8JS5mqnbVcsul7
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Bearer <SPOTIFY_BEARER_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=0
+      Etag:
+      - '"MC-ImY2OGFiMzE5NTcyNDljZDFkNTY5YjRkMzFjMWVhZjlhIg=="'
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Date:
+      - Fri, 08 Aug 2025 14:25:12 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"album":{"album_type":"single","artists":[{"external_urls":{"spotify":"https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V"},"href":"https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V","id":"6eUKZXaKkcviH0Ku9w2n3V","name":"Ed
+        Sheeran","type":"artist","uri":"spotify:artist:6eUKZXaKkcviH0Ku9w2n3V"}],"available_markets":["AR","AU","AT","BE","BO","BR","BG","CA","CL","CO","CR","CY","CZ","DK","DO","DE","EC","EE","SV","FI","FR","GR","GT","HN","HK","HU","IS","IE","IT","LV","LT","LU","MY","MT","MX","NL","NZ","NI","NO","PA","PY","PE","PH","PL","PT","SG","SK","ES","SE","CH","TW","TR","UY","US","GB","AD","LI","MC","ID","JP","TH","VN","RO","IL","ZA","SA","AE","BH","QA","OM","KW","EG","MA","DZ","TN","LB","JO","PS","IN","KZ","MD","UA","AL","BA","HR","ME","MK","RS","SI","KR","BD","PK","LK","GH","KE","NG","TZ","UG","AG","AM","BS","BB","BZ","BT","BW","BF","CV","CW","DM","FJ","GM","GE","GD","GW","GY","HT","JM","KI","LS","LR","MW","MV","ML","MH","FM","NA","NR","NE","PW","PG","PR","WS","SM","ST","SN","SC","SL","SB","KN","LC","VC","SR","TL","TO","TT","TV","VU","AZ","BN","BI","KH","CM","TD","KM","GQ","SZ","GA","GN","KG","LA","MO","MR","MN","NP","RW","TG","UZ","ZW","BJ","MG","MU","MZ","AO","CI","DJ","ZM","CD","CG","IQ","LY","TJ","VE","ET","XK"],"external_urls":{"spotify":"https://open.spotify.com/album/2W5VVBPNkGAduaArE4sX29"},"href":"https://api.spotify.com/v1/albums/2W5VVBPNkGAduaArE4sX29","id":"2W5VVBPNkGAduaArE4sX29","images":[{"url":"https://i.scdn.co/image/ab67616d0000b273c18194a4022ec44507f7b248","width":640,"height":640},{"url":"https://i.scdn.co/image/ab67616d00001e02c18194a4022ec44507f7b248","width":300,"height":300},{"url":"https://i.scdn.co/image/ab67616d00004851c18194a4022ec44507f7b248","width":64,"height":64}],"name":"Celestial","release_date":"2022-09-29","release_date_precision":"day","total_tracks":1,"type":"album","uri":"spotify:album:2W5VVBPNkGAduaArE4sX29"},"artists":[{"external_urls":{"spotify":"https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V"},"href":"https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V","id":"6eUKZXaKkcviH0Ku9w2n3V","name":"Ed
+        Sheeran","type":"artist","uri":"spotify:artist:6eUKZXaKkcviH0Ku9w2n3V"}],"available_markets":["AR","AU","AT","BE","BO","BR","BG","CA","CL","CO","CR","CY","CZ","DK","DO","DE","EC","EE","SV","FI","FR","GR","GT","HN","HK","HU","IS","IE","IT","LV","LT","LU","MY","MT","MX","NL","NZ","NI","NO","PA","PY","PE","PH","PL","PT","SG","SK","ES","SE","CH","TW","TR","UY","US","GB","AD","LI","MC","ID","JP","TH","VN","RO","IL","ZA","SA","AE","BH","QA","OM","KW","EG","MA","DZ","TN","LB","JO","PS","IN","KZ","MD","UA","AL","BA","HR","ME","MK","RS","SI","KR","BD","PK","LK","GH","KE","NG","TZ","UG","AG","AM","BS","BB","BZ","BT","BW","BF","CV","CW","DM","FJ","GM","GE","GD","GW","GY","HT","JM","KI","LS","LR","MW","MV","ML","MH","FM","NA","NR","NE","PW","PG","PR","WS","SM","ST","SN","SC","SL","SB","KN","LC","VC","SR","TL","TO","TT","TV","VU","AZ","BN","BI","KH","CM","TD","KM","GQ","SZ","GA","GN","KG","LA","MO","MR","MN","NP","RW","TG","UZ","ZW","BJ","MG","MU","MZ","AO","CI","DJ","ZM","CD","CG","IQ","LY","TJ","VE","ET","XK"],"disc_number":1,"duration_ms":209026,"explicit":false,"external_ids":{"isrc":"GBAHS2201129"},"external_urls":{"spotify":"https://open.spotify.com/track/4zrKN5Sv8JS5mqnbVcsul7"},"href":"https://api.spotify.com/v1/tracks/4zrKN5Sv8JS5mqnbVcsul7","id":"4zrKN5Sv8JS5mqnbVcsul7","is_local":false,"name":"Celestial","popularity":69,"preview_url":"https://p.scdn.co/mp3-preview/9bc05cc35c8389bc676803d62598607c3901a570?cid=ff70df650ee14a1fad4aed3b533e8ea4","track_number":1,"type":"track","uri":"spotify:track:4zrKN5Sv8JS5mqnbVcsul7"}'
+  recorded_at: Fri, 08 Aug 2025 14:25:12 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Basic <SPOTIFY_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Aug 2025 14:25:13 GMT
+      Content-Type:
+      - application/json
+      Request-Id:
+      - 2629fe15-fc58-4001-8f41-5301c7ad8d89
+      Set-Cookie:
+      - __Host-device_id=AQC8wAfO8darGIZ09Wy5tRPzo5zHAfVNX4x_3GLjuKkJhOesvYuuFGldntICNTS8WHKPTi7xtG5Yku4iLLgH38EDBqdz-63SdwY;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - d0d3874b119af5f3
+      X-Envoy-Upstream-Service-Time:
+      - '9'
+      Server:
+      - envoy
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<SPOTIFY_ACCESS_TOKEN>","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 08 Aug 2025 14:25:12 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Bearer <SPOTIFY_BEARER_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=0
+      Etag:
+      - '"MC-IjNlOGE2YzRmMTVlZDZlZTI5MTk2ODEyMDQ3MTExYzM4Ig=="'
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Date:
+      - Fri, 08 Aug 2025 14:25:12 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"external_urls":{"spotify":"https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V"},"followers":{"href":null,"total":121517463},"genres":["soft
+        pop"],"href":"https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V","id":"6eUKZXaKkcviH0Ku9w2n3V","images":[{"url":"https://i.scdn.co/image/ab6761610000e5eb8eb08ed1a791d6e9fb041d61","height":640,"width":640},{"url":"https://i.scdn.co/image/ab676161000051748eb08ed1a791d6e9fb041d61","height":320,"width":320},{"url":"https://i.scdn.co/image/ab6761610000f1788eb08ed1a791d6e9fb041d61","height":160,"width":160}],"name":"Ed
+        Sheeran","popularity":92,"type":"artist","uri":"spotify:artist:6eUKZXaKkcviH0Ku9w2n3V"}'
+  recorded_at: Fri, 08 Aug 2025 14:25:13 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Basic <SPOTIFY_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Aug 2025 14:25:13 GMT
+      Content-Type:
+      - application/json
+      Request-Id:
+      - 2a626e85-c6d7-4f8a-b04f-048ca9af6db2
+      Set-Cookie:
+      - __Host-device_id=AQC_p53-RXWcgZpyLgdYnJgLRcZ2289iFmZLliTX2vGNMKHTq9392XLihfk47np_MYx8cji5ilLXA9lDNFtVNQHQEUdqQA4tWLo;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 0ecc8dba001a57ef
+      X-Envoy-Upstream-Service-Time:
+      - '9'
+      Server:
+      - envoy
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<SPOTIFY_ACCESS_TOKEN>","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 08 Aug 2025 14:25:13 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/tracks/4zrKN5Sv8JS5mqnbVcsul7
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Bearer <SPOTIFY_BEARER_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=0
+      Etag:
+      - '"MC-ImY2OGFiMzE5NTcyNDljZDFkNTY5YjRkMzFjMWVhZjlhIg=="'
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Date:
+      - Fri, 08 Aug 2025 14:25:12 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"album":{"album_type":"single","artists":[{"external_urls":{"spotify":"https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V"},"href":"https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V","id":"6eUKZXaKkcviH0Ku9w2n3V","name":"Ed
+        Sheeran","type":"artist","uri":"spotify:artist:6eUKZXaKkcviH0Ku9w2n3V"}],"available_markets":["AR","AU","AT","BE","BO","BR","BG","CA","CL","CO","CR","CY","CZ","DK","DO","DE","EC","EE","SV","FI","FR","GR","GT","HN","HK","HU","IS","IE","IT","LV","LT","LU","MY","MT","MX","NL","NZ","NI","NO","PA","PY","PE","PH","PL","PT","SG","SK","ES","SE","CH","TW","TR","UY","US","GB","AD","LI","MC","ID","JP","TH","VN","RO","IL","ZA","SA","AE","BH","QA","OM","KW","EG","MA","DZ","TN","LB","JO","PS","IN","KZ","MD","UA","AL","BA","HR","ME","MK","RS","SI","KR","BD","PK","LK","GH","KE","NG","TZ","UG","AG","AM","BS","BB","BZ","BT","BW","BF","CV","CW","DM","FJ","GM","GE","GD","GW","GY","HT","JM","KI","LS","LR","MW","MV","ML","MH","FM","NA","NR","NE","PW","PG","PR","WS","SM","ST","SN","SC","SL","SB","KN","LC","VC","SR","TL","TO","TT","TV","VU","AZ","BN","BI","KH","CM","TD","KM","GQ","SZ","GA","GN","KG","LA","MO","MR","MN","NP","RW","TG","UZ","ZW","BJ","MG","MU","MZ","AO","CI","DJ","ZM","CD","CG","IQ","LY","TJ","VE","ET","XK"],"external_urls":{"spotify":"https://open.spotify.com/album/2W5VVBPNkGAduaArE4sX29"},"href":"https://api.spotify.com/v1/albums/2W5VVBPNkGAduaArE4sX29","id":"2W5VVBPNkGAduaArE4sX29","images":[{"url":"https://i.scdn.co/image/ab67616d0000b273c18194a4022ec44507f7b248","width":640,"height":640},{"url":"https://i.scdn.co/image/ab67616d00001e02c18194a4022ec44507f7b248","width":300,"height":300},{"url":"https://i.scdn.co/image/ab67616d00004851c18194a4022ec44507f7b248","width":64,"height":64}],"name":"Celestial","release_date":"2022-09-29","release_date_precision":"day","total_tracks":1,"type":"album","uri":"spotify:album:2W5VVBPNkGAduaArE4sX29"},"artists":[{"external_urls":{"spotify":"https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V"},"href":"https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V","id":"6eUKZXaKkcviH0Ku9w2n3V","name":"Ed
+        Sheeran","type":"artist","uri":"spotify:artist:6eUKZXaKkcviH0Ku9w2n3V"}],"available_markets":["AR","AU","AT","BE","BO","BR","BG","CA","CL","CO","CR","CY","CZ","DK","DO","DE","EC","EE","SV","FI","FR","GR","GT","HN","HK","HU","IS","IE","IT","LV","LT","LU","MY","MT","MX","NL","NZ","NI","NO","PA","PY","PE","PH","PL","PT","SG","SK","ES","SE","CH","TW","TR","UY","US","GB","AD","LI","MC","ID","JP","TH","VN","RO","IL","ZA","SA","AE","BH","QA","OM","KW","EG","MA","DZ","TN","LB","JO","PS","IN","KZ","MD","UA","AL","BA","HR","ME","MK","RS","SI","KR","BD","PK","LK","GH","KE","NG","TZ","UG","AG","AM","BS","BB","BZ","BT","BW","BF","CV","CW","DM","FJ","GM","GE","GD","GW","GY","HT","JM","KI","LS","LR","MW","MV","ML","MH","FM","NA","NR","NE","PW","PG","PR","WS","SM","ST","SN","SC","SL","SB","KN","LC","VC","SR","TL","TO","TT","TV","VU","AZ","BN","BI","KH","CM","TD","KM","GQ","SZ","GA","GN","KG","LA","MO","MR","MN","NP","RW","TG","UZ","ZW","BJ","MG","MU","MZ","AO","CI","DJ","ZM","CD","CG","IQ","LY","TJ","VE","ET","XK"],"disc_number":1,"duration_ms":209026,"explicit":false,"external_ids":{"isrc":"GBAHS2201129"},"external_urls":{"spotify":"https://open.spotify.com/track/4zrKN5Sv8JS5mqnbVcsul7"},"href":"https://api.spotify.com/v1/tracks/4zrKN5Sv8JS5mqnbVcsul7","id":"4zrKN5Sv8JS5mqnbVcsul7","is_local":false,"name":"Celestial","popularity":69,"preview_url":"https://p.scdn.co/mp3-preview/9bc05cc35c8389bc676803d62598607c3901a570?cid=ff70df650ee14a1fad4aed3b533e8ea4","track_number":1,"type":"track","uri":"spotify:track:4zrKN5Sv8JS5mqnbVcsul7"}'
+  recorded_at: Fri, 08 Aug 2025 14:25:13 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Basic <SPOTIFY_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Aug 2025 14:25:13 GMT
+      Content-Type:
+      - application/json
+      Request-Id:
+      - 57ca876b-f721-4738-ad04-fcfb1d4ebe4e
+      Set-Cookie:
+      - __Host-device_id=AQCFDEJe704NMnKctz_bF5nHOLwbQEluDik_SXAU7LqrPQJRrl_IfJz7N6h4BuzIy2UgaQ0S1M2mSYm-jUA24litZyyAXjd74Ko;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 9e680399eeb45575
+      X-Envoy-Upstream-Service-Time:
+      - '9'
+      Server:
+      - envoy
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<SPOTIFY_ACCESS_TOKEN>","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 08 Aug 2025 14:25:13 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Bearer <SPOTIFY_BEARER_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=0
+      Etag:
+      - '"MC-IjI5NjZjMzNmNDFmNzBiMTRkYTk2ZmY3YjBjNTNlZjFmIg=="'
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Date:
+      - Fri, 08 Aug 2025 14:25:13 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"external_urls":{"spotify":"https://open.spotify.com/artist/6eUKZXaKkcviH0Ku9w2n3V"},"followers":{"href":null,"total":121517463},"genres":["soft
+        pop"],"href":"https://api.spotify.com/v1/artists/6eUKZXaKkcviH0Ku9w2n3V","id":"6eUKZXaKkcviH0Ku9w2n3V","images":[{"url":"https://i.scdn.co/image/ab6761610000e5eb784daff754ecfe0464ddbeb9","height":640,"width":640},{"url":"https://i.scdn.co/image/ab67616100005174784daff754ecfe0464ddbeb9","height":320,"width":320},{"url":"https://i.scdn.co/image/ab6761610000f178784daff754ecfe0464ddbeb9","height":160,"width":160}],"name":"Ed
+        Sheeran","popularity":92,"type":"artist","uri":"spotify:artist:6eUKZXaKkcviH0Ku9w2n3V"}'
+  recorded_at: Fri, 08 Aug 2025 14:25:13 GMT
+recorded_with: VCR 6.3.1

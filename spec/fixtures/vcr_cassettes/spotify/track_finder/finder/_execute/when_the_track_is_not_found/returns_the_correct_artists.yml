@@ -1,0 +1,801 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Basic <SPOTIFY_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Aug 2025 14:25:22 GMT
+      Content-Type:
+      - application/json
+      Request-Id:
+      - e483f92e-94fb-48ed-a620-535d6f88fe3f
+      Set-Cookie:
+      - __Host-device_id=AQBNigSBWD-dwTtq308feEKLSfnKttyI-7_FdyPSYKUKcFOeKBa-4QxlBW1p6MKzPOZExPdG-YfwdJNxgC6S8MMJj0OxVkjngZI;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - fb2d5909af35e5b5
+      X-Envoy-Upstream-Service-Time:
+      - '6'
+      Server:
+      - envoy
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<SPOTIFY_ACCESS_TOKEN>","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 08 Aug 2025 14:25:22 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Nonexistent%20Track%20artist:unknown%20artist&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Bearer <SPOTIFY_BEARER_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=0
+      Etag:
+      - '"MC-Ijc5OTliM2ZhNzc3ZDcxZWY2YjBjZDI4ZTYyZGM4NWUxIg=="'
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Date:
+      - Fri, 08 Aug 2025 14:25:22 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"tracks":{"href":"https://api.spotify.com/v1/search?offset=0&limit=20&query=Nonexistent%20Track%20artist%3Aunknown%20artist&type=track","limit":20,"next":null,"offset":0,"previous":null,"total":0,"items":[]}}'
+  recorded_at: Fri, 08 Aug 2025 14:25:22 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Basic <SPOTIFY_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Aug 2025 14:25:22 GMT
+      Content-Type:
+      - application/json
+      Request-Id:
+      - 120c5d17-f03e-4770-88e2-0fd9a44a21ab
+      Set-Cookie:
+      - __Host-device_id=AQDW9RfEahJtaVZP8Bxt8oMonFyyJZHgHWpsfKYGqi76pi-uQJlEfEyUH9cvN_n4xzv_T7AMzv2CUccIenvCEFiPWyAwtSEXNr0;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 790d87cb2df07a4a
+      X-Envoy-Upstream-Service-Time:
+      - '5'
+      Server:
+      - envoy
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<SPOTIFY_ACCESS_TOKEN>","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 08 Aug 2025 14:25:22 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Nonexistent%20Track%20artist:unknown%20artist&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Bearer <SPOTIFY_BEARER_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=0
+      Etag:
+      - '"MC-Ijc5OTliM2ZhNzc3ZDcxZWY2YjBjZDI4ZTYyZGM4NWUxIg=="'
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Date:
+      - Fri, 08 Aug 2025 14:25:22 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"tracks":{"href":"https://api.spotify.com/v1/search?offset=0&limit=20&query=Nonexistent%20Track%20artist%3Aunknown%20artist&type=track","limit":20,"next":null,"offset":0,"previous":null,"total":0,"items":[]}}'
+  recorded_at: Fri, 08 Aug 2025 14:25:22 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Basic <SPOTIFY_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Aug 2025 14:25:22 GMT
+      Content-Type:
+      - application/json
+      Request-Id:
+      - '00874673-d86c-46e5-a3a4-b7da97a90a7b'
+      Set-Cookie:
+      - __Host-device_id=AQD-jkR_7qAIAlJvaahGnMw4_rjD3UY2k-95RzcDv0NFOG8wGlD_7JuCfbQGnh5qU1fVOKf_jN7UNufA1ulpAYSd6W3jDz1QGjA;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 5a890b7a231ec922
+      X-Envoy-Upstream-Service-Time:
+      - '5'
+      Server:
+      - envoy
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<SPOTIFY_ACCESS_TOKEN>","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 08 Aug 2025 14:25:22 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Nonexistent%20Track%20artist:unknown%20artist&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Bearer <SPOTIFY_BEARER_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=0
+      Etag:
+      - '"MC-Ijc5OTliM2ZhNzc3ZDcxZWY2YjBjZDI4ZTYyZGM4NWUxIg=="'
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Date:
+      - Fri, 08 Aug 2025 14:25:22 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"tracks":{"href":"https://api.spotify.com/v1/search?offset=0&limit=20&query=Nonexistent%20Track%20artist%3Aunknown%20artist&type=track","limit":20,"next":null,"offset":0,"previous":null,"total":0,"items":[]}}'
+  recorded_at: Fri, 08 Aug 2025 14:25:23 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Basic <SPOTIFY_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Aug 2025 14:25:23 GMT
+      Content-Type:
+      - application/json
+      Request-Id:
+      - 73ecc4a5-a763-4888-9735-ce47c75c6bb2
+      Set-Cookie:
+      - __Host-device_id=AQAQt7HN32wgH06697EPCHMH5Dsvb2ECddmOtycnyw0xCTOVC3Wu01_X0uHSNmG8BZbi4mnWb6T6_bS1tDa1pihXLcb2Gd8WetU;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 74fb3a64bd23ad7b
+      X-Envoy-Upstream-Service-Time:
+      - '5'
+      Server:
+      - envoy
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<SPOTIFY_ACCESS_TOKEN>","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 08 Aug 2025 14:25:23 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Nonexistent%20Track%20artist:unknown%20artist&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Bearer <SPOTIFY_BEARER_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=0
+      Etag:
+      - '"MC-Ijc5OTliM2ZhNzc3ZDcxZWY2YjBjZDI4ZTYyZGM4NWUxIg=="'
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Date:
+      - Fri, 08 Aug 2025 14:25:22 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"tracks":{"href":"https://api.spotify.com/v1/search?offset=0&limit=20&query=Nonexistent%20Track%20artist%3Aunknown%20artist&type=track","limit":20,"next":null,"offset":0,"previous":null,"total":0,"items":[]}}'
+  recorded_at: Fri, 08 Aug 2025 14:25:23 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Basic <SPOTIFY_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Aug 2025 14:25:23 GMT
+      Content-Type:
+      - application/json
+      Request-Id:
+      - e820a424-49a9-4dd5-8e1c-120098ed7173
+      Set-Cookie:
+      - __Host-device_id=AQBSvU2uVelxqm2Xc9_imNctDAFt2HJM1tJuzLvda9G2TUSleRiGfsIj3ajvumyiOo4gzIJD9BAHefN9qn1k9OddusVAt0tdHLY;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 47896add6cec052f
+      X-Envoy-Upstream-Service-Time:
+      - '6'
+      Server:
+      - envoy
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<SPOTIFY_ACCESS_TOKEN>","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 08 Aug 2025 14:25:23 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Nonexistent%20Track%20artist:unknown%20artist&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Bearer <SPOTIFY_BEARER_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=0
+      Etag:
+      - '"MC-Ijc5OTliM2ZhNzc3ZDcxZWY2YjBjZDI4ZTYyZGM4NWUxIg=="'
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Date:
+      - Fri, 08 Aug 2025 14:25:23 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"tracks":{"href":"https://api.spotify.com/v1/search?offset=0&limit=20&query=Nonexistent%20Track%20artist%3Aunknown%20artist&type=track","limit":20,"next":null,"offset":0,"previous":null,"total":0,"items":[]}}'
+  recorded_at: Fri, 08 Aug 2025 14:25:23 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Basic <SPOTIFY_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Aug 2025 14:25:23 GMT
+      Content-Type:
+      - application/json
+      Request-Id:
+      - 44ab058c-2099-4da2-b38f-905eb7da1362
+      Set-Cookie:
+      - __Host-device_id=AQDPb0d2ehyLegIPD4MhiEhryeQBlkbbMPqsV9DMqqVnkl4kBYjobCCFyOgepCHdqTQxvtw9go50YXYyEQWoqS_MLzFsvH5rQPI;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - f0eb4303ebe55f0f
+      X-Envoy-Upstream-Service-Time:
+      - '5'
+      Server:
+      - envoy
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<SPOTIFY_ACCESS_TOKEN>","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 08 Aug 2025 14:25:23 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Nonexistent%20Track%20artist:unknown%20artist&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Bearer <SPOTIFY_BEARER_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=0
+      Etag:
+      - '"MC-Ijc5OTliM2ZhNzc3ZDcxZWY2YjBjZDI4ZTYyZGM4NWUxIg=="'
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Date:
+      - Fri, 08 Aug 2025 14:25:23 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"tracks":{"href":"https://api.spotify.com/v1/search?offset=0&limit=20&query=Nonexistent%20Track%20artist%3Aunknown%20artist&type=track","limit":20,"next":null,"offset":0,"previous":null,"total":0,"items":[]}}'
+  recorded_at: Fri, 08 Aug 2025 14:25:23 GMT
+- request:
+    method: post
+    uri: https://accounts.spotify.com/api/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Basic <SPOTIFY_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Aug 2025 14:25:23 GMT
+      Content-Type:
+      - application/json
+      Request-Id:
+      - 054e6a95-6d34-4ea9-885c-2e629efd7188
+      Set-Cookie:
+      - __Host-device_id=AQAiVu61mM5klNxMtwBZgF2GTx5CFxE1U7qC-f-8ul1lb6Aer3i_TLev9jJTTeFLDxcthsrvObmRputEwPPqCjhrmGdRE-HduYM;Version=1;Path=/;Max-Age=2147483647;Secure;HttpOnly;SameSite=Lax
+      - sp_tr=false;Version=1;Domain=accounts.spotify.com;Path=/;Secure;SameSite=Lax
+      Sp-Trace-Id:
+      - 7f72a9bee4e0a8f7
+      X-Envoy-Upstream-Service-Time:
+      - '5'
+      Server:
+      - envoy
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<SPOTIFY_ACCESS_TOKEN>","token_type":"Bearer","expires_in":3600}'
+  recorded_at: Fri, 08 Aug 2025 14:25:23 GMT
+- request:
+    method: get
+    uri: https://api.spotify.com/v1/search?q=Nonexistent%20Track%20artist:unknown%20artist&type=track
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Authorization:
+      - Bearer <SPOTIFY_BEARER_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=0
+      Etag:
+      - '"MC-Ijc5OTliM2ZhNzc3ZDcxZWY2YjBjZDI4ZTYyZGM4NWUxIg=="'
+      X-Robots-Tag:
+      - noindex, nofollow
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version,
+        X-Cloud-Trace-Context, client-token, content-access-token
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '604800'
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Date:
+      - Fri, 08 Aug 2025 14:25:23 GMT
+      Server:
+      - envoy
+      Via:
+      - HTTP/2 edgeproxy, 1.1 google
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"tracks":{"href":"https://api.spotify.com/v1/search?offset=0&limit=20&query=Nonexistent%20Track%20artist%3Aunknown%20artist&type=track","limit":20,"next":null,"offset":0,"previous":null,"total":0,"items":[]}}'
+  recorded_at: Fri, 08 Aug 2025 14:25:23 GMT
+recorded_with: VCR 6.3.1

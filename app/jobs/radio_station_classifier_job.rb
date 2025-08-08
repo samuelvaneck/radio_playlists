@@ -81,7 +81,7 @@ class RadioStationClassifierJob
   end
 
   def track_artists_tags(args)
-    track = ::Spotify::Track::FindById.new(id_on_spotify: args[:id_on_spotify]).execute
+    track = ::Spotify::TrackFinder::FindById.new(id_on_spotify: args[:id_on_spotify]).execute
     track['artists'].flat_map do |artist|
       spotify_artist = Spotify::Artist.new(id_on_spotify: artist['id']).info
       spotify_artist['genres']

@@ -50,7 +50,7 @@ Layout/EmptyLinesAroundAttributeAccessor:
 # Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
 Layout/ExtraSpacing:
   Exclude:
-    - 'app/services/spotify/track/find_by_id.rb'
+    - 'app/services/spotify/track_finder/find_by_id.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -88,7 +88,7 @@ Layout/TrailingWhitespace:
 # Offense count: 1
 Lint/DuplicateMethods:
   Exclude:
-    - 'app/services/spotify/track/finder.rb'
+    - 'app/services/spotify/track_finder/finder.rb'
 
 # Offense count: 3
 # Configuration parameters: AllowedParentClasses.
@@ -212,7 +212,7 @@ RSpec/PendingWithoutReason:
 # Offense count: 2
 RSpec/SubjectStub:
   Exclude:
-    - 'spec/services/spotify/track/finder_spec.rb'
+    - 'spec/services/spotify/track_finder/finder_spec.rb'
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -264,7 +264,7 @@ Rails/UniqueValidationWithoutIndex:
 # SupportedStyles: inline, group
 Style/AccessModifierDeclarations:
   Exclude:
-    - 'app/services/spotify/track/find_by_id.rb'
+    - 'app/services/spotify/track_finder/find_by_id.rb'
 
 # Offense count: 6
 # This cop supports safe autocorrection (--autocorrect).
