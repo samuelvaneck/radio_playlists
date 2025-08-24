@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       get 'admins/songs', to: 'admins/songs#index'
       patch 'admins/songs/:id', to: 'admins/songs#update'
 
-      resources :air_plays, only: %i[index show]
+      resources :air_plays, only: %i[index]
+      # Redirect old playlists routes to air_plays
+      get '/playlists', to: redirect('/api/v1/air_plays')
       resources :artists, only: %i[index show] do
         get :graph_data, on: :member
         get :songs, on: :member
