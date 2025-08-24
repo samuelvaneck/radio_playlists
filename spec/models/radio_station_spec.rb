@@ -14,7 +14,7 @@
 #  stream_url              :string
 #  slug                    :string
 #  country_code            :string
-#  last_added_playlist_ids :jsonb
+#  last_added_air_play_ids :jsonb
 #
 describe RadioStation, :use_vcr, :with_valid_token do
   let(:radio_station) { create :radio_station }
@@ -30,13 +30,13 @@ describe RadioStation, :use_vcr, :with_valid_token do
     }
   end
 
-  describe '#last_added_playlists' do
+  describe '#last_added_air_plays' do
     before do
-      radio_station.update(last_added_playlist_ids: [playlist_4_hours_ago.id, playlist_1_minute_ago.id])
+      radio_station.update(last_added_air_play_ids: [playlist_4_hours_ago.id, playlist_1_minute_ago.id])
     end
 
     it 'returns the last created item' do
-      expect(radio_station.last_added_playlists).to contain_exactly(playlist_4_hours_ago, playlist_1_minute_ago)
+      expect(radio_station.last_added_air_plays).to contain_exactly(playlist_4_hours_ago, playlist_1_minute_ago)
     end
   end
 

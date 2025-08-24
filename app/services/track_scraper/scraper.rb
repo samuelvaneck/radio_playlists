@@ -10,12 +10,12 @@ class TrackScraper::Scraper < TrackScraper
       data = `curl 'https://sublime.nl/wp-content/themes/OnAir2ChildTheme/phpincludes/sublime-playlist-query-api.php' \
               --data-raw 'request_from=#{last_hour}&request_to=#{next_hour}'`
 
-      playlist = Nokogiri::HTML(data)
-      return false if playlist.search('.play_artist')[-1].blank?
+      air_play = Nokogiri::HTML(data)
+      return false if air_play.search('.play_artist')[-1].blank?
 
-      @artist_name = playlist.search('.play_artist')[-1].text.strip
-      @title = playlist.search('.play_title')[-1].text.strip
-      time = playlist.search('.play_time')[-1].text.strip
+      @artist_name = air_play.search('.play_artist')[-1].text.strip
+      @title = air_play.search('.play_title')[-1].text.strip
+      time = air_play.search('.play_time')[-1].text.strip
     else
       Rails.logger.info "Radio station #{@radio_station.name} not found in SCRAPER"
     end

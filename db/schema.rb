@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_06_063217) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_24_132317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -67,6 +67,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_063217) do
     t.index ["uuid"], name: "index_admins_on_uuid", unique: true
   end
 
+  create_table "air_plays", force: :cascade do |t|
+    t.bigint "song_id"
+    t.bigint "radio_station_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "broadcasted_at", precision: nil
+    t.boolean "scraper_import", default: false
+    t.index ["radio_station_id"], name: "index_air_plays_on_radio_station_id"
+    t.index ["song_id", "radio_station_id", "broadcasted_at"], name: "air_play_radio_song_time", unique: true
+    t.index ["song_id"], name: "index_air_plays_on_song_id"
+  end
+
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.string "image"
@@ -108,18 +120,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_063217) do
     t.string "chart_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "playlists", force: :cascade do |t|
-    t.bigint "song_id"
-    t.bigint "radio_station_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.datetime "broadcasted_at", precision: nil
-    t.boolean "scraper_import", default: false
-    t.index ["radio_station_id"], name: "index_playlists_on_radio_station_id"
-    t.index ["song_id", "radio_station_id", "broadcasted_at"], name: "playlist_radio_song_time", unique: true
-    t.index ["song_id"], name: "index_playlists_on_song_id"
   end
 
   create_table "radio_station_classifiers", force: :cascade do |t|
@@ -167,7 +167,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_063217) do
     t.string "stream_url"
     t.string "slug"
     t.string "country_code"
-    t.jsonb "last_added_playlist_ids"
+    t.jsonb "last_added_air_play_ids"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -202,9 +202,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_06_063217) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "air_plays", "radio_stations"
+  add_foreign_key "air_plays", "songs"
   add_foreign_key "chart_positions", "charts"
-  add_foreign_key "playlists", "radio_stations"
-  add_foreign_key "playlists", "songs"
   add_foreign_key "radio_station_classifiers", "radio_stations"
   add_foreign_key "radio_station_songs", "radio_stations"
   add_foreign_key "radio_station_songs", "songs"

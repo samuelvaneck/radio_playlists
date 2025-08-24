@@ -14,11 +14,11 @@
 #  stream_url              :string
 #  slug                    :string
 #  country_code            :string
-#  last_added_playlist_ids :jsonb
+#  last_added_air_play_ids :jsonb
 #
 
 class RadioStation < ActiveRecord::Base
-  has_many :playlists
+  has_many :air_plays
   has_many :radio_station_songs
   has_many :songs, through: :radio_station_songs
   has_many :artists, through: :songs
@@ -38,7 +38,7 @@ class RadioStation < ActiveRecord::Base
         slug: radio_station.slug,
         stream_url: radio_station.stream_url,
         country_code: radio_station.country_code,
-        last_played_song: PlaylistSerializer.new(radio_station.last_added_playlists).serializable_hash
+        last_played_song: AirPlaySerializer.new(radio_station.last_added_air_plays).serializable_hash
       }
     end
   end
@@ -51,27 +51,27 @@ class RadioStation < ActiveRecord::Base
     RadioStationSong.includes(:radio_station, song: :artists)
                     .played_between(period_start, period_end)
                     .played_on(params[:radio_station_ids])
-                    .joins('INNER JOIN playlists ON playlists.song_id = radio_station_songs.song_id
-                                                 AND playlists.radio_station_id = radio_station_songs.radio_station_id')
-                    .select('radio_station_songs.*, COUNT(playlists.id) AS playlists_count')
+                    .joins('INNER JOIN air_plays ON air_plays.song_id = radio_station_songs.song_id
+                                                 AND air_plays.radio_station_id = radio_station_songs.radio_station_id')
+                    .select('radio_station_songs.*, COUNT(air_plays.id) AS air_plays_count')
                     .group('radio_station_songs.id')
-                    .order('playlists_count DESC')
+                    .order('air_plays_count DESC')
   end
 
   def status_data
-    return {} if zero_playlist_items
+    return {} if zero_air_play_items
 
     {
       id:,
       name:,
-      last_played_song_at: playlists.order(created_at: :desc).first&.broadcasted_at,
+      last_played_song_at: air_plays.order(created_at: :desc).first&.broadcasted_at,
       track_info: "#{last_played_song&.artists&.map(&:name)&.join(' & ')} - #{last_played_song&.title}",
       total_created: today_added_items&.count
     }
   end
 
   def today_added_items
-    Playlist.where(radio_station: self, created_at: 1.day.ago..Time.zone.now)
+    AirPlay.where(radio_station: self, created_at: 1.day.ago..Time.zone.now)
   end
 
   def stack_prof_import_song
@@ -82,8 +82,8 @@ class RadioStation < ActiveRecord::Base
     SongImporter.new(radio_station: self).import
   end
 
-  def zero_playlist_items
-    Playlist.where(radio_station: self).count.zero?
+  def zero_air_play_items
+    AirPlay.where(radio_station: self).count.zero?
   end
 
   def enqueue_recognize_song
@@ -104,23 +104,23 @@ class RadioStation < ActiveRecord::Base
   end
 
   def last_played_song
-    last_added_playlists.first&.song
+    last_added_air_plays.first&.song
   end
 
-  def last_added_playlists
-    playlists.where(id: last_added_playlist_ids).order(created_at: :desc)
+  def last_added_air_plays
+    air_plays.where(id: last_added_air_play_ids).order(created_at: :desc)
   end
 
   def songs_played_last_hour
-    playlists.where(created_at: 1.hour.ago..Time.zone.now).map(&:song)
+    air_plays.where(created_at: 1.hour.ago..Time.zone.now).map(&:song)
   end
 
-  def update_last_added_playlist_ids(playlist_id)
-    current_last_added_playlist_ids = Array.wrap(last_added_playlist_ids)
-    current_last_added_playlist_ids << playlist_id
-    current_last_added_playlist_ids.shift if current_last_added_playlist_ids.count > 12
+  def update_last_added_air_play_ids(air_play_id)
+    current_last_added_air_play_ids = Array.wrap(last_added_air_play_ids)
+    current_last_added_air_play_ids << air_play_id
+    current_last_added_air_play_ids.shift if current_last_added_air_play_ids.count > 12
 
-    update(last_added_playlist_ids: current_last_added_playlist_ids)
+    update(last_added_air_play_ids: current_last_added_air_play_ids)
   end
 
   def data
@@ -132,8 +132,8 @@ class RadioStation < ActiveRecord::Base
       processor: processor,
       stream_url: stream_url,
       country_code: country_code,
-      last_added_playlist_ids: last_added_playlist_ids,
-      last_played_song: PlaylistSerializer.new(last_added_playlists).serializable_hash
+      last_added_air_play_ids: last_added_air_play_ids,
+      last_played_song: AirPlaySerializer.new(last_added_air_plays).serializable_hash
     }
   end
 end

@@ -41,6 +41,6 @@ class RadioStationSong < ApplicationRecord
   end
 
   def lookup_first_broadcasted_at
-    song.playlists.where(radio_station_id:).minimum(:broadcasted_at)
+    song.air_plays.where(radio_station_id:).minimum(:broadcasted_at)
   end
 end

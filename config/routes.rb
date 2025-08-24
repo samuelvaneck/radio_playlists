@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       get 'admins/songs', to: 'admins/songs#index'
       patch 'admins/songs/:id', to: 'admins/songs#update'
 
-      resources :playlists, only: %i[index show]
+      resources :air_plays, only: %i[index show]
       resources :artists, only: %i[index show] do
         get :graph_data, on: :member
         get :songs, on: :member

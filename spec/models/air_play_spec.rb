@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: playlists
+# Table name: air_plays
 #
 #  id               :bigint           not null, primary key
 #  broadcasted_at   :datetime
@@ -14,16 +14,16 @@
 #
 # Indexes
 #
-#  index_playlists_on_radio_station_id  (radio_station_id)
-#  index_playlists_on_song_id           (song_id)
-#  playlist_radio_song_time             (song_id,radio_station_id,broadcasted_at) UNIQUE
+#  air_play_radio_song_time             (song_id,radio_station_id,broadcasted_at) UNIQUE
+#  index_air_plays_on_radio_station_id  (radio_station_id)
+#  index_air_plays_on_song_id           (song_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (radio_station_id => radio_stations.id)
 #  fk_rails_...  (song_id => songs.id)
 #
-describe Playlist do
+describe AirPlay do
   let(:artist_one) { create :artist }
   let(:song_one) { create :song, artists: [artist_one] }
   let(:artist_two) { create :artist }
