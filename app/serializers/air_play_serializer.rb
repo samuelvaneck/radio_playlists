@@ -42,7 +42,7 @@ class AirPlaySerializer
     SongSerializer.new(object.song, options)
   end
 
-  attribute :artists do |object|
+  attributes :artists do |object|
     object.song.artists.map do |artist|
       options = { fields: { artist: %i[id name] } }
       ArtistSerializer.new(artist, options)
