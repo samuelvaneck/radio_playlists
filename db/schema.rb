@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_24_132317) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_24_151233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -74,6 +74,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_24_132317) do
     t.datetime "updated_at", precision: nil, null: false
     t.datetime "broadcasted_at", precision: nil
     t.boolean "scraper_import", default: false
+    t.index ["broadcasted_at"], name: "index_air_plays_on_broadcasted_at"
     t.index ["radio_station_id"], name: "index_air_plays_on_radio_station_id"
     t.index ["song_id", "radio_station_id", "broadcasted_at"], name: "air_play_radio_song_time", unique: true
     t.index ["song_id"], name: "index_air_plays_on_song_id"
