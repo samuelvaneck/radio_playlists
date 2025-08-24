@@ -11,6 +11,7 @@
 #  id_on_youtube                     :string
 #  isrc                              :string
 #  release_date                      :date
+#  release_date_precision            :string
 #  search_text                       :text
 #  spotify_artwork_url               :string
 #  spotify_preview_url               :string

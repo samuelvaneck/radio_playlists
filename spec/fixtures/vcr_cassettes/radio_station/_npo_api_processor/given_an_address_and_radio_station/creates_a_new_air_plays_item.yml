@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.nporadio1.nl/api/tracks
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 24 Aug 2025 14:39:03 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Cache-Control:
+      - public, s-maxage=15, max-age=5
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS, HEAD
+      Access-Control-Allow-Headers:
+      - Origin,Content-Type,Accept
+      X-Cache-Status:
+      - EXPIRED
+      Strict-Transport-Security:
+      - max-age=31536000;preload
+    body:
+      encoding: ASCII-8BIT
+      string: '{"success":true,"message":null,"messages":null,"data":[{"startdatetime":"2025-08-24T16:29:22","enddatetime":"2025-08-24T16:31:42","title":"Runaway","artist":"Onerepublic","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/d14b1625-0664-44aa-8830-b2377372b43a__RUNAWAY.png?aspect_ratio=201%3A200&width=200&height=200","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/d14b1625-0664-44aa-8830-b2377372b43a__RUNAWAY.png?aspect_ratio=401%3A400&width=400&height=400"},{"startdatetime":"2025-08-24T16:15:04","enddatetime":"2025-08-24T16:18:51","title":"Rock
+        Dj","artist":"Robbie Williams","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/094708ef-ddfc-4ad3-aa27-e9733248af60__Rock-DJ.jpg?aspect_ratio=201%3A200&width=200&height=200","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/094708ef-ddfc-4ad3-aa27-e9733248af60__Rock-DJ.jpg?aspect_ratio=401%3A400&width=400&height=400"},{"startdatetime":"2025-08-24T15:49:03","enddatetime":"2025-08-24T15:51:40","title":"Taste
+        of Heaven.wav","artist":"Micha","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-24T15:40:40","enddatetime":"2025-08-24T15:43:44","title":"Dancing
+        in the street","artist":"David Bowie & Mick Jagger","image_url_200x200":"https://i.scdn.co/image/af7fbe6f44ebf95b4ca81bf81db66e57292c7d52","image_url_400x400":"https://i.scdn.co/image/af7fbe6f44ebf95b4ca81bf81db66e57292c7d52","spotify_url":"https://open.spotify.com/track/6FnuMo55jNECTDdS1nD5H0"},{"startdatetime":"2025-08-24T15:23:41","enddatetime":"2025-08-24T15:26:47","title":"Sweet
+        Goodbyes","artist":"Krezip","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/43cbfed8-1ddc-4124-9382-551ecbfe03f3__Sweet-Goodbyes.jpg?aspect_ratio=201%3A200&width=200&height=200","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/43cbfed8-1ddc-4124-9382-551ecbfe03f3__Sweet-Goodbyes.jpg?aspect_ratio=401%3A400&width=400&height=400"},{"startdatetime":"2025-08-24T15:10:47","enddatetime":"2025-08-24T15:12:55","title":"Muziek","artist":"Snelle","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/66f2e932-4cbb-4332-9714-1d9cde812ea1__Snelle-0.jpg?aspect_ratio=501%3A500&width=500&height=500","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/66f2e932-4cbb-4332-9714-1d9cde812ea1__Snelle-0.jpg?aspect_ratio=501%3A500&width=500&height=500"},{"startdatetime":"2025-08-24T14:48:07","enddatetime":"2025-08-24T14:50:56","title":"I
+        would die 4 U","artist":"Prince & The Revolution","image_url_200x200":"https://i.scdn.co/image/ab67616d0000b273d52bfb90ee8dfeda8378b99b","image_url_400x400":"https://i.scdn.co/image/ab67616d0000b273d52bfb90ee8dfeda8378b99b","spotify_url":"https://open.spotify.com/track/6fBwVe6udYdnRqwqo06if8"},{"startdatetime":"2025-08-24T14:18:40","enddatetime":"2025-08-24T14:21:29","title":"Miles
+        On It","artist":"Marshmello x Kane Brown","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-24T05:36:55","enddatetime":"2025-08-24T05:40:42","title":"Viaja","artist":"Irina
+        Barros","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-24T05:07:19","enddatetime":"2025-08-24T05:11:23","title":"Kokoroko","artist":"Sweetie","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-24T05:03:42","enddatetime":"2025-08-24T05:07:09","title":"everything","artist":"Kehlani","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-24T04:28:35","enddatetime":"2025-08-24T04:34:27","title":"Man
+        Nagoyam","artist":"Ahmad Zahir","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-24T03:46:34","enddatetime":"2025-08-24T03:59:56","title":"Gebroken
+        Spiegels","artist":"Sophie Straat","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-24T03:40:52","enddatetime":"2025-08-24T03:44:20","title":"Silver
+        Linings","artist":"Roufaida","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-24T03:35:10","enddatetime":"2025-08-24T03:40:31","title":"Dream
+        On","artist":"Postmodern Jukebox ft. Morgan James (Aerosmith Cover).mp3","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-24T03:09:11","enddatetime":"2025-08-24T03:13:06","title":"Hilwa","artist":"Zeyne","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-23T23:32:19","enddatetime":"2025-08-23T23:34:46","title":"Too
+        hot to sleep","artist":"Jewell, Eilen","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-23T23:23:41","enddatetime":"2025-08-23T23:25:40","title":"Le
+        temps est bon","artist":"Isabelle Pierre","image_url_200x200":"https://i.scdn.co/image/978444d901f5847d2aa4840953d46c7559bfd11c","image_url_400x400":"https://i.scdn.co/image/978444d901f5847d2aa4840953d46c7559bfd11c","spotify_url":"https://open.spotify.com/track/3XXd9jqR6IpMtxMmbMuoyn"},{"startdatetime":"2025-08-23T22:36:03","enddatetime":"2025-08-23T22:39:07","title":"Lose
+        Control","artist":"Teddy Swims","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/9e88eb4c-2df6-4dfd-b18d-35a2eab9a1f0__ab67616d0000b2731d856e66d33e22746c21a09c.jpg?aspect_ratio=201%3A200&width=200&height=200","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/9e88eb4c-2df6-4dfd-b18d-35a2eab9a1f0__ab67616d0000b2731d856e66d33e22746c21a09c.jpg?aspect_ratio=401%3A400&width=400&height=400"},{"startdatetime":"2025-08-23T22:28:04","enddatetime":"2025-08-23T22:30:45","title":"Save
+        Room","artist":"John Legend","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/c2141a5d-402e-4614-8020-16e7de24a51c__Save-Room.jpg?aspect_ratio=201%3A200&width=200&height=200","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/c2141a5d-402e-4614-8020-16e7de24a51c__Save-Room.jpg?aspect_ratio=401%3A400&width=400&height=400"},{"startdatetime":"2025-08-23T22:11:21","enddatetime":"2025-08-23T22:15:10","title":"The
+        Subway","artist":"Chappell Roan","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-23T21:47:49","enddatetime":"2025-08-23T21:50:36","title":"Green
+        Green Grass","artist":"George Ezra","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/15f9e7ad-cf62-4196-9918-305e98a4de2a__George-Ezra-0.jpg?aspect_ratio=501%3A500&width=500&height=500","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/15f9e7ad-cf62-4196-9918-305e98a4de2a__George-Ezra-0.jpg?aspect_ratio=501%3A500&width=500&height=500"},{"startdatetime":"2025-08-23T21:16:34","enddatetime":"2025-08-23T21:19:34","title":"The
+        Boys Of Summer","artist":"Don Henley","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/74a9d69f-915f-482a-ad77-a75fd542a213__The-Boys-Of-Summer.jpg?aspect_ratio=201%3A200&width=200&height=200","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/74a9d69f-915f-482a-ad77-a75fd542a213__The-Boys-Of-Summer.jpg?aspect_ratio=401%3A400&width=400&height=400"},{"startdatetime":"2025-08-23T21:08:27","enddatetime":"2025-08-23T21:11:28","title":"This
+        Is The Life","artist":"Amy Macdonald","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/720d6f0a-26e8-4401-a011-a2ef3f9912e6__This-Is-The-Life.jpg?aspect_ratio=201%3A200&width=200&height=200","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/720d6f0a-26e8-4401-a011-a2ef3f9912e6__This-Is-The-Life.jpg?aspect_ratio=401%3A400&width=400&height=400"},{"startdatetime":"2025-08-23T20:48:37","enddatetime":"2025-08-23T20:52:01","title":"It''s
+        Only Love","artist":"Son Mieux","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/66ab1e0f-87a9-483e-b26a-61f08a764c87__Son-Mieux-0.jpg?aspect_ratio=501%3A500&width=500&height=500","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/66ab1e0f-87a9-483e-b26a-61f08a764c87__Son-Mieux-0.jpg?aspect_ratio=501%3A500&width=500&height=500"},{"startdatetime":"2025-08-23T20:28:40","enddatetime":"2025-08-23T20:31:40","title":"Alright","artist":"Supergrass","image_url_200x200":null,"image_url_400x400":null},{"startdatetime":"2025-08-23T20:13:21","enddatetime":"2025-08-23T20:16:29","title":"Illusion","artist":"Dua
+        Lipa","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/28f7941d-7e49-4eef-ac43-2dc31f51e7d8__Dua-Lipa-0.jpg?aspect_ratio=501%3A500&width=500&height=500","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/28f7941d-7e49-4eef-ac43-2dc31f51e7d8__Dua-Lipa-0.jpg?aspect_ratio=501%3A500&width=500&height=500"},{"startdatetime":"2025-08-23T19:51:25","enddatetime":"2025-08-23T19:54:25","title":"Beautiful
+        People","artist":"David Guetta & Sia","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/b7359f62-64f2-4832-a3f6-b795ce60e8d8__Sia-0.jpg?aspect_ratio=501%3A500&width=500&height=500","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/b7359f62-64f2-4832-a3f6-b795ce60e8d8__Sia-0.jpg?aspect_ratio=501%3A500&width=500&height=500"},{"startdatetime":"2025-08-23T19:40:30","enddatetime":"2025-08-23T19:44:17","title":"It''s
+        My Life","artist":"Talk Talk","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/5f093037-181a-44fb-9ce8-c65bb54cb0c8__It-s-My-Life.jpg?aspect_ratio=201%3A200&width=200&height=200","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/5f093037-181a-44fb-9ce8-c65bb54cb0c8__It-s-My-Life.jpg?aspect_ratio=401%3A400&width=400&height=400"},{"startdatetime":"2025-08-23T19:08:34","enddatetime":"2025-08-23T19:11:57","title":"Stiekem","artist":"Maan,
+        Goldband","image_url_200x200":"https://npo-artistdb.b-cdn.net/images/0b33e919-f95f-4449-b9be-50c063adcbc7__maan-goldband.png?aspect_ratio=201%3A200&width=200&height=200","image_url_400x400":"https://npo-artistdb.b-cdn.net/images/0b33e919-f95f-4449-b9be-50c063adcbc7__maan-goldband.png?aspect_ratio=401%3A400&width=400&height=400"},{"startdatetime":"2025-08-23T10:33:16","enddatetime":"2025-08-23T10:36:12","title":"Water
+        under the bridge","artist":"Adele","image_url_200x200":"https://i.scdn.co/image/602102500b9cebde7559a5f9c16daaaef2846440","image_url_400x400":"https://i.scdn.co/image/602102500b9cebde7559a5f9c16daaaef2846440","spotify_url":"https://open.spotify.com/track/4vb4mFvYsr2h6enhjJsq9Y"},{"startdatetime":"2025-08-23T09:33:24","enddatetime":"2025-08-23T09:35:52","title":"Ho
+        Hey","artist":"Lumineers","image_url_200x200":null,"image_url_400x400":null}]}'
+  recorded_at: Sun, 24 Aug 2025 14:39:03 GMT
+recorded_with: VCR 6.3.1

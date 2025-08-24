@@ -1,6 +1,6 @@
-namespace :playlists do
-  desc 'remove duplicate playlists'
+namespace :air_plays do
+  desc 'remove duplicate air plays'
   task deduplicate: :environment do
-    Playlist.find_each(&:deduplicate)
+    AirPlay.find_each(&:deduplicate)
   end
 end

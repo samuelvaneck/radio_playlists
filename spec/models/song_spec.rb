@@ -11,6 +11,7 @@
 #  id_on_youtube                     :string
 #  isrc                              :string
 #  release_date                      :date
+#  release_date_precision            :string
 #  search_text                       :text
 #  spotify_artwork_url               :string
 #  spotify_preview_url               :string
@@ -30,9 +31,9 @@ describe Song do
   let(:artist_two) { create :artist }
   let(:song_two) { create :song, artists: [artist_two] }
   let(:radio_station) { create :radio_station }
-  let(:playlist_one) { create :playlist, song: song_one }
-  let(:playlist_two) { create :playlist, song: song_two, radio_station: }
-  let(:playlist_three) { create :playlist, song: song_two, radio_station: }
+  let(:air_play_one) { create :air_play, song: song_one }
+  let(:air_play_two) { create :air_play, song: song_two, radio_station: }
+  let(:air_play_three) { create :air_play, song: song_two, radio_station: }
 
   let(:song_drown) { create :song, title: 'Drown', artists: [artist_martin_garrix, artist_clinton_kane] }
   let(:artist_martin_garrix) { create :artist, name: 'Martin Garrix' }
@@ -44,9 +45,9 @@ describe Song do
   let(:artist_ariana_grande) { create :artist, name: 'Ariana Grande' }
 
   before do
-    playlist_one
-    playlist_two
-    playlist_three
+    air_play_one
+    air_play_two
+    air_play_three
   end
 
   describe '#self.most_played' do
@@ -76,16 +77,16 @@ describe Song do
   end
 
   describe '#cleanup' do
-    context 'if the song has no playlists' do
-      let!(:song_no_playlist) { create :song }
+    context 'if the song has no air plays' do
+      let!(:song_no_air_play) { create :song }
       it 'destorys the song' do
         expect {
-          song_no_playlist.cleanup
+          song_no_air_play.cleanup
         }.to change(Song, :count).by(-1)
       end
     end
 
-    context 'if the song has playlist' do
+    context 'if the song has an air play' do
       it 'does not destroy the song' do
         expect {
           song_one.cleanup

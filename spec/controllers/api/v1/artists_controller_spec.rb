@@ -13,9 +13,9 @@ describe Api::V1::ArtistsController do
   let(:json) { JSON.parse(response.body).with_indifferent_access }
 
   before do
-    create(:playlist, song: song_one, radio_station: radio_station_one)
-    create(:playlist, song: song_two, radio_station: radio_station_two)
-    create_list(:playlist, 5, song: song_three, radio_station: radio_station_three)
+    create(:air_play, song: song_one, radio_station: radio_station_one)
+    create(:air_play, song: song_two, radio_station: radio_station_two)
+    create_list(:air_play, 5, song: song_three, radio_station: radio_station_three)
   end
 
   describe 'GET #index' do
@@ -27,7 +27,7 @@ describe Api::V1::ArtistsController do
         expect(response.status).to eq 200
       end
 
-      it 'returns all the playlists artists' do
+      it 'returns all the air plays artists' do
         get_index
         expect(json[:data].count).to eq(3)
       end

@@ -14,7 +14,7 @@
 #  stream_url              :string
 #  slug                    :string
 #  country_code            :string
-#  last_added_playlist_ids :jsonb
+#  last_added_air_play_ids :jsonb
 #
 class RadioStationSerializer
   include FastJsonapi::ObjectSerializer

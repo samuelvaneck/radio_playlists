@@ -48,9 +48,9 @@ class Chart < ApplicationRecord
         start_time = (date - 1).beginning_of_day
         end_time = (date - 1).end_of_day.strftime('%FT%R')
         chart_type.most_played_group_by(:counter, start_time: start_time.strftime('%FT%R'), end_time:).each do |counter, chart_items|
-          # reorder chart items by the number of playlists they were played in the last month
+          # reorder chart items by the number of air_plays they were played in the last month
           chart_items = chart_items.sort_by do |item|
-            -item.playlists.where('broadcasted_at >= ? AND broadcasted_at <= ?', start_time - 1.week, end_time).count
+            -item.air_plays.where('broadcasted_at >= ? AND broadcasted_at <= ?', start_time - 1.week, end_time).count
           end
 
           chart_items.each do |chart_item|
@@ -71,9 +71,9 @@ class Chart < ApplicationRecord
   def create_chart_positions
     index = 1
     __send__("yesterday_#{chart_type}_chart".to_sym).each do |counter, chart_items|
-      # reorder chart items by the number of playlists they were played in the last month
+      # reorder chart items by the number of air_plays they were played in the last month
       chart_items = chart_items.sort_by do |item|
-        -item.playlists.where('broadcasted_at >= ? AND broadcasted_at <= ?', 1.week.ago, 1.day.ago.end_of_day.strftime('%FT%R')).count
+        -item.air_plays.where('broadcasted_at >= ? AND broadcasted_at <= ?', 1.week.ago, 1.day.ago.end_of_day.strftime('%FT%R')).count
       end
 
       chart_items.each do |chart_item|

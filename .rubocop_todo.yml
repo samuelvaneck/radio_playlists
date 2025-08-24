@@ -21,7 +21,7 @@ Bundler/OrderedGems:
 Layout/ClassStructure:
   Exclude:
     - 'app/models/artist.rb'
-    - 'app/models/playlist.rb'
+    - 'app/models/air_play.rb'
     - 'app/models/song.rb'
 
 # Offense count: 1

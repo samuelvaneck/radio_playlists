@@ -30,7 +30,7 @@ class Artist < ApplicationRecord
 
   has_many :artists_songs
   has_many :songs, through: :artists_songs
-  has_many :playlists, through: :songs
+  has_many :air_plays, through: :songs
   has_many :chart_positions, as: :positianable
 
   scope :matching, ->(search_term) { where!('artists.name ILIKE ?', "%#{search_term}%") if search_term.present? }
@@ -38,7 +38,7 @@ class Artist < ApplicationRecord
   validates :name, presence: true
 
   def self.most_played(params = {})
-    Artist.joins(:playlists)
+    Artist.joins(:air_plays)
           .played_between(date_from_params(time: params[:start_time], fallback: 1.week.ago),
                           date_from_params(time: params[:end_time], fallback: Time.zone.now))
           .played_on(params[:radio_station_ids])
@@ -51,7 +51,7 @@ class Artist < ApplicationRecord
                    artists.spotify_artwork_url,
                    artists.instagram_url,
                    artists.website_url,
-                   COUNT(DISTINCT playlists.id) AS counter")
+                   COUNT(DISTINCT air_plays.id) AS counter")
           .group(:id)
           .order('COUNTER DESC')
   end
@@ -80,6 +80,6 @@ class Artist < ApplicationRecord
   end
 
   def played
-    playlists.size
+    air_plays.size
   end
 end

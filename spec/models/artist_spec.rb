@@ -29,16 +29,16 @@ describe Artist do
   let(:artist_three) { create :artist }
   let(:song_three) { create :song, artists: [artist_three] }
   let(:radio_station) { create :radio_station }
-  let(:playlist_one) { create :playlist, song: song_one }
-  let(:playlist_two) { create :playlist, song: song_two, radio_station: }
-  let(:playlist_three) { create :playlist, song: song_three, radio_station: }
-  let(:playlist_four) { create :playlist, song: song_three, radio_station: }
+  let(:air_play_one) { create :air_play, song: song_one }
+  let(:air_play_two) { create :air_play, song: song_two, radio_station: }
+  let(:air_play_three) { create :air_play, song: song_three, radio_station: }
+  let(:air_play_four) { create :air_play, song: song_three, radio_station: }
 
   before do
-    playlist_one
-    playlist_two
-    playlist_three
-    playlist_four
+    air_play_one
+    air_play_two
+    air_play_three
+    air_play_four
   end
 
   describe '#search' do

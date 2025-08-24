@@ -25,7 +25,7 @@ class SongImporter
       return false
     end
 
-    create_playlist
+    create_air_play
   rescue StandardError => e
     ExceptionNotifier.notify_new_relic(e)
     Broadcaster.error_during_import(error_message: e.message, radio_station_name: @radio_station.name)
@@ -99,7 +99,7 @@ class SongImporter
     @scraper_import ||= @played_song.is_a?(TrackScraper)
   end
 
-  def create_playlist
+  def create_air_play
     @importer = if scraper_import
                   SongImporter::ScraperImporter.new(radio_station: @radio_station, artists:, song:)
                 else
@@ -113,8 +113,8 @@ class SongImporter
   end
 
   def add_song
-    added_playlist = Playlist.add_playlist(@radio_station, song, broadcasted_at, scraper_import)
-    @radio_station.update_last_added_playlist_ids(added_playlist.id)
+    added_air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import)
+    @radio_station.update_last_added_air_play_ids(added_air_play.id)
     song.update_artists(artists) if different_artists?
     @radio_station.songs << song if @radio_station.songs.exclude?(song)
 

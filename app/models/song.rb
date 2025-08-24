@@ -11,6 +11,7 @@
 #  id_on_youtube                     :string
 #  isrc                              :string
 #  release_date                      :date
+#  release_date_precision            :string
 #  search_text                       :text
 #  spotify_artwork_url               :string
 #  spotify_preview_url               :string
@@ -32,7 +33,7 @@ class Song < ApplicationRecord
 
   has_many :artists_songs
   has_many :artists, through: :artists_songs
-  has_many :playlists
+  has_many :air_plays
   has_many :radio_station_songs, dependent: :destroy
   has_many :radio_stations, through: :radio_station_songs
   has_many :chart_positions, as: :positianable
@@ -52,7 +53,7 @@ class Song < ApplicationRecord
   public_constant :ARTISTS_FILTERS
 
   def self.most_played(params = {})
-    Song.joins(:playlists)
+    Song.joins(:air_plays)
         .played_between(date_from_params(time: params[:start_time], fallback: 1.week.ago),
                         date_from_params(time: params[:end_time], fallback: Time.zone.now))
         .played_on(params[:radio_station_ids])
@@ -67,8 +68,8 @@ class Song < ApplicationRecord
                  songs.id_on_youtube,
                  songs.release_date,
                  songs.release_date_precision,
-                 COUNT(playlists.id) AS counter,
-                 ROW_NUMBER() OVER (ORDER BY COUNT(playlists.id) DESC NULLS LAST) AS position")
+                 COUNT(air_plays.id) AS counter,
+                 ROW_NUMBER() OVER (ORDER BY COUNT(air_plays.id) DESC NULLS LAST) AS position")
         .group('songs.id, songs.title')
         .order('COUNTER DESC NULLS LAST')
   end
@@ -82,7 +83,7 @@ class Song < ApplicationRecord
   end
 
   def cleanup
-    destroy if playlists.blank?
+    destroy if air_plays.blank?
     artists.each(&:cleanup)
   end
 
@@ -94,7 +95,7 @@ class Song < ApplicationRecord
   end
 
   def played
-    playlists.size
+    air_plays.size
   end
 
   def self.find_and_remove_obsolete_songs
@@ -113,7 +114,7 @@ class Song < ApplicationRecord
     return if [songs, most_played_song].flatten.count <= 1 || most_played_song.blank?
 
     Rails.logger.info("Removing absolute songs for #{most_played_song.search_text}")
-    update_playlists_obsolete_songs(songs, most_played_song)
+    update_air_plays_obsolete_songs(songs, most_played_song)
     cleanup_radio_station_songs(songs, most_played_song)
     remove_absolute_songs(songs)
   end
@@ -131,8 +132,8 @@ class Song < ApplicationRecord
 
   private
 
-  def update_playlists_obsolete_songs(songs, most_played_song)
-    Playlist.where(song: songs).update_all(song_id: most_played_song.id)
+  def update_air_plays_obsolete_songs(songs, most_played_song)
+    AirPlay.where(song: songs).update_all(song_id: most_played_song.id)
   end
 
   def remove_absolute_songs(songs)
@@ -141,13 +142,13 @@ class Song < ApplicationRecord
 
   def cleanup_radio_station_songs(songs, most_played_song)
     RadioStation.all.each do |radio_station|
-      playlists = Playlist.where(song: [songs, most_played_song], radio_station:)
-      next if playlists.blank?
+      air_plays = AirPlay.where(song: [songs, most_played_song], radio_station:)
+      next if air_plays.blank?
 
       RadioStationSong.where(song: songs, radio_station:).delete_all
 
       rss = RadioStationSong.find_or_initialize_by(song: most_played_song, radio_station:)
-      rss.first_broadcasted_at = playlists.minimum(:broadcasted_at)
+      rss.first_broadcasted_at = air_plays.minimum(:broadcasted_at)
       rss.save
     end
   end

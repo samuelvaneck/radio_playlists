@@ -21,19 +21,19 @@ module GraphConcern
   included do
     def graph_data(time_value)
       strftime_value = STRFTIME_VALUES[time_value.to_sym]
-      playlists = get_playlists(time_value)
-      min_date, max_date = min_max_date(playlists, strftime_value)
-      playlists = format_graph_data(playlists, strftime_value)
-      playlists = graph_data_series(playlists, min_date, max_date, time_value)
-      playlists << legend_data_column
-      playlists
+      air_plays = get_air_plays(time_value)
+      min_date, max_date = min_max_date(air_plays, strftime_value)
+      air_plays = format_graph_data(air_plays, strftime_value)
+      air_plays = graph_data_series(air_plays, min_date, max_date, time_value)
+      air_plays << legend_data_column
+      air_plays
     end
 
-    def get_playlists(time_value)
+    def get_air_plays(time_value)
       begin_date = graph_begin_date(time_value) unless time_value == 'all'
       end_date = 1.day.ago.end_of_day
-      result = playlists
-      result = result.where(playlists_time_slot_query, begin_date, end_date) unless time_value == 'all'
+      result = air_plays
+      result = result.where(air_plays_time_slot_query, begin_date, end_date) unless time_value == 'all'
       result.sort_by(&:broadcasted_at)
     end
 
@@ -45,21 +45,21 @@ module GraphConcern
       1.send(time_value.to_sym).ago.beginning_of_day
     end
 
-    def playlists_time_slot_query
-      'playlists.created_at > ? AND playlists.created_at < ?'
+    def air_plays_time_slot_query
+      'air_plays.created_at > ? AND air_plays.created_at < ?'
     end
 
-    def format_graph_data(playlists, strftime_value)
+    def format_graph_data(air_plays, strftime_value)
       # result['2022-01-01'][radio_station_id]'] = 1
-      playlists.each_with_object({}) do |playlist, result|
-        broadcasted_at, radio_station_id = playlist.values_at(:broadcasted_at, :radio_station_id)
+      air_plays.each_with_object({}) do |air_play, result|
+        broadcasted_at, radio_station_id = air_play.values_at(:broadcasted_at, :radio_station_id)
         result[broadcasted_at.strftime(strftime_value)] ||= {}
         result[broadcasted_at.strftime(strftime_value)][radio_station_id] ||= []
-        result[broadcasted_at.strftime(strftime_value)][radio_station_id] << playlist
+        result[broadcasted_at.strftime(strftime_value)][radio_station_id] << air_play
       end
     end
 
-    def graph_data_series(playlists, min_date, max_date, time_value)
+    def graph_data_series(air_plays, min_date, max_date, time_value)
       strftime_value = STRFTIME_VALUES[time_value.to_sym]
       time_step = TIME_STEPS[time_value.to_sym]
       min_date_i = min_date.present? ? min_date.to_datetime.beginning_of_day.to_i : time_step.send(:ago).beginning_of_day.to_i
@@ -68,11 +68,11 @@ module GraphConcern
       (min_date_i..max_date_i).step(time_step).map do |date|
         date = Time.zone.at(date).strftime(strftime_value)
         result = { date: }
-        grouped_playlists = playlists[date]
+        grouped_air_plays = air_plays[date]
 
         RadioStation.find_each do |radio_station|
-          result[radio_station.name] = if grouped_playlists && grouped_playlists[radio_station.id]
-                                         grouped_playlists[radio_station.id].count
+          result[radio_station.name] = if grouped_air_plays && grouped_air_plays[radio_station.id]
+                                         grouped_air_plays[radio_station.id].count
                                        else
                                          0
                                        end

@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: playlists
+# Table name: air_plays
 #
 #  id               :bigint           not null, primary key
 #  song_id          :bigint
@@ -14,14 +14,14 @@
 #
 
 FactoryBot.define do
-  factory :playlist, class: 'Playlist' do
+  factory :air_play, class: 'AirPlay' do
     broadcasted_at { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now) }
     radio_station { create(:radio_station) }
     song { create(:song) }
 
-    after(:build) do |playlist|
-      song = playlist.song
-      radio_station = playlist.radio_station
+    after(:build) do |air_play|
+      song = air_play.song
+      radio_station = air_play.radio_station
       song.radio_stations << radio_station unless song.radio_stations.include?(radio_station)
     end
   end
