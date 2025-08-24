@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile:%20%22radio-brand-web%22,%20slug:%20%22sky-radio%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile:%20%22%22,%20limit:%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Api Key missing
+    headers:
+      Server:
+      - CloudFront
+      Date:
+      - Sun, 24 Aug 2025 14:39:02 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '29'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Cache:
+      - FunctionGeneratedResponse from cloudfront
+      Via:
+      - 1.1 f83dbfb0fedcf4135c2e4ba4b6ef2dc2.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - FRA56-P13
+      X-Amz-Cf-Id:
+      - 9EqY_LBkq2i0ExhEJ4bTdgwdvFGA0rCpnb85NOFU1WjT68-NohKoHw==
+    body:
+      encoding: UTF-8
+      string: '{"message":"Api Key missing"}'
+  recorded_at: Sun, 24 Aug 2025 14:39:02 GMT
+recorded_with: VCR 6.3.1

@@ -33,137 +33,137 @@ describe AirPlay do
   let(:artist_four) { create :artist, name: 'Erika Sirola' }
   let(:song_four) { create :song, artists: [artist_four] }
   let(:radio_station) { create :radio_station }
-  let(:playlist_one) { create :playlist, song: song_one, radio_station: }
-  let(:playlist_two) { create :playlist, song: song_two, radio_station: }
-  let(:playlist_three) { create :playlist, song: song_two, radio_station: }
+  let(:air_play_one) { create :air_play, song: song_one, radio_station: }
+  let(:air_play_two) { create :air_play, song: song_two, radio_station: }
+  let(:air_play_three) { create :air_play, song: song_two, radio_station: }
 
   describe '#search' do
     before do
-      playlist_one
-      playlist_two
-      playlist_three
+      air_play_one
+      air_play_two
+      air_play_three
     end
 
     context 'with search term params' do
-      it 'returns the playlists artist name or song title that matches the search terms' do
-        expected = [playlist_one]
+      it 'returns the air plays artist name or song title that matches the search terms' do
+        expected = [air_play_one]
 
         expect(described_class.last_played({ search_term: song_one.title })).to eq expected
       end
     end
 
     context 'with radio_stations params' do
-      it 'returns the playlist played on the radio station' do
-        expect(described_class.last_played({ radio_station_ids: [radio_station.id] })).to include playlist_two, playlist_three
+      it 'returns the air plays played on the radio station' do
+        expect(described_class.last_played({ radio_station_ids: [radio_station.id] })).to include air_play_two, air_play_three
       end
     end
 
     context 'with no params' do
-      it 'returns all the playlists' do
-        expect(described_class.last_played({})).to include playlist_one, playlist_two, playlist_three
+      it 'returns all the air plays' do
+        expect(described_class.last_played({})).to include air_play_one, air_play_two, air_play_three
       end
     end
   end
 
-  describe '#today_unique_playlist_item' do
-    before { playlist_one }
+  describe '#today_unique_air_plays_item' do
+    before { air_play_one }
 
-    context 'with an already playlist existing item' do
+    context 'with an already air play existing item' do
       it 'fails validation' do
-        new_playlist_item = described_class.new(broadcasted_at: playlist_one.broadcasted_at,
-                                                song: playlist_one.song,
-                                                radio_station: playlist_one.radio_station)
+        new_air_play_item = described_class.new(broadcasted_at: air_play_one.broadcasted_at,
+                                                song: air_play_one.song,
+                                                radio_station: air_play_one.radio_station)
 
-        expect(new_playlist_item.valid?).to be false
+        expect(new_air_play_item.valid?).to be false
       end
     end
 
-    context 'with a unique playlist item' do
+    context 'with a unique air play item' do
       it 'does not fail validation' do
-        new_playlist_item = build :playlist
+        new_air_play_item = build :air_play
 
-        expect(new_playlist_item.valid?).to be true
+        expect(new_air_play_item.valid?).to be true
       end
     end
   end
 
   describe '#deduplicate' do
-    let!(:playlist_one) { create :playlist }
+    let!(:air_play_one) { create :air_play }
 
     context 'if there are no duplicate entries' do
-      it 'does not delete the playlist item' do
+      it 'does not delete the air play item' do
         expect do
-          playlist_one.deduplicate
+          air_play_one.deduplicate
         end.not_to change(described_class, :count)
       end
     end
 
     context 'if duplicate entries exists' do
       before do
-        playlist = build(:playlist,
-                         radio_station: playlist_one.radio_station,
-                         broadcasted_at: playlist_one.broadcasted_at)
-        playlist.save(validate: false)
+        air_play = build(:air_play,
+                         radio_station: air_play_one.radio_station,
+                         broadcasted_at: air_play_one.broadcasted_at)
+        air_play.save(validate: false)
       end
 
-      it 'deletes the playlist item' do
+      it 'deletes the air play item' do
         expect do
-          playlist_one.deduplicate
+          air_play_one.deduplicate
         end.to change(described_class, :count).by(-1)
       end
     end
 
-    context 'if there are duplicates and the song has no more playlist items' do
+    context 'if there are duplicates and the song has no more air play items' do
       before do
-        playlist = build(:playlist,
-                         radio_station: playlist_one.radio_station,
-                         broadcasted_at: playlist_one.broadcasted_at)
-        playlist.save(validate: false)
+        air_play = build(:air_play,
+                         radio_station: air_play_one.radio_station,
+                         broadcasted_at: air_play_one.broadcasted_at)
+        air_play.save(validate: false)
       end
 
       it 'deletes the song' do
         expect do
-          playlist_one.deduplicate
+          air_play_one.deduplicate
         end.to change(Song, :count).by(-1)
       end
     end
 
-    context 'if there are duplicates and the playlist song has more playlist items' do
+    context 'if there are duplicates and the air play song has more air plays items' do
       before do
-        playlist = build(:playlist,
-                         radio_station: playlist_one.radio_station,
-                         broadcasted_at: playlist_one.broadcasted_at)
-        playlist.save(validate: false)
-        create(:playlist, song: playlist_one.song)
+        air_play = build(:air_play,
+                         radio_station: air_play_one.radio_station,
+                         broadcasted_at: air_play_one.broadcasted_at)
+        air_play.save(validate: false)
+        create(:air_play, song: air_play_one.song)
       end
 
       it 'does not delete the song' do
         expect do
-          playlist_one.deduplicate
+          air_play_one.deduplicate
         end.not_to change(Song, :count)
       end
     end
   end
 
   describe '#duplicate?' do
-    let!(:playlist_one) { create(:playlist) }
+    let!(:air_play_one) { create(:air_play) }
 
     context 'with duplicates present' do
       before do
-        playlist = build(:playlist,
-                         radio_station: playlist_one.radio_station,
-                         broadcasted_at: playlist_one.broadcasted_at)
-        playlist.save(validate: false)
+        air_play = build(:air_play,
+                         radio_station: air_play_one.radio_station,
+                         broadcasted_at: air_play_one.broadcasted_at)
+        air_play.save(validate: false)
       end
 
       it 'returns true' do
-        expect(playlist_one.duplicate?).to be true
+        expect(air_play_one.duplicate?).to be true
       end
     end
 
     context 'without duplicates' do
       it 'returns false' do
-        expect(playlist_one.duplicate?).to be false
+        expect(air_play_one.duplicate?).to be false
       end
     end
   end
