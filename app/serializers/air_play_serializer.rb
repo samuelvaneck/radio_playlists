@@ -33,17 +33,19 @@ class AirPlaySerializer
              :radio_station,
              :artists
 
-  def song
-    SongSerializer.new(object.song)
-  end
-
   def radio_station
     RadioStationSerializer.new(object.radio_station)
   end
 
-  def artists
-    object.song.artists.each do |artist|
-      ArtistSerializer.new(artist)
+  attributes :song do |object|
+    options = { fields: { song: %i[id title spotify_artwork_url spotify_song_url spotify_preview_url id_on_youtube] } }
+    SongSerializer.new(object.song, options)
+  end
+
+  attribute :artists do |object|
+    object.song.artists.map do |artist|
+      options = { fields: { artist: %i[id name] } }
+      ArtistSerializer.new(artist, options)
     end
   end
 end
