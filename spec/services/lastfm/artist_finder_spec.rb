@@ -2,17 +2,17 @@
 
 require 'rails_helper'
 
-RSpec.describe Lastfm::ArtistFinder do
+describe Lastfm::ArtistFinder do
   subject(:artist_finder) { described_class.new }
   
   let(:artist_name) { 'The Beatles' }
   let(:invalid_artist_name) { '' }
   let(:limit) { 5 }
 
-  describe '#search' do
+  describe '#search', :use_vcr do
     subject(:search_result) { artist_finder.search(artist_name, limit: limit) }
 
-    context 'with valid parameters', use_vcr: true do
+    context 'with valid parameters' do
       it 'returns parsed search results' do
         expect(search_result).to be_an(Array)
         expect(search_result).not_to be_empty
@@ -45,10 +45,10 @@ RSpec.describe Lastfm::ArtistFinder do
     end
   end
 
-  describe '#get_info' do
+  describe '#get_info', :use_vcr do
     subject(:artist_info) { artist_finder.get_info(artist_name) }
 
-    context 'with valid parameters', use_vcr: true do
+    context 'with valid parameters' do
       it 'returns detailed artist information' do
         expect(artist_info).to be_a(Hash)
       end
@@ -68,10 +68,10 @@ RSpec.describe Lastfm::ArtistFinder do
     end
   end
 
-  describe '#get_similar' do
+  describe '#get_similar', :use_vcr do
     subject(:similar_artists) { artist_finder.get_similar(artist_name, limit: limit) }
 
-    context 'with valid parameters', use_vcr: true do
+    context 'with valid parameters' do
       it 'returns similar artists' do
         expect(similar_artists).to be_an(Array)
       end
@@ -88,10 +88,10 @@ RSpec.describe Lastfm::ArtistFinder do
     end
   end
 
-  describe '#get_top_tracks' do
+  describe '#get_top_tracks', :use_vcr do
     subject(:top_tracks) { artist_finder.get_top_tracks(artist_name, limit: limit) }
 
-    context 'with valid parameters', use_vcr: true do
+    context 'with valid parameters' do
       it 'returns top tracks' do
         expect(top_tracks).to be_an(Array)
       end
@@ -108,10 +108,10 @@ RSpec.describe Lastfm::ArtistFinder do
     end
   end
 
-  describe '#get_top_albums' do
+  describe '#get_top_albums', :use_vcr do
     subject(:top_albums) { artist_finder.get_top_albums(artist_name, limit: limit) }
 
-    context 'with valid parameters', use_vcr: true do
+    context 'with valid parameters' do
       it 'returns top albums' do
         expect(top_albums).to be_an(Array)
       end
@@ -128,10 +128,10 @@ RSpec.describe Lastfm::ArtistFinder do
     end
   end
 
-  describe '#get_top_tags' do
+  describe '#get_top_tags', :use_vcr do
     subject(:top_tags) { artist_finder.get_top_tags(artist_name) }
 
-    context 'with valid parameters', use_vcr: true do
+    context 'with valid parameters' do
       it 'returns top tags for the artist' do
         expect(top_tags).to be_an(Array)
       end
@@ -158,9 +158,10 @@ RSpec.describe Lastfm::ArtistFinder do
       allow(logger_double).to receive(:error)
     end
 
-    context 'when API returns error' do
+    context 'when API returns error', real_http: true do
       before do
-        stub_request(:get, 'http://ws.audioscrobbler.com/2.0/')
+        WebMock.enable!
+        stub_request(:get, /ws\.audioscrobbler\.com/)
           .to_return(status: 500, body: 'Server Error')
       end
 
@@ -191,9 +192,14 @@ RSpec.describe Lastfm::ArtistFinder do
       end
     end
 
-    context 'when network error occurs' do
+    context 'when network error occurs', real_http: true do
       before do
+        WebMock.disable!
         allow_any_instance_of(Faraday::Connection).to receive(:get).and_raise(connection_error)
+      end
+
+      after do
+        WebMock.enable!
       end
 
       shared_examples 'handles network errors' do |method_name|

@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://ws.audioscrobbler.com/2.0/?api_key=<LASTFM_API_KEY>&artist=The%20Beatles&format=json&method=track.getTopTags&track=Hey%20Jude
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.13.6.2
+      Date:
+      - Sat, 13 Sep 2025 19:33:19 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '74'
+      Access-Control-Request-Headers:
+      - Origin, X-Atmosphere-tracking-id, X-Atmosphere-Framework, X-Cache-Date, Content-Type,
+        X-Atmosphere-Transport, *
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '86400'
+      Via:
+      - 1.1 google
+    body:
+      encoding: UTF-8
+      string: '{"toptags":{"tag":["pop", "sixties"],"@attr":{"artist":"The Beatles","track":"Hey Jude"}}}'
+  recorded_at: Sat, 13 Sep 2025 19:33:19 GMT
+recorded_with: VCR 6.3.1

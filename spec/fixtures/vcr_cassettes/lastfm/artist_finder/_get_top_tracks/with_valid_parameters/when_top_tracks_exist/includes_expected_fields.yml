@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://ws.audioscrobbler.com/2.0/?api_key=<LASTFM_API_KEY>&artist=The%20Beatles&format=json&limit=5&method=artist.getTopTracks
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.13.6.2
+      Date:
+      - Sat, 13 Sep 2025 19:33:15 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '4025'
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '86400'
+      Via:
+      - 1.1 google
+    body:
+      encoding: UTF-8
+      string: '{"toptracks":{"track":[{"name":"Here Comes the Sun - Remastered 2009","playcount":"11532324","listeners":"1385256","mbid":"cadd11ae-c323-45f4-a27c-162f69f80099","url":"https://www.last.fm/music/The+Beatles/_/Here+Comes+the+Sun+-+Remastered+2009","streamable":"0","artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"}],"@attr":{"rank":"1"}},{"name":"Eleanor
+        Rigby","playcount":"9169510","listeners":"1261072","mbid":"6641155d-6c0c-4819-abf1-4e149b3f1b65","url":"https://www.last.fm/music/The+Beatles/_/Eleanor+Rigby","streamable":"0","artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"}],"@attr":{"rank":"2"}},{"name":"Hey
+        Jude","playcount":"8594718","listeners":"1243190","mbid":"4c35421c-2e78-47f2-9899-43107d5b7ede","url":"https://www.last.fm/music/The+Beatles/_/Hey+Jude","streamable":"0","artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"}],"@attr":{"rank":"3"}},{"name":"Come
+        Together","playcount":"8787132","listeners":"1170967","url":"https://www.last.fm/music/The+Beatles/_/Come+Together","streamable":"0","artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"}],"@attr":{"rank":"4"}},{"name":"Let
+        It Be","playcount":"9122804","listeners":"1148630","mbid":"fa358381-05da-4d53-ba71-fcfc0c81931d","url":"https://www.last.fm/music/The+Beatles/_/Let+It+Be","streamable":"0","artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"}],"@attr":{"rank":"5"}}],"@attr":{"artist":"The
+        Beatles","page":"1","perPage":"5","totalPages":"159409","total":"797043"}}}'
+  recorded_at: Sat, 13 Sep 2025 19:33:15 GMT
+recorded_with: VCR 6.3.1

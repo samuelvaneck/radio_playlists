@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://ws.audioscrobbler.com/2.0/?api_key=<LASTFM_API_KEY>&artist=The%20Beatles&format=json&limit=5&method=track.getSimilar&track=Hey%20Jude
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.13.6.2
+      Date:
+      - Sat, 13 Sep 2025 19:33:17 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '5099'
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '86400'
+      Via:
+      - 1.1 google
+    body:
+      encoding: UTF-8
+      string: '{"similartracks":{"track":[{"name":"Let It Be","playcount":9122804,"mbid":"fa358381-05da-4d53-ba71-fcfc0c81931d","match":1.0,"url":"https://www.last.fm/music/The+Beatles/_/Let+It+Be","streamable":{"#text":"0","fulltrack":"0"},"duration":145,"artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"mega"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":""}]},{"name":"All
+        You Need Is Love","playcount":7053190,"mbid":"5f3429e6-fd3d-3046-9f09-1ae9478fee84","match":0.847725,"url":"https://www.last.fm/music/The+Beatles/_/All+You+Need+Is+Love","streamable":{"#text":"0","fulltrack":"0"},"duration":95,"artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"mega"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":""}]},{"name":"Imagine","playcount":6355807,"match":0.434416,"url":"https://www.last.fm/music/John+Lennon/_/Imagine","streamable":{"#text":"0","fulltrack":"0"},"duration":180,"artist":{"name":"John
+        Lennon","mbid":"4d5447d7-c61c-4120-ba1b-d7f471d385b9","url":"https://www.last.fm/music/John+Lennon"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"mega"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":""}]},{"name":"My
+        Sweet Lord","playcount":3391240,"mbid":"67b27e28-d997-33be-b2b1-34d870979939","match":0.350033,"url":"https://www.last.fm/music/George+Harrison/_/My+Sweet+Lord","streamable":{"#text":"0","fulltrack":"0"},"duration":256,"artist":{"name":"George
+        Harrison","mbid":"42a8f507-8412-4611-854f-926571049fa0","url":"https://www.last.fm/music/George+Harrison"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"mega"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":""}]},{"name":"(I
+        Can''t Get No) Satisfaction","playcount":3303432,"match":0.335347,"url":"https://www.last.fm/music/The+Rolling+Stones/_/(I+Can%27t+Get+No)+Satisfaction","streamable":{"#text":"0","fulltrack":"0"},"duration":352,"artist":{"name":"The
+        Rolling Stones","mbid":"b071f9fa-14b0-4217-8e97-eb41da73f598","url":"https://www.last.fm/music/The+Rolling+Stones"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"mega"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":""}]}],"@attr":{"artist":"The
+        Beatles","track":"Hey Jude"}}}'
+  recorded_at: Sat, 13 Sep 2025 19:33:17 GMT
+recorded_with: VCR 6.3.1

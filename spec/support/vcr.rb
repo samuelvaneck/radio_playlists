@@ -23,9 +23,7 @@ VCR.configure do |config|
   # Last.fm API filters
   config.filter_sensitive_data('<LASTFM_API_KEY>') do |interaction|
     # Replace Last.fm API key in query parameters
-    if interaction.request.uri.include?('ws.audioscrobbler.com')
-      interaction.request.uri[/api_key=([^&]+)/, 1]
-    end
+    interaction.request.uri[/api_key=([^&]+)/, 1] if interaction.request.uri.include?('ws.audioscrobbler.com')
   end
 end
 

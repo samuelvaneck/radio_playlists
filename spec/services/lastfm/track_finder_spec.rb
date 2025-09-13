@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Lastfm::TrackFinder do
+describe Lastfm::TrackFinder do
   subject(:track_finder) { described_class.new }
   
   let(:artist_name) { 'The Beatles' }
@@ -11,10 +11,10 @@ RSpec.describe Lastfm::TrackFinder do
   let(:invalid_artist_name) { '' }
   let(:invalid_track_name) { '' }
 
-  describe '#search' do
+  describe '#search', :use_vcr do
     subject(:search_result) { track_finder.search(artist_name, track_name, limit: limit) }
 
-    context 'with valid parameters', use_vcr: true do
+    context 'with valid parameters' do
       it 'returns parsed search results' do
         expect(search_result).to be_an(Array)
         expect(search_result).not_to be_empty
@@ -57,10 +57,10 @@ RSpec.describe Lastfm::TrackFinder do
     end
   end
 
-  describe '#get_info' do
+  describe '#get_info', :use_vcr do
     subject(:track_info) { track_finder.get_info(artist_name, track_name) }
 
-    context 'with valid parameters', use_vcr: true do
+    context 'with valid parameters' do
       it 'returns detailed track information' do
         expect(track_info).to be_a(Hash)
       end
@@ -91,10 +91,10 @@ RSpec.describe Lastfm::TrackFinder do
     end
   end
 
-  describe '#get_similar' do
+  describe '#get_similar', :use_vcr do
     subject(:similar_tracks) { track_finder.get_similar(artist_name, track_name, limit: limit) }
 
-    context 'with valid parameters', use_vcr: true do
+    context 'with valid parameters' do
       it 'returns similar tracks' do
         expect(similar_tracks).to be_an(Array)
       end
@@ -111,10 +111,10 @@ RSpec.describe Lastfm::TrackFinder do
     end
   end
 
-  describe '#get_top_tags' do
+  describe '#get_top_tags', :use_vcr do
     subject(:top_tags) { track_finder.get_top_tags(artist_name, track_name) }
 
-    context 'with valid parameters', use_vcr: true do
+    context 'with valid parameters' do
       it 'returns top tags for the track' do
         expect(top_tags).to be_an(Array)
       end
@@ -123,9 +123,7 @@ RSpec.describe Lastfm::TrackFinder do
         let(:first_tag) { top_tags.first }
 
         it 'includes expected fields' do
-          if top_tags.any?
-            expect(first_tag).to include(:name)
-          end
+          expect(first_tag).to include(:name)
         end
       end
     end
@@ -135,9 +133,10 @@ RSpec.describe Lastfm::TrackFinder do
     let(:error_response) { double('response', status: 500, body: 'Server Error') }
     let(:connection_error) { Faraday::ConnectionFailed.new('Network error') }
     
-    context 'when API returns error' do
+    context 'when API returns error', real_http: true do
       before do
-        stub_request(:get, 'http://ws.audioscrobbler.com/2.0/')
+        WebMock.enable!
+        stub_request(:get, /ws\.audioscrobbler\.com/)
           .to_return(status: 500, body: 'Server Error')
       end
 
@@ -170,9 +169,14 @@ RSpec.describe Lastfm::TrackFinder do
       end
     end
 
-    context 'when network error occurs' do
+    context 'when network error occurs', real_http: true do
       before do
+        WebMock.disable!
         allow_any_instance_of(Faraday::Connection).to receive(:get).and_raise(connection_error)
+      end
+
+      after do
+        WebMock.enable!
       end
 
       describe '#search' do

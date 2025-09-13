@@ -13,12 +13,12 @@ module Lastfm
 
       artist_name = song.artists.first.name
       track_info = @track_finder.get_info(artist_name, song.title)
-      
+
       return unless track_info
 
       update_song_with_lastfm_data(song, track_info)
       enrich_artists(song.artists)
-      
+
       song
     rescue StandardError => e
       Rails.logger.error "Last.fm song enrichment error for song #{song.id}: #{e.message}"
@@ -32,7 +32,7 @@ module Lastfm
       return unless artist_info
 
       update_artist_with_lastfm_data(artist, artist_info)
-      
+
       artist
     rescue StandardError => e
       Rails.logger.error "Last.fm artist enrichment error for artist #{artist.id}: #{e.message}"
@@ -44,7 +44,7 @@ module Lastfm
 
       # Try to split query into artist and track
       parts = query.split(' - ', 2)
-      
+
       if parts.length == 2
         artist_name, track_name = parts
       else
@@ -101,7 +101,7 @@ module Lastfm
 
     def update_artist_with_lastfm_data(artist, artist_info)
       bio_summary = artist_info[:bio][:summary] if artist_info[:bio]
-      
+
       artist.update(
         lastfm_url: artist_info[:url],
         lastfm_listeners: artist_info[:listeners],
