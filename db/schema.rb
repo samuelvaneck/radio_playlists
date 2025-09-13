@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_24_151233) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_13_142850) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -93,6 +93,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_24_151233) do
     t.datetime "cached_chart_positions_updated_at"
     t.string "website_url"
     t.string "instagram_url"
+    t.string "lastfm_url"
+    t.integer "lastfm_listeners"
+    t.integer "lastfm_playcount"
+    t.jsonb "lastfm_tags"
+    t.string "lastfm_mbid"
+    t.text "lastfm_bio"
     t.index ["name"], name: "index_artists_on_name"
   end
 
@@ -186,6 +192,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_24_151233) do
     t.string "id_on_youtube"
     t.date "release_date"
     t.string "release_date_precision"
+    t.string "lastfm_url"
+    t.integer "lastfm_listeners"
+    t.integer "lastfm_playcount"
+    t.jsonb "lastfm_tags"
+    t.string "lastfm_mbid"
     t.index ["release_date"], name: "index_songs_on_release_date"
     t.index ["search_text"], name: "index_songs_on_search_text"
   end
