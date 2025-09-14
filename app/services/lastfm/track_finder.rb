@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 module Lastfm
+  # rubocop:disable Metrics/ClassLength
   class TrackFinder < Base
     def search(artist_name, track_name, limit: 10)
-      return nil unless artist_name.present? && track_name.present?
+      return nil if artist_name.blank? || track_name.blank?
 
       params = {
         method: 'track.search',
@@ -22,7 +23,7 @@ module Lastfm
     end
 
     def get_info(artist_name, track_name)
-      return nil unless artist_name.present? && track_name.present?
+      return nil if artist_name.blank? || track_name.blank?
 
       params = {
         method: 'track.getInfo',
@@ -40,7 +41,7 @@ module Lastfm
     end
 
     def get_similar(artist_name, track_name, limit: 10)
-      return nil unless artist_name.present? && track_name.present?
+      return nil if artist_name.blank? || track_name.blank?
 
       params = {
         method: 'track.getSimilar',
@@ -59,7 +60,7 @@ module Lastfm
     end
 
     def get_top_tags(artist_name, track_name)
-      return nil unless artist_name.present? && track_name.present?
+      return nil if artist_name.blank? || track_name.blank?
 
       params = {
         method: 'track.getTopTags',
@@ -192,4 +193,5 @@ module Lastfm
       }
     end
   end
+  # rubocop:enable Metrics/ClassLength
 end

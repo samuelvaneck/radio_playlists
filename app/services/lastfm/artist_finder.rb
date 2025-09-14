@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 module Lastfm
+  # rubocop:disable Metrics/ClassLength
   class ArtistFinder < Base
     def search(artist_name, limit: 10)
-      return nil unless artist_name.present?
+      return nil if artist_name.blank?
 
       params = {
         method: 'artist.search',
@@ -21,7 +22,7 @@ module Lastfm
     end
 
     def get_info(artist_name)
-      return nil unless artist_name.present?
+      return nil if artist_name.blank?
 
       params = {
         method: 'artist.getInfo',
@@ -38,7 +39,7 @@ module Lastfm
     end
 
     def get_similar(artist_name, limit: 10)
-      return nil unless artist_name.present?
+      return nil if artist_name.blank?
 
       params = {
         method: 'artist.getSimilar',
@@ -56,7 +57,7 @@ module Lastfm
     end
 
     def get_top_tracks(artist_name, limit: 10)
-      return nil unless artist_name.present?
+      return nil if artist_name.blank?
 
       params = {
         method: 'artist.getTopTracks',
@@ -74,7 +75,7 @@ module Lastfm
     end
 
     def get_top_albums(artist_name, limit: 10)
-      return nil unless artist_name.present?
+      return nil if artist_name.blank?
 
       params = {
         method: 'artist.getTopAlbums',
@@ -92,7 +93,7 @@ module Lastfm
     end
 
     def get_top_tags(artist_name)
-      return nil unless artist_name.present?
+      return nil if artist_name.blank?
 
       params = {
         method: 'artist.getTopTags',
@@ -265,4 +266,5 @@ module Lastfm
       end
     end
   end
+  # rubocop:enable Metrics/ClassLength
 end

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Lastfm::ArtistFinder do
   subject(:artist_finder) { described_class.new }
-  
+
   let(:artist_name) { 'The Beatles' }
   let(:invalid_artist_name) { '' }
   let(:limit) { 5 }
@@ -13,8 +13,11 @@ describe Lastfm::ArtistFinder do
     subject(:search_result) { artist_finder.search(artist_name, limit: limit) }
 
     context 'with valid parameters' do
-      it 'returns parsed search results' do
+      it 'returns an Array' do
         expect(search_result).to be_an(Array)
+      end
+
+      it 'returns parsed search results' do
         expect(search_result).not_to be_empty
       end
 
@@ -29,8 +32,11 @@ describe Lastfm::ArtistFinder do
       context 'with custom limit' do
         let(:limit) { 3 }
 
-        it 'respects the limit parameter' do
+        it 'returns an Array' do
           expect(search_result).to be_an(Array)
+        end
+
+        it 'respects the limit parameter' do
           expect(search_result.size).to be <= limit
         end
       end
@@ -53,8 +59,11 @@ describe Lastfm::ArtistFinder do
         expect(artist_info).to be_a(Hash)
       end
 
-      it 'includes expected fields' do
+      it 'includes name and url fields' do
         expect(artist_info).to include(:name, :url)
+      end
+
+      it 'has non-empty name field' do
         expect(artist_info[:name]).to be_present
       end
     end
@@ -80,9 +89,7 @@ describe Lastfm::ArtistFinder do
         let(:first_similar) { similar_artists.first }
 
         it 'includes expected fields' do
-          if similar_artists.any?
-            expect(first_similar).to include(:name)
-          end
+          expect(first_similar).to include(:name) if similar_artists.any?
         end
       end
     end
@@ -100,9 +107,7 @@ describe Lastfm::ArtistFinder do
         let(:first_track) { top_tracks.first }
 
         it 'includes expected fields' do
-          if top_tracks.any?
-            expect(first_track).to include(:name)
-          end
+          expect(first_track).to include(:name) if top_tracks.any?
         end
       end
     end
@@ -120,9 +125,7 @@ describe Lastfm::ArtistFinder do
         let(:first_album) { top_albums.first }
 
         it 'includes expected fields' do
-          if top_albums.any?
-            expect(first_album).to include(:name)
-          end
+          expect(first_album).to include(:name) if top_albums.any?
         end
       end
     end
@@ -140,16 +143,14 @@ describe Lastfm::ArtistFinder do
         let(:first_tag) { top_tags.first }
 
         it 'includes expected fields' do
-          if top_tags.any?
-            expect(first_tag).to include(:name)
-          end
+          expect(first_tag).to include(:name) if top_tags.any?
         end
       end
     end
   end
 
   describe 'error handling' do
-    let(:error_response) { double('response', status: 500, body: 'Server Error') }
+    let(:error_response) { instance_double(Faraday::Response, status: 500, body: 'Server Error') }
     let(:connection_error) { Faraday::ConnectionFailed.new('Network error') }
     let(:logger_double) { instance_double(ActiveSupport::Logger) }
 
@@ -158,7 +159,7 @@ describe Lastfm::ArtistFinder do
       allow(logger_double).to receive(:error)
     end
 
-    context 'when API returns error', real_http: true do
+    context 'when API returns error', :real_http do
       before do
         WebMock.enable!
         stub_request(:get, /ws\.audioscrobbler\.com/)
@@ -169,8 +170,8 @@ describe Lastfm::ArtistFinder do
         subject(:search_result) { artist_finder.search(artist_name) }
 
         it 'logs the error' do
-          expect(logger_double).to receive(:error).with(/Last.fm API error/)
           search_result
+          expect(logger_double).to have_received(:error).with(/Last.fm API error/)
         end
 
         it 'returns nil' do
@@ -182,8 +183,8 @@ describe Lastfm::ArtistFinder do
         subject(:artist_info) { artist_finder.get_info(artist_name) }
 
         it 'logs the error' do
-          expect(logger_double).to receive(:error).with(/Last.fm API error/)
           artist_info
+          expect(logger_double).to have_received(:error).with(/Last.fm API error/)
         end
 
         it 'returns nil' do
@@ -192,20 +193,22 @@ describe Lastfm::ArtistFinder do
       end
     end
 
-    context 'when network error occurs', real_http: true do
+    context 'when network error occurs', :real_http do
       before do
         WebMock.disable!
+        # rubocop:disable RSpec/AnyInstance
         allow_any_instance_of(Faraday::Connection).to receive(:get).and_raise(connection_error)
+        # rubocop:enable RSpec/AnyInstance
       end
 
       after do
         WebMock.enable!
       end
 
-      shared_examples 'handles network errors' do |method_name|
+      shared_examples 'handles network errors' do |_method_name|
         it 'logs the connection error' do
-          expect(logger_double).to receive(:error).with(/connection error/)
           subject
+          expect(logger_double).to have_received(:error).with(/connection error/)
         end
 
         it 'returns nil' do
@@ -215,31 +218,37 @@ describe Lastfm::ArtistFinder do
 
       describe '#search' do
         subject(:search_result) { artist_finder.search(artist_name) }
+
         include_examples 'handles network errors', :search
       end
 
       describe '#get_info' do
         subject(:artist_info) { artist_finder.get_info(artist_name) }
+
         include_examples 'handles network errors', :get_info
       end
 
       describe '#get_similar' do
         subject(:similar_artists) { artist_finder.get_similar(artist_name) }
+
         include_examples 'handles network errors', :get_similar
       end
 
       describe '#get_top_tracks' do
         subject(:top_tracks) { artist_finder.get_top_tracks(artist_name) }
+
         include_examples 'handles network errors', :get_top_tracks
       end
 
       describe '#get_top_albums' do
         subject(:top_albums) { artist_finder.get_top_albums(artist_name) }
+
         include_examples 'handles network errors', :get_top_albums
       end
 
       describe '#get_top_tags' do
         subject(:top_tags) { artist_finder.get_top_tags(artist_name) }
+
         include_examples 'handles network errors', :get_top_tags
       end
     end

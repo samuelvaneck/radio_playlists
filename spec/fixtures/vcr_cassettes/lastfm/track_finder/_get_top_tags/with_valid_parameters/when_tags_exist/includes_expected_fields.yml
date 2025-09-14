@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - openresty/1.13.6.2
       Date:
-      - Sat, 13 Sep 2025 19:33:19 GMT
+      - Sat, 13 Sep 2025 20:16:44 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Content-Length:
@@ -39,6 +39,6 @@ http_interactions:
       - 1.1 google
     body:
       encoding: UTF-8
-      string: '{"toptags":{"tag":["pop", "sixties"],"@attr":{"artist":"The Beatles","track":"Hey Jude"}}}'
-  recorded_at: Sat, 13 Sep 2025 19:33:19 GMT
+      string: '{"toptags":{"tag":[],"@attr":{"artist":"The Beatles","track":"Hey Jude"}}}'
+  recorded_at: Sat, 13 Sep 2025 20:16:44 GMT
 recorded_with: VCR 6.3.1

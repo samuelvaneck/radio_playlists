@@ -2,7 +2,7 @@
 
 module Lastfm
   class Base
-    BASE_URL = 'http://ws.audioscrobbler.com/2.0/'.freeze
+    BASE_URL = 'http://ws.audioscrobbler.com/2.0/'
 
     def initialize
       @api_key = ENV.fetch('LASTFM_API_KEY', nil)
@@ -22,7 +22,7 @@ module Lastfm
     end
 
     def make_request(params)
-      return nil unless @api_key.present?
+      return nil if @api_key.blank?
 
       params = params.merge(
         api_key: @api_key,
@@ -60,11 +60,12 @@ module Lastfm
       image_by_size = {}
       images.each do |img|
         next unless img.is_a?(Hash) && img['#text'].present?
+
         image_by_size[img['size']] = img['#text']
       end
 
-      image_by_size['extralarge'] || image_by_size['large'] || 
-        image_by_size['medium'] || image_by_size['small'] || 
+      image_by_size['extralarge'] || image_by_size['large'] ||
+        image_by_size['medium'] || image_by_size['small'] ||
         image_by_size.values.first
     end
   end
