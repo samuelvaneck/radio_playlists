@@ -87,8 +87,9 @@ describe Lastfm::SongEnricher, :use_vcr do
       end
 
       context 'when song has no artists' do
-        let(:song_without_artists) { create(:song, title: 'Test Song', artists: []) }
         subject(:enrich_result) { song_enricher.enrich_song(song_without_artists) }
+
+        let(:song_without_artists) { create(:song, title: 'Test Song', artists: []) }
 
         it 'returns nil' do
           expect(enrich_result).to be_nil
@@ -97,15 +98,19 @@ describe Lastfm::SongEnricher, :use_vcr do
     end
 
     context 'when track is not found' do
-      let(:unknown_song) { create(:song, title: 'Unknown Song XYZ', artists: [create(:artist, name: 'Unknown Artist XYZ')]) }
       subject(:enrich_result) { song_enricher.enrich_song(unknown_song) }
+
+      let(:unknown_song) do
+        create(:song, title: 'Unknown Song XYZ',
+                      artists: [create(:artist, name: 'Unknown Artist XYZ')])
+      end
 
       it 'returns nil' do
         expect(enrich_result).to be_nil
       end
 
       it 'does not update song' do
-        expect { enrich_result }.not_to change { unknown_song.reload.attributes }
+        expect { enrich_result }.not_to(change { unknown_song.reload.attributes })
       end
     end
 
@@ -182,15 +187,16 @@ describe Lastfm::SongEnricher, :use_vcr do
     end
 
     context 'when artist is not found' do
-      let(:unknown_artist) { create(:artist, name: 'Unknown Artist XYZ') }
       subject(:enrich_result) { song_enricher.enrich_artist(unknown_artist) }
+
+      let(:unknown_artist) { create(:artist, name: 'Unknown Artist XYZ') }
 
       it 'returns nil' do
         expect(enrich_result).to be_nil
       end
 
       it 'does not update artist' do
-        expect { enrich_result }.not_to change { unknown_artist.reload.attributes }
+        expect { enrich_result }.not_to(change { unknown_artist.reload.attributes })
       end
     end
 
@@ -373,8 +379,9 @@ describe Lastfm::SongEnricher, :use_vcr do
       end
 
       context 'when song has no artists' do
-        let(:song_without_artists) { create(:song, title: 'Test Song', artists: []) }
         subject(:similar_result) { song_enricher.get_similar_tracks(song_without_artists) }
+
+        let(:song_without_artists) { create(:song, title: 'Test Song', artists: []) }
 
         it 'returns empty array' do
           expect(similar_result).to eq([])
