@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://ws.audioscrobbler.com/2.0/?api_key=<LASTFM_API_KEY>&artist=The%20Beatles&format=json&limit=5&method=artist.getTopAlbums
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.13.6.2
+      Date:
+      - Sat, 13 Sep 2025 19:33:16 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '3743'
+      Access-Control-Request-Headers:
+      - Origin, X-Atmosphere-tracking-id, X-Atmosphere-Framework, X-Cache-Date, Content-Type,
+        X-Atmosphere-Transport, *
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '86400'
+      Via:
+      - 1.1 google
+    body:
+      encoding: UTF-8
+      string: '{"topalbums":{"album":[{"name":"Abbey Road (Remastered)","playcount":59183175,"url":"https://www.last.fm/music/The+Beatles/Abbey+Road+(Remastered)","artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/a4bbf73ba62024be279364e867b0ca20.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/a4bbf73ba62024be279364e867b0ca20.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/a4bbf73ba62024be279364e867b0ca20.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/a4bbf73ba62024be279364e867b0ca20.png","size":"extralarge"}],"@attr":{"rank":"1"}},{"name":"The
+        Beatles (Remastered)","playcount":47418297,"mbid":"808c3f20-0260-41ce-ae4d-89e561587bd5","url":"https://www.last.fm/music/The+Beatles/The+Beatles+(Remastered)","artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/78bf9324efbc7583e6cae6f707568e59.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/78bf9324efbc7583e6cae6f707568e59.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/78bf9324efbc7583e6cae6f707568e59.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/78bf9324efbc7583e6cae6f707568e59.png","size":"extralarge"}],"@attr":{"rank":"2"}},{"name":"Help!
+        (Remastered)","playcount":22313251,"url":"https://www.last.fm/music/The+Beatles/Help%21+(Remastered)","artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/c70cda3df810b0d34904b55618e0eebe.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/c70cda3df810b0d34904b55618e0eebe.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/c70cda3df810b0d34904b55618e0eebe.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/c70cda3df810b0d34904b55618e0eebe.png","size":"extralarge"}],"@attr":{"rank":"3"}},{"name":"Abbey
+        Road","playcount":54677834,"mbid":"03437e02-835f-3a0a-a37c-48a36c2e852a","url":"https://www.last.fm/music/The+Beatles/Abbey+Road","artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/f304ba0296794c6fc9d0e1cccd194ed0.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/f304ba0296794c6fc9d0e1cccd194ed0.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/f304ba0296794c6fc9d0e1cccd194ed0.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/f304ba0296794c6fc9d0e1cccd194ed0.png","size":"extralarge"}],"@attr":{"rank":"4"}},{"name":"1
+        (Remastered)","playcount":23374408,"url":"https://www.last.fm/music/The+Beatles/1+(Remastered)","artist":{"name":"The
+        Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles"},"image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/207c9708aabfc084aee235ab2c8c4ee9.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/207c9708aabfc084aee235ab2c8c4ee9.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/207c9708aabfc084aee235ab2c8c4ee9.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/207c9708aabfc084aee235ab2c8c4ee9.png","size":"extralarge"}],"@attr":{"rank":"5"}}],"@attr":{"artist":"The
+        Beatles","page":"1","perPage":"5","totalPages":"60281","total":"301405"}}}'
+  recorded_at: Sat, 13 Sep 2025 19:33:16 GMT
+recorded_with: VCR 6.3.1

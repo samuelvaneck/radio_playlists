@@ -19,6 +19,12 @@ VCR.configure do |config|
     # Replace Bearer tokens in Authorization headers
     interaction.request.headers['Authorization']&.first&.match(/Basic (.+)/)&.captures&.first
   end
+
+  # Last.fm API filters
+  config.filter_sensitive_data('<LASTFM_API_KEY>') do |interaction|
+    # Replace Last.fm API key in query parameters
+    interaction.request.uri[/api_key=([^&]+)/, 1] if interaction.request.uri.include?('ws.audioscrobbler.com')
+  end
 end
 
 RSpec.configure do |config|

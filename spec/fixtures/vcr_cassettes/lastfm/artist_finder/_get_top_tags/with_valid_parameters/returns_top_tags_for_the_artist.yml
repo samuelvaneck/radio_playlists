@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://ws.audioscrobbler.com/2.0/?api_key=<LASTFM_API_KEY>&artist=The%20Beatles&format=json&method=artist.getTopTags
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.13.6.2
+      Date:
+      - Sat, 13 Sep 2025 19:33:15 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '792'
+      Access-Control-Request-Headers:
+      - Origin, X-Atmosphere-tracking-id, X-Atmosphere-Framework, X-Cache-Date, Content-Type,
+        X-Atmosphere-Transport, *
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '86400'
+      Via:
+      - 1.1 google
+    body:
+      encoding: UTF-8
+      string: '{"toptags":{"tag":[{"count":100,"name":"classic rock","url":"https://www.last.fm/tag/classic+rock"},{"count":79,"name":"rock","url":"https://www.last.fm/tag/rock"},{"count":44,"name":"british","url":"https://www.last.fm/tag/british"},{"count":43,"name":"60s","url":"https://www.last.fm/tag/60s"},{"count":14,"name":"pop","url":"https://www.last.fm/tag/pop"},{"count":4,"name":"Psychedelic
+        Rock","url":"https://www.last.fm/tag/Psychedelic+Rock"},{"count":3,"name":"psychedelic","url":"https://www.last.fm/tag/psychedelic"},{"count":1,"name":"pop
+        rock","url":"https://www.last.fm/tag/pop+rock"},{"count":1,"name":"The Beatles","url":"https://www.last.fm/tag/The+Beatles"},{"count":1,"name":"british
+        invasion","url":"https://www.last.fm/tag/british+invasion"}],"@attr":{"artist":"The
+        Beatles"}}}'
+  recorded_at: Sat, 13 Sep 2025 19:33:15 GMT
+recorded_with: VCR 6.3.1

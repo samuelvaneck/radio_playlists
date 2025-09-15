@@ -1,0 +1,208 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://ws.audioscrobbler.com/2.0/?api_key=<LASTFM_API_KEY>&artist=The%20Beatles&format=json&method=track.getInfo&track=Hey%20Jude
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.13.6.2
+      Date:
+      - Mon, 15 Sep 2025 10:42:35 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '17726'
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '86400'
+      Via:
+      - 1.1 google
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ0cmFjayI6eyJuYW1lIjoiSGV5IEp1ZGUiLCJtYmlkIjoiNGMzNTQyMWMtMmU3OC00N2YyLTk4OTktNDMxMDdkNWI3ZWRlIiwidXJsIjoiaHR0cHM6Ly93d3cubGFzdC5mbS9tdXNpYy9UaGUrQmVhdGxlcy9fL0hleStKdWRlIiwiZHVyYXRpb24iOiIzNzYwMDAiLCJzdHJlYW1hYmxlIjp7IiN0ZXh0IjoiMCIsImZ1bGx0cmFjayI6IjAifSwibGlzdGVuZXJzIjoiMTI0MzQxOCIsInBsYXljb3VudCI6Ijg1OTYyNTUiLCJhcnRpc3QiOnsibmFtZSI6IlRoZSBCZWF0bGVzIiwibWJpZCI6ImIxMGJiYmZjLWNmOWUtNDJlMC1iZTE3LWUyYzNlMWQyNjAwZCIsInVybCI6Imh0dHBzOi8vd3d3Lmxhc3QuZm0vbXVzaWMvVGhlK0JlYXRsZXMifSwiYWxidW0iOnsiYXJ0aXN0IjoiVGhlIEJlYXRsZXMiLCJ0aXRsZSI6IjEiLCJ1cmwiOiJodHRwczovL3d3dy5sYXN0LmZtL211c2ljL1RoZStCZWF0bGVzLzEiLCJpbWFnZSI6W3siI3RleHQiOiJodHRwczovL2xhc3RmbS5mcmVldGxzLmZhc3RseS5uZXQvaS91LzM0cy9jMjg3ZjlmNDMzMjkzY2E3MmQ5ODY2ZmIxOGI0NjBhNS5wbmciLCJzaXplIjoic21hbGwifSx7IiN0ZXh0IjoiaHR0cHM6Ly9sYXN0Zm0uZnJlZXRscy5mYXN0bHkubmV0L2kvdS82NHMvYzI4N2Y5ZjQzMzI5M2NhNzJkOTg2NmZiMThiNDYwYTUucG5nIiwic2l6ZSI6Im1lZGl1bSJ9LHsiI3RleHQiOiJodHRwczovL2xhc3RmbS5mcmVldGxzLmZhc3RseS5uZXQvaS91LzE3NHMvYzI4N2Y5ZjQzMzI5M2NhNzJkOTg2NmZiMThiNDYwYTUucG5nIiwic2l6ZSI6ImxhcmdlIn0seyIjdGV4dCI6Imh0dHBzOi8vbGFzdGZtLmZyZWV0bHMuZmFzdGx5Lm5ldC9pL3UvMzAweDMwMC9jMjg3ZjlmNDMzMjkzY2E3MmQ5ODY2ZmIxOGI0NjBhNS5wbmciLCJzaXplIjoiZXh0cmFsYXJnZSJ9XX0sInRvcHRhZ3MiOnsidGFnIjpbXX0sIndpa2kiOnsicHVibGlzaGVkIjoiMTYgTm92IDIwMDgsIDA2OjA3Iiwic3VtbWFyeSI6IlwiSGV5IEp1ZGVcIiBpcyBhIHNvbmcgd3JpdHRlbiBieSBQYXVsIE1jQ2FydG5leSAoY3JlZGl0ZWQgdG8gTGVubm9uL01jQ2FydG5leSkgYW5kIHJlY29yZGVkIGJ5IFRoZSBCZWF0bGVzIGluIDE5NjguXG5cbk9yaWdpbmFsbHkgdGl0bGVkIFwiSGV5IEp1bGVzXCIsIE1jQ2FydG5leSB3cm90ZSB0aGUgYmFsbGFkIHRvIGNvbWZvcnQgSm9obiBMZW5ub24ncyBzb24gSnVsaWFuIGR1cmluZyBoaXMgcGFyZW50cycgZGl2b3JjZS4gXCJIZXkgSnVkZVwiIGJlZ2lucyB3aXRoIGEgdmVyc2UtYnJpZGdlIHN0cnVjdHVyZSBiYXNlZCBhcm91bmQgTWNDYXJ0bmV5J3Mgdm9jYWwgcGVyZm9ybWFuY2UgYW5kIHBpYW5vIGFjY29tcGFuaW1lbnQ7IGZ1cnRoZXIgZGV0YWlscyBhcmUgYWRkZWQgYXMgdGhlIHNvbmcgcHJvZ3Jlc3NlcyB0byBkaXN0aW5ndWlzaCBzZWN0aW9ucy4gQWZ0ZXIgdGhlIGZvdXJ0aCB2ZXJzZSwgdGhlIHNvbmcgc2hpZnRzIHRvIGEgZmFkZS1vdXQgY29kYSB0aGF0IGxhc3RzIGZvciBtb3JlIHRoYW4gZm91ciBtaW51dGVzLiA8YSBocmVmPVwiaHR0cDovL3d3dy5sYXN0LmZtL211c2ljL1RoZStCZWF0bGVzL18vSGV5K0p1ZGVcIj5SZWFkIG1vcmUgb24gTGFzdC5mbTwvYT4uIiwiY29udGVudCI6IlwiSGV5IEp1ZGVcIiBpcyBhIHNvbmcgd3JpdHRlbiBieSBQYXVsIE1jQ2FydG5leSAoY3JlZGl0ZWQgdG8gTGVubm9uL01jQ2FydG5leSkgYW5kIHJlY29yZGVkIGJ5IFRoZSBCZWF0bGVzIGluIDE5NjguXG5cbk9yaWdpbmFsbHkgdGl0bGVkIFwiSGV5IEp1bGVzXCIsIE1jQ2FydG5leSB3cm90ZSB0aGUgYmFsbGFkIHRvIGNvbWZvcnQgSm9obiBMZW5ub24ncyBzb24gSnVsaWFuIGR1cmluZyBoaXMgcGFyZW50cycgZGl2b3JjZS4gXCJIZXkgSnVkZVwiIGJlZ2lucyB3aXRoIGEgdmVyc2UtYnJpZGdlIHN0cnVjdHVyZSBiYXNlZCBhcm91bmQgTWNDYXJ0bmV5J3Mgdm9jYWwgcGVyZm9ybWFuY2UgYW5kIHBpYW5vIGFjY29tcGFuaW1lbnQ7IGZ1cnRoZXIgZGV0YWlscyBhcmUgYWRkZWQgYXMgdGhlIHNvbmcgcHJvZ3Jlc3NlcyB0byBkaXN0aW5ndWlzaCBzZWN0aW9ucy4gQWZ0ZXIgdGhlIGZvdXJ0aCB2ZXJzZSwgdGhlIHNvbmcgc2hpZnRzIHRvIGEgZmFkZS1vdXQgY29kYSB0aGF0IGxhc3RzIGZvciBtb3JlIHRoYW4gZm91ciBtaW51dGVzLlxuXG5cIkhleSBKdWRlXCIgd2FzIHJlbGVhc2VkIGluIEF1Z3VzdCAxOTY4IGFzIHRoZSBmaXJzdCBzaW5nbGUgZnJvbSBUaGUgQmVhdGxlcycgcmVjb3JkIGxhYmVsIEFwcGxlIFJlY29yZHMuIE92ZXIgc2V2ZW4gbWludXRlcyBpbiBsZW5ndGgsIFwiSGV5IEp1ZGVcIiB3YXMgYXQgdGhlIHRpbWUgdGhlIGxvbmdlc3Qgc2luZ2xlIGV2ZXIgdG8gdG9wIHRoZSBCcml0aXNoIGNoYXJ0cy4gSXQgYWxzbyBzcGVudCBuaW5lIHdlZWtzIGFzIG51bWJlciBvbmUgaW4gdGhlIFVuaXRlZCBTdGF0ZXPigJR0aGUgbG9uZ2VzdCBydW4gYXQgdGhlIHRvcCBvZiB0aGUgQW1lcmljYW4gY2hhcnRzIGZvciBhIEJlYXRsZXMgc2luZ2xlLiBUaGUgc2luZ2xlIGhhcyBzb2xkIGFwcHJveGltYXRlbHkgZWlnaHQgbWlsbGlvbiBjb3BpZXMgYW5kIGlzIGZyZXF1ZW50bHkgaW5jbHVkZWQgb24gcHJvZmVzc2lvbmFsIGxpc3RzIG9mIHRoZSBhbGwtdGltZSBiZXN0IHNvbmdzLlxuXG5JbnNwaXJhdGlvbiBhbmQgY29tcG9zaXRpb25cblxuSW4gMTk2OCwgSm9obiBMZW5ub24gYW5kIGhpcyB3aWZlIEN5bnRoaWEgTGVubm9uIHNlcGFyYXRlZCBkdWUgdG8gaGlzIGFmZmFpciB3aXRoIFlva28gT25vLiBTb29uIGFmdGVyd2FyZHMsIFBhdWwgTWNDYXJ0bmV5IGRyb3ZlIG91dCB0byB2aXNpdCBDeW50aGlhIGFuZCBKdWxpYW4sIGhlciBzb24gd2l0aCBMZW5ub24uIFwiV2UnZCBiZWVuIHZlcnkgZ29vZCBmcmllbmRzIGZvciBtaWxsaW9ucyBvZiB5ZWFycyBhbmQgSSB0aG91Z2h0IGl0IHdhcyBhIGJpdCBtdWNoIGZvciB0aGVtIHN1ZGRlbmx5IHRvIGJlIHBlcnNvbmEgbm9uIGdyYXRhZSBhbmQgb3V0IG9mIG15IGxpZmUsXCIgTWNDYXJ0bmV5IHNhaWQuIExhdGVyLCBDeW50aGlhIExlbm5vbiByZWNhbGxlZCwgXCJJIHdhcyB0cnVseSBzdXJwcmlzZWQgd2hlbiwgb25lIGFmdGVybm9vbiwgUGF1bCBhcnJpdmVkIG9uIGhpcyBvd24uIEkgd2FzIHRvdWNoZWQgYnkgaGlzIG9idmlvdXMgY29uY2VybiBmb3Igb3VyIHdlbGZhcmUuLi4uIE9uIHRoZSBqb3VybmV5IGRvd24gaGUgY29tcG9zZWQgJ0hleSBKdWRlJyBpbiB0aGUgY2FyLiBJIHdpbGwgbmV2ZXIgZm9yZ2V0IFBhdWwncyBnZXN0dXJlIG9mIGNhcmUgYW5kIGNvbmNlcm4gaW4gY29taW5nIHRvIHNlZSB1cy5cIlxuXG5UaGUgc29uZydzIG9yaWdpbmFsIHRpdGxlIHdhcyBcIkhleSBKdWxlc1wiLCBhbmQgaXQgd2FzIGludGVuZGVkIHRvIGNvbWZvcnQgSnVsaWFuIExlbm5vbiBmcm9tIHRoZSBzdHJlc3Mgb2YgaGlzIHBhcmVudHMnIGRpdm9yY2UuIE1jQ2FydG5leSBzYWlkLCBcIkkgc3RhcnRlZCB3aXRoIHRoZSBpZGVhICdIZXkgSnVsZXMnLCB3aGljaCB3YXMgSnVsaWFuLCBkb24ndCBtYWtlIGl0IGJhZCwgdGFrZSBhIHNhZCBzb25nIGFuZCBtYWtlIGl0IGJldHRlci4gSGV5LCB0cnkgYW5kIGRlYWwgd2l0aCB0aGlzIHRlcnJpYmxlIHRoaW5nLiBJIGtuZXcgaXQgd2FzIG5vdCBnb2luZyB0byBiZSBlYXN5IGZvciBoaW0uIEkgYWx3YXlzIGZlZWwgc29ycnkgZm9yIGtpZHMgaW4gZGl2b3JjZXMgLi4uIEkgaGFkIHRoZSBpZGVhIFtmb3IgdGhlIHNvbmddIGJ5IHRoZSB0aW1lIEkgZ290IHRoZXJlLiBJIGNoYW5nZWQgaXQgdG8gJ0p1ZGUnIGJlY2F1c2UgSSB0aG91Z2h0IHRoYXQgc291bmRlZCBhIGJpdCBiZXR0ZXIuXCIgSnVsaWFuIExlbm5vbiBkaXNjb3ZlcmVkIHRoZSBzb25nIGhhZCBiZWVuIHdyaXR0ZW4gZm9yIGhpbSBhbG1vc3QgdHdlbnR5IHllYXJzIGxhdGVyLiBIZSByZW1lbWJlcmVkIGJlaW5nIGNsb3NlciB0byBNY0NhcnRuZXkgdGhhbiB0byBoaXMgZmF0aGVyOiBcIlBhdWwgYW5kIEkgdXNlZCB0byBoYW5nIGFib3V0IHF1aXRlIGEgYml04oCUbW9yZSB0aGFuIERhZCBhbmQgSSBkaWQuIFdlIGhhZCBhIGdyZWF0IGZyaWVuZHNoaXAgZ29pbmcgYW5kIHRoZXJlIHNlZW1zIHRvIGJlIGZhciBtb3JlIHBpY3R1cmVzIG9mIG1lIGFuZCBQYXVsIHBsYXlpbmcgdG9nZXRoZXIgYXQgdGhhdCBhZ2UgdGhhbiB0aGVyZSBhcmUgcGljdHVyZXMgb2YgbWUgYW5kIG15IGRhZC5cIlxuXG5BbHRob3VnaCBNY0NhcnRuZXkgb3JpZ2luYWxseSB3cm90ZSB0aGUgc29uZyBmb3IgSnVsaWFuIExlbm5vbiwgSm9obiBMZW5ub24gdGhvdWdodCBpdCBoYWQgYWN0dWFsbHkgYmVlbiB3cml0dGVuIGZvciBoaW06XG5cbiAgICBCdXQgSSBhbHdheXMgaGVhcmQgaXQgYXMgYSBzb25nIHRvIG1lLiBJZiB5b3UgdGhpbmsgYWJvdXQgaXQuLi4gWW9rbydzIGp1c3QgY29tZSBpbnRvIHRoZSBwaWN0dXJlLiBIZSdzIHNheWluZy4gJ0hleSwgSnVkZeKAlEhleSwgSm9obi4nIEkga25vdyBJJ20gc291bmRpbmcgbGlrZSBvbmUgb2YgdGhvc2UgZmFucyB3aG8gcmVhZHMgdGhpbmdzIGludG8gaXQsIGJ1dCB5b3UgY2FuIGhlYXIgaXQgYXMgYSBzb25nIHRvIG1lIC4uLiBTdWJjb25zY2lvdXNseSwgaGUgd2FzIHNheWluZywgR28gYWhlYWQsIGxlYXZlIG1lLiBPbiBhIGNvbnNjaW91cyBsZXZlbCwgaGUgZGlkbid0IHdhbnQgbWUgdG8gZ28gYWhlYWQuXG5cbk90aGVyIHBlb3BsZSBiZWxpZXZlZCBNY0NhcnRuZXkgd3JvdGUgdGhlIHNvbmcgYWJvdXQgdGhlbSwgaW5jbHVkaW5nIEp1ZGl0aCBTaW1vbnMsIGEgam91cm5hbGlzdCB3aXRoIHRoZSBEYWlseSBFeHByZXNzLiBTdGlsbCBvdGhlcnMsIGluY2x1ZGluZyBMZW5ub24sIGhhdmUgc3BlY3VsYXRlZCB0aGF0IE1jQ2FydG5leSdzIGZhaWxpbmcgbG9uZy10ZXJtIHJlbGF0aW9uc2hpcCB3aXRoIEphbmUgQXNoZXIgd2hlbiBoZSB3cm90ZSBcIkhleSBKdWRlXCIgd2FzIGFuIHVuY29uc2Npb3VzIFwibWVzc2FnZSB0byBoaW1zZWxmXCIuIEluIGZhY3QsIHdoZW4gTGVubm9uIG1lbnRpb25lZCB0aGF0IGhlIHRob3VnaHQgdGhlIHNvbmcgd2FzIGFib3V0IGhpbSwgTWNDYXJ0bmV5IGRlbmllZCBpdCwgYW5kIHRvbGQgTGVubm9uIGhlIGhhZCB3cml0dGVuIHRoZSBzb25nIGFib3V0IGhpbXNlbGYuXG5cbk1jQ2FydG5leSBjaGFuZ2VkIHRoZSB0aXRsZSB0byBcIkhleSBKdWRlXCIgYmVjYXVzZSB0aGUgbmFtZSBKdWRlIHdhcyBlYXNpZXIgdG8gc2luZy4gTXVjaCBhcyBoZSBkaWQgd2l0aCBcIlllc3RlcmRheVwiLCBNY0NhcnRuZXkgcGxheWVkIHRoZSBzb25nIGZvciBvdGhlciBtdXNpY2lhbnMgYW5kIGZyaWVuZHMuIFJvbiBHcmlmZml0aCBvZiBCYWRmaW5nZXIsIHRoZSBmaXJzdCBiYW5kIHRvIGpvaW4gdGhlIEJlYXRsZXMtb3duZWQgcmVjb3JkIGxhYmVsIEFwcGxlIFJlY29yZHMsIHJlY2FsbGVkIHRoYXQgb24gdGhlaXIgZmlyc3QgZGF5IGluIHRoZSBzdHVkaW8sIFwiUGF1bCB3YWxrZWQgb3ZlciB0byB0aGUgZ3JhbmQgcGlhbm8gYW5kIHNhaWQsICdIZXkgbGFkcywgaGF2ZSBhIGxpc3RlbicsIGFuZCBoZSBzYXQgZG93biBhbmQgZ2F2ZSB1cyBhIGZ1bGwgY29uY2VydCByZW5kaXRpb24gb2YgJ0hleSBKdWRlJy4gV2Ugd2VyZSBnb2JzbWFja2VkLlwiXG5cbk11c2ljYWwgc3RydWN0dXJlXG5cblwiSGV5IEp1ZGVcIiBiZWdpbnMgd2l0aCBNY0NhcnRuZXkgc2luZ2luZyBsZWFkIHZvY2FscyBhbmQgcGxheWluZyB0aGUgcGlhbm8uIFRoZSBwYXR0ZXJucyBNY0NhcnRuZXkgcGxheXMgYXJlIGJhc2VkIG9uIHRocmVlIGNob3JkczogRiwgQyBhbmQgQi1mbGF0IChJLCBWIGFuZCBJVik7IHRoZSBzZWNvbmQgdmVyc2UgYWRkcyBhY2NvbXBhbmltZW50IGJ5IGd1aXRhciBhbmQgYSBzaW5nbGUgdGFtYm91cmluZS4gVGhlIG1haW4gY2hvcmQgcHJvZ3Jlc3Npb24gaXMgXCJmbGlwcGVkIG9uIGl0cyBoZWFkXCIgZm9yIHRoZSByZWZyYWluLCBhcyB0aGUgQyBjaG9yZCBpcyByZXBsYWNlZCBieSBFLWZsYXQuIFdyaXRlciBUaW0gUmlsZXkgbm90ZXMsIFwiQXMgUmluZ28gb2ZmZXJzIGEgcmVzdHJhaW5lZCB0b20tdG9tIGFuZCBjeW1iYWwgZmlsbCwgdGhlIHBpYW5vIHNoaWZ0cyBkb3dud2FyZCB0byBhZGQgYSBmbGF0IHNldmVudGggdG8gdGhlIHRvbmljIGNob3JkLCBtYWtpbmcgdGhlIGRvd25iZWF0IG9mIHRoZSBicmlkZ2UgdGhlIHBvaW50IG9mIGFycml2YWwgKCdBbmQgYW55IHRpbWUgeW91IGZlZWwgdGhlIHBhaW4nKS5cIiBBdCB0aGUgZW5kIG9mIGVhY2ggYnJpZGdlLCBNY0NhcnRuZXkgc2luZ3MgYSBicmllZiBwaHJhc2UgKFwiTmEtbmEtbmEgbmEgLiAuIC5cIikgYW5kIHBsYXlzIGEgcGlhbm8gZmlsbCB3aGljaCBsZWFkcyB0byB0aGUgbmV4dCB2ZXJzZTsgdGhlIHBocmFzZSBNY0NhcnRuZXkgc2luZ3Mgc2VydmVzIHRvIFwicmVvcmllbnQgdGhlIGhhcm1vbnkgZm9yIHRoZSB2ZXJzZSBhcyB0aGUgcGlhbm8gZmlndXJlIHR1cm5zIHVwc2lkZSBkb3duIGludG8gYSB2b2NhbCBhc2lkZS5cIiBBZGRpdGlvbmFsIGRldGFpbHMsIHN1Y2ggYXMgdGFtYm91cmluZSBvbiB0aGUgdGhpcmQgdmVyc2UgYW5kIHN1YnRsZSBoYXJtb25pZXMgdGhhdCBhY2NvbXBhbnkgdGhlIGxlYWQgdm9jYWwsIGFyZSBhZGRlZCB0byBzdXN0YWluIHRoZSBpbnRlcmVzdCBvZiB0aGUgbGlzdGVuZXIgdGhyb3VnaG91dCB0aGUgZm91ci12ZXJzZSwgdHdvLWJyaWRnZSBzb25nLlxuXG5UaGUgdmVyc2UtYnJpZGdlIHN0cnVjdHVyZSBvZiB0aGUgc29uZyBwZXJzaXN0cyBmb3IgYXBwcm94aW1hdGVseSB0aHJlZSBtaW51dGVzLCBhZnRlciB3aGljaCB0aGUgYmFuZCBsZWFkcyBpbnRvIGEgZm91ci1taW51dGUgbG9uZyBvdXRybyByZWZyYWluLiBEdXJpbmcgdGhlIG91dHJvLCB0aGUgcmVzdCBvZiBiYW5kLCBiYWNrZWQgYnkgYW4gb3JjaGVzdHJhIHRoYXQgYWxzbyBwcm92aWRlcyBiYWNraW5nIHZvY2FscywgcmVwZWF0IHRoZSBwaHJhc2UgXCJOYS1uYS1uYSBuYVwiIGZvbGxvd2VkIGJ5IHRoZSB3b3JkcyBcIkhleSBKdWRlXCIgdW50aWwgdGhlIHNvbmcgZ3JhZHVhbGx5IGZhZGVzIG91dC4gVGltZSBtYWdhemluZSBkZXNjcmliZWQgdGhlIG91dHJvIGFzIFwiYSBmYWRlb3V0IHRoYXQgZW5nYWdpbmdseSBzcG9vZnMgdGhlIGZhZGVvdXQgYXMgYSBnaW1taWNrIGZvciBlbmRpbmcgcG9wIHJlY29yZHMuXCIgUmlsZXkgbm90ZXMgdGhlIHJlcGVhdGVkIGNob3JkIHByb2dyZXNzaW9uIG9mIHRoZSBvdXRybyAoSS1mbGF0IFZJSS1JVi1JKSBcImFuc3dlcnMgYWxsIHRoZSBtdXNpY2FsIHF1ZXN0aW9ucyByYWlzZWQgYXQgdGhlIGJlZ2lubmluZ3MgYW5kIGVuZHMgb2YgYnJpZGdlcyxcIiBmb3IgXCJUaGUgZmxhdCBzZXZlbnRoIHRoYXQgcG9zZSBkb21pbmFudCB0dXJucyBpbnRvIGJyaWRnZXMgbm93IGhhcyBhbiBlbnRpcmUgY2hvcmQgYnVpbHQgb24gaXQuXCIgVGhpcyB0aHJlZS1jaG9yZCByZWZyYWluIGFsbG93cyBNY0NhcnRuZXkgXCJhIGJlZGRpbmcgWy4gLiAuXSB0byBsZWFwIGFib3V0IG9uIHZvY2FsbHlcIiwgYXMgaGUgYWQtbGlicyBoaXMgdm9jYWwgcGVyZm9ybWFuY2UgZm9yIHRoZSByZXN0IG9mIHRoZSBzb25nLiBSaWxleSBjb25jbHVkZXMgdGhhdCB0aGUgc29uZyBcImJlY29tZXMgYSB0b3VyIG9mIFBhdWwncyB2b2NhbCByYW5nZTogZnJvbSB0aGUgZ3JhY2VmdWwgaW52aXRpbmcgdG9uZXMgb2YgdGhlIG9wZW5pbmcgdmVyc2UsIHRocm91Z2ggdGhlIG1vdW50aW5nIGV4Y2l0ZW1lbnQgb2YgdGhlIHNvbmcgaXRzZWxmLCB0byB0aGUgc3VyZ2luZyByYXZlcyBvZiB0aGUgY29kYS5cIlxuXG5XaGlsZSBcIkhleSBKdWRlXCIgd2FzIGludGVuZGVkIHRvIGFkZHJlc3MgSnVsaWFuIExlbm5vbiwgd3JpdGVyIE1hcmsgSGVydHNnYWFyZCBub3RlZCBcIm1hbnkgb2YgdGhlIHNvbmcncyBseXJpY3MgZG8gc2VlbSBkaXJlY3RlZCBtb3JlIGF0IGEgZ3Jvd24gbWFuIG9uIHRoZSB2ZXJnZSBvZiBhIHBvd2VyZnVsIG5ldyBsb3ZlLCBlc3BlY2lhbGx5IHRoZSBsaW5lcyAneW91IGhhdmUgZm91bmQgaGVyIG5vdyBnbyBhbmQgZ2V0IGhlcicgYW5kICd5b3UncmUgd2FpdGluZyBmb3Igc29tZW9uZSB0byBwZXJmb3JtIHdpdGguJ1wiIFRpbSBSaWxleSB3cm90ZSwgXCJJZiB0aGUgc29uZyBpcyBhYm91dCBzZWxmLXdvcnRoIGFuZCBzZWxmLWNvbnNvbGF0aW9uIGluIHRoZSBmYWNlIG9mIGhhcmRzaGlwLCB0aGUgdm9jYWwgcGVyZm9ybWFuY2UgaXRzZWxmIGNvbnZleXMgbXVjaCBvZiB0aGUgam91cm5leS4gSGUgYmVnaW5zIGJ5IHNpbmdpbmcgdG8gY29tZm9ydCBzb21lb25lIGVsc2UsIGZpbmRzIGhpbXNlbGYgd2VpZ2hpbmcgaGlzIG93biBmZWVsaW5ncyBpbiB0aGUgcHJvY2VzcywgYW5kIGZpbmFsbHksIGluIHRoZSByZXBlYXRlZCByZWZyYWlucyB0aGF0IG51cnR1cmUgaGlzIG93biBhcHByb2JhdGlvbiwgaGUgY29tZXMgdG8gYmVsaWV2ZSBpbiBoaW1zZWxmLlwiXG5cblJlY29yZGluZ1xuXG5UaGUgQmVhdGxlcyByZWNvcmRlZCAyNSB0YWtlcyBvZiBcIkhleSBKdWRlXCIgYXQgQWJiZXkgUm9hZCBTdHVkaW9zIGluIHR3byBuaWdodHMsIDI5IEp1bHkgYW5kIDMwIEp1bHkgMTk2OC4gVGhlc2Ugd2VyZSBtb3N0bHkgcmVoZWFyc2FscywgaG93ZXZlciwgYXMgdGhleSBwbGFubmVkIHRvIHJlY29yZCB0aGUgbWFzdGVyIHRyYWNrIGF0IFRyaWRlbnQgU3R1ZGlvcyB0byB1dGlsaXNlIHRoZWlyIGVpZ2h0LXRyYWNrIHJlY29yZGluZyBtYWNoaW5lIChBYmJleSBSb2FkIHdhcyBzdGlsbCBsaW1pdGVkIHRvIGZvdXItdHJhY2tzKS4gT25lIHRha2UgZnJvbSAyOSBKdWx5IGlzIGF2YWlsYWJsZSBvbiB0aGUgQW50aG9sb2d5IDMgQ0QuIFRoZSBtYXN0ZXIgcmh5dGhtIHRyYWNrIHdhcyByZWNvcmRlZCBvbiAzMSBKdWx5IGF0IFRyaWRlbnQuIEZvdXIgdGFrZXMgd2VyZSByZWNvcmRlZDsgdGFrZSBvbmUgd2FzIHNlbGVjdGVkLiBUaGUgc29uZyB3YXMgY29tcGxldGVkIG9uIDEgQXVndXN0IHdpdGggYWRkaXRpb25hbCBvdmVyZHVicyBpbmNsdWRpbmcgYSAzNi1waWVjZSBvcmNoZXN0cmEgZm9yIHRoZSBzb25nJ3MgbG9uZyByZWZyYWluLCBzY29yZWQgYnkgR2VvcmdlIE1hcnRpbi4gVGhlIG9yY2hlc3RyYSBjb25zaXN0ZWQgb2YgdGVuIHZpb2xpbnMsIHRocmVlIHZpb2xhcywgdGhyZWUgY2VsbG9zLCB0d28gZmx1dGVzLCBvbmUgY29udHJhIGJhc3Nvb24sIG9uZSBiYXNzb29uLCB0d28gY2xhcmluZXRzLCBvbmUgY29udHJhIGJhc3MgY2xhcmluZXQsIGZvdXIgdHJ1bXBldHMsIGZvdXIgdHJvbWJvbmVzLCB0d28gaG9ybnMsIHBlcmN1c3Npb24sIGFuZCB0d28gc3RyaW5nIGJhc3Nlcy4gV2hpbGUgYWRkaW5nIGJhY2tpbmcgdm9jYWxzLCBUaGUgQmVhdGxlcyBhc2tlZCB0aGUgb3JjaGVzdHJhIG1lbWJlcnMgaWYgdGhleSB3b3VsZCBjbGFwIHRoZWlyIGhhbmRzIGFuZCBzaW5nIGFsb25nIHRvIHRoZSByZWZyYWluIGluIHRoZSBzb25nJ3MgY29kYS4gTW9zdCBjb21wbGllZCAoZm9yIGEgZG91YmxlIGZlZSksIGJ1dCBvbmUgZGVjbGluZWQsIHNheWluZyBcIkknbSBub3QgZ29pbmcgdG8gY2xhcCBteSBoYW5kcyBhbmQgc2luZyBQYXVsIE1jQ2FydG5leSdzIGJsb29keSBzb25nIVwiXG5cblJpbmdvIFN0YXJyIGFsbW9zdCBtaXNzZWQgaGlzIGRydW0gY3VlLiBIZSBsZWZ0IGZvciBhIHRvaWxldCBicmVha+KAlHVubm90aWNlZCBieSB0aGUgb3RoZXIgQmVhdGxlc+KAlGFuZCB0aGUgQmVhdGxlcyBzdGFydGVkIHJlY29yZGluZy4gSW4gMTk5NCwgTWNDYXJ0bmV5IHNhaWQsIFwiUmluZ28gd2Fsa2VkIG91dCB0byBnbyB0byB0aGUgdG9pbGV0IGFuZCBJIGhhZG4ndCBub3RpY2VkLiBUaGUgdG9pbGV0IHdhcyBvbmx5IGEgZmV3IHlhcmRzIGZyb20gaGlzIGRydW0gYm9vdGgsIGJ1dCBoZSdkIGdvbmUgcGFzdCBteSBiYWNrIGFuZCBJIHN0aWxsIHRob3VnaHQgaGUgd2FzIGluIGhpcyBkcnVtIGJvb3RoLiBJIHN0YXJ0ZWQgd2hhdCB3YXMgdGhlIGFjdHVhbCB0YWtlLCBhbmQgJ0hleSBKdWRlJyBnb2VzIG9uIGZvciBob3VycyBiZWZvcmUgdGhlIGRydW1zIGNvbWUgaW4gYW5kIHdoaWxlIEkgd2FzIGRvaW5nIGl0IEkgc3VkZGVubHkgZmVsdCBSaW5nbyB0aXB0b2VpbmcgcGFzdCBteSBiYWNrIHJhdGhlciBxdWlja2x5LCB0cnlpbmcgdG8gZ2V0IHRvIGhpcyBkcnVtcy4gQW5kIGp1c3QgYXMgaGUgZ290IHRvIGhpcyBkcnVtcywgYm9vbSBib29tIGJvb20sIGhpcyB0aW1pbmcgd2FzIGFic29sdXRlbHkgaW1wZWNjYWJsZS5cIlxuXG5EdXJpbmcgdGhlIHJlY29yZGluZyBvZiB0aGUgbWFzdGVyIHRha2UsIExlbm5vbiBzaG91dGVkIFwiT2ghXCIgZm9sbG93ZWQgYnkgXCJGdWNraW5nIGhlbGwhXCIgYXQgMjo1NiBhbmQgMjo1OCwgcmVzcGVjdGl2ZWx5LCBpbnRvIHRoZSBzb25nLiBUaGlzIG9jY3VycyBhZnRlciBoZSBzaW5ncyBcImxldCBoZXIgaW50byB5b3VyIHNraW5cIiB1bmRlciBNY0NhcnRuZXkncyBcImxldCBoZXIgdW5kZXIgeW91ciBza2luLlwiIFNvdW5kIGVuZ2luZWVyIEtlbiBTY290dCBsYXRlciB0b2xkIE1vam8ncyBDaHJpcyBIdW50LCBcIkkgd2FzIHRvbGQgYWJvdXQgaXQgYXQgdGhlIHRpbWUgYnV0IGNvdWxkIG5ldmVyIGhlYXIgaXQuIEJ1dCBvbmNlIEkgaGFkIGl0IHBvaW50ZWQgb3V0IEkgY2FuJ3QgbWlzcyBpdCBub3cuIEkgaGF2ZSBhIHNuZWFraW5nIHN1c3BpY2lvbiB0aGV5IGtuZXcgYWxsIGFsb25nLCBhcyBpdCB3YXMgYSB0cmFjayB0aGF0IHNob3VsZCBoYXZlIGJlZW4gcHVsbGVkIG91dCBpbiB0aGUgbWl4LiBJIHdvdWxkIGltYWdpbmUgaXQgd2FzIG9uZSBvZiB0aG9zZSB0aGluZ3MgdGhhdCBoYXBwZW5lZOKAlGl0IHdhcyBhIG1pc3Rha2UsIHRoZXkgbGlzdGVuZWQgdG8gaXQgYW5kIHRob3VnaHQsICdkb2Vzbid0IG1hdHRlciwgaXQncyBmaW5lJy5cIlxuXG5HZW9yZ2UgSGFycmlzb24gYW5kIE1jQ2FydG5leSBoYWQgYSBkaXNhZ3JlZW1lbnQgb3ZlciB0aGlzIHNvbmcuIEFjY29yZGluZyB0byBNY0NhcnRuZXksIGR1cmluZyBhIHJlaGVhcnNhbCBIYXJyaXNvbiBwbGF5ZWQgYW4gYW5zd2VyIHRvIGV2ZXJ5IGxpbmUgb2YgdGhlIHZvY2FsLiBUaGlzIGRpZCBub3QgZml0IHdpdGggTWNDYXJ0bmV5J3MgaWRlYSBvZiB0aGUgc29uZydzIGFycmFuZ2VtZW50LCBhbmQgaGUgdmV0b2VkIGl0LiBJbiBhIDE5OTQgaW50ZXJ2aWV3LCBNY0NhcnRuZXkgc2FpZCwgXCJXZSB3ZXJlIGpva2luZyB3aGVuIHdlIG1hZGUgdGhlIEFudGhvbG9neTogSSB3YXMgc2F5aW5nOiAnSSByZWFsaXNlIEkgd2FzIGEgYm9zc3kgZ2l0LicgQW5kIEdlb3JnZSBzYWlkLCAnT2ggbm8sIFBhdWwsIHlvdSBuZXZlciBkaWQgYW55dGhpbmcgbGlrZSB0aGF0IScgLi4uIEJ1dCBpdCB3YXMgZXNzZW50aWFsIGZvciBtZSBhbmQgbG9va2luZyBiYWNrIG9uIGl0LCBJIHRoaW5rLCBPa2F5LiBXZWxsLCBpdCB3YXMgYm9zc3ksIGJ1dCBpdCB3YXMgYmFsbHN5IG9mIG1lLCBiZWNhdXNlIEkgY291bGQgaGF2ZSBib3dlZCB0byB0aGUgcHJlc3N1cmUuXCIgUm9uIFJpY2hhcmRzLCB3aG8gd29ya2VkIGZvciBHZW9yZ2UgTWFydGluIGF0IGJvdGggUGFybG9waG9uZSBhdCBBSVIgU3R1ZGlvcywgYW5kIHdobyBkaXNjb3ZlcmVkIFRoZSBIb2xsaWVzLCB3YXMgcHJlc2VudCBmb3IgbWFueSBCZWF0bGUgcmVjb3JkaW5nIHNlc3Npb25zLiBIZSBzYWlkIE1jQ2FydG5leSB3YXMgXCJvYmxpdmlvdXMgdG8gYW55b25lIGVsc2UncyBmZWVsaW5ncyBpbiB0aGUgc3R1ZGlvLFwiIGFuZCB0aGF0IGhlIHdhcyBkcml2ZW4gdG8gbWFrZSB0aGUgYmVzdCBwb3NzaWJsZSByZWNvcmQsIGF0IGFsbW9zdCBhbnkgY29zdC5cblxuU2luZ2xlIHJlbGVhc2VcblxuXCJIZXkgSnVkZVwiIHdhcyByZWxlYXNlZCBvbiAyNiBBdWd1c3QgMTk2OCBpbiB0aGUgVW5pdGVkIFN0YXRlcyBhbmQgMzAgQXVndXN0IGluIHRoZSBVbml0ZWQgS2luZ2RvbSwgYmFja2VkIHdpdGggXCJSZXZvbHV0aW9uXCIgb24gdGhlIEItc2lkZSBvZiBhIDdcIiBzaW5nbGUuIFRoZSBzaW5nbGUgd2FzIHRoZSBkZWJ1dCByZWxlYXNlIG9mIHRoZSBCZWF0bGVzJyByZWNvcmQgbGFiZWwgQXBwbGUgUmVjb3JkcywgYW5kIGl0IHdhcyBhbHNvIHRoZSBmaXJzdCBCZWF0bGVzIHNpbmdsZSB0byBiZSBpc3N1ZWQgaW4gYSBwYXBlciBzbGVldmUgaW5zdGVhZCBvZiBhIHBpY3R1cmUgY292ZXIuIEV2ZW4gdGhvdWdoIFwiSGV5IEp1ZGVcIiB3YXMgcmVjb3JkZWQgZHVyaW5nIHRoZSBzZXNzaW9ucyBmb3IgVGhlIEJlYXRsZXMsIGFsc28ga25vd24gYXMgVGhlIFdoaXRlIEFsYnVtLCBpdCB3YXMgYWx3YXlzIGludGVuZGVkIGFzIGEgc2luZ2xlIGFuZCBub3QgYW4gYWxidW0gdHJhY2suIExlbm5vbiB3YW50ZWQgXCJSZXZvbHV0aW9uXCIgdG8gYmUgdGhlIEEtc2lkZSBvZiB0aGUgc2luZ2xlLCBidXQgdGhlIG90aGVyIEJlYXRsZXMgZGlkIG5vdCBhZ3JlZS4gSW4gaGlzIDE5NzAgaW50ZXJ2aWV3IHdpdGggUm9sbGluZyBTdG9uZSwgaGUgc2FpZCBcIkhleSBKdWRlXCIgd2FzIHdvcnRoeSBvZiBhbiBBLXNpZGUsIFwiYnV0IHdlIGNvdWxkIGhhdmUgaGFkIGJvdGguXCIgVGVuIHllYXJzIGxhdGVyIGluIDE5ODAsIGhlIHRvbGQgUGxheWJveSBoZSBzdGlsbCBkaXNhZ3JlZWQgd2l0aCB0aGUgZGVjaXNpb24uXG5cblwiSGV5IEp1ZGVcIiBiZWdhbiBpdHMgc2l4dGVlbi13ZWVrIHJ1biBvbiB0aGUgQnJpdGlzaCBjaGFydHMgaW4gNyBTZXB0ZW1iZXIgMTk2OCwgY2xhaW1pbmcgdGhlIHRvcCBzcG90IGEgd2VlayBsYXRlci4gSXQgb25seSBsYXN0ZWQgdHdvIHdlZWtzIG9uIHRvcCBiZWZvcmUgYmVpbmcga25vY2tlZCBvZmYgYnkgYW5vdGhlciBzaW5nbGUgZnJvbSBBcHBsZSwgTWFyeSBIb3BraW4ncyBcIlRob3NlIFdlcmUgdGhlIERheXNcIi4gVGhlIHNpbmdsZSB3YXMgY2VydGlmaWVkIGdvbGQgYnkgdGhlIFJlY29yZGluZyBJbmR1c3RyeSBBc3NvY2lhdGlvbiBvZiBBbWVyaWNhIG9uIDEzIFNlcHRlbWJlcjsgdGhhdCBzYW1lIHdlZWsgTk1FIHJlcG9ydGVkIHRoYXQgdHdvIG1pbGxpb24gY29waWVzIG9mIHRoZSBzaW5nbGUgaGFkIGJlZW4gc29sZC4gVGhlIHNvbmcgZW50ZXJlZCB0aGUgVS5TLiBjaGFydHMgb24gMTQgU2VwdGVtYmVyIDE5NjgsIHdoZXJlIGl0IHN0YXllZCBmb3IgdGhlIG5leHQgbmluZXRlZW4gd2Vla3MuIFR3byB3ZWVrcyBsYXRlciwgXCJIZXkgSnVkZVwiIHdhcyBudW1iZXIgb25lIGluIHRoZSBjaGFydHMsIGFuZCBoZWxkIHRoYXQgcG9zaXRpb24gZm9yIHRoZSBmb2xsb3dpbmcgbmluZSB3ZWVrcywgc2V0dGluZyB0aGUgVS5TLiByZWNvcmQgZm9yIHRoZSBsb25nZXN0IHRpbWUgc3BlbnQgYnkgYSBCZWF0bGVzIHNpbmdsZSBhdCBudW1iZXIgb25lLCBhcyB3ZWxsIGFzIGJlaW5nIHRoZSBsb25nZXN0LXBsYXlpbmcgc2luZ2xlIHRvIHJlYWNoIG51bWJlciBvbmUuIEJlY2F1c2Ugb2YgdGhlIFUuUy4gcHJhY3RpY2Ugb2YgY291bnRpbmcgc2FsZXMgYW5kIGFpcnBsYXkgZm9yIHRoZSBBLSBhbmQgQi1zaWRlcyBvZiBhIHNpbmdsZSBzZXBhcmF0ZWx5LCBhdCBvbmUgcG9pbnQgUmVjb3JkIFdvcmxkIGxpc3RlZCBcIkhleSBKdWRlXCIgYXQgbnVtYmVyIG9uZSwgZm9sbG93ZWQgYnkgaXRzIEItc2lkZSwgXCJSZXZvbHV0aW9uXCIsIGF0IG51bWJlciB0d28uXG5cbkFtZXJpY2FuIHJhZGlvIHN0YXRpb25zIHdlcmUgYXZlcnNlIHRvIHBsYXlpbmcgYW55dGhpbmcgbG9uZ2VyIHRoYW4gdGhlIHVzdWFsIHRocmVlIHRvIHRocmVlLWFuZC1hLWhhbGYgbWludXRlcywgYW5kIENhcGl0b2wgUmVjb3JkcyBwcmVzc2VkIGEgc2hvcnRlbmVkIHZlcnNpb24gb2YgdGhlIHNvbmcgc3BlY2lmaWNhbGx5IGZvciBhaXJwbGF5LiBcIkhleSBKdWRlXCIgY2xvY2tlZCBpbiBhdCBzZXZlbiBtaW51dGVzIGFuZCBlbGV2ZW4gc2Vjb25kcy4gVGhlIG9ubHkgb3RoZXIgY2hhcnQtdG9wcGluZyBzb25nIHdvcmxkd2lkZSBpbiB0aGUgMTk2MHMgdGhhdCByYW4gb3ZlciBzZXZlbiBtaW51dGVzIHdhcyBSaWNoYXJkIEhhcnJpcycgXCJNYWNBcnRodXIgUGFya1wiLiBJbiB0aGUgVUssIHdoZXJlIFwiTWFjQXJ0aHVyIFBhcmtcIiBkaWQgbm90IHRvcCB0aGUgY2hhcnQsIFwiSGV5IEp1ZGVcIiByZW1haW5lZCB0aGUgbG9uZ2VzdCBudW1iZXIgb25lIGhpdCBmb3IgbmVhcmx5IGEgcXVhcnRlciBvZiBhIGNlbnR1cnksIHVudGlsIGl0IHdhcyBzdXJwYXNzZWQgaW4gMTk5MyBieSBNZWF0IExvYWYncyBcIkknZCBEbyBBbnl0aGluZyBmb3IgTG92ZSAoQnV0IEkgV29uJ3QgRG8gVGhhdClcIiwgd2hpY2ggcmFuIHNldmVuIG1pbnV0ZXMgZmlmdHktZWlnaHQgc2Vjb25kcyBhcyBhIHNpbmdsZS5cblxuT24gMzAgTm92ZW1iZXIgMTk2OCBOTUUgcmVwb3J0ZWQgdGhhdCBzYWxlcyBoYWQgcmVhY2hlZCBuZWFybHkgc2l4IG1pbGxpb24gY29waWVzIHdvcmxkd2lkZS4gXCJIZXkgSnVkZVwiIGJlY2FtZSB0aGUgYmlnZ2VzdC1zZWxsaW5nIGRlYnV0IHJlbGVhc2UgZm9yIGEgcmVjb3JkIGxhYmVsIGV2ZXIsIHNlbGxpbmcgYW4gZXN0aW1hdGVkIGVpZ2h0IG1pbGxpb24gY29waWVzIHdvcmxkd2lkZSBhbmQgdG9wcGluZyB0aGUgY2hhcnRzIGluIGVsZXZlbiBkaWZmZXJlbnQgY291bnRyaWVzLiBJdCByZW1haW5zIHRoZSBCZWF0bGVzJyBtb3N0IGNvbW1lcmNpYWxseSBzdWNjZXNzZnVsIHNpbmdsZS4gXCJIZXkgSnVkZVwiIHdhcyB0aGUgdG9wIEJpbGxib2FyZCBIb3QgMTAwIHNpbmdsZSBmb3IgMTk2OCwgYWNjb3JkaW5nIHRvIHllYXItZW5kIGNoYXJ0cy4gV2hpbGUgdGhlIHJlY29yZCB3YXMgY2VydGlmaWVkIGdvbGQgdGhlIGRheSBiZWZvcmUgaXQgZW50ZXJlZCB0aGUgVS5TLiBjaGFydHMsIGl0IHRvb2sgYWxtb3N0IHRoaXJ0eSB5ZWFycyB0byBiZSBjZXJ0aWZpZWQgcGxhdGludW0sIG9uIDE3IEZlYnJ1YXJ5IDE5OTkuXG5cbkNyaXRpY2FsIHJlY2VwdGlvblxuXG5VcG9uIHRoZSByZWxlYXNlIG9mIHRoZSBcIkhleSBKdWRlXCIgc2luZ2xlLCBUaW1lIGNvbnRyYXN0ZWQgaXQgd2l0aCBpdHMgQi1zaWRlIFwiUmV2b2x1dGlvblwiLiBUaW1lIHdyb3RlLCBcIlRoZSBvdGhlciBzaWRlIG9mIHRoZSBuZXcgZGlzayB1cmdlcyBhY3RpdmlzbSBvZiBhIGRpZmZlcmVudCBzb3J0XCIgYXMgTWNDYXJ0bmV5IFwibGlsdGluZ2x5IGV4aG9ydHMgYSBmcmllbmQgdG8gb3ZlcmNvbWUgaGlzIGZlYXJzIGFuZCBjb21taXQgaGltc2VsZiBpbiBsb3ZlLlwiIE11c2ljIGFuYWx5c3QgQWxhbiBQb2xsYWNrIHByYWlzZWQgXCJIZXkgSnVkZVwiIHNheWluZywgXCJpdCdzIHN1Y2ggYSBnb29kIGlsbHVzdHJhdGlvbiBvZiB0d28gY29tcG9zaXRpb25hbCBsZXNzb25z4oCUaG93IHRvIGZpbGwgYSBsYXJnZSBjYW52YXMgd2l0aCBzaW1wbGUgbWVhbnMsIGFuZCBob3cgdG8gdXNlIGRpdmVyc2UgZWxlbWVudHMgc3VjaCBhcyBoYXJtb255LCBiYXNzbGluZSwgYW5kIG9yY2hlc3RyYXRpb24gdG8gYXJ0aWN1bGF0ZSBmb3JtIGFuZCBjb250cmFzdC5cIiBIZSBhbHNvIHNhaWQgaXQgaXMgdW51c3VhbCBmb3IgYSBsb25nIHNvbmcgYmVjYXVzZSBpdCB1c2VzIGEgXCJiaW5hcnkgZm9ybSB0aGF0IGNvbWJpbmVzIGEgZnVsbHkgZGV2ZWxvcGVkLCBoeW1uLWxpa2Ugc29uZyB0b2dldGhlciB3aXRoIGFuIGV4dGVuZGVkLCBtYW50cmEtbGlrZSBqYW0gb24gYSBzaW1wbGUgY2hvcmQgcHJvZ3Jlc3Npb24uXCIgUG9sbGFjayBkZXNjcmliZWQgdGhlIHNvbmcncyBsb25nIG91dHJvIGFuZCBmYWRlb3V0IGFzIFwiYW4gYXN0b25pc2hpbmdseSB0cmFuc2NlbmRlbnRhbCBlZmZlY3QsXCIgd2hpbGUgVW50ZXJiZXJnZXIgb2JzZXJ2ZWQsIFwiV2hhdCBjb3VsZCBoYXZlIHZlcnkgZWFzaWx5IGJlZW4gYm9yaW5nIGlzIGluc3RlYWQgaHlwbm90aWNcIi5cblxuXCJIZXkgSnVkZVwiIHdhcyBub21pbmF0ZWQgZm9yIHRoZSBHcmFtbXkgQXdhcmRzIG9mIDE5NjkgaW4gdGhlIFJlY29yZCBvZiB0aGUgWWVhciwgU29uZyBvZiB0aGUgWWVhciBhbmQgQmVzdCBQb3AgUGVyZm9ybWFuY2UgYnkgYSBEdW8gb3IgR3JvdXAgd2l0aCBWb2NhbCBjYXRlZ29yaWVzLCBidXQgZmFpbGVkIHRvIHdpbiBhbnkgb2YgdGhlbS4gSXQgZGlkIHdpbiB0aGUgMTk2OCBJdm9yIE5vdmVsbG8gQXdhcmQgZm9yIFwiQS1TaWRlIFdpdGggdGhlIEhpZ2hlc3QgU2FsZXNcIi4gSW4gdGhlIE5NRSAxOTY4IFJlYWRlcnMnIFBvbGwsIFwiSGV5IEp1ZGVcIiB3YXMgbmFtZWQgdGhlIGJlc3Qgc2luZ2xlIG9mIHRoZSB5ZWFyLiBJbiAyMDAxLCBcIkhleSBKdWRlXCIgd2FzIGluZHVjdGVkIGludG8gdGhlIE5hdGlvbmFsIEFjYWRlbXkgb2YgUmVjb3JkaW5nIEFydHMgYW5kIFNjaWVuY2VzIEdyYW1teSBIYWxsIG9mIEZhbWUuIEluIDIwMDQsIGl0IHdhcyByYW5rZWQgbnVtYmVyIDggb24gUm9sbGluZyBTdG9uZSBtYWdhemluZSdzIGxpc3Qgb2YgdGhlIDUwMCBncmVhdGVzdCBzb25ncyBvZiBhbGwgdGltZS4gSXQgY2FtZSBpbiB0aGlyZCBvbiBDaGFubmVsIDQncyBsaXN0IG9mIDEwMCBHcmVhdGVzdCBTaW5nbGVzLiBUaGUgQW11c2VtZW50ICYgTXVzaWMgT3BlcmF0b3JzIEFzc29jaWF0aW9uIHJhbmtlZCBcIkhleSBKdWRlXCIgdGhlIDExdGgtYmVzdCBqdWtlYm94IHNpbmdsZSBvZiBhbGwgdGltZS5cblxuUHJvbW90aW9uYWwgZmlsbVxuXG5UaGUgQmVhdGxlcyBoaXJlZCBNaWNoYWVsIExpbmRzYXktSG9nZyB0byBzaG9vdCB0aGUgXCJIZXkgSnVkZVwiIHByb21vdGlvbmFsIGZpbG0uIEhvZ2cgaGFkIHByZXZpb3VzbHkgZGlyZWN0ZWQgYSBcInByb21vXCIgZmlsbSBmb3IgXCJQYXBlcmJhY2sgV3JpdGVyLlwiIFRoZXkgc2V0dGxlZCBvbiB0aGUgaWRlYSBvZiBmaWxtaW5nIHdpdGggYSBsaXZl4oCUYWxiZWl0IGNvbnRyb2xsZWTigJRhdWRpZW5jZS4gSG9nZyBzaG90IHRoZSBwcm9tb3Rpb25hbCBmaWxtIGZvciBUaGUgRnJvc3QgUHJvZ3JhbW1lLCB3aXRoIE1jQ2FydG5leSBoaW1zZWxmIGRlc2lnbmluZyB0aGUgc2V0LiBUb255IEJyYW13ZWxsLCBhIGZyaWVuZCBvZiB0aGUgQmVhdGxlcywgbGF0ZXIgZGVzY3JpYmVkIHRoZSBzZXQgYXMgXCJ0aGUgcGlhbm8sIHRoZXJlOyBkcnVtcywgdGhlcmU7IGFuZCBvcmNoZXN0cmEgaW4gdHdvIHRpZXJzIGF0IHRoZSBiYWNrLlwiIFRoZSBldmVudHVhbCBmaW5hbCBmaWxtIHdhcyBhIGNvbWJpbmF0aW9uIG9mIHR3byBkaWZmZXJlbnQgdGFrZXMsIGFuZCBmaXJzdCBhaXJlZCBvbiA4IFNlcHRlbWJlciAxOTY4IHdpdGggRGF2aWQgRnJvc3QgaW50cm9kdWNpbmcgdGhlIEJlYXRsZXMgYXMgXCJ0aGUgZ3JlYXRlc3QgdGVhLXJvb20gb3JjaGVzdHJhIGluIHRoZSB3b3JsZFwiLiBUaGUgZmlsbSB3YXMgbGF0ZXIgYnJvYWRjYXN0IGZvciB0aGUgVW5pdGVkIFN0YXRlcyBvbiBUaGUgU21vdGhlcnMgQnJvdGhlcnMgQ29tZWR5IEhvdXIgb24gNiBPY3RvYmVyIDE5NjguIEZvb3RhZ2Ugb2YgdGhlIHBlcmZvcm1hbmNlIGNhbiBiZSBzZWVuIGluIHRoZSBBbnRob2xvZ3kgRFZEIHNlcmllcy4gPGEgaHJlZj1cImh0dHA6Ly93d3cubGFzdC5mbS9tdXNpYy9UaGUrQmVhdGxlcy9fL0hleStKdWRlXCI+UmVhZCBtb3JlIG9uIExhc3QuZm08L2E+LiBVc2VyLWNvbnRyaWJ1dGVkIHRleHQgaXMgYXZhaWxhYmxlIHVuZGVyIHRoZSBDcmVhdGl2ZSBDb21tb25zIEJ5LVNBIExpY2Vuc2U7IGFkZGl0aW9uYWwgdGVybXMgbWF5IGFwcGx5LiJ9fX0=
+  recorded_at: Mon, 15 Sep 2025 10:42:35 GMT
+- request:
+    method: get
+    uri: http://ws.audioscrobbler.com/2.0/?api_key=<LASTFM_API_KEY>&artist=The%20Beatles&format=json&method=artist.getInfo
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.13.6.2
+      Date:
+      - Mon, 15 Sep 2025 10:42:35 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '14465'
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '86400'
+      Via:
+      - 1.1 google
+    body:
+      encoding: UTF-8
+      string: '{"artist":{"name":"The Beatles","mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d","url":"https://www.last.fm/music/The+Beatles","image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"mega"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":""}],"streamable":"0","ontour":"0","stats":{"listeners":"6235831","playcount":"1031054200"},"similar":{"artist":[{"name":"John
+        Lennon","url":"https://www.last.fm/music/John+Lennon","image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"mega"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":""}]},{"name":"George
+        Harrison","url":"https://www.last.fm/music/George+Harrison","image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"mega"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":""}]},{"name":"Paul
+        McCartney","url":"https://www.last.fm/music/Paul+McCartney","image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"mega"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":""}]},{"name":"Wings","url":"https://www.last.fm/music/Wings","image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"mega"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":""}]},{"name":"Paul
+        McCartney & Wings","url":"https://www.last.fm/music/Paul+McCartney+&+Wings","image":[{"#text":"https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"small"},{"#text":"https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"medium"},{"#text":"https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png","size":"large"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"extralarge"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":"mega"},{"#text":"https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png","size":""}]}]},"tags":{"tag":[{"name":"classic
+        rock","url":"https://www.last.fm/tag/classic+rock"},{"name":"rock","url":"https://www.last.fm/tag/rock"},{"name":"british","url":"https://www.last.fm/tag/british"},{"name":"60s","url":"https://www.last.fm/tag/60s"},{"name":"pop","url":"https://www.last.fm/tag/pop"}]},"bio":{"links":{"link":{"#text":"","rel":"original","href":"https://last.fm/music/The+Beatles/+wiki"}},"published":"03
+        Feb 2006, 06:05","summary":"The Beatles were an English rock band formed in
+        Liverpool, Lancashire in 1960. With the line-up comprising John Lennon, Paul
+        McCartney,  George Harrison, and Ringo Starr, they are regarded as the most
+        popular and influential band of all time. The group was integral to the development
+        of 1960s counterculture and popular music''s recognition as an art form. Rooted
+        in skiffle, beat and 1950s rock and roll, their sound incorporated elements
+        of classical <a href=\"https://www.last.fm/music/The+Beatles\">Read more on
+        Last.fm</a>","content":"The Beatles were an English rock band formed in Liverpool,
+        Lancashire in 1960. With the line-up comprising John Lennon, Paul McCartney,  George
+        Harrison, and Ringo Starr, they are regarded as the most popular and influential
+        band of all time. The group was integral to the development of 1960s counterculture
+        and popular music''s recognition as an art form. Rooted in skiffle, beat and
+        1950s rock and roll, their sound incorporated elements of classical music
+        and traditional pop in innovative ways; the band later explored music styles
+        ranging from ballads and Indian music to psychedelia and hard rock. As pioneers
+        in recording, songwriting and artistic presentation, the group revolutionized
+        many aspects of the music industry and were often publicized as leaders of
+        the era''s youth and socio-cultural movements. \n\nLed by primary songwriters
+        Lennon and McCartney, the Beatles built their reputation playing clubs in
+        Liverpool and Hamburg over three years from 1960, initially with Stuart Sutcliffe
+        playing bass. The core trio of Lennon, McCartney and Harrison, together since
+        1958, went through a succession of drummers, eventually settling with Pete
+        Best in 1960, who played with them for two years before being replaced with
+        then Rory Storm & The Hurricanes drummer Ringo Starr in 1962. Manager Brian
+        Epstein molded them into a professional act and producer George Martin guided
+        and developed their recordings, greatly expanding their domestic success after
+        their first hit, \"Love Me Do\", in late 1962. As their popularity grew into
+        the intense fan frenzy dubbed \"Beatlemania\", the band acquired the nickname
+        \"the Fab Four\", with Epstein, Martin and other members of the band''s entourage
+        sometimes given the informal title of \"fifth Beatle\".\n\nBy early 1964,
+        the Beatles were international stars, leading the \"British Invasion\" of
+        the United States pop market and breaking numerous sales records. They soon
+        made their film debut with A Hard Day''s Night (1964). From 1965 onwards,
+        they produced increasingly innovative recordings, including the albums Rubber
+        Soul (1965), Revolver (1966) and Sgt. Pepper''s Lonely Hearts Club Band (1967),
+        and enjoyed further commercial success with The Beatles (also known as \"the
+        White Album\", 1968) and Abbey Road (1969). In 1968, they founded Apple Corps,
+        a multi-armed multimedia corporation that continues to oversee projects related
+        to the band''s legacy. After the group''s break-up in 1970, all four members
+        enjoyed success as solo artists. Lennon was shot and killed in December 1980,
+        and Harrison died of lung cancer in November 2001. McCartney and Starr remain
+        musically active.\n\nThe Beatles are the best-selling music act of all time,
+        with estimated sales of 600 million units worldwide. They hold the record
+        for most number-one albums on the UK Albums Chart, most number-one hits on
+        the Billboard Hot 100 chart, and most singles sold in the UK. The group was
+        inducted into the Rock and Roll Hall of Fame in 1988, and all four main members
+        were inducted individually between 1994 and 2015. In 2008, the group topped
+        Billboard''s list of the all-time most successful artists on the Billboard
+        Hot 100. The band received seven Grammy Awards, four Brit Awards, an Academy
+        Award (for Best Original Song Score for the 1970 film Let It Be) and fifteen
+        Ivor Novello Awards. Time magazine named them among the 20th century''s 100
+        most important people.\n\nFormer Rolling Stone associate editor Robert Greenfield
+        compared the Beatles to Picasso, as \"artists who broke through the constraints
+        of their time period to come up with something that was unique and original
+        \"... In the form of popular music, no one will ever be more revolutionary,
+        more creative and more distinctive ...\" The British poet Philip Larkin described
+        their work as \"an enchanting and intoxicating hybrid of African-American
+        rock-and-roll with their own adolescent romanticism\", and \"the first advance
+        in popular music since the War\".\n\nThey not only sparked the British Invasion
+        of the US, they became a globally influential phenomenon as well. From the
+        1920s, the US had dominated popular entertainment culture throughout much
+        of the world, via Hollywood films, jazz, the music of Broadway and Tin Pan
+        Alley and, later, the rock and roll that first emerged in Memphis, Tennessee.
+        The Beatles are regarded as British cultural icons, with young adults from
+        abroad naming the band among a group of people that they most associated with
+        UK culture.\n\nTheir musical innovations and commercial success inspired musicians
+        worldwide. Many artists have acknowledged the Beatles'' influence and enjoyed
+        chart success with covers of their songs. On radio, their arrival marked the
+        beginning of a new era; in 1968 the programme director of New York''s WABC
+        radio station forbade his DJs from playing any \"pre-Beatles\" music, marking
+        the defining line of what would be considered oldies on American radio. They
+        helped to redefine the album as something more than just a few hits padded
+        out with \"filler\", and they were primary innovators of the modern music
+        video. The Shea Stadium show with which they opened their 1965 North American
+        tour attracted an estimated 55,600 people, then the largest audience in concert
+        history; Spitz describes the event as a \"major breakthrough ... a giant step
+        toward reshaping the concert business\". Emulation of their clothing and especially
+        their hairstyles, which became a mark of rebellion, had a global impact on
+        fashion.\n\nAccording to Gould, the Beatles changed the way people listened
+        to popular music and experienced its role in their lives. From what began
+        as the Beatlemania fad, the group''s popularity grew into what was seen as
+        an embodiment of socio-cultural movements of the decade. As icons of the 1960s
+        counterculture, Gould continues, they became a catalyst for bohemianism and
+        activism in various social and political arenas, fuelling movements such as
+        women''s liberation, gay liberation and environmentalism. According to Peter
+        Lavezzoli, after the \"more popular than Jesus\" controversy in 1966, the
+        Beatles felt considerable pressure to say the right things and \"began a concerted
+        effort to spread a message of wisdom and higher consciousness\".\n\n\nOther
+        commentators such as Mikal Gilmore and Todd Leopold have traced the inception
+        of their socio-cultural impact earlier, interpreting even the Beatlemania
+        period, particularly on their first visit to the US, as a key moment in the
+        development of generational awareness. Referring to their appearance on the
+        Ed Sullivan Show Leopold states: \"In many ways, the Sullivan appearance marked
+        the beginning of a cultural revolution ... The Beatles were like aliens dropped
+        into the United States of 1964.\n\nIn 1965, Queen Elizabeth II appointed Lennon,
+        McCartney, Harrison and Starr Members of the Order of the British Empire (MBE).
+        The Beatles won the 1971 Academy Award for Best Original Song Score for the
+        film Let It Be (1970). The recipients of seven Grammy Awards and fifteen Ivor
+        Novello Awards, the Beatles have six Diamond albums, as well as 20 Multi-Platinum
+        albums, 16 Platinum albums and six Gold albums in the US. In the UK, the Beatles
+        have four Multi-Platinum albums, four Platinum albums, eight Gold albums and
+        one Silver album. They were inducted into the Rock and Roll Hall of Fame in
+        1988.\n\nThe best-selling band in history, the Beatles have sold more than
+        800 million physical and digital albums as of 2013. They have had more number-one
+        albums on the UK charts, fifteen, and sold more singles in the UK, 21.9 million,
+        than any other act. In 2004, Rolling Stone ranked the Beatles as the most
+        significant and influential rock music artists of the last 50 years. They
+        ranked number one on Billboard magazine''s list of the all-time most successful
+        Hot 100 artists, released in 2008 to celebrate the US singles chart''s 50th
+        anniversary. As of 2017, they hold the record for most number-one hits on
+        the Billboard Hot 100, with twenty. The Recording Industry Association of
+        America certifies that the Beatles have sold 178 million units in the US,
+        more than any other artist. They were collectively included in Time magazine''s
+        compilation of the 20th century''s 100 most influential people. In 2014, they
+        received the Grammy Lifetime Achievement Award.\n\nThere are two holidays
+        celebrated for the Beatles: Global Beatles Day on 25 June each year. On that
+        date in 1967, the band performed \"All You Need Is Love\" on television. In
+        2001, UNESCO created World Beatles Day on 16 January each year. This date
+        has direct relation to the opening of The Cavern Club in 1957.\n\nFive asteroids,
+        4147 Lennon, 4148 McCartney, 4149 Harrison, 4150 Starr and 8749 Beatles are
+        named after the Beatles. <a href=\"https://www.last.fm/music/The+Beatles\">Read
+        more on Last.fm</a>. User-contributed text is available under the Creative
+        Commons By-SA License; additional terms may apply."}}}'
+  recorded_at: Mon, 15 Sep 2025 10:42:35 GMT
+recorded_with: VCR 6.3.1

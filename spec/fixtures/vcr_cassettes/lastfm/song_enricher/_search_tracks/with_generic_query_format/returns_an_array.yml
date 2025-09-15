@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://ws.audioscrobbler.com/2.0/?api_key=<LASTFM_API_KEY>&artist=Hey%20Jude&format=json&limit=3&method=track.search&track=Hey%20Jude
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.13.6.2
+      Date:
+      - Mon, 15 Sep 2025 10:42:33 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1113'
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '86400'
+      Via:
+      - 1.1 google
+    body:
+      encoding: UTF-8
+      string: '{"results":{"opensearch:Query":{"#text":"","role":"request","searchTerms":"Hey
+        Jude","startPage":"1"},"opensearch:totalResults":"52","opensearch:startIndex":"0","opensearch:itemsPerPage":"3","trackmatches":{"track":[{"name":"hey
+        jude","artist":"HEY JUDE","url":"https://www.last.fm/music/HEY+JUDE/_/hey+jude","streamable":"0","listeners":"197","image":[{"#text":"","size":"small"},{"#text":"","size":"medium"},{"#text":"","size":"large"},{"#text":"","size":"extralarge"}],"mbid":""},{"name":"Hey
+        Jude - The Beatles Tribute","artist":"HEY JUDE","url":"https://www.last.fm/music/HEY+JUDE/_/Hey+Jude+-+The+Beatles+Tribute","streamable":"0","listeners":"959","image":[{"#text":"","size":"small"},{"#text":"","size":"medium"},{"#text":"","size":"large"},{"#text":"","size":"extralarge"}],"mbid":""},{"name":"Across
+        The Universe","artist":"HEY JUDE","url":"https://www.last.fm/music/HEY+JUDE/_/Across+The+Universe","streamable":"0","listeners":"103","image":[{"#text":"","size":"small"},{"#text":"","size":"medium"},{"#text":"","size":"large"},{"#text":"","size":"extralarge"}],"mbid":""}]},"@attr":{"for":"Hey
+        Jude"}}}'
+  recorded_at: Mon, 15 Sep 2025 10:42:33 GMT
+recorded_with: VCR 6.3.1
