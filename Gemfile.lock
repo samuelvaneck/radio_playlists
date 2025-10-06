@@ -544,6 +544,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  activerecord-session_store (~> 2.2)
   annotaterb
   bootsnap
   brakeman
