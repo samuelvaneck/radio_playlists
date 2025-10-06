@@ -23,8 +23,23 @@ module Api
         private
 
         def respond_with(admin, _opts = {})
+          # Create refresh token for this session
+          refresh_token = RefreshToken.create!(admin: admin, session_id: session_id)
+
+          # Set refresh token as HttpOnly cookie for web clients
+          cookies.encrypted[:refresh_token] = {
+            value: refresh_token.token,
+            httponly: true,
+            secure: Rails.env.production?, # Only send over HTTPS in production
+            same_site: :lax,
+            expires: refresh_token.expires_at
+          }
+
           data = AdminSerializer.new(admin).serializable_hash[:data][:attributes]
           data[:token] = current_token
+          # Also include in response body for mobile/non-browser clients
+          data[:refresh_token] = refresh_token.token
+          data[:refresh_token_expires_at] = refresh_token.expires_at
 
           render json: {
             status: { code: 200, message: 'Logged in successfully' },
@@ -37,17 +52,21 @@ module Api
         end
 
         def respond_to_on_destroy
+          cookies.delete(:refresh_token) # Clear refresh token cookie
           render json: { message: 'Logged out successfully' }, status: :ok
         end
 
         def destroy_refresh_tokens
-          session_token = session.delete(:refresh_token)
-          return if session_token.blank?
+          return if current_admin.blank?
 
-          refresh_token = RefreshToken.find_by(token: session_token[:token], session_id:, admin: current_admin)
-          refresh_token&.destroy
-        rescue JWT::DecodeError => e
-          Rails.logger.error("JWT Decode Error: #{e.message}")
+          # Destroy all refresh tokens for this admin on logout
+          current_admin.refresh_tokens.destroy_all
+        rescue StandardError => e
+          Rails.logger.error("Error destroying refresh tokens: #{e.message}")
+        end
+
+        def session_id
+          request.session_options[:id].to_s
         end
       end
     end
