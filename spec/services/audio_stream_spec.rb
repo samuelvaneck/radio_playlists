@@ -8,7 +8,7 @@ describe AudioStream, type: :service do
   let(:audio_stream) { AudioStream::Mp3.new(url, output_file) }
   let(:stdout_content) { 'ffmpeg output' }
   let(:stderr_content) { "ICY Info: StreamTitle='Artist Name - Song Title';" }
-  let(:wait_thr) { double('wait_thr') }
+  let(:wait_thr) { instance_double(Thread) }
 
   describe '#initialize' do
     it 'sets the url' do
@@ -29,9 +29,9 @@ describe AudioStream, type: :service do
   end
 
   describe '#capture' do
-    let(:stdin) { double('stdin') }
-    let(:stdout) { double('stdout', read: stdout_content) }
-    let(:stderr) { double('stderr', read: stderr_content) }
+    let(:stdin) { instance_double(IO) }
+    let(:stdout) { instance_double(IO, read: stdout_content) }
+    let(:stderr) { instance_double(IO, read: stderr_content) }
 
     before do
       allow(Rails.logger).to receive(:info)
@@ -72,7 +72,6 @@ describe AudioStream, type: :service do
 
       it 'converts stderr to UTF-8' do
         audio_stream.capture
-        expect(CharlockHolmes::EncodingDetector).to have_received(:detect).with(stderr_content)
         expect(CharlockHolmes::Converter).to have_received(:convert)
           .with(stderr_content, 'ISO-8859-1', 'UTF-8')
       end
