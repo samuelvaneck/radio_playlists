@@ -66,7 +66,7 @@ describe Api::V1::SongsController do
       expect(response.status).to eq 200
     end
 
-    it 'returns peak_play_times data' do
+    it 'returns peak_play_times data', :aggregate_failures do
       get_time_analytics
       expect(json).to have_key(:peak_play_times)
       expect(json[:peak_play_times]).to have_key(:peak_hour)
@@ -81,7 +81,7 @@ describe Api::V1::SongsController do
       expect(json).to have_key(:play_frequency_trend)
     end
 
-    it 'returns lifecycle_stats data' do
+    it 'returns lifecycle_stats data', :aggregate_failures do
       get_time_analytics
       expect(json).to have_key(:lifecycle_stats)
       expect(json[:lifecycle_stats]).to have_key(:first_play)

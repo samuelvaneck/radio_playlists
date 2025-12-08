@@ -9,12 +9,14 @@ RSpec.describe TimeAnalyticsConcern do
   let(:radio_station_two) { create(:radio_station) }
 
   describe '#peak_play_hours' do
-    let!(:air_play_8am_1) { create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 15, 8, 0, 0)) }
-    let!(:air_play_8am_2) { create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 15, 8, 30, 0)) }
-    let!(:air_play_14pm) { create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 15, 14, 0, 0)) }
-    let!(:air_play_20pm) { create(:air_play, song: song, radio_station: radio_station_two, broadcasted_at: Time.utc(2024, 1, 15, 20, 0, 0)) }
+    before do
+      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 15, 8, 0, 0))
+      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 15, 8, 30, 0))
+      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 15, 14, 0, 0))
+      create(:air_play, song: song, radio_station: radio_station_two, broadcasted_at: Time.utc(2024, 1, 15, 20, 0, 0))
+    end
 
-    it 'returns hour distribution with play counts' do
+    it 'returns hour distribution with play counts', :aggregate_failures do
       result = song.peak_play_hours
       expect(result[8]).to eq(2)
       expect(result[14]).to eq(1)
@@ -27,7 +29,7 @@ RSpec.describe TimeAnalyticsConcern do
     end
 
     context 'with radio_station_ids filter' do
-      it 'filters by radio station' do
+      it 'filters by radio station', :aggregate_failures do
         result = song.peak_play_hours(radio_station_ids: [radio_station_one.id])
         expect(result[8]).to eq(2)
         expect(result[14]).to eq(1)
@@ -45,7 +47,7 @@ RSpec.describe TimeAnalyticsConcern do
       create(:air_play, song: song, radio_station: radio_station_two, broadcasted_at: Time.zone.local(2024, 1, 21, 10, 0, 0)) # Sunday
     end
 
-    it 'returns day of week distribution with play counts' do
+    it 'returns day of week distribution with play counts', :aggregate_failures do
       result = song.peak_play_days
       expect(result[1]).to eq(2) # Monday
       expect(result[5]).to eq(1) # Friday
@@ -58,7 +60,7 @@ RSpec.describe TimeAnalyticsConcern do
     end
 
     context 'with radio_station_ids filter' do
-      it 'filters by radio station' do
+      it 'filters by radio station', :aggregate_failures do
         result = song.peak_play_days(radio_station_ids: [radio_station_one.id])
         expect(result[1]).to eq(2) # Monday
         expect(result[5]).to eq(1) # Friday
@@ -68,25 +70,27 @@ RSpec.describe TimeAnalyticsConcern do
   end
 
   describe '#peak_play_times_summary' do
-    # Using UTC times - Jan 15, 2024 is a Monday
-    let!(:air_play_monday_8am_1) { create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 15, 8, 0, 0)) }
-    let!(:air_play_monday_8am_2) { create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 15, 8, 30, 0)) }
-    let!(:air_play_tuesday_14pm) { create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 16, 14, 0, 0)) }
+    before do
+      # Using UTC times - Jan 15, 2024 is a Monday
+      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 15, 8, 0, 0))
+      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 15, 8, 30, 0))
+      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: Time.utc(2024, 1, 16, 14, 0, 0))
+    end
 
-    it 'returns a summary with peak hour and day' do
+    it 'returns a summary with peak hour and day', :aggregate_failures do
       result = song.peak_play_times_summary
       expect(result[:peak_hour]).to eq(8)
       expect(result[:peak_day]).to eq(1) # Monday
       expect(result[:peak_day_name]).to eq('Monday')
     end
 
-    it 'includes hourly distribution' do
+    it 'includes hourly distribution', :aggregate_failures do
       result = song.peak_play_times_summary
       expect(result[:hourly_distribution]).to be_a(Hash)
       expect(result[:hourly_distribution][8]).to eq(2)
     end
 
-    it 'includes daily distribution with day names' do
+    it 'includes daily distribution with day names', :aggregate_failures do
       result = song.peak_play_times_summary
       expect(result[:daily_distribution]).to be_a(Hash)
       expect(result[:daily_distribution]['Monday']).to eq(2)
@@ -115,7 +119,7 @@ RSpec.describe TimeAnalyticsConcern do
         expect(result).to include(:trend, :trend_percentage, :weekly_counts, :first_period_avg, :second_period_avg)
       end
 
-      it 'detects rising trend' do
+      it 'detects rising trend', :aggregate_failures do
         result = song.play_frequency_trend(weeks: 4)
         expect(result[:trend]).to eq(:rising)
         expect(result[:trend_percentage]).to be > 10
@@ -141,7 +145,7 @@ RSpec.describe TimeAnalyticsConcern do
         create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: 1.week.ago)
       end
 
-      it 'detects falling trend' do
+      it 'detects falling trend', :aggregate_failures do
         result = song.play_frequency_trend(weeks: 4)
         expect(result[:trend]).to eq(:falling)
         expect(result[:trend_percentage]).to be < -10
@@ -224,7 +228,7 @@ RSpec.describe TimeAnalyticsConcern do
         create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: 1.day.ago)
       end
 
-      it 'returns first and last play dates' do
+      it 'returns first and last play dates', :aggregate_failures do
         result = song.lifecycle_stats
         expect(result[:first_play]).to be_within(1.minute).of(30.days.ago)
         expect(result[:last_play]).to be_within(1.minute).of(1.day.ago)
@@ -235,7 +239,7 @@ RSpec.describe TimeAnalyticsConcern do
         expect(result[:total_plays]).to eq(5)
       end
 
-      it 'returns days since first and last play' do
+      it 'returns days since first and last play', :aggregate_failures do
         result = song.lifecycle_stats
         expect(result[:days_since_first_play]).to eq(30)
         expect(result[:days_since_last_play]).to eq(1)
@@ -251,13 +255,13 @@ RSpec.describe TimeAnalyticsConcern do
         expect(result[:unique_days_played]).to eq(5)
       end
 
-      it 'returns average plays per day' do
+      it 'returns average plays per day', :aggregate_failures do
         result = song.lifecycle_stats
         expect(result[:average_plays_per_day]).to be_a(Float)
         expect(result[:average_plays_per_day]).to be > 0
       end
 
-      it 'returns play consistency percentage' do
+      it 'returns play consistency percentage', :aggregate_failures do
         result = song.lifecycle_stats
         expect(result[:play_consistency]).to be_a(Float)
         expect(result[:play_consistency]).to be_between(0, 100)
@@ -278,7 +282,7 @@ RSpec.describe TimeAnalyticsConcern do
         create(:air_play, song: song, radio_station: radio_station_two, broadcasted_at: 1.day.ago)
       end
 
-      it 'filters by radio station' do
+      it 'filters by radio station', :aggregate_failures do
         result_all = song.lifecycle_stats
         result_filtered = song.lifecycle_stats(radio_station_ids: [radio_station_one.id])
 
