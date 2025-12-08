@@ -18,7 +18,7 @@ Radio Playlists is a Ruby on Rails application designed listen to and process th
 - **Package Management**: Yarn, npm, Bundler
 - **Database**: PostgreSQL (or other supported databases)
 - **Song Recognition**: SongRec
-- **Song enrichment**: Spotify API
+- **Song enrichment**: Spotify API, Last.fm API
 - **Audio Processing**: FFMpeg
 - **Sidekiq**: For background job processing
 - **Monitoring**: New Relic
@@ -49,17 +49,24 @@ Radio Playlists is a Ruby on Rails application designed listen to and process th
    Follow the installation on https://github.com/marin-m/SongRec
 4. Install FFMpeg:
    Follow the installation on https://ffmpeg.org/download.html
-5. Create, migrate and seed the database:
+5. Set up Last.fm API credentials (optional):
+   - Get an API key from https://www.last.fm/api/account/create
+   - Set environment variables:
+     ```bash
+     export LASTFM_API_KEY=your_api_key
+     export LASTFM_API_SECRET=your_api_secret
+     ```
+6. Create, migrate and seed the database:
    ```bash
    rails db:create
    rails db:schema:load
    rails db:seed
    ```
-6. Start  the Rails server:
+7. Start  the Rails server:
    ```bash
    rails server
    ```
-7. Start the Sidekiq worker:
+8. Start the Sidekiq worker:
    ```bash
     bundle exec sidekiq
     ```
