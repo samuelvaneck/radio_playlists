@@ -30,6 +30,7 @@ class Song < ApplicationRecord
   include GraphConcern
   include DateConcern
   include ChartConcern
+  include TimeAnalyticsConcern
 
   has_many :artists_songs
   has_many :artists, through: :artists_songs

@@ -57,4 +57,59 @@ describe Api::V1::SongsController do
       end
     end
   end
+
+  describe 'GET #time_analytics' do
+    subject(:get_time_analytics) { get :time_analytics, params: { id: song.id, format: :json } }
+
+    it 'returns status OK/200' do
+      get_time_analytics
+      expect(response.status).to eq 200
+    end
+
+    it 'returns peak_play_times data', :aggregate_failures do
+      get_time_analytics
+      expect(json).to have_key(:peak_play_times)
+      expect(json[:peak_play_times]).to have_key(:peak_hour)
+      expect(json[:peak_play_times]).to have_key(:peak_day)
+      expect(json[:peak_play_times]).to have_key(:peak_day_name)
+      expect(json[:peak_play_times]).to have_key(:hourly_distribution)
+      expect(json[:peak_play_times]).to have_key(:daily_distribution)
+    end
+
+    it 'returns play_frequency_trend data' do
+      get_time_analytics
+      expect(json).to have_key(:play_frequency_trend)
+    end
+
+    it 'returns lifecycle_stats data', :aggregate_failures do
+      get_time_analytics
+      expect(json).to have_key(:lifecycle_stats)
+      expect(json[:lifecycle_stats]).to have_key(:first_play)
+      expect(json[:lifecycle_stats]).to have_key(:last_play)
+      expect(json[:lifecycle_stats]).to have_key(:total_plays)
+      expect(json[:lifecycle_stats]).to have_key(:days_active)
+    end
+
+    context 'with radio_station_ids filter' do
+      subject(:get_time_analytics_filtered) do
+        get :time_analytics, params: { id: song.id, radio_station_ids: [radio_station_one.id], format: :json }
+      end
+
+      it 'returns filtered lifecycle_stats' do
+        get_time_analytics_filtered
+        expect(json[:lifecycle_stats][:total_plays]).to eq(1)
+      end
+    end
+
+    context 'with weeks parameter' do
+      subject(:get_time_analytics_with_weeks) do
+        get :time_analytics, params: { id: song.id, weeks: 8, format: :json }
+      end
+
+      it 'returns status OK/200' do
+        get_time_analytics_with_weeks
+        expect(response.status).to eq 200
+      end
+    end
+  end
 end

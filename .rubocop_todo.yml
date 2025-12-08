@@ -114,6 +114,11 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Max: 140
 
+# Offense count: 1
+# Configuration parameters: CountComments, CountAsOne.
+Metrics/ModuleLength:
+  Max: 120
+
 # Offense count: 5
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/CyclomaticComplexity:
@@ -168,6 +173,11 @@ Performance/StringReplacement:
 RSpec/AnyInstance:
   Exclude:
     - 'spec/models/radio_station_spec.rb'
+
+# Offense count: 2
+# Configuration parameters: CountAsOne.
+RSpec/ExampleLength:
+  Max: 8
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
