@@ -32,6 +32,7 @@ gem 'turbolinks'
 gem 'uglifier'
 gem 'uri', '~> 1.0.2'
 gem 'will_paginate'
+gem 'seed-fu', '~> 2.3'
 
 # Until mail gem is updated
 # https://github.com/mikel/mail/pull/1439
