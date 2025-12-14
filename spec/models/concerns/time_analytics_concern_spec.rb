@@ -203,10 +203,13 @@ RSpec.describe TimeAnalyticsConcern do
 
   describe '#trending_down?' do
     before do
-      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: 3.weeks.ago)
-      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: 3.weeks.ago + 1.day)
-      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: 3.weeks.ago + 2.days)
-      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: 1.week.ago)
+      # Use beginning_of_week + 12.hours to ensure plays fall within the correct calendar week
+      # even after timezone conversion (midnight local time can become previous day in UTC)
+      week_three = 3.weeks.ago.beginning_of_week + 12.hours
+      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: week_three)
+      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: week_three + 1.day)
+      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: week_three + 2.days)
+      create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: 1.week.ago.beginning_of_week + 12.hours)
     end
 
     it 'returns true when song is trending down' do
