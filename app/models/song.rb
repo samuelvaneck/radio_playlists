@@ -142,7 +142,7 @@ class Song < ApplicationRecord
   end
 
   def cleanup_radio_station_songs(songs, most_played_song)
-    RadioStation.all.each do |radio_station|
+    RadioStation.unscoped.find_each do |radio_station|
       air_plays = AirPlay.where(song: [songs, most_played_song], radio_station:)
       next if air_plays.blank?
 

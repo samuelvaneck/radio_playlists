@@ -50,12 +50,13 @@ module GraphConcern
     end
 
     def format_graph_data(air_plays, strftime_value)
-      # result['2022-01-01'][radio_station_id]'] = 1
+      # result['2022-01-01'][radio_station_id] = count
       air_plays.each_with_object({}) do |air_play, result|
         broadcasted_at, radio_station_id = air_play.values_at(:broadcasted_at, :radio_station_id)
-        result[broadcasted_at.strftime(strftime_value)] ||= {}
-        result[broadcasted_at.strftime(strftime_value)][radio_station_id] ||= []
-        result[broadcasted_at.strftime(strftime_value)][radio_station_id] << air_play
+        date_key = broadcasted_at.strftime(strftime_value)
+        result[date_key] ||= {}
+        result[date_key][radio_station_id] ||= 0
+        result[date_key][radio_station_id] += 1
       end
     end
 
@@ -65,24 +66,23 @@ module GraphConcern
       min_date_i = min_date.present? ? min_date.to_datetime.beginning_of_day.to_i : time_step.send(:ago).beginning_of_day.to_i
       max_date_i = max_date.present? ? max_date.to_datetime.end_of_day.to_i : Time.zone.now.end_of_day.to_i
 
+      # Cache radio stations to avoid repeated queries
+      radio_stations = RadioStation.unscoped.pluck(:id, :name).to_h
+
       (min_date_i..max_date_i).step(time_step).map do |date|
         date = Time.zone.at(date).strftime(strftime_value)
         result = { date: }
         grouped_air_plays = air_plays[date]
 
-        RadioStation.find_each do |radio_station|
-          result[radio_station.name] = if grouped_air_plays && grouped_air_plays[radio_station.id]
-                                         grouped_air_plays[radio_station.id].count
-                                       else
-                                         0
-                                       end
+        radio_stations.each do |radio_station_id, radio_station_name|
+          result[radio_station_name] = grouped_air_plays&.dig(radio_station_id) || 0
         end
         result
       end
     end
 
     def legend_data_column
-      { columns: RadioStation.all.map(&:name) }
+      { columns: RadioStation.unscoped.pluck(:name) }
     end
   end
 end

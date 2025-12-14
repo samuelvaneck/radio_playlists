@@ -1,4 +1,6 @@
 class SongRecognizerCache
+  CACHE_EXPIRY = 2.hours
+
   attr_reader :radio_station_id, :title, :artist_name
 
   def initialize(**args)
@@ -12,7 +14,6 @@ class SongRecognizerCache
       delete_cache
       true
     else
-      delete_cache
       create_cache
       false
     end
@@ -29,10 +30,10 @@ class SongRecognizerCache
   end
 
   def create_cache
-    Rails.cache.write(cache_key, Time.zone.now.to_i)
+    Rails.cache.write(cache_key, Time.zone.now.to_i, expires_in: CACHE_EXPIRY)
   end
 
   def delete_cache
-    Rails.cache.delete_matched("#{@radio_station_id}-*")
+    Rails.cache.delete(cache_key)
   end
 end

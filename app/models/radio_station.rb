@@ -112,7 +112,10 @@ class RadioStation < ActiveRecord::Base
   end
 
   def songs_played_last_hour
-    air_plays.where(created_at: 1.hour.ago..Time.zone.now).map(&:song)
+    Song.joins(:air_plays)
+        .where(air_plays: { radio_station_id: id, created_at: 1.hour.ago..Time.zone.now })
+        .includes(:artists)
+        .distinct
   end
 
   def update_last_added_air_play_ids(air_play_id)

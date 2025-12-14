@@ -8,18 +8,24 @@ class SongImporter::Matcher < SongImporter
   end
 
   def matches_any_played_last_hour?
-    song_matches.map { |n| n > 80 }.any?
+    song_matches.any? { |n| n > 80 }
   end
 
   def song_matches
-    @radio_station.songs_played_last_hour.map do |played_song|
+    @radio_station.songs_played_last_hour.find_each.map do |played_song|
       song_match(played_song)
     end
   end
 
   def song_match(played_song)
-    played_song_search_text = "#{played_song.artists.pluck(:name).join(' ')} #{played_song.title}".downcase
-    song_search_text = "#{@song.artists.pluck(:name).join(' ')} #{@song.title}".downcase
+    # Artists are already eager loaded from songs_played_last_hour
+    played_song_search_text = "#{played_song.artists.map(&:name).join(' ')} #{played_song.title}".downcase
     (JaroWinkler.similarity(played_song_search_text, song_search_text) * 100).to_i
+  end
+
+  private
+
+  def song_search_text
+    @song_search_text ||= "#{@song.artists.map(&:name).join(' ')} #{@song.title}".downcase
   end
 end

@@ -30,6 +30,8 @@ class SongImporter
     ExceptionNotifier.notify_new_relic(e)
     Broadcaster.error_during_import(error_message: e.message, radio_station_name: @radio_station.name)
     nil
+  ensure
+    clear_instance_variables
   end
 
   private
@@ -137,5 +139,20 @@ class SongImporter
   ### check if any song played last hour matches the song we are importing
   def any_song_matches?
     @matching = SongImporter::Matcher.new(radio_station: @radio_station, song: @song).matches_any_played_last_hour?
+  end
+
+  def clear_instance_variables
+    @played_song = nil
+    @title = nil
+    @artist_name = nil
+    @spotify_url = nil
+    @isrc_code = nil
+    @broadcasted_at = nil
+    @artists = nil
+    @song = nil
+    @track = nil
+    @scraper_import = nil
+    @importer = nil
+    @matching = nil
   end
 end
