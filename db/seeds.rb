@@ -59,7 +59,7 @@ radio_stations = [
   },
   {
     name: 'Radio 538',
-    url: 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22radio-538%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D',
+    url: 'https://graph.talparad.io/?query=query+CurrentTrackQuery%28%24stationSlug%3AString%21%29%7Bstation%28slug%3A%24stationSlug%29%7BgetPlayouts%7Bplayouts%7Btrack%7Bid+title+artistName+isrc+images%7Buri+imageType+title%7D%7Drankings%7Bposition+listName%7D%7D%7D%7D%7D&variables=%7B%22stationSlug%22%3A%22radio-538%22%7D',
     processor: 'talpa_api_processor',
     stream_url: 'https://icecast.samuelvaneck.com/radio538.mp3',
     slug: 'radio-538',
@@ -67,7 +67,7 @@ radio_stations = [
   },
   {
     name: 'Sky Radio',
-    url: 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22sky-radio%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D',
+    url: 'https://graph.talparad.io/?query=query+CurrentTrackQuery%28%24stationSlug%3AString%21%29%7Bstation%28slug%3A%24stationSlug%29%7BgetPlayouts%7Bplayouts%7Btrack%7Bid+title+artistName+isrc+images%7Buri+imageType+title%7D%7Drankings%7Bposition+listName%7D%7D%7D%7D%7D&variables=%7B%22stationSlug%22%3A%22sky-radio%22%7D',
     processor: 'talpa_api_processor',
     stream_url: 'https://icecast.samuelvaneck.com/skyradio.mp3',
     slug: 'sky-radio',
@@ -75,7 +75,7 @@ radio_stations = [
   },
   {
     name: 'Radio 10',
-    url: 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22radio-10%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D',
+    url: 'https://graph.talparad.io/?query=query+CurrentTrackQuery%28%24stationSlug%3AString%21%29%7Bstation%28slug%3A%24stationSlug%29%7BgetPlayouts%7Bplayouts%7Btrack%7Bid+title+artistName+isrc+images%7Buri+imageType+title%7D%7Drankings%7Bposition+listName%7D%7D%7D%7D%7D&variables=%7B%22stationSlug%22%3A%22radio-10%22%7D',
     processor: 'talpa_api_processor',
     stream_url: 'https://icecast.samuelvaneck.com/radio10.mp3',
     slug: 'radio-10',
