@@ -11,9 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
-||||||| merged common ancestors
-=======
-/tmp
 /public/system
 /spec/tmp
 **.orig
@@ -61,7 +58,6 @@ bower.json
 yarn-debug.log*
 .yarn-integrity
 spec/examples.txt
-.env
 
 # Coverage and test results
 /coverage
