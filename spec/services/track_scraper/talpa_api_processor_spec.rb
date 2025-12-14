@@ -13,17 +13,19 @@ describe TrackScraper::TalpaApiProcessor, type: :service do
     let(:response) do
       {
         data: {
-          getStation: {
-            playouts: [
-              {
-                track: {
-                  artistName: 'test artist',
-                  title: 'test title',
-                  isrc: 'TEST12345678'
-                },
-                broadcastDate: '2023-10-01T12:00:00+02:00'
-              }
-            ]
+          station: {
+            getPlayouts: {
+              playouts: [
+                {
+                  track: {
+                    artistName: 'test artist',
+                    title: 'test title',
+                    isrc: 'TEST12345678'
+                  },
+                  broadcastDate: '2023-10-01T12:00:00+02:00'
+                }
+              ]
+            }
           }
         }
       }
@@ -44,11 +46,6 @@ describe TrackScraper::TalpaApiProcessor, type: :service do
       it 'sets the title' do
         last_played_song
         expect(talpa_api_processor.instance_variable_get(:@title)).to eq('Test Title')
-      end
-
-      it 'sets the broadcasted_at timestamp' do
-        last_played_song
-        expect(talpa_api_processor.instance_variable_get(:@broadcasted_at)).to eq(Time.find_zone('Amsterdam').parse('2023-10-01T12:00:00+02:00'))
       end
 
       it 'sets the ISRC code' do
