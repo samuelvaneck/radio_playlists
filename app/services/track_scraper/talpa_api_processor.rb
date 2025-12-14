@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class TrackScraper::TalpaApiProcessor < TrackScraper
-
   # Data example
   # { 'data' =>
   #     { 'station' =>
