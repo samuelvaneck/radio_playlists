@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       get 'admins/current', to: 'admins/current_admin#show'
       get 'admins/songs', to: 'admins/songs#index'
       patch 'admins/songs/:id', to: 'admins/songs#update'
+      get 'admins/artists', to: 'admins/artists#index'
+      patch 'admins/artists/:id', to: 'admins/artists#update'
 
       resources :air_plays, only: %i[index]
       # Redirect old playlists routes to air_plays
