@@ -27,6 +27,7 @@ class Artist < ApplicationRecord
   include GraphConcern
   include DateConcern
   include ChartConcern
+  include TimeAnalyticsConcern
 
   has_many :artists_songs
   has_many :songs, through: :artists_songs
