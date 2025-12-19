@@ -70,9 +70,13 @@ describe Api::V1::Admins::ArtistsController, type: :controller do
     context 'with only website_url' do
       let(:params) { { id: artist.id, artist: { website_url: 'https://another-website.com' }, format: :json } }
 
-      it 'updates only the website_url' do
+      it 'updates the website_url' do
         patch_update
         expect(artist.reload.website_url).to eq('https://another-website.com')
+      end
+
+      it 'does not change the instagram_url' do
+        patch_update
         expect(artist.reload.instagram_url).to eq('https://instagram.com/old')
       end
     end
@@ -80,9 +84,13 @@ describe Api::V1::Admins::ArtistsController, type: :controller do
     context 'with only instagram_url' do
       let(:params) { { id: artist.id, artist: { instagram_url: 'https://instagram.com/another' }, format: :json } }
 
-      it 'updates only the instagram_url' do
+      it 'updates the instagram_url' do
         patch_update
         expect(artist.reload.instagram_url).to eq('https://instagram.com/another')
+      end
+
+      it 'does not change the website_url' do
+        patch_update
         expect(artist.reload.website_url).to eq('https://old-website.com')
       end
     end
