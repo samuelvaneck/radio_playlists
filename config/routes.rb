@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         get :graph_data, on: :member
         get :songs, on: :member
         get :chart_positions, on: :member
+        get :time_analytics, on: :member
       end
       resources :songs, only: %i[index show] do
         get :graph_data, on: :member

@@ -3,7 +3,7 @@
 module Api
   module V1
     class ArtistsController < ApiController
-      before_action :artist, only: %i[show graph_data songs chart_positions]
+      before_action :artist, only: %i[show graph_data songs chart_positions time_analytics]
       def index
         render json: ArtistSerializer.new(artists)
                                      .serializable_hash
@@ -29,6 +29,14 @@ module Api
         render json: artist.reload.cached_chart_positions.presence || []
       end
 
+      def time_analytics
+        render json: {
+          peak_play_times: artist.peak_play_times_summary(radio_station_ids: radio_station_ids),
+          play_frequency_trend: artist.play_frequency_trend(weeks: weeks_param, radio_station_ids: radio_station_ids),
+          lifecycle_stats: artist.lifecycle_stats(radio_station_ids: radio_station_ids)
+        }
+      end
+
       private
 
       def artists
@@ -37,6 +45,16 @@ module Api
 
       def artist
         @artist ||= Artist.find params[:id]
+      end
+
+      def radio_station_ids
+        return if params[:radio_station_ids].blank?
+
+        Array(params[:radio_station_ids]).map(&:to_i)
+      end
+
+      def weeks_param
+        params[:weeks].present? ? params[:weeks].to_i : 4
       end
     end
   end
