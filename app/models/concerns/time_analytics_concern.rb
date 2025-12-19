@@ -90,11 +90,23 @@ module TimeAnalyticsConcern
   end
 
   def fetch_weekly_counts(weeks, radio_station_ids)
-    filtered_air_plays(radio_station_ids)
-      .where('broadcasted_at >= ?', weeks.weeks.ago)
-      .group("DATE_TRUNC('week', broadcasted_at)")
-      .order(Arel.sql("DATE_TRUNC('week', broadcasted_at)"))
-      .count
+    start_date = weeks.weeks.ago.beginning_of_week
+    end_date = Time.current.beginning_of_week
+
+    actual_counts = filtered_air_plays(radio_station_ids)
+                    .where('broadcasted_at >= ?', start_date)
+                    .group("DATE_TRUNC('week', broadcasted_at)")
+                    .count
+
+    all_weeks = {}
+    current_week = start_date
+    while current_week <= end_date
+      matching_key = actual_counts.keys.find { |k| k.to_date == current_week.to_date }
+      all_weeks[current_week] = matching_key ? actual_counts[matching_key] : 0
+      current_week += 1.week
+    end
+
+    all_weeks
   end
 
   def build_trend_result(weekly_counts)
