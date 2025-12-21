@@ -208,4 +208,54 @@ describe Api::V1::SongsController do
       end
     end
   end
+
+  describe 'GET #air_plays' do
+    subject(:get_air_plays) { get :air_plays, params: { id: song.id, format: :json } }
+
+    it 'returns status OK/200' do
+      get_air_plays
+      expect(response.status).to eq 200
+    end
+
+    it 'returns air plays for the song' do
+      get_air_plays
+      expect(json[:data].count).to eq(2)
+    end
+
+    it 'returns pagination data', :aggregate_failures do
+      get_air_plays
+      expect(json).to have_key(:total_entries)
+      expect(json).to have_key(:total_pages)
+      expect(json).to have_key(:current_page)
+    end
+
+    context 'with period=week' do
+      subject(:get_air_plays_week) do
+        get :air_plays, params: { id: song.id, period: 'week', format: :json }
+      end
+
+      let!(:old_air_play) do
+        air_play = create(:air_play, song:, radio_station: radio_station_one, broadcasted_at: 2.weeks.ago)
+        air_play.update_column(:created_at, 2.weeks.ago)
+        air_play
+      end
+
+      it 'excludes air plays older than a week' do
+        get_air_plays_week
+        air_play_ids = json[:data].map { |ap| ap[:id].to_i }
+        expect(air_play_ids).not_to include(old_air_play.id)
+      end
+    end
+
+    context 'with radio_station_ids filter' do
+      subject(:get_air_plays_filtered) do
+        get :air_plays, params: { id: song.id, radio_station_ids: [radio_station_one.id], format: :json }
+      end
+
+      it 'returns only air plays from filtered radio stations' do
+        get_air_plays_filtered
+        expect(json[:data].count).to eq(1)
+      end
+    end
+  end
 end
