@@ -104,4 +104,100 @@ describe Api::V1::ArtistsController do
       end
     end
   end
+
+  describe 'GET #chart_positions' do
+    subject(:get_chart_positions) { get :chart_positions, params: { id: artist_one.id, format: :json } }
+
+    let(:chart_today) { create :chart, date: Time.zone.today, chart_type: 'artists' }
+    let(:chart_week_ago) { create :chart, date: 1.week.ago.to_date, chart_type: 'artists' }
+    let(:chart_month_ago) { create :chart, date: 1.month.ago.to_date, chart_type: 'artists' }
+    let(:chart_year_ago) { create :chart, date: 1.year.ago.to_date, chart_type: 'artists' }
+    let(:response_body) { JSON.parse(response.body) }
+
+    before do
+      create :chart_position, chart: chart_today, positianable: artist_one, position: 1, counts: 50
+      create :chart_position, chart: chart_week_ago, positianable: artist_one, position: 3, counts: 30
+      create :chart_position, chart: chart_month_ago, positianable: artist_one, position: 5, counts: 20
+      create :chart_position, chart: chart_year_ago, positianable: artist_one, position: 10, counts: 10
+    end
+
+    it 'returns status OK/200' do
+      get_chart_positions
+      expect(response.status).to eq 200
+    end
+
+    it 'returns an array of chart positions' do
+      get_chart_positions
+      expect(response_body).to be_an(Array)
+    end
+
+    it 'returns positions with correct structure', :aggregate_failures do
+      get_chart_positions
+      expect(response_body.first).to have_key('date')
+      expect(response_body.first).to have_key('position')
+      expect(response_body.first).to have_key('counts')
+    end
+
+    context 'with default period (month)' do
+      it 'includes positions from the last month' do
+        get_chart_positions
+        dates = response_body.map { |p| p['date'] }
+        expect(dates).to include(chart_week_ago.date.to_s)
+      end
+
+      it 'excludes positions older than a month' do
+        get_chart_positions
+        dates = response_body.map { |p| p['date'] }
+        expect(dates).not_to include(chart_year_ago.date.to_s)
+      end
+    end
+
+    context 'with period=week' do
+      subject(:get_chart_positions_week) do
+        get :chart_positions, params: { id: artist_one.id, period: 'week', format: :json }
+      end
+
+      it 'includes positions from the last week' do
+        get_chart_positions_week
+        dates = response_body.map { |p| p['date'] }
+        expect(dates).to include(chart_today.date.to_s)
+      end
+    end
+
+    context 'with period=year' do
+      subject(:get_chart_positions_year) do
+        get :chart_positions, params: { id: artist_one.id, period: 'year', format: :json }
+      end
+
+      it 'includes positions from the last year' do
+        get_chart_positions_year
+        dates = response_body.map { |p| p['date'] }
+        expect(dates).to include(chart_month_ago.date.to_s)
+      end
+    end
+
+    context 'with period=all' do
+      subject(:get_chart_positions_all) do
+        get :chart_positions, params: { id: artist_one.id, period: 'all', format: :json }
+      end
+
+      it 'includes all positions' do
+        get_chart_positions_all
+        dates = response_body.map { |p| p['date'] }
+        expect(dates).to include(chart_year_ago.date.to_s)
+      end
+    end
+
+    context 'with invalid period' do
+      subject(:get_chart_positions_invalid) do
+        get :chart_positions, params: { id: artist_one.id, period: 'invalid', format: :json }
+      end
+
+      it 'defaults to month period' do
+        get_chart_positions_invalid
+        dates = response_body.map { |p| p['date'] }
+        expect(dates).not_to include(chart_year_ago.date.to_s)
+      end
+    end
+  end
 end
