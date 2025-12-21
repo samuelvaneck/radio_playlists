@@ -8,15 +8,6 @@ module ChartConcern
     'all' => nil
   }.freeze
 
-  def update_cached_positions?
-    cached_chart_positions_updated_at.nil? || cached_chart_positions_updated_at < 1.day.ago
-  end
-
-  def update_chart_positions
-    update(cached_chart_positions: ChartPosition.item_positions_with_date(self),
-           cached_chart_positions_updated_at: Time.zone.now)
-  end
-
   # Returns chart positions for a given time period
   #
   # @param period [String] one of 'week', 'month', 'year', 'all' (default: 'month')
@@ -48,7 +39,7 @@ module ChartConcern
 
     positions_by_date = positions.index_by { |p| p.date.to_s }
     min_date = start_date || positions.minimum(:date)
-    max_date = Time.zone.today
+    max_date = Time.zone.yesterday
 
     (min_date..max_date).map do |date|
       position_record = positions_by_date[date.to_s]

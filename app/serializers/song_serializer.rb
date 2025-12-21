@@ -4,21 +4,19 @@
 #
 # Table name: songs
 #
-#  id                                :bigint           not null, primary key
-#  cached_chart_positions            :jsonb
-#  cached_chart_positions_updated_at :datetime
-#  id_on_spotify                     :string
-#  id_on_youtube                     :string
-#  isrc                              :string
-#  release_date                      :date
-#  release_date_precision            :string
-#  search_text                       :text
-#  spotify_artwork_url               :string
-#  spotify_preview_url               :string
-#  spotify_song_url                  :string
-#  title                             :string
-#  created_at                        :datetime         not null
-#  updated_at                        :datetime         not null
+#  id                     :bigint           not null, primary key
+#  id_on_spotify          :string
+#  id_on_youtube          :string
+#  isrc                   :string
+#  release_date           :date
+#  release_date_precision :string
+#  search_text            :text
+#  spotify_artwork_url    :string
+#  spotify_preview_url    :string
+#  spotify_song_url       :string
+#  title                  :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 # Indexes
 #

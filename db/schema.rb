@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_21_120000) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_21_130000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -81,8 +81,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_21_120000) do
   end
 
   create_table "artists", force: :cascade do |t|
-    t.jsonb "cached_chart_positions", default: []
-    t.datetime "cached_chart_positions_updated_at"
     t.datetime "created_at", precision: nil, null: false
     t.string "genre"
     t.string "id_on_spotify"
@@ -173,8 +171,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_21_120000) do
   end
 
   create_table "songs", force: :cascade do |t|
-    t.jsonb "cached_chart_positions", default: []
-    t.datetime "cached_chart_positions_updated_at"
     t.datetime "created_at", precision: nil, null: false
     t.string "id_on_spotify"
     t.string "id_on_youtube"

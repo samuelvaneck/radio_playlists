@@ -82,12 +82,6 @@ class Chart < ApplicationRecord
         position.counts = counter
         position.position = index
         position.save!
-        job_args = { item_id: chart_item.id,
-                     item_type: chart_type,
-                     chart_date: date,
-                     chart_position: index,
-                     chart_counts: counter }
-        UpdateItemChartPositionsJob.perform_async(job_args.to_json)
         index += 1
       end
     end
