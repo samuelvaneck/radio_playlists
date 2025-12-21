@@ -22,11 +22,13 @@ Rails.application.routes.draw do
         get :songs, on: :member
         get :chart_positions, on: :member
         get :time_analytics, on: :member
+        get :air_plays, on: :member
       end
       resources :songs, only: %i[index show] do
         get :graph_data, on: :member
         get :chart_positions, on: :member
         get :time_analytics, on: :member
+        get :air_plays, on: :member
       end
       resources :radio_stations, only: %i[index show] do
         get :data, on: :member
