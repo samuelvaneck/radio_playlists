@@ -23,10 +23,23 @@ module Api
         render json: SongSerializer.new(artist.songs).serializable_hash.to_json
       end
 
+      # GET /api/v1/artists/:id/chart_positions
+      #
+      # Parameters:
+      #   - period (optional, default: 'month'): Time period for chart positions
+      #     - 'week': last 7 days
+      #     - 'month': last 30 days
+      #     - 'year': last 365 days
+      #     - 'all': all time
+      #
+      # Response:
+      # [
+      #   { "date": "2024-12-01", "position": 5, "counts": 42 },
+      #   { "date": "2024-12-02", "position": 3, "counts": 58 },
+      #   ...
+      # ]
       def chart_positions
-        artist.update_chart_positions if artist.update_cached_positions?
-
-        render json: artist.reload.cached_chart_positions.presence || []
+        render json: artist.chart_positions_for_period(period_param)
       end
 
       def time_analytics
@@ -55,6 +68,10 @@ module Api
 
       def weeks_param
         params[:weeks].present? ? params[:weeks].to_i : 4
+      end
+
+      def period_param
+        params[:period] || 'month'
       end
     end
   end
