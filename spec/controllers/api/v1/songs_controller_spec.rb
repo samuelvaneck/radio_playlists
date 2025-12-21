@@ -116,14 +116,14 @@ describe Api::V1::SongsController do
   describe 'GET #chart_positions' do
     subject(:get_chart_positions) { get :chart_positions, params: { id: song.id, format: :json } }
 
-    let(:chart_today) { create :chart, date: Time.zone.today, chart_type: 'songs' }
+    let(:chart_yesterday) { create :chart, date: Time.zone.yesterday, chart_type: 'songs' }
     let(:chart_week_ago) { create :chart, date: 1.week.ago.to_date, chart_type: 'songs' }
     let(:chart_month_ago) { create :chart, date: 1.month.ago.to_date, chart_type: 'songs' }
     let(:chart_year_ago) { create :chart, date: 1.year.ago.to_date, chart_type: 'songs' }
     let(:response_body) { JSON.parse(response.body) }
 
     before do
-      create :chart_position, chart: chart_today, positianable: song, position: 1, counts: 50
+      create :chart_position, chart: chart_yesterday, positianable: song, position: 1, counts: 50
       create :chart_position, chart: chart_week_ago, positianable: song, position: 3, counts: 30
       create :chart_position, chart: chart_month_ago, positianable: song, position: 5, counts: 20
       create :chart_position, chart: chart_year_ago, positianable: song, position: 10, counts: 10
@@ -168,7 +168,7 @@ describe Api::V1::SongsController do
       it 'includes positions from the last week' do
         get_chart_positions_week
         dates = response_body.map { |p| p['date'] }
-        expect(dates).to include(chart_today.date.to_s)
+        expect(dates).to include(chart_yesterday.date.to_s)
       end
     end
 
