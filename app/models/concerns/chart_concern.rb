@@ -8,15 +8,6 @@ module ChartConcern
     'all' => nil
   }.freeze
 
-  def update_cached_positions?
-    cached_chart_positions_updated_at.nil? || cached_chart_positions_updated_at < 1.day.ago
-  end
-
-  def update_chart_positions
-    update(cached_chart_positions: ChartPosition.item_positions_with_date(self),
-           cached_chart_positions_updated_at: Time.zone.now)
-  end
-
   # Returns chart positions for a given time period
   #
   # @param period [String] one of 'week', 'month', 'year', 'all' (default: 'month')
