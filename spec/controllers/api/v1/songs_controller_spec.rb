@@ -236,7 +236,7 @@ describe Api::V1::SongsController do
 
       let!(:old_air_play) do
         air_play = create(:air_play, song:, radio_station: radio_station_one, broadcasted_at: 2.weeks.ago)
-        air_play.update_column(:created_at, 2.weeks.ago)
+        air_play.update_column(:created_at, 2.weeks.ago) # rubocop:disable Rails/SkipsModelValidations
         air_play
       end
 
