@@ -39,7 +39,7 @@ module ChartConcern
 
     positions_by_date = positions.index_by { |p| p.date.to_s }
     min_date = start_date || positions.minimum(:date)
-    max_date = Time.zone.today
+    max_date = Time.zone.yesterday
 
     (min_date..max_date).map do |date|
       position_record = positions_by_date[date.to_s]
