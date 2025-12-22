@@ -3,7 +3,7 @@
 module Api
   module V1
     class ArtistsController < ApiController
-      before_action :artist, only: %i[show graph_data songs chart_positions]
+      before_action :artist, only: %i[show graph_data songs chart_positions bio]
       def index
         render json: ArtistSerializer.new(artists)
                                      .serializable_hash
@@ -27,6 +27,16 @@ module Api
         artist.update_chart_positions if artist.update_cached_positions?
 
         render json: artist.reload.cached_chart_positions.presence || []
+      end
+
+      def bio
+        artist_info = Lastfm::ArtistFinder.new.get_info(artist.name)
+
+        if artist_info && artist_info[:bio]
+          render json: { bio: artist_info[:bio] }
+        else
+          render json: { bio: nil }
+        end
       end
 
       private

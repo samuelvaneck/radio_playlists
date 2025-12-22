@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         get :graph_data, on: :member
         get :songs, on: :member
         get :chart_positions, on: :member
+        get :bio, on: :member
       end
       resources :songs, only: %i[index show] do
         get :graph_data, on: :member
