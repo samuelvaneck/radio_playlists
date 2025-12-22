@@ -34,6 +34,7 @@ Rails.application.routes.draw do
         get :data, on: :member
         get :classifiers, on: :member
         get :status, on: :member
+        get :stream_proxy, on: :member
         get :last_played_songs, on: :collection
         get :new_played_songs, on: :collection
       end

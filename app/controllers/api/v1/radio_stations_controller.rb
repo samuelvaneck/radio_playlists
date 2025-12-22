@@ -3,7 +3,9 @@
 module Api
   module V1
     class RadioStationsController < ApiController
-      before_action :set_radio_station, only: %i[show status data classifiers]
+      include ActionController::Live
+
+      before_action :set_radio_station, only: %i[show status data classifiers stream_proxy]
 
       def index
         render json: RadioStationSerializer.new(RadioStation.all).serializable_hash.to_json
@@ -41,6 +43,24 @@ module Api
                                                .serializable_hash
                                                .merge(pagination_data(new_played_items))
                                                .to_json
+      end
+
+      def stream_proxy
+        url = @radio_station.stream_url
+        return head :bad_request if url.blank?
+
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Content-Type'] = 'audio/mpeg'
+
+        uri = URI.parse(url)
+        Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+          request = Net::HTTP::Get.new(uri)
+          http.request(request) do |res|
+            res.read_body { |chunk| response.stream.write(chunk) }
+          end
+        end
+      ensure
+        response.stream.close
       end
 
       private
