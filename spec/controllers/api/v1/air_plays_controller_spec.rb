@@ -48,5 +48,56 @@ describe Api::V1::AirPlaysController do
         expect(json[:data].map { |p| p[:id] }).to contain_exactly(air_play.id.to_s)
       end
     end
+
+    context 'when filtered by start_time' do
+      let(:old_air_play) { create :air_play, radio_station: radio_station_one, song: song_one, created_at: 3.hours.ago }
+
+      before { old_air_play }
+
+      context 'with hour' do
+        subject(:get_index) { get :index, params: { format: :json, start_time: 'hour' } }
+
+        it 'only fetches the air plays from the last hour' do
+          get_index
+          expect(json[:data].map { |p| p[:id] }).not_to include(old_air_play.id.to_s)
+        end
+      end
+
+      context 'with two_hours' do
+        subject(:get_index) { get :index, params: { format: :json, start_time: 'two_hours' } }
+
+        it 'only fetches the air plays from the last two hours' do
+          get_index
+          expect(json[:data].map { |p| p[:id] }).not_to include(old_air_play.id.to_s)
+        end
+      end
+
+      context 'with four_hours' do
+        subject(:get_index) { get :index, params: { format: :json, start_time: 'four_hours' } }
+
+        it 'includes air plays from the last four hours' do
+          get_index
+          expect(json[:data].map { |p| p[:id] }).to include(old_air_play.id.to_s)
+        end
+      end
+
+      context 'with eight_hours' do
+        subject(:get_index) { get :index, params: { format: :json, start_time: 'eight_hours' } }
+
+        it 'includes air plays from the last eight hours' do
+          get_index
+          expect(json[:data].map { |p| p[:id] }).to include(old_air_play.id.to_s)
+        end
+      end
+
+      context 'with twelve_hours' do
+        subject(:get_index) { get :index, params: { format: :json, start_time: 'twelve_hours' } }
+
+        it 'includes air plays from the last twelve hours' do
+          get_index
+          expect(json[:data].map { |p| p[:id] }).to include(old_air_play.id.to_s)
+        end
+      end
+    end
   end
 end
