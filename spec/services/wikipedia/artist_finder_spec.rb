@@ -12,6 +12,11 @@ describe Wikipedia::ArtistFinder do
         expect(result['summary']).to include('Dutch singer')
       end
 
+      it 'returns the full content' do
+        result = artist_finder.get_info(artist_name)
+        expect(result['content']).to include('Miss Montreal')
+      end
+
       it 'returns the description' do
         result = artist_finder.get_info(artist_name)
         expect(result['description']).to eq('Dutch singer')
