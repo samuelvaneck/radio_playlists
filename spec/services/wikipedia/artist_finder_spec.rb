@@ -4,54 +4,27 @@ describe Wikipedia::ArtistFinder do
   subject(:artist_finder) { described_class.new }
 
   describe '#get_info' do
-    let(:artist_name) { 'Coldplay' }
+    context 'when API returns valid data', :use_vcr do
+      let(:artist_name) { 'Miss Montreal' }
 
-    context 'when API returns valid data' do
-      let(:api_response) do
-        {
-          'type' => 'standard',
-          'title' => 'Coldplay',
-          'extract_html' => '<p><b>Coldplay</b> are a British rock band formed in London in 1997.</p>',
-          'description' => 'British rock band',
-          'content_urls' => {
-            'desktop' => {
-              'page' => 'https://en.wikipedia.org/wiki/Coldplay'
-            }
-          }
-        }
-      end
-
-      before do
-        allow(Rails.cache).to receive(:fetch).and_yield
-        allow_any_instance_of(Faraday::Connection).to receive(:get).and_return( # rubocop:disable RSpec/AnyInstance
-          instance_double(Faraday::Response, body: api_response)
-        )
-      end
-
-      it 'returns the bio data with summary, description and url' do
+      it 'returns the bio data with summary' do
         result = artist_finder.get_info(artist_name)
-        expect(result).to eq({
-                               'summary' => '<p><b>Coldplay</b> are a British rock band formed in London in 1997.</p>',
-                               'description' => 'British rock band',
-                               'url' => 'https://en.wikipedia.org/wiki/Coldplay'
-                             })
+        expect(result['summary']).to include('Dutch singer')
+      end
+
+      it 'returns the description' do
+        result = artist_finder.get_info(artist_name)
+        expect(result['description']).to eq('Dutch singer')
+      end
+
+      it 'returns the Wikipedia url' do
+        result = artist_finder.get_info(artist_name)
+        expect(result['url']).to eq('https://en.wikipedia.org/wiki/Sanne_Hans')
       end
     end
 
-    context 'when API returns not found' do
-      let(:not_found_response) do
-        {
-          'type' => 'not_found',
-          'title' => 'Not found'
-        }
-      end
-
-      before do
-        allow(Rails.cache).to receive(:fetch).and_yield
-        allow_any_instance_of(Faraday::Connection).to receive(:get).and_return( # rubocop:disable RSpec/AnyInstance
-          instance_double(Faraday::Response, body: not_found_response)
-        )
-      end
+    context 'when API returns not found', :use_vcr do
+      let(:artist_name) { 'NonExistentArtistXYZ123456' }
 
       it 'returns nil' do
         result = artist_finder.get_info(artist_name)
@@ -68,12 +41,12 @@ describe Wikipedia::ArtistFinder do
       end
 
       it 'returns nil' do
-        result = artist_finder.get_info(artist_name)
+        result = artist_finder.get_info('Any Artist')
         expect(result).to be_nil
       end
 
       it 'logs the error' do
-        artist_finder.get_info(artist_name)
+        artist_finder.get_info('Any Artist')
         expect(Rails.logger).to have_received(:error).with(/Wikipedia API error/)
       end
     end

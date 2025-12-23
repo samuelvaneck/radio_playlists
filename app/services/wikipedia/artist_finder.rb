@@ -7,7 +7,7 @@ module Wikipedia
     def get_info(artist_name)
       encoded_name = ERB::Util.url_encode(artist_name)
       response = make_request("/page/summary/#{encoded_name}")
-      return nil if response.nil? || response['type'] == 'not_found'
+      return nil if response.nil? || response['type'] != 'standard'
 
       {
         'summary' => sanitize_html(response['extract_html']),

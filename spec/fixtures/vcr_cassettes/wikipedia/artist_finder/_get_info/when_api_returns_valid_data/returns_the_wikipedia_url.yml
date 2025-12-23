@@ -1,0 +1,104 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://en.wikipedia.org/api/rest_v1/page/summary/Miss%20Montreal
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Webkit-Csp:
+      - default-src 'none'; frame-ancestors 'none'
+      Cache-Control:
+      - s-maxage=1209600, max-age=300
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/Summary/1.5.0"
+      Date:
+      - Tue, 23 Dec 2025 20:34:33 GMT
+      Server:
+      - production-tls
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,HEAD
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, cache-control, accept-language, api-user-agent,
+        if-match, if-modified-since, if-none-match, dnt, accept-encoding
+      Access-Control-Expose-Headers:
+      - etag
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"1233049741/9dd63220-e03e-11f0-8500-c36d608fc65b"
+      Age:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - x-restbase-compat, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 hit/1
+      X-Cache-Status:
+      - hit-front
+      Server-Timing:
+      - cache;desc="hit-front", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=23-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Sat,
+        24 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=23-Dec-2025;Path=/;HttpOnly;secure;Expires=Sat, 24 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=sm5FfFALO7M8tKuy5da-sgLSAAAAAFvdwmc4YnrS8UChdjC4w-DWkhZnbUNQdbjj;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Wed,
+        23 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Content-Length:
+      - '1624'
+      X-Request-Id:
+      - e63c1f6f-8a1d-40b0-84f7-cf9a6cce9598
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":"standard","title":"Sanne Hans","displaytitle":"<span class=\"mw-page-title-main\">Sanne
+        Hans</span>","namespace":{"id":0,"text":""},"wikibase_item":"Q27982469","titles":{"canonical":"Sanne_Hans","normalized":"Sanne
+        Hans","display":"<span class=\"mw-page-title-main\">Sanne Hans</span>"},"pageid":40301691,"thumbnail":{"source":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Miss_montreal.jpg/330px-Miss_montreal.jpg","width":320,"height":213},"originalimage":{"source":"https://upload.wikimedia.org/wikipedia/commons/7/79/Miss_montreal.jpg","width":4272,"height":2848},"lang":"en","dir":"ltr","revision":"1233049741","tid":"ebc18c38-3bf9-11ef-b7e3-d8a3b1b8c459","timestamp":"2024-07-07T00:43:26Z","description":"Dutch
+        singer","description_source":"local","content_urls":{"desktop":{"page":"https://en.wikipedia.org/wiki/Sanne_Hans","revisions":"https://en.wikipedia.org/wiki/Sanne_Hans?action=history","edit":"https://en.wikipedia.org/wiki/Sanne_Hans?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Sanne_Hans"},"mobile":{"page":"https://en.wikipedia.org/wiki/Sanne_Hans","revisions":"https://en.wikipedia.org/wiki/Special:History/Sanne_Hans","edit":"https://en.wikipedia.org/wiki/Sanne_Hans?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Sanne_Hans"}},"extract":"Roos-Anne
+        (Sanne) Hans, is a Dutch singer-songwriter and guitar player. She was part
+        of Ysis until 2008 and later formed the band Miss Montreal.","extract_html":"<p><b>Roos-Anne
+        (Sanne) Hans</b>, is a Dutch singer-songwriter and guitar player. She was
+        part of Ysis until 2008 and later formed the band Miss Montreal.</p>"}'
+  recorded_at: Tue, 23 Dec 2025 20:34:33 GMT
+recorded_with: VCR 6.3.1
