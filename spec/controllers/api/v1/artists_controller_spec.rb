@@ -258,6 +258,7 @@ describe Api::V1::ArtistsController do
       let(:bio_data) do
         {
           'summary' => '<p><b>Artist One</b> is a musical artist.</p>',
+          'content' => '<p><b>Artist One</b> is a musical artist. Full biography content here.</p>',
           'description' => 'Musical artist',
           'url' => 'https://en.wikipedia.org/wiki/Artist_One'
         }

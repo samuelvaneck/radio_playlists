@@ -60,7 +60,7 @@ http_interactions:
       Vary:
       - x-restbase-compat, Accept-Encoding
       X-Cache:
-      - cp3072 miss, cp3072 hit/4
+      - cp3072 miss, cp3072 hit/7
       X-Cache-Status:
       - hit-front
       Server-Timing:
@@ -80,14 +80,14 @@ http_interactions:
         24 Jan 2026 12:00:00 GMT
       - WMF-Last-Access=23-Dec-2025;Path=/;HttpOnly;secure;Expires=Sat, 24 Jan 2026
         12:00:00 GMT
-      - WMF-Uniq=1E0uBMWZz6XvhB54RPqHpALSAAAAAFvdcaDspIDSPrjPaXOq8EfX3wgmhy9keEJI;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Wed,
+      - WMF-Uniq=JDJ4dQW_-lvj_BHkrLSIUQLSAAAAAFvdP-ay4MM8Ftlw3TFoTxyBhMr4TTZGrrIi;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Wed,
         23 Dec 2026 00:00:00 GMT
       X-Client-Ip:
       - 85.146.30.218
       Content-Length:
       - '1624'
       X-Request-Id:
-      - 578759f1-1e38-4ef6-8011-84a0cf1c0684
+      - 8292a429-b7d3-4aad-8e79-6cf60328ace2
       X-Analytics:
       - ''
     body:
@@ -100,7 +100,7 @@ http_interactions:
         of Ysis until 2008 and later formed the band Miss Montreal.","extract_html":"<p><b>Roos-Anne
         (Sanne) Hans</b>, is a Dutch singer-songwriter and guitar player. She was
         part of Ysis until 2008 and later formed the band Miss Montreal.</p>"}'
-  recorded_at: Tue, 23 Dec 2025 20:48:18 GMT
+  recorded_at: Tue, 23 Dec 2025 20:48:19 GMT
 - request:
     method: get
     uri: https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&titles=Sanne%20Hans
@@ -120,9 +120,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 23 Dec 2025 20:48:18 GMT
+      - Tue, 23 Dec 2025 20:48:19 GMT
       Server:
-      - mw-api-ext.eqiad.canary-79d9f6f5c5-f2wss
+      - mw-api-ext.eqiad.main-5fc78f9df9-nvg69
       X-Content-Type-Options:
       - nosniff
       Content-Security-Policy:
@@ -137,8 +137,6 @@ http_interactions:
       - application/json; charset=utf-8
       Age:
       - '0'
-      Accept-Ranges:
-      - bytes
       X-Cache:
       - cp3072 miss, cp3072 pass
       X-Cache-Status:
@@ -160,7 +158,7 @@ http_interactions:
         24 Jan 2026 12:00:00 GMT
       - WMF-Last-Access=23-Dec-2025;Path=/;HttpOnly;secure;Expires=Sat, 24 Jan 2026
         12:00:00 GMT
-      - WMF-Uniq=9HR57IeZ-0Qze4vgctJKeALSAAAAAFvdUx00EObRsEx7airolVNB9Uj7XYa2F2_H;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Wed,
+      - WMF-Uniq=GgidOgNLTZOyMzjdA95WogLSAAAAAFvdVy-Tgx4iaxTWto8Z6058R_DqI77kOI4d;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Wed,
         23 Dec 2026 00:00:00 GMT
       X-Client-Ip:
       - 85.146.30.218
@@ -169,12 +167,12 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       X-Request-Id:
-      - a09efae3-6c60-4241-b423-7bfe3026f165
+      - 6645c36a-1b7d-4fff-bf2a-68aab64659f9
       X-Analytics:
       - ''
     body:
       encoding: ASCII-8BIT
       string: !binary |-
         eyJiYXRjaGNvbXBsZXRlIjp0cnVlLCJ3YXJuaW5ncyI6eyJleHRyYWN0cyI6eyJ3YXJuaW5ncyI6IkhUTUwgbWF5IGJlIG1hbGZvcm1lZCBhbmQvb3IgdW5iYWxhbmNlZCBhbmQgbWF5IG9taXQgaW5saW5lIGltYWdlcy4gVXNlIGF0IHlvdXIgb3duIHJpc2suIEtub3duIHByb2JsZW1zIGFyZSBsaXN0ZWQgYXQgaHR0cHM6Ly93d3cubWVkaWF3aWtpLm9yZy93aWtpL1NwZWNpYWw6TXlMYW5ndWFnZS9FeHRlbnNpb246VGV4dEV4dHJhY3RzI0NhdmVhdHMuIn19LCJxdWVyeSI6eyJwYWdlcyI6W3sicGFnZWlkIjo0MDMwMTY5MSwibnMiOjAsInRpdGxlIjoiU2FubmUgSGFucyIsImV4dHJhY3QiOiI8cCBjbGFzcz1cIm13LWVtcHR5LWVsdFwiPlxuPC9wPlxuXG5cblxuXG48cD48Yj5Sb29zLUFubmUgKFNhbm5lKSBIYW5zPC9iPiAoYm9ybiAyMiBTZXB0ZW1iZXIgMTk4NCBpbiBEZWRlbXN2YWFydCksIGlzIGEgRHV0Y2ggc2luZ2VyLXNvbmd3cml0ZXIgYW5kIGd1aXRhciBwbGF5ZXIuIFNoZSB3YXMgcGFydCBvZiBZc2lzIHVudGlsIDIwMDggYW5kIGxhdGVyIGZvcm1lZCB0aGUgYmFuZCBNaXNzIE1vbnRyZWFsLlxuPC9wPlxuXG48aDIgZGF0YS1tdy1hbmNob3I9XCJZc2lzXCI+WXNpczwvaDI+XG48cD5TYW5uZSBIYW5zIGZpcnN0IHdhcyBwYXJ0IG9mIHRoZSBmb3JtYXRpb24gPGI+WXNpczwvYj4gbWFkZSB1cCBvZiBoZXIgb24gdm9jYWxzIGFuZCBndWl0YXIsIEluZ2UgdmFuIENhbGthciBhbHNvIG9uIGd1aXRhciBhbmQgdm9jYWxzIGFuZCBJbHNlIEdlcnJpdHNlbiBvbiB0aGUgY2VsbG8uIFRoZXkgYWxsIHN0dXR0ZXIsIHdoaWNoIGRpZG4ndCBpbXBhY3Qgb24gdGhlaXIgc2luZ2luZy5cbjwvcD5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIk1pc3NfTW9udHJlYWxcIj5NaXNzIE1vbnRyZWFsPC9oMj5cbjxwPk9jdG9iZXIgMjAwOCBzaGUgc3RhcnRlZCBhcyB0aGUgbGVhZCBzaW5nZXIgb2YgYSBuZXcgYmFuZCA8Yj5NaXNzIE1vbnRyZWFsPC9iPiwgdG9nZXRoZXIgd2l0aCBLb2J1cyBHcm9lbiAoYmFzcywgYmFja2luZyB2b2NhbHMpLCBNaWNoaSBTY2h3aWVtYW5uIChndWl0YXIpLCBUaGlqcyBSZW5zaW5rIChkcnVtcykgYW5kIFBldGVyIEhlbmRyaWtzIChrZXlib2FyZHMpLiBUaGVpciBmaXJzdCBzaW5nbGUgd2FzIFwiSnVzdCBhIEZsaXJ0XCIgZm9sbG93ZWQgYnkgYSBkZWJ1dCBhbGJ1bSB0aGUgc2VsZi10aXRsZWQgPGk+TWlzcyBNb250cmVhbDwvaT4gaW4gTWF5IDIwMDkgcmVsZWFzaW5nIFwiVGhpcyBpcyBteSBsaWZlXCIgYXMgYSBzZWNvbmQgc2luZ2xlLiBTaGUgYXBwZWFyZWQgaW4gYSBudW1iZXIgb2YgZmVzdGl2YWxzIGluY2x1ZGluZyBpbiBMb3dsYW5kcywgUGFya3BvcCwgQmVhdHN0YWQgYW5kIFp3YXJ0ZSBDcm9zcyBhbmQgb3BlbmVkIGZvciBDb2xkcGxheSBhdCB0aGUgR29mZmVydHBhcmsgaW4gZnJvbnQgb2YgNzAsMDAwIHNwZWN0YXRvcnMuIFNoZSBzYW5nIFwiV29uJ3QgWW91IExldCBNZSBIYXZlIE15IFdheSB3aXRoIFlvdVwiIGZlYXR1cmluZyBCZXJ0b2xmIExlbnRpbmsgaW4gYSBqb2ludCBFUCByZWxlYXNlZCBpbiAyMDA5IGJ5IHRoZSB0d28gYXJ0aXN0cy5cbjwvcD48cD5UaGUgc2Vjb25kIE1pc3MgTW9udHJlYWwgYWxidW0gPGk+U28uLi4gQW55dGhpbmcgRWxzZTwvaT4gY2FtZSBpbiBKdWx5IDIwMTAgd2l0aCBhIGdyYW5kIHRvdXIgb2YgMjAgRHV0Y2ggY2l0aWVzIHRvIHByb21vdGUgdGhlIGFsYnVtLiBUaGUgdG91ciBjb250aW51ZWQgdW50aWwgQXByaWwgMjAxMS4gIEhlciB0aGlyZCBhbGJ1bSA8aT5JIEFtIGEgSHVudGVyPC9pPiB3YXMgcmVsZWFzZWQgb24gMTMgQXByaWwgMjAxMiwgZW5nYWdpbmcgb24gYW5vdGhlciBsb25nIHRvdXIgY2FsbGVkIFwiUy1TUy1TU1MtU2FubmVcIiBzdHJldGNoaW5nIHVudGlsIE1hcmNoIDIwMTMuXG48L3A+XG48aDIgZGF0YS1tdy1hbmNob3I9XCJTb2xvX2NhcmVlclwiPlNvbG8gY2FyZWVyPC9oMj5cbjxwPkluIGFkZGl0aW9uIHRvIGhlciB3b3JrIGluIFlzaXMgYW5kIE1pc3MgTW9udHJlYWwsIHNoZSBoYXMgYWxzbyBwdXJzdWVkIGEgc29sbyBjYXJlZXIuIEFmdGVyIFlzaXMgZGlzYmFuZGVkIGluIDIwMDgsIHNoZSBkaWQgYWR2ZXJ0aXNpbmcgZmVhdHVyZXMgYW5kIGFwcGVhcmVkIG9uIHZhcmlvdXMgcmFkaW8gYW5kIHRlbGV2aXNpb24gc2hvd3MuIFNoZSBhbHNvIHNhbmcgXCJEYW5zZW4gYWFuIHplZVwiIHdpdGggRHV0Y2ggYmFuZCBCTMOYRiBhbmQgXCJJIEFtIFNvcnJ5XCIgd2l0aCBEdXRjaCBiYW5kIE9ubHkgU2V2ZW4gTGVmdC5cbjwvcD48cD5TaGUgYmVjYW1lIGZhbW91cyBieSBzaW5naW5nIHRoZSBpbnRybyB0byB0aGUgY2hpbGRyZW4gVFYgcHJvZ3JhbSA8aT5IdWlzamUsIEJvb21wamUsIEJlZXN0amU8L2k+IGluIDIwMDkuIGFuZCBpbiAyMDEyLCBzaGUgYXBwZWFyZWQgYXMgYSBtZW1iZXIgb2YgdGhlIGp1cnkgb2YgdGhlIHRlbGV2aXNpb24gc2VyaWVzIDxpPkRlIGJlc3RlIHNpbmdlci1zb25nd3JpdGVyIHZhbiBOZWRlcmxhbmQ8L2k+LCBhbmQgc2hlIHdhcyBhIGNvYWNoIG9uIHRoZSBzaXh0aCwgc2V2ZW50aCBhbmQgZWlnaHRoIHNlYXNvbnMgb2YgPGk+VGhlIFZvaWNlIG9mIEhvbGxhbmQ8L2k+LiBJdCB3YXMgYW5ub3VuY2VkIG9uIDI0IEp1bmUgMjAxOSBieSB0aGUgYnJvYWRjYXN0ZXIncyBGYWNlYm9vaywgdGhhdCBTYW5uZSB3b3VsZCBiZSByZXBsYWNpbmcgSWxzZSBEZWxhbmdlIGFzIGNvYWNoIGluIHRoZSBuaW50aCBzZWFzb24gb2YgPGk+VGhlIFZvaWNlIEtpZHM8L2k+LlxuPC9wPlxuPGgyIGRhdGEtbXctYW5jaG9yPVwiRGlzY29ncmFwaHk6X1Nhbm5lX0hhbnNcIj5EaXNjb2dyYXBoeTogU2FubmUgSGFuczwvaDI+XG48aDMgZGF0YS1tdy1hbmNob3I9XCJTaW5nbGVzXCI+U2luZ2xlczwvaDM+XG5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIkRpc2NvZ3JhcGh5Ol9NaXNzX01vbnRyZWFsXCI+RGlzY29ncmFwaHk6IE1pc3MgTW9udHJlYWw8L2gyPlxuPGgzIGRhdGEtbXctYW5jaG9yPVwiQWxidW1zXCI+QWxidW1zPC9oMz5cblxuPGRsPjxkdD5EZW1vIGFsYnVtczwvZHQ+PC9kbD5cblxuPGRsPjxkdD5Db21waWxhdGlvbiBhbGJ1bXM8L2R0PjwvZGw+XG5cbjxkbD48ZHQ+RVBzPC9kdD48L2RsPlxuPHVsPjxsaT4yMDA5OiA8aT5NaXNzIE1vbnRyZWFsIC8gQmVydG9sZjwvaT4gKGpvaW50IEVQKSBbOGJhbGwgTXVzaWNdPC9saT48L3VsPlxuPGgzIGRhdGEtbXctYW5jaG9yPVwiU2luZ2xlc18yXCI+U2luZ2xlczwvaDM+XG5cbjxwPjxzbWFsbD5UaXAgbWVhbnMgdGhlIHJlbGVhc2UgZGlkIG5vdCBjaGFydCBvbiB0aGUgRHV0Y2ggVG9wIDQwLCBidXQgYXBwZWFyZWQgb24gdGhlIFRpcHBhcmFkZSBmb3IgXCJidWJibGluZyB1bmRlclwiIGhpdHM8L3NtYWxsPjxici8+XG48c21hbGw+KkRpZCBub3QgYXBwZWFyIGluIHRoZSBvZmZpY2lhbCBCZWxnaWFuIFVsdHJhdG9wIDUwIGNoYXJ0cywgYnV0IHJhdGhlciBpbiB0aGUgYnViYmxpbmcgdW5kZXIgVWx0cmF0aXAgY2hhcnRzLjwvc21hbGw+XG48L3A+XG48aDMgZGF0YS1tdy1hbmNob3I9XCJPdGhlcl9jaGFydGluZ19zb25nc1wiPk90aGVyIGNoYXJ0aW5nIHNvbmdzPC9oMz5cblxuPGgyIGRhdGEtbXctYW5jaG9yPVwiUmVmZXJlbmNlc1wiPlJlZmVyZW5jZXM8L2gyPlxuXG48aDIgZGF0YS1tdy1hbmNob3I9XCJFeHRlcm5hbF9saW5rc1wiPkV4dGVybmFsIGxpbmtzPC9oMj5cblxuPHVsPjxsaT48c3Bhbj48c3Bhbj5PZmZpY2lhbCB3ZWJzaXRlPC9zcGFuPjwvc3Bhbj48L2xpPjwvdWw+In1dfX0=
-  recorded_at: Tue, 23 Dec 2025 20:48:18 GMT
+  recorded_at: Tue, 23 Dec 2025 20:48:19 GMT
 recorded_with: VCR 6.3.1

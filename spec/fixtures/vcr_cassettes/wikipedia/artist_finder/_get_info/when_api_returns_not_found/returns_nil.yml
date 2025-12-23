@@ -52,15 +52,15 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       Age:
-      - '1'
+      - '824'
       Vary:
       - Accept-Encoding
       X-Cache:
-      - cp3072 miss, cp3072 miss
+      - cp3072 miss, cp3072 hit/1
       X-Cache-Status:
-      - miss
+      - hit-front
       Server-Timing:
-      - cache;desc="miss", host;desc="cp3072"
+      - cache;desc="hit-front", host;desc="cp3072"
       Strict-Transport-Security:
       - max-age=106384710; includeSubDomains; preload
       Report-To:
@@ -76,16 +76,16 @@ http_interactions:
         24 Jan 2026 12:00:00 GMT
       - WMF-Last-Access=23-Dec-2025;Path=/;HttpOnly;secure;Expires=Sat, 24 Jan 2026
         12:00:00 GMT
-      - WMF-Uniq=Ov81edt34NmQWBnQfTjpsQLSAAAAAFvdJBDjBqM6HhGY9mvkHVyQb7pCehfzfDaT;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Wed,
+      - WMF-Uniq=Z-bDFpsMNu1p3KKLBQJmzQLSAAAAAFvd3Ig4enbvnqjPOrPi9APvkHWDtTI0AaO0;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Wed,
         23 Dec 2026 00:00:00 GMT
       X-Client-Ip:
       - 85.146.30.218
       X-Request-Id:
-      - a9a9c3bb-952c-45b9-b3e5-322f0c7c5baa
+      - 59f0fded-8bcf-4ea2-9c9f-3004a69d6ba8
       X-Analytics:
       - ''
     body:
       encoding: UTF-8
       string: '{"status":404,"type":"Internal error"}'
-  recorded_at: Tue, 23 Dec 2025 20:34:35 GMT
+  recorded_at: Tue, 23 Dec 2025 20:48:18 GMT
 recorded_with: VCR 6.3.1
