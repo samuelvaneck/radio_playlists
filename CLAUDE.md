@@ -76,6 +76,24 @@ Located in `app/models/concerns/`:
 - Class structure order enforced: constants → includes → hooks → associations → validations → scopes → class methods → instance methods
 - Uses JSONAPI serializers in `app/serializers/`
 
+## Testing
+
+### VCR for External API Calls
+
+Use VCR to record and replay HTTP interactions for tests involving external APIs. This ensures tests are deterministic and don't depend on external services.
+
+```ruby
+# Add :use_vcr metadata to contexts that make external HTTP requests
+context 'when API returns valid data', :use_vcr do
+  it 'returns the expected data' do
+    result = MyService.new.call
+    expect(result).to be_present
+  end
+end
+```
+
+VCR cassettes are stored in `spec/fixtures/vcr_cassettes/` and are automatically named based on the test description. Prefer VCR over mocking Faraday/HTTP responses directly when testing service objects that call external APIs.
+
 ## API Structure
 
 RESTful JSON API under `/api/v1/`:
