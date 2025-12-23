@@ -254,21 +254,17 @@ describe Api::V1::ArtistsController do
   describe 'GET #bio' do
     subject(:get_bio) { get :bio, params: { id: artist_one.id, format: :json } }
 
-    before do
-      allow(ENV).to receive(:fetch).and_call_original
-      allow(ENV).to receive(:fetch).with('LASTFM_API_KEY', nil).and_return('test_api_key')
-    end
-
-    context 'when Last.fm returns bio data' do
+    context 'when Wikipedia returns bio data' do
       let(:bio_data) do
         {
-          'summary' => 'Artist bio summary text.',
-          'content' => 'Full artist biography content.'
+          'summary' => '<p><b>Artist One</b> is a musical artist.</p>',
+          'description' => 'Musical artist',
+          'url' => 'https://en.wikipedia.org/wiki/Artist_One'
         }
       end
 
       before do
-        allow_any_instance_of(Lastfm::ArtistFinder).to receive(:get_info).and_return(bio_data) # rubocop:disable RSpec/AnyInstance
+        allow_any_instance_of(Wikipedia::ArtistFinder).to receive(:get_info).and_return(bio_data) # rubocop:disable RSpec/AnyInstance
       end
 
       it 'returns status OK/200' do
@@ -282,9 +278,9 @@ describe Api::V1::ArtistsController do
       end
     end
 
-    context 'when Last.fm returns no data' do
+    context 'when Wikipedia returns no data' do
       before do
-        allow_any_instance_of(Lastfm::ArtistFinder).to receive(:get_info).and_return(nil) # rubocop:disable RSpec/AnyInstance
+        allow_any_instance_of(Wikipedia::ArtistFinder).to receive(:get_info).and_return(nil) # rubocop:disable RSpec/AnyInstance
       end
 
       it 'returns status OK/200' do

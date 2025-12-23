@@ -68,7 +68,7 @@ module Api
       end
 
       def bio
-        bio_data = Lastfm::ArtistFinder.new.get_info(artist.name)
+        bio_data = Wikipedia::ArtistFinder.new.get_info(artist.name)
         render json: { bio: bio_data }
       end
 
