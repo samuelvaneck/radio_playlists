@@ -3,7 +3,7 @@
 module Api
   module V1
     class ArtistsController < ApiController
-      before_action :artist, only: %i[show graph_data songs chart_positions time_analytics air_plays]
+      before_action :artist, only: %i[show graph_data songs chart_positions time_analytics air_plays bio]
       def index
         render json: ArtistSerializer.new(artists)
                                      .serializable_hash
@@ -65,6 +65,11 @@ module Api
                                       .serializable_hash
                                       .merge(pagination_data(artist_air_plays))
                                       .to_json
+      end
+
+      def bio
+        bio_data = Lastfm::ArtistFinder.new.get_info(artist.name)
+        render json: { bio: bio_data }
       end
 
       private

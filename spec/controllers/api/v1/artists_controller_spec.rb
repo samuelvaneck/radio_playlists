@@ -250,4 +250,52 @@ describe Api::V1::ArtistsController do
       end
     end
   end
+
+  describe 'GET #bio' do
+    subject(:get_bio) { get :bio, params: { id: artist_one.id, format: :json } }
+
+    before do
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with('LASTFM_API_KEY', nil).and_return('test_api_key')
+    end
+
+    context 'when Last.fm returns bio data' do
+      let(:bio_data) do
+        {
+          'summary' => 'Artist bio summary text.',
+          'content' => 'Full artist biography content.'
+        }
+      end
+
+      before do
+        allow_any_instance_of(Lastfm::ArtistFinder).to receive(:get_info).and_return(bio_data) # rubocop:disable RSpec/AnyInstance
+      end
+
+      it 'returns status OK/200' do
+        get_bio
+        expect(response.status).to eq 200
+      end
+
+      it 'returns the bio data' do
+        get_bio
+        expect(json[:bio]).to eq(bio_data.with_indifferent_access)
+      end
+    end
+
+    context 'when Last.fm returns no data' do
+      before do
+        allow_any_instance_of(Lastfm::ArtistFinder).to receive(:get_info).and_return(nil) # rubocop:disable RSpec/AnyInstance
+      end
+
+      it 'returns status OK/200' do
+        get_bio
+        expect(response.status).to eq 200
+      end
+
+      it 'returns null bio' do
+        get_bio
+        expect(json[:bio]).to be_nil
+      end
+    end
+  end
 end
