@@ -67,6 +67,27 @@ module Api
                                       .to_json
       end
 
+      # Example response
+      # {
+      #   "bio": {
+      #     "summary": "...",
+      #     "content": "...",
+      #     "description": "Dutch singer",
+      #     "url": "https://en.wikipedia.org/wiki/...",
+      #     "wikibase_item": "Q27982469",
+      #     "thumbnail": { "source": "...", "width": 320, "height": 213 },
+      #     "original_image": { "source": "...", "width": 4272, "height": 2848 },
+      #     "general_info": {
+      #       "date_of_birth": "1984-09-22",
+      #       "place_of_birth": "Dedemsvaart",
+      #       "nationality": ["Netherlands"],
+      #       "genres": ["pop", "rock"],
+      #       "occupations": ["singer", "songwriter"],
+      #       "official_website": "https://...",
+      #       "active_years": { "start": "2008", "end": null }
+      #     }
+      #   }
+      # }
       def bio
         bio_data = Wikipedia::ArtistFinder.new.get_info(artist.name)
         render json: { bio: bio_data }

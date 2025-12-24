@@ -1,0 +1,178 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://en.wikipedia.org/api/rest_v1/page/summary/Miss%20Montreal
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Webkit-Csp:
+      - default-src 'none'; frame-ancestors 'none'
+      Cache-Control:
+      - s-maxage=1209600, max-age=300
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/Summary/1.5.0"
+      Date:
+      - Tue, 23 Dec 2025 20:34:33 GMT
+      Server:
+      - production-tls
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,HEAD
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, cache-control, accept-language, api-user-agent,
+        if-match, if-modified-since, if-none-match, dnt, accept-encoding
+      Access-Control-Expose-Headers:
+      - etag
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"1233049741/9dd63220-e03e-11f0-8500-c36d608fc65b"
+      Age:
+      - '32023'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - x-restbase-compat, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 hit/12
+      X-Cache-Status:
+      - hit-front
+      Server-Timing:
+      - cache;desc="hit-front", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=24-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Sun,
+        25 Jan 2026 00:00:00 GMT
+      - WMF-Last-Access=24-Dec-2025;Path=/;HttpOnly;secure;Expires=Sun, 25 Jan 2026
+        00:00:00 GMT
+      - WMF-Uniq=PDY26XNAxBnt-7iWGxGNMgLTAAAAAFvdB6Ow652wlO6Rjhn3KfA94CKLSiIFwtRs;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        24 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Content-Length:
+      - '1624'
+      X-Request-Id:
+      - 0d5da565-f0fb-460b-88e1-8f2c5c149248
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":"standard","title":"Sanne Hans","displaytitle":"<span class=\"mw-page-title-main\">Sanne
+        Hans</span>","namespace":{"id":0,"text":""},"wikibase_item":"Q27982469","titles":{"canonical":"Sanne_Hans","normalized":"Sanne
+        Hans","display":"<span class=\"mw-page-title-main\">Sanne Hans</span>"},"pageid":40301691,"thumbnail":{"source":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Miss_montreal.jpg/330px-Miss_montreal.jpg","width":320,"height":213},"originalimage":{"source":"https://upload.wikimedia.org/wikipedia/commons/7/79/Miss_montreal.jpg","width":4272,"height":2848},"lang":"en","dir":"ltr","revision":"1233049741","tid":"ebc18c38-3bf9-11ef-b7e3-d8a3b1b8c459","timestamp":"2024-07-07T00:43:26Z","description":"Dutch
+        singer","description_source":"local","content_urls":{"desktop":{"page":"https://en.wikipedia.org/wiki/Sanne_Hans","revisions":"https://en.wikipedia.org/wiki/Sanne_Hans?action=history","edit":"https://en.wikipedia.org/wiki/Sanne_Hans?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Sanne_Hans"},"mobile":{"page":"https://en.wikipedia.org/wiki/Sanne_Hans","revisions":"https://en.wikipedia.org/wiki/Special:History/Sanne_Hans","edit":"https://en.wikipedia.org/wiki/Sanne_Hans?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Sanne_Hans"}},"extract":"Roos-Anne
+        (Sanne) Hans, is a Dutch singer-songwriter and guitar player. She was part
+        of Ysis until 2008 and later formed the band Miss Montreal.","extract_html":"<p><b>Roos-Anne
+        (Sanne) Hans</b>, is a Dutch singer-songwriter and guitar player. She was
+        part of Ysis until 2008 and later formed the band Miss Montreal.</p>"}'
+  recorded_at: Wed, 24 Dec 2025 05:28:17 GMT
+- request:
+    method: get
+    uri: https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&titles=Sanne%20Hans
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Dec 2025 05:28:17 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-rvw75
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '0'
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=24-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Sun,
+        25 Jan 2026 00:00:00 GMT
+      - WMF-Last-Access=24-Dec-2025;Path=/;HttpOnly;secure;Expires=Sun, 25 Jan 2026
+        00:00:00 GMT
+      - WMF-Uniq=p7rDcKKChtQBUVyzQ438EALTAAAAAFvdkdqtCx9caBYgyXYa2NY-wAzwZc_tD6sh;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        24 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Transfer-Encoding:
+      - chunked
+      X-Request-Id:
+      - 941dc030-0387-4ef2-9f5e-4df7dceaaf64
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJiYXRjaGNvbXBsZXRlIjp0cnVlLCJ3YXJuaW5ncyI6eyJleHRyYWN0cyI6eyJ3YXJuaW5ncyI6IkhUTUwgbWF5IGJlIG1hbGZvcm1lZCBhbmQvb3IgdW5iYWxhbmNlZCBhbmQgbWF5IG9taXQgaW5saW5lIGltYWdlcy4gVXNlIGF0IHlvdXIgb3duIHJpc2suIEtub3duIHByb2JsZW1zIGFyZSBsaXN0ZWQgYXQgaHR0cHM6Ly93d3cubWVkaWF3aWtpLm9yZy93aWtpL1NwZWNpYWw6TXlMYW5ndWFnZS9FeHRlbnNpb246VGV4dEV4dHJhY3RzI0NhdmVhdHMuIn19LCJxdWVyeSI6eyJwYWdlcyI6W3sicGFnZWlkIjo0MDMwMTY5MSwibnMiOjAsInRpdGxlIjoiU2FubmUgSGFucyIsImV4dHJhY3QiOiI8cCBjbGFzcz1cIm13LWVtcHR5LWVsdFwiPlxuPC9wPlxuXG5cblxuXG48cD48Yj5Sb29zLUFubmUgKFNhbm5lKSBIYW5zPC9iPiAoYm9ybiAyMiBTZXB0ZW1iZXIgMTk4NCBpbiBEZWRlbXN2YWFydCksIGlzIGEgRHV0Y2ggc2luZ2VyLXNvbmd3cml0ZXIgYW5kIGd1aXRhciBwbGF5ZXIuIFNoZSB3YXMgcGFydCBvZiBZc2lzIHVudGlsIDIwMDggYW5kIGxhdGVyIGZvcm1lZCB0aGUgYmFuZCBNaXNzIE1vbnRyZWFsLlxuPC9wPlxuXG48aDIgZGF0YS1tdy1hbmNob3I9XCJZc2lzXCI+WXNpczwvaDI+XG48cD5TYW5uZSBIYW5zIGZpcnN0IHdhcyBwYXJ0IG9mIHRoZSBmb3JtYXRpb24gPGI+WXNpczwvYj4gbWFkZSB1cCBvZiBoZXIgb24gdm9jYWxzIGFuZCBndWl0YXIsIEluZ2UgdmFuIENhbGthciBhbHNvIG9uIGd1aXRhciBhbmQgdm9jYWxzIGFuZCBJbHNlIEdlcnJpdHNlbiBvbiB0aGUgY2VsbG8uIFRoZXkgYWxsIHN0dXR0ZXIsIHdoaWNoIGRpZG4ndCBpbXBhY3Qgb24gdGhlaXIgc2luZ2luZy5cbjwvcD5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIk1pc3NfTW9udHJlYWxcIj5NaXNzIE1vbnRyZWFsPC9oMj5cbjxwPk9jdG9iZXIgMjAwOCBzaGUgc3RhcnRlZCBhcyB0aGUgbGVhZCBzaW5nZXIgb2YgYSBuZXcgYmFuZCA8Yj5NaXNzIE1vbnRyZWFsPC9iPiwgdG9nZXRoZXIgd2l0aCBLb2J1cyBHcm9lbiAoYmFzcywgYmFja2luZyB2b2NhbHMpLCBNaWNoaSBTY2h3aWVtYW5uIChndWl0YXIpLCBUaGlqcyBSZW5zaW5rIChkcnVtcykgYW5kIFBldGVyIEhlbmRyaWtzIChrZXlib2FyZHMpLiBUaGVpciBmaXJzdCBzaW5nbGUgd2FzIFwiSnVzdCBhIEZsaXJ0XCIgZm9sbG93ZWQgYnkgYSBkZWJ1dCBhbGJ1bSB0aGUgc2VsZi10aXRsZWQgPGk+TWlzcyBNb250cmVhbDwvaT4gaW4gTWF5IDIwMDkgcmVsZWFzaW5nIFwiVGhpcyBpcyBteSBsaWZlXCIgYXMgYSBzZWNvbmQgc2luZ2xlLiBTaGUgYXBwZWFyZWQgaW4gYSBudW1iZXIgb2YgZmVzdGl2YWxzIGluY2x1ZGluZyBpbiBMb3dsYW5kcywgUGFya3BvcCwgQmVhdHN0YWQgYW5kIFp3YXJ0ZSBDcm9zcyBhbmQgb3BlbmVkIGZvciBDb2xkcGxheSBhdCB0aGUgR29mZmVydHBhcmsgaW4gZnJvbnQgb2YgNzAsMDAwIHNwZWN0YXRvcnMuIFNoZSBzYW5nIFwiV29uJ3QgWW91IExldCBNZSBIYXZlIE15IFdheSB3aXRoIFlvdVwiIGZlYXR1cmluZyBCZXJ0b2xmIExlbnRpbmsgaW4gYSBqb2ludCBFUCByZWxlYXNlZCBpbiAyMDA5IGJ5IHRoZSB0d28gYXJ0aXN0cy5cbjwvcD48cD5UaGUgc2Vjb25kIE1pc3MgTW9udHJlYWwgYWxidW0gPGk+U28uLi4gQW55dGhpbmcgRWxzZTwvaT4gY2FtZSBpbiBKdWx5IDIwMTAgd2l0aCBhIGdyYW5kIHRvdXIgb2YgMjAgRHV0Y2ggY2l0aWVzIHRvIHByb21vdGUgdGhlIGFsYnVtLiBUaGUgdG91ciBjb250aW51ZWQgdW50aWwgQXByaWwgMjAxMS4gIEhlciB0aGlyZCBhbGJ1bSA8aT5JIEFtIGEgSHVudGVyPC9pPiB3YXMgcmVsZWFzZWQgb24gMTMgQXByaWwgMjAxMiwgZW5nYWdpbmcgb24gYW5vdGhlciBsb25nIHRvdXIgY2FsbGVkIFwiUy1TUy1TU1MtU2FubmVcIiBzdHJldGNoaW5nIHVudGlsIE1hcmNoIDIwMTMuXG48L3A+XG48aDIgZGF0YS1tdy1hbmNob3I9XCJTb2xvX2NhcmVlclwiPlNvbG8gY2FyZWVyPC9oMj5cbjxwPkluIGFkZGl0aW9uIHRvIGhlciB3b3JrIGluIFlzaXMgYW5kIE1pc3MgTW9udHJlYWwsIHNoZSBoYXMgYWxzbyBwdXJzdWVkIGEgc29sbyBjYXJlZXIuIEFmdGVyIFlzaXMgZGlzYmFuZGVkIGluIDIwMDgsIHNoZSBkaWQgYWR2ZXJ0aXNpbmcgZmVhdHVyZXMgYW5kIGFwcGVhcmVkIG9uIHZhcmlvdXMgcmFkaW8gYW5kIHRlbGV2aXNpb24gc2hvd3MuIFNoZSBhbHNvIHNhbmcgXCJEYW5zZW4gYWFuIHplZVwiIHdpdGggRHV0Y2ggYmFuZCBCTMOYRiBhbmQgXCJJIEFtIFNvcnJ5XCIgd2l0aCBEdXRjaCBiYW5kIE9ubHkgU2V2ZW4gTGVmdC5cbjwvcD48cD5TaGUgYmVjYW1lIGZhbW91cyBieSBzaW5naW5nIHRoZSBpbnRybyB0byB0aGUgY2hpbGRyZW4gVFYgcHJvZ3JhbSA8aT5IdWlzamUsIEJvb21wamUsIEJlZXN0amU8L2k+IGluIDIwMDkuIGFuZCBpbiAyMDEyLCBzaGUgYXBwZWFyZWQgYXMgYSBtZW1iZXIgb2YgdGhlIGp1cnkgb2YgdGhlIHRlbGV2aXNpb24gc2VyaWVzIDxpPkRlIGJlc3RlIHNpbmdlci1zb25nd3JpdGVyIHZhbiBOZWRlcmxhbmQ8L2k+LCBhbmQgc2hlIHdhcyBhIGNvYWNoIG9uIHRoZSBzaXh0aCwgc2V2ZW50aCBhbmQgZWlnaHRoIHNlYXNvbnMgb2YgPGk+VGhlIFZvaWNlIG9mIEhvbGxhbmQ8L2k+LiBJdCB3YXMgYW5ub3VuY2VkIG9uIDI0IEp1bmUgMjAxOSBieSB0aGUgYnJvYWRjYXN0ZXIncyBGYWNlYm9vaywgdGhhdCBTYW5uZSB3b3VsZCBiZSByZXBsYWNpbmcgSWxzZSBEZWxhbmdlIGFzIGNvYWNoIGluIHRoZSBuaW50aCBzZWFzb24gb2YgPGk+VGhlIFZvaWNlIEtpZHM8L2k+LlxuPC9wPlxuPGgyIGRhdGEtbXctYW5jaG9yPVwiRGlzY29ncmFwaHk6X1Nhbm5lX0hhbnNcIj5EaXNjb2dyYXBoeTogU2FubmUgSGFuczwvaDI+XG48aDMgZGF0YS1tdy1hbmNob3I9XCJTaW5nbGVzXCI+U2luZ2xlczwvaDM+XG5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIkRpc2NvZ3JhcGh5Ol9NaXNzX01vbnRyZWFsXCI+RGlzY29ncmFwaHk6IE1pc3MgTW9udHJlYWw8L2gyPlxuPGgzIGRhdGEtbXctYW5jaG9yPVwiQWxidW1zXCI+QWxidW1zPC9oMz5cblxuPGRsPjxkdD5EZW1vIGFsYnVtczwvZHQ+PC9kbD5cblxuPGRsPjxkdD5Db21waWxhdGlvbiBhbGJ1bXM8L2R0PjwvZGw+XG5cbjxkbD48ZHQ+RVBzPC9kdD48L2RsPlxuPHVsPjxsaT4yMDA5OiA8aT5NaXNzIE1vbnRyZWFsIC8gQmVydG9sZjwvaT4gKGpvaW50IEVQKSBbOGJhbGwgTXVzaWNdPC9saT48L3VsPlxuPGgzIGRhdGEtbXctYW5jaG9yPVwiU2luZ2xlc18yXCI+U2luZ2xlczwvaDM+XG5cbjxwPjxzbWFsbD5UaXAgbWVhbnMgdGhlIHJlbGVhc2UgZGlkIG5vdCBjaGFydCBvbiB0aGUgRHV0Y2ggVG9wIDQwLCBidXQgYXBwZWFyZWQgb24gdGhlIFRpcHBhcmFkZSBmb3IgXCJidWJibGluZyB1bmRlclwiIGhpdHM8L3NtYWxsPjxici8+XG48c21hbGw+KkRpZCBub3QgYXBwZWFyIGluIHRoZSBvZmZpY2lhbCBCZWxnaWFuIFVsdHJhdG9wIDUwIGNoYXJ0cywgYnV0IHJhdGhlciBpbiB0aGUgYnViYmxpbmcgdW5kZXIgVWx0cmF0aXAgY2hhcnRzLjwvc21hbGw+XG48L3A+XG48aDMgZGF0YS1tdy1hbmNob3I9XCJPdGhlcl9jaGFydGluZ19zb25nc1wiPk90aGVyIGNoYXJ0aW5nIHNvbmdzPC9oMz5cblxuPGgyIGRhdGEtbXctYW5jaG9yPVwiUmVmZXJlbmNlc1wiPlJlZmVyZW5jZXM8L2gyPlxuXG48aDIgZGF0YS1tdy1hbmNob3I9XCJFeHRlcm5hbF9saW5rc1wiPkV4dGVybmFsIGxpbmtzPC9oMj5cblxuPHVsPjxsaT48c3Bhbj48c3Bhbj5PZmZpY2lhbCB3ZWJzaXRlPC9zcGFuPjwvc3Bhbj48L2xpPjwvdWw+In1dfX0=
+  recorded_at: Wed, 24 Dec 2025 05:28:17 GMT
+recorded_with: VCR 6.3.1

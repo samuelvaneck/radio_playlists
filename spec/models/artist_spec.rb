@@ -310,4 +310,33 @@ describe Artist do
       end
     end
   end
+
+  describe '#update_website_from_wikipedia' do
+    context 'when artist has no website_url', :use_vcr do
+      let(:artist) { create(:artist, name: 'Coldplay', website_url: nil) }
+
+      it 'updates the website_url from Wikipedia' do
+        artist.update_website_from_wikipedia
+        expect(artist.reload.website_url).to include('coldplay')
+      end
+    end
+
+    context 'when artist already has a website_url' do
+      let(:artist) { create(:artist, name: 'Coldplay', website_url: 'https://existing.com') }
+
+      it 'does not update the website_url' do
+        artist.update_website_from_wikipedia
+        expect(artist.reload.website_url).to eq('https://existing.com')
+      end
+    end
+
+    context 'when artist is not found on Wikipedia', :use_vcr do
+      let(:artist) { create(:artist, name: 'NonExistentArtistXYZ123456', website_url: nil) }
+
+      it 'does not update the website_url' do
+        artist.update_website_from_wikipedia
+        expect(artist.reload.website_url).to be_nil
+      end
+    end
+  end
 end

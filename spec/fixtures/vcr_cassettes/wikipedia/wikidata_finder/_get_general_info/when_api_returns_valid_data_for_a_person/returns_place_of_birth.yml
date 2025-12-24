@@ -1,0 +1,452 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q27982469&languages=en&props=claims%7Clabels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Dec 2025 05:31:42 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-fbnfx
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '0'
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=24-Dec-2025;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        25 Jan 2026 00:00:00 GMT
+      - WMF-Last-Access=24-Dec-2025;Path=/;HttpOnly;secure;Expires=Sun, 25 Jan 2026
+        00:00:00 GMT
+      - WMF-Uniq=sowlN6zNq4apRAaTdK6zdQLTAAAAAFvdffrD0wEOejEAVCRwvImMow-sSXi-cn2h;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        24 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Transfer-Encoding:
+      - chunked
+      X-Request-Id:
+      - 328b77b1-6044-47b1-ad3a-b821d09e2f72
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"entities":{"Q27982469":{"type":"item","id":"Q27982469","labels":{"en":{"language":"en","value":"Sanne
+        Hans"}},"claims":{"P31":[{"mainsnak":{"snaktype":"value","property":"P31","hash":"ad7d38a03cdd40cdc373de0dc4e7b7fcbccb31d9","datavalue":{"value":{"entity-type":"item","numeric-id":5,"id":"Q5"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$31d71f28-40f2-38d3-3f62-ba1b3a1d97d7","rank":"normal"}],"P21":[{"mainsnak":{"snaktype":"value","property":"P21","hash":"5760796ff6ebc63aae12cdcbf509b07ebf0bd201","datavalue":{"value":{"entity-type":"item","numeric-id":6581072,"id":"Q6581072"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$bf1b1df5-4024-b366-aad3-fb85f356c37b","rank":"normal","references":[{"hash":"5c0fa0d334b12fb6fd96eeccd70c1bfbc0491a41","snaks":{"P887":[{"snaktype":"value","property":"P887","hash":"0f89b02e7a7b9408e3cd5c2b9cae2f47d84944d5","datavalue":{"value":{"entity-type":"item","numeric-id":69652498,"id":"Q69652498"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P887"]}]}],"P569":[{"mainsnak":{"snaktype":"value","property":"P569","hash":"3f631f6038fca4f47c707e65e0f5de54ed83683d","datavalue":{"value":{"time":"+1984-09-22T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"},"type":"statement","id":"Q27982469$b7713da9-48b0-5ff9-0912-c96874792459","rank":"normal"}],"P735":[{"mainsnak":{"snaktype":"value","property":"P735","hash":"183ab253738a06ce170b358976388e2b5bba9a60","datavalue":{"value":{"entity-type":"item","numeric-id":2655971,"id":"Q2655971"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$777a4308-46eb-fb5f-45e4-e5d61a4f2409","rank":"normal","references":[{"hash":"323be97becfd18ea6625da4b3770079385901a18","snaks":{"P887":[{"snaktype":"value","property":"P887","hash":"b40d6c0ac6eb965460f92fade101fe40a3c44239","datavalue":{"value":{"entity-type":"item","numeric-id":97033143,"id":"Q97033143"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P887"]}]}],"P1559":[{"mainsnak":{"snaktype":"value","property":"P1559","hash":"6c946b510ee44960745c0b0199dc80c6e4d414a3","datavalue":{"value":{"text":"Roos-Anne
+        Hans","language":"nl"},"type":"monolingualtext"},"datatype":"monolingualtext"},"type":"statement","id":"Q27982469$e36eb673-4e77-fb66-16c3-2119534b57dc","rank":"normal"}],"P106":[{"mainsnak":{"snaktype":"value","property":"P106","hash":"5d9aed2c3197fcda899ff4eb02863355294acc5b","datavalue":{"value":{"entity-type":"item","numeric-id":177220,"id":"Q177220"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$c9b7acb1-437b-6ca3-d962-8ef4b20bd642","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P106","hash":"b84229a0310f39be7f26bd725d2c484b415bf2e2","datavalue":{"value":{"entity-type":"item","numeric-id":855091,"id":"Q855091"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$EBD78405-0F3C-4F69-89BC-34803C24EBCB","rank":"normal","references":[{"hash":"7e597a2761accfcaf13f4b83edf636f2a687ceed","snaks":{"P3452":[{"snaktype":"value","property":"P3452","hash":"e53de6d3c19c138be17238a36d4e6f71689bbb41","datavalue":{"value":{"entity-type":"item","numeric-id":7442483,"id":"Q7442483"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"4b4443c6cde48408607b2b14c27c923778e72417","datavalue":{"value":{"time":"+2019-06-20T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}],"P143":[{"snaktype":"value","property":"P143","hash":"9123b0de1cc9c3954366ba797d598e4e1ea4146f","datavalue":{"value":{"entity-type":"item","numeric-id":10000,"id":"Q10000"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P3452","P813","P143"]}]},{"mainsnak":{"snaktype":"value","property":"P106","hash":"61625db170d5128ff2a4c75eea2b5fa7612ee73e","datavalue":{"value":{"entity-type":"item","numeric-id":488205,"id":"Q488205"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$b67b54eb-4cbd-53a9-9350-48b91d07973f","rank":"normal"}],"P27":[{"mainsnak":{"snaktype":"value","property":"P27","hash":"167a1053a904915f7a99e65e9a5830a143cda0d8","datavalue":{"value":{"entity-type":"item","numeric-id":29999,"id":"Q29999"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$e959e303-4e9c-e35c-42d9-24d04bceb4a6","rank":"normal"}],"P19":[{"mainsnak":{"snaktype":"value","property":"P19","hash":"bac11ae417a52a82405ee5e7f0f89d81249ffe94","datavalue":{"value":{"entity-type":"item","numeric-id":2485874,"id":"Q2485874"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$7e67dd7a-4b94-76f7-05a3-01847b873188","rank":"normal"}],"P1412":[{"mainsnak":{"snaktype":"value","property":"P1412","hash":"a94aa340d426347eb10613ec939c753c963667fc","datavalue":{"value":{"entity-type":"item","numeric-id":7411,"id":"Q7411"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$08fc6266-4e02-2a47-5e2c-df77c1ab703d","rank":"normal"}],"P103":[{"mainsnak":{"snaktype":"value","property":"P103","hash":"673894f5473eb18480bb891fa0de60c9ef3b235b","datavalue":{"value":{"entity-type":"item","numeric-id":7411,"id":"Q7411"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$607c9015-4fa0-24b5-2a57-afe36832e0c5","rank":"normal"}],"P1884":[{"mainsnak":{"snaktype":"value","property":"P1884","hash":"9155ea90aaa9c7ce8a4158a5a0d0b82cbff59dc7","datavalue":{"value":{"entity-type":"item","numeric-id":202466,"id":"Q202466"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$41b0f470-44fe-aed9-c89e-f7246d1623e0","rank":"normal"}],"P18":[{"mainsnak":{"snaktype":"value","property":"P18","hash":"f149414475a29e9d8544eabe0e3f026e1d81b41d","datavalue":{"value":"Miss
+        Montreal - Sanne Hans.jpg","type":"string"},"datatype":"commonsMedia"},"type":"statement","qualifiers":{"P585":[{"snaktype":"value","property":"P585","hash":"4cf953dbe6811e781e08aba5b3fa22ac6f0e8baa","datavalue":{"value":{"time":"+2009-11-06T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"qualifiers-order":["P585"],"id":"Q27982469$28c10906-4189-554c-2ccf-21615cc9964d","rank":"normal"}],"P1303":[{"mainsnak":{"snaktype":"value","property":"P1303","hash":"51446aa88f4758a24ef3452a1ff1c6ff2a2add2e","datavalue":{"value":{"entity-type":"item","numeric-id":17172850,"id":"Q17172850"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$B13E22B5-C860-4119-8C78-2209346FB9DC","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P1303","hash":"32ba5bbd0bb5778c1097444f80b17d3de3b3cdab","datavalue":{"value":{"entity-type":"item","numeric-id":6607,"id":"Q6607"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$00666512-42cd-17a7-a035-70dbbe3b4e61","rank":"normal"}],"P1953":[{"mainsnak":{"snaktype":"value","property":"P1953","hash":"d15e31616022f30fda9b10a7d920b8a52bbac34a","datavalue":{"value":"1300798","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q27982469$2ce174bd-cc29-45a5-bdac-43295d2d7585","rank":"normal","references":[{"hash":"fe99414b2f5c37b04d24c75e68308c1a0bb39f73","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"c34208b35b041d6758e6b68814cd263cacdabb10","datavalue":{"value":{"entity-type":"item","numeric-id":504063,"id":"Q504063"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"f01edb0e3e6b730add2859b7b38d92335d6d49ec","datavalue":{"value":{"time":"+2019-07-29T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P813"]}]}],"P2031":[{"mainsnak":{"snaktype":"value","property":"P2031","hash":"76de18c63d3f2a2e1dae79a882e196f1bb8c40e6","datavalue":{"value":{"time":"+2005-00-00T00:00:00Z","timezone":0,"before":0,"after":0,"precision":9,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"},"type":"statement","id":"Q27982469$C850DC00-7DFF-4E74-A195-F19367B01F53","rank":"normal","references":[{"hash":"15a57890c700808c30856f0420b9e846c2ee7580","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"39c8907c5d48f4f71b60ff0bd1dad72bfac5079d","datavalue":{"value":"https://en.wikipedia.org/w/index.php?title=Sanne_Hans&oldid=943070294","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}],"P1741":[{"mainsnak":{"snaktype":"value","property":"P1741","hash":"dfbeb471df278ca649a239f9f9149c340f12135c","datavalue":{"value":"213793","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q27982469$6B54D4C9-00C9-49F0-B39D-39F2896D5425","rank":"normal"}],"P463":[{"mainsnak":{"snaktype":"value","property":"P463","hash":"21b52938180233ad44d72e634f96d79ce313c99e","datavalue":{"value":{"entity-type":"item","numeric-id":2728576,"id":"Q2728576"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$7b2b5ab3-4fe4-f4a9-f5a3-89595c32173d","rank":"normal"}],"P856":[{"mainsnak":{"snaktype":"value","property":"P856","hash":"3447708c9c429a8f6e88cf061d6a8e9eee717106","datavalue":{"value":"https://missmontreal.nl/home/","type":"string"},"datatype":"url"},"type":"statement","qualifiers":{"P407":[{"snaktype":"value","property":"P407","hash":"700aeaff381db1a1b58c6d58777ab5ec7daefe17","datavalue":{"value":{"entity-type":"item","numeric-id":7411,"id":"Q7411"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"qualifiers-order":["P407"],"id":"Q27982469$344CBE7F-1740-4866-BE0B-84F588A33D4D","rank":"normal"}],"P646":[{"mainsnak":{"snaktype":"value","property":"P646","hash":"673435076d5e069792646c1715c3cc7b4383bec2","datavalue":{"value":"/m/0dst7_t","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q27982469$1A2603B5-4128-4B1B-95BE-7077FAC0B594","rank":"normal"}],"P2003":[{"mainsnak":{"snaktype":"value","property":"P2003","hash":"b36d0b258e69435b2856b7b8c3347369198a7302","datavalue":{"value":"missmontreal_","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P12546":[{"snaktype":"value","property":"P12546","hash":"2f7581d65067d7eb666898b8481df6494951c592","datavalue":{"value":"1005146815","type":"string"},"datatype":"external-id"}]},"qualifiers-order":["P12546"],"id":"Q27982469$34F81B34-DE4A-40D9-AA78-8DD40029659B","rank":"normal","references":[{"hash":"92aabd2d6bc3cfbf36e4ebbae9eb3f18d933ba65","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"8ab77c7cd50031c3ae514693b69b28bd375a315a","datavalue":{"value":{"entity-type":"item","numeric-id":648625,"id":"Q648625"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"7e110b110f9caaac242c0133be27e7fd250eb033","datavalue":{"value":{"time":"+2020-12-20T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}],"P646":[{"snaktype":"value","property":"P646","hash":"673435076d5e069792646c1715c3cc7b4383bec2","datavalue":{"value":"/m/0dst7_t","type":"string"},"datatype":"external-id"}]},"snaks-order":["P248","P813","P646"]}]}],"P2002":[{"mainsnak":{"snaktype":"value","property":"P2002","hash":"59d8ccb7b663702d7e433c12cc3066aaa07c0bf0","datavalue":{"value":"missmontreal","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P6552":[{"snaktype":"value","property":"P6552","hash":"47eb025f095946c86d63314e0da7c7173c6c1902","datavalue":{"value":"19363331","type":"string"},"datatype":"external-id"}],"P1552":[{"snaktype":"value","property":"P1552","hash":"62f0039d240f7eeba6c6908a0d8807a6188324a1","datavalue":{"value":{"entity-type":"item","numeric-id":28378282,"id":"Q28378282"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P580":[{"snaktype":"value","property":"P580","hash":"3b73aac364ede96e6f2077c28385282b49033764","datavalue":{"value":{"time":"+2009-01-22T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}],"P585":[{"snaktype":"value","property":"P585","hash":"1d1d62dc3d63d6dd8ca08f2fa4945ca43bcfd306","datavalue":{"value":{"time":"+2020-12-27T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"qualifiers-order":["P6552","P1552","P580","P585"],"id":"Q27982469$87E9FF30-6A6C-43E2-BFE9-B8DB979001E7","rank":"normal","references":[{"hash":"92aabd2d6bc3cfbf36e4ebbae9eb3f18d933ba65","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"8ab77c7cd50031c3ae514693b69b28bd375a315a","datavalue":{"value":{"entity-type":"item","numeric-id":648625,"id":"Q648625"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"7e110b110f9caaac242c0133be27e7fd250eb033","datavalue":{"value":{"time":"+2020-12-20T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}],"P646":[{"snaktype":"value","property":"P646","hash":"673435076d5e069792646c1715c3cc7b4383bec2","datavalue":{"value":"/m/0dst7_t","type":"string"},"datatype":"external-id"}]},"snaks-order":["P248","P813","P646"]}]}],"P8687":[{"mainsnak":{"snaktype":"value","property":"P8687","hash":"21df49d35cacbb5ded834ba494110fc02d27994c","datavalue":{"value":{"amount":"+184195","unit":"1"},"type":"quantity"},"datatype":"quantity"},"type":"statement","qualifiers":{"P6552":[{"snaktype":"value","property":"P6552","hash":"47eb025f095946c86d63314e0da7c7173c6c1902","datavalue":{"value":"19363331","type":"string"},"datatype":"external-id"}],"P585":[{"snaktype":"value","property":"P585","hash":"d72999b5d1b0bb17c6af669714cd3ee35662fc97","datavalue":{"value":{"time":"+2021-01-03T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"qualifiers-order":["P6552","P585"],"id":"Q27982469$591f819b-7ec6-461e-ab47-9e0f0b6dc714","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P8687","hash":"d2ad3c91814592dcabf315a6f8a7d1fad3fa8937","datavalue":{"value":{"amount":"+183055","unit":"1"},"type":"quantity"},"datatype":"quantity"},"type":"statement","qualifiers":{"P6552":[{"snaktype":"value","property":"P6552","hash":"47eb025f095946c86d63314e0da7c7173c6c1902","datavalue":{"value":"19363331","type":"string"},"datatype":"external-id"}],"P585":[{"snaktype":"value","property":"P585","hash":"cc204b5b4738cf214a068d626dc55342010de10f","datavalue":{"value":{"time":"+2022-03-01T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"qualifiers-order":["P6552","P585"],"id":"Q27982469$05984728-b6e2-4daf-9122-8d697cab0c08","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P8687","hash":"efe60abad343c3805a50fb1e351d0cb5ad5ea337","datavalue":{"value":{"amount":"+181657","unit":"1"},"type":"quantity"},"datatype":"quantity"},"type":"statement","qualifiers":{"P6552":[{"snaktype":"value","property":"P6552","hash":"47eb025f095946c86d63314e0da7c7173c6c1902","datavalue":{"value":"19363331","type":"string"},"datatype":"external-id"}],"P585":[{"snaktype":"value","property":"P585","hash":"26c1f8e08cf3c87468695f3d5c8abdc737448ac7","datavalue":{"value":{"time":"+2023-02-09T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"qualifiers-order":["P6552","P585"],"id":"Q27982469$ed9afc3a-40d4-4985-870e-31483c414991","rank":"preferred"}],"P434":[{"mainsnak":{"snaktype":"value","property":"P434","hash":"ad664cfa4edc73ea93cd29d950871658c59b454c","datavalue":{"value":"b2bb2a65-0ed0-4791-9db6-0871f6d929fd","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q27982469$40d5f73c-0a9c-4886-bdcd-b524d105acf9","rank":"normal","references":[{"hash":"01689aa09575c2b12b913bd65ebcd0ac291e4710","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"623cc8f0e2f65afe4d66b91962d354a2f3aa9a27","datavalue":{"value":{"entity-type":"item","numeric-id":14005,"id":"Q14005"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"e1b68c56d58127c274059f36e96fb2e6b953a1ce","datavalue":{"value":{"time":"+2022-04-29T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P813"]}]}],"P734":[{"mainsnak":{"snaktype":"value","property":"P734","hash":"856659ea50bd41124629a5b01c2d4cb05e1069c0","datavalue":{"value":{"entity-type":"item","numeric-id":18130786,"id":"Q18130786"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q27982469$b392f3d0-4a0e-560d-5891-7fe33c5b5d00","rank":"normal","references":[{"hash":"323be97becfd18ea6625da4b3770079385901a18","snaks":{"P887":[{"snaktype":"value","property":"P887","hash":"b40d6c0ac6eb965460f92fade101fe40a3c44239","datavalue":{"value":{"entity-type":"item","numeric-id":97033143,"id":"Q97033143"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P887"]}]}],"P373":[{"mainsnak":{"snaktype":"value","property":"P373","hash":"de20954766130d7308482aef76ff3b8e441f2d59","datavalue":{"value":"Sanne
+        Hans","type":"string"},"datatype":"string"},"type":"statement","id":"Q27982469$9110dd0d-efb1-439a-9ec0-c22266975bb9","rank":"normal"}],"P5008":[{"mainsnak":{"snaktype":"value","property":"P5008","hash":"ad35d66ee378fb3bd2dd9b6a126db5b599220eec","datavalue":{"value":{"entity-type":"item","numeric-id":60687720,"id":"Q60687720"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","qualifiers":{"P585":[{"snaktype":"value","property":"P585","hash":"76ccf35ac4b02a38710f389ab5d8f66854067ee0","datavalue":{"value":{"time":"+2024-02-17T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"qualifiers-order":["P585"],"id":"Q27982469$A6F0F172-41B2-4747-8437-3A0860D8564A","rank":"normal"}],"P2909":[{"mainsnak":{"snaktype":"value","property":"P2909","hash":"510be36df01a38e30a9ce2262cccb5b242dd4bae","datavalue":{"value":"78603","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q27982469$EF893889-95FD-4EEF-A59F-C5AADE5085AD","rank":"normal"}]}}},"success":1}'
+  recorded_at: Wed, 24 Dec 2025 05:31:42 GMT
+- request:
+    method: get
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q2485874&languages=en&props=labels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Dec 2025 05:31:42 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-blbrn
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '0'
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=24-Dec-2025;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        25 Jan 2026 00:00:00 GMT
+      - WMF-Last-Access=24-Dec-2025;Path=/;HttpOnly;secure;Expires=Sun, 25 Jan 2026
+        00:00:00 GMT
+      - WMF-Uniq=GsqqoVpTu6CcPi7kkgnliALTAAAAAFvdNeuPG7yBMBB7x41-MPjkHEiIuK7HwS3q;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        24 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Content-Length:
+      - '125'
+      X-Request-Id:
+      - 8017121d-db53-4ba0-bb2e-6a179600f719
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"entities":{"Q2485874":{"type":"item","id":"Q2485874","labels":{"en":{"language":"en","value":"Dedemsvaart"}}}},"success":1}'
+  recorded_at: Wed, 24 Dec 2025 05:31:42 GMT
+- request:
+    method: get
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q29999&languages=en&props=labels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Dec 2025 05:31:42 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-thjq2
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '0'
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=24-Dec-2025;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        25 Jan 2026 00:00:00 GMT
+      - WMF-Last-Access=24-Dec-2025;Path=/;HttpOnly;secure;Expires=Sun, 25 Jan 2026
+        00:00:00 GMT
+      - WMF-Uniq=-QTWCeHiPZnmI465qiKUSQLTAAAAAFvdYwt5N6nowz41FSqElyNoP7sdADT1rBsI;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        24 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Content-Length:
+      - '136'
+      X-Request-Id:
+      - 4d10cffa-1031-4d7c-a296-58e86a7c14f7
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"entities":{"Q29999":{"type":"item","id":"Q29999","labels":{"en":{"language":"en","value":"Kingdom
+        of the Netherlands"}}}},"success":1}'
+  recorded_at: Wed, 24 Dec 2025 05:31:42 GMT
+- request:
+    method: get
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q2728576&languages=en&props=labels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Dec 2025 05:31:42 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-f5lhz
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '0'
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=24-Dec-2025;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        25 Jan 2026 00:00:00 GMT
+      - WMF-Last-Access=24-Dec-2025;Path=/;HttpOnly;secure;Expires=Sun, 25 Jan 2026
+        00:00:00 GMT
+      - WMF-Uniq=yeesByNsGQqNTuqQrAdGSQLTAAAAAFvdUKW9_mUhOvsNfmhSnRm2c2jGtQSJfL4O;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        24 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Content-Length:
+      - '127'
+      X-Request-Id:
+      - ed1a04ca-fed9-411c-8f15-ac72cb9e0a42
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"entities":{"Q2728576":{"type":"item","id":"Q2728576","labels":{"en":{"language":"en","value":"Miss
+        Montreal"}}}},"success":1}'
+  recorded_at: Wed, 24 Dec 2025 05:31:42 GMT
+- request:
+    method: get
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q177220%7CQ855091%7CQ488205&languages=en&props=labels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Dec 2025 05:31:42 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-w6t7c
+      X-Content-Type-Options:
+      - nosniff
+      X-Experiment-Enrollments:
+      - fy25-26-we-1-1-19-mobile-section-dead-end-phase-2=control;
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '2'
+      Accept-Ranges:
+      - bytes
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - WMF-Uniq;fy25-26-we-1-1-19-mobile-section-dead-end-phase-2=control;
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=24-Dec-2025;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        25 Jan 2026 00:00:00 GMT
+      - WMF-Last-Access=24-Dec-2025;Path=/;HttpOnly;secure;Expires=Sun, 25 Jan 2026
+        00:00:00 GMT
+      - WMF-Uniq=mzSmz48yxAjUHQxYCZC--wLTAAAAAFvdZpSezZ49Fa2gQj6CiWOCRhyts67CbSOh;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        24 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Content-Length:
+      - '316'
+      X-Request-Id:
+      - 4891a4b0-c9de-42ac-9ce5-90415dbacef6
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"entities":{"Q177220":{"type":"item","id":"Q177220","labels":{"en":{"language":"en","value":"singer"}}},"Q855091":{"type":"item","id":"Q855091","labels":{"en":{"language":"en","value":"guitarist"}}},"Q488205":{"type":"item","id":"Q488205","labels":{"en":{"language":"en","value":"singer-songwriter"}}}},"success":1}'
+  recorded_at: Wed, 24 Dec 2025 05:31:43 GMT
+- request:
+    method: get
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q17172850%7CQ6607&languages=en&props=labels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Dec 2025 05:31:43 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-v4s24
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '0'
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=24-Dec-2025;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        25 Jan 2026 00:00:00 GMT
+      - WMF-Last-Access=24-Dec-2025;Path=/;HttpOnly;secure;Expires=Sun, 25 Jan 2026
+        00:00:00 GMT
+      - WMF-Uniq=69LvmQSFcIL4hebLpltFeQLTAAAAAFvd_CqH9qyANV2br8pnN41HR1CDi4EDDQxu;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        24 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Content-Length:
+      - '209'
+      X-Request-Id:
+      - 286dfaa6-2ae4-4615-a9af-07bd1a39eff4
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"entities":{"Q17172850":{"type":"item","id":"Q17172850","labels":{"en":{"language":"en","value":"voice"}}},"Q6607":{"type":"item","id":"Q6607","labels":{"en":{"language":"en","value":"guitar"}}}},"success":1}'
+  recorded_at: Wed, 24 Dec 2025 05:31:43 GMT
+recorded_with: VCR 6.3.1

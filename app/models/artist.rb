@@ -81,4 +81,11 @@ class Artist < ApplicationRecord
   def played
     air_plays.size
   end
+
+  def update_website_from_wikipedia
+    return if website_url.present?
+
+    official_website = Wikipedia::ArtistFinder.new.get_official_website(name)
+    update(website_url: official_website) if official_website.present?
+  end
 end
