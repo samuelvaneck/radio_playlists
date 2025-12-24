@@ -34,8 +34,11 @@ docker-compose up                           # Full stack with Docker
 
 The app uses service objects extensively in `app/services/`:
 - `SongImporter` - Orchestrates song import workflow (matcher, recognizer, scraper sub-services)
-- `TrackScraper/` - 8 polymorphic processors for different radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis)
+- `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis)
+- `TrackExtractor/` - Extracts artist/song info and finds Spotify tracks
 - `Spotify/` and `Youtube/` - External API integrations
+- `Lastfm/` and `Wikipedia/` - Artist bio/info enrichment
+- `AudioStream/` - M3U8 and MP3 stream handling
 - `SongRecognizer` - Audio fingerprinting via SongRec
 
 ### Background Jobs
@@ -68,6 +71,7 @@ Located in `app/models/concerns/`:
 - `GraphConcern` - Data visualization queries
 - `DateConcern` - Date filtering utilities
 - `TimeAnalyticsConcern` - Temporal analysis
+- `LifecycleConcern` - Model lifecycle callbacks
 
 ## Code Style
 
@@ -94,11 +98,21 @@ end
 
 VCR cassettes are stored in `spec/fixtures/vcr_cassettes/` and are automatically named based on the test description. Prefer VCR over mocking Faraday/HTTP responses directly when testing service objects that call external APIs.
 
+For tests that need real HTTP requests (no mocking), use `:real_http`:
+```ruby
+context 'with live API call', :real_http do
+  it 'fetches real data' do
+    # WebMock and VCR are disabled for this test
+  end
+end
+```
+
 ## API Structure
 
 RESTful JSON API under `/api/v1/`:
 - `songs`, `artists`, `air_plays`, `radio_stations`
 - Admin endpoints with JWT authentication (Devise)
+- Swagger docs available at `/api-docs` (rswag)
 
 ## External Dependencies
 
