@@ -50,7 +50,7 @@ describe Api::V1::AirPlaysController do
     end
 
     context 'when filtered by start_time' do
-      let(:old_air_play) { create :air_play, radio_station: radio_station_one, song: song_one, created_at: 3.hours.ago }
+      let(:old_air_play) { create :air_play, radio_station: radio_station_one, song: song_one, broadcasted_at: 3.hours.ago }
 
       before { old_air_play }
 
