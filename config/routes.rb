@@ -4,6 +4,8 @@ require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   devise_for :admins
   namespace :api, defaults: { format: :json } do
     namespace :v1 do

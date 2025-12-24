@@ -1,0 +1,1019 @@
+---
+openapi: 3.0.1
+info:
+  title: Radio Playlists API
+  version: v1
+  description: API for tracking songs played on Dutch radio stations with Spotify
+    and YouTube integration
+paths:
+  "/api/v1/admins/artists":
+    get:
+      summary: List artists for admin
+      tags:
+      - Admin Artists
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      - name: per_page
+        in: query
+        required: false
+        description: Items per page
+        schema:
+          type: integer
+      - name: search_term
+        in: query
+        required: false
+        description: Search by name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Artists retrieved successfully
+        '401':
+          description: Not authenticated
+  "/api/v1/admins/artists/{id}":
+    patch:
+      summary: Update an artist
+      tags:
+      - Admin Artists
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Artist ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Artist updated successfully
+        '401':
+          description: Not authenticated
+        '404':
+          description: Artist not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                artist:
+                  type: object
+                  properties:
+                    website_url:
+                      type: string
+                    instagram_url:
+                      type: string
+  "/api/v1/admins/sign_in":
+    post:
+      summary: Admin sign in
+      tags:
+      - Admin Authentication
+      parameters: []
+      responses:
+        '200':
+          description: Logged in successfully
+        '401':
+          description: Authentication failed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                admin:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
+  "/api/v1/admins/sign_out":
+    delete:
+      summary: Admin sign out
+      tags:
+      - Admin Authentication
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Logged out successfully
+  "/api/v1/admins/current":
+    get:
+      summary: Get current admin
+      tags:
+      - Admin
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Current admin retrieved successfully
+        '401':
+          description: Not authenticated
+  "/api/v1/admins/songs":
+    get:
+      summary: List songs for admin
+      tags:
+      - Admin Songs
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      - name: per_page
+        in: query
+        required: false
+        description: Items per page
+        schema:
+          type: integer
+      - name: search_term
+        in: query
+        required: false
+        description: Search by title
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Songs retrieved successfully
+        '401':
+          description: Not authenticated
+  "/api/v1/admins/songs/{id}":
+    patch:
+      summary: Update a song
+      tags:
+      - Admin Songs
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Song ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Song updated successfully
+        '401':
+          description: Not authenticated
+        '404':
+          description: Song not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                song:
+                  type: object
+                  properties:
+                    id_on_youtube:
+                      type: string
+  "/api/v1/air_plays":
+    get:
+      summary: List recent air plays
+      tags:
+      - AirPlays
+      parameters:
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      - name: time
+        in: query
+        required: false
+        description: Time period filter (day, week, month, year, all)
+        schema:
+          type: string
+      - name: radio_station_id
+        in: query
+        required: false
+        description: Filter by radio station
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Air plays retrieved successfully
+  "/api/v1/artists":
+    get:
+      summary: List artists
+      tags:
+      - Artists
+      parameters:
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      - name: time
+        in: query
+        required: false
+        description: Time period filter (day, week, month, year, all)
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        format: date
+        required: false
+        description: Start date for filtering
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        format: date
+        required: false
+        description: End date for filtering
+        schema:
+          type: string
+      - name: radio_station_id
+        in: query
+        required: false
+        description: Filter by radio station
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Artists retrieved successfully
+  "/api/v1/artists/{id}":
+    get:
+      summary: Get an artist
+      tags:
+      - Artists
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Artist ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Artist retrieved successfully
+        '404':
+          description: Artist not found
+  "/api/v1/artists/{id}/graph_data":
+    get:
+      summary: Get artist play count graph data
+      tags:
+      - Artists
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Artist ID
+        schema:
+          type: integer
+      - name: time
+        in: query
+        required: false
+        description: Time period (day, week, month, year, all)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Graph data retrieved successfully
+  "/api/v1/artists/{id}/songs":
+    get:
+      summary: Get artist songs
+      tags:
+      - Artists
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Artist ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Artist songs retrieved successfully
+  "/api/v1/artists/{id}/chart_positions":
+    get:
+      summary: Get artist chart positions over time
+      tags:
+      - Artists
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Artist ID
+        schema:
+          type: integer
+      - name: period
+        in: query
+        required: false
+        description: 'Time period (week, month, year, all). Default: month'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Chart positions retrieved successfully
+  "/api/v1/artists/{id}/time_analytics":
+    get:
+      summary: Get artist time-based analytics
+      tags:
+      - Artists
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Artist ID
+        schema:
+          type: integer
+      - name: radio_station_ids[]
+        in: query
+        items:
+          type: integer
+        required: false
+        description: Filter by radio station IDs
+        schema:
+          type: array
+      - name: weeks
+        in: query
+        required: false
+        description: 'Number of weeks for trend analysis. Default: 4'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Time analytics retrieved successfully
+  "/api/v1/artists/{id}/air_plays":
+    get:
+      summary: Get artist air plays
+      tags:
+      - Artists
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Artist ID
+        schema:
+          type: integer
+      - name: period
+        in: query
+        required: false
+        description: 'Time period (day, week, month, year, all). Default: day'
+        schema:
+          type: string
+      - name: radio_station_ids[]
+        in: query
+        items:
+          type: integer
+        required: false
+        description: Filter by radio station IDs
+        schema:
+          type: array
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Air plays retrieved successfully
+  "/api/v1/artists/{id}/bio":
+    get:
+      summary: Get artist biography from Wikipedia
+      tags:
+      - Artists
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Artist ID
+        schema:
+          type: integer
+      - name: language
+        in: query
+        required: false
+        description: 'Wikipedia language (en, nl, de, fr, es, it, pt, pl, ru, ja,
+          zh). Default: en'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Artist bio retrieved successfully
+  "/api/v1/radio_stations":
+    get:
+      summary: List all radio stations
+      tags:
+      - Radio Stations
+      responses:
+        '200':
+          description: Radio stations retrieved successfully
+  "/api/v1/radio_stations/{id}":
+    get:
+      summary: Get a radio station
+      tags:
+      - Radio Stations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Radio station ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Radio station retrieved successfully
+        '404':
+          description: Radio station not found
+  "/api/v1/radio_stations/{id}/status":
+    get:
+      summary: Get radio station status
+      tags:
+      - Radio Stations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Radio station ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Radio station status retrieved successfully
+  "/api/v1/radio_stations/{id}/data":
+    get:
+      summary: Get radio station data
+      tags:
+      - Radio Stations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Radio station ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Radio station data retrieved successfully
+  "/api/v1/radio_stations/{id}/classifiers":
+    get:
+      summary: Get radio station audio classifiers
+      tags:
+      - Radio Stations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Radio station ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Radio station classifiers retrieved successfully
+  "/api/v1/radio_stations/last_played_songs":
+    get:
+      summary: Get last played songs for all stations
+      tags:
+      - Radio Stations
+      responses:
+        '200':
+          description: Last played songs retrieved successfully
+  "/api/v1/radio_stations/new_played_songs":
+    get:
+      summary: Get newly played songs across all stations
+      tags:
+      - Radio Stations
+      parameters:
+      - name: start_time
+        in: query
+        required: true
+        description: Time period (day, week, month, year, all)
+        schema:
+          type: string
+      - name: radio_station_id
+        in: query
+        required: false
+        description: Filter by radio station
+        schema:
+          type: integer
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: New played songs retrieved successfully
+        '400':
+          description: Time parameter is required
+  "/api/v1/radio_stations/{id}/stream_proxy":
+    get:
+      summary: Proxy radio station stream
+      tags:
+      - Radio Stations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Radio station ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Stream proxied successfully
+        '400':
+          description: No stream URL configured
+  "/api/v1/songs":
+    get:
+      summary: List songs
+      tags:
+      - Songs
+      parameters:
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      - name: time
+        in: query
+        required: false
+        description: Time period filter (day, week, month, year, all)
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        format: date
+        required: false
+        description: Start date for filtering
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        format: date
+        required: false
+        description: End date for filtering
+        schema:
+          type: string
+      - name: radio_station_id
+        in: query
+        required: false
+        description: Filter by radio station
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Songs retrieved successfully
+  "/api/v1/songs/{id}":
+    get:
+      summary: Get a song
+      tags:
+      - Songs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Song ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Song retrieved successfully
+        '404':
+          description: Song not found
+  "/api/v1/songs/{id}/graph_data":
+    get:
+      summary: Get song play count graph data
+      tags:
+      - Songs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Song ID
+        schema:
+          type: integer
+      - name: time
+        in: query
+        required: false
+        description: Time period (day, week, month, year, all)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Graph data retrieved successfully
+  "/api/v1/songs/{id}/chart_positions":
+    get:
+      summary: Get song chart positions over time
+      tags:
+      - Songs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Song ID
+        schema:
+          type: integer
+      - name: period
+        in: query
+        required: false
+        description: 'Time period (week, month, year, all). Default: month'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Chart positions retrieved successfully
+  "/api/v1/songs/{id}/time_analytics":
+    get:
+      summary: Get song time-based analytics
+      tags:
+      - Songs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Song ID
+        schema:
+          type: integer
+      - name: radio_station_ids[]
+        in: query
+        items:
+          type: integer
+        required: false
+        description: Filter by radio station IDs
+        schema:
+          type: array
+      - name: weeks
+        in: query
+        required: false
+        description: 'Number of weeks for trend analysis. Default: 4'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Time analytics retrieved successfully
+  "/api/v1/songs/{id}/air_plays":
+    get:
+      summary: Get song air plays
+      tags:
+      - Songs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Song ID
+        schema:
+          type: integer
+      - name: period
+        in: query
+        required: false
+        description: 'Time period (day, week, month, year, all). Default: day'
+        schema:
+          type: string
+      - name: radio_station_ids[]
+        in: query
+        items:
+          type: integer
+        required: false
+        description: Filter by radio station IDs
+        schema:
+          type: array
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Air plays retrieved successfully
+servers:
+- url: https://api.radioplaylists.nl
+  description: Production server
+- url: http://localhost:3000
+  description: Development server
+components:
+  schemas:
+    Song:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: song
+        attributes:
+          type: object
+          properties:
+            id:
+              type: integer
+            title:
+              type: string
+            search_text:
+              type: string
+              nullable: true
+            spotify_song_url:
+              type: string
+              nullable: true
+            spotify_artwork_url:
+              type: string
+              nullable: true
+            spotify_preview_url:
+              type: string
+              nullable: true
+            id_on_youtube:
+              type: string
+              nullable: true
+            release_date:
+              type: string
+              format: date
+              nullable: true
+            release_date_precision:
+              type: string
+              nullable: true
+            artists:
+              type: array
+              items:
+                "$ref": "#/components/schemas/ArtistCompact"
+            counter:
+              type: integer
+              nullable: true
+            position:
+              type: integer
+              nullable: true
+    Artist:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: artist
+        attributes:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            spotify_artist_url:
+              type: string
+              nullable: true
+            spotify_artwork_url:
+              type: string
+              nullable: true
+            instagram_url:
+              type: string
+              nullable: true
+            website_url:
+              type: string
+              nullable: true
+            counter:
+              type: integer
+              nullable: true
+    ArtistCompact:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+            attributes:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+    AirPlay:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: air_play
+        attributes:
+          type: object
+          properties:
+            id:
+              type: integer
+            broadcasted_at:
+              type: string
+              format: date-time
+            created_at:
+              type: string
+              format: date-time
+            song:
+              "$ref": "#/components/schemas/Song"
+            radio_station:
+              "$ref": "#/components/schemas/RadioStation"
+            artists:
+              type: array
+              items:
+                "$ref": "#/components/schemas/ArtistCompact"
+    RadioStation:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: radio_station
+        attributes:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            slug:
+              type: string
+              nullable: true
+            stream_url:
+              type: string
+              nullable: true
+            country_code:
+              type: string
+    Bio:
+      type: object
+      properties:
+        bio:
+          type: object
+          nullable: true
+          properties:
+            summary:
+              type: string
+              nullable: true
+            content:
+              type: string
+              nullable: true
+            description:
+              type: string
+              nullable: true
+            url:
+              type: string
+              nullable: true
+            wikibase_item:
+              type: string
+              nullable: true
+            thumbnail:
+              type: object
+              nullable: true
+              properties:
+                source:
+                  type: string
+                width:
+                  type: integer
+                height:
+                  type: integer
+            original_image:
+              type: object
+              nullable: true
+              properties:
+                source:
+                  type: string
+                width:
+                  type: integer
+                height:
+                  type: integer
+            general_info:
+              type: object
+              nullable: true
+              properties:
+                date_of_birth:
+                  type: string
+                  nullable: true
+                place_of_birth:
+                  type: string
+                  nullable: true
+                nationality:
+                  type: array
+                  items:
+                    type: string
+                  nullable: true
+                genres:
+                  type: array
+                  items:
+                    type: string
+                  nullable: true
+                occupations:
+                  type: array
+                  items:
+                    type: string
+                  nullable: true
+                official_website:
+                  type: string
+                  nullable: true
+                active_years:
+                  type: object
+                  nullable: true
+                  properties:
+                    start:
+                      type: string
+                      nullable: true
+                    end:
+                      type: string
+                      nullable: true
+    ChartPosition:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        position:
+          type: integer
+        counts:
+          type: integer
+    TimeAnalytics:
+      type: object
+      properties:
+        peak_play_times:
+          type: object
+          properties:
+            peak_hour:
+              type: integer
+              nullable: true
+            peak_day:
+              type: integer
+              nullable: true
+            peak_day_name:
+              type: string
+              nullable: true
+            hourly_distribution:
+              type: object
+            daily_distribution:
+              type: object
+        play_frequency_trend:
+          type: object
+          nullable: true
+          properties:
+            trend:
+              type: string
+            trend_percentage:
+              type: number
+            weekly_counts:
+              type: array
+              items:
+                type: integer
+            first_period_avg:
+              type: number
+            second_period_avg:
+              type: number
+        lifecycle_stats:
+          type: object
+          nullable: true
+          properties:
+            first_play:
+              type: string
+              format: date-time
+            last_play:
+              type: string
+              format: date-time
+            total_plays:
+              type: integer
+            days_active:
+              type: integer
+    PaginatedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+        total_entries:
+          type: integer
+        total_pages:
+          type: integer
+        current_page:
+          type: integer
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

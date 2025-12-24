@@ -34,6 +34,10 @@ gem 'uri', '~> 1.0.2'
 gem 'will_paginate'
 gem 'seed-fu', '~> 2.3'
 
+# API Documentation
+gem 'rswag-api'
+gem 'rswag-ui'
+
 # Until mail gem is updated
 # https://github.com/mikel/mail/pull/1439
 gem 'net-smtp'
@@ -57,6 +61,7 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'rubocop-rspec_rails'
   gem 'rspec-rails'
+  gem 'rswag-specs'
   gem 'stackprof'
 end
 

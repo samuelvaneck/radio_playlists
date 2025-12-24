@@ -202,6 +202,9 @@ GEM
       reline (>= 0.4.2)
     jaro_winkler (1.6.1)
     json (2.13.2)
+    json-schema (6.1.0)
+      addressable (~> 2.8)
+      bigdecimal (>= 3.1, < 5)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
     jwt (2.10.1)
@@ -401,6 +404,17 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.4)
+    rswag-api (2.17.0)
+      activesupport (>= 5.2, < 8.2)
+      railties (>= 5.2, < 8.2)
+    rswag-specs (2.17.0)
+      activesupport (>= 5.2, < 8.2)
+      json-schema (>= 2.2, < 7.0)
+      railties (>= 5.2, < 8.2)
+      rspec-core (>= 2.14)
+    rswag-ui (2.17.0)
+      actionpack (>= 5.2, < 8.2)
+      railties (>= 5.2, < 8.2)
     rubocop (1.82.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -585,6 +599,9 @@ DEPENDENCIES
   rails-controller-testing
   redis
   rspec-rails
+  rswag-api
+  rswag-specs
+  rswag-ui
   rubocop
   rubocop-factory_bot
   rubocop-performance
