@@ -2,7 +2,7 @@
 
 module JwtAuthHelper
   def jwt_token_for(admin)
-    Warden::JWTAuth::UserEncoder.new.call(admin, :admin, nil).first
+    Warden::JWTAuth::UserEncoder.new.(admin, :admin, nil).first
   end
 end
 

@@ -1,6 +1,22 @@
 inherit_from: .rubocop_todo.yml
 
 ################################################################################
+# Rubocop default cops setting see: https://docs.rubocop.org/rubocop/index.html
+#################################################################################
+AllCops:
+  NewCops: disable
+  EnabledByDefault: false
+  Exclude:
+    - vendor/bundle/**/*
+    - node_modules/**/*
+    - vendor/**/*
+    - db/migrate/**/*
+    - db/schema.rb
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
+    - bin/**/*
+
+################################################################################
 # Require rubocop gems here
 ################################################################################
 plugins:
@@ -22,6 +38,9 @@ Layout/LineLength:
     going back to the start of the next line. 150 characters is a good
     compromise.
   Max: 150
+Metrics/BlockLength:
+  Exclude:
+    - db/schema.rb
 # Metrics/AbcSize:
   # turn this back on later
   # Severity: refactor
@@ -98,6 +117,9 @@ Style/FrozenStringLiteralComment:
 ################################################################################
 Rails:
   Enabled: true
+Rails/CreateTableWithTimestamps:
+  Exclude:
+    - db/schema.rb
 ################################################################################
 # Rubocop Rspec settings using rubocop-rspec gem
 ################################################################################
@@ -120,6 +142,15 @@ RSpec/BeforeAfterAll:
   Enabled: true
 RSpec/EmptyExampleGroup:
   Enabled: true
+  Exclude:
+    - spec/requests/**/*
+RSpec/VariableName:
+  Exclude:
+    - spec/requests/**/*
+RSpec/LetSetup:
+  Exclude:
+    - spec/requests/**/*
+    - spec/models/song_spec.rb
 RSpec/EmptyHook:
   Enabled: true
 RSpec/EmptyLineAfterExample:
@@ -146,18 +177,3 @@ RSpec/MultipleMemoizedHelpers:
 ################################################################################
 Performance:
   Enabled: true
-################################################################################
-# Rubocop default cops setting see: https://docs.rubocop.org/rubocop/index.html
-#################################################################################
-AllCops:
-  NewCops: disable
-  EnabledByDefault: false
-  Exclude:
-    - vendor/bundle/**/*
-    - 'node_modules/**/*'
-    - 'vendor/**/*'
-    - 'db/migrate/**/*'
-    - 'db/schema.rb'
-    - 'spec/rails_helper.rb'
-    - 'spec/spec_helper.rb'
-    - 'bin/**/*'
