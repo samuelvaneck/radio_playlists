@@ -3,6 +3,7 @@
 module Wikipedia
   class WikidataFinder
     WIKIDATA_API_URL = 'https://www.wikidata.org'
+    DEFAULT_LANGUAGE = 'en'
 
     # Wikidata property IDs for artist information
     PROPERTIES = {
@@ -20,13 +21,14 @@ module Wikipedia
       instrument: 'P1303'
     }.freeze
 
+    def initialize(language: DEFAULT_LANGUAGE)
+      @language = language
+    end
+
     def get_general_info(wikibase_item)
       return nil if wikibase_item.blank?
 
-      response = fetch_entity(wikibase_item)
-      return nil if response.nil?
-
-      entity = response.dig('entities', wikibase_item)
+      entity = fetch_entity_data(wikibase_item)
       return nil if entity.nil?
 
       extract_artist_info(entity)
@@ -35,14 +37,18 @@ module Wikipedia
     def get_official_website(wikibase_item)
       return nil if wikibase_item.blank?
 
-      response = fetch_entity(wikibase_item)
-      return nil if response.nil?
-
-      entity = response.dig('entities', wikibase_item)
+      entity = fetch_entity_data(wikibase_item)
       extract_claim_value(entity, :official_website)
     end
 
     private
+
+    attr_reader :language
+
+    def fetch_entity_data(wikibase_item)
+      response = fetch_entity(wikibase_item)
+      response&.dig('entities', wikibase_item)
+    end
 
     def fetch_entity(wikibase_item)
       Rails.cache.fetch(cache_key(wikibase_item), expires_in: 24.hours) do
@@ -52,7 +58,7 @@ module Wikipedia
             ids: wikibase_item,
             format: 'json',
             props: 'claims|labels',
-            languages: 'en'
+            languages: language
           }
         end
         response.body
@@ -136,7 +142,7 @@ module Wikipedia
             ids: entity_ids.join('|'),
             format: 'json',
             props: 'labels',
-            languages: 'en'
+            languages: language
           }
         end.body
       end
@@ -144,7 +150,7 @@ module Wikipedia
       return nil if response.nil?
 
       entity_ids.filter_map do |entity_id|
-        response.dig('entities', entity_id, 'labels', 'en', 'value')
+        response.dig('entities', entity_id, 'labels', language, 'value')
       end
     rescue StandardError => e
       ExceptionNotifier.notify_new_relic(e)
@@ -153,28 +159,21 @@ module Wikipedia
     end
 
     def parse_wikidata_date(time_string)
-      # Wikidata dates are in format: +1984-09-22T00:00:00Z
       match = time_string.match(/([+-]?\d+)-(\d{2})-(\d{2})/)
       return nil unless match
 
       year = match[1].to_i
-      month = match[2].to_i
-      day = match[3].to_i
+      return year.to_s if match[2].to_i.zero? || match[3].to_i.zero?
 
-      # Return just the year if month/day are zeros (less precise date)
-      return year.to_s if month.zero? || day.zero?
-
-      format('%<year>04d-%<month>02d-%<day>02d', year: year.abs, month: month, day: day)
+      format('%<year>04d-%<month>02d-%<day>02d', year: year.abs, month: match[2].to_i, day: match[3].to_i)
     end
 
     def connection
-      @connection ||= Faraday.new(url: WIKIDATA_API_URL) do |conn|
-        conn.response :json
-      end
+      @connection ||= Faraday.new(url: WIKIDATA_API_URL) { |conn| conn.response :json }
     end
 
     def cache_key(identifier)
-      "wikidata:#{identifier}"
+      "wikidata:#{language}:#{identifier}"
     end
   end
 end

@@ -2,9 +2,20 @@
 
 module Wikipedia
   class Base
-    BASE_URL = 'https://en.wikipedia.org'
+    DEFAULT_LANGUAGE = 'en'
+    SUPPORTED_LANGUAGES = %w[en nl de fr es it pt pl ru ja zh].freeze
+
+    def initialize(language: DEFAULT_LANGUAGE)
+      @language = SUPPORTED_LANGUAGES.include?(language) ? language : DEFAULT_LANGUAGE
+    end
 
     private
+
+    attr_reader :language
+
+    def base_url
+      "https://#{language}.wikipedia.org"
+    end
 
     def make_rest_request(path)
       full_path = "/api/rest_v1#{path}"
@@ -32,7 +43,7 @@ module Wikipedia
     end
 
     def connection
-      @connection ||= Faraday.new(url: BASE_URL) do |conn|
+      @connection ||= Faraday.new(url: base_url) do |conn|
         conn.response :json
       end
     end
@@ -46,7 +57,7 @@ module Wikipedia
     end
 
     def cache_key(path)
-      "wikipedia:#{path}"
+      "wikipedia:#{language}:#{path}"
     end
   end
 end

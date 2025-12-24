@@ -67,7 +67,13 @@ module Api
                                       .to_json
       end
 
-      # Example response
+      # GET /api/v1/artists/:id/bio
+      #
+      # Parameters:
+      #   - language (optional, default: 'en'): Wikipedia language
+      #     Supported: en, nl, de, fr, es, it, pt, pl, ru, ja, zh
+      #
+      # Example response:
       # {
       #   "bio": {
       #     "summary": "...",
@@ -89,7 +95,7 @@ module Api
       #   }
       # }
       def bio
-        bio_data = Wikipedia::ArtistFinder.new.get_info(artist.name)
+        bio_data = Wikipedia::ArtistFinder.new(language: language_param).get_info(artist.name)
         render json: { bio: bio_data }
       end
 
@@ -128,6 +134,10 @@ module Api
 
       def period_param
         params[:period] || 'month'
+      end
+
+      def language_param
+        params[:language] || 'en'
       end
     end
   end

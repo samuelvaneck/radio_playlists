@@ -107,4 +107,25 @@ describe Wikipedia::ArtistFinder do
       end
     end
   end
+
+  describe 'language support' do
+    context 'with Dutch language', :use_vcr do
+      subject(:artist_finder) { described_class.new(language: 'nl') }
+
+      let(:artist_name) { 'Coldplay' }
+
+      it 'returns bio from Dutch Wikipedia' do
+        result = artist_finder.get_info(artist_name, include_general_info: false)
+        expect(result['url']).to include('nl.wikipedia.org')
+      end
+    end
+
+    context 'with unsupported language' do
+      subject(:artist_finder) { described_class.new(language: 'invalid') }
+
+      it 'falls back to English' do
+        expect(artist_finder.send(:language)).to eq('en')
+      end
+    end
+  end
 end

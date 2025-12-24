@@ -24,7 +24,7 @@ module Wikipedia
       }
 
       if include_general_info && wikibase_item.present?
-        general_info = WikidataFinder.new.get_general_info(wikibase_item)
+        general_info = WikidataFinder.new(language: language).get_general_info(wikibase_item)
         result['general_info'] = general_info if general_info.present?
       end
 
@@ -39,7 +39,7 @@ module Wikipedia
       wikibase_item = summary_response['wikibase_item']
       return nil if wikibase_item.blank?
 
-      WikidataFinder.new.get_official_website(wikibase_item)
+      WikidataFinder.new(language: language).get_official_website(wikibase_item)
     end
 
     private
