@@ -2,7 +2,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   scope :played_between, lambda { |start_time, end_time|
-    where(air_plays: { created_at: start_time..end_time })
+    where(air_plays: { broadcasted_at: start_time..end_time })
   }
   scope :played_on, lambda { |radio_station_ids|
     return if radio_station_ids.blank?
