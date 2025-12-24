@@ -499,8 +499,7 @@ GEM
     uniform_notifier (1.18.0)
     uri (1.0.4)
     useragent (0.16.11)
-    vcr (6.3.1)
-      base64
+    vcr (6.4.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     warden-jwt_auth (0.11.0)
