@@ -254,5 +254,20 @@ describe Song do
         end.not_to(change { unknown_song.reload.id_on_youtube })
       end
     end
+
+    context 'when updating Shake It Off by Taylor Swift', :use_vcr do
+      let(:taylor_swift) { create(:artist, name: 'Taylor Swift') }
+      let(:shake_it_off) do
+        create(:song,
+               title: 'Shake It Off',
+               artists: [taylor_swift],
+               id_on_youtube: nil)
+      end
+
+      it 'updates id_on_youtube to nfWlot6h_JM' do
+        shake_it_off.update_youtube_from_wikipedia
+        expect(shake_it_off.reload.id_on_youtube).to eq('nfWlot6h_JM')
+      end
+    end
   end
 end
