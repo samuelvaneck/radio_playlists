@@ -3,7 +3,7 @@
 module Api
   module V1
     class SongsController < ApiController
-      before_action :song, only: %i[show graph_data chart_positions time_analytics air_plays]
+      before_action :song, only: %i[show graph_data chart_positions time_analytics air_plays info]
 
       def index
         render json: SongSerializer.new(songs)
@@ -98,6 +98,37 @@ module Api
                                       .to_json
       end
 
+      # GET /api/v1/songs/:id/info
+      #
+      # Parameters:
+      #   - language (optional, default: 'en'): Wikipedia language
+      #     Supported: en, nl, de, fr, es, it, pt, pl, ru, ja, zh
+      #
+      # Example response:
+      # {
+      #   "info": {
+      #     "summary": "...",
+      #     "content": "...",
+      #     "description": "2011 single by Adele",
+      #     "url": "https://en.wikipedia.org/wiki/Rolling_in_the_Deep",
+      #     "wikibase_item": "Q212764",
+      #     "thumbnail": { "source": "...", "width": 320, "height": 213 },
+      #     "original_image": { "source": "...", "width": 4272, "height": 2848 },
+      #     "general_info": {
+      #       "youtube_video_id": "rYEDA3JcQqw",
+      #       "publication_date": "2010-11-29",
+      #       "genres": ["soul", "pop"],
+      #       "performers": ["Adele"],
+      #       "record_labels": ["XL Recordings"]
+      #     }
+      #   }
+      # }
+      def info
+        artist_name = song.artists.first&.name
+        info_data = Wikipedia::SongFinder.new(language: language_param).get_info(song.title, artist_name)
+        render json: { info: info_data }
+      end
+
       private
 
       def song_air_plays
@@ -133,6 +164,10 @@ module Api
 
       def period_param
         params[:period] || 'month'
+      end
+
+      def language_param
+        params[:language] || 'en'
       end
     end
   end

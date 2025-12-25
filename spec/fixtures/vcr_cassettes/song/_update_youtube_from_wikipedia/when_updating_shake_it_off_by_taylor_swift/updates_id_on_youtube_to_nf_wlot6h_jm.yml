@@ -1,0 +1,350 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?item%20WHERE%20%7B%0A%20%20?item%20wdt:P2207%20%22s3dw7mkmxgyhx4ypwnnfrt%22.%0A%7D%0ALIMIT%201%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/sparql-results+json
+      User-Agent:
+      - RadioPlaylists/1.0 (https://radioplaylists.nl)
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.18.0
+      Date:
+      - Thu, 25 Dec 2025 20:32:08 GMT
+      Content-Type:
+      - application/sparql-results+json;charset=utf-8
+      X-First-Solution-Millis:
+      - '2'
+      X-Served-By:
+      - wdqs1013
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, user-agent, api-user-agent
+      Cache-Control:
+      - public, max-age=300
+      Age:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - Accept, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      X-Client-Ip:
+      - 85.146.30.218
+      Set-Cookie:
+      - WMF-Uniq=9pflhR4Rsj5RZjnLBXnUDwLUAAAAAFvdeDr1M-vFt6le3OSp8Bj2bLmwVEUjBhyD;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      Content-Length:
+      - '86'
+      X-Request-Id:
+      - 75e3a253-7d79-4c89-a138-1aa9123ea0c5
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "head" : {
+            "vars" : [ "item" ]
+          },
+          "results" : {
+            "bindings" : [ ]
+          }
+        }
+  recorded_at: Thu, 25 Dec 2025 20:32:08 GMT
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?item%20WHERE%20%7B%0A%20%20?item%20wdt:P1243%20%22R4YF8ULB304N%22.%0A%7D%0ALIMIT%201%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/sparql-results+json
+      User-Agent:
+      - RadioPlaylists/1.0 (https://radioplaylists.nl)
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.18.0
+      Date:
+      - Thu, 25 Dec 2025 20:32:09 GMT
+      Content-Type:
+      - application/sparql-results+json;charset=utf-8
+      X-First-Solution-Millis:
+      - '2'
+      X-Served-By:
+      - wdqs1021
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, user-agent, api-user-agent
+      Cache-Control:
+      - public, max-age=300
+      Age:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - Accept, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      X-Client-Ip:
+      - 85.146.30.218
+      Set-Cookie:
+      - WMF-Uniq=jzixYaMqIE-4yjcZU5II_ALUAAAAAFvd6UYKNnrhXTY7K0mCGpzq_pm03Z4fc2yG;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      Content-Length:
+      - '86'
+      X-Request-Id:
+      - 0e20b0cf-f7cd-490c-8439-73bfe90cf03f
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "head" : {
+            "vars" : [ "item" ]
+          },
+          "results" : {
+            "bindings" : [ ]
+          }
+        }
+  recorded_at: Thu, 25 Dec 2025 20:32:09 GMT
+- request:
+    method: get
+    uri: https://en.wikipedia.org/api/rest_v1/page/summary/Shake%20It%20Off%20(Taylor%20Swift%20song)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Webkit-Csp:
+      - default-src 'none'; frame-ancestors 'none'
+      Cache-Control:
+      - s-maxage=1209600, max-age=300
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/Summary/1.5.0"
+      Date:
+      - Thu, 25 Dec 2025 20:32:09 GMT
+      Server:
+      - production-tls
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,HEAD
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, cache-control, accept-language, api-user-agent,
+        if-match, if-modified-since, if-none-match, dnt, accept-encoding
+      Access-Control-Expose-Headers:
+      - etag
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"1328522066/48f570d0-e1cf-11f0-b365-43b70895e711"
+      Age:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - x-restbase-compat, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 miss
+      X-Cache-Status:
+      - miss
+      Server-Timing:
+      - cache;desc="miss", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=V7DkqQNMvJNM__dBI_AgyQLUAAAAAFvdQw6eDP2JgkQlcbbUFMsau1236B3eXFw5;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Content-Length:
+      - '2607'
+      X-Request-Id:
+      - e7d2f389-54c1-4765-8a1e-ab3fbc9c0364
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":"standard","title":"Shake It Off","displaytitle":"<span class=\"mw-page-title-main\">Shake
+        It Off</span>","namespace":{"id":0,"text":""},"wikibase_item":"Q17544624","titles":{"canonical":"Shake_It_Off","normalized":"Shake
+        It Off","display":"<span class=\"mw-page-title-main\">Shake It Off</span>"},"pageid":43597651,"thumbnail":{"source":"https://upload.wikimedia.org/wikipedia/en/c/c4/Taylor_Swift_-_Shake_It_Off.png","width":300,"height":300},"originalimage":{"source":"https://upload.wikimedia.org/wikipedia/en/c/c4/Taylor_Swift_-_Shake_It_Off.png","width":300,"height":300},"lang":"en","dir":"ltr","revision":"1328522066","tid":"96e5e8c1-dd95-11f0-9f2e-154a6a7bdb28","timestamp":"2025-12-20T11:18:20Z","description":"2014
+        single by Taylor Swift","description_source":"local","content_urls":{"desktop":{"page":"https://en.wikipedia.org/wiki/Shake_It_Off","revisions":"https://en.wikipedia.org/wiki/Shake_It_Off?action=history","edit":"https://en.wikipedia.org/wiki/Shake_It_Off?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Shake_It_Off"},"mobile":{"page":"https://en.wikipedia.org/wiki/Shake_It_Off","revisions":"https://en.wikipedia.org/wiki/Special:History/Shake_It_Off","edit":"https://en.wikipedia.org/wiki/Shake_It_Off?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Shake_It_Off"}},"extract":"\"Shake
+        It Off\" is a song by the American singer-songwriter Taylor Swift and the
+        lead single from her fifth studio album, 1989 (2014). She wrote the song with
+        its producers, Max Martin and Shellback. Inspired by the media scrutiny on
+        Swift''s public image, the lyrics are about her indifference to detractors
+        and their negative remarks. An uptempo dance-pop song, \"Shake It Off\" features
+        a looping drum beat, a Mellotron-based saxophone line, and a handclap-accented
+        bridge. Big Machine Records released it on August 18, 2014, to promote 1989
+        as Swift''s first pop album after her previous country image and sound.","extract_html":"<p>\"<b>Shake
+        It Off</b>\" is a song by the American singer-songwriter Taylor Swift and
+        the lead single from her fifth studio album, <i>1989</i> (2014). She wrote
+        the song with its producers, Max Martin and Shellback. Inspired by the media
+        scrutiny on Swift''s public image, the lyrics are about her indifference to
+        detractors and their negative remarks. An uptempo dance-pop song, \"Shake
+        It Off\" features a looping drum beat, a Mellotron-based saxophone line, and
+        a handclap-accented bridge. Big Machine Records released it on August 18,
+        2014, to promote <i>1989</i> as Swift''s first pop album after her previous
+        country image and sound.</p>"}'
+  recorded_at: Thu, 25 Dec 2025 20:32:09 GMT
+- request:
+    method: get
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q17544624&languages=en&props=claims%7Clabels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 25 Dec 2025 20:32:09 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-nwm2h
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=Xdf_uc3UJPPGrBkARmyjHgLUAAAAAFvdmVogkyZzOFtXHwmp-TgnoSozhMuonxlz;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Transfer-Encoding:
+      - chunked
+      X-Request-Id:
+      - fe42c7da-d690-45d4-afec-8687fcfb819f
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"entities":{"Q17544624":{"type":"item","id":"Q17544624","labels":{"en":{"language":"en","value":"Shake
+        It Off"}},"claims":{"P31":[{"mainsnak":{"snaktype":"value","property":"P31","hash":"33d81754a79b2dab75d17c156313b0f8f0f4f086","datavalue":{"value":{"entity-type":"item","numeric-id":134556,"id":"Q134556"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$9E2D870B-237C-4398-A86A-998F96D37C24","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P31","hash":"a2c420f45a8e430611c13872a401583988d45154","datavalue":{"value":{"entity-type":"item","numeric-id":2894096,"id":"Q2894096"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$9756f39e-4024-1750-43cb-e6ebb4c002b7","rank":"normal"}],"P175":[{"mainsnak":{"snaktype":"value","property":"P175","hash":"4b27f22dc2cb3e71ff538377207e9508e2be1e3c","datavalue":{"value":{"entity-type":"item","numeric-id":26876,"id":"Q26876"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$d74490ba-4a87-3979-84d4-305a6d231cbe","rank":"normal"}],"P436":[{"mainsnak":{"snaktype":"value","property":"P436","hash":"d3d1ceff139d05f6cf4570de5f2b9314ee980963","datavalue":{"value":"999e9130-0fc3-4667-8455-f283d7f7fabf","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$549ACFF8-9BA5-45F5-9F60-9694FBA359BB","rank":"normal","references":[{"hash":"706208b3024200fd0a39ad499808dd0d98d74065","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"623cc8f0e2f65afe4d66b91962d354a2f3aa9a27","datavalue":{"value":{"entity-type":"item","numeric-id":14005,"id":"Q14005"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P248"]}]}],"P1954":[{"mainsnak":{"snaktype":"value","property":"P1954","hash":"4b2336b7c1cb96d2d0b17a683b8e1de484c5a986","datavalue":{"value":"723107","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$2EF126BE-9F72-4133-8D64-93B78F0D7E5C","rank":"normal","references":[{"hash":"f2fdc3c16952bb8a2b8c2a14a7ce24a9f6b0879c","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"623cc8f0e2f65afe4d66b91962d354a2f3aa9a27","datavalue":{"value":{"entity-type":"item","numeric-id":14005,"id":"Q14005"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"1507274827eae48e5a0fa0ea0c1616a4af6900cb","datavalue":{"value":{"time":"+2015-09-11T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P813"]}]}],"P155":[{"mainsnak":{"snaktype":"value","property":"P155","hash":"2327a649ba60248ea888a04fc8d14f8ba46dcd90","datavalue":{"value":{"entity-type":"item","numeric-id":18441355,"id":"Q18441355"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$E39C1F4E-94D4-4BE0-A87E-3A3A6745F714","rank":"normal","references":[{"hash":"fa278ebfc458360e5aed63d5058cca83c46134f1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P156":[{"mainsnak":{"snaktype":"value","property":"P156","hash":"ea681d0af98d789906b87ef64587e615fe7621ed","datavalue":{"value":{"entity-type":"item","numeric-id":18441355,"id":"Q18441355"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$646CE9C3-6ABD-40B7-BA6A-A10850FFC4FF","rank":"normal","references":[{"hash":"c456dc5cd2117249948c288206ff3f8b1bf574f0","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e17507043402fe54ae6c4d65cc51f46cec987de9","datavalue":{"value":{"entity-type":"item","numeric-id":8449,"id":"Q8449"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P2624":[{"mainsnak":{"snaktype":"value","property":"P2624","hash":"12a347e5b478f78f65cc898757b9ba10c000804b","datavalue":{"value":"shake-it-off-lyrics-taylor-swift","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$9377B23D-4FC8-4D8C-8120-AD51316D7E76","rank":"normal","references":[{"hash":"fa278ebfc458360e5aed63d5058cca83c46134f1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P577":[{"mainsnak":{"snaktype":"value","property":"P577","hash":"9548267121af47c03a4024161b00ce81027a15e3","datavalue":{"value":{"time":"+2014-08-19T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"},"type":"statement","id":"Q17544624$F70B6D70-B9AD-4CAF-B49E-BA92FEB27945","rank":"normal","references":[{"hash":"a29a646602abf65105ed0f39a44231c962ece9ee","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"c6f1777471211df31724ac60175786f3872c83e9","datavalue":{"value":{"entity-type":"item","numeric-id":177837,"id":"Q177837"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P361":[{"mainsnak":{"snaktype":"value","property":"P361","hash":"9720c178608f1c2f87d63305970fc54458311835","datavalue":{"value":{"entity-type":"item","numeric-id":17544553,"id":"Q17544553"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","qualifiers":{"P1545":[{"snaktype":"value","property":"P1545","hash":"32387bd293902a2430b5bb680033d36ecea00dd0","datavalue":{"value":"6","type":"string"},"datatype":"string"}]},"qualifiers-order":["P1545"],"id":"Q17544624$A384559A-E97C-4523-A0F0-E51304919ABB","rank":"normal","references":[{"hash":"fa278ebfc458360e5aed63d5058cca83c46134f1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P136":[{"mainsnak":{"snaktype":"value","property":"P136","hash":"116482df689c5c5bc9781ecb27156e697490e63e","datavalue":{"value":{"entity-type":"item","numeric-id":211756,"id":"Q211756"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$064F8897-19F4-40B3-A2A3-34D30B832831","rank":"normal","references":[{"hash":"ed8bd3f9343e9a35e58b67284f26a67859f1808d","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"07596fc82d3ed4d248b85e5543852cc31e37dc8c","datavalue":{"value":{"entity-type":"item","numeric-id":199913,"id":"Q199913"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P2581":[{"mainsnak":{"snaktype":"value","property":"P2581","hash":"d779c6f06a4af114cd64f3f9708fefb4cdfcb20e","datavalue":{"value":"14331620n","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$E1B6AE6B-9757-4318-B96D-02F66AFCED1A","rank":"normal","references":[{"hash":"248ac337a217a5f5eed7139a82a4e60931611af0","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"25b816aab41db18565946259c950aed6de05dd1e","datavalue":{"value":{"entity-type":"item","numeric-id":4837690,"id":"Q4837690"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P248"]}]}],"P676":[{"mainsnak":{"snaktype":"value","property":"P676","hash":"e8a5c9c8abd454ca3fde9ddb05dbea6929ff8d56","datavalue":{"value":{"entity-type":"item","numeric-id":26876,"id":"Q26876"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$a38e010a-4eeb-7d2e-a6f4-5af63d37cd0f","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P676","hash":"3e6ed9eebca6e0ed7c68bd96eb0d082af04a716a","datavalue":{"value":{"entity-type":"item","numeric-id":318223,"id":"Q318223"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$ecb127b4-4878-fe32-9ef7-88303ea33483","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P676","hash":"05cc4b4195a04f17b9f5c6d386515108f97febe4","datavalue":{"value":{"entity-type":"item","numeric-id":286501,"id":"Q286501"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$e8971977-4f5a-3073-66cd-3225dbeeab00","rank":"normal"}],"P264":[{"mainsnak":{"snaktype":"value","property":"P264","hash":"06756bd4ebb8bdc9ed314933bc5d04e2459db8f1","datavalue":{"value":{"entity-type":"item","numeric-id":2902300,"id":"Q2902300"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$aecc6ea3-4e55-0bba-40e8-4f921810b74e","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P264","hash":"dad37017a00fff99d83934fa310c6442f37a0a33","datavalue":{"value":{"entity-type":"item","numeric-id":4413456,"id":"Q4413456"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$3ca57a04-40e4-d76c-ea5a-5ae037f44f86","rank":"normal"}],"P437":[{"mainsnak":{"snaktype":"value","property":"P437","hash":"2be0f2038b320693613874b64db9c0643e2acccb","datavalue":{"value":{"entity-type":"item","numeric-id":719645,"id":"Q719645"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$256863ed-426f-8d04-1cb4-472a1ea5b7d9","rank":"normal","references":[{"hash":"288ab581e7d2d02995a26dfa8b091d96e78457fc","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]},{"mainsnak":{"snaktype":"value","property":"P437","hash":"87ee8a96ba9c0d680a53715c86643c654cb999e7","datavalue":{"value":{"entity-type":"item","numeric-id":269415,"id":"Q269415"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$10ef7d71-4224-aac5-e2fc-3d827a4a4843","rank":"normal","references":[{"hash":"288ab581e7d2d02995a26dfa8b091d96e78457fc","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]},{"mainsnak":{"snaktype":"value","property":"P437","hash":"f70c6290b338c4f54eeef6975007ab67318c09c8","datavalue":{"value":{"entity-type":"item","numeric-id":15982450,"id":"Q15982450"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$53D72FF3-49F5-410A-BCDD-A78515328C21","rank":"normal","references":[{"hash":"fe439a9653663c834b884a117e83cade50069c03","snaks":{"P3452":[{"snaktype":"value","property":"P3452","hash":"b25a1b4c0caa02085cd8e18ee09cee896556c5c1","datavalue":{"value":{"entity-type":"item","numeric-id":689141,"id":"Q689141"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P3452"]}]}],"P6718":[{"mainsnak":{"snaktype":"value","property":"P6718","hash":"e513cc09b1b6da53c92e0723c95d890b8bfc2e95","datavalue":{"value":{"entity-type":"item","numeric-id":63286057,"id":"Q63286057"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$c688110e-4a40-0ded-68e0-741904f9360b","rank":"normal"}],"P407":[{"mainsnak":{"snaktype":"value","property":"P407","hash":"daf1c4fcb58181b02dff9cc89deb084004ddae4b","datavalue":{"value":{"entity-type":"item","numeric-id":1860,"id":"Q1860"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$37037269-4e2e-b7c4-d089-2cedd4cd7b19","rank":"normal"}],"P1476":[{"mainsnak":{"snaktype":"value","property":"P1476","hash":"e7752ace0a8a7747a489dce18f20974aafce55c2","datavalue":{"value":{"text":"Shake
+        It Off","language":"en"},"type":"monolingualtext"},"datatype":"monolingualtext"},"type":"statement","id":"Q17544624$8bdcbd28-41a7-2cf2-335e-ffc94f609170","rank":"normal"}],"P8856":[{"mainsnak":{"snaktype":"value","property":"P8856","hash":"4f4802653d94d853cf4f78f37393d276429b1f34","datavalue":{"value":"12997-1598-1","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$d58330f1-e1e4-4dc8-aee5-ec5e8d4ce3bf","rank":"normal","references":[{"hash":"2a5c812e4590cfa015bea591906ca6dc98d19731","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"09156c24647ae56bc210ed176ffe167194e340a1","datavalue":{"value":"https://en.wikipedia.org/w/index.php?title=Shake_It_Off&oldid=990056716","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}],"P6218":[{"mainsnak":{"snaktype":"value","property":"P6218","hash":"4eee302edb62f236401e45ea0cd0d7ce49458bdf","datavalue":{"value":"Taylor-swift-shake-it-off-lyrics","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$e64f9a1f-4176-e1b2-2997-877701dbaf30","rank":"normal"}],"P1889":[{"mainsnak":{"snaktype":"value","property":"P1889","hash":"5c37adeb588193bc8f0227fd090c5352fe59ac37","datavalue":{"value":{"entity-type":"item","numeric-id":167350,"id":"Q167350"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$e11e066e-4d78-45be-ec52-633839af743c","rank":"normal"}],"P646":[{"mainsnak":{"snaktype":"value","property":"P646","hash":"430ec9d47a0d7797cd1d131ab0276e5230db3822","datavalue":{"value":"/m/011lmhtd","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$5183571A-1BAD-4F78-96B5-AA08562BB2AD","rank":"normal"}],"P2047":[{"mainsnak":{"snaktype":"value","property":"P2047","hash":"864e6398f5ca7e5e1266b0127751e8e1484fedc2","datavalue":{"value":{"amount":"+219","unit":"http://www.wikidata.org/entity/Q11574"},"type":"quantity"},"datatype":"quantity"},"type":"statement","id":"Q17544624$8195baf7-414e-a22e-b827-04404a5e0c98","rank":"normal","references":[{"hash":"305e535cd71293c987f65fd1d73a2449001d1ec1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"24a9466cedb40e20c931823c2c8cd433cce4ba86","datavalue":{"value":"https://ru.wikipedia.org/?oldid=114308217","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}],"P162":[{"mainsnak":{"snaktype":"value","property":"P162","hash":"7598e87b7fb2561dbf024bc7b4f43368f9f6be81","datavalue":{"value":{"entity-type":"item","numeric-id":318223,"id":"Q318223"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$4dbdcf4e-4efd-ef77-8413-c91abc4a949c","rank":"normal","references":[{"hash":"305e535cd71293c987f65fd1d73a2449001d1ec1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"24a9466cedb40e20c931823c2c8cd433cce4ba86","datavalue":{"value":"https://ru.wikipedia.org/?oldid=114308217","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]},{"mainsnak":{"snaktype":"value","property":"P162","hash":"e62eb70f7a696020c51cd78a50e730cef7b765a6","datavalue":{"value":{"entity-type":"item","numeric-id":286501,"id":"Q286501"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$d7a273e8-4ff5-3530-161a-fa363386bf82","rank":"normal","references":[{"hash":"305e535cd71293c987f65fd1d73a2449001d1ec1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"24a9466cedb40e20c931823c2c8cd433cce4ba86","datavalue":{"value":"https://ru.wikipedia.org/?oldid=114308217","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}],"P7166":[{"mainsnak":{"snaktype":"value","property":"P7166","hash":"fd19f9756dbdb69da7ad98f12cbbbde694ba0253","datavalue":{"value":"87353","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$c47bdbae-4e12-2ac4-d69b-d5312393e964","rank":"normal"}],"P7067":[{"mainsnak":{"snaktype":"value","property":"P7067","hash":"d0a68067e1a0179207a3e72e627d89962757da0e","datavalue":{"value":"22426","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$bba22075-4856-c358-5d10-e86725e269fa","rank":"normal"}],"P1730":[{"mainsnak":{"snaktype":"value","property":"P1730","hash":"3b6d7a49389042286bd7e29710d367c571b8eabe","datavalue":{"value":"mt0050549129","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$86cddfce-4dc7-d446-30a0-e43bdec6ecfa","rank":"normal"}],"P2724":[{"mainsnak":{"snaktype":"value","property":"P2724","hash":"92339bd3d2797edf586987f6c15ff5301e762a99","datavalue":{"value":"89077529","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$6525acf7-402d-fc9f-6ad4-c594510afc86","rank":"normal"}],"P3192":[{"mainsnak":{"snaktype":"value","property":"P3192","hash":"acc4637517bb8946e22d48d05ab8aff48b54e058","datavalue":{"value":"Taylor
+        Swift/_/Shake It Off","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$3e3d1a79-418f-cbde-2ce7-384e8f658968","rank":"normal"}],"P7212":[{"mainsnak":{"snaktype":"value","property":"P7212","hash":"00cdcbbcab0528f87ab8cad1e7cba6de8d8f8a89","datavalue":{"value":"taylor-swift-shake-it-lyrics.html","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$f001f893-4ffe-c159-a0ac-910c16e46301","rank":"normal"}],"P5197":[{"mainsnak":{"snaktype":"value","property":"P5197","hash":"8224ab310928869e7125126c9c9d237502d1570c","datavalue":{"value":"5433712","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$ccc64f68-4e36-0e09-2656-d098f67685d6","rank":"normal"}],"P8392":[{"mainsnak":{"snaktype":"value","property":"P8392","hash":"9cbe79c6010f0a65865861e038cdbf0de2a58eac","datavalue":{"value":"single/taylor-swift/shake-it-off","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$fef39943-4372-1899-30de-64749f9de79b","rank":"normal"}],"P5915":[{"mainsnak":{"snaktype":"value","property":"P5915","hash":"c43c52c6c18720cedc06d3943c9a66c4844be850","datavalue":{"value":"221815298","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$10a99fd5-43f3-960e-e2a4-8e1958fd938f","rank":"normal"}],"P3040":[{"mainsnak":{"snaktype":"value","property":"P3040","hash":"c26768d1ac2512185b2d71c17b8590a12716e51b","datavalue":{"value":"taylorswiftofficial/shake-it-off","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$d8a2f04f-4dcf-cf9b-ead4-166813cece31","rank":"normal"}],"P2207":[{"mainsnak":{"snaktype":"value","property":"P2207","hash":"92cb186fca6aa760d4f977edb0dcff706b3876af","datavalue":{"value":"0cqRj7pUJDkTCEsJkx8snD","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$f8031608-4d3c-f498-31db-b784833cae47","rank":"normal"}],"P9133":[{"mainsnak":{"snaktype":"value","property":"P9133","hash":"f1907e8ec83d3ab38cab492fcb9fbb90d260ceda","datavalue":{"value":"taylorswift/shakeitoff","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$d27c97e2-4d46-e85d-284c-a44396272e2f","rank":"normal"}],"P1651":[{"mainsnak":{"snaktype":"value","property":"P1651","hash":"709be241101d33a0493c2f96c9a3e4a3ebb4daa1","datavalue":{"value":"nfWlot6h_JM","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P1810":[{"snaktype":"value","property":"P1810","hash":"a1c4ea03ec0d9111742a77dbc1e044ae73f39380","datavalue":{"value":"Taylor
+        Swift - Shake It Off","type":"string"},"datatype":"string"}],"P5436":[{"snaktype":"value","property":"P5436","hash":"fb810be29d46f73e7cdadef9c1aac7c70bd4c00c","datavalue":{"value":{"amount":"+3065305346","unit":"1"},"type":"quantity"},"datatype":"quantity"}],"P577":[{"snaktype":"value","property":"P577","hash":"cc76c12ad49ee08e36ae4c49c0f9629b1009f176","datavalue":{"value":{"time":"+2014-08-18T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}],"P407":[{"snaktype":"value","property":"P407","hash":"daf1c4fcb58181b02dff9cc89deb084004ddae4b","datavalue":{"value":{"entity-type":"item","numeric-id":1860,"id":"Q1860"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P2047":[{"snaktype":"value","property":"P2047","hash":"1b94263b066714d1b8e8d78e587c75b0fe86757c","datavalue":{"value":{"amount":"+242.0","unit":"http://www.wikidata.org/entity/Q11574"},"type":"quantity"},"datatype":"quantity"}],"P585":[{"snaktype":"value","property":"P585","hash":"7b60ded57554a796fe3f7e1f47e890103c716529","datavalue":{"value":{"time":"+2021-06-16T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"qualifiers-order":["P1810","P5436","P577","P407","P2047","P585"],"id":"Q17544624$4eb4e10a-4a30-b2e8-b68c-ad050be41b9a","rank":"normal"}],"P1617":[{"mainsnak":{"snaktype":"value","property":"P1617","hash":"fe20b5eb010d3e51695a659bb0e52e704bd42910","datavalue":{"value":"495c887b-525f-460b-a670-aa4995de0562","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$92FA9528-54B2-4443-A6D1-DCC9FB314A70","rank":"normal","references":[{"hash":"8582d8416671f1f2567247201bac753552435ca5","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"ea55dc6ac5c3ab77c77d4ae7979e3276d0d4cd20","datavalue":{"value":{"entity-type":"item","numeric-id":18336371,"id":"Q18336371"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P248"]}]}],"P1243":[{"mainsnak":{"snaktype":"value","property":"P1243","hash":"41470af76ecfe8dc352fb005cce27e6fb8f5f22d","datavalue":{"value":"USCJY1431349","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$96C6E3D3-4F32-4B23-896F-C608001D537A","rank":"normal"}],"P13661":[{"mainsnak":{"snaktype":"value","property":"P13661","hash":"6618cd9a0843075163b0bfcb096394e78fca6e1e","datavalue":{"value":"shake-it-off-taylor-swift","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q17544624$54E581BE-723A-47C9-87B2-DE61721B1417","rank":"normal"}],"P13602":[{"mainsnak":{"snaktype":"value","property":"P13602","hash":"166e3729a0fc0ca5ea8a823a5d4d7cb79f9fe969","datavalue":{"value":{"entity-type":"item","numeric-id":17544553,"id":"Q17544553"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q17544624$401b6892-4715-3eb3-88e5-532c65b2d274","rank":"normal","references":[{"hash":"90b0379d25a545d1f7d558a293a17f3964e2cac0","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"648bc44614f5a95fc94759d80ba95561033e7b38","datavalue":{"value":"https://ru.wikipedia.org/?oldid=150644097","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}]}}},"success":1}'
+  recorded_at: Thu, 25 Dec 2025 20:32:09 GMT
+recorded_with: VCR 6.4.0

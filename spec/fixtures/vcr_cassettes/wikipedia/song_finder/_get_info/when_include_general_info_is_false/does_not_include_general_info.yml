@@ -1,0 +1,379 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://en.wikipedia.org/api/rest_v1/page/summary/Rolling%20in%20the%20Deep%20(Adele%20song)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Webkit-Csp:
+      - default-src 'none'; frame-ancestors 'none'
+      Cache-Control:
+      - s-maxage=1209600, max-age=300
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/Summary/1.5.0"
+      Date:
+      - Thu, 25 Dec 2025 20:07:26 GMT
+      Server:
+      - production-tls
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,HEAD
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, cache-control, accept-language, api-user-agent,
+        if-match, if-modified-since, if-none-match, dnt, accept-encoding
+      Access-Control-Expose-Headers:
+      - etag
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"1325468818/537d20e0-e1cd-11f0-a327-73e0255f9abe"
+      Age:
+      - '5'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - x-restbase-compat, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 hit/5
+      X-Cache-Status:
+      - hit-front
+      Server-Timing:
+      - cache;desc="hit-front", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=LB-duUAdXuLRquc8NSXY7QLUAAAAAFvddpnCRBc4ffV5xdKlHY2gY_MeJy57j-kS;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Content-Length:
+      - '2647'
+      X-Request-Id:
+      - 6313ea23-7b94-48bf-b667-3677e1d16702
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":"standard","title":"Rolling in the Deep","displaytitle":"<span
+        class=\"mw-page-title-main\">Rolling in the Deep</span>","namespace":{"id":0,"text":""},"wikibase_item":"Q170165","titles":{"canonical":"Rolling_in_the_Deep","normalized":"Rolling
+        in the Deep","display":"<span class=\"mw-page-title-main\">Rolling in the
+        Deep</span>"},"pageid":29878138,"thumbnail":{"source":"https://upload.wikimedia.org/wikipedia/en/7/74/Adele_-_Rolling_in_the_Deep.png","width":300,"height":300},"originalimage":{"source":"https://upload.wikimedia.org/wikipedia/en/7/74/Adele_-_Rolling_in_the_Deep.png","width":300,"height":300},"lang":"en","dir":"ltr","revision":"1325468818","tid":"8520e703-d012-11f0-8954-df0ecdae2996","timestamp":"2025-12-03T06:37:21Z","description":"2010
+        single by Adele","description_source":"local","content_urls":{"desktop":{"page":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep","revisions":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep?action=history","edit":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Rolling_in_the_Deep"},"mobile":{"page":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep","revisions":"https://en.wikipedia.org/wiki/Special:History/Rolling_in_the_Deep","edit":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Rolling_in_the_Deep"}},"extract":"\"Rolling
+        in the Deep\" is a song by English singer-songwriter Adele from her second
+        studio album, 21 (2011). It is the lead single and opening track on the album.
+        The song was written by Adele and Paul Epworth. The singer herself describes
+        it as a \"dark blues-y gospel disco tune\". In 2011, it was reportedly the
+        biggest crossover hit in the United States since 1985; \"Rolling in the Deep\"
+        gained radio airplay from many different radio formats. It was released on
+        29 November 2010 as the lead single from 21 in digital download format. The
+        lyrics describe the emotions of a scorned lover.","extract_html":"<p>\"<b>Rolling
+        in the Deep</b>\" is a song by English singer-songwriter Adele from her second
+        studio album, <i>21</i> (2011). It is the lead single and opening track on
+        the album. The song was written by Adele and Paul Epworth. The singer herself
+        describes it as a \"dark blues-y gospel disco tune\". In 2011, it was reportedly
+        the biggest crossover hit in the United States since 1985; \"Rolling in the
+        Deep\" gained radio airplay from many different radio formats. It was released
+        on 29 November 2010 as the lead single from <i>21</i> in digital download
+        format. The lyrics describe the emotions of a scorned lover.</p>"}'
+  recorded_at: Thu, 25 Dec 2025 20:07:32 GMT
+- request:
+    method: get
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q170165&props=sitelinks&sitefilter=enwiki
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 25 Dec 2025 20:07:32 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-6zf4d
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '0'
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=t6eshO_1mNCm6w-ISeatsQLUAAAAAFvdq3KxPgvlx3O5ii7CXKwYVDwxon7xwXzs;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Content-Length:
+      - '150'
+      X-Request-Id:
+      - 616803bc-9236-4f7c-b658-1fcd5dcade16
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"entities":{"Q170165":{"type":"item","id":"Q170165","sitelinks":{"enwiki":{"site":"enwiki","title":"Rolling
+        in the Deep","badges":[]}}}},"success":1}'
+  recorded_at: Thu, 25 Dec 2025 20:07:32 GMT
+- request:
+    method: get
+    uri: https://en.wikipedia.org/api/rest_v1/page/summary/Rolling%20in%20the%20Deep
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Webkit-Csp:
+      - default-src 'none'; frame-ancestors 'none'
+      Cache-Control:
+      - s-maxage=1209600, max-age=300
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/Summary/1.5.0"
+      Date:
+      - Thu, 25 Dec 2025 20:07:27 GMT
+      Server:
+      - production-tls
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,HEAD
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, cache-control, accept-language, api-user-agent,
+        if-match, if-modified-since, if-none-match, dnt, accept-encoding
+      Access-Control-Expose-Headers:
+      - etag
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"1325468818/e5a853f0-dc4a-11f0-b1b3-cdf5c37663aa"
+      Age:
+      - '5'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - x-restbase-compat, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 hit/4
+      X-Cache-Status:
+      - hit-front
+      Server-Timing:
+      - cache;desc="hit-front", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=7YjU4fwBIWyMUiYl1bSF9QLUAAAAAFvdSyv645c0zH62VdJsUsw0aknhMmrCYkfh;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Content-Length:
+      - '2647'
+      X-Request-Id:
+      - b1ad51fb-c9ea-4aa8-8187-6a8befcce267
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":"standard","title":"Rolling in the Deep","displaytitle":"<span
+        class=\"mw-page-title-main\">Rolling in the Deep</span>","namespace":{"id":0,"text":""},"wikibase_item":"Q170165","titles":{"canonical":"Rolling_in_the_Deep","normalized":"Rolling
+        in the Deep","display":"<span class=\"mw-page-title-main\">Rolling in the
+        Deep</span>"},"pageid":29878138,"thumbnail":{"source":"https://upload.wikimedia.org/wikipedia/en/7/74/Adele_-_Rolling_in_the_Deep.png","width":300,"height":300},"originalimage":{"source":"https://upload.wikimedia.org/wikipedia/en/7/74/Adele_-_Rolling_in_the_Deep.png","width":300,"height":300},"lang":"en","dir":"ltr","revision":"1325468818","tid":"8520e9bb-d012-11f0-890e-4d50ea5208cc","timestamp":"2025-12-03T06:37:21Z","description":"2010
+        single by Adele","description_source":"local","content_urls":{"desktop":{"page":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep","revisions":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep?action=history","edit":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Rolling_in_the_Deep"},"mobile":{"page":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep","revisions":"https://en.wikipedia.org/wiki/Special:History/Rolling_in_the_Deep","edit":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Rolling_in_the_Deep"}},"extract":"\"Rolling
+        in the Deep\" is a song by English singer-songwriter Adele from her second
+        studio album, 21 (2011). It is the lead single and opening track on the album.
+        The song was written by Adele and Paul Epworth. The singer herself describes
+        it as a \"dark blues-y gospel disco tune\". In 2011, it was reportedly the
+        biggest crossover hit in the United States since 1985; \"Rolling in the Deep\"
+        gained radio airplay from many different radio formats. It was released on
+        29 November 2010 as the lead single from 21 in digital download format. The
+        lyrics describe the emotions of a scorned lover.","extract_html":"<p>\"<b>Rolling
+        in the Deep</b>\" is a song by English singer-songwriter Adele from her second
+        studio album, <i>21</i> (2011). It is the lead single and opening track on
+        the album. The song was written by Adele and Paul Epworth. The singer herself
+        describes it as a \"dark blues-y gospel disco tune\". In 2011, it was reportedly
+        the biggest crossover hit in the United States since 1985; \"Rolling in the
+        Deep\" gained radio airplay from many different radio formats. It was released
+        on 29 November 2010 as the lead single from <i>21</i> in digital download
+        format. The lyrics describe the emotions of a scorned lover.</p>"}'
+  recorded_at: Thu, 25 Dec 2025 20:07:32 GMT
+- request:
+    method: get
+    uri: https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&prop=extracts&titles=Rolling%20in%20the%20Deep
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 25 Dec 2025 20:07:32 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-99k6n
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '0'
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=6qttU8sHHN6piFLr_APp8ALUAAAAAFvdmAQTa5GCAwKvJJuLfKHhOO-FFoqk5dvV;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Transfer-Encoding:
+      - chunked
+      X-Request-Id:
+      - 6f95d825-17dc-43e7-ae81-3b8e75cb2313
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJiYXRjaGNvbXBsZXRlIjp0cnVlLCJ3YXJuaW5ncyI6eyJleHRyYWN0cyI6eyJ3YXJuaW5ncyI6IkhUTUwgbWF5IGJlIG1hbGZvcm1lZCBhbmQvb3IgdW5iYWxhbmNlZCBhbmQgbWF5IG9taXQgaW5saW5lIGltYWdlcy4gVXNlIGF0IHlvdXIgb3duIHJpc2suIEtub3duIHByb2JsZW1zIGFyZSBsaXN0ZWQgYXQgaHR0cHM6Ly93d3cubWVkaWF3aWtpLm9yZy93aWtpL1NwZWNpYWw6TXlMYW5ndWFnZS9FeHRlbnNpb246VGV4dEV4dHJhY3RzI0NhdmVhdHMuIn19LCJxdWVyeSI6eyJwYWdlcyI6W3sicGFnZWlkIjoyOTg3ODEzOCwibnMiOjAsInRpdGxlIjoiUm9sbGluZyBpbiB0aGUgRGVlcCIsImV4dHJhY3QiOiI8cCBjbGFzcz1cIm13LWVtcHR5LWVsdFwiPlxuXG48L3A+XG5cbjxwPlwiPGI+Um9sbGluZyBpbiB0aGUgRGVlcDwvYj5cIiBpcyBhIHNvbmcgYnkgRW5nbGlzaCBzaW5nZXItc29uZ3dyaXRlciBBZGVsZSBmcm9tIGhlciBzZWNvbmQgc3R1ZGlvIGFsYnVtLCA8aT4yMTwvaT4gKDIwMTEpLiBJdCBpcyB0aGUgbGVhZCBzaW5nbGUgYW5kIG9wZW5pbmcgdHJhY2sgb24gdGhlIGFsYnVtLiBUaGUgc29uZyB3YXMgd3JpdHRlbiBieSBBZGVsZSBhbmQgUGF1bCBFcHdvcnRoLiBUaGUgc2luZ2VyIGhlcnNlbGYgZGVzY3JpYmVzIGl0IGFzIGEgXCJkYXJrIGJsdWVzLXkgZ29zcGVsIGRpc2NvIHR1bmVcIi4gSW4gMjAxMSwgaXQgd2FzIHJlcG9ydGVkbHkgdGhlIGJpZ2dlc3QgY3Jvc3NvdmVyIGhpdCBpbiB0aGUgVW5pdGVkIFN0YXRlcyBzaW5jZSAxOTg1OyBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiBnYWluZWQgcmFkaW8gYWlycGxheSBmcm9tIG1hbnkgZGlmZmVyZW50IHJhZGlvIGZvcm1hdHMuIEl0IHdhcyByZWxlYXNlZCBvbiAyOSBOb3ZlbWJlciAyMDEwIGFzIHRoZSBsZWFkIHNpbmdsZSBmcm9tIDxpPjIxPC9pPiBpbiBkaWdpdGFsIGRvd25sb2FkIGZvcm1hdC4gVGhlIGx5cmljcyBkZXNjcmliZSB0aGUgZW1vdGlvbnMgb2YgYSBzY29ybmVkIGxvdmVyLiBcbjwvcD48cD5cIlJvbGxpbmcgaW4gdGhlIERlZXBcIiByZWNlaXZlZCB3aWRlc3ByZWFkIGNyaXRpY2FsIGFjY2xhaW0gd2l0aCBwcmFpc2UgZHJhd24gdG93YXJkcyB0aGUgc29uZydzIHByb2R1Y3Rpb24sIGl0cyBseXJpY3MsIGFuZCBBZGVsZSdzIHZvY2FsIHBlcmZvcm1hbmNlLiBJdCByZXByZXNlbnRlZCBhIGNvbW1lcmNpYWwgYnJlYWt0aHJvdWdoIGZvciBBZGVsZSwgcHJvcGVsbGluZyBoZXIgdG8gZ2xvYmFsIHN1cGVyc3RhcmRvbS4gVGhlIHNvbmcgdG9wcGVkIHRoZSBjaGFydHMgaW4gdHdlbHZlIGNvdW50cmllcyBhbmQgcmVhY2hlZCB0aGUgdG9wIDEwIGluIG92ZXIgdHdlbnR5IHRlcnJpdG9yaWVzLiBJdCB3YXMgQWRlbGUncyBmaXJzdCBudW1iZXItb25lIHNvbmcgaW4gdGhlIFVuaXRlZCBTdGF0ZXMsIHJlYWNoaW5nIHRoZSB0b3Agc3BvdCBvbiBtYW55IDxpPkJpbGxib2FyZDwvaT4gY2hhcnRzLCBpbmNsdWRpbmcgdGhlIDxpPkJpbGxib2FyZDwvaT4gSG90IDEwMCB3aGVyZSBpdCB3YXMgbnVtYmVyIG9uZSBmb3Igc2V2ZW4gd2Vla3MuIEJ5IEZlYnJ1YXJ5IDIwMTIsIFwiUm9sbGluZyBpbiB0aGUgRGVlcFwiIGhhZCBzb2xkIG92ZXIgOC43IG1pbGxpb24gY29waWVzIGluIHRoZSBVbml0ZWQgU3RhdGVzLCBtYWtpbmcgaXQgdGhlIGJlc3Qtc2VsbGluZyBkaWdpdGFsIHNvbmcgYnkgYSBmZW1hbGUgYXJ0aXN0IGluIHRoZSBVUywgdGhlIHNlY29uZC1iZXN0LXNlbGxpbmcgZGlnaXRhbCBzb25nIGluIHRoZSBVUyBhbmQgQWRlbGUncyBiZXN0LXNlbGxpbmcgc2luZ2xlIG91dHNpZGUgaGVyIG5hdGl2ZSBjb3VudHJ5LCB0b3BwaW5nIGhlciBwcmV2aW91cyBiZXN0LXNlbGxpbmcgXCJDaGFzaW5nIFBhdmVtZW50c1wiLiBXb3JsZHdpZGUsIGl0IHdhcyB0aGUgZmlmdGgtYmVzdC1zZWxsaW5nIGRpZ2l0YWwgc2luZ2xlIG9mIDIwMTEgd2l0aCBzYWxlcyBvZiA4LjIgbWlsbGlvbiBjb3BpZXMuIEFzIG9mIDIwMTksIHdpdGggc2FsZXMgb2Ygb3ZlciAyMC42IG1pbGxpb24gY29waWVzIHdvcmxkd2lkZSwgXCJSb2xsaW5nIGluIHRoZSBEZWVwXCIgaXMgb25lIG9mIHRoZSBiZXN0LXNlbGxpbmcgZGlnaXRhbCBzaW5nbGVzIG9mIGFsbC10aW1lLiBUaGUgc29uZyBzcGVudCA2NSB3ZWVrcyBvbiB0aGUgY2hhcnQsIG1ha2luZyB0aGUgc29uZyBhdCB0aGF0IHRpbWUgdGhlIGZvdXJ0aC1tb3N0IHdlZWtzIHNwZW50IG9uIHRoZSBjaGFydCwgdHlpbmcgdGhlIHBsYWNlIHdpdGggSmV3ZWwgd2l0aCBoZXIgZG91YmxlIHNpbmdsZSBcIkZvb2xpc2ggR2FtZXNcIi9cIllvdSBXZXJlIE1lYW50IGZvciBNZVwiLlxuPC9wPjxwPkl0cyBtdXNpYyB2aWRlbyByZWNlaXZlZCBhIGxlYWRpbmcgc2V2ZW4gbm9taW5hdGlvbnMgYXQgdGhlIDIwMTEgTVRWIFZpZGVvIE11c2ljIEF3YXJkcywgaW5jbHVkaW5nIGZvciBWaWRlbyBvZiB0aGUgWWVhciwgYW5kIHdvbiB0aHJlZSBvdGhlciBhd2FyZHM6IEJlc3QgRWRpdGluZywgQmVzdCBDaW5lbWF0b2dyYXBoeSBhbmQgQmVzdCBBcnQgRGlyZWN0aW9uLiBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiB3YXMgYWxzbyB0aGUgPGk+QmlsbGJvYXJkPC9pPiBZZWFyIEVuZCBIb3QgMTAwIE51bWJlciBPbmUgU2luZ2xlIG9mIDIwMTEuIEF0IHRoZSA1NHRoIEFubnVhbCBHcmFtbXkgQXdhcmRzLCBpdCB3b24gYXdhcmRzIGZvciBSZWNvcmQgb2YgdGhlIFllYXIsIFNvbmcgb2YgdGhlIFllYXIsIGFuZCBCZXN0IFNob3J0IEZvcm0gTXVzaWMgVmlkZW8uIFZhcmlvdXMgY3JpdGljcyBhbmQgbXVzaWMgcHVibGljYXRpb25zIHJhbmtlZCBpdCBhcyB0aGUgYmVzdCBzb25nIG9mIHRoZSB5ZWFyIG9uIHRoZWlyIGVuZC1vZi15ZWFyIGxpc3RzIHdpdGggPGk+Um9sbGluZyBTdG9uZTwvaT4gcmFua2luZyBpdCBhdCBOby7CoDggc3BvdCBvbiBpdHMgbGlzdCBvZiBcIlRoZSAxMDAgR3JlYXRlc3QgU29uZ3Mgb2YgdGhlIDIxc3QgQ2VudHVyeVwiLiBJbiAyMDIxLCB0aGUgc29uZyB3YXMgcmFua2VkIGF0IG51bWJlciA4MiBvbiB0aGUgbGlzdCBvZiA8aT5Sb2xsaW5nIFN0b25lPC9pPjxzcGFuPic8L3NwYW4+cyA1MDAgR3JlYXRlc3QgU29uZ3Mgb2YgQWxsIFRpbWUuXG48L3A+XG5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIkJhY2tncm91bmRfYW5kX2NvbXBvc2l0aW9uXCI+QmFja2dyb3VuZCBhbmQgY29tcG9zaXRpb248L2gyPlxuXG48cD5JbiBhbiBpbnRlcnZpZXcsIEFkZWxlIGV4cHJlc3NlZCBoZXIgaW5pdGlhbCByZXNlcnZhdGlvbnMgcHJpb3IgdG8gbWVldGluZyBQYXVsIEVwd29ydGggZHVlIHRvIHRoZWlyIGRpdmVyZ2VudCBtdXNpY2FsIHN0eWxlczsgc2hlIGNoYXJhY3RlcmlzZWQgdGhlaXIgY29sbGFib3JhdGlvbiBhcyBcImEgbWF0Y2ggbWFkZSBpbiBoZWF2ZW5cIi4gU2hlIGFsc28gY3JlZGl0ZWQgRXB3b3J0aCBmb3IgaGVyIGluY3JlYXNlZCB2b2NhbCBjb25maWRlbmNlLCBzdGF0aW5nLCBcIkhlIGJyb3VnaHQgYSBsb3Qgb3V0IG9mIG1lLiBIZSBicm91Z2h0IG15IHZvaWNlIG91dCBhcyB3ZWxs4oCUdGhlcmUncyBub3RlcyB0aGF0IEkgaGl0IGluIHRoYXQgc29uZyAoXCJSb2xsaW5nIGluIHRoZSBEZWVwXCIpIHRoYXQgSSBuZXZlciBldmVuIGtuZXcgSSBjb3VsZCBoaXQuXCIgQWNjb3JkaW5nIHRvIHJldmlld2VyIEJpbGwgTGFtYiwgXCJSb2xsaW5nIGluIHRoZSBEZWVwXCIgZmVhdHVyZXMgXCJtYXJ0aWFsIGJlYXRzLCBwb3VuZGluZyBwaWFubyBrZXlzIGFuZCBjaGFudGluZyBiYWNraW5nIHNpbmdlcnNcIi4gQWRlbGUncyB2b2NhbHMgaGF2ZSBiZWVuIGRlc2NyaWJlZCBhcyBoYXZpbmcgYSBcImhpbnQgb2YgV2FuZGEgSmFja3NvbidzIGRpcnR5LWJsdWVzIGdyb3dsXCIuIEFjY29yZGluZyB0byBOYWRpbmUgQ2hldW5nIGZyb20gQU9MIFJhZGlvIEJsb2cgdGhlIHNvbmcgaXMgXCJzdW5nIGZyb20gdGhlIHBlcnNwZWN0aXZlIG9mIGEgc2Nvcm5lZCBsb3Zlciwgd2hvIGlzIGZpbmFsbHkgYWJsZSB0byBzZWUgdGhlIGxpZ2h0LCBidXQgZGVzcGl0ZSByZWdyZXRmdWwgc2VudGltZW50cywgcmVjb25jaWxpYXRpb24gaXMgbm90IGFuIG9wdGlvbiBoZXJlLlwiIFwiUm9sbGluZyBpbiB0aGUgRGVlcFwiIGlzIHdyaXR0ZW4gaW4gdGhlIGtleSBvZiBDIG1pbm9yIChCIG1pbm9yIGZvciBsaXZlIHBlcmZvcm1hbmNlcyksIGluIGNvbW1vbiB0aW1lIHdpdGggYSB0ZW1wbyBvZiAxMDUgYmVhdHMgcGVyIG1pbnV0ZS4gVGhlIGFjY29tcGFuaW1lbnQgdXNlcyBvcGVuIGZpZnRocywgaW4gYSBwcm9ncmVzc2lvbiBvZiBDPHN1Yj41PC9zdWI+KGk8c3ViPjU8L3N1Yj4p4oCTRzxzdWI+NTwvc3ViPih2PHN1Yj41PC9zdWI+KeKAk0I8c3Bhbj48c3Bhbj7ima08L3NwYW4+PC9zcGFuPjxzdWI+NTwvc3ViPihWSUk8c3ViPjU8L3N1Yj4p4oCTRzxzdWI+NTwvc3ViPih2PHN1Yj41PC9zdWI+KeKAk0I8c3Bhbj48c3Bhbj7ima08L3NwYW4+PC9zcGFuPjxzdWI+NTwvc3ViPihWSUk8c3ViPjU8L3N1Yj4pIGFuZCB0d28gUHJvZ3Jlc3Npb25zIG9mIFByb2dyZXNzaW9uICMxOiBBPHNwYW4+PHNwYW4+4pmtPC9zcGFuPjwvc3Bhbj4oVkkpLUI8c3Bhbj48c3Bhbj7ima08L3NwYW4+PC9zcGFuPihWSUkpLUdtKHYpLUE8c3Bhbj48c3Bhbj7ima08L3NwYW4+PC9zcGFuPihWSSktQjxzcGFuPjxzcGFuPuKZrTwvc3Bhbj48L3NwYW4+KFZJSSktQTxzcGFuPjxzcGFuPuKZrTwvc3Bhbj48L3NwYW4+KFZJKS1CPHNwYW4+PHNwYW4+4pmtPC9zcGFuPjwvc3Bhbj4oVklJKS1HbSh2KS1HKFYpLCBQcm9ncmVzc2lvbiAjMjogQ20oaSktQjxzcGFuPjxzcGFuPuKZrTwvc3Bhbj48L3NwYW4+KFZJSSktQTxzcGFuPjxzcGFuPuKZrTwvc3Bhbj48L3NwYW4+TWFqNyhWSSBNNyktQjxzcGFuPjxzcGFuPuKZrTwvc3Bhbj48L3NwYW4+KFZJSSkuIEFkZWxlJ3Mgdm9pY2Ugc3BhbnMgZnJvbSBCPHNwYW4+PHNwYW4+4pmtPC9zcGFuPjwvc3Bhbj48c3ViPjM8L3N1Yj4gdG8gRDxzdWI+NTwvc3ViPi4gTXVzaWNhbGx5LCBTaW1vbiBSZXlub2xkcyBvZiA8aT5UaGUgTmV3IFlvcmsgVGltZXM8L2k+IGRlc2NyaWJlZCB0aGUgc29uZyBhcyBcIjE5NjBzIHJoeXRobS1hbmQtYmx1ZXMgdGlnaHRlbmVkIHVwIHdpdGggbW9kZXJuIHByb2R1Y3Rpb25cIiBhbmQgdm9jYWxzIHJvb3RlZCBpbiBzb3VsLiA8aT5Sb2xsaW5nIFN0b25lPC9pPiBhbHNvIG5vdGVkIGl0cyBcIltidWlsZHVwXSB0byBhIGdvc3BlbCBmZXZlclwiLlxuPC9wPjxwPlRoZSBzb25nIHdhcyByZXBvcnRlZGx5IGluc3BpcmVkIGJ5IGEgTmFzaHZpbGxlLXNjaG9vbGVkIFVTIHRvdXIgYnVzIGRyaXZlciwgYW5kIGNvbXBvc2VkIGJ5IEVwd29ydGggYW5kIEFkZWxlIGluIGEgc2luZ2xlIGFmdGVybm9vbiBmb2xsb3dpbmcgQWRlbGUncyBicmVha3VwIHdpdGggaGVyIGJveWZyaWVuZC4gSXQgd2FzIFwiaGVyIHJlYWN0aW9uIHRvLCAnYmVpbmcgdG9sZCB0aGF0IG15IGxpZmUgd2FzIGdvaW5nIHRvIGJlIGJvcmluZyBhbmQgbG9uZWx5IGFuZCBydWJiaXNoLCBhbmQgdGhhdCBJIHdhcyBhIHdlYWsgcGVyc29uIGlmIEkgZGlkbid0IHN0YXkgaW4gdGhlIHJlbGF0aW9uc2hpcC4gSSB3YXMgdmVyeSBpbnN1bHRlZCwgYW5kIHdyb3RlIHRoYXQgYXMgYSBzb3J0IG9mIFwiZnVjayB5b3VcIi4nXCJcbjwvcD5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIlJlY2VwdGlvblwiPlJlY2VwdGlvbjwvaDI+XG48aDMgZGF0YS1tdy1hbmNob3I9XCJDcml0aWNhbF9yZXNwb25zZVwiPkNyaXRpY2FsIHJlc3BvbnNlPC9oMz5cbjxwPlRoZSBzb25nIHJlY2VpdmVkIHVuaXZlcnNhbGx5IHJhdmUgcmV2aWV3cyBieSBjcml0aWNzLiBMYW1iIGdhdmUgaXQgYSBzY29yZSBvZiA1IG91dCBvZiA1LCBzYXlpbmc6IFwiJ1JvbGxpbmcgaW4gdGhlIERlZXAnIFsuLi5dIHdhc3RlcyBubyB0aW1lIGluIHByZXNlbnRpbmcgdGhlIHN0dW5uaW5nIGJsdWVzeSBhdXRob3JpdHkgb2YgaGVyIHZvaWNlLi4uLkhlcmUgaXMgYSB2b2ljZSB0aGF0IGNhbiByYWlzZSBjaGlsbHMgdXAgdGhlIHNwaW5lLCBhbmQsIHdoZW4gc2hlIGlzIGluIGEgbW9vZCBsaWtlIHRoaXMsIHRoZSBzZW5zZSBvZiBmb3JlYm9kaW5nIHdpbGwgcml2ZXQgeW91ciBhdHRlbnRpb24uXCIgSmFzb24gTGlwc2h1dHogb2YgPGk+QmlsbGJvYXJkPC9pPiBtYWdhemluZSBjb21wbGltZW50ZWQgdGhlIHNvbmcncyBcInN3ZWVwaW5nIGNob3J1c1wiIGFuZCBmZWx0IHRoYXQgdGhlIHNvbmcgXCJwbGFjZXMgYSBzaW1pbGFyIGVtcGhhc2lzIG9uIGl0cyByZWZyYWluIGJ1dCBpdHMgbXVsdGlsYXllcmVkIGluc3RydW1lbnRhdGlvbiBnaXZlcyB0aGUgRW5nbGlzaCBzaW5nZXIncyB3YWlsIGEgcHJldmlvdXNseSB1bmhlYXJkIGRlcHRoXCIuIExpcHNodXR6IHNhaWQsIFwiQWRlbGUncyBub3RpY2VhYmxlIGxlYXAgaW4gdm9jYWwgY29uZmlkZW5jZSBoaWdobGlnaHRzIHRoZSB0cmFjay4gU2hlIGdyYWNlZnVsbHkgbGluZ2VycyBvbiB0aGUgbGFzdCBsaW5lIG9mIHRoZSB2ZXJzZXMgYW5kIGF0dGFja3MgdGhlIHNvcnJvd2Z1bCBjaG9ydXMnIGZpcnN0IHdvcmRzLCAnV2UgY291bGQgaGF2ZSBoYWQgaXQgYWxsLCcgaGVhZCBvbi5cIiA8aT5Sb2xsaW5nIFN0b25lPC9pPiBtYWdhemluZSdzIEJhcnJ5IFdhbHRlcnMgc3RhdGVkLCBcIidSb2xsaW5nIGluIHRoZSBEZWVwJyBmaW5kcyB0aGUgMjIteWVhci1vbGQgaW4gYmx1ZXN5IGdvc3BlbCBtb2RlLCBzb3VuZGluZyBwb3dlcmZ1bCBidXQgbm90IHBhcnRpY3VsYXJseSBwb3AuIFN0YXJ0aW5nIHdpdGggYSBzdHJva2VkIGFjb3VzdGljIGd1aXRhciwgdGhpcyBicmVha3VwLW1vdXJuaW5nIHRyYWNrIGJ1aWxkcyB0byBhIHN0b21waW5nLCBoYW5kLWNsYXBwaW5nIGNsaW1heCB0aGF0IGFmZmlybXMgdGhlIEJyaXRpc2gga25hY2sgZm9yIHJlamlnZ2VyaW5nIHRoZSBzb3VuZCBvZiBBbWVyaWNhbiByb290cyBtdXNpYy5cIlxuPC9wPjxwPlRoZSB3cml0ZXJzIG9mIDxpPlJvbGxpbmcgU3RvbmU8L2k+IHBsYWNlZCBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiBhdCBudW1iZXIgb25lIG9uIHRoZWlyIGxpc3Qgb2YgXCI1MCBCZXN0IFNpbmdsZXMgb2YgMjAxMVwiLiBDbGFpcmUgU3VkZGF0aCBvZiA8aT5UaW1lPC9pPiBtYWdhemluZSBuYW1lZCBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiBvbmUgb2YgdGhlIFRvcCAxMCBTb25ncyBvZiAyMDExLiBNVFYgY2hvc2UgdGhlIHNvbmcgYXMgdGhlaXIgXCJTb25nIG9mIHRoZSBZZWFyXCIuIDxpPlRoZSBWaWxsYWdlIFZvaWNlPC9pPjxzcGFuPic8L3NwYW4+cyBQYXp6ICZhbXA7IEpvcCBhbm51YWwgY3JpdGljcycgcG9sbCByYW5rZWQgXCJSb2xsaW5nIGluIHRoZSBEZWVwXCIgYXMgdGhlIHRvcCBzaW5nbGUgb2YgMjAxMS4gSW4gMjAxOSwgPGk+Um9sbGluZyBTdG9uZTwvaT4sIDxpPkNvbnNlcXVlbmNlIG9mIFNvdW5kPC9pPiwgYW5kIDxpPlBpdGNoZm9yazwvaT4gcmFua2VkIHRoZSBzb25nIGFzIHRoZSAzcmQsIDh0aCwgYW5kIDE3MXN0IGJlc3Qgc29uZyBvZiB0aGUgMjAxMHMsIHJlc3BlY3RpdmVseS4gPGk+VGltZTwvaT4gbmFtZWQgaXQgYXMgb25lIG9mIHRoZSAxMCBiZXN0IHNvbmdzIG9mIHRoZSAyMDEwcywgYW5kIDxpPkJpbGxib2FyZDwvaT4gY2hvc2UgdGhlIHNvbmcgYXMgb25lIG9mIHRoZSAxMDAgXCJTb25ncyBUaGF0IERlZmluZWQgdGhlIERlY2FkZVwiLiBJbiAyMDIxLCA8aT5QYXJhZGU8L2k+IHJhbmtlZCB0aGUgc29uZyBudW1iZXIgb25lIG9uIHRoZWlyIGxpc3Qgb2YgdGhlIDI1IGdyZWF0ZXN0IEFkZWxlIHNvbmdzLCBhbmQgaW4gMjAyMiwgPGk+QW1lcmljYW4gU29uZ3dyaXRlcjwvaT4gcmFua2VkIHRoZSBzb25nIG51bWJlciBlaWdodCBvbiB0aGVpciBsaXN0IG9mIHRoZSAxMCBncmVhdGVzdCBBZGVsZSBzb25ncy5cbjwvcD5cbjxoMyBkYXRhLW13LWFuY2hvcj1cIkNoYXJ0X3BlcmZvcm1hbmNlXCI+Q2hhcnQgcGVyZm9ybWFuY2U8L2gzPlxuPHA+SW4gdGhlIFVLLCBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiBkZWJ1dGVkIGF0IG51bWJlciAyIChoZXIgc2Vjb25kIG51bWJlciAyIGRlYnV0LCBhZnRlciBcIkNoYXNpbmcgUGF2ZW1lbnRzXCIpLCBiZWhpbmQgQnJ1bm8gTWFycydzIFwiR3JlbmFkZVwiLiBUaGUgc29uZyBzcGVudCB0aGUgZmlyc3QgdGVuIHdlZWtzIG9mIGl0cyBjaGFydCBydW4gaW4gdGhlIHRvcCB0ZW4uXG48L3A+PHA+VXBvbiBpdHMgQW1lcmljYW4gcmVsZWFzZSwgXCJSb2xsaW5nIGluIHRoZSBEZWVwXCIgYmVjYW1lIEFkZWxlJ3Mgc2Vjb25kIHNpbmdsZSB0byBjaGFydCBpbiB0aGUgY291bnRyeS4gVGhlIHNvbmcgZGVidXRlZCBvbiB0aGUgPGk+QmlsbGJvYXJkPC9pPiBIb3QgMTAwIGF0IG51bWJlciA2OCBvbiAyNSBEZWNlbWJlciAyMDEwLiBMYXRlciBvbiwgaXQgYmVjYW1lIGhlciBmaXJzdCBldmVyIHNpbmdsZSB0byB0b3AgYSA8aT5CaWxsYm9hcmQ8L2k+IGNoYXJ0IHdoZW4gaXQgcmVhY2hlZCBudW1iZXIgb25lIG9uIHRoZSBIb3QgQWR1bHQgVG9wIDQwIFRyYWNrcyBjaGFydCBpbiBNYXkgMjAxMSwgYW5kIGJlY2FtZSBoZXIgZmlyc3QgbnVtYmVyIG9uZSBoaXQgaW4gdGhlIGNvdW50cnkgd2hlbiBpdCB0b3BwZWQgdGhlIDxpPkJpbGxib2FyZDwvaT4gSG90IDEwMCBpbiBNYXkgMjAxMS4gQXMgYSByZXN1bHQsIEFkZWxlIGJlY2FtZSB0aGUgZmlyc3QgQnJpdGlzaCBzaW5nZXIgdG8gaGF2ZSB0b3BwZWQgYm90aCB0aGUgPGk+QmlsbGJvYXJkPC9pPiBIb3QgMTAwIGFuZCA8aT5CaWxsYm9hcmQ8L2k+IDIwMCBjaGFydHMgaW4gdGhlIHNhbWUgd2VlayBzaW5jZSBMZW9uYSBMZXdpcyBkaWQgdGhlIHNhbWUgYmFjayBpbiAyMDA4LiBJbiBpdHMgMjR0aCBjaGFydGluZyB3ZWVrLCBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiBzdGF5ZWQgYXQgbnVtYmVyIG9uZSwgbWFraW5nIGl0IHRoZSBsYXRlc3Qgc2luZ2xlIGF0IHRoZSB0b3Agc2luY2UgTGFkeSBHYWdhJ3MgXCJKdXN0IERhbmNlXCIgc3BlbnQgaXRzIHRoaXJkIGFuZCBmaW5hbCB3ZWVrIGF0IG51bWJlciBvbmUgaW4gaXRzIDI0dGggY2hhcnRpbmcgd2VlayBhcyB3ZWxsLiBJdCBzdGF5ZWQgb24gdG9wIG9mIHRoZSBjaGFydCBmb3Igc2V2ZW4gc3RyYWlnaHQgd2Vla3MsIHRoZSBzZWNvbmQgbG9uZ2VzdCBydW4gaW4gMjAxMSBiZWhpbmQgUmloYW5uYSdzIFwiV2UgRm91bmQgTG92ZVwiLCB3aGljaCBzcGVudCBlaWdodCB3ZWVrcyBvbiB0b3AgaW4gMjAxMSwgYW5kIHR3byB3ZWVrcyBpbiAyMDEyLlxuPC9wPjxwPkl0IGhhcyBiZWVuIGNlcnRpZmllZCA4w5cgcGxhdGludW0sIGFuZCBpbiBTZXB0ZW1iZXIgMjAxMSBiZWNhbWUgdGhlIGZpcnN0IHNvbmcgdG8gc2VsbCA1IG1pbGxpb24gaW4gZGlnaXRhbCBzYWxlcywgYWNoaWV2aW5nIHRoZSBmZWF0IGluIDM1IHdlZWtzLCBmYXN0ZXIgdGhhbiBhbnkgb3RoZXIgc29uZyBpbiBkaWdpdGFsIGhpc3RvcnkuIEFzIG9mIE9jdG9iZXIgMjAxNSwgXCJSb2xsaW5nIGluIHRoZSBEZWVwXCIgc29sZCA4LjQgbWlsbGlvbiBkaWdpdGFsIGNvcGllcyBpbiB0aGUgVW5pdGVkIFN0YXRlcywgYmVjb21pbmcgdGhlIHNlY29uZC1iZXN0LXNlbGxpbmcgZGlnaXRhbCBzb25nIG92ZXJhbGwgYW5kIHRoZSBiZXN0LXNlbGxpbmcgZGlnaXRhbCBzb25nIGJ5IGEgZmVtYWxlIGFydGlzdC4gSXQgd2FzIHRoZSBzZWNvbmQgc29uZyB0byBoYXZlIGNyb3NzZWQgOCBtaWxsaW9uIGRpZ2l0YWwgY29waWVzIHNvbGQgaW4gdGhlIGNvdW50cnkuIEluIEZyYW5jZSwgZGVzcGl0ZSBub3QgaGF2aW5nIGJlZW4gY2VydGlmaWVkLCB0aGUgc2luZ2xlIGhhcyBzb2xkIDM0OCw5MDAgY29waWVzIGFuZCBiZWNhbWUgb25lIG9mIHRoZSBiZXN0LXNlbGxpbmcgc2luZ2xlcyBpbiBGcmFuY2UuXG48L3A+PHA+QXMgb2YgMjbCoEp1bHnCoDIwMTEsIFwiUm9sbGluZyBpbiB0aGUgRGVlcFwiIHdhcyB0aGUgdGhpcmQtYmVzdC1zZWxsaW5nIGRpZ2l0YWwgc2luZ2xlIGFjcm9zcyBFdXJvcGUgd2l0aCAxLjI2IG1pbGxpb24gY29waWVzIHNvbGQuIEFzIG9mIHRoZSA1wqBOb3ZlbWJlcsKgMjAxMSBpc3N1ZSBvZiA8aT5CaWxsYm9hcmQ8L2k+LCBpdCBoYWQgYmVlbiBudW1iZXIgb25lIG9uIHRoZSBBZHVsdCBDb250ZW1wb3JhcnkgY2hhcnQgZm9yIDE5IGNvbnNlY3V0aXZlIHdlZWtzLiBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiBiZWNhbWUgQWRlbGUncyBsYWJlbCBYTCBSZWNvcmRpbmdzJyBiZXN0LXNlbGxpbmcgc2luZ2xlLCBvdmVydGFraW5nIE0uSS5BLidzIFwiUGFwZXIgUGxhbmVzXCIgcmVsZWFzZWQgaW4gMjAwOCB3aGljaCB1bnRpbCAyMDExIGhlbGQgdGhlIHJlY29yZC4gVGhlIHNvbmcgYmVjYW1lIGFsc28gdGhlIGxvbmdlc3QtY2hhcnRpbmcgcmVsZWFzZSBpbiBGaW5sYW5kLCBwZWFraW5nIGF0IG51bWJlciBvbmUgYW5kIGNoYXJ0aW5nIGZvciA1MCB3ZWVrcy5cbjwvcD48cD5JbiAyMDEzLCBhcyBhIGNlbGVicmF0aW9uIG9mIHRoZSBjaGFydCdzIDU1dGggYW5uaXZlcnNhcnksIDxpPkJpbGxib2FyZDwvaT4gY291bnRlZCBkb3duIHRoZSAxMDAgYmlnZ2VzdCBIb3QgMTAwIGhpdHMgZXZlciwgYW5kIHRoZSBzb25nIHdhcyByYW5rZWQgYXQgbnVtYmVyIDMxLiBJbiAyMDE4LCBpdCB3YXMgcGxhY2VkIGF0IG51bWJlciAzNS5cbjwvcD48cD5JbiBBdXN0cmFsaWEsIFwiUm9sbGluZyBpbiB0aGUgRGVlcFwiIGVudGVyZWQgdGhlIHNpbmdsZXMgY2hhcnQgYXQgbnVtYmVyIDQwIGluIHRoZSB3ZWVrIG9mIDE0IE5vdmVtYmVyIDIwMTAsIGFuZCByZWFjaGVkIGEgcGVhayBwb3NpdGlvbiBvZiBudW1iZXIgdGhyZWUgd2hlcmUgaXQgcmVtYWluZWQgZm9yIGZvdXIgd2Vla3MuIEluIE5ldyBaZWFsYW5kLCB0aGUgc29uZyBkZWJ1dGVkIGF0IGl0cyBwZWFrIHBvc2l0aW9uIGF0IG51bWJlciB0aHJlZSwgYW5kIHdhcyBoZXIgaGlnaGVzdC1jaGFydGluZyBzaW5nbGUgaW4gYm90aCBjb3VudHJpZXMgdW50aWwgdGhlIHJlbGVhc2Ugb2YgaGVyIHNpbmdsZSBcIlNvbWVvbmUgTGlrZSBZb3VcIi4gVGhlIHNvbmcgYWNoaWV2ZWQgbnVtYmVyIG9uZSBwb3NpdGlvbnMgaW4gQmVsZ2l1bSAoYm90aCBGbGFuZGVycyAmYW1wOyBXYWxsb25pYSksIEZpbmxhbmQsIEdlcm1hbnksIFBvcnR1Z2FsLCBTd2l0emVybGFuZCwgYW5kIHRoZSBOZXRoZXJsYW5kcywgcmVtYWluaW5nIGF0b3AgdGhlIER1dGNoIFRvcCA0MCBzaW5nbGVzIGNoYXJ0IGZvciBzZXZlbiB3ZWVrcy4gSXQgcmVhY2hlZCB0aGUgdG9wIHRlbiBpbiBBdXN0cmlhLCBCdWxnYXJpYSwgRGVubWFyaywgRnJhbmNlLCBJcmVsYW5kLCBhbmQgTm9yd2F5LiBJdCByZWFjaGVkIHRoZSB0b3AgMjAgaW4gU3dlZGVuLlxuPC9wPlxuPGgyIGRhdGEtbXctYW5jaG9yPVwiTXVzaWNfdmlkZW9cIj5NdXNpYyB2aWRlbzwvaDI+XG48cD5UaGUgbXVzaWMgdmlkZW8gZm9yIFwiUm9sbGluZyBpbiB0aGUgRGVlcFwiLCBkaXJlY3RlZCBieSBTYW0gQnJvd24sIHByZW1pZXJlZCBvbiBDaGFubmVsIDQgb24gMyBEZWNlbWJlciAyMDEwLlxuVGhlIHZpZGVvIGJlZ2lucyBpbiBhbiBhYmFuZG9uZWQgaG91c2UsIHdoZXJlIEFkZWxlIGlzIHNpdHRpbmcgaW4gYSBjaGFpciBzaW5naW5nLiBEdXJpbmcgdGhlIHZpZGVvLCB0aGUgc2NlbmVzIHNob3cgaHVuZHJlZHMgb2YgZ2xhc3NlcyBmaWxsZWQgd2l0aCB3YXRlciB0aGF0IHZpYnJhdGUgdG8gdGhlIGJlYXQgb2YgYSBkcnVtLiBKZW5uaWZlciBXaGl0ZSwgd2hvIGFsc28gY2hvcmVvZ3JhcGhlZCB0aGUgc2VxdWVuY2UsIGRhbmNlcyBpbiBhIHJvb20ga2lja2luZyB1cCB3aGl0ZSBmbG91ci4gVGhlIGRydW1tZXIgcGxheXMgaGlzIGRydW1zIHVuZGVyIHRoZSBzdGFpcnMsIGFuZCBjaGluYSBpcyB0aHJvd24gYnJlYWtpbmcgb24gYSBwaWVjZSBvZiBzdXNwZW5kZWQgcGx5d29vZCBhdCB0aGUgYm90dG9tIG9mIGEgc3RhaXJjYXNlLiBUaGVyZSBpcyBhIHdoaXRlIG1vZGVsIG9mIGEgY2l0eSB3aGljaCBpcyBzZXQgb24gZmlyZSBieSBmaXZlIGJ1cnN0aW5nIGxpZ2h0IGJ1bGJzIGF0IHRoZSBlbmQgb2YgdGhlIHNvbmcuIFRoZSBtdXNpYyB2aWRlbyByZWNlaXZlZCBjcml0aWNhbCBhY2NsYWltLCB3aXRoIGNyaXRpY3MgcHJhaXNpbmcgaXRzIGRhcmsgdG9uZSBhbmQgc2ltcGxpY2l0eS5cbjwvcD48cD5PbiAyMCBKdWx5IDIwMTEsIHRoZSBtdXNpYyB2aWRlbyB3YXMgbm9taW5hdGVkIGZvciBzZXZlbiBNVFYgVmlkZW8gTXVzaWMgQXdhcmRzLCBpbmNsdWRpbmcgVmlkZW8gb2YgdGhlIFllYXIsIEJlc3QgRmVtYWxlIFZpZGVvLCBCZXN0IFBvcCBWaWRlbyBhbmQgQmVzdCBEaXJlY3Rpb24sIGFuZCB3b24gdGhyZWUgZm9yIEJlc3QgRWRpdGluZywgQmVzdCBDaW5lbWF0b2dyYXBoeSBhbmQgQmVzdCBBcnQgRGlyZWN0aW9uLiBUaGUgdmlkZW8gd29uIHRoZSBHcmFtbXkgQXdhcmQgZm9yIEJlc3QgU2hvcnQgRm9ybSBNdXNpYyBWaWRlbyBvbiAxMiBGZWJydWFyeSAyMDEyLiBcbjwvcD5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIkFjY29sYWRlc1wiPkFjY29sYWRlczwvaDI+XG48cD5cIlJvbGxpbmcgaW4gdGhlIERlZXBcIiB3b24gQmVzdCBUcmFjayBhdCB0aGUgMjAxMSBRIEF3YXJkcy4gQXQgdGhlIDU0dGggQW5udWFsIEdyYW1teSBBd2FyZHMsIFwiUm9sbGluZyBpbiB0aGUgRGVlcFwiIHdvbiBpbiB0aGUgY2F0ZWdvcmllcyBvZiBSZWNvcmQgb2YgdGhlIFllYXIsIFNvbmcgb2YgdGhlIFllYXIsIGFuZCBCZXN0IFNob3J0IEZvcm0gTXVzaWMgVmlkZW8sIG1ha2luZyBpdCBqdXN0IHRoZSBzZWNvbmQgc29uZyBpbiBHcmFtbXkgaGlzdG9yeSB0byB3aW4gYWxsIHRocmVlIGF3YXJkcyBhZnRlciBXZSBBcmUgdGhlIFdvcmxkIGluIDE5ODYuXG48L3A+XG5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIlByb21vdGlvblwiPlByb21vdGlvbjwvaDI+XG48cD5BZGVsZSBwZXJmb3JtZWQgdGhlIHNvbmcgc2V2ZXJhbCB0aW1lcy4gT24gMjUgTm92ZW1iZXIgMjAxMCwgdGhlIHNpbmdlciBhcHBlYXJlZCBvbiBEdXRjaCBwcmVzZW50ZXIgUGF1bCBkZSBMZWV1dydzIDxpPk1hZGl3b2RvdnJpaiBTaG93PC9pPiB0byBwZXJmb3JtIHRoZSBzb25nIGZvciB0aGUgZmlyc3QgdGltZS4gU2hlIGFsc28gcGVyZm9ybWVkIGl0IG9uIDxpPlRoZSBFbGxlbiBEZUdlbmVyZXMgU2hvdzwvaT4gaW4gdGhlIFVuaXRlZCBTdGF0ZXMgb24gMyBEZWNlbWJlciAyMDEwLiBUaGUgc29uZyB3YXMgYWxzbyBwZXJmb3JtZWQgaW4gZnJvbnQgb2YgdGhlIFJveWFsIEZhbWlseSBhdCB0aGUgUm95YWwgVmFyaWV0eSBQZXJmb3JtYW5jZSwgb24gOSBEZWNlbWJlciAyMDEwOyB0aGUgcGVyZm9ybWFuY2Ugd2FzIGJyb2FkY2FzdCAxNiBEZWNlbWJlciAyMDEwLiBPbiA8aT5BbGFuIENhcnI6IENoYXR0eSBNYW48L2k+IGluIHRoZSBVbml0ZWQgS2luZ2RvbSBvbiAxNyBKYW51YXJ5IDIwMTEuIE9uIDIxIEphbnVhcnkgMjAxMSwgQWRlbGUgcGVyZm9ybWVkIFwiUm9sbGluZyBpbiB0aGUgRGVlcFwiIGluIHRoZSBmaW5hbGUgb2YgPGk+VGhlIFZvaWNlIG9mIEhvbGxhbmQ8L2k+IHdoZXJlIHNoZSBhbHNvIHBlcmZvcm1lZCBcIk1ha2UgWW91IEZlZWwgTXkgTG92ZVwiIHdpdGggZmluYWxpc3QgS2ltIGRlIEJvZXIuIE9uIDI2IEphbnVhcnkgMjAxMSwgc2hlIHBlcmZvcm1lZCB0aGUgc29uZyBpbiB0aGUgRnJlbmNoIHRlbGV2aXNpb24gc2hvdyA8aT5MZSBHcmFuZCBKb3VybmFsPC9pPi4gVGhlIHNvbmcgaGFzIGFsc28gYmVlbiBmZWF0dXJlZCBpbiBhIHRlbGV2aXNpb24gc3BvdCBmb3IgdGhlIDIwMTEgZmlsbSA8aT5JIEFtIE51bWJlciBGb3VyPC9pPiwgaW4gd2hpY2ggaXQgaXMgYWxzbyBmZWF0dXJlZC4gQXMgcGFydCBvZiBhIHByb21vdGlvbmFsIHRvdXIgaW4gTm9ydGggQW1lcmljYSBmb3IgdGhlIGFsYnVtLCBBZGVsZSBwZXJmb3JtZWQgdGhlIHNvbmcgb24gPGk+TGF0ZSBTaG93IHdpdGggRGF2aWQgTGV0dGVybWFuPC9pPiBvbiAyMSBGZWJydWFyeSAyMDExLCBvbiA8aT5KaW1teSBLaW1tZWwgTGl2ZSE8L2k+IG9uIDI0IEZlYnJ1YXJ5IDIwMTEsIG9uIDEgTWFyY2ggMjAxMSBvbiA8aT5NVFYgTGl2ZTwvaT4sIGFuZCA8aT5EYW5jaW5nIHdpdGggdGhlIFN0YXJzPC9pPiBvbiAxMCBNYXkgMjAxMS4gT24gMTIgRmVicnVhcnkgMjAxMiwgc2hlIG1hZGUgYW5vdGhlciByZW5kaXRpb24gb2YgdGhlIHNvbmcgYXQgdGhlIDU0dGggR3JhbW15IEF3YXJkcy5cbjwvcD5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIk1lZGlhX3VzYWdlXCI+TWVkaWEgdXNhZ2U8L2gyPlxuPHA+XCJSb2xsaW5nIGluIHRoZSBEZWVwXCIgZmlyc3QgZ2FpbmVkIGF0dGVudGlvbiB3aGVuIGl0IHdhcyB1c2VkIGluIGEgdHJhaWxlciBmb3IgdGhlIGZpbG0gPGk+SSBBbSBOdW1iZXIgRm91cjwvaT4gYW5kIGluIHRoZSBmaWxtIGl0c2VsZi4gSXQgaGFzIHNpbmNlIGJlZW4gZmVhdHVyZWQgaW4gc2V2ZXJhbCB0ZWxldmlzaW9uIHNlcmllcyBzdWNoIGFzIGluIDxpPjkwMjEwPC9pPjxzcGFuPidzPC9zcGFuPiB0aGlyZCBzZWFzb24sIGluIDxpPkRvY3RvciBXaG88L2k+PHNwYW4+J3M8L3NwYW4+IHNpeHRoIHNlcmllcyBwcmVtaWVyZSwgaW4gPGk+T25lIFRyZWUgSGlsbDwvaT48c3Bhbj4nczwvc3Bhbj4gZWlnaHRoIHNlYXNvbiwgaW4gPGk+R29zc2lwIEdpcmw8L2k+PHNwYW4+J3M8L3NwYW4+IGZvdXJ0aC1zZWFzb24gZmluYWxlLCA8aT5UaGUgU2VjcmV0IExpZmUgb2YgdGhlIEFtZXJpY2FuIFRlZW5hZ2VyPC9pPjxzcGFuPidzPC9zcGFuPiBmb3VydGggc2Vhc29uLiBhbmQgaW4gdGhlIFNjYW5kYWwncyBQaWxvdCBwcm9tby4gXCJSb2xsaW5nIGluIHRoZSBEZWVwXCIgd2FzIHVzZWQgYXMgdGhlIHRoZW1lIHNvbmcgZm9yIEU0J3MgcmVhbGl0eSBzZXJpZXMgPGk+TWFkZSBpbiBDaGVsc2VhPC9pPiBhbmQgYXBwZWFyZWQgaW4gPGk+U28gWW91IFRoaW5rIFlvdSBDYW4gRGFuY2U8L2k+PHNwYW4+J3M8L3NwYW4+IGVpZ2h0aCBzZWFzb24gZHVyaW5nIGNvbnRlc3RhbnQgTWl0Y2hlbGwgS2VsbHkncyBzb2xvIHBlcmZvcm1hbmNlLiBJbiBSZW5ueSBIYXJsaW4ncyAyMDE2IGZpbG0gPGk+U2tpcHRyYWNlPC9pPjxpPiw8L2k+IGEgZHJ1bmsgSmFja2llIENoYW4gc2FuZyBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiBhdCB0aGUgdHVuZSBvZiBsb2NhbCBpbnN0cnVtZW50cyBpbiBhIE1vbmdvbGlhbiB2aWxsYWdlIG9ubHkgdG8gYmUgdGFrZW4gYnkgc3VycHJpc2UgYnkgaG93IHRoZSBzb25nIHdhcyBhbHJlYWR5IHBvcHVsYXIgYW1vbmcgdGhlIG5vbi1FbmdsaXNoIHNwZWFraW5nIGxvY2Fscywgd2hlbiB0aGV5IHN0YXJ0ZWQgdG8gc2luZyB3aXRoIGhpbS5cbjwvcD48cD5UaGUgaW5zdHJ1bWVudGFsIG9mIHRoZSBzb25nIHdhcyB1c2VkIGluIEFwcGxlIEluYydzIG1hcmtldGluZyB2aWRlbyBmb3IgdGhlIGlQaG9uZSA0Uy4gSXQgd2FzIGFsc28gZmVhdHVyZWQgaW4gQ0JDJ3MgaW50cm8gdG8gR2FtZSAxIG9mIHRoZSBob2NrZXkgMjAxMSBTdGFubGV5IEN1cCBGaW5hbHMgYmV0d2VlbiB0aGUgVmFuY291dmVyIENhbnVja3MgYW5kIHRoZSBCb3N0b24gQnJ1aW5zLiB3aGlsZSB0aGUgc29uZydzIGluc3RydW1lbnRhbHMgd2VyZSBwbGF5ZWQgaGVhdmlseSBpbiBwcm9tb3MgZHVyaW5nIHRoZSAyMDExIE5CQSBkcmFmdC4gVGhlIHNvbmcgd2FzIHBsYXllZCBpbiB0aGUgYmFja2dyb3VuZCBkdXJpbmcgdGhlIHBhcmFkZSBvZiBhdGhsZXRlcyBhdCB0aGUgMjAxMiBTdW1tZXIgT2x5bXBpY3MuXG48L3A+PHA+SW4gZWFybHkgMjAxNiwgVVMgYnVzaW5lc3NtYW4gYW5kIG1lZGlhIHBlcnNvbmFsaXR5IERvbmFsZCBUcnVtcCBiZWdhbiB1c2luZyBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiBhcyB3YXJtLXVwIG11c2ljIGF0IHJhbGxpZXMgZHVyaW5nIGhpcyBjYW1wYWlnbiB0byBiZWNvbWUgdGhhdCB5ZWFyJ3MgUmVwdWJsaWNhbiBQYXJ0eSBjYW5kaWRhdGUgZm9yIFByZXNpZGVudCBvZiB0aGUgVW5pdGVkIFN0YXRlcywgcHJvbXB0aW5nIEFkZWxlIHRvIGlzc3VlIGEgc3RhdGVtZW50IGRpc3RhbmNpbmcgaGVyc2VsZiBmcm9tIFRydW1wLiBBIHNwb2tlc3BlcnNvbiBmb3IgdGhlIHNpbmdlciBjb25maXJtZWQgdGhhdCBcIkFkZWxlIGhhcyBub3QgZ2l2ZW4gcGVybWlzc2lvbiBmb3IgaGVyIG11c2ljIHRvIGJlIHVzZWQgZm9yIGFueSBwb2xpdGljYWwgY2FtcGFpZ25pbmdcIi4gVGhlIHNvbmcgaXMgb25lIG9mIHR3byBieSBBZGVsZSB0aGF0IFRydW1wIHVzZWQgYXMgcGFydCBvZiBoaXMgY2FtcGFpZ24sIHRoZSBvdGhlciBiZWluZyBcIlNreWZhbGxcIi4gVHJ1bXAgY29udGludWVkIHRvIHVzZSB0aGUgc29uZ3MgZGVzcGl0ZSBBZGVsZSdzIG9iamVjdGlvbnMuIENvbW1lbnRhdG9ycywgaW5jbHVkaW5nIERhdmlkIExpc3RlciBvZiA8aT5UaGUgSW5kZXBlbmRlbnQ8L2k+LCBoYXZlIG5vdGVkIHRoYXQgVW5pdGVkIFN0YXRlcyBDb3B5cmlnaHQgbGF3IGRvZXMgbm90IHByZXZlbnQgcG9saXRpY2lhbnMgZnJvbSB1c2luZyBwaWVjZXMgb2YgbXVzaWMgYXQgdGhlaXIgcmFsbGllcywgcHJvdmlkaW5nIHRoZSB2ZW51ZSBoYXMgYSBwdWJsaWMgcGVyZm9ybWFuY2UgbGljZW5jZS5cbjwvcD5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIlRyYWNrX2xpc3RpbmdcIj5UcmFjayBsaXN0aW5nPC9oMj5cbjx1bD48bGk+PGI+RGlnaXRhbCBkb3dubG9hZDwvYj48L2xpPjwvdWw+XG48b2w+PGxpPlwiUm9sbGluZyBpbiB0aGUgRGVlcFwiIOKAkyAzOjQ4PC9saT48L29sPlxuPHVsPjxsaT48Yj5EaWdpdGFsIEVQPC9iPjwvbGk+PC91bD5cbjxvbD48bGk+XCJSb2xsaW5nIGluIHRoZSBEZWVwXCIg4oCTIDM6NDg8L2xpPlxuPGxpPlwiUm9sbGluZyBpbiB0aGUgRGVlcCAoSmFtaWUgeHggU2h1ZmZsZSlcIiDigJMgNDoxNzwvbGk+XG48bGk+XCJSb2xsaW5nIGluIHRoZSBEZWVwIChBY2FwZWxsYSlcIiDigJMgMzo1NjwvbGk+PC9vbD5cbjx1bD48bGk+PGI+Q0Qgc2luZ2xlPC9iPjwvbGk+PC91bD5cbjxvbD48bGk+XCJSb2xsaW5nIGluIHRoZSBEZWVwXCIg4oCTIDM6NDg8L2xpPlxuPGxpPlwiSWYgSXQgSGFkbid0IEJlZW4gZm9yIExvdmVcIiA8c3Bhbj4od3JpdHRlbiBieSBNaWtlIEhlbmRlcnNvbiBhbmQgQ2hyaXMgU3RhcGxldG9uKTwvc3Bhbj4g4oCTIDM6MDk8L2xpPjwvb2w+XG48aDIgZGF0YS1tdy1hbmNob3I9XCJDcmVkaXRzX2FuZF9wZXJzb25uZWxcIj5DcmVkaXRzIGFuZCBwZXJzb25uZWw8L2gyPlxuPHVsPjxsaT5MZWFkIHZvY2FscywgYmFja2luZyB2b2NhbHMsIHN0aWxldHRvIGhlZWwgdGFwcGluZyDigJMgQWRlbGU8L2xpPlxuPGxpPlNvbmd3cml0aW5nIOKAkyBBZGVsZSBBZGtpbnMsIFBhdWwgRXB3b3J0aDwvbGk+XG48bGk+UHJvZHVjdGlvbiwgQmFzcyBndWl0YXIsIGFjb3VzdGljIGd1aXRhciwgZWxlY3RyaWMgZ3VpdGFyLCBwZXJjdXNzaW9uIGFuZCBiYWNraW5nIHZvY2FscyDigJMgUGF1bCBFcHdvcnRoPC9saT5cbjxsaT5NaXhpbmcg4oCTIFRvbSBFbG1oaXJzdDwvbGk+XG48bGk+TWl4aW5nIGFzc2lzdGFudCDigJMgRGFuIFBhcnJ5PC9saT5cbjxsaT5QaWFubyDigJMgTmVpbCBDb3dsZXk8L2xpPlxuPGxpPkRydW1zIOKAkyBMZW8gVGF5bG9yPC9saT5cbjxsaT5SZWNvcmRpbmcgRW5naW5lZXIg4oCTIE1hcmsgUmFua2luPC9saT5cbjxsaT5NYXN0ZXJpbmcg4oCTIFRvbSBDb3luZTwvbGk+PC91bD5cbjxwPkNyZWRpdHMgYWRhcHRlZCBmcm9tIDxpPjIxPC9pPiBsaW5lciBub3RlczpcbjwvcD5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIkNoYXJ0c1wiPkNoYXJ0czwvaDI+XG5cblxuPGgyIGRhdGEtbXctYW5jaG9yPVwiQ2VydGlmaWNhdGlvbnNfYW5kX3NhbGVzXCI+Q2VydGlmaWNhdGlvbnMgYW5kIHNhbGVzPC9oMj5cblxuPGgyIGRhdGEtbXctYW5jaG9yPVwiUmVsZWFzZV9oaXN0b3J5XCI+UmVsZWFzZSBoaXN0b3J5PC9oMj5cblxuPGgyIGRhdGEtbXctYW5jaG9yPVwiQ292ZXJfdmVyc2lvbnNcIj5Db3ZlciB2ZXJzaW9uczwvaDI+XG48aDMgZGF0YS1tdy1hbmNob3I9XCJMaW5raW5fUGFya192ZXJzaW9uXCI+TGlua2luIFBhcmsgdmVyc2lvbjwvaDM+XG5cbjxwPlwiPGI+Um9sbGluZyBpbiB0aGUgRGVlcDwvYj5cIiB3YXMgY292ZXJlZCBieSBBbWVyaWNhbiByb2NrIGJhbmQgTGlua2luIFBhcmsgYW5kIHdhcyBpbmNsdWRlZCBvbiB0aGVpciBsaXZlIEVQLCA8aT5pVHVuZXMgRmVzdGl2YWw8L2k+LiBJdCBoYXMgZW50ZXJlZCB0aGUgVUsgUm9jayBTaW5nbGVzIENoYXJ0cyBhdCBudW1iZXIgMSwgYW5kIFVLIFNpbmdsZXMgY2hhcnQgYXQgbnVtYmVyIDQyIGFsdGhvdWdoIGl0IGhhcyBub3QgYmVlbiByZWxlYXNlZCBhcyBhIHNpbmdsZS4gVGhlIHNvbmcgd2FzIGNvdmVyZWQgdHdpY2UgYnkgdGhlIGJhbmQsIG9uZSB3YXMgYSBMUFUgbWVldGluZyBhbmQgb25lIHdhcyBpbiBUaGUgUm91bmRob3VzZSBkdXJpbmcgdGhlIDIwMTEgaVR1bmVzIEZlc3RpdmFsLiBUaGUgc29uZyB3YXMgd2VsbCByZWNlaXZlZCBieSB0aGUgVUsuICBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiB3YXMgc2VudCB0byBhbHRlcm5hdGl2ZSByYWRpbyBzdGF0aW9ucyBhcyBhIHByb21vdGlvbmFsIHNpbmdsZSBvbiA4IEp1bHkgMjAxMS4gUGVyZm9ybWVkIGFzIGFuIGFjb3VzdGljIHZlcnNpb24gb2YgdGhlIHNvbmcgYXMgcGFydCBvZiB0aGVpciBzZXQsIHdpdGggQ2hlc3RlciBCZW5uaW5ndG9uIGFzIHRoZSBsZWFkIHZvY2FsaXN0IGFuZCBNaWtlIFNoaW5vZGEgb24gdGhlIHBpYW5vLiBUaGlzIHJlY29yZGluZyB3YXMgcmVsZWFzZWQgdG8gdGhlIGlUdW5lcyBTdG9yZSBhcyBhIHNpbmdsZS5cbjwvcD5cbjxoNCBkYXRhLW13LWFuY2hvcj1cIkNoYXJ0c18yXCI+Q2hhcnRzPC9oND5cblxuXG48aDMgZGF0YS1tdy1hbmNob3I9XCJBcmV0aGFfRnJhbmtsaW5fdmVyc2lvblwiPkFyZXRoYSBGcmFua2xpbiB2ZXJzaW9uPC9oMz5cblxuPHA+SW4gMjAxNCwgQXJldGhhIEZyYW5rbGluIGNvdmVyZWQgdGhlIHNvbmcgb24gaGVyIDxpPkFyZXRoYSBGcmFua2xpbiBTaW5ncyB0aGUgR3JlYXQgRGl2YSBDbGFzc2ljczwvaT4gYWxidW0uIFRoZSBwZXJmb3JtYW5jZSBtYXkgYmUgdGVybWVkIGEgbWFzaC11cCBvciBtZWRsZXkgYXMgaXQgaW5jbHVkZXMgdGhlIGNob3J1cyBmcm9tIFwiQWluJ3QgTm8gTW91bnRhaW4gSGlnaCBFbm91Z2hcIiB3cml0dGVuIGJ5IHNpbmdlci1zb25nd3JpdGVycyBBc2hmb3JkICZhbXA7IFNpbXBzb24uXG48L3A+PHA+SXQgd2FzIHJlbGVhc2VkIDI5IFNlcHRlbWJlciAyMDE0IGFzIHRoZSBjb2xsZWN0aW9uJ3MgbGVhZCBzaW5nbGUuIFRoaXMgdmVyc2lvbiBwZWFrZWQgYXQgbnVtYmVyIG9uZSBvbiB0aGUgVVMgZGFuY2UgY2hhcnQsIGdpdmluZyBBcmV0aGEgRnJhbmtsaW4gaGVyIHNpeHRoIG51bWJlciBvbmUgb24gdGhlIGNoYXJ0LiBJdCBhbHNvIGRlYnV0ZWQgYXQgbnVtYmVyIDQ3IG9uIHRoZSA8aT5CaWxsYm9hcmQ8L2k+IEhvdCBSJmFtcDtCL0hpcC1Ib3AgU29uZ3MgY2hhcnQuIEZyYW5rbGluIHRodXMgYmVjYW1lIHRoZSBmaXJzdCBmZW1hbGUsIGFuZCBmb3VydGggYXJ0aXN0IG92ZXJhbGwgKGZvbGxvd2luZyBMaWwgV2F5bmUsIEpheS1aIGFuZCBKYW1lcyBCcm93biksIHRvIHBsYWNlIDEwMCBzb25ncyBvbiB0aGUgY2hhcnRzICh3aXRoIGhlciBmaXJzdCBlbnRyeSBvbiB0aGUgY2hhcnQgYmVpbmcgXCJUb2RheSBJIFNpbmcgdGhlIEJsdWVzXCIgaW4gMTk2MCkuIFRoaXMgdmVyc2lvbiBvZiBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiBlbnRpdGxlZCBcIjxiPlJvbGxpbmcgaW4gdGhlIERlZXAgKFRoZSBBcmV0aGEgVmVyc2lvbilcIjwvYj4gd2FzIEZyYW5rbGluJ3MgZmluYWwgc2luZ2xlIHRvIGJlIHJlbGVhc2VkIGJlZm9yZSBoZXIgcmV0aXJlbWVudCBpbiAyMDE3LCBhbmQgaGVyIGRlYXRoIHRoZSBmb2xsb3dpbmcgeWVhci5cbjwvcD5cbjxoNCBkYXRhLW13LWFuY2hvcj1cIkNoYXJ0c18zXCI+Q2hhcnRzPC9oND5cblxuPGgzIGRhdGEtbXctYW5jaG9yPVwiR3JldGFfVmFuX0ZsZWV0X3ZlcnNpb25cIj5HcmV0YSBWYW4gRmxlZXQgdmVyc2lvbjwvaDM+XG48cD5JbiBKYW51YXJ5IDIwMTgsIEFtZXJpY2FuIHJvY2sgYmFuZCBHcmV0YSBWYW4gRmxlZXQgcmVsZWFzZWQgYSBjb3ZlciBvZiBcIlJvbGxpbmcgaW4gdGhlIERlZXBcIiB3aXRoIGEgcGFydG5lcnNoaXAgd2l0aCBTcG90aWZ5IGFmdGVyIGJlaW5nIGludml0ZWQgdG8gcmVjb3JkIGF0IFNwb3RpZnkgU3R1ZGlvcyBpbiBOZXcgWW9yayBDaXR5LlxuPC9wPjxwPlRoZSBzb25nIHdhcyByZWxlYXNlZCBhbG9uZyB3aXRoIGFuIGFjb3VzdGljIHZlcnNpb24gb2YgXCJCbGFjayBTbW9rZSBSaXNpbmdcIiBvbiBkaWdpdGFsIG1lZGlhIG9uIDI0IEphbnVhcnkgMjAxOC4gVGhlIHNvbmcgZGlkIG5vdCBjaGFydCBidXQgdGhlIGJhbmQgd2lsbCBwbGF5IGl0IGF0IGxpdmUgcGVyZm9ybWFuY2VzIG9jY2FzaW9uYWxseS4gXG5cbjwvcD5cbjxoMyBkYXRhLW13LWFuY2hvcj1cIk90aGVyX2NvdmVyc1wiPk90aGVyIGNvdmVyczwvaDM+XG48cD5UaGUgUGlhbm8gR3V5cyBhZGFwdGVkIHRoZSBtZWxvZHkgZm9yIHBpYW5vIGFuZCBjZWxsbyBpbiBhIG1hc2h1cCB3aXRoIHRoZSBvcmNoZXN0cmFsIHN1aXRlIFwiSnVwaXRlclwiIGJ5IEd1c3RhdiBIb2xzdC4gSmFwYW5lc2Ugcm9jayBkdW8gR2xpbSBTcGFua3kgY292ZXJlZCB0aGUgc29uZyBmb3IgdGhlaXIgMjAxNCBFUCA8aT5TaMWNc8WNPC9pPi5cbjwvcD48cD5UaGUgc29uZyBiZWNhbWUgcG9wdWxhciBhbmQgaGFzIGJlZW4gY292ZXJlZCBieSB2YXJpb3VzIGFydGlzdHMgaW5jbHVkaW5nIERhdmlkIENvb2ssIEFyaWFuYSBHcmFuZGUsIEhhbGV5IFJlaW5oYXJ0LCBOaWNvbGUgU2NoZXJ6aW5nZXIsIFRoZSBPdmVydG9uZXMgYW5kIHJhcHBlciBMaWwgV2F5bmUuIEluIEphbnVhcnkgMjAxMSwgSmFtaWUgeHggcmVtaXhlZCB0aGUgc29uZywgb24gdG9wIG9mIHdoaWNoIENoaWxkaXNoIEdhbWJpbm8gbGF0ZXIgYWRkZWQgYSByYXAgdmVyc2UuIEluIEZlYnJ1YXJ5IDIwMTEsIE1pa2UgUG9zbmVyIHJlbGVhc2VkIGEgY292ZXIgb2YgdGhlIHNvbmcuIDxpPklkb2xhdG9yPC9pPiBkZXNjcmliZWQgaGlzIHZlcnNpb24gYXMgXCJhIHZlcnkgY29vbCBlbGVjdHJvbmljIHBpZWNlIHRoYXQgc3RpbGwgc29tZWhvdyBtYW5hZ2VzIHRvIHJldGFpbiB0aGUgaGVhcnRicm9rZW4gZmVlbCBvZiBBZGVsZSdzIG9yaWdpbmFsIHR1bmUuXCIgVGhlIHNhbWUgbW9udGgsIFNjb3R0aXNoIGJhbmQgS2Fzc2lkeSBhbHNvIGNvdmVyZWQgdGhlIHNvbmcuIEpvaG4gTGVnZW5kIHVwbG9hZGVkIGFuIFImYW1wO0IgYSBjYXBwZWxsYSB2ZXJzaW9uIG9mIHRoZSBzb25nIGluIEFwcmlsIDIwMTEgb24gU291bmRDbG91ZC4gXCJSb2xsaW5nIGluIHRoZSBEZWVwXCIgd2FzIHRoZW4gY292ZXJlZCBieSBMZWEgTWljaGVsZSBhbmQgSm9uYXRoYW4gR3JvZmYgb2YgPGk+R2xlZTwvaT4gZm9yIHRoZSBzZWNvbmQgc2Vhc29uIGVwaXNvZGUgXCJQcm9tIFF1ZWVuXCIuIFRoZSBzaW5nbGUgY2hhcnRlZCBhdCBudW1iZXIgMjkgb24gdGhlIDxpPkJpbGxib2FyZDwvaT4gSG90IDEwMCBhbmQgYXQgNDkgb24gdGhlIFVLIFNpbmdsZXMgQ2hhcnQgYW5kIHdhcyBsYXRlciByZWxlYXNlZCBvbiB0aGUgYWxidW0gPGk+R2xlZTogVGhlIE11c2ljLCBWb2x1bWUgNjwvaT4uIEJsYWNrIFN0b25lIENoZXJyeSBoYXZlIGNvdmVyZWQgdGhlIHNvbmcgbGl2ZSBvbiBzZXZlcmFsIG9jY2FzaW9ucywgYW5kIGl0IHdhcyBjb3ZlcmVkIGJ5IENlbGluZSBEaW9uIG9uIGhlciBMYXMgVmVnYXMgU2hvdy5cbjwvcD48cD5PbiAxNCBKdWx5IDIwMTEsIFBhdHRpIFNtaXRoIGNvdmVyZWQgXCJSb2xsaW5nIGluIHRoZSBEZWVwXCIgZHVyaW5nIGEgcGVyZm9ybWFuY2UgYXQgdGhlIENhc3RsZSBDbGludG9uLiBJbiBKdWx5IDIwMTEsIFBTMjIgQ2hvcnVzIHNhbmcgdGhlIHNvbmcgYXQgdGhlIE5ld3BvcnQgRm9sayBGZXN0aXZhbC4gT24gT2N0b2JlciAyMDExLCBNaXNoYSBCIHBlcmZvcm1lZCBhIFwic2hvdy1zdG9wcGluZ1wiIGNvdmVyIG9mIHRoZSB0cmFjayBvbiB0aGUgZWlnaHRoIHNlYXNvbiBvZiA8aT5UaGUgWCBGYWN0b3IsPC9pPiByZWdhcmRlZCBieSB0aGUgPGk+RGFpbHkgVGVsZWdyYXBoPC9pPiBhcyBvbmUgb2YgdGhlIGhpZ2hsaWdodHMgb2YgdGhlIHNlcmllcy4gPGk+VGhlIFRlbGVncmFwaDwvaT4gbm90ZWQgdGhhdCBNaXNoYSBCIGRlbGl2ZXJlZCBcImltcHJlc3NpdmUgc291bGZ1bCB2b2NhbHMgYW5kIGEgcXVpcmt5IHJhcHBpbmcgc3R5bGVcIiBpbmplY3RpbmcgaXQgd2l0aCBhIFwiZnJlc2ggVUsgdXJiYW4gdHdpc3RcIi4gTWV4aWNhbiBzaWJsaW5nIHRyaW8gVsOhenF1ZXogU291bmRzIHJlbGVhc2VkIGEgY292ZXIgdmVyc2lvbiB3aGljaCBxdWlja2x5IGJlY2FtZSBwb3B1bGFyIG9uIFlvdVR1YmUuIEl0IHdhcyBsYXRlciByZWxlYXNlZCBhcyBhIHNpbmdsZSBpbiBNZXhpY28gYW5kIHdhcyBjZXJ0aWZpZWQgcGxhdGludW0gYnkgQU1QUk9GT04uIE9uIDEyIEp1bmUgMjAxMiwgQ2VsaW5lIERpb24gY292ZXJlZCB0aGUgc29uZyBhdCBoZXIgVmVnYXMgc2hvdyBhdCBUaGUgQ29sb3NzZXVtIGF0IENhZXNhcnMgUGFsYWNlLCBiZWZvcmUgc2hlIHBlcmZvcm1lZCB0aGUgc29uZywgc2hlIHRvbGQgdGhlIGNyb3dkLCBcIkkgbG92ZSBBZGVsZSBzbyBtdWNoLiBTaGUncyBhbWF6aW5nLlwiIEEgY292ZXIgYnkgbWV0YWxjb3JlIGJhbmQgQW15c3Qgd2FzIHBsYXllZCB0byBBZGVsZSBieSBKb25hdGhhbiBSb3NzIG9uIGhpcyBUViBzaG93IGluIFNlcHRlbWJlciAyMDExLCB0byBhIHBvb3IgcmVjZXB0aW9uIGZyb20gQWRlbGUsIHdobyBhbG9uZyB3aXRoIFJvc3MgZGlzbWlzc2VkIGl0IGFzIFwic2NyZWFtb1wiLlxuPC9wPjxwPkluIE1heSAyMDE1LCBBcnlhbiBTaW1oYWRyaSB1cGxvYWRlZCBhIHZpZGVvIG9mIGhpcyBjb3ZlciBvZiB0aGUgc29uZyB0byBoaXMgWW91VHViZSBjaGFubmVsLiBUaGUgY292ZXIgc3VyZ2VkIGluIHBvcHVsYXJpdHkgaW4gMjAyMyBhbmQgMjAyNCBkdWUgdG8gU2ltaGFkcmkncyBsZWFkaW5nIHJvbGUgYXMgR3JvdmVyIFVuZGVyd29vZCBpbiB0aGUgRGlzbmV5KyBzZXJpZXMgPGk+UGVyY3kgSmFja3NvbiBhbmQgdGhlIE9seW1waWFuczwvaT4gb2Z0ZW4gcGFpcmVkIHdpdGggb3RoZXIgY2xpcHMgb2YgdGhlIHNob3cncyB5b3VuZyBjYXN0IG1lbWJlcnMgaW4gdGhlIGZvcm0gb2YgYW4gSW50ZXJuZXQgbWVtZS5cbjwvcD48cD5PbiA5IE1hcmNoIDIwMjEsIExhIFBvZW0gcGVyZm9ybWVkIHRoZSBzb25nIGluIHRoZSA3dGggZXBpc29kZSBvZiA8aT5QaGFudG9tIFNpbmdlciBBbGwgU3RhcnM8L2k+LlxuPC9wPlxuPGgyIGRhdGEtbXctYW5jaG9yPVwiU2VlX2Fsc29cIj5TZWUgYWxzbzwvaDI+XG5cbjxoMiBkYXRhLW13LWFuY2hvcj1cIlJlZmVyZW5jZXNcIj5SZWZlcmVuY2VzPC9oMj5cblxuPGgyIGRhdGEtbXctYW5jaG9yPVwiRXh0ZXJuYWxfbGlua3NcIj5FeHRlcm5hbCBsaW5rczwvaDI+XG48dWw+PGxpPkFydGljbGUgb24gdGhlIG1ha2luZyBvZiBSb2xsaW5nIGluIHRoZSBEZWVwIGJ5IFBhdWwgVGluZ2VuIGluIFNvdW5kIG9uIFNvdW5kIG1hZ2F6aW5lLjwvbGk+PC91bD4ifV19fQ==
+  recorded_at: Thu, 25 Dec 2025 20:07:32 GMT
+recorded_with: VCR 6.4.0

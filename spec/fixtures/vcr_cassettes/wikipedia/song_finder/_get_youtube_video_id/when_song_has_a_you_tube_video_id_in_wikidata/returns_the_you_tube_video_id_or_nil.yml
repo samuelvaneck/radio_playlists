@@ -1,0 +1,208 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://en.wikipedia.org/api/rest_v1/page/summary/Rolling%20in%20the%20Deep%20(Adele%20song)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Webkit-Csp:
+      - default-src 'none'; frame-ancestors 'none'
+      Cache-Control:
+      - s-maxage=1209600, max-age=300
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/Summary/1.5.0"
+      Date:
+      - Thu, 25 Dec 2025 20:07:26 GMT
+      Server:
+      - production-tls
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,HEAD
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, cache-control, accept-language, api-user-agent,
+        if-match, if-modified-since, if-none-match, dnt, accept-encoding
+      Access-Control-Expose-Headers:
+      - etag
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"1325468818/537d20e0-e1cd-11f0-a327-73e0255f9abe"
+      Age:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - x-restbase-compat, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 miss
+      X-Cache-Status:
+      - miss
+      Server-Timing:
+      - cache;desc="miss", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=NITpYTW_RVED2R-9cdvaGQLUAAAAAFvdbmOvnrGNqtAnQVLZr_BrIs3P99ylNe2V;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Content-Length:
+      - '2647'
+      X-Request-Id:
+      - ef87e25a-718b-4970-8cf9-9b4315d2b128
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":"standard","title":"Rolling in the Deep","displaytitle":"<span
+        class=\"mw-page-title-main\">Rolling in the Deep</span>","namespace":{"id":0,"text":""},"wikibase_item":"Q170165","titles":{"canonical":"Rolling_in_the_Deep","normalized":"Rolling
+        in the Deep","display":"<span class=\"mw-page-title-main\">Rolling in the
+        Deep</span>"},"pageid":29878138,"thumbnail":{"source":"https://upload.wikimedia.org/wikipedia/en/7/74/Adele_-_Rolling_in_the_Deep.png","width":300,"height":300},"originalimage":{"source":"https://upload.wikimedia.org/wikipedia/en/7/74/Adele_-_Rolling_in_the_Deep.png","width":300,"height":300},"lang":"en","dir":"ltr","revision":"1325468818","tid":"8520e703-d012-11f0-8954-df0ecdae2996","timestamp":"2025-12-03T06:37:21Z","description":"2010
+        single by Adele","description_source":"local","content_urls":{"desktop":{"page":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep","revisions":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep?action=history","edit":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Rolling_in_the_Deep"},"mobile":{"page":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep","revisions":"https://en.wikipedia.org/wiki/Special:History/Rolling_in_the_Deep","edit":"https://en.wikipedia.org/wiki/Rolling_in_the_Deep?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Rolling_in_the_Deep"}},"extract":"\"Rolling
+        in the Deep\" is a song by English singer-songwriter Adele from her second
+        studio album, 21 (2011). It is the lead single and opening track on the album.
+        The song was written by Adele and Paul Epworth. The singer herself describes
+        it as a \"dark blues-y gospel disco tune\". In 2011, it was reportedly the
+        biggest crossover hit in the United States since 1985; \"Rolling in the Deep\"
+        gained radio airplay from many different radio formats. It was released on
+        29 November 2010 as the lead single from 21 in digital download format. The
+        lyrics describe the emotions of a scorned lover.","extract_html":"<p>\"<b>Rolling
+        in the Deep</b>\" is a song by English singer-songwriter Adele from her second
+        studio album, <i>21</i> (2011). It is the lead single and opening track on
+        the album. The song was written by Adele and Paul Epworth. The singer herself
+        describes it as a \"dark blues-y gospel disco tune\". In 2011, it was reportedly
+        the biggest crossover hit in the United States since 1985; \"Rolling in the
+        Deep\" gained radio airplay from many different radio formats. It was released
+        on 29 November 2010 as the lead single from <i>21</i> in digital download
+        format. The lyrics describe the emotions of a scorned lover.</p>"}'
+  recorded_at: Thu, 25 Dec 2025 20:07:26 GMT
+- request:
+    method: get
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q170165&languages=en&props=claims%7Clabels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 25 Dec 2025 20:07:26 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-6h79r
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '0'
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=KGyFsKRyILV503doIHC5fALUAAAAAFvdtzY2K-L__REmjz7Ymzg9EWuFvUfWkwpK;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Transfer-Encoding:
+      - chunked
+      X-Request-Id:
+      - 7891f453-f390-4376-8e1e-0565f461f621
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"entities":{"Q170165":{"type":"item","id":"Q170165","labels":{"en":{"language":"en","value":"Rolling
+        in the Deep"}},"claims":{"P31":[{"mainsnak":{"snaktype":"value","property":"P31","hash":"5be109d8a3cbbd062357a9d210d4ef00ef25244e","datavalue":{"value":{"entity-type":"item","numeric-id":105543609,"id":"Q105543609"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$D5B446C9-9936-43A2-9C41-5D8A305A0954","rank":"normal"}],"P175":[{"mainsnak":{"snaktype":"value","property":"P175","hash":"f6fa16dc6b3df3566e5de7820839f497fcf28793","datavalue":{"value":{"entity-type":"item","numeric-id":23215,"id":"Q23215"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"q170165$f9f78323-48b5-49f3-86d7-0d574384c851","rank":"normal","references":[{"hash":"fa278ebfc458360e5aed63d5058cca83c46134f1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P435":[{"mainsnak":{"snaktype":"value","property":"P435","hash":"c841b4bc74f08075d5265e3cde874c84e03b96c1","datavalue":{"value":"bbc9ce47-5d26-3489-ae0b-b06c4b8c6450","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P1810":[{"snaktype":"value","property":"P1810","hash":"7f3d2173a661f7c443a1f2245add3a2103d1a2f2","datavalue":{"value":"Rolling
+        in the Deep","type":"string"},"datatype":"string"}]},"qualifiers-order":["P1810"],"id":"q170165$A2C71B9F-944B-416F-9B02-15D985A977A9","rank":"normal","references":[{"hash":"06d7b4712ad27b4e3c990a4c9fb59227f9d12325","snaks":{"P813":[{"snaktype":"value","property":"P813","hash":"eaf31be2e3f639cdc01043035ef8f6a5994832ee","datavalue":{"value":{"time":"+2018-10-27T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P813"]}]}],"P646":[{"mainsnak":{"snaktype":"value","property":"P646","hash":"098fcad505f0c95cb10c24481496e0d8d1f17080","datavalue":{"value":"/m/0g6twc7","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q170165$E5AC70AC-DEE5-4662-81A1-5C3EE0F354FE","rank":"normal","references":[{"hash":"2b00cb481cddcac7623114367489b5c194901c4a","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"a94b740202b097dd33355e0e6c00e54b9395e5e0","datavalue":{"value":{"entity-type":"item","numeric-id":15241312,"id":"Q15241312"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P577":[{"snaktype":"value","property":"P577","hash":"fde79ecb015112d2f29229ccc1ec514ed3e71fa2","datavalue":{"value":{"time":"+2013-10-28T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P577"]}]}],"P1417":[{"mainsnak":{"snaktype":"value","property":"P1417","hash":"4ccb72596553304ad4d5cdeb92f2ec8a63d033b2","datavalue":{"value":"topic/Rolling-in-the-Deep","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P1810":[{"snaktype":"value","property":"P1810","hash":"7f3d2173a661f7c443a1f2245add3a2103d1a2f2","datavalue":{"value":"Rolling
+        in the Deep","type":"string"},"datatype":"string"}]},"qualifiers-order":["P1810"],"id":"Q170165$8968000F-2C9C-40B5-A89C-A02DF345FC14","rank":"normal","references":[{"hash":"fa278ebfc458360e5aed63d5058cca83c46134f1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P86":[{"mainsnak":{"snaktype":"value","property":"P86","hash":"377a060fb1f631386cf099e957dd81b3dbd9382f","datavalue":{"value":{"entity-type":"item","numeric-id":23215,"id":"Q23215"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$DDD487AD-689E-4742-B15F-4715552B80A8","rank":"normal","references":[{"hash":"661803bff59e96a2feb6023b18ef64603c9b8d11","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"af862b26ef430bd625da6804c7782b0a3932f531","datavalue":{"value":{"entity-type":"item","numeric-id":82271165,"id":"Q82271165"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P1827":[{"snaktype":"value","property":"P1827","hash":"a37dd30a8f10c87c48ee5ef8f1a17cbce04dedad","datavalue":{"value":"T-905.685.995-1","type":"string"},"datatype":"external-id"}],"P813":[{"snaktype":"value","property":"P813","hash":"047cce82c467088240cb9a9819e19f4c46c08479","datavalue":{"value":{"time":"+2020-12-08T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P1827","P813"]}]},{"mainsnak":{"snaktype":"value","property":"P86","hash":"4a600de17493e388d5ec1f14881f274afc2d3e22","datavalue":{"value":{"entity-type":"item","numeric-id":515883,"id":"Q515883"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$00262C14-1DC2-4E75-BE48-6FA951DC38AD","rank":"normal","references":[{"hash":"661803bff59e96a2feb6023b18ef64603c9b8d11","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"af862b26ef430bd625da6804c7782b0a3932f531","datavalue":{"value":{"entity-type":"item","numeric-id":82271165,"id":"Q82271165"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P1827":[{"snaktype":"value","property":"P1827","hash":"a37dd30a8f10c87c48ee5ef8f1a17cbce04dedad","datavalue":{"value":"T-905.685.995-1","type":"string"},"datatype":"external-id"}],"P813":[{"snaktype":"value","property":"P813","hash":"047cce82c467088240cb9a9819e19f4c46c08479","datavalue":{"value":{"time":"+2020-12-08T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P1827","P813"]}]}],"P826":[{"mainsnak":{"snaktype":"value","property":"P826","hash":"523f50608d4175980c30a4457a18c6ef834d2350","datavalue":{"value":{"entity-type":"item","numeric-id":309994,"id":"Q309994"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$71287a32-41fb-bbf9-dce1-a015897e36bb","rank":"normal","references":[{"hash":"fa278ebfc458360e5aed63d5058cca83c46134f1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P407":[{"mainsnak":{"snaktype":"value","property":"P407","hash":"daf1c4fcb58181b02dff9cc89deb084004ddae4b","datavalue":{"value":{"entity-type":"item","numeric-id":1860,"id":"Q1860"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$4C04E49F-F57B-464E-A2E4-CCFEFF197CDD","rank":"normal","references":[{"hash":"fa278ebfc458360e5aed63d5058cca83c46134f1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P676":[{"mainsnak":{"snaktype":"value","property":"P676","hash":"38d499a0a4a5ed3b928e620e91285296c04155ed","datavalue":{"value":{"entity-type":"item","numeric-id":23215,"id":"Q23215"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$E6CEF27D-762D-4D73-A573-A71738FFF2A2","rank":"normal","references":[{"hash":"661803bff59e96a2feb6023b18ef64603c9b8d11","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"af862b26ef430bd625da6804c7782b0a3932f531","datavalue":{"value":{"entity-type":"item","numeric-id":82271165,"id":"Q82271165"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P1827":[{"snaktype":"value","property":"P1827","hash":"a37dd30a8f10c87c48ee5ef8f1a17cbce04dedad","datavalue":{"value":"T-905.685.995-1","type":"string"},"datatype":"external-id"}],"P813":[{"snaktype":"value","property":"P813","hash":"047cce82c467088240cb9a9819e19f4c46c08479","datavalue":{"value":{"time":"+2020-12-08T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P1827","P813"]}]},{"mainsnak":{"snaktype":"value","property":"P676","hash":"d5393800c33d52aa57b59158414418b5a915c53a","datavalue":{"value":{"entity-type":"item","numeric-id":515883,"id":"Q515883"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$eb39accd-4984-a472-03de-e5fcabb73512","rank":"normal","references":[{"hash":"661803bff59e96a2feb6023b18ef64603c9b8d11","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"af862b26ef430bd625da6804c7782b0a3932f531","datavalue":{"value":{"entity-type":"item","numeric-id":82271165,"id":"Q82271165"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P1827":[{"snaktype":"value","property":"P1827","hash":"a37dd30a8f10c87c48ee5ef8f1a17cbce04dedad","datavalue":{"value":"T-905.685.995-1","type":"string"},"datatype":"external-id"}],"P813":[{"snaktype":"value","property":"P813","hash":"047cce82c467088240cb9a9819e19f4c46c08479","datavalue":{"value":{"time":"+2020-12-08T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P1827","P813"]}]}],"P1827":[{"mainsnak":{"snaktype":"value","property":"P1827","hash":"a37dd30a8f10c87c48ee5ef8f1a17cbce04dedad","datavalue":{"value":"T-905.685.995-1","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P1810":[{"snaktype":"value","property":"P1810","hash":"6bfc2324e42f115b1f41205bea6dcc23b365733f","datavalue":{"value":"ROLLIN
+        IN THE DEEP","type":"string"},"datatype":"string"}],"P4970":[{"snaktype":"value","property":"P4970","hash":"aad6d2f492d5cec148322e2a82b456bd072773a9","datavalue":{"value":"IN
+        THE DEEP","type":"string"},"datatype":"string"},{"snaktype":"value","property":"P4970","hash":"e82f5aa58103b671f5511330228873b9f5a93e18","datavalue":{"value":"INTO
+        THE DEEP","type":"string"},"datatype":"string"},{"snaktype":"value","property":"P4970","hash":"1dc75dd1b29fac69f2d5cacd2b522970827b2d19","datavalue":{"value":"ROLLIN''
+        IN THE DEEP","type":"string"},"datatype":"string"},{"snaktype":"value","property":"P4970","hash":"7be24fc8d80fa62be76a93fbdec4450fe1b8050b","datavalue":{"value":"ROLLING
+        IN THE DEEP","type":"string"},"datatype":"string"},{"snaktype":"value","property":"P4970","hash":"b099ba2fd5b7da065ea6809a1eb2ec6542ce75dd","datavalue":{"value":"TOT
+        JE ME VERLIET","type":"string"},"datatype":"string"},{"snaktype":"value","property":"P4970","hash":"fb4f2e47887ccfc0521d8a550fe3fa56a82d187f","datavalue":{"value":"ROLLING
+        IN THE DEEP JAMIE XX SHUFFLE","type":"string"},"datatype":"string"}]},"qualifiers-order":["P1810","P4970"],"id":"Q170165$B41429FE-93B1-4E6E-9AE9-1E65C69AD589","rank":"normal","references":[{"hash":"038c9a95be0ec70270eea78adfe5eb0f31569779","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"af862b26ef430bd625da6804c7782b0a3932f531","datavalue":{"value":{"entity-type":"item","numeric-id":82271165,"id":"Q82271165"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"047cce82c467088240cb9a9819e19f4c46c08479","datavalue":{"value":{"time":"+2020-12-08T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P813"]}]}],"P4860":[{"mainsnak":{"snaktype":"value","property":"P4860","hash":"3931268c0a7d02b525601b376b9340a777a9afd0","datavalue":{"value":"11550555","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P1810":[{"snaktype":"value","property":"P1810","hash":"6bfc2324e42f115b1f41205bea6dcc23b365733f","datavalue":{"value":"ROLLIN
+        IN THE DEEP","type":"string"},"datatype":"string"}],"P1827":[{"snaktype":"value","property":"P1827","hash":"a37dd30a8f10c87c48ee5ef8f1a17cbce04dedad","datavalue":{"value":"T-905.685.995-1","type":"string"},"datatype":"external-id"}],"P4970":[{"snaktype":"value","property":"P4970","hash":"7be24fc8d80fa62be76a93fbdec4450fe1b8050b","datavalue":{"value":"ROLLING
+        IN THE DEEP","type":"string"},"datatype":"string"}]},"qualifiers-order":["P1810","P1827","P4970"],"id":"Q170165$35bba06e-4252-d071-5f4e-6374818199ce","rank":"normal","references":[{"hash":"f6b08e0fe4b930d6df3a48fab721e55635ff9767","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"74011a4f44e862539fa6e166f04df39a8102acea","datavalue":{"value":{"entity-type":"item","numeric-id":85964025,"id":"Q85964025"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"31f0916c41b8eecbf3b2e06eda11111e214f92d3","datavalue":{"value":{"time":"+2020-12-09T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P813"]}]}],"P1476":[{"mainsnak":{"snaktype":"value","property":"P1476","hash":"5c8f1b412ed324b309e8f0aeac84ea078af0eb18","datavalue":{"value":{"text":"Rolling
+        in the Deep","language":"en"},"type":"monolingualtext"},"datatype":"monolingualtext"},"type":"statement","id":"Q170165$dc8197cc-4923-7fb1-2346-7abf4f98fbc6","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P1476","hash":"840849f00c90eaf899ea81853e19d61ce3445bd2","datavalue":{"value":{"text":"Rollin''
+        In the Deep","language":"en"},"type":"monolingualtext"},"datatype":"monolingualtext"},"type":"statement","id":"Q170165$13adc877-4950-5e83-4012-293848105239","rank":"normal","references":[{"hash":"c1f0ecb5577b658b5bc5eba4b59e50a29088f6c4","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"af862b26ef430bd625da6804c7782b0a3932f531","datavalue":{"value":{"entity-type":"item","numeric-id":82271165,"id":"Q82271165"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P1827":[{"snaktype":"value","property":"P1827","hash":"a37dd30a8f10c87c48ee5ef8f1a17cbce04dedad","datavalue":{"value":"T-905.685.995-1","type":"string"},"datatype":"external-id"}],"P813":[{"snaktype":"value","property":"P813","hash":"31f0916c41b8eecbf3b2e06eda11111e214f92d3","datavalue":{"value":{"time":"+2020-12-09T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P1827","P813"]},{"hash":"879c247cc0829563380342554ec466bfc76e17be","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"74011a4f44e862539fa6e166f04df39a8102acea","datavalue":{"value":{"entity-type":"item","numeric-id":85964025,"id":"Q85964025"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4860":[{"snaktype":"value","property":"P4860","hash":"3931268c0a7d02b525601b376b9340a777a9afd0","datavalue":{"value":"11550555","type":"string"},"datatype":"external-id"}],"P813":[{"snaktype":"value","property":"P813","hash":"31f0916c41b8eecbf3b2e06eda11111e214f92d3","datavalue":{"value":{"time":"+2020-12-09T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P4860","P813"]}]}],"P1994":[{"mainsnak":{"snaktype":"value","property":"P1994","hash":"502479a775308710e2e88d8ccd8d759dfb0e0fb6","datavalue":{"value":"mc0002713100","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P1810":[{"snaktype":"value","property":"P1810","hash":"7f3d2173a661f7c443a1f2245add3a2103d1a2f2","datavalue":{"value":"Rolling
+        in the Deep","type":"string"},"datatype":"string"}]},"qualifiers-order":["P1810"],"id":"Q170165$c162b6fb-4207-47fe-dd03-88564470c36b","rank":"normal","references":[{"hash":"b0b2ebc0bfdb6acb77104cf2be55b616d654ff41","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"fa28758dedb471bbd17a5773562e57ccb962622d","datavalue":{"value":{"entity-type":"item","numeric-id":31181,"id":"Q31181"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"047cce82c467088240cb9a9819e19f4c46c08479","datavalue":{"value":{"time":"+2020-12-08T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P813"]}]}],"P577":[{"mainsnak":{"snaktype":"value","property":"P577","hash":"48e56df74f83fbf8a22d82f1ccb27b15d7ee9733","datavalue":{"value":{"time":"+2010-11-29T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"},"type":"statement","id":"Q170165$c193e89a-439a-4694-9721-9c5e812e1a9d","rank":"normal","references":[{"hash":"fa278ebfc458360e5aed63d5058cca83c46134f1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P156":[{"mainsnak":{"snaktype":"value","property":"P156","hash":"a39aed3cc4f9a3f5e77750e3786825c897b09b94","datavalue":{"value":{"entity-type":"item","numeric-id":166904,"id":"Q166904"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","qualifiers":{"P2241":[{"snaktype":"value","property":"P2241","hash":"b77edd4a15e403549ccb25a8051786ff2ba2ca4e","datavalue":{"value":{"entity-type":"item","numeric-id":51845721,"id":"Q51845721"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"qualifiers-order":["P2241"],"id":"Q170165$885F7A7B-03F0-4F8A-882A-75C9D5846482","rank":"deprecated","references":[{"hash":"cdaf5d2de4346584b28bddce2350b32082a84e41","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"5230a42ffbab53c12928ede0c985a74a1d5be294","datavalue":{"value":{"entity-type":"item","numeric-id":53464,"id":"Q53464"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"23ffff4f0e0b0922262cb559a1bef7e49c54ecbe","datavalue":{"value":"https://hu.wikipedia.org/w/index.php?title=Rolling_in_the_Deep&oldid=21738720","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]},{"mainsnak":{"snaktype":"value","property":"P156","hash":"4f6b67d85c0b20378186eec702353ae5efa14dda","datavalue":{"value":{"entity-type":"item","numeric-id":948707,"id":"Q948707"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$2559405f-47db-45c6-ad25-f6b963d0bf23","rank":"normal","references":[{"hash":"fa278ebfc458360e5aed63d5058cca83c46134f1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]}],"P3417":[{"mainsnak":{"snaktype":"value","property":"P3417","hash":"df66b6138d9e3787c45b861366fcbbbe267f9ac0","datavalue":{"value":"Rolling-In-the-Deep-song","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q170165$C116DF71-9244-4B57-B25C-217580C1C239","rank":"normal"}],"P7956":[{"mainsnak":{"snaktype":"value","property":"P7956","hash":"e4b290192db946529a85096b530414e599ae872d","datavalue":{"value":"689770597","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P1810":[{"snaktype":"value","property":"P1810","hash":"6658671976f1b52d162e8981cd99cd4823fd36dd","datavalue":{"value":"ROLLING
+        IN THE DEEP","type":"string"},"datatype":"string"}]},"qualifiers-order":["P1810"],"id":"Q170165$fe53cfdd-4c1d-50af-0d8c-e62bcb5593e1","rank":"normal","references":[{"hash":"9bf74b7767d77ecd9f4e8978643ee86a4ddd9d94","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"091003bfee46885c377b41b3652a6ed407d0aecc","datavalue":{"value":{"entity-type":"item","numeric-id":64362152,"id":"Q64362152"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"31f0916c41b8eecbf3b2e06eda11111e214f92d3","datavalue":{"value":{"time":"+2020-12-09T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P813"]}]}],"P155":[{"mainsnak":{"snaktype":"value","property":"P155","hash":"190ee14404a9bb3d478326973eee85cfcc10adfe","datavalue":{"value":{"entity-type":"item","numeric-id":1886329,"id":"Q1886329"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","qualifiers":{"P2241":[{"snaktype":"value","property":"P2241","hash":"b77edd4a15e403549ccb25a8051786ff2ba2ca4e","datavalue":{"value":{"entity-type":"item","numeric-id":51845721,"id":"Q51845721"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"qualifiers-order":["P2241"],"id":"Q170165$CC932794-AF6B-40E9-B06A-E88931B99937","rank":"deprecated","references":[{"hash":"d9137a318f63e31bbe03e7d32577f1664cde4c5f","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"5a343e7e758a4282a01316d3e959b6e653b767fc","datavalue":{"value":{"entity-type":"item","numeric-id":11920,"id":"Q11920"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"b2c6cd26e64e48387228768611856146aaca84a5","datavalue":{"value":"https://it.wikipedia.org/w/index.php?title=Rolling_in_the_Deep&oldid=112275036","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}],"P7937":[{"mainsnak":{"snaktype":"value","property":"P7937","hash":"95c182f3c475d9df12743fde55dc93e0a76efa11","datavalue":{"value":{"entity-type":"item","numeric-id":7366,"id":"Q7366"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$33B512DD-DDF6-4384-9E75-3EBDD0B0D9A7","rank":"normal"}],"P2908":[{"mainsnak":{"snaktype":"value","property":"P2908","hash":"9ac282e9a2575ba5791006ed3fe61854fbd1bf3f","datavalue":{"value":"118543","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P1810":[{"snaktype":"value","property":"P1810","hash":"7f3d2173a661f7c443a1f2245add3a2103d1a2f2","datavalue":{"value":"Rolling
+        in the Deep","type":"string"},"datatype":"string"}]},"qualifiers-order":["P1810"],"id":"Q170165$fa1c11a4-4333-0e44-123a-be0e8fc576bd","rank":"normal","references":[{"hash":"6184306087aa674ae95c348c7c6d37d129c5a0bb","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"847f6a0df0c033421ff7ac71a236eb1fab6edd2e","datavalue":{"value":{"entity-type":"item","numeric-id":39871790,"id":"Q39871790"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"047cce82c467088240cb9a9819e19f4c46c08479","datavalue":{"value":{"time":"+2020-12-08T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P813"]}]}],"P361":[{"mainsnak":{"snaktype":"value","property":"P361","hash":"9de612e3ddc0e5f67682382f94d192082aa36933","datavalue":{"value":{"entity-type":"item","numeric-id":155169,"id":"Q155169"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$DC4CD0FF-D5FA-41F9-96A4-1CEE19885F45","rank":"normal","references":[{"hash":"6e54b404da65cc507dc5b705610b6ed8493b85fa","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"9123b0de1cc9c3954366ba797d598e4e1ea4146f","datavalue":{"value":{"entity-type":"item","numeric-id":10000,"id":"Q10000"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"d94b030397b5d3613f1dec5dfc528c70a9bbd897","datavalue":{"value":"https://nl.wikipedia.org/w/index.php?title=Rolling_in_the_Deep&oldid=57779360","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}],"P136":[{"mainsnak":{"snaktype":"value","property":"P136","hash":"953fc946b59d3272c130448ff41ea814cec03d86","datavalue":{"value":{"entity-type":"item","numeric-id":45981,"id":"Q45981"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$542245D0-F141-48D1-AE09-4491EE575CC8","rank":"normal","references":[{"hash":"fa278ebfc458360e5aed63d5058cca83c46134f1","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"e4f6d9441d0600513c4533c672b5ab472dc73694","datavalue":{"value":{"entity-type":"item","numeric-id":328,"id":"Q328"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}]},"snaks-order":["P143"]}]},{"mainsnak":{"snaktype":"value","property":"P136","hash":"dae0be4539dfa21d8408afc5de30099088258c17","datavalue":{"value":{"entity-type":"item","numeric-id":131272,"id":"Q131272"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$59856cc3-4dbd-78cf-c2a7-a0e218e9bdc5","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P136","hash":"a8fc890ed369aa8ae1ac144bb0ddcfd6028cc6c6","datavalue":{"value":{"entity-type":"item","numeric-id":180268,"id":"Q180268"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q170165$5811b094-4c43-7e07-f3ff-0bfb8aa5583d","rank":"normal"}],"P12086":[{"mainsnak":{"snaktype":"value","property":"P12086","hash":"7b476c6f6ffdbd9827c571dec8dbd689bf50d2d1","datavalue":{"value":"Rolling_in_the_Deep","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q170165$D8A19C93-4695-4776-96EC-88338DAF83AC","rank":"normal"}],"P166":[{"mainsnak":{"snaktype":"value","property":"P166","hash":"cb56ae64298d4f228661cd767c1b5faba6be4d82","datavalue":{"value":{"entity-type":"item","numeric-id":843219,"id":"Q843219"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","qualifiers":{"P585":[{"snaktype":"value","property":"P585","hash":"8f3565657428592dc1dd7f92da0f734724d987d7","datavalue":{"value":{"time":"+2012-00-00T00:00:00Z","timezone":0,"before":0,"after":0,"precision":9,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"qualifiers-order":["P585"],"id":"Q170165$3fe6a481-4f25-db12-8f8b-35bdb03d0952","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P166","hash":"d548bd5540fa920cd54254d0e48cca906e23e0cd","datavalue":{"value":{"entity-type":"item","numeric-id":1027904,"id":"Q1027904"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","qualifiers":{"P585":[{"snaktype":"value","property":"P585","hash":"8f3565657428592dc1dd7f92da0f734724d987d7","datavalue":{"value":{"time":"+2012-00-00T00:00:00Z","timezone":0,"before":0,"after":0,"precision":9,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"qualifiers-order":["P585"],"id":"Q170165$acda16fc-4f02-f045-5351-2410919ee63d","rank":"normal"}],"P1651":[{"mainsnak":{"snaktype":"value","property":"P1651","hash":"0071012edf2a31de2d9609315911da347b54ab82","datavalue":{"value":"rYEDA3JcQqw","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P1810":[{"snaktype":"value","property":"P1810","hash":"bb776c7b9a1ca9f68253b8ba4d7e6c05bf52c9ba","datavalue":{"value":"Adele
+        - Rolling in the Deep (Official Music Video)","type":"string"},"datatype":"string"}],"P5436":[{"snaktype":"value","property":"P5436","hash":"7ccdd6d63e2cee20da94a8e4b206d86c3097ca43","datavalue":{"value":{"amount":"+2466873324","unit":"1"},"type":"quantity"},"datatype":"quantity"}],"P577":[{"snaktype":"value","property":"P577","hash":"d737201782c423da9051f14cac6a60c2a7933eed","datavalue":{"value":{"time":"+2010-11-30T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}],"P407":[{"snaktype":"value","property":"P407","hash":"daf1c4fcb58181b02dff9cc89deb084004ddae4b","datavalue":{"value":{"entity-type":"item","numeric-id":1860,"id":"Q1860"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P2047":[{"snaktype":"value","property":"P2047","hash":"8826fd6fb75632d78d3d62e23faf00d90c9d49a2","datavalue":{"value":{"amount":"+234.0","unit":"http://www.wikidata.org/entity/Q11574"},"type":"quantity"},"datatype":"quantity"}],"P2397":[{"snaktype":"value","property":"P2397","hash":"e1ad7c6e9d4a885af4193a25773d1a69db8dbc07","datavalue":{"value":"UComP_epzeKzvBX156r6pm1Q","type":"string"},"datatype":"external-id"}],"P585":[{"snaktype":"value","property":"P585","hash":"a64287b829e579708742e47d0bfab96d2b094e58","datavalue":{"value":{"time":"+2024-02-28T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"qualifiers-order":["P1810","P5436","P577","P407","P2047","P2397","P585"],"id":"Q170165$64cec004-4a97-419a-e781-0972321b11c1","rank":"normal"}],"P11137":[{"mainsnak":{"snaktype":"value","property":"P11137","hash":"dd79bd93d55a7a4d7ad0ac650592c8907e1b20cc","datavalue":{"value":"rolling_in_the_deep","type":"string"},"datatype":"external-id"},"type":"statement","id":"Q170165$92DAE1B7-0605-4ACE-B94B-583A1FF2924E","rank":"normal"}]}}},"success":1}'
+  recorded_at: Thu, 25 Dec 2025 20:07:26 GMT
+recorded_with: VCR 6.4.0

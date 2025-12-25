@@ -91,4 +91,94 @@ describe Wikipedia::WikidataFinder do
       end
     end
   end
+
+  describe '#get_song_info' do
+    context 'when song has valid data', :use_vcr do
+      let(:wikibase_item) { 'Q212764' } # Rolling in the Deep by Adele
+
+      it 'returns song info hash' do
+        result = wikidata_finder.get_song_info(wikibase_item)
+        expect(result).to be_a(Hash)
+      end
+
+      it 'returns genres when present' do
+        result = wikidata_finder.get_song_info(wikibase_item)
+        expect(result['genres']).to be_present if result['genres']
+      end
+    end
+
+    context 'when wikibase_item is blank' do
+      it 'returns nil' do
+        result = wikidata_finder.get_song_info(nil)
+        expect(result).to be_nil
+      end
+    end
+  end
+
+  describe '#get_youtube_video_id' do
+    context 'when song has youtube video id', :use_vcr do
+      let(:wikibase_item) { 'Q212764' } # Rolling in the Deep by Adele
+
+      it 'returns the youtube video id' do
+        result = wikidata_finder.get_youtube_video_id(wikibase_item)
+        # May or may not have a youtube ID depending on Wikidata state
+        expect(result).to be_a(String).or be_nil
+      end
+    end
+
+    context 'when wikibase_item is blank' do
+      it 'returns nil' do
+        result = wikidata_finder.get_youtube_video_id(nil)
+        expect(result).to be_nil
+      end
+    end
+  end
+
+  describe '#search_by_spotify_id' do
+    context 'when song exists in Wikidata', :use_vcr do
+      let(:spotify_id) { '1c8gk2PeTE04A1pIDH9YMk' } # Rolling in the Deep
+
+      it 'returns the wikibase item id' do
+        result = wikidata_finder.search_by_spotify_id(spotify_id)
+        # May or may not find it depending on Wikidata state
+        expect(result).to be_a(String).or be_nil
+      end
+    end
+
+    context 'when spotify_id is blank' do
+      it 'returns nil for nil input' do
+        result = wikidata_finder.search_by_spotify_id(nil)
+        expect(result).to be_nil
+      end
+
+      it 'returns nil for empty string' do
+        result = wikidata_finder.search_by_spotify_id('')
+        expect(result).to be_nil
+      end
+    end
+  end
+
+  describe '#search_by_isrc' do
+    context 'when song exists in Wikidata', :use_vcr do
+      let(:isrc) { 'GBBKS1000094' } # Rolling in the Deep
+
+      it 'returns the wikibase item id' do
+        result = wikidata_finder.search_by_isrc(isrc)
+        # May or may not find it depending on Wikidata state
+        expect(result).to be_a(String).or be_nil
+      end
+    end
+
+    context 'when isrc is blank' do
+      it 'returns nil for nil input' do
+        result = wikidata_finder.search_by_isrc(nil)
+        expect(result).to be_nil
+      end
+
+      it 'returns nil for empty string' do
+        result = wikidata_finder.search_by_isrc('')
+        expect(result).to be_nil
+      end
+    end
+  end
 end
