@@ -700,6 +700,102 @@ paths:
       responses:
         '200':
           description: Air plays retrieved successfully
+  "/api/v1/songs/{id}/info":
+    get:
+      summary: Get song Wikipedia information
+      tags:
+      - Songs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Song ID
+        schema:
+          type: integer
+      - name: language
+        in: query
+        required: false
+        description: 'Wikipedia language code (en, nl, de, fr, es, it, pt, pl, ru,
+          ja, zh). Default: en'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Song info retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: object
+                    nullable: true
+                    properties:
+                      summary:
+                        type: string
+                        nullable: true
+                      content:
+                        type: string
+                        nullable: true
+                      description:
+                        type: string
+                        nullable: true
+                      url:
+                        type: string
+                        nullable: true
+                      wikibase_item:
+                        type: string
+                        nullable: true
+                      thumbnail:
+                        type: object
+                        nullable: true
+                        properties:
+                          source:
+                            type: string
+                          width:
+                            type: integer
+                          height:
+                            type: integer
+                      original_image:
+                        type: object
+                        nullable: true
+                        properties:
+                          source:
+                            type: string
+                          width:
+                            type: integer
+                          height:
+                            type: integer
+                      general_info:
+                        type: object
+                        nullable: true
+                        properties:
+                          youtube_video_id:
+                            type: string
+                            nullable: true
+                          publication_date:
+                            type: string
+                            nullable: true
+                          genres:
+                            type: array
+                            items:
+                              type: string
+                            nullable: true
+                          performers:
+                            type: array
+                            items:
+                              type: string
+                            nullable: true
+                          record_labels:
+                            type: array
+                            items:
+                              type: string
+                            nullable: true
+                          isrc:
+                            type: string
+                            nullable: true
+        '404':
+          description: Song not found
 servers:
 - url: https://api.radioplaylists.nl
   description: Production server

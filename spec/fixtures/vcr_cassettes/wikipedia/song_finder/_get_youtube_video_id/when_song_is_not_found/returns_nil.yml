@@ -1,0 +1,179 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://en.wikipedia.org/api/rest_v1/page/summary/NonExistentSongXYZ123456%20(UnknownArtist%20song)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Webkit-Csp:
+      - default-src 'none'; frame-ancestors 'none'
+      Cache-Control:
+      - s-maxage=600
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '38'
+      Date:
+      - Thu, 25 Dec 2025 20:07:25 GMT
+      Server:
+      - production-tls
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,HEAD
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, cache-control, accept-language, api-user-agent,
+        if-match, if-modified-since, if-none-match, dnt, accept-encoding
+      Access-Control-Expose-Headers:
+      - etag
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Age:
+      - '2'
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 hit/1
+      X-Cache-Status:
+      - hit-front
+      Server-Timing:
+      - cache;desc="hit-front", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=MFlM2xTkv7qDGXw0c9uOYgLUAAAAAFvdkfwWIOrjzvxIzSKyLwpxt-de5z7HCSzl;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      X-Request-Id:
+      - 9afe9351-1c1c-47dd-b569-2d0d2fc54a16
+      X-Analytics:
+      - ''
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"type":"Internal error"}'
+  recorded_at: Thu, 25 Dec 2025 20:07:26 GMT
+- request:
+    method: get
+    uri: https://en.wikipedia.org/api/rest_v1/page/summary/NonExistentSongXYZ123456%20(song)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Webkit-Csp:
+      - default-src 'none'; frame-ancestors 'none'
+      Cache-Control:
+      - s-maxage=600
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '38'
+      Date:
+      - Thu, 25 Dec 2025 20:07:25 GMT
+      Server:
+      - production-tls
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,HEAD
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, cache-control, accept-language, api-user-agent,
+        if-match, if-modified-since, if-none-match, dnt, accept-encoding
+      Access-Control-Expose-Headers:
+      - etag
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Age:
+      - '0'
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 hit/1
+      X-Cache-Status:
+      - hit-front
+      Server-Timing:
+      - cache;desc="hit-front", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=Lcf00rWz_ehA0V1SG98k-wLUAAAAAFvdu_gIIAwDWyLNeGl_SOxaC_HgQzBD8Sdw;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      X-Request-Id:
+      - 1c8b56a1-0e61-4bcb-a242-0a9517870d13
+      X-Analytics:
+      - ''
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"type":"Internal error"}'
+  recorded_at: Thu, 25 Dec 2025 20:07:26 GMT
+recorded_with: VCR 6.4.0

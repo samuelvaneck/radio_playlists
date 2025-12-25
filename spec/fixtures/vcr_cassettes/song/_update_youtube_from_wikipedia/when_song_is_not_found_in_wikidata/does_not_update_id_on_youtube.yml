@@ -1,0 +1,333 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?item%20WHERE%20%7B%0A%20%20?item%20wdt:P2207%20%22la1ckp5stc0bbukjlcct0v%22.%0A%7D%0ALIMIT%201%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/sparql-results+json
+      User-Agent:
+      - RadioPlaylists/1.0 (https://radioplaylists.nl)
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.18.0
+      Date:
+      - Thu, 25 Dec 2025 20:07:24 GMT
+      Content-Type:
+      - application/sparql-results+json;charset=utf-8
+      X-First-Solution-Millis:
+      - '2'
+      X-Served-By:
+      - wdqs1021
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, user-agent, api-user-agent
+      Cache-Control:
+      - public, max-age=300
+      Age:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - Accept, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      X-Client-Ip:
+      - 85.146.30.218
+      Set-Cookie:
+      - WMF-Uniq=-Ci2QrYI5sQAI1X4CKJB1gLUAAAAAFvd75retQZuCNP9o2RhrcFn_S97IKbSEC3w;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      Content-Length:
+      - '86'
+      X-Request-Id:
+      - 0d5d545b-492e-466b-b83f-27ba7bc2ec3c
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "head" : {
+            "vars" : [ "item" ]
+          },
+          "results" : {
+            "bindings" : [ ]
+          }
+        }
+  recorded_at: Thu, 25 Dec 2025 20:07:24 GMT
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?item%20WHERE%20%7B%0A%20%20?item%20wdt:P1243%20%22Y4ZYLXQ5MA09%22.%0A%7D%0ALIMIT%201%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/sparql-results+json
+      User-Agent:
+      - RadioPlaylists/1.0 (https://radioplaylists.nl)
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.18.0
+      Date:
+      - Thu, 25 Dec 2025 20:07:24 GMT
+      Content-Type:
+      - application/sparql-results+json;charset=utf-8
+      X-First-Solution-Millis:
+      - '1'
+      X-Served-By:
+      - wdqs1020
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, user-agent, api-user-agent
+      Cache-Control:
+      - public, max-age=300
+      Age:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - Accept, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      X-Client-Ip:
+      - 85.146.30.218
+      Set-Cookie:
+      - WMF-Uniq=6IJOaOEqYcnnsfLU41DF9QLUAAAAAFvd4nJiwzHrBX6y10syRe5IqXOZ8kEOQ9PS;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      Content-Length:
+      - '86'
+      X-Request-Id:
+      - 957d8902-c04b-403e-8fb2-9a80e7d9a1f6
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "head" : {
+            "vars" : [ "item" ]
+          },
+          "results" : {
+            "bindings" : [ ]
+          }
+        }
+  recorded_at: Thu, 25 Dec 2025 20:07:24 GMT
+- request:
+    method: get
+    uri: https://en.wikipedia.org/api/rest_v1/page/summary/NonExistentSongXYZ123456%20(UnknownArtist%20song)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Webkit-Csp:
+      - default-src 'none'; frame-ancestors 'none'
+      Cache-Control:
+      - s-maxage=600
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '38'
+      Date:
+      - Thu, 25 Dec 2025 20:07:25 GMT
+      Server:
+      - production-tls
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,HEAD
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, cache-control, accept-language, api-user-agent,
+        if-match, if-modified-since, if-none-match, dnt, accept-encoding
+      Access-Control-Expose-Headers:
+      - etag
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Age:
+      - '1'
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 miss
+      X-Cache-Status:
+      - miss
+      Server-Timing:
+      - cache;desc="miss", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=ZI-DbAqSt8EcDNF-t9McTwLUAAAAAFvdlMIgQ59FNg9EbLFtOK903sEVKRqVs7Rf;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      X-Request-Id:
+      - b2d1ab93-2e3b-41cc-a4c7-e3baad54cfb3
+      X-Analytics:
+      - ''
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"type":"Internal error"}'
+  recorded_at: Thu, 25 Dec 2025 20:07:25 GMT
+- request:
+    method: get
+    uri: https://en.wikipedia.org/api/rest_v1/page/summary/NonExistentSongXYZ123456%20(song)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Webkit-Csp:
+      - default-src 'none'; frame-ancestors 'none'
+      Cache-Control:
+      - s-maxage=600
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '38'
+      Date:
+      - Thu, 25 Dec 2025 20:07:25 GMT
+      Server:
+      - production-tls
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,HEAD
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, cache-control, accept-language, api-user-agent,
+        if-match, if-modified-since, if-none-match, dnt, accept-encoding
+      Access-Control-Expose-Headers:
+      - etag
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Age:
+      - '0'
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 miss
+      X-Cache-Status:
+      - miss
+      Server-Timing:
+      - cache;desc="miss", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=25-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Mon,
+        26 Jan 2026 12:00:00 GMT
+      - WMF-Last-Access=25-Dec-2025;Path=/;HttpOnly;secure;Expires=Mon, 26 Jan 2026
+        12:00:00 GMT
+      - WMF-Uniq=ic4CW1Ad9olO486Doc2K8ALUAAAAAFvd-LquguKZ5Pb9nZzjje_v1TwUKpT0n0el;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Fri,
+        25 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      X-Request-Id:
+      - 6a53c18f-cda4-4fe3-b205-83ba8ea5d0b1
+      X-Analytics:
+      - ''
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"type":"Internal error"}'
+  recorded_at: Thu, 25 Dec 2025 20:07:25 GMT
+recorded_with: VCR 6.4.0

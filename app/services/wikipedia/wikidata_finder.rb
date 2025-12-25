@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Wikipedia
-  class WikidataFinder
+  class WikidataFinder # rubocop:disable Metrics/ClassLength
     WIKIDATA_API_URL = 'https://www.wikidata.org'
     DEFAULT_LANGUAGE = 'en'
 
@@ -18,8 +18,16 @@ module Wikipedia
       official_website: 'P856',
       start_period: 'P2031',
       end_period: 'P2032',
-      instrument: 'P1303'
+      instrument: 'P1303',
+      # Song-specific properties
+      youtube_video_id: 'P1651',
+      spotify_track_id: 'P2207',
+      isrc: 'P1243',
+      publication_date: 'P577',
+      performer: 'P175'
     }.freeze
+
+    WIKIDATA_SPARQL_URL = 'https://query.wikidata.org/sparql'
 
     def initialize(language: DEFAULT_LANGUAGE)
       @language = language
@@ -39,6 +47,34 @@ module Wikipedia
 
       entity = fetch_entity_data(wikibase_item)
       extract_claim_value(entity, :official_website)
+    end
+
+    def get_song_info(wikibase_item)
+      return nil if wikibase_item.blank?
+
+      entity = fetch_entity_data(wikibase_item)
+      return nil if entity.nil?
+
+      extract_song_info(entity)
+    end
+
+    def get_youtube_video_id(wikibase_item)
+      return nil if wikibase_item.blank?
+
+      entity = fetch_entity_data(wikibase_item)
+      extract_claim_value(entity, :youtube_video_id)
+    end
+
+    def search_by_spotify_id(spotify_id)
+      return nil if spotify_id.blank?
+
+      execute_sparql_query(spotify_id_query(spotify_id))
+    end
+
+    def search_by_isrc(isrc)
+      return nil if isrc.blank?
+
+      execute_sparql_query(isrc_query(isrc))
     end
 
     private
@@ -174,6 +210,66 @@ module Wikipedia
 
     def cache_key(identifier)
       "wikidata:#{language}:#{identifier}"
+    end
+
+    def extract_song_info(entity)
+      {
+        'youtube_video_id' => extract_claim_value(entity, :youtube_video_id),
+        'publication_date' => extract_date_claim(entity, :publication_date),
+        'genres' => extract_entity_labels_claim(entity, :genre),
+        'performers' => extract_entity_labels_claim(entity, :performer),
+        'record_labels' => extract_entity_labels_claim(entity, :record_label),
+        'isrc' => extract_claim_value(entity, :isrc)
+      }.compact
+    end
+
+    def execute_sparql_query(query)
+      Rails.cache.fetch(cache_key("sparql:#{Digest::MD5.hexdigest(query)}"), expires_in: 24.hours) do
+        response = sparql_connection.get do |req|
+          req.params['query'] = query
+          req.params['format'] = 'json'
+        end
+        extract_wikibase_item_from_sparql(response.body)
+      end
+    rescue StandardError => e
+      ExceptionNotifier.notify_new_relic(e)
+      Rails.logger.error("Wikidata SPARQL error: #{e.message}")
+      nil
+    end
+
+    def extract_wikibase_item_from_sparql(response)
+      return nil if response.blank?
+
+      item_uri = response.dig('results', 'bindings', 0, 'item', 'value')
+      return nil if item_uri.blank?
+
+      item_uri.split('/').last
+    end
+
+    def spotify_id_query(spotify_id)
+      <<~SPARQL
+        SELECT ?item WHERE {
+          ?item wdt:P2207 "#{spotify_id}".
+        }
+        LIMIT 1
+      SPARQL
+    end
+
+    def isrc_query(isrc)
+      <<~SPARQL
+        SELECT ?item WHERE {
+          ?item wdt:P1243 "#{isrc}".
+        }
+        LIMIT 1
+      SPARQL
+    end
+
+    def sparql_connection
+      @sparql_connection ||= Faraday.new(url: WIKIDATA_SPARQL_URL) do |conn|
+        conn.response :json
+        conn.headers['Accept'] = 'application/sparql-results+json'
+        conn.headers['User-Agent'] = 'RadioPlaylists/1.0 (https://radioplaylists.nl)'
+      end
     end
   end
 end

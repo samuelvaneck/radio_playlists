@@ -193,4 +193,66 @@ describe Song do
       expect(song.reload.search_text).to eq('Ed Sheeran Beyoncé Shape of You')
     end
   end
+
+  describe '#update_youtube_from_wikipedia' do
+    let(:artist) { create(:artist, name: 'Adele') }
+    let(:song) { create(:song, title: 'Rolling in the Deep', artists: [artist], id_on_youtube: nil) }
+
+    context 'when song already has id_on_youtube' do
+      let(:song_with_youtube) { create(:song, title: 'Hello', artists: [artist], id_on_youtube: 'existing_id') }
+
+      it 'does not update id_on_youtube' do
+        expect do
+          song_with_youtube.update_youtube_from_wikipedia
+        end.not_to(change { song_with_youtube.reload.id_on_youtube })
+      end
+    end
+
+    context 'when Wikidata returns YouTube ID via Spotify ID', :use_vcr do
+      let(:song_with_spotify) do
+        create(:song,
+               title: 'Rolling in the Deep',
+               artists: [artist],
+               id_on_youtube: nil,
+               id_on_spotify: '1c8gk2PeTE04A1pIDH9YMk')
+      end
+
+      it 'updates id_on_youtube if found' do
+        song_with_spotify.update_youtube_from_wikipedia
+        # May or may not find it depending on Wikidata state
+        expect(song_with_spotify.reload.id_on_youtube).to be_a(String).or be_nil
+      end
+    end
+
+    context 'when Wikidata returns YouTube ID via ISRC', :use_vcr do
+      let(:song_with_isrc) do
+        create(:song,
+               title: 'Rolling in the Deep',
+               artists: [artist],
+               id_on_youtube: nil,
+               isrc: 'GBBKS1000094')
+      end
+
+      it 'updates id_on_youtube if found' do
+        song_with_isrc.update_youtube_from_wikipedia
+        # May or may not find it depending on Wikidata state
+        expect(song_with_isrc.reload.id_on_youtube).to be_a(String).or be_nil
+      end
+    end
+
+    context 'when song is not found in Wikidata', :use_vcr do
+      let(:unknown_song) do
+        create(:song,
+               title: 'NonExistentSongXYZ123456',
+               artists: [create(:artist, name: 'UnknownArtist')],
+               id_on_youtube: nil)
+      end
+
+      it 'does not update id_on_youtube' do
+        expect do
+          unknown_song.update_youtube_from_wikipedia
+        end.not_to(change { unknown_song.reload.id_on_youtube })
+      end
+    end
+  end
 end

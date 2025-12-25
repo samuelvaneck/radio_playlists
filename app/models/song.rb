@@ -129,6 +129,29 @@ class Song < ApplicationRecord
     @spotify_track ||= Spotify::TrackFinder::FindById.new(id_on_spotify: id_on_spotify).execute
   end
 
+  def update_youtube_from_wikipedia
+    return if id_on_youtube.present?
+
+    artist_name = artists.first&.name
+    song_finder = Wikipedia::SongFinder.new
+
+    # Try by Spotify ID first (most reliable)
+    if id_on_spotify.present?
+      youtube_id = song_finder.get_youtube_video_id_by_spotify_id(id_on_spotify)
+      return update(id_on_youtube: youtube_id) if youtube_id.present?
+    end
+
+    # Try by ISRC
+    if isrc.present?
+      youtube_id = song_finder.get_youtube_video_id_by_isrc(isrc)
+      return update(id_on_youtube: youtube_id) if youtube_id.present?
+    end
+
+    # Fallback to title + artist search
+    youtube_id = song_finder.get_youtube_video_id(title, artist_name)
+    update(id_on_youtube: youtube_id) if youtube_id.present?
+  end
+
   private
 
   def update_air_plays_obsolete_songs(songs, most_played_song)

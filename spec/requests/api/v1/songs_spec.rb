@@ -121,4 +121,86 @@ RSpec.describe 'Songs API', type: :request do
       end
     end
   end
+
+  path '/api/v1/songs/{id}/info' do
+    get 'Get song Wikipedia information' do
+      tags 'Songs'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Song ID'
+      parameter name: :language, in: :query, type: :string, required: false,
+                description: 'Wikipedia language code (en, nl, de, fr, es, it, pt, pl, ru, ja, zh). Default: en'
+
+      response '200', 'Song info retrieved successfully' do
+        schema type: :object,
+               properties: {
+                 info: {
+                   type: :object,
+                   nullable: true,
+                   properties: {
+                     summary: { type: :string, nullable: true },
+                     content: { type: :string, nullable: true },
+                     description: { type: :string, nullable: true },
+                     url: { type: :string, nullable: true },
+                     wikibase_item: { type: :string, nullable: true },
+                     thumbnail: {
+                       type: :object,
+                       nullable: true,
+                       properties: {
+                         source: { type: :string },
+                         width: { type: :integer },
+                         height: { type: :integer }
+                       }
+                     },
+                     original_image: {
+                       type: :object,
+                       nullable: true,
+                       properties: {
+                         source: { type: :string },
+                         width: { type: :integer },
+                         height: { type: :integer }
+                       }
+                     },
+                     general_info: {
+                       type: :object,
+                       nullable: true,
+                       properties: {
+                         youtube_video_id: { type: :string, nullable: true },
+                         publication_date: { type: :string, nullable: true },
+                         genres: { type: :array, items: { type: :string }, nullable: true },
+                         performers: { type: :array, items: { type: :string }, nullable: true },
+                         record_labels: { type: :array, items: { type: :string }, nullable: true },
+                         isrc: { type: :string, nullable: true }
+                       }
+                     }
+                   }
+                 }
+               }
+
+        let(:artist) { create(:artist, name: 'Adele') }
+        let(:song) { create(:song, title: 'Rolling in the Deep', artists: [artist]) }
+        let(:id) { song.id }
+
+        before do
+          allow_any_instance_of(Wikipedia::SongFinder).to receive(:get_info).and_return( # rubocop:disable RSpec/AnyInstance
+            'summary' => '2010 single by Adele',
+            'description' => 'Song by Adele',
+            'url' => 'https://en.wikipedia.org/wiki/Rolling_in_the_Deep',
+            'wikibase_item' => 'Q212764',
+            'general_info' => {
+              'youtube_video_id' => 'rYEDA3JcQqw',
+              'publication_date' => '2010-11-29'
+            }
+          )
+        end
+
+        run_test!
+      end
+
+      response '404', 'Song not found' do
+        let(:id) { 0 }
+
+        run_test!
+      end
+    end
+  end
 end
