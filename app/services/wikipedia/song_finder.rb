@@ -19,25 +19,25 @@ module Wikipedia
       wikibase_item = find_wikibase_item(song_title, artist_name)
       return nil if wikibase_item.blank?
 
-      WikidataFinder.new(language: language).get_youtube_video_id(wikibase_item)
+      WikidataFinder.new(language:).get_youtube_video_id(wikibase_item)
     end
 
     def get_youtube_video_id_by_spotify_id(spotify_id)
       return nil if spotify_id.blank?
 
-      wikibase_item = WikidataFinder.new(language: language).search_by_spotify_id(spotify_id)
+      wikibase_item = WikidataFinder.new(language:).search_by_spotify_id(spotify_id)
       return nil if wikibase_item.blank?
 
-      WikidataFinder.new(language: language).get_youtube_video_id(wikibase_item)
+      WikidataFinder.new(language:).get_youtube_video_id(wikibase_item)
     end
 
     def get_youtube_video_id_by_isrc(isrc)
       return nil if isrc.blank?
 
-      wikibase_item = WikidataFinder.new(language: language).search_by_isrc(isrc)
+      wikibase_item = WikidataFinder.new(language:).search_by_isrc(isrc)
       return nil if wikibase_item.blank?
 
-      WikidataFinder.new(language: language).get_youtube_video_id(wikibase_item)
+      WikidataFinder.new(language:).get_youtube_video_id(wikibase_item)
     end
 
     private
@@ -110,7 +110,7 @@ module Wikipedia
       }
 
       if include_general_info && wikibase_item.present?
-        general_info = WikidataFinder.new(language: language).get_song_info(wikibase_item)
+        general_info = WikidataFinder.new(language:).get_song_info(wikibase_item)
         result['general_info'] = general_info if general_info.present?
       end
 
@@ -123,7 +123,7 @@ module Wikipedia
       }
 
       if include_general_info
-        general_info = WikidataFinder.new(language: language).get_song_info(wikibase_item)
+        general_info = WikidataFinder.new(language:).get_song_info(wikibase_item)
         result['general_info'] = general_info if general_info.present?
       end
 
