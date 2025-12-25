@@ -117,11 +117,11 @@ describe Wikipedia::SongFinder do
 
   describe '#get_youtube_video_id_by_spotify_id' do
     context 'when song exists in Wikidata', :use_vcr do
-      let(:spotify_id) { '1c8gk2PeTE04A1pIDH9YMk' } # Rolling in the Deep
+      let(:spotify_id) { '0cqRj7pUJDkTCEsJkx8snD' } # Taylor Swift - Shake It Off
 
-      it 'returns the YouTube video ID or nil' do
+      it 'returns the YouTube video ID nfWlot6h_JM' do
         result = song_finder.get_youtube_video_id_by_spotify_id(spotify_id)
-        expect(result).to be_a(String).or be_nil
+        expect(result).to eq('nfWlot6h_JM')
       end
     end
 
