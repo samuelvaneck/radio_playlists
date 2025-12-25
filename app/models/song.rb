@@ -39,6 +39,7 @@ class Song < ApplicationRecord
 
   before_create :set_search_text
   after_commit :update_search_text, on: [:update], if: :saved_change_to_title?
+  after_commit :update_youtube_from_wikipedia, on: %i[create update], if: :should_update_youtube?
 
   scope :matching, lambda { |search_term|
     where('songs.search_text ILIKE ?', "%#{search_term}%") if search_term.present?
@@ -183,5 +184,9 @@ class Song < ApplicationRecord
 
   def update_search_text
     update_column(:search_text, "#{artists.pluck(:name).join(' ')} #{title}")
+  end
+
+  def should_update_youtube?
+    id_on_youtube.blank? && (id_on_spotify.present? || isrc.present? || title.present?)
   end
 end
