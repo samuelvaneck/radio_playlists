@@ -197,65 +197,68 @@ describe Song do
   describe 'after_commit :update_youtube_from_wikipedia callback' do
     let(:artist) { create(:artist, name: 'Adele') }
 
-    before do
-      allow_any_instance_of(Song).to receive(:update_youtube_from_wikipedia)
-    end
-
     context 'when creating a song without id_on_youtube' do
       it 'calls update_youtube_from_wikipedia' do
         song = build(:song, title: 'Hello', artists: [artist], id_on_youtube: nil, id_on_spotify: '123')
-        expect(song).to receive(:update_youtube_from_wikipedia)
+        allow(song).to receive(:update_youtube_from_wikipedia)
         song.save!
+        expect(song).to have_received(:update_youtube_from_wikipedia)
       end
     end
 
     context 'when creating a song with id_on_youtube already set' do
       it 'does not call update_youtube_from_wikipedia' do
         song = build(:song, title: 'Hello', artists: [artist], id_on_youtube: 'existing_id')
-        expect(song).not_to receive(:update_youtube_from_wikipedia)
+        allow(song).to receive(:update_youtube_from_wikipedia)
         song.save!
+        expect(song).not_to have_received(:update_youtube_from_wikipedia)
       end
     end
 
     context 'when updating a song without id_on_youtube' do
-      let!(:song) { create(:song, title: 'Hello', artists: [artist], id_on_youtube: nil, id_on_spotify: '123') }
-
       it 'calls update_youtube_from_wikipedia' do
-        expect(song).to receive(:update_youtube_from_wikipedia)
+        song = build(:song, title: 'Hello', artists: [artist], id_on_youtube: nil, id_on_spotify: '123')
+        allow(song).to receive(:update_youtube_from_wikipedia)
+        song.save!
         song.update!(title: 'Hello Updated')
+        expect(song).to have_received(:update_youtube_from_wikipedia).twice
       end
     end
 
     context 'when updating a song with id_on_youtube already set' do
-      let!(:song) { create(:song, title: 'Hello', artists: [artist], id_on_youtube: 'existing_id') }
-
       it 'does not call update_youtube_from_wikipedia' do
-        expect(song).not_to receive(:update_youtube_from_wikipedia)
+        song = build(:song, title: 'Hello', artists: [artist], id_on_youtube: 'existing_id')
+        allow(song).to receive(:update_youtube_from_wikipedia)
+        song.save!
         song.update!(title: 'Hello Updated')
+        expect(song).not_to have_received(:update_youtube_from_wikipedia)
       end
     end
 
     context 'when song has no searchable data' do
       it 'does not call update_youtube_from_wikipedia' do
         song = build(:song, title: nil, id_on_youtube: nil, id_on_spotify: nil, isrc: nil)
-        expect(song).not_to receive(:update_youtube_from_wikipedia)
+        allow(song).to receive(:update_youtube_from_wikipedia)
         song.save!
+        expect(song).not_to have_received(:update_youtube_from_wikipedia)
       end
     end
 
     context 'when song has only title' do
       it 'calls update_youtube_from_wikipedia' do
         song = build(:song, title: 'Some Title', id_on_youtube: nil, id_on_spotify: nil, isrc: nil)
-        expect(song).to receive(:update_youtube_from_wikipedia)
+        allow(song).to receive(:update_youtube_from_wikipedia)
         song.save!
+        expect(song).to have_received(:update_youtube_from_wikipedia)
       end
     end
 
     context 'when song has only isrc' do
       it 'calls update_youtube_from_wikipedia' do
         song = build(:song, title: nil, id_on_youtube: nil, id_on_spotify: nil, isrc: 'USRC12345678')
-        expect(song).to receive(:update_youtube_from_wikipedia)
+        allow(song).to receive(:update_youtube_from_wikipedia)
         song.save!
+        expect(song).to have_received(:update_youtube_from_wikipedia)
       end
     end
   end
