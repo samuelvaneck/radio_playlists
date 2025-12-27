@@ -12,6 +12,16 @@ describe RadioStationTracksScraperJob, type: :job do
     JSON.parse(file_fixture('qmusic_api_response.json').read).with_indifferent_access
   end
 
+  # rubocop:disable RSpec/BeforeAfterAll
+  before(:all) do
+    Song.skip_callback(:commit, :after, :update_youtube_from_wikipedia)
+  end
+
+  after(:all) do
+    Song.set_callback(:commit, :after, :update_youtube_from_wikipedia)
+  end
+  # rubocop:enable RSpec/BeforeAfterAll
+
   before do
     allow(job).to receive(:response).and_return(response_data)
   end
