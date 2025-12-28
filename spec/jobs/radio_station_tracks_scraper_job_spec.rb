@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RadioStationTracksScraperJob, type: :job do
+describe RadioStationTracksScraperJob, :use_vcr, type: :job do
   subject(:perform_job) { job.perform }
 
   let(:job) { described_class.new }
@@ -12,26 +12,21 @@ describe RadioStationTracksScraperJob, type: :job do
     JSON.parse(file_fixture('qmusic_api_response.json').read).with_indifferent_access
   end
 
-  # rubocop:disable RSpec/BeforeAfterAll
-  before(:all) do
-    Song.skip_callback(:commit, :after, :update_youtube_from_wikipedia)
-  end
-
-  after(:all) do
-    Song.set_callback(:commit, :after, :update_youtube_from_wikipedia)
-  end
-  # rubocop:enable RSpec/BeforeAfterAll
-
   before do
     allow(job).to receive(:response).and_return(response_data)
   end
 
   describe '#perform' do
     context 'when the response contains valid data' do
+
+      before do
+        allow(song).to receive(:should_update_youtube?).and_return(false)
+      end
+
       it 'updates the song with the id_on_youtube' do
-        expect do
-          perform_job
-        end.to change { song.reload.id_on_youtube }.from(nil).to('JgDNFQ2RaLQ')
+        perform_job
+
+        expect(song.reload.id_on_youtube).to eq('JgDNFQ2RaLQ')
       end
     end
 

@@ -1,0 +1,348 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?item%20WHERE%20%7B%0A%20%20?item%20wdt:P2207%20%22uviykllda9v1b2o0mzhnyu%22.%0A%7D%0ALIMIT%201%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/sparql-results+json
+      User-Agent:
+      - RadioPlaylists/1.0 (https://radioplaylists.nl)
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.18.0
+      Date:
+      - Sun, 28 Dec 2025 09:06:26 GMT
+      Content-Type:
+      - application/sparql-results+json;charset=utf-8
+      X-First-Solution-Millis:
+      - '1'
+      X-Served-By:
+      - wdqs1011
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, user-agent, api-user-agent
+      Cache-Control:
+      - public, max-age=300
+      Age:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - Accept, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      X-Client-Ip:
+      - 85.146.30.218
+      Set-Cookie:
+      - WMF-Uniq=7b1otIgYYGVV1Tfj2DrNmQLXAAAAAFvdgoFEan7uoaKx5O5h3R3JKVASPnm8zXXl;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Mon,
+        28 Dec 2026 00:00:00 GMT
+      Content-Length:
+      - '86'
+      X-Request-Id:
+      - 6a38d8f8-6217-4ef9-b5b9-e84059b99503
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "head" : {
+            "vars" : [ "item" ]
+          },
+          "results" : {
+            "bindings" : [ ]
+          }
+        }
+  recorded_at: Sun, 28 Dec 2025 09:06:26 GMT
+- request:
+    method: get
+    uri: https://query.wikidata.org/sparql?format=json&query=SELECT%20?item%20WHERE%20%7B%0A%20%20?item%20wdt:P1243%20%228DI3N3INUZNB%22.%0A%7D%0ALIMIT%201%0A
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/sparql-results+json
+      User-Agent:
+      - RadioPlaylists/1.0 (https://radioplaylists.nl)
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.18.0
+      Date:
+      - Sun, 28 Dec 2025 09:06:26 GMT
+      Content-Type:
+      - application/sparql-results+json;charset=utf-8
+      X-First-Solution-Millis:
+      - '1'
+      X-Served-By:
+      - wdqs1011
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, user-agent, api-user-agent
+      Cache-Control:
+      - public, max-age=300
+      Age:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - Accept, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      X-Client-Ip:
+      - 85.146.30.218
+      Set-Cookie:
+      - WMF-Uniq=Y--1CXvkLYA-9SCxTPe3AwLXAAAAAFvdrMBdejJxQwuVHxr1UGta_lOIF9gGM9-H;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Mon,
+        28 Dec 2026 00:00:00 GMT
+      Content-Length:
+      - '86'
+      X-Request-Id:
+      - 68c25bb1-9ad7-4864-8492-4082627db0f5
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "head" : {
+            "vars" : [ "item" ]
+          },
+          "results" : {
+            "bindings" : [ ]
+          }
+        }
+  recorded_at: Sun, 28 Dec 2025 09:06:26 GMT
+- request:
+    method: get
+    uri: https://en.wikipedia.org/api/rest_v1/page/summary/Sapphire%20(Ed%20Sheeran%20song)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      X-Webkit-Csp:
+      - default-src 'none'; frame-ancestors 'none'
+      Cache-Control:
+      - s-maxage=1209600, max-age=300
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/Summary/1.5.0"
+      Date:
+      - Sun, 28 Dec 2025 09:06:25 GMT
+      Server:
+      - production-tls
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,HEAD
+      Access-Control-Allow-Headers:
+      - accept, content-type, content-length, cache-control, accept-language, api-user-agent,
+        if-match, if-modified-since, if-none-match, dnt, accept-encoding
+      Access-Control-Expose-Headers:
+      - etag
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Etag:
+      - W/"1328150982/c0dcaf00-de55-11f0-ab08-d6c79e5a67c5"
+      Age:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - x-restbase-compat, Accept-Encoding
+      X-Cache:
+      - cp3072 miss, cp3072 hit/1
+      X-Cache-Status:
+      - hit-front
+      Server-Timing:
+      - cache;desc="hit-front", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=28-Dec-2025;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Thu,
+        29 Jan 2026 00:00:00 GMT
+      - WMF-Last-Access=28-Dec-2025;Path=/;HttpOnly;secure;Expires=Thu, 29 Jan 2026
+        00:00:00 GMT
+      - WMF-Uniq=-12zemHT5vxxUN0PDS7ZTgLXAAAAAFvdtUxPuL4KVCwwidfjxbuZmunp18LLtgPi;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Mon,
+        28 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Content-Length:
+      - '2960'
+      X-Request-Id:
+      - ab8cb044-f7c7-483b-9ecd-73e2b845d884
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":"standard","title":"Sapphire (song)","displaytitle":"<span
+        class=\"mw-page-title-main\">Sapphire (song)</span>","namespace":{"id":0,"text":""},"wikibase_item":"Q134731422","titles":{"canonical":"Sapphire_(song)","normalized":"Sapphire
+        (song)","display":"<span class=\"mw-page-title-main\">Sapphire (song)</span>"},"pageid":79873313,"thumbnail":{"source":"https://upload.wikimedia.org/wikipedia/en/4/40/Ed_Sheeran_-_Sapphire.png","width":300,"height":300},"originalimage":{"source":"https://upload.wikimedia.org/wikipedia/en/4/40/Ed_Sheeran_-_Sapphire.png","width":300,"height":300},"lang":"en","dir":"ltr","revision":"1328150982","tid":"1cb436ec-dbc8-11f0-ad95-d1cbe749da63","timestamp":"2025-12-18T04:14:57Z","description":"2025
+        single by Ed Sheeran","description_source":"local","content_urls":{"desktop":{"page":"https://en.wikipedia.org/wiki/Sapphire_(song)","revisions":"https://en.wikipedia.org/wiki/Sapphire_(song)?action=history","edit":"https://en.wikipedia.org/wiki/Sapphire_(song)?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Sapphire_(song)"},"mobile":{"page":"https://en.wikipedia.org/wiki/Sapphire_(song)","revisions":"https://en.wikipedia.org/wiki/Special:History/Sapphire_(song)","edit":"https://en.wikipedia.org/wiki/Sapphire_(song)?action=edit","talk":"https://en.wikipedia.org/wiki/Talk:Sapphire_(song)"}},"extract":"\"Sapphire\"
+        is a song by English singer-songwriter Ed Sheeran. It was released on 5 June
+        2025 as the third single from Sheeran''s eighth studio album, Play, through
+        Gingerbread Man Records and Atlantic Records. The track marks Sheeran''s first
+        collaboration with an Indian artist, Arijit Singh, who provides uncredited
+        vocals on the bridge, and is noted for its blend of Western pop and Punjabi
+        musical influences. \"Sapphire\" peaked at number five on the UK Singles Chart,
+        becoming Sheeran''s 43rd top 10 hit in his home country. It also reached top
+        10 in Switzerland, Belgium (Flanders) and the Netherlands. In India, \"Sapphire\"
+        topped the IMI International Top 20 Singles chart for 18 weeks. A remix of
+        the song featuring additional verses by Singh was released on 25 July 2025.","extract_html":"<p>\"<b>Sapphire</b>\"
+        is a song by English singer-songwriter Ed Sheeran. It was released on 5 June
+        2025 as the third single from Sheeran''s eighth studio album, <i>Play</i>,
+        through Gingerbread Man Records and Atlantic Records. The track marks Sheeran''s
+        first collaboration with an Indian artist, Arijit Singh, who provides uncredited
+        vocals on the bridge, and is noted for its blend of Western pop and Punjabi
+        musical influences. \"Sapphire\" peaked at number five on the UK Singles Chart,
+        becoming Sheeran''s 43rd top 10 hit in his home country. It also reached top
+        10 in Switzerland, Belgium (Flanders) and the Netherlands. In India, \"Sapphire\"
+        topped the IMI International Top 20 Singles chart for 18 weeks. A remix of
+        the song featuring additional verses by Singh was released on 25 July 2025.</p>"}'
+  recorded_at: Sun, 28 Dec 2025 09:06:26 GMT
+- request:
+    method: get
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q134731422&languages=en&props=claims%7Clabels
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 28 Dec 2025 09:06:26 GMT
+      Server:
+      - mw-api-ext.eqiad.main-5fc78f9df9-j26v6
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'none'; object-src 'none'
+      X-Frame-Options:
+      - DENY
+      Content-Disposition:
+      - inline; filename=api-result.json
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Age:
+      - '2'
+      X-Cache:
+      - cp3072 miss, cp3072 pass
+      X-Cache-Status:
+      - pass
+      Server-Timing:
+      - cache;desc="pass", host;desc="cp3072"
+      Strict-Transport-Security:
+      - max-age=106384710; includeSubDomains; preload
+      Report-To:
+      - '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      Nel:
+      - '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction":
+        0.0}'
+      Set-Cookie:
+      - GeoIP=NL:UT:Amersfoort:52.16:5.37:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Last-Access-Global=28-Dec-2025;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Thu,
+        29 Jan 2026 00:00:00 GMT
+      - WMF-Last-Access=28-Dec-2025;Path=/;HttpOnly;secure;Expires=Thu, 29 Jan 2026
+        00:00:00 GMT
+      - WMF-Uniq=OVVzXR3WbKGE4AZGj5tzTwLXAAAAAFvdgZOhhP-0Hw54ihlCDKKPxdDvVSpp8TGE;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Mon,
+        28 Dec 2026 00:00:00 GMT
+      X-Client-Ip:
+      - 85.146.30.218
+      Vary:
+      - Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      Transfer-Encoding:
+      - chunked
+      X-Request-Id:
+      - 5b874a10-0247-447a-a742-72ee91095c5d
+      X-Analytics:
+      - ''
+    body:
+      encoding: ASCII-8BIT
+      string: '{"entities":{"Q134731422":{"type":"item","id":"Q134731422","labels":{"en":{"language":"en","value":"Sapphire"}},"claims":{"P31":[{"mainsnak":{"snaktype":"value","property":"P31","hash":"33d81754a79b2dab75d17c156313b0f8f0f4f086","datavalue":{"value":{"entity-type":"item","numeric-id":134556,"id":"Q134556"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$fc03b6c0-4c72-9dec-3b92-4a072a4c123f","rank":"normal"}],"P175":[{"mainsnak":{"snaktype":"value","property":"P175","hash":"4a532da224733d8291c287559adf131b3ae78730","datavalue":{"value":{"entity-type":"item","numeric-id":47447,"id":"Q47447"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$2f2924aa-4d6a-f448-d66f-f2f7aa376460","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P175","hash":"8546d5232d2a42d0a01244c5e65a5c85c7af3eb5","datavalue":{"value":{"entity-type":"item","numeric-id":4790608,"id":"Q4790608"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$31574c0a-49eb-c439-08c8-03b2e3a33106","rank":"normal"}],"P1476":[{"mainsnak":{"snaktype":"value","property":"P1476","hash":"db81b2ee07362c4dab7d2f3429327baa93edc554","datavalue":{"value":{"text":"Sapphire","language":"en"},"type":"monolingualtext"},"datatype":"monolingualtext"},"type":"statement","id":"Q134731422$97d65e9e-420d-d74e-3394-35035ab9b606","rank":"normal"}],"P577":[{"mainsnak":{"snaktype":"value","property":"P577","hash":"cac931812eaf124a891e8b186d2311afb8876213","datavalue":{"value":{"time":"+2025-06-05T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"},"type":"statement","id":"Q134731422$41f93300-49a9-907a-b1cb-48d6724a31cf","rank":"normal","references":[{"hash":"655c1120320fba84b3a159ef4ae06dd91f99dfda","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"b1df783ae9c722a9084d7b4af7466f5ca4343ed7","datavalue":{"value":"https://ru.wikipedia.org/?oldid=145620637","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}],"P437":[{"mainsnak":{"snaktype":"value","property":"P437","hash":"3237b53c4d3ec4ece3e5d87f4d44bf89b53fc119","datavalue":{"value":{"entity-type":"item","numeric-id":6473564,"id":"Q6473564"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$a125e4de-4128-aabf-00cf-080385dd5cdb","rank":"normal","references":[{"hash":"655c1120320fba84b3a159ef4ae06dd91f99dfda","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"b1df783ae9c722a9084d7b4af7466f5ca4343ed7","datavalue":{"value":"https://ru.wikipedia.org/?oldid=145620637","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]},{"mainsnak":{"snaktype":"value","property":"P437","hash":"bb1b9498d5133cb798fe0f378d07b9f8ac3f4e41","datavalue":{"value":{"entity-type":"item","numeric-id":220499,"id":"Q220499"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$ee80c0f3-4caa-8e9c-ad68-18a21fd95f61","rank":"normal","references":[{"hash":"655c1120320fba84b3a159ef4ae06dd91f99dfda","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"b1df783ae9c722a9084d7b4af7466f5ca4343ed7","datavalue":{"value":"https://ru.wikipedia.org/?oldid=145620637","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}],"P2047":[{"mainsnak":{"snaktype":"value","property":"P2047","hash":"723ac46f042aacbb88f99c0cf5beda2c43a52c8a","datavalue":{"value":{"amount":"+179","unit":"http://www.wikidata.org/entity/Q11574"},"type":"quantity"},"datatype":"quantity"},"type":"statement","id":"Q134731422$fca883e6-41ac-048f-fdf6-c8829bcc8aa7","rank":"normal","references":[{"hash":"655c1120320fba84b3a159ef4ae06dd91f99dfda","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"b1df783ae9c722a9084d7b4af7466f5ca4343ed7","datavalue":{"value":"https://ru.wikipedia.org/?oldid=145620637","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}],"P162":[{"mainsnak":{"snaktype":"value","property":"P162","hash":"37d15fbb48b0d1c02326a929c715c0336ad002db","datavalue":{"value":{"entity-type":"item","numeric-id":47447,"id":"Q47447"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$cdfc2797-4cca-8f7b-09b6-597f85a94119","rank":"normal","references":[{"hash":"655c1120320fba84b3a159ef4ae06dd91f99dfda","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"b1df783ae9c722a9084d7b4af7466f5ca4343ed7","datavalue":{"value":"https://ru.wikipedia.org/?oldid=145620637","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]},{"mainsnak":{"snaktype":"value","property":"P162","hash":"69fa6f24967847ab7a9354039eaeaea46bfcd69f","datavalue":{"value":{"entity-type":"item","numeric-id":1702360,"id":"Q1702360"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$3b405ab0-4d19-3ae4-7742-e7f061d41237","rank":"normal","references":[{"hash":"655c1120320fba84b3a159ef4ae06dd91f99dfda","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"b1df783ae9c722a9084d7b4af7466f5ca4343ed7","datavalue":{"value":"https://ru.wikipedia.org/?oldid=145620637","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}],"P264":[{"mainsnak":{"snaktype":"value","property":"P264","hash":"3618571465d3b01d3d10a314694debac9dcfa376","datavalue":{"value":{"entity-type":"item","numeric-id":120798743,"id":"Q120798743"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$b63674a5-4bb8-14f4-65af-f20402c56332","rank":"normal","references":[{"hash":"655c1120320fba84b3a159ef4ae06dd91f99dfda","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"b1df783ae9c722a9084d7b4af7466f5ca4343ed7","datavalue":{"value":"https://ru.wikipedia.org/?oldid=145620637","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]},{"mainsnak":{"snaktype":"value","property":"P264","hash":"2dd3e49be87ae82e8a9edd8fedd0b57b2a7a96e4","datavalue":{"value":{"entity-type":"item","numeric-id":202440,"id":"Q202440"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$b8f9d5e6-4507-d4c5-3b47-8cfa25236f48","rank":"normal","references":[{"hash":"655c1120320fba84b3a159ef4ae06dd91f99dfda","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"6a164248fc96bfa583bbb495cb63ae6401ec203c","datavalue":{"value":{"entity-type":"item","numeric-id":206855,"id":"Q206855"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"b1df783ae9c722a9084d7b4af7466f5ca4343ed7","datavalue":{"value":"https://ru.wikipedia.org/?oldid=145620637","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}],"P407":[{"mainsnak":{"snaktype":"value","property":"P407","hash":"daf1c4fcb58181b02dff9cc89deb084004ddae4b","datavalue":{"value":{"entity-type":"item","numeric-id":1860,"id":"Q1860"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$fa068b29-4637-ece8-91dd-22aa757b920e","rank":"normal"},{"mainsnak":{"snaktype":"value","property":"P407","hash":"22cd6efe3440fec552a7d7ce7d6acd307179d183","datavalue":{"value":{"entity-type":"item","numeric-id":58635,"id":"Q58635"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$810d1136-4b12-720f-9bbe-0e3a1f32fde7","rank":"normal"}],"P1651":[{"mainsnak":{"snaktype":"value","property":"P1651","hash":"e503e40643f40d05795e19add31f35b29c505df7","datavalue":{"value":"JgDNFQ2RaLQ","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P1810":[{"snaktype":"value","property":"P1810","hash":"c3a01503ef438b7e36275461d178a92911784147","datavalue":{"value":"Ed
+        Sheeran - Sapphire (Official Music Video)","type":"string"},"datatype":"string"}],"P5436":[{"snaktype":"value","property":"P5436","hash":"f3c49a6ffcb354d2abedae4aa818b0f6fc97504d","datavalue":{"value":{"amount":"+72414295","unit":"1"},"type":"quantity"},"datatype":"quantity"}],"P577":[{"snaktype":"value","property":"P577","hash":"cac931812eaf124a891e8b186d2311afb8876213","datavalue":{"value":{"time":"+2025-06-05T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}],"P407":[{"snaktype":"value","property":"P407","hash":"daf1c4fcb58181b02dff9cc89deb084004ddae4b","datavalue":{"value":{"entity-type":"item","numeric-id":1860,"id":"Q1860"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P2047":[{"snaktype":"value","property":"P2047","hash":"b0e2968cde3e2e12d20572326817c2f5b46d68f3","datavalue":{"value":{"amount":"+184.0","unit":"http://www.wikidata.org/entity/Q11574"},"type":"quantity"},"datatype":"quantity"}],"P2397":[{"snaktype":"value","property":"P2397","hash":"7ed04ab3ffe0ebce1d20f6a659c6fa1f633fa177","datavalue":{"value":"UC0C-w0YjGpqDXGB8IHb662A","type":"string"},"datatype":"external-id"}],"P585":[{"snaktype":"value","property":"P585","hash":"eb5e8e54f6a401a3f0cd6cffb2342e787e48f44f","datavalue":{"value":{"time":"+2025-06-25T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"qualifiers-order":["P1810","P5436","P577","P407","P2047","P2397","P585"],"id":"Q134731422$73b3a734-48a3-0638-e037-9e2ca72c94cf","rank":"normal"}],"P436":[{"mainsnak":{"snaktype":"value","property":"P436","hash":"f927a153d3795f1eaaf7d13166d7b60e1e58c6a4","datavalue":{"value":"ed97b11d-5178-4986-b98e-6a86fd4bfc8e","type":"string"},"datatype":"external-id"},"type":"statement","qualifiers":{"P1810":[{"snaktype":"value","property":"P1810","hash":"5d424c858e994ce2c881f04a6bc1b42b23f6f944","datavalue":{"value":"Sapphire","type":"string"},"datatype":"string"}]},"qualifiers-order":["P1810"],"id":"Q134731422$6c9cb575-92d0-4a82-ab66-a4a7945b8e12","rank":"normal","references":[{"hash":"402988aa2aa1091b7a03473f80848187455fcf5a","snaks":{"P248":[{"snaktype":"value","property":"P248","hash":"623cc8f0e2f65afe4d66b91962d354a2f3aa9a27","datavalue":{"value":{"entity-type":"item","numeric-id":14005,"id":"Q14005"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P813":[{"snaktype":"value","property":"P813","hash":"b285332b63d28d0d037f00f4fdc71396aac538bf","datavalue":{"value":{"time":"+2025-06-23T00:00:00Z","timezone":0,"before":0,"after":0,"precision":11,"calendarmodel":"http://www.wikidata.org/entity/Q1985727"},"type":"time"},"datatype":"time"}]},"snaks-order":["P248","P813"]}]}],"P361":[{"mainsnak":{"snaktype":"value","property":"P361","hash":"e41fdccb0e9de28a3e11da3e14e4a142b9ccb99f","datavalue":{"value":{"entity-type":"item","numeric-id":133828509,"id":"Q133828509"},"type":"wikibase-entityid"},"datatype":"wikibase-item"},"type":"statement","id":"Q134731422$995ABCBF-48D9-4AE0-9DEA-81DAC03DD2BC","rank":"normal","references":[{"hash":"b19302fbb5d12398d8b1e4f2d2086c170087185e","snaks":{"P143":[{"snaktype":"value","property":"P143","hash":"07596fc82d3ed4d248b85e5543852cc31e37dc8c","datavalue":{"value":{"entity-type":"item","numeric-id":199913,"id":"Q199913"},"type":"wikibase-entityid"},"datatype":"wikibase-item"}],"P4656":[{"snaktype":"value","property":"P4656","hash":"e253542d15efeb57fd400b7f6760ee9cd04be127","datavalue":{"value":"https://he.wikipedia.org/w/index.php?title=Sapphire&oldid=41641633","type":"string"},"datatype":"url"}]},"snaks-order":["P143","P4656"]}]}]}}},"success":1}'
+  recorded_at: Sun, 28 Dec 2025 09:06:27 GMT
+recorded_with: VCR 6.4.0
