@@ -7,12 +7,15 @@ RSpec.describe 'AirPlays API', type: :request do
     get 'List recent air plays' do
       tags 'AirPlays'
       produces 'application/json'
+      description 'Use either period OR start_time/end_time (mutually exclusive). Returns 400 if both provided.'
       parameter name: :page, in: :query, type: :integer, required: false, description: 'Page number'
+      parameter name: :period, in: :query, type: :string, required: false,
+                description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours, day, week, ' \
+                             'month, year, all. Mutually exclusive with start_time/end_time'
       parameter name: :start_time, in: :query, type: :string, required: false,
-                description: 'Start time filter. Named periods: hour, two_hours, four_hours, eight_hours, ' \
-                             'twelve_hours, day, week, month, year, all. Or datetime: YYYY-MM-DDTHH:MM'
+                description: 'Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with period'
       parameter name: :end_time, in: :query, type: :string, required: false,
-                description: 'End time filter. Same format as start_time. Defaults to current time'
+                description: 'Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time'
       parameter name: 'radio_station_ids[]', in: :query, type: :array, items: { type: :integer },
                 required: false, description: 'Filter by radio station IDs'
       parameter name: :search_term, in: :query, type: :string, required: false,

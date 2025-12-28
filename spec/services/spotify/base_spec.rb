@@ -19,7 +19,6 @@ describe Spotify::Base, type: :service do
       let(:response_body) { { 'key' => 'value' } }
 
       before do
-        puts "BEFORE: #{url}"
         stub_request(:get, url)
           .with(headers: { 'Authorization' => "Bearer #{token}", 'Content-Type' => 'application/json' })
           .to_return(status: 200, body: response_body.to_json, headers: { 'Content-Type' => 'application/json' })

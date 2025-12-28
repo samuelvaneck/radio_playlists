@@ -7,15 +7,19 @@ RSpec.describe 'Songs API', type: :request do
     get 'List songs' do
       tags 'Songs'
       produces 'application/json'
+      description 'Use either period OR start_time/end_time (mutually exclusive). Returns 400 if both provided.'
       parameter name: :page, in: :query, type: :integer, required: false, description: 'Page number'
-      parameter name: :time, in: :query, type: :string, required: false,
-                description: 'Time period filter (day, week, month, year, all)'
-      parameter name: :start_date, in: :query, type: :string, format: :date, required: false,
-                description: 'Start date for filtering'
-      parameter name: :end_date, in: :query, type: :string, format: :date, required: false,
-                description: 'End date for filtering'
-      parameter name: :radio_station_id, in: :query, type: :integer, required: false,
-                description: 'Filter by radio station'
+      parameter name: :period, in: :query, type: :string, required: false,
+                description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours, day, week, ' \
+                             'month, year, all. Mutually exclusive with start_time/end_time'
+      parameter name: :start_time, in: :query, type: :string, required: false,
+                description: 'Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with period'
+      parameter name: :end_time, in: :query, type: :string, required: false,
+                description: 'Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time'
+      parameter name: 'radio_station_ids[]', in: :query, type: :array, items: { type: :integer },
+                required: false, description: 'Filter by radio station IDs'
+      parameter name: :search_term, in: :query, type: :string, required: false,
+                description: 'Search by song title or artist name'
 
       response '200', 'Songs retrieved successfully' do
         let!(:song) { create(:song) }
@@ -52,13 +56,13 @@ RSpec.describe 'Songs API', type: :request do
       tags 'Songs'
       produces 'application/json'
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Song ID'
-      parameter name: :time, in: :query, type: :string, required: false,
+      parameter name: :period, in: :query, type: :string, required: false,
                 description: 'Time period (day, week, month, year, all)'
 
       response '200', 'Graph data retrieved successfully' do
         let(:song) { create(:song) }
         let(:id) { song.id }
-        let(:time) { 'week' }
+        let(:period) { 'week' }
 
         run_test!
       end
@@ -105,9 +109,15 @@ RSpec.describe 'Songs API', type: :request do
     get 'Get song air plays' do
       tags 'Songs'
       produces 'application/json'
+      description 'Use either period OR start_time/end_time (mutually exclusive). Returns 400 if both provided.'
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Song ID'
       parameter name: :period, in: :query, type: :string, required: false,
-                description: 'Time period (day, week, month, year, all). Default: day'
+                description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours, day, week, ' \
+                             'month, year, all. Default: day. Mutually exclusive with start_time/end_time'
+      parameter name: :start_time, in: :query, type: :string, required: false,
+                description: 'Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with period'
+      parameter name: :end_time, in: :query, type: :string, required: false,
+                description: 'Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time'
       parameter name: 'radio_station_ids[]', in: :query, type: :array, items: { type: :integer },
                 required: false, description: 'Filter by radio station IDs'
       parameter name: :page, in: :query, type: :integer, required: false, description: 'Page number'
