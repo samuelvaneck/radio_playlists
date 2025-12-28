@@ -67,6 +67,8 @@ class RadioStationClassifierJob
 
   # Calculate running average: ((old_avg * count) + new_value) / (count + 1)
   def running_average(current_average, new_value, current_count)
+    current_average ||= 0.0
+    current_count ||= 0
     ((current_average * current_count) + new_value) / (current_count + 1)
   end
 
