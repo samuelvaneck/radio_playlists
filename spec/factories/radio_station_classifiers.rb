@@ -36,20 +36,20 @@
 FactoryBot.define do
   factory :radio_station_classifier do
     radio_station
-    danceability { 50 }
     danceability_average { 0.65 }
-    energy { 45 }
+    high_danceability_percentage { 0.72 }      # threshold: 0.5
     energy_average { 0.72 }
-    speechiness { 10 }
+    high_energy_percentage { 0.80 }            # threshold: 0.5
     speechiness_average { 0.08 }
-    acousticness { 20 }
+    high_speechiness_percentage { 0.15 }       # threshold: 0.33 (more tracks pass this lower threshold)
     acousticness_average { 0.25 }
-    instrumentalness { 5 }
+    high_acousticness_percentage { 0.18 }      # threshold: 0.5
     instrumentalness_average { 0.02 }
-    liveness { 15 }
+    high_instrumentalness_percentage { 0.03 }  # threshold: 0.5
     liveness_average { 0.12 }
-    valence { 40 }
+    high_liveness_percentage { 0.02 }          # threshold: 0.8 (very few tracks pass this high threshold)
     valence_average { 0.58 }
+    high_valence_percentage { 0.65 }           # threshold: 0.5
     tempo { 120.5 }
     counter { 100 }
     day_part { 'morning' }

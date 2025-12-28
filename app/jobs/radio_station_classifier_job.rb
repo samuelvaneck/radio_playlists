@@ -1,13 +1,16 @@
 class RadioStationClassifierJob
   AUDIO_FEATURES = %w[danceability energy speechiness acousticness instrumentalness liveness valence].freeze
-  AUDIO_FEATURE_TO_CLASSIFIER = {
-    'danceability' => :danceable,
-    'energy' => :energy,
-    'speechiness' => :speech,
-    'acousticness' => :acoustic,
-    'instrumentalness' => :instrumental,
-    'liveness' => :live,
-    'valence' => :valence
+
+  # Thresholds based on Spotify's documentation for what constitutes "high" values
+  # https://developer.spotify.com/documentation/web-api/reference/get-audio-features
+  HIGH_VALUE_THRESHOLDS = {
+    'danceability' => 0.5,      # Above average danceability
+    'energy' => 0.5,            # Above average energy
+    'speechiness' => 0.33,      # Spotify: 0.33-0.66 = music+speech, >0.66 = speech-only
+    'acousticness' => 0.5,      # Above average acoustic confidence
+    'instrumentalness' => 0.5,  # Spotify: >0.5 likely instrumental
+    'liveness' => 0.8,          # Spotify: >0.8 strong likelihood of live
+    'valence' => 0.5            # Above average positiveness (happy)
   }.freeze
 
   include Sidekiq::Job
@@ -17,10 +20,12 @@ class RadioStationClassifierJob
     return if id_on_spotify.blank?
 
     audio_features = fetch_audio_features(id_on_spotify)
+    return if audio_features.blank?
+
     classifier = find_or_initialize_classifier(radio_station_id)
 
     update_classifier_with_audio_features(classifier, audio_features)
-    classifier.tempo = ((classifier.tempo * classifier.counter) + audio_features['tempo']) / (classifier.counter + 1)
+    update_tempo(classifier, audio_features)
     classifier.counter += 1
     classifier.save
 
@@ -42,10 +47,27 @@ class RadioStationClassifierJob
     AUDIO_FEATURES.each do |feature|
       next if audio_features[feature].nil?
 
-      classifier[feature] += 1 if audio_features[feature] > 0.5
-      average = ((classifier["#{feature}_average"] * classifier.counter) + audio_features[feature]) / (classifier.counter + 1)
+      # Update running average for the feature
+      average = running_average(classifier["#{feature}_average"], audio_features[feature], classifier.counter)
       classifier["#{feature}_average"] = average
+
+      # Update percentage of tracks exceeding the feature-specific threshold
+      high_percentage_column = "high_#{feature}_percentage"
+      threshold = HIGH_VALUE_THRESHOLDS[feature]
+      is_high_value = audio_features[feature] > threshold ? 1.0 : 0.0
+      classifier[high_percentage_column] = running_average(classifier[high_percentage_column], is_high_value, classifier.counter)
     end
+  end
+
+  def update_tempo(classifier, audio_features)
+    return if audio_features['tempo'].nil?
+
+    classifier.tempo = running_average(classifier.tempo, audio_features['tempo'], classifier.counter)
+  end
+
+  # Calculate running average: ((old_avg * count) + new_value) / (count + 1)
+  def running_average(current_average, new_value, current_count)
+    ((current_average * current_count) + new_value) / (current_count + 1)
   end
 
   def update_radio_station_tags(args)
@@ -86,9 +108,5 @@ class RadioStationClassifierJob
       spotify_artist = Spotify::ArtistFinder.new(id_on_spotify: artist['id']).info
       spotify_artist['genres']
     end.uniq
-  end
-
-  def audio_feature_to_classifier(feature)
-    AUDIO_FEATURE_TO_CLASSIFIER[feature]
   end
 end

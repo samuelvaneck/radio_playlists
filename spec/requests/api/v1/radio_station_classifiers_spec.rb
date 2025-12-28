@@ -23,8 +23,11 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
           json = JSON.parse(response.body)
           expect(json['data']).to be_an(Array)
           expect(json['data'].first['attributes']['day_part']).to eq('morning')
+          expect(json['data'].first['attributes']['danceability_average']).to be_present
+          expect(json['data'].first['attributes']['high_danceability_percentage']).to be_present
           expect(json['meta']['attribute_descriptions']).to be_present
-          expect(json['meta']['attribute_descriptions']['danceability']).to include('name', 'description', 'range')
+          expect(json['meta']['attribute_descriptions']['danceability_average']).to include('name', 'description', 'range')
+          expect(json['meta']['attribute_descriptions']['high_danceability_percentage']).to include('name', 'description', 'range')
         end
       end
 
@@ -68,9 +71,10 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
         run_test! do |response|
           json = JSON.parse(response.body)
           expect(json['data']).to be_a(Hash)
-          expect(json['data']['danceability']).to include('name', 'description', 'range')
-          expect(json['data']['energy']).to include('name', 'description', 'range')
-          expect(json['data']['valence']).to include('name', 'description', 'range')
+          expect(json['data']['danceability_average']).to include('name', 'description', 'range')
+          expect(json['data']['high_danceability_percentage']).to include('name', 'description', 'range')
+          expect(json['data']['energy_average']).to include('name', 'description', 'range')
+          expect(json['data']['valence_average']).to include('name', 'description', 'range')
           expect(json['data']['tempo']).to include('name', 'description', 'range')
           expect(json['data']['day_part']).to include('name', 'description', 'values')
         end
