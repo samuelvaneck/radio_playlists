@@ -18,7 +18,6 @@ describe RadioStationTracksScraperJob, :use_vcr, type: :job do
 
   describe '#perform' do
     context 'when the response contains valid data' do
-
       before do
         allow(song).to receive(:should_update_youtube?).and_return(false)
       end
