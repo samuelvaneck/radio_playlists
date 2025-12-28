@@ -196,18 +196,34 @@ paths:
         description: Page number
         schema:
           type: integer
-      - name: time
+      - name: start_time
         in: query
         required: false
-        description: Time period filter (day, week, month, year, all)
+        description: 'Start time filter. Named periods: hour, two_hours, four_hours,
+          eight_hours, twelve_hours, day, week, month, year, all. Or datetime: YYYY-MM-DDTHH:MM'
         schema:
           type: string
-      - name: radio_station_id
+      - name: end_time
         in: query
         required: false
-        description: Filter by radio station
+        description: End time filter. Same format as start_time. Defaults to current
+          time
         schema:
+          type: string
+      - name: radio_station_ids[]
+        in: query
+        items:
           type: integer
+        required: false
+        description: Filter by radio station IDs
+        schema:
+          type: array
+      - name: search_term
+        in: query
+        required: false
+        description: Search by song title or artist name
+        schema:
+          type: string
       responses:
         '200':
           description: Air plays retrieved successfully

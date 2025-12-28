@@ -99,5 +99,53 @@ describe Api::V1::AirPlaysController do
         end
       end
     end
+
+    context 'when filtered by end_time' do
+      let(:radio_station_three) { create :radio_station }
+      let(:recent_air_play) { create :air_play, radio_station: radio_station_three, song: song_one, broadcasted_at: 30.minutes.ago }
+      let(:old_air_play) { create :air_play, radio_station: radio_station_three, song: song_two, broadcasted_at: 3.hours.ago }
+
+      before do
+        recent_air_play
+        old_air_play
+      end
+
+      context 'with end_time before recent air plays' do
+        subject(:get_index) do
+          get :index, params: {
+            format: :json,
+            start_time: 'day',
+            end_time: 2.hours.ago.strftime('%Y-%m-%dT%R'),
+            radio_station_ids: [radio_station_three.id]
+          }
+        end
+
+        it 'includes air plays before the end_time' do
+          get_index
+          expect(json[:data].map { |p| p[:id] }).to include(old_air_play.id.to_s)
+        end
+
+        it 'excludes air plays after the end_time' do
+          get_index
+          expect(json[:data].map { |p| p[:id] }).not_to include(recent_air_play.id.to_s)
+        end
+      end
+
+      context 'with start_time and end_time range' do
+        subject(:get_index) do
+          get :index, params: {
+            format: :json,
+            start_time: 4.hours.ago.strftime('%Y-%m-%dT%R'),
+            end_time: 2.hours.ago.strftime('%Y-%m-%dT%R'),
+            radio_station_ids: [radio_station_three.id]
+          }
+        end
+
+        it 'only fetches air plays within the time range' do
+          get_index
+          expect(json[:data].map { |p| p[:id] }).to contain_exactly(old_air_play.id.to_s)
+        end
+      end
+    end
   end
 end
