@@ -16,7 +16,7 @@ module Api
       end
 
       def graph_data
-        render json: artist.graph_data(params[:time] || params[:start_time])
+        render json: artist.graph_data(params[:period])
       end
 
       def songs
@@ -102,16 +102,14 @@ module Api
       private
 
       def artist_air_plays
+        start_time, end_time = AirPlay.time_range_from_params(params, default_period: 'day')
+
         @artist_air_plays ||= artist.air_plays
                                     .includes(:radio_station, song: :artists)
-                                    .played_between(air_plays_start_time, Time.zone.now)
+                                    .played_between(start_time, end_time)
                                     .played_on(radio_station_ids)
                                     .order(broadcasted_at: :desc)
                                     .paginate(page: params[:page], per_page: 24)
-      end
-
-      def air_plays_start_time
-        AirPlay.date_from_params(time: params[:period] || 'day', fallback: 1.day.ago)
       end
 
       def artists

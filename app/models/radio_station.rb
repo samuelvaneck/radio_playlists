@@ -18,6 +18,8 @@
 #
 
 class RadioStation < ActiveRecord::Base
+  include DateConcern
+
   has_many :air_plays
   has_many :radio_station_songs
   has_many :songs, through: :radio_station_songs
@@ -44,12 +46,10 @@ class RadioStation < ActiveRecord::Base
   end
 
   def self.new_songs_played_for_period(params)
-    time_value = params[:start_time]
-    period_start = time_value == 'all' ? nil : 1.send(time_value.to_sym).ago
-    period_end = Time.current
+    start_time, end_time = time_range_from_params(params, default_period: 'day')
 
     RadioStationSong.includes(:radio_station, song: :artists)
-                    .played_between(period_start, period_end)
+                    .played_between(start_time, end_time)
                     .played_on(params[:radio_station_ids])
                     .joins('INNER JOIN air_plays ON air_plays.song_id = radio_station_songs.song_id
                                                  AND air_plays.radio_station_id = radio_station_songs.radio_station_id')

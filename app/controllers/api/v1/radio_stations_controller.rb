@@ -32,12 +32,7 @@ module Api
       end
 
       def new_played_songs
-        return render json: { error: 'Time parameter is required' }, status: :bad_request if time_param_blank?
-
-        unless correct_time_params?
-          error_message = 'Invalid time parameter. Possible values are day, week, month, year and all'
-          return render json: { error: error_message }, status: :bad_request
-        end
+        return render json: { error: 'Period or start_time parameter is required' }, status: :bad_request if time_param_blank?
 
         render json: RadioStationSongSerializer.new(new_played_items)
                                                .serializable_hash
@@ -70,11 +65,7 @@ module Api
       end
 
       def time_param_blank?
-        params[:start_time].blank?
-      end
-
-      def correct_time_params?
-        params[:start_time].in?(%w[day week month year all])
+        params[:period].blank? && params[:start_time].blank?
       end
 
       def new_played_items

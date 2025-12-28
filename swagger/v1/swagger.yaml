@@ -189,6 +189,8 @@ paths:
       summary: List recent air plays
       tags:
       - AirPlays
+      description: Use either period OR start_time/end_time (mutually exclusive).
+        Returns 400 if both provided.
       parameters:
       - name: page
         in: query
@@ -196,18 +198,24 @@ paths:
         description: Page number
         schema:
           type: integer
+      - name: period
+        in: query
+        required: false
+        description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours,
+          day, week, month, year, all. Mutually exclusive with start_time/end_time'
+        schema:
+          type: string
       - name: start_time
         in: query
         required: false
-        description: 'Start time filter. Named periods: hour, two_hours, four_hours,
-          eight_hours, twelve_hours, day, week, month, year, all. Or datetime: YYYY-MM-DDTHH:MM'
+        description: Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with
+          period
         schema:
           type: string
       - name: end_time
         in: query
         required: false
-        description: End time filter. Same format as start_time. Defaults to current
-          time
+        description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
         schema:
           type: string
       - name: radio_station_ids[]
@@ -232,6 +240,8 @@ paths:
       summary: List artists
       tags:
       - Artists
+      description: Use either period OR start_time/end_time (mutually exclusive).
+        Returns 400 if both provided.
       parameters:
       - name: page
         in: query
@@ -239,32 +249,40 @@ paths:
         description: Page number
         schema:
           type: integer
-      - name: time
+      - name: period
         in: query
         required: false
-        description: Time period filter (day, week, month, year, all)
+        description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours,
+          day, week, month, year, all. Mutually exclusive with start_time/end_time'
         schema:
           type: string
-      - name: start_date
+      - name: start_time
         in: query
-        format: date
         required: false
-        description: Start date for filtering
+        description: Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with
+          period
         schema:
           type: string
-      - name: end_date
+      - name: end_time
         in: query
-        format: date
         required: false
-        description: End date for filtering
+        description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
         schema:
           type: string
-      - name: radio_station_id
+      - name: radio_station_ids[]
         in: query
-        required: false
-        description: Filter by radio station
-        schema:
+        items:
           type: integer
+        required: false
+        description: Filter by radio station IDs
+        schema:
+          type: array
+      - name: search_term
+        in: query
+        required: false
+        description: Search by artist name
+        schema:
+          type: string
       responses:
         '200':
           description: Artists retrieved successfully
@@ -297,7 +315,7 @@ paths:
         description: Artist ID
         schema:
           type: integer
-      - name: time
+      - name: period
         in: query
         required: false
         description: Time period (day, week, month, year, all)
@@ -376,6 +394,8 @@ paths:
       summary: Get artist air plays
       tags:
       - Artists
+      description: Use either period OR start_time/end_time (mutually exclusive).
+        Returns 400 if both provided.
       parameters:
       - name: id
         in: path
@@ -386,7 +406,21 @@ paths:
       - name: period
         in: query
         required: false
-        description: 'Time period (day, week, month, year, all). Default: day'
+        description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours,
+          day, week, month, year, all. Default: day. Mutually exclusive with start_time/end_time'
+        schema:
+          type: string
+      - name: start_time
+        in: query
+        required: false
+        description: Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with
+          period
+        schema:
+          type: string
+      - name: end_time
+        in: query
+        required: false
+        description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
         schema:
           type: string
       - name: radio_station_ids[]
@@ -511,19 +545,37 @@ paths:
       summary: Get newly played songs across all stations
       tags:
       - Radio Stations
+      description: Use either period OR start_time/end_time (mutually exclusive).
+        Returns 400 if both provided.
       parameters:
-      - name: start_time
-        in: query
-        required: true
-        description: Time period (day, week, month, year, all)
-        schema:
-          type: string
-      - name: radio_station_id
+      - name: period
         in: query
         required: false
-        description: Filter by radio station
+        description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours,
+          day, week, month, year, all. Mutually exclusive with start_time/end_time'
         schema:
+          type: string
+      - name: start_time
+        in: query
+        required: false
+        description: Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with
+          period
+        schema:
+          type: string
+      - name: end_time
+        in: query
+        required: false
+        description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
+        schema:
+          type: string
+      - name: radio_station_ids[]
+        in: query
+        items:
           type: integer
+        required: false
+        description: Filter by radio station IDs
+        schema:
+          type: array
       - name: page
         in: query
         required: false
@@ -534,7 +586,7 @@ paths:
         '200':
           description: New played songs retrieved successfully
         '400':
-          description: Time parameter is required
+          description: Period or start_time parameter is required
   "/api/v1/radio_stations/{id}/stream_proxy":
     get:
       summary: Proxy radio station stream
@@ -557,6 +609,8 @@ paths:
       summary: List songs
       tags:
       - Songs
+      description: Use either period OR start_time/end_time (mutually exclusive).
+        Returns 400 if both provided.
       parameters:
       - name: page
         in: query
@@ -564,32 +618,40 @@ paths:
         description: Page number
         schema:
           type: integer
-      - name: time
+      - name: period
         in: query
         required: false
-        description: Time period filter (day, week, month, year, all)
+        description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours,
+          day, week, month, year, all. Mutually exclusive with start_time/end_time'
         schema:
           type: string
-      - name: start_date
+      - name: start_time
         in: query
-        format: date
         required: false
-        description: Start date for filtering
+        description: Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with
+          period
         schema:
           type: string
-      - name: end_date
+      - name: end_time
         in: query
-        format: date
         required: false
-        description: End date for filtering
+        description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
         schema:
           type: string
-      - name: radio_station_id
+      - name: radio_station_ids[]
         in: query
-        required: false
-        description: Filter by radio station
-        schema:
+        items:
           type: integer
+        required: false
+        description: Filter by radio station IDs
+        schema:
+          type: array
+      - name: search_term
+        in: query
+        required: false
+        description: Search by song title or artist name
+        schema:
+          type: string
       responses:
         '200':
           description: Songs retrieved successfully
@@ -622,7 +684,7 @@ paths:
         description: Song ID
         schema:
           type: integer
-      - name: time
+      - name: period
         in: query
         required: false
         description: Time period (day, week, month, year, all)
@@ -686,6 +748,8 @@ paths:
       summary: Get song air plays
       tags:
       - Songs
+      description: Use either period OR start_time/end_time (mutually exclusive).
+        Returns 400 if both provided.
       parameters:
       - name: id
         in: path
@@ -696,7 +760,21 @@ paths:
       - name: period
         in: query
         required: false
-        description: 'Time period (day, week, month, year, all). Default: day'
+        description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours,
+          day, week, month, year, all. Default: day. Mutually exclusive with start_time/end_time'
+        schema:
+          type: string
+      - name: start_time
+        in: query
+        required: false
+        description: Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with
+          period
+        schema:
+          type: string
+      - name: end_time
+        in: query
+        required: false
+        description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
         schema:
           type: string
       - name: radio_station_ids[]

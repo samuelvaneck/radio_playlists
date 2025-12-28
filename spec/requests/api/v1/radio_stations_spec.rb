@@ -99,21 +99,27 @@ RSpec.describe 'RadioStations API', type: :request do
     get 'Get newly played songs across all stations' do
       tags 'Radio Stations'
       produces 'application/json'
-      parameter name: :start_time, in: :query, type: :string, required: true,
-                description: 'Time period (day, week, month, year, all)'
-      parameter name: :radio_station_id, in: :query, type: :integer, required: false,
-                description: 'Filter by radio station'
+      description 'Use either period OR start_time/end_time (mutually exclusive). Returns 400 if both provided.'
+      parameter name: :period, in: :query, type: :string, required: false,
+                description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours, day, week, ' \
+                             'month, year, all. Mutually exclusive with start_time/end_time'
+      parameter name: :start_time, in: :query, type: :string, required: false,
+                description: 'Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with period'
+      parameter name: :end_time, in: :query, type: :string, required: false,
+                description: 'Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time'
+      parameter name: 'radio_station_ids[]', in: :query, type: :array, items: { type: :integer },
+                required: false, description: 'Filter by radio station IDs'
       parameter name: :page, in: :query, type: :integer, required: false, description: 'Page number'
 
       response '200', 'New played songs retrieved successfully' do
-        let(:start_time) { 'week' }
+        let(:period) { 'week' }
         let!(:radio_station) { create(:radio_station) }
 
         run_test!
       end
 
-      response '400', 'Time parameter is required' do
-        let(:start_time) { nil }
+      response '400', 'Period or start_time parameter is required' do
+        let(:period) { nil }
 
         run_test!
       end

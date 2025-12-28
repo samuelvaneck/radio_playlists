@@ -53,9 +53,10 @@ class Song < ApplicationRecord
   public_constant :ARTISTS_FILTERS
 
   def self.most_played(params = {})
+    start_time, end_time = time_range_from_params(params, default_period: 'week')
+
     Song.joins(:air_plays)
-        .played_between(date_from_params(time: params[:start_time], fallback: 1.week.ago),
-                        date_from_params(time: params[:end_time], fallback: Time.zone.now))
+        .played_between(start_time, end_time)
         .played_on(params[:radio_station_ids])
         .matching(params[:search_term])
         .select("songs.id,

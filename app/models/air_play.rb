@@ -40,9 +40,10 @@ class AirPlay < ApplicationRecord
   validate :today_unique_air_play_item
 
   def self.last_played(params = {})
+    start_time, end_time = time_range_from_params(params, default_period: 'day')
+
     AirPlay.joins(:song, :radio_station)
-           .played_between(date_from_params(time: params[:start_time], fallback: 1.day.ago),
-                           date_from_params(time: params[:end_time], fallback: Time.zone.now))
+           .played_between(start_time, end_time)
            .played_on(params[:radio_station_ids])
            .matching(params[:search_term])
            .group(:id, 'songs.id', 'radio_stations.id')
