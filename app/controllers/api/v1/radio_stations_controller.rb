@@ -24,7 +24,7 @@ module Api
       end
 
       def classifiers
-        render json: RadioStationClassifierSerializer.new(@radio_station.radio_station_classifiers).serializable_hash.to_json
+        render json: RadioStationClassifierSerializer.serializable_hash_with_descriptions(@radio_station.radio_station_classifiers).to_json
       end
 
       def last_played_songs

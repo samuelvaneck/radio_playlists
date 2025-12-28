@@ -42,6 +42,9 @@ Rails.application.routes.draw do
         get :last_played_songs, on: :collection
         get :new_played_songs, on: :collection
       end
+      resources :radio_station_classifiers, only: %i[index] do
+        get :descriptions, on: :collection
+      end
     end
   end
 
