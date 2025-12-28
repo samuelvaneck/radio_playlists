@@ -36,64 +36,119 @@
 class RadioStationClassifier < ApplicationRecord
   DAY_PARTS = %w[night breakfast morning lunch afternoon dinner evening].freeze
 
+  # Thresholds based on Spotify's documentation for what constitutes "high" values
+  # https://developer.spotify.com/documentation/web-api/reference/get-audio-features
+  HIGH_VALUE_THRESHOLDS = {
+    danceability: 0.5,      # Above average danceability
+    energy: 0.5,            # Above average energy
+    speechiness: 0.33,      # Spotify: 0.33-0.66 = music+speech, >0.66 = speech-only
+    acousticness: 0.5,      # Above average acoustic confidence
+    instrumentalness: 0.5,  # Spotify: >0.5 likely instrumental
+    liveness: 0.8,          # Spotify: >0.8 strong likelihood of live
+    valence: 0.5            # Above average positiveness (happy)
+  }.freeze
+
   ATTRIBUTE_DESCRIPTIONS = {
-    danceability: {
-      name: 'Danceability',
-      description: 'Describes how suitable a track is for dancing based on a combination of musical elements ' \
-                   'including tempo, rhythm stability, beat strength, and overall regularity. ' \
-                   'A value of 0.0 is least danceable and 1.0 is most danceable.',
+    danceability_average: {
+      name: 'Average Danceability',
+      description: 'The average danceability score across all tracks played during this day part. ' \
+                   'Danceability describes how suitable a track is for dancing based on tempo, rhythm stability, ' \
+                   'beat strength, and overall regularity. Higher values indicate more danceable music.',
       range: '0.0 - 1.0'
     },
-    energy: {
-      name: 'Energy',
-      description: 'Represents a perceptual measure of intensity and activity. Typically, energetic tracks feel ' \
-                   'fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores ' \
-                   'low on the scale. Perceptual features contributing to this attribute include dynamic range, ' \
-                   'perceived loudness, timbre, onset rate, and general entropy.',
+    high_danceability_percentage: {
+      name: 'High Danceability Rate',
+      description: 'The percentage of tracks with danceability above 0.5 (considered highly danceable). ' \
+                   'A value of 0.75 means 75% of tracks played during this day part are highly danceable.',
+      range: '0.0 - 1.0 (percentage)',
+      threshold: 0.5
+    },
+    energy_average: {
+      name: 'Average Energy',
+      description: 'The average energy score across all tracks. Energy represents intensity and activity - ' \
+                   'energetic tracks feel fast, loud, and noisy (like death metal), while low energy tracks ' \
+                   'are calmer (like a Bach prelude). Based on dynamic range, loudness, timbre, and onset rate.',
       range: '0.0 - 1.0'
     },
-    speechiness: {
-      name: 'Speechiness',
-      description: 'Detects the presence of spoken words in a track. The more exclusively speech-like the ' \
-                   'recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. ' \
-                   'Values above 0.66 describe tracks that are probably made entirely of spoken words. ' \
-                   'Values between 0.33 and 0.66 describe tracks that may contain both music and speech. ' \
-                   'Values below 0.33 most likely represent music and other non-speech-like tracks.',
+    high_energy_percentage: {
+      name: 'High Energy Rate',
+      description: 'The percentage of tracks with energy above 0.5 (considered high energy). ' \
+                   'A value of 0.80 means 80% of tracks played during this day part are high energy.',
+      range: '0.0 - 1.0 (percentage)',
+      threshold: 0.5
+    },
+    speechiness_average: {
+      name: 'Average Speechiness',
+      description: 'The average speechiness score detecting spoken words in tracks. Values above 0.66 indicate ' \
+                   'tracks made entirely of spoken words (talk shows, podcasts). Values between 0.33-0.66 ' \
+                   'indicate mixed content (rap, spoken intros). Values below 0.33 indicate mostly music.',
       range: '0.0 - 1.0'
     },
-    acousticness: {
-      name: 'Acousticness',
-      description: 'A confidence measure of whether the track is acoustic. A value of 1.0 represents high ' \
-                   'confidence the track is acoustic (uses acoustic instruments like guitars, pianos, strings). ' \
-                   'A value of 0.0 represents high confidence the track is electronic or uses electric instruments.',
+    high_speechiness_percentage: {
+      name: 'Speech Content Rate',
+      description: 'The percentage of tracks with speechiness above 0.33 (contains speech or mixed content). ' \
+                   'Based on Spotify threshold where >0.33 indicates speech presence in the track.',
+      range: '0.0 - 1.0 (percentage)',
+      threshold: 0.33
+    },
+    acousticness_average: {
+      name: 'Average Acousticness',
+      description: 'The average confidence that tracks are acoustic. A value near 1.0 indicates high confidence ' \
+                   'that tracks use acoustic instruments (guitars, pianos, strings). A value near 0.0 indicates ' \
+                   'electronic or electric instrument-heavy programming.',
       range: '0.0 - 1.0'
     },
-    instrumentalness: {
-      name: 'Instrumentalness',
-      description: 'Predicts whether a track contains no vocals. "Ooh" and "aah" sounds are treated as ' \
-                   'instrumental in this context. Rap or spoken word tracks are clearly "vocal". ' \
-                   'The closer the instrumentalness value is to 1.0, the greater likelihood the track ' \
-                   'contains no vocal content. Values above 0.5 are intended to represent instrumental tracks.',
+    high_acousticness_percentage: {
+      name: 'High Acousticness Rate',
+      description: 'The percentage of tracks that are likely acoustic (acousticness > 0.5). ' \
+                   'Higher values indicate more unplugged, acoustic-focused programming.',
+      range: '0.0 - 1.0 (percentage)',
+      threshold: 0.5
+    },
+    instrumentalness_average: {
+      name: 'Average Instrumentalness',
+      description: 'The average prediction of whether tracks contain no vocals. "Ooh" and "aah" sounds are ' \
+                   'treated as instrumental. Higher values indicate more instrumental music without vocals.',
       range: '0.0 - 1.0'
     },
-    liveness: {
-      name: 'Liveness',
-      description: 'Detects the presence of an audience in the recording. Higher liveness values represent ' \
-                   'an increased probability that the track was performed live. A value above 0.8 provides ' \
-                   'strong likelihood that the track is live.',
+    high_instrumentalness_percentage: {
+      name: 'Instrumental Track Rate',
+      description: 'The percentage of tracks that are likely instrumental (instrumentalness > 0.5). ' \
+                   'Based on Spotify threshold where >0.5 indicates likely instrumental content.',
+      range: '0.0 - 1.0 (percentage)',
+      threshold: 0.5
+    },
+    liveness_average: {
+      name: 'Average Liveness',
+      description: 'The average probability that tracks were performed live with an audience. ' \
+                   'Values above 0.8 strongly suggest live recordings.',
       range: '0.0 - 1.0'
     },
-    valence: {
-      name: 'Valence',
-      description: 'A measure describing the musical positiveness conveyed by a track. Tracks with high valence ' \
-                   'sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound ' \
-                   'more negative (e.g. sad, depressed, angry).',
+    high_liveness_percentage: {
+      name: 'Live Recording Rate',
+      description: 'The percentage of tracks that are likely live recordings (liveness > 0.8). ' \
+                   'Based on Spotify threshold where >0.8 provides strong likelihood of live performance.',
+      range: '0.0 - 1.0 (percentage)',
+      threshold: 0.8
+    },
+    valence_average: {
+      name: 'Average Valence (Mood)',
+      description: 'The average musical positiveness of tracks. High valence (near 1.0) sounds happy, cheerful, ' \
+                   'and euphoric. Low valence (near 0.0) sounds sad, depressed, or angry. ' \
+                   'This reflects the overall mood of the station during this day part.',
       range: '0.0 - 1.0'
+    },
+    high_valence_percentage: {
+      name: 'Positive Mood Rate',
+      description: 'The percentage of tracks with positive mood (valence > 0.5). ' \
+                   'Higher values indicate more upbeat, happy programming.',
+      range: '0.0 - 1.0 (percentage)',
+      threshold: 0.5
     },
     tempo: {
-      name: 'Tempo',
-      description: 'The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, ' \
-                   'tempo is the speed or pace of a given piece and derives directly from the average beat duration.',
+      name: 'Average Tempo',
+      description: 'The average tempo of tracks in beats per minute (BPM). Tempo is the speed or pace of music. ' \
+                   'Typical ranges: slow ballads (60-80 BPM), pop music (100-130 BPM), dance music (120-150 BPM).',
       range: '0 - 250 BPM'
     },
     day_part: {
@@ -106,7 +161,7 @@ class RadioStationClassifier < ApplicationRecord
     counter: {
       name: 'Sample Count',
       description: 'The total number of songs analyzed to calculate the average values for this day part. ' \
-                   'A higher count indicates more reliable average values.'
+                   'A higher count indicates more reliable and statistically significant values.'
     }
   }.freeze
 
