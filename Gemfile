@@ -21,7 +21,7 @@ gem 'pg'
 gem 'puma', '~> 7.0'
 gem 'rack-cors', '~> 3.0', '>= 2.0.2'
 gem 'rails', '~> 8.0', '>= 8.0.1'
-gem 'connection_pool', '~> 2.5' # Pinned until Rails 8.1 is compatible with connection_pool 3.0
+gem 'connection_pool', '~> 3.0' # Pinned until Rails 8.1 is compatible with connection_pool 3.0
 gem 'redis'
 gem 'sentry-ruby'
 gem 'sentry-rails'
