@@ -16,6 +16,133 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                 description: 'Filter by day part (night, breakfast, morning, lunch, afternoon, dinner, evening)'
 
       response '200', 'Classifiers retrieved successfully' do
+        schema type: :object,
+               properties: {
+                 data: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       id: { type: :string },
+                       type: { type: :string },
+                       attributes: {
+                         type: :object,
+                         properties: {
+                           id: { type: :integer },
+                           radio_station: { type: :object },
+                           day_part: { type: :string },
+                           danceability: { type: :integer },
+                           danceability_average: { type: :string },
+                           energy: { type: :integer },
+                           energy_average: { type: :string },
+                           speechiness: { type: :integer },
+                           speechiness_average: { type: :string },
+                           acousticness: { type: :integer },
+                           acousticness_average: { type: :string },
+                           instrumentalness: { type: :integer },
+                           instrumentalness_average: { type: :string },
+                           liveness: { type: :integer },
+                           liveness_average: { type: :string },
+                           valence: { type: :integer },
+                           valence_average: { type: :string },
+                           tempo: { type: :string },
+                           counter: { type: :integer }
+                         }
+                       }
+                     }
+                   }
+                 },
+                 meta: {
+                   type: :object,
+                   properties: {
+                     attribute_descriptions: {
+                       type: :object,
+                       properties: {
+                         danceability: {
+                           type: :object,
+                           properties: {
+                             name: { type: :string },
+                             description: { type: :string },
+                             range: { type: :string }
+                           }
+                         },
+                         energy: {
+                           type: :object,
+                           properties: {
+                             name: { type: :string },
+                             description: { type: :string },
+                             range: { type: :string }
+                           }
+                         },
+                         speechiness: {
+                           type: :object,
+                           properties: {
+                             name: { type: :string },
+                             description: { type: :string },
+                             range: { type: :string }
+                           }
+                         },
+                         acousticness: {
+                           type: :object,
+                           properties: {
+                             name: { type: :string },
+                             description: { type: :string },
+                             range: { type: :string }
+                           }
+                         },
+                         instrumentalness: {
+                           type: :object,
+                           properties: {
+                             name: { type: :string },
+                             description: { type: :string },
+                             range: { type: :string }
+                           }
+                         },
+                         liveness: {
+                           type: :object,
+                           properties: {
+                             name: { type: :string },
+                             description: { type: :string },
+                             range: { type: :string }
+                           }
+                         },
+                         valence: {
+                           type: :object,
+                           properties: {
+                             name: { type: :string },
+                             description: { type: :string },
+                             range: { type: :string }
+                           }
+                         },
+                         tempo: {
+                           type: :object,
+                           properties: {
+                             name: { type: :string },
+                             description: { type: :string },
+                             range: { type: :string }
+                           }
+                         },
+                         day_part: {
+                           type: :object,
+                           properties: {
+                             name: { type: :string },
+                             description: { type: :string },
+                             values: { type: :array, items: { type: :string } }
+                           }
+                         },
+                         counter: {
+                           type: :object,
+                           properties: {
+                             name: { type: :string },
+                             description: { type: :string }
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
+               }
+
         let!(:radio_station) { create(:radio_station) }
         let!(:classifier) { create(:radio_station_classifier, radio_station: radio_station, day_part: 'morning') }
 
@@ -65,6 +192,94 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                   'Useful for displaying tooltips or help text in the frontend.'
 
       response '200', 'Descriptions retrieved successfully' do
+        schema type: :object,
+               properties: {
+                 data: {
+                   type: :object,
+                   properties: {
+                     danceability: {
+                       type: :object,
+                       properties: {
+                         name: { type: :string },
+                         description: { type: :string },
+                         range: { type: :string }
+                       }
+                     },
+                     energy: {
+                       type: :object,
+                       properties: {
+                         name: { type: :string },
+                         description: { type: :string },
+                         range: { type: :string }
+                       }
+                     },
+                     speechiness: {
+                       type: :object,
+                       properties: {
+                         name: { type: :string },
+                         description: { type: :string },
+                         range: { type: :string }
+                       }
+                     },
+                     acousticness: {
+                       type: :object,
+                       properties: {
+                         name: { type: :string },
+                         description: { type: :string },
+                         range: { type: :string }
+                       }
+                     },
+                     instrumentalness: {
+                       type: :object,
+                       properties: {
+                         name: { type: :string },
+                         description: { type: :string },
+                         range: { type: :string }
+                       }
+                     },
+                     liveness: {
+                       type: :object,
+                       properties: {
+                         name: { type: :string },
+                         description: { type: :string },
+                         range: { type: :string }
+                       }
+                     },
+                     valence: {
+                       type: :object,
+                       properties: {
+                         name: { type: :string },
+                         description: { type: :string },
+                         range: { type: :string }
+                       }
+                     },
+                     tempo: {
+                       type: :object,
+                       properties: {
+                         name: { type: :string },
+                         description: { type: :string },
+                         range: { type: :string }
+                       }
+                     },
+                     day_part: {
+                       type: :object,
+                       properties: {
+                         name: { type: :string },
+                         description: { type: :string },
+                         values: { type: :array, items: { type: :string } }
+                       }
+                     },
+                     counter: {
+                       type: :object,
+                       properties: {
+                         name: { type: :string },
+                         description: { type: :string }
+                       }
+                     }
+                   }
+                 }
+               }
+
         run_test! do |response|
           json = JSON.parse(response.body)
           expect(json['data']).to be_a(Hash)

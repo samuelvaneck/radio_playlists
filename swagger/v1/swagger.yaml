@@ -487,6 +487,157 @@ paths:
       responses:
         '200':
           description: Classifiers filtered by day part
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        type:
+                          type: string
+                        attributes:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            radio_station:
+                              type: object
+                            day_part:
+                              type: string
+                            danceability:
+                              type: integer
+                            danceability_average:
+                              type: string
+                            energy:
+                              type: integer
+                            energy_average:
+                              type: string
+                            speechiness:
+                              type: integer
+                            speechiness_average:
+                              type: string
+                            acousticness:
+                              type: integer
+                            acousticness_average:
+                              type: string
+                            instrumentalness:
+                              type: integer
+                            instrumentalness_average:
+                              type: string
+                            liveness:
+                              type: integer
+                            liveness_average:
+                              type: string
+                            valence:
+                              type: integer
+                            valence_average:
+                              type: string
+                            tempo:
+                              type: string
+                            counter:
+                              type: integer
+                  meta:
+                    type: object
+                    properties:
+                      attribute_descriptions:
+                        type: object
+                        properties:
+                          danceability:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              range:
+                                type: string
+                          energy:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              range:
+                                type: string
+                          speechiness:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              range:
+                                type: string
+                          acousticness:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              range:
+                                type: string
+                          instrumentalness:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              range:
+                                type: string
+                          liveness:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              range:
+                                type: string
+                          valence:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              range:
+                                type: string
+                          tempo:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              range:
+                                type: string
+                          day_part:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              values:
+                                type: array
+                                items:
+                                  type: string
+                          counter:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
   "/api/v1/radio_station_classifiers/descriptions":
     get:
       summary: Get attribute descriptions for audio features
@@ -497,6 +648,104 @@ paths:
       responses:
         '200':
           description: Descriptions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      danceability:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          range:
+                            type: string
+                      energy:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          range:
+                            type: string
+                      speechiness:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          range:
+                            type: string
+                      acousticness:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          range:
+                            type: string
+                      instrumentalness:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          range:
+                            type: string
+                      liveness:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          range:
+                            type: string
+                      valence:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          range:
+                            type: string
+                      tempo:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          range:
+                            type: string
+                      day_part:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          description:
+                            type: string
+                          values:
+                            type: array
+                            items:
+                              type: string
+                      counter:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          description:
+                            type: string
   "/api/v1/radio_stations":
     get:
       summary: List all radio stations
