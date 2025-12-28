@@ -30,7 +30,7 @@ gem 'sidekiq-scheduler', '~> 6.0'
 gem 'sidekiq-unique-jobs', '~> 8.0'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'uri', '~> 1.0.2'
+gem 'uri', '~> 1.1.1'
 gem 'will_paginate'
 gem 'seed-fu', '~> 2.3'
 
