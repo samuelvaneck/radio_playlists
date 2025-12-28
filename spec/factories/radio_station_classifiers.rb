@@ -35,15 +35,23 @@
 #
 FactoryBot.define do
   factory :radio_station_classifier do
-    radio_station { nil }
-    danceable { 1 }
-    energy { 1 }
-    speechs { 1 }
-    acoustic { 1 }
-    instrumental { 1 }
-    live { 1 }
-    valance { 1 }
-    day_part { 'MyString' }
-    tags { '' }
+    radio_station
+    danceability { 50 }
+    danceability_average { 0.65 }
+    energy { 45 }
+    energy_average { 0.72 }
+    speechiness { 10 }
+    speechiness_average { 0.08 }
+    acousticness { 20 }
+    acousticness_average { 0.25 }
+    instrumentalness { 5 }
+    instrumentalness_average { 0.02 }
+    liveness { 15 }
+    liveness_average { 0.12 }
+    valence { 40 }
+    valence_average { 0.58 }
+    tempo { 120.5 }
+    counter { 100 }
+    day_part { 'morning' }
   end
 end

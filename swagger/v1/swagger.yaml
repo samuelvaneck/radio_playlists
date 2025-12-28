@@ -462,6 +462,41 @@ paths:
       responses:
         '200':
           description: Artist bio retrieved successfully
+  "/api/v1/radio_station_classifiers":
+    get:
+      summary: List all radio station classifiers
+      tags:
+      - Radio Station Classifiers
+      description: Returns audio feature classifiers for radio stations, aggregated
+        by day part. Includes Spotify audio features like danceability, energy, valence,
+        etc. Response includes attribute descriptions in the meta section.
+      parameters:
+      - name: radio_station_id
+        in: query
+        required: false
+        description: Filter by radio station ID
+        schema:
+          type: integer
+      - name: day_part
+        in: query
+        required: false
+        description: Filter by day part (night, breakfast, morning, lunch, afternoon,
+          dinner, evening)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Classifiers filtered by day part
+  "/api/v1/radio_station_classifiers/descriptions":
+    get:
+      summary: Get attribute descriptions for audio features
+      tags:
+      - Radio Station Classifiers
+      description: Returns detailed descriptions for all audio feature attributes
+        used in classifiers. Useful for displaying tooltips or help text in the frontend.
+      responses:
+        '200':
+          description: Descriptions retrieved successfully
   "/api/v1/radio_stations":
     get:
       summary: List all radio stations

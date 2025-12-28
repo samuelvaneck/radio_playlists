@@ -53,9 +53,22 @@ class RadioStationClassifierSerializer
              :liveness_average,
              :valence,
              :valence_average,
-             :tempo
+             :tempo,
+             :counter
 
-  def radio_station
-    RadioStationSerializer.new(object.radio_station)
+  attribute :radio_station do |object|
+    RadioStationSerializer.new(object.radio_station).serializable_hash[:data]
+  end
+
+  class << self
+    def attribute_descriptions
+      RadioStationClassifier::ATTRIBUTE_DESCRIPTIONS
+    end
+
+    def serializable_hash_with_descriptions(classifiers, options = {})
+      hash = new(classifiers, options).serializable_hash
+      hash[:meta] = { attribute_descriptions: attribute_descriptions }
+      hash
+    end
   end
 end
