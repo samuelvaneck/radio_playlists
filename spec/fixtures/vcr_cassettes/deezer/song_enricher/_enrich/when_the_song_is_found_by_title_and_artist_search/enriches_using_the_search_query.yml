@@ -1,0 +1,27 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.deezer.com/search?q=artist%3A%22Taylor%20Swift%22%20track%3A%22Shake%20It%20Off%22&limit=25
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.12.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"id":89077555,"readable":true,"title":"Shake It Off","title_short":"Shake It Off","title_version":"","link":"https://www.deezer.com/track/89077555","duration":219,"rank":948580,"explicit_lyrics":false,"explicit_content_lyrics":0,"explicit_content_cover":0,"preview":"https://cdnt-preview.dzcdn.net/api/1/1/2/d/9/0/2d9810a9179e50e255861f3980d310df.mp3","md5_image":"68b4e986958b17f05b062ffa8d7ae114","artist":{"id":12246,"name":"Taylor Swift","link":"https://www.deezer.com/artist/12246","picture":"https://api.deezer.com/artist/12246/image","picture_small":"https://cdn-images.dzcdn.net/images/artist/e528e270424103b527f8a27ac625563b/56x56-000000-80-0-0.jpg","picture_medium":"https://cdn-images.dzcdn.net/images/artist/e528e270424103b527f8a27ac625563b/250x250-000000-80-0-0.jpg","picture_big":"https://cdn-images.dzcdn.net/images/artist/e528e270424103b527f8a27ac625563b/500x500-000000-80-0-0.jpg","picture_xl":"https://cdn-images.dzcdn.net/images/artist/e528e270424103b527f8a27ac625563b/1000x1000-000000-80-0-0.jpg","tracklist":"https://api.deezer.com/artist/12246/top?limit=50","type":"artist"},"album":{"id":9007781,"title":"1989 (Deluxe)","cover":"https://api.deezer.com/album/9007781/image","cover_small":"https://cdn-images.dzcdn.net/images/cover/68b4e986958b17f05b062ffa8d7ae114/56x56-000000-80-0-0.jpg","cover_medium":"https://cdn-images.dzcdn.net/images/cover/68b4e986958b17f05b062ffa8d7ae114/250x250-000000-80-0-0.jpg","cover_big":"https://cdn-images.dzcdn.net/images/cover/68b4e986958b17f05b062ffa8d7ae114/500x500-000000-80-0-0.jpg","cover_xl":"https://cdn-images.dzcdn.net/images/cover/68b4e986958b17f05b062ffa8d7ae114/1000x1000-000000-80-0-0.jpg","md5_image":"68b4e986958b17f05b062ffa8d7ae114","tracklist":"https://api.deezer.com/album/9007781/tracks","type":"album"},"type":"track"}],"total":1}'
+  recorded_at: Sun, 29 Dec 2024 16:30:00 GMT
+recorded_with: VCR 6.3.1

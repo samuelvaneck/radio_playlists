@@ -13,12 +13,15 @@ module Deezer
       result = find_on_deezer
       return unless result&.valid_match?
 
-      @song.update(
+      # rubocop:disable Rails/SkipsModelValidations
+      # Use update_columns to bypass callbacks and prevent infinite loop
+      @song.update_columns(
         id_on_deezer: result.id,
         deezer_song_url: result.deezer_song_url,
         deezer_artwork_url: result.deezer_artwork_url,
         deezer_preview_url: result.deezer_preview_url
       )
+      # rubocop:enable Rails/SkipsModelValidations
     end
 
     private

@@ -19,12 +19,18 @@ VCR.configure do |config|
     # Replace Bearer tokens in Authorization headers
     interaction.request.headers['Authorization']&.first&.match(/Basic (.+)/)&.captures&.first
   end
+
+  # Remove Set-Cookie headers to prevent session tokens from being recorded
+  config.before_record do |interaction|
+    interaction.response.headers.delete('Set-Cookie')
+  end
 end
 
 RSpec.configure do |config|
   config.around(use_vcr: true) do |example|
     options = {}
     options[:match_requests_on] = [:host, :path]
+    options[:record] = :once
     path_data = [example.metadata[:description]]
     parent = example.example_group
     while parent != RSpec::ExampleGroups

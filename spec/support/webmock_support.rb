@@ -9,7 +9,10 @@ RSpec.configure do |config|
   end
 
   # Stub Deezer and iTunes APIs by default to prevent test failures from enrichment callbacks
-  config.before do
+  # Skip for tests using VCR or real_http as they handle their own HTTP stubbing
+  config.before do |example|
+    next if example.metadata[:use_vcr] || example.metadata[:real_http]
+
     # Stub Deezer API - returns empty error response
     stub_request(:get, /api\.deezer\.com/).to_return(
       status: 200,

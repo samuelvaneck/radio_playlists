@@ -13,12 +13,15 @@ module Itunes
       result = find_on_itunes
       return unless result&.valid_match?
 
-      @song.update(
+      # rubocop:disable Rails/SkipsModelValidations
+      # Use update_columns to bypass callbacks and prevent infinite loop
+      @song.update_columns(
         id_on_itunes: result.id,
         itunes_song_url: result.itunes_song_url,
         itunes_artwork_url: result.itunes_artwork_url,
         itunes_preview_url: result.itunes_preview_url
       )
+      # rubocop:enable Rails/SkipsModelValidations
     end
 
     private

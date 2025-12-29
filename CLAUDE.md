@@ -98,6 +98,31 @@ end
 
 VCR cassettes are stored in `spec/fixtures/vcr_cassettes/` and are automatically named based on the test description. Prefer VCR over mocking Faraday/HTTP responses directly when testing service objects that call external APIs.
 
+### Preventing Secrets in VCR Cassettes
+
+**IMPORTANT:** VCR cassettes can inadvertently contain sensitive data. Always review cassettes before committing.
+
+Common secrets to watch for:
+- `Set-Cookie` headers (session tokens, auth cookies like `_abck`, `bm_sz`)
+- `Authorization` headers (Bearer tokens, API keys)
+- Response body tokens (`access_token`, `track_token`, `refresh_token`)
+- API keys in query parameters or headers
+
+The VCR configuration in `spec/support/vcr.rb` filters Spotify tokens automatically. When adding new API integrations:
+
+1. **Add filters** for any sensitive data in `spec/support/vcr.rb`:
+```ruby
+config.filter_sensitive_data('<FILTERED>') { ENV['API_KEY'] }
+
+# Filter Set-Cookie headers
+config.before_record do |interaction|
+  interaction.response.headers.delete('Set-Cookie')
+end
+```
+
+2. **Review cassettes** before committing - check for tokens, cookies, and session data
+3. **Remove unnecessary headers** from recorded responses that aren't needed for tests
+
 For tests that need real HTTP requests (no mocking), use `:real_http`:
 ```ruby
 context 'with live API call', :real_http do
