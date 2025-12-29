@@ -35,7 +35,13 @@ class SongSerializer
              :id_on_youtube,
              :release_date,
              :release_date_precision,
-             :artists
+             :artists,
+             :deezer_song_url,
+             :deezer_artwork_url,
+             :deezer_preview_url,
+             :itunes_song_url,
+             :itunes_artwork_url,
+             :itunes_preview_url
 
   attribute :counter do |object|
     object.counter if object.respond_to?(:counter)

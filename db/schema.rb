@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_28_205453) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_29_094821) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -172,9 +172,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_28_205453) do
 
   create_table "songs", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
+    t.string "deezer_artwork_url"
+    t.string "deezer_preview_url"
+    t.string "deezer_song_url"
+    t.string "id_on_deezer"
+    t.string "id_on_itunes"
     t.string "id_on_spotify"
     t.string "id_on_youtube"
     t.string "isrc"
+    t.string "itunes_artwork_url"
+    t.string "itunes_preview_url"
+    t.string "itunes_song_url"
     t.date "release_date"
     t.string "release_date_precision"
     t.text "search_text"
@@ -183,6 +191,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_28_205453) do
     t.string "spotify_song_url"
     t.string "title"
     t.datetime "updated_at", precision: nil, null: false
+    t.index ["id_on_deezer"], name: "index_songs_on_id_on_deezer"
+    t.index ["id_on_itunes"], name: "index_songs_on_id_on_itunes"
     t.index ["release_date"], name: "index_songs_on_release_date"
     t.index ["search_text"], name: "index_songs_on_search_text"
   end

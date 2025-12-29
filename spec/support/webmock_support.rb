@@ -7,4 +7,21 @@ RSpec.configure do |config|
     example.run
     WebMock.disable!
   end
+
+  # Stub Deezer and iTunes APIs by default to prevent test failures from enrichment callbacks
+  config.before(:each) do
+    # Stub Deezer API - returns empty error response
+    stub_request(:get, /api\.deezer\.com/).to_return(
+      status: 200,
+      body: { error: { type: 'DataException', message: 'no data', code: 800 } }.to_json,
+      headers: { 'Content-Type' => 'application/json' }
+    )
+
+    # Stub iTunes API - returns empty results
+    stub_request(:get, /itunes\.apple\.com/).to_return(
+      status: 200,
+      body: { resultCount: 0, results: [] }.to_json,
+      headers: { 'Content-Type' => 'application/json' }
+    )
+  end
 end
