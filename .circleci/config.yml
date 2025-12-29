@@ -30,7 +30,8 @@
         - run: gem install bundler:2.4.10
 
         # Bundle install dependencies
-        - run: bundle install --path vendor/bundle
+        - run: bundle config set path 'vendor/bundle'
+        - run: bundle install
 
         # Cache Dependencies
         - type: cache-save
