@@ -20,6 +20,11 @@ VCR.configure do |config|
     interaction.request.headers['Authorization']&.first&.match(/Basic (.+)/)&.captures&.first
   end
 
+  config.filter_sensitive_data('<DEEZER_TRACK_TOKEN>') do |interaction|
+    # Replace Deezer track_token in JSON response bodies
+    interaction.response.body[/"track_token":"([^"]+)"/, 1]
+  end
+
   # Remove Set-Cookie headers to prevent session tokens from being recorded
   config.before_record do |interaction|
     interaction.response.headers.delete('Set-Cookie')
