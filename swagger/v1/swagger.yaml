@@ -1211,6 +1211,30 @@ components:
             id_on_youtube:
               type: string
               nullable: true
+            id_on_deezer:
+              type: string
+              nullable: true
+            deezer_song_url:
+              type: string
+              nullable: true
+            deezer_artwork_url:
+              type: string
+              nullable: true
+            deezer_preview_url:
+              type: string
+              nullable: true
+            id_on_itunes:
+              type: string
+              nullable: true
+            itunes_song_url:
+              type: string
+              nullable: true
+            itunes_artwork_url:
+              type: string
+              nullable: true
+            itunes_preview_url:
+              type: string
+              nullable: true
             release_date:
               type: string
               format: date
