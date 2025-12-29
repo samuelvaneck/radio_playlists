@@ -10,12 +10,14 @@ describe SongImporter do
     # which checks if a RadioStationSong association already exists
 
     context 'when song is not yet associated with radio station' do
-      it 'creates a new RadioStationSong record' do
+      it 'does not have an existing association' do
         expect(RadioStationSong.exists?(radio_station: radio_station, song: song)).to be false
+      end
 
-        expect {
+      it 'creates a new RadioStationSong record' do
+        expect do
           radio_station.songs << song
-        }.to change(RadioStationSong, :count).by(1)
+        end.to change(RadioStationSong, :count).by(1)
       end
 
       it 'associates the song with the radio station' do
@@ -31,11 +33,9 @@ describe SongImporter do
 
       it 'does not create a duplicate RadioStationSong record when using exists? check' do
         # This tests the optimized behavior
-        expect(RadioStationSong.exists?(radio_station: radio_station, song: song)).to be true
-
-        expect {
+        expect do
           radio_station.songs << song unless RadioStationSong.exists?(radio_station: radio_station, song: song)
-        }.not_to change(RadioStationSong, :count)
+        end.not_to change(RadioStationSong, :count)
       end
 
       it 'RadioStationSong.exists? returns true for existing association' do
@@ -59,9 +59,9 @@ describe SongImporter do
       end
 
       it 'can add song to other radio station' do
-        expect {
+        expect do
           other_radio_station.songs << song unless RadioStationSong.exists?(radio_station: other_radio_station, song: song)
-        }.to change(RadioStationSong, :count).by(1)
+        end.to change(RadioStationSong, :count).by(1)
       end
     end
 

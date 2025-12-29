@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 describe SongImporter::Matcher do
-  let(:radio_station) { create(:radio_station) }
-  let(:artist) { create(:artist, name: 'Test Artist') }
-  let(:song) { create(:song, title: 'Test Song', artists: [artist]) }
-
   subject(:matcher) do
     described_class.new(radio_station: radio_station, song: song)
   end
+
+  let(:radio_station) { create(:radio_station) }
+  let(:artist) { create(:artist, name: 'Test Artist') }
+  let(:song) { create(:song, title: 'Test Song', artists: [artist]) }
 
   describe '#matches_any_played_last_hour?' do
     context 'when no songs were played in the last hour' do
@@ -17,11 +17,8 @@ describe SongImporter::Matcher do
     end
 
     context 'when the same song was played in the last hour' do
-      let!(:recent_air_play) do
-        create(:air_play,
-               radio_station: radio_station,
-               song: song,
-               created_at: 30.minutes.ago)
+      before do
+        create(:air_play, radio_station: radio_station, song: song, created_at: 30.minutes.ago)
       end
 
       it 'returns true' do
@@ -31,11 +28,9 @@ describe SongImporter::Matcher do
 
     context 'when a similar song was played in the last hour' do
       let(:similar_song) { create(:song, title: 'Test Song', artists: [artist]) }
-      let!(:recent_air_play) do
-        create(:air_play,
-               radio_station: radio_station,
-               song: similar_song,
-               created_at: 30.minutes.ago)
+
+      before do
+        create(:air_play, radio_station: radio_station, song: similar_song, created_at: 30.minutes.ago)
       end
 
       it 'returns true for high similarity' do
@@ -46,11 +41,9 @@ describe SongImporter::Matcher do
     context 'when a completely different song was played in the last hour' do
       let(:different_artist) { create(:artist, name: 'Different Artist') }
       let(:different_song) { create(:song, title: 'Completely Different', artists: [different_artist]) }
-      let!(:recent_air_play) do
-        create(:air_play,
-               radio_station: radio_station,
-               song: different_song,
-               created_at: 30.minutes.ago)
+
+      before do
+        create(:air_play, radio_station: radio_station, song: different_song, created_at: 30.minutes.ago)
       end
 
       it 'returns false' do
@@ -59,11 +52,8 @@ describe SongImporter::Matcher do
     end
 
     context 'when songs were played more than an hour ago' do
-      let!(:old_air_play) do
-        create(:air_play,
-               radio_station: radio_station,
-               song: song,
-               created_at: 2.hours.ago)
+      before do
+        create(:air_play, radio_station: radio_station, song: song, created_at: 2.hours.ago)
       end
 
       it 'returns false' do
@@ -82,17 +72,18 @@ describe SongImporter::Matcher do
     context 'when songs were played in the last hour' do
       let(:different_artist) { create(:artist, name: 'Different Artist') }
       let(:different_song) { create(:song, title: 'Completely Different', artists: [different_artist]) }
-      let!(:recent_air_play) do
-        create(:air_play,
-               radio_station: radio_station,
-               song: different_song,
-               created_at: 30.minutes.ago)
+
+      before do
+        create(:air_play, radio_station: radio_station, song: different_song, created_at: 30.minutes.ago)
       end
 
       it 'returns an array of similarity scores' do
         scores = matcher.song_matches
         expect(scores).to be_an(Array)
-        expect(scores.first).to be_an(Integer)
+      end
+
+      it 'returns integer scores' do
+        expect(matcher.song_matches.first).to be_an(Integer)
       end
     end
   end
@@ -138,15 +129,12 @@ describe SongImporter::Matcher do
 
   describe 'performance optimization' do
     context 'when using map instead of find_each.map' do
-      let!(:recent_air_plays) do
-        5.times.map do |i|
+      before do
+        Array.new(5) do |i|
           different_artist = create(:artist, name: "Artist #{i}")
           different_song = create(:song, title: "Song #{i}", artists: [different_artist])
-          create(:air_play,
-                 radio_station: radio_station,
-                 song: different_song,
-                 created_at: (i + 1).minutes.ago,
-                 broadcasted_at: (i + 1).minutes.ago)
+          create(:air_play, radio_station: radio_station, song: different_song,
+                            created_at: (i + 1).minutes.ago, broadcasted_at: (i + 1).minutes.ago)
         end
       end
 
@@ -179,11 +167,9 @@ describe SongImporter::Matcher do
 
     context 'when comparing against song with empty search text' do
       let(:empty_search_song) { create(:song, title: '', artists: []) }
-      let!(:recent_air_play) do
-        create(:air_play,
-               radio_station: radio_station,
-               song: empty_search_song,
-               created_at: 30.minutes.ago)
+
+      before do
+        create(:air_play, radio_station: radio_station, song: empty_search_song, created_at: 30.minutes.ago)
       end
 
       it 'handles empty search text gracefully' do

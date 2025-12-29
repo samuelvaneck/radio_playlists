@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 describe SongImporter::RecognizerImporter do
+  subject(:recognizer_importer) do
+    described_class.new(radio_station: radio_station, artists: [artist], song: song)
+  end
+
   let(:radio_station) { create(:radio_station) }
   let(:artist) { create(:artist, name: 'Test Artist') }
   let(:song) { create(:song, title: 'Test Song', artists: [artist]) }
   let(:other_song) { create(:song, title: 'Other Song', artists: [artist]) }
-
-  subject(:recognizer_importer) do
-    described_class.new(radio_station: radio_station, artists: [artist], song: song)
-  end
 
   describe '#not_last_added_song' do
     context 'when no air plays exist (last_played_song is nil)' do
@@ -60,7 +60,8 @@ describe SongImporter::RecognizerImporter do
 
       before do
         # Use a completely different song to avoid any similarity match
-        air_play = create(:air_play, radio_station: radio_station, song: completely_different_song, broadcasted_at: 2.hours.ago, created_at: 2.hours.ago)
+        air_play = create(:air_play, radio_station: radio_station, song: completely_different_song, broadcasted_at: 2.hours.ago,
+                                     created_at: 2.hours.ago)
         radio_station.update(last_added_air_play_ids: [air_play.id])
       end
 
@@ -103,12 +104,13 @@ describe SongImporter::RecognizerImporter do
 
   describe '#broadcast_error_message' do
     it 'broadcasts the error message' do
-      expect(Broadcaster).to receive(:last_song).with(
+      allow(Broadcaster).to receive(:last_song)
+      recognizer_importer.broadcast_error_message
+      expect(Broadcaster).to have_received(:last_song).with(
         title: song.title,
         artists_names: artist.name,
         radio_station_name: radio_station.name
       )
-      recognizer_importer.broadcast_error_message
     end
   end
 end

@@ -242,6 +242,7 @@ describe Song do
       end
     end
 
+    # rubocop:disable RSpec/MultipleMemoizedHelpers
     context 'when song has multiple artists' do
       let(:artist2) { create(:artist, name: 'Second Artist') }
       let(:song_with_multiple_artists) { create(:song, title: 'Collab Song', artists: [artist, artist2]) }
@@ -252,13 +253,16 @@ describe Song do
         expect(result).to include(song_with_multiple_artists, partial_match_song)
       end
     end
+    # rubocop:enable RSpec/MultipleMemoizedHelpers
 
     context 'when artists are preloaded' do
       before { song.artists.load }
 
-      it 'uses loaded artists instead of querying' do
-        # When artists are loaded, we should use map instead of pluck
+      it 'confirms artists are loaded' do
         expect(song.artists.loaded?).to be true
+      end
+
+      it 'finds same songs using loaded artists' do
         result = song.find_same_songs
         expect(result).to contain_exactly(song)
       end
@@ -363,19 +367,20 @@ describe Song do
     end
   end
 
+  # rubocop:disable RSpec/MultipleMemoizedHelpers
   describe 'cleanup_radio_station_songs' do
     let(:artist) { create(:artist, name: 'Cleanup Artist') }
     let(:song) { create(:song, title: 'Cleanup Song', artists: [artist]) }
     let(:duplicate_song) { create(:song, title: 'Cleanup Song', artists: [artist]) }
-    let(:radio_station1) { create(:radio_station) }
-    let(:radio_station2) { create(:radio_station) }
+    let(:primary_station) { create(:radio_station) }
+    let(:secondary_station) { create(:radio_station) }
 
     context 'when cleaning up songs across multiple radio stations' do
       before do
         # The air_play factory callback automatically creates RadioStationSong records
-        create(:air_play, song: song, radio_station: radio_station1, broadcasted_at: 2.days.ago)
-        create(:air_play, song: song, radio_station: radio_station2, broadcasted_at: 1.day.ago)
-        create(:air_play, song: duplicate_song, radio_station: radio_station1, broadcasted_at: 3.days.ago)
+        create(:air_play, song: song, radio_station: primary_station, broadcasted_at: 2.days.ago)
+        create(:air_play, song: song, radio_station: secondary_station, broadcasted_at: 1.day.ago)
+        create(:air_play, song: duplicate_song, radio_station: primary_station, broadcasted_at: 3.days.ago)
       end
 
       it 'removes RadioStationSong records for obsolete songs' do
@@ -393,8 +398,8 @@ describe Song do
       it 'updates first_broadcasted_at to the earliest broadcast' do
         song.find_and_remove_obsolete_song
 
-        rss = RadioStationSong.find_by(song: song, radio_station: radio_station1)
-        # The earliest broadcast for song on radio_station1 is 3.days.ago (from duplicate_song's air_play)
+        rss = RadioStationSong.find_by(song: song, radio_station: primary_station)
+        # The earliest broadcast for song on primary_station is 3.days.ago (from duplicate_song's air_play)
         expect(rss.first_broadcasted_at).to be <= 2.days.ago
       end
     end
@@ -405,6 +410,7 @@ describe Song do
       end
     end
   end
+  # rubocop:enable RSpec/MultipleMemoizedHelpers
 
   describe 'after_commit :update_youtube_from_wikipedia callback' do
     let(:artist) { create(:artist, name: 'Adele') }

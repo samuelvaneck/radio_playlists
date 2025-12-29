@@ -88,7 +88,7 @@ describe RadioStation, :use_vcr, :with_valid_token do
 
     context 'when last_added_air_play_ids contains invalid IDs' do
       before do
-        radio_station.update(last_added_air_play_ids: [999999])
+        radio_station.update(last_added_air_play_ids: [999_999])
       end
 
       it 'returns nil' do
@@ -101,8 +101,11 @@ describe RadioStation, :use_vcr, :with_valid_token do
     let(:artist) { create(:artist) }
     let(:song_recent) { create(:song, artists: [artist]) }
     let(:song_old) { create(:song, artists: [artist]) }
-    let!(:recent_air_play) { create(:air_play, radio_station: radio_station, song: song_recent, created_at: 30.minutes.ago) }
-    let!(:old_air_play) { create(:air_play, radio_station: radio_station, song: song_old, created_at: 2.hours.ago) }
+
+    before do
+      create(:air_play, radio_station: radio_station, song: song_recent, created_at: 30.minutes.ago)
+      create(:air_play, radio_station: radio_station, song: song_old, created_at: 2.hours.ago)
+    end
 
     it 'returns songs played within the last hour' do
       expect(radio_station.songs_played_last_hour).to include(song_recent)
@@ -126,7 +129,10 @@ describe RadioStation, :use_vcr, :with_valid_token do
     end
 
     context 'when the same song is played multiple times' do
-      let!(:another_recent_air_play) { create(:air_play, radio_station: radio_station, song: song_recent, created_at: 15.minutes.ago, broadcasted_at: 15.minutes.ago) }
+      before do
+        create(:air_play, radio_station: radio_station, song: song_recent,
+                          created_at: 15.minutes.ago, broadcasted_at: 15.minutes.ago)
+      end
 
       it 'returns distinct songs' do
         songs = radio_station.songs_played_last_hour.to_a
