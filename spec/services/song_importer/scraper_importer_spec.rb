@@ -73,8 +73,9 @@ describe SongImporter::ScraperImporter do
                           scraper_import: true, broadcasted_at: 30.minutes.ago)
       end
 
-      it 'returns true (same song is allowed for scraper imports)' do
-        # NOTE: ScraperImporter uses == comparison, which is inverted from RecognizerImporter
+      it 'returns true when the song IS the last added scraper song (inverted semantics)' do
+        # NOTE: ScraperImporter#not_last_added_song returns true when current song == last_added_scraper_song,
+        #       which is inverted from RecognizerImporter (where true means a different song for deduplication).
         expect(scraper_importer.send(:not_last_added_song)).to be true
       end
     end
@@ -104,7 +105,7 @@ describe SongImporter::ScraperImporter do
                           broadcasted_at: 30.minutes.ago, created_at: 30.minutes.ago)
       end
 
-      it 'returns false because same song was played recently (matches exist)' do
+      it 'returns false because not_last_added_song is true and recent matches exist' do
         expect(scraper_importer.may_import_song?).to be false
       end
     end
