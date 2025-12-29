@@ -118,7 +118,7 @@ class SongImporter
     added_air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import)
     @radio_station.update_last_added_air_play_ids(added_air_play.id)
     song.update_artists(artists) if different_artists?
-    @radio_station.songs << song if @radio_station.songs.exclude?(song)
+    @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song: song)
 
     RadioStationClassifierJob.perform_async(song.id_on_spotify, @radio_station.id)
     Broadcaster.song_added(title: song.title, song_id: song.id, artists_names:, artist_ids: artists_ids_to_s, radio_station_name: @radio_station.name)

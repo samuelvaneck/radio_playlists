@@ -69,9 +69,14 @@ class AirPlay < ApplicationRecord
   private
 
   def today_unique_air_play_item
-    exisiting_record = AirPlay.joins(:song, :radio_station)
-                              .where('broadcasted_at = ? AND radio_stations.id = ?', broadcasted_at, radio_station_id)
-                              .present?
-    errors.add(:base, 'none unique air play') if exisiting_record
+    scope = AirPlay.where(
+      radio_station_id: radio_station_id,
+      song_id: song_id,
+      broadcasted_at: broadcasted_at
+    )
+    # Exclude current record when updating
+    scope = scope.where.not(id: id) if persisted?
+
+    errors.add(:base, 'none unique air play') if scope.exists?
   end
 end

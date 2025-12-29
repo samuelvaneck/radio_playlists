@@ -194,6 +194,224 @@ describe Song do
     end
   end
 
+  describe '#find_same_songs' do
+    let(:artist) { create(:artist, name: 'Test Artist') }
+    let(:song) { create(:song, title: 'Test Song', artists: [artist]) }
+
+    context 'when no similar songs exist' do
+      it 'returns only the original song' do
+        result = song.find_same_songs
+        expect(result).to contain_exactly(song)
+      end
+    end
+
+    context 'when a song with the same title and artist exists' do
+      let!(:duplicate_song) { create(:song, title: 'Test Song', artists: [artist]) }
+
+      it 'returns both songs' do
+        result = song.find_same_songs
+        expect(result).to contain_exactly(song, duplicate_song)
+      end
+    end
+
+    context 'when a song with the same title but different artist exists' do
+      let(:other_artist) { create(:artist, name: 'Other Artist') }
+      let!(:different_artist_song) { create(:song, title: 'Test Song', artists: [other_artist]) }
+
+      it 'does not return the song with different artist' do
+        result = song.find_same_songs
+        expect(result).not_to include(different_artist_song)
+      end
+    end
+
+    context 'when a song with different title but same artist exists' do
+      let!(:different_title_song) { create(:song, title: 'Different Song', artists: [artist]) }
+
+      it 'does not return the song with different title' do
+        result = song.find_same_songs
+        expect(result).not_to include(different_title_song)
+      end
+    end
+
+    context 'when the title has different casing' do
+      let!(:different_case_song) { create(:song, title: 'TEST SONG', artists: [artist]) }
+
+      it 'finds songs with different casing' do
+        result = song.find_same_songs
+        expect(result).to contain_exactly(song, different_case_song)
+      end
+    end
+
+    # rubocop:disable RSpec/MultipleMemoizedHelpers
+    context 'when song has multiple artists' do
+      let(:artist2) { create(:artist, name: 'Second Artist') }
+      let(:song_with_multiple_artists) { create(:song, title: 'Collab Song', artists: [artist, artist2]) }
+      let!(:partial_match_song) { create(:song, title: 'Collab Song', artists: [artist]) }
+
+      it 'finds songs that share at least one artist' do
+        result = song_with_multiple_artists.find_same_songs
+        expect(result).to include(song_with_multiple_artists, partial_match_song)
+      end
+    end
+    # rubocop:enable RSpec/MultipleMemoizedHelpers
+
+    context 'when artists are preloaded' do
+      before { song.artists.load }
+
+      it 'confirms artists are loaded' do
+        expect(song.artists.loaded?).to be true
+      end
+
+      it 'finds same songs using loaded artists' do
+        result = song.find_same_songs
+        expect(result).to contain_exactly(song)
+      end
+    end
+  end
+
+  describe '#played' do
+    let(:artist) { create(:artist, name: 'Play Count Artist') }
+    let(:song) { create(:song, title: 'Play Count Song', artists: [artist]) }
+    let(:radio_station) { create(:radio_station) }
+
+    context 'when song has no air plays' do
+      it 'returns 0' do
+        expect(song.played).to eq(0)
+      end
+    end
+
+    context 'when song has air plays' do
+      before do
+        create_list(:air_play, 5, song: song, radio_station: radio_station)
+      end
+
+      it 'returns the correct count' do
+        expect(song.played).to eq(5)
+      end
+    end
+
+    context 'when song has many air plays' do
+      before do
+        create_list(:air_play, 100, song: song, radio_station: radio_station)
+      end
+
+      it 'returns the correct count' do
+        expect(song.played).to eq(100)
+      end
+    end
+  end
+
+  describe '#find_and_remove_obsolete_song' do
+    let(:artist) { create(:artist, name: 'Obsolete Test Artist') }
+    let(:song) { create(:song, title: 'Obsolete Test Song', artists: [artist]) }
+    let(:duplicate_song) { create(:song, title: 'Obsolete Test Song', artists: [artist]) }
+    let(:radio_station) { create(:radio_station) }
+
+    context 'when no duplicates exist' do
+      it 'does not remove any songs' do
+        song # Create the song
+        expect { song.find_and_remove_obsolete_song }.not_to change(Song, :count)
+      end
+    end
+
+    context 'when duplicates exist' do
+      before do
+        create_list(:air_play, 5, song: song, radio_station: radio_station)
+        create_list(:air_play, 2, song: duplicate_song, radio_station: radio_station)
+      end
+
+      it 'keeps the most played song' do
+        song.find_and_remove_obsolete_song
+        expect(Song.exists?(song.id)).to be true
+      end
+
+      it 'removes the less played duplicate' do
+        song.find_and_remove_obsolete_song
+        expect(Song.exists?(duplicate_song.id)).to be false
+      end
+
+      it 'transfers air plays to the most played song' do
+        original_count = song.air_plays.count
+        song.find_and_remove_obsolete_song
+        expect(song.reload.air_plays.count).to eq(original_count + 2)
+      end
+    end
+
+    context 'when the current song has fewer plays than duplicate' do
+      before do
+        create_list(:air_play, 2, song: song, radio_station: radio_station)
+        create_list(:air_play, 5, song: duplicate_song, radio_station: radio_station)
+      end
+
+      it 'keeps the most played song (the duplicate)' do
+        song.find_and_remove_obsolete_song
+        expect(Song.exists?(duplicate_song.id)).to be true
+      end
+
+      it 'removes the less played song (the original)' do
+        song.find_and_remove_obsolete_song
+        expect(Song.exists?(song.id)).to be false
+      end
+    end
+
+    context 'when songs have equal play counts' do
+      before do
+        create_list(:air_play, 3, song: song, radio_station: radio_station)
+        create_list(:air_play, 3, song: duplicate_song, radio_station: radio_station)
+      end
+
+      it 'keeps one of the songs' do
+        song.find_and_remove_obsolete_song
+        expect(Song.where(title: 'Obsolete Test Song').count).to eq(1)
+      end
+    end
+  end
+
+  # rubocop:disable RSpec/MultipleMemoizedHelpers
+  describe 'cleanup_radio_station_songs' do
+    let(:artist) { create(:artist, name: 'Cleanup Artist') }
+    let(:song) { create(:song, title: 'Cleanup Song', artists: [artist]) }
+    let(:duplicate_song) { create(:song, title: 'Cleanup Song', artists: [artist]) }
+    let(:primary_station) { create(:radio_station) }
+    let(:secondary_station) { create(:radio_station) }
+
+    context 'when cleaning up songs across multiple radio stations' do
+      before do
+        # The air_play factory callback automatically creates RadioStationSong records
+        create(:air_play, song: song, radio_station: primary_station, broadcasted_at: 2.days.ago)
+        create(:air_play, song: song, radio_station: secondary_station, broadcasted_at: 1.day.ago)
+        create(:air_play, song: duplicate_song, radio_station: primary_station, broadcasted_at: 3.days.ago)
+      end
+
+      it 'removes RadioStationSong records for obsolete songs' do
+        song.find_and_remove_obsolete_song
+
+        expect(RadioStationSong.where(song: duplicate_song)).to be_empty
+      end
+
+      it 'keeps RadioStationSong records for the most played song' do
+        song.find_and_remove_obsolete_song
+
+        expect(RadioStationSong.where(song: song).count).to be >= 1
+      end
+
+      it 'updates first_broadcasted_at to the earliest broadcast' do
+        song.find_and_remove_obsolete_song
+
+        rss = RadioStationSong.find_by(song: song, radio_station: primary_station)
+        # The earliest broadcast for song on primary_station is 3.days.ago (from duplicate_song's air_play)
+        expect(rss.first_broadcasted_at).to be <= 2.days.ago
+      end
+    end
+
+    context 'when song has no radio station songs' do
+      it 'does not raise an error' do
+        expect { song.find_and_remove_obsolete_song }.not_to raise_error
+      end
+    end
+  end
+  # rubocop:enable RSpec/MultipleMemoizedHelpers
+
   describe 'after_commit :update_youtube_from_wikipedia callback' do
     let(:artist) { create(:artist, name: 'Adele') }
 

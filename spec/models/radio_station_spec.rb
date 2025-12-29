@@ -49,6 +49,98 @@ describe RadioStation, :use_vcr, :with_valid_token do
     end
   end
 
+  describe '#last_played_song' do
+    context 'when no air plays exist' do
+      it 'returns nil' do
+        expect(radio_station.last_played_song).to be_nil
+      end
+    end
+
+    context 'when air plays exist in last_added_air_play_ids' do
+      before do
+        radio_station.update(last_added_air_play_ids: [air_play_1_minute_ago.id])
+      end
+
+      it 'returns the song from the most recent air play' do
+        expect(radio_station.last_played_song).to eq(air_play_1_minute_ago.song)
+      end
+    end
+
+    context 'when multiple air plays exist in last_added_air_play_ids' do
+      before do
+        radio_station.update(last_added_air_play_ids: [air_play_4_hours_ago.id, air_play_1_minute_ago.id])
+      end
+
+      it 'returns the song from the most recently created air play' do
+        expect(radio_station.last_played_song).to eq(air_play_1_minute_ago.song)
+      end
+    end
+
+    context 'when last_added_air_play_ids is empty' do
+      before do
+        radio_station.update(last_added_air_play_ids: [])
+      end
+
+      it 'returns nil' do
+        expect(radio_station.last_played_song).to be_nil
+      end
+    end
+
+    context 'when last_added_air_play_ids contains invalid IDs' do
+      before do
+        radio_station.update(last_added_air_play_ids: [999_999])
+      end
+
+      it 'returns nil' do
+        expect(radio_station.last_played_song).to be_nil
+      end
+    end
+  end
+
+  describe '#songs_played_last_hour' do
+    let(:artist) { create(:artist) }
+    let(:song_recent) { create(:song, artists: [artist]) }
+    let(:song_old) { create(:song, artists: [artist]) }
+
+    before do
+      create(:air_play, radio_station: radio_station, song: song_recent, created_at: 30.minutes.ago)
+      create(:air_play, radio_station: radio_station, song: song_old, created_at: 2.hours.ago)
+    end
+
+    it 'returns songs played within the last hour' do
+      expect(radio_station.songs_played_last_hour).to include(song_recent)
+    end
+
+    it 'does not return songs played more than an hour ago' do
+      expect(radio_station.songs_played_last_hour).not_to include(song_old)
+    end
+
+    it 'eager loads artists' do
+      songs = radio_station.songs_played_last_hour.to_a
+      expect(songs.first.association(:artists)).to be_loaded
+    end
+
+    context 'when no songs played in the last hour' do
+      let(:radio_station_empty) { create(:radio_station) }
+
+      it 'returns empty relation' do
+        expect(radio_station_empty.songs_played_last_hour).to be_empty
+      end
+    end
+
+    context 'when the same song is played multiple times' do
+      before do
+        create(:air_play, radio_station: radio_station, song: song_recent,
+                          created_at: 15.minutes.ago, broadcasted_at: 15.minutes.ago)
+      end
+
+      it 'returns distinct songs' do
+        songs = radio_station.songs_played_last_hour.to_a
+        expect(songs.count(song_recent)).to eq(1)
+      end
+    end
+  end
+
   describe '#npo_api_processor' do
     let(:radio_1) { described_class.find_by(name: 'Radio 1') || create(:radio_1) }
 

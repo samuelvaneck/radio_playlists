@@ -121,7 +121,8 @@ class Song < ApplicationRecord
   end
 
   def find_same_songs
-    artist_ids = artists.pluck(:id)
+    # Use map instead of pluck when artists are already loaded to avoid extra query
+    artist_ids = artists.loaded? ? artists.map(&:id) : artists.pluck(:id)
     Song.joins(:artists).where(artists: { id: artist_ids }).where('lower(title) = ?', title&.downcase)
   end
 
