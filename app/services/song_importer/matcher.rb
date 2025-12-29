@@ -8,11 +8,15 @@ class SongImporter::Matcher < SongImporter
   end
 
   def matches_any_played_last_hour?
-    song_matches.any? { |n| n > 80 }
+    # Use any? with early exit for better performance
+    @radio_station.songs_played_last_hour.any? do |played_song|
+      song_match(played_song) > 80
+    end
   end
 
   def song_matches
-    @radio_station.songs_played_last_hour.find_each.map do |played_song|
+    # Use map directly instead of find_each.map (find_each is for batch processing large datasets)
+    @radio_station.songs_played_last_hour.map do |played_song|
       song_match(played_song)
     end
   end

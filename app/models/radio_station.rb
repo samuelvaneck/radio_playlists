@@ -104,7 +104,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def last_played_song
-    last_added_air_plays.first&.song
+    last_added_air_plays.includes(:song).first&.song
   end
 
   def last_added_air_plays

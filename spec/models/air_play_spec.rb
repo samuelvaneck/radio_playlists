@@ -85,6 +85,58 @@ describe AirPlay do
         expect(new_air_play_item.valid?).to be true
       end
     end
+
+    context 'with same broadcasted_at and radio_station but different song' do
+      it 'passes validation (different songs can play at same time on same station)' do
+        different_song = create(:song)
+        new_air_play_item = described_class.new(
+          broadcasted_at: air_play_one.broadcasted_at,
+          song: different_song,
+          radio_station: air_play_one.radio_station
+        )
+
+        expect(new_air_play_item.valid?).to be true
+      end
+    end
+
+    context 'with same song and broadcasted_at but different radio_station' do
+      it 'passes validation' do
+        different_station = create(:radio_station)
+        new_air_play_item = described_class.new(
+          broadcasted_at: air_play_one.broadcasted_at,
+          song: air_play_one.song,
+          radio_station: different_station
+        )
+
+        expect(new_air_play_item.valid?).to be true
+      end
+    end
+
+    context 'with same song and radio_station but different broadcasted_at' do
+      it 'passes validation' do
+        new_air_play_item = described_class.new(
+          broadcasted_at: air_play_one.broadcasted_at + 1.hour,
+          song: air_play_one.song,
+          radio_station: air_play_one.radio_station
+        )
+
+        expect(new_air_play_item.valid?).to be true
+      end
+    end
+
+    context 'when checking uniqueness on a new record' do
+      it 'validates correctly without existing records' do
+        new_air_play = build(:air_play)
+        expect(new_air_play.valid?).to be true
+      end
+    end
+
+    context 'when updating an existing record' do
+      it 'allows saving the same record without validation error' do
+        air_play_one.scraper_import = true
+        expect(air_play_one.valid?).to be true
+      end
+    end
   end
 
   describe '#deduplicate' do
