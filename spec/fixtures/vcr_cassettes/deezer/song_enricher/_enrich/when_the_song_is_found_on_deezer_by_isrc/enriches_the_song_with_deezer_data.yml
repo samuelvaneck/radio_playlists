@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.deezer.com/2.0/track/isrc:USCJY1431349
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache
+      Access-Control-Allow-Headers:
+      - X-Requested-With, Content-Type, Authorization, Origin, Accept, Accept-Encoding
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, DELETE, PUT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Location
+      Access-Control-Max-Age:
+      - '86400'
+      P3p:
+      - policyref="/w3c/p3p.xml" CP="IDC DSP COR CURa ADMa OUR IND PHY ONL COM STA"
+      X-Host:
+      - blm-web-131
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 29 Dec 2025 16:36:04 GMT
+      Content-Length:
+      - '5008'
+      Connection:
+      - keep-alive
+      X-Org:
+      - FR
+    body:
+      encoding: UTF-8
+      string: '{"id":89077529,"readable":true,"title":"Shake It Off","title_short":"Shake
+        It Off","title_version":"","isrc":"USCJY1431349","link":"https:\/\/www.deezer.com\/track\/89077529","share":"https:\/\/www.deezer.com\/track\/89077529?utm_source=deezer&utm_content=track-89077529&utm_term=0_1767026164&utm_medium=web","duration":219,"track_position":6,"disk_number":1,"rank":504790,"release_date":"2014-10-27","explicit_lyrics":false,"explicit_content_lyrics":0,"explicit_content_cover":0,"preview":"https:\/\/cdnt-preview.dzcdn.net\/api\/1\/1\/1\/7\/5\/0\/175fc724a7c8ee37127d1707d1aa075c.mp3?hdnea=exp=1767027064~acl=\/api\/1\/1\/1\/7\/5\/0\/175fc724a7c8ee37127d1707d1aa075c.mp3*~data=user_id=0,application_id=42~hmac=8017eb8124ad2c3500b6baf18426429a366fa9092c0f30b1601c29db272e2f1a","bpm":160.25,"gain":-8.6,"available_countries":["AE","AF","AG","AI","AL","AM","AO","AQ","AR","AS","AT","AU","AZ","BA","BB","BD","BE","BF","BG","BH","BI","BJ","BN","BO","BQ","BR","BT","BV","BW","CC","CD","CF","CG","CH","CI","CK","CL","CM","CO","CR","CU","CV","CW","CX","CY","CZ","DE","DJ","DK","DM","DO","DZ","EC","EE","EG","EH","ER","ES","ET","FI","FJ","FK","FM","FR","GA","GB","GD","GE","GH","GM","GN","GQ","GR","GS","GT","GU","GW","HK","HM","HN","HR","HU","ID","IE","IL","IN","IQ","IR","IS","IT","JM","JO","KE","KG","KH","KI","KM","KN","KP","KR","KW","KY","KZ","LA","LB","LC","LK","LR","LS","LT","LU","LV","LY","MA","MD","ME","MG","MH","MK","ML","MM","MN","MP","MR","MS","MT","MU","MV","MW","MX","MY","MZ","NA","NE","NF","NG","NI","NL","NO","NP","NR","NU","NZ","OM","PA","PE","PG","PH","PK","PL","PN","PS","PT","PW","PY","QA","RO","RS","RW","SA","SB","SC","SD","SE","SG","SI","SJ","SK","SL","SN","SO","ST","SV","SX","SY","SZ","TC","TD","TG","TH","TJ","TK","TL","TM","TN","TO","TR","TV","TZ","UA","UG","UY","UZ","VC","VE","VG","VI","VN","VU","WS","YE","ZA","ZM","ZW"],"contributors":[{"id":12246,"name":"Taylor
+        Swift","link":"https:\/\/www.deezer.com\/artist\/12246","share":"https:\/\/www.deezer.com\/artist\/12246?utm_source=deezer&utm_content=artist-12246&utm_term=0_1767026164&utm_medium=web","picture":"https:\/\/api.deezer.com\/2.0\/artist\/12246\/image","picture_small":"https:\/\/cdn-images.dzcdn.net\/images\/artist\/e528e270424103b527f8a27ac625563b\/56x56-000000-80-0-0.jpg","picture_medium":"https:\/\/cdn-images.dzcdn.net\/images\/artist\/e528e270424103b527f8a27ac625563b\/250x250-000000-80-0-0.jpg","picture_big":"https:\/\/cdn-images.dzcdn.net\/images\/artist\/e528e270424103b527f8a27ac625563b\/500x500-000000-80-0-0.jpg","picture_xl":"https:\/\/cdn-images.dzcdn.net\/images\/artist\/e528e270424103b527f8a27ac625563b\/1000x1000-000000-80-0-0.jpg","radio":true,"tracklist":"https:\/\/api.deezer.com\/2.0\/artist\/12246\/top?limit=50","type":"artist","role":"Main"}],"md5_image":"8c39b232a5edecdf5fffc14f551fa42b","track_token":"<FILTERED>","artist":{"id":12246,"name":"Taylor
+        Swift","link":"https:\/\/www.deezer.com\/artist\/12246","share":"https:\/\/www.deezer.com\/artist\/12246?utm_source=deezer&utm_content=artist-12246&utm_term=0_1767026164&utm_medium=web","picture":"https:\/\/api.deezer.com\/2.0\/artist\/12246\/image","picture_small":"https:\/\/cdn-images.dzcdn.net\/images\/artist\/e528e270424103b527f8a27ac625563b\/56x56-000000-80-0-0.jpg","picture_medium":"https:\/\/cdn-images.dzcdn.net\/images\/artist\/e528e270424103b527f8a27ac625563b\/250x250-000000-80-0-0.jpg","picture_big":"https:\/\/cdn-images.dzcdn.net\/images\/artist\/e528e270424103b527f8a27ac625563b\/500x500-000000-80-0-0.jpg","picture_xl":"https:\/\/cdn-images.dzcdn.net\/images\/artist\/e528e270424103b527f8a27ac625563b\/1000x1000-000000-80-0-0.jpg","radio":true,"tracklist":"https:\/\/api.deezer.com\/2.0\/artist\/12246\/top?limit=50","type":"artist"},"album":{"id":9007779,"title":"1989","link":"https:\/\/www.deezer.com\/album\/9007779","cover":"https:\/\/api.deezer.com\/2.0\/album\/9007779\/image","cover_small":"https:\/\/cdn-images.dzcdn.net\/images\/cover\/8c39b232a5edecdf5fffc14f551fa42b\/56x56-000000-80-0-0.jpg","cover_medium":"https:\/\/cdn-images.dzcdn.net\/images\/cover\/8c39b232a5edecdf5fffc14f551fa42b\/250x250-000000-80-0-0.jpg","cover_big":"https:\/\/cdn-images.dzcdn.net\/images\/cover\/8c39b232a5edecdf5fffc14f551fa42b\/500x500-000000-80-0-0.jpg","cover_xl":"https:\/\/cdn-images.dzcdn.net\/images\/cover\/8c39b232a5edecdf5fffc14f551fa42b\/1000x1000-000000-80-0-0.jpg","md5_image":"8c39b232a5edecdf5fffc14f551fa42b","release_date":"2014-10-27","tracklist":"https:\/\/api.deezer.com\/2.0\/album\/9007779\/tracks","type":"album"},"type":"track"}'
+  recorded_at: Mon, 29 Dec 2025 16:36:04 GMT
+recorded_with: VCR 6.4.0

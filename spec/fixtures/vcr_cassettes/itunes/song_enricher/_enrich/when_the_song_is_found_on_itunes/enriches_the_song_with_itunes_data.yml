@@ -1,0 +1,27 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://itunes.apple.com/search?term=Taylor%20Swift%20Shake%20It%20Off&media=music&entity=song&country=nl&limit=25
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.12.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/javascript; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"resultCount":21,"results":[{"wrapperType":"track","kind":"song","artistId":159260351,"collectionId":1445888258,"trackId":1445888394,"artistName":"Taylor Swift","collectionName":"1989","trackName":"Shake It Off","collectionCensoredName":"1989","trackCensoredName":"Shake It Off","artistViewUrl":"https://music.apple.com/nl/artist/taylor-swift/159260351?uo=4","collectionViewUrl":"https://music.apple.com/nl/album/shake-it-off/1445888258?i=1445888394&uo=4","trackViewUrl":"https://music.apple.com/nl/album/shake-it-off/1445888258?i=1445888394&uo=4","previewUrl":"https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/82/9a/55/829a551a-461c-f1d8-818d-ddedb090791d/mzaf_3170634596127872695.plus.aac.p.m4a","artworkUrl30":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/32/1d/8e/321d8e9e-d806-b545-fd30-5c7aef575abc/14UMGIM34829.rgb.jpg/30x30bb.jpg","artworkUrl60":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/32/1d/8e/321d8e9e-d806-b545-fd30-5c7aef575abc/14UMGIM34829.rgb.jpg/60x60bb.jpg","artworkUrl100":"https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/32/1d/8e/321d8e9e-d806-b545-fd30-5c7aef575abc/14UMGIM34829.rgb.jpg/100x100bb.jpg","collectionPrice":8.99,"trackPrice":1.29,"releaseDate":"2014-08-18T12:00:00Z","collectionExplicitness":"notExplicit","trackExplicitness":"notExplicit","discCount":1,"discNumber":1,"trackCount":13,"trackNumber":6,"trackTimeMillis":219209,"country":"NLD","currency":"EUR","primaryGenreName":"Pop","isStreamable":true}]}'
+  recorded_at: Sun, 29 Dec 2024 16:30:00 GMT
+recorded_with: VCR 6.3.1

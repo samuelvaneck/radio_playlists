@@ -142,6 +142,7 @@ class SongImporter
     @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song: song)
 
     RadioStationClassifierJob.perform_async(song.id_on_spotify, @radio_station.id)
+    SongExternalIdsEnrichmentJob.perform_async(song.id)
     Broadcaster.song_added(title: song.title, song_id: song.id, artists_names:, artist_ids: artists_ids_to_s, radio_station_name: @radio_station.name)
   end
 
