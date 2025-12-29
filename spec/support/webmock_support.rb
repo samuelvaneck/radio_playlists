@@ -9,7 +9,7 @@ RSpec.configure do |config|
   end
 
   # Stub Deezer and iTunes APIs by default to prevent test failures from enrichment callbacks
-  config.before(:each) do
+  config.before do
     # Stub Deezer API - returns empty error response
     stub_request(:get, /api\.deezer\.com/).to_return(
       status: 200,
