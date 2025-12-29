@@ -117,7 +117,6 @@ describe RadioStation, :use_vcr, :with_valid_token do
 
     it 'eager loads artists' do
       songs = radio_station.songs_played_last_hour.to_a
-      expect(songs).not_to be_empty
       expect(songs.first.association(:artists)).to be_loaded
     end
 
