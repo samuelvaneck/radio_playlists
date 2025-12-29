@@ -3,7 +3,7 @@
 class TrackExtractor::SongExtractor < TrackExtractor
   def extract
     @song = find_or_create_song
-    maybe_update_preview_url(@song)
+    maybe_update_preview_urls(@song)
     maybe_update_release_date(@song)
     @song
   end
@@ -21,10 +21,15 @@ class TrackExtractor::SongExtractor < TrackExtractor
     nil
   end
 
-  def maybe_update_preview_url(song)
-    return unless song.spotify_preview_url.blank? && spotify_preview_url.present?
+  def maybe_update_preview_urls(song)
+    return if song.blank?
 
-    song.update(spotify_preview_url:)
+    updates = {}
+    updates[:spotify_preview_url] = spotify_preview_url if song.spotify_preview_url.blank? && spotify_preview_url.present?
+    updates[:deezer_preview_url] = deezer_preview_url if song.deezer_preview_url.blank? && deezer_preview_url.present?
+    updates[:itunes_preview_url] = itunes_preview_url if song.itunes_preview_url.blank? && itunes_preview_url.present?
+
+    song.update(updates) if updates.present?
   end
 
   def maybe_update_release_date(song)
@@ -57,7 +62,10 @@ class TrackExtractor::SongExtractor < TrackExtractor
   end
 
   def find_by_track
-    @find_by_track ||= Song.find_by(id_on_spotify:).presence || Song.find_by(isrc:).presence
+    @find_by_track ||= Song.find_by(id_on_spotify:).presence ||
+                       Song.find_by(id_on_deezer:).presence ||
+                       Song.find_by(id_on_itunes:).presence ||
+                       Song.find_by(isrc:).presence
   end
 
   def title
@@ -65,6 +73,20 @@ class TrackExtractor::SongExtractor < TrackExtractor
   end
 
   def id_on_spotify
+    return nil unless @track.respond_to?(:spotify_song_url)
+
+    @track&.id
+  end
+
+  def id_on_deezer
+    return nil unless @track.respond_to?(:deezer_song_url)
+
+    @track&.id
+  end
+
+  def id_on_itunes
+    return nil unless @track.respond_to?(:itunes_song_url)
+
     @track&.id
   end
 
@@ -72,16 +94,43 @@ class TrackExtractor::SongExtractor < TrackExtractor
     @track&.isrc
   end
 
+  # Spotify methods
   def spotify_song_url
-    @track&.spotify_song_url
+    @track&.spotify_song_url if @track.respond_to?(:spotify_song_url)
   end
 
   def spotify_artwork_url
-    @track&.spotify_artwork_url
+    @track&.spotify_artwork_url if @track.respond_to?(:spotify_artwork_url)
   end
 
   def spotify_preview_url
-    @track&.spotify_preview_url
+    @track&.spotify_preview_url if @track.respond_to?(:spotify_preview_url)
+  end
+
+  # Deezer methods
+  def deezer_song_url
+    @track&.deezer_song_url if @track.respond_to?(:deezer_song_url)
+  end
+
+  def deezer_artwork_url
+    @track&.deezer_artwork_url if @track.respond_to?(:deezer_artwork_url)
+  end
+
+  def deezer_preview_url
+    @track&.deezer_preview_url if @track.respond_to?(:deezer_preview_url)
+  end
+
+  # iTunes methods
+  def itunes_song_url
+    @track&.itunes_song_url if @track.respond_to?(:itunes_song_url)
+  end
+
+  def itunes_artwork_url
+    @track&.itunes_artwork_url if @track.respond_to?(:itunes_artwork_url)
+  end
+
+  def itunes_preview_url
+    @track&.itunes_preview_url if @track.respond_to?(:itunes_preview_url)
   end
 
   def release_date
@@ -89,19 +138,41 @@ class TrackExtractor::SongExtractor < TrackExtractor
   end
 
   def release_date_precision
-    @track&.release_date_precision
+    @track&.release_date_precision if @track.respond_to?(:release_date_precision)
   end
 
   def song_attributes
-    {
+    attrs = {
       title:,
-      spotify_song_url:,
-      spotify_artwork_url:,
-      spotify_preview_url:,
-      id_on_spotify:,
       isrc:,
       release_date:,
       release_date_precision:
     }
+
+    # Add Spotify attributes if available
+    if @track.respond_to?(:spotify_song_url)
+      attrs[:spotify_song_url] = spotify_song_url
+      attrs[:spotify_artwork_url] = spotify_artwork_url
+      attrs[:spotify_preview_url] = spotify_preview_url
+      attrs[:id_on_spotify] = id_on_spotify
+    end
+
+    # Add Deezer attributes if available
+    if @track.respond_to?(:deezer_song_url)
+      attrs[:deezer_song_url] = deezer_song_url
+      attrs[:deezer_artwork_url] = deezer_artwork_url
+      attrs[:deezer_preview_url] = deezer_preview_url
+      attrs[:id_on_deezer] = id_on_deezer
+    end
+
+    # Add iTunes attributes if available
+    if @track.respond_to?(:itunes_song_url)
+      attrs[:itunes_song_url] = itunes_song_url
+      attrs[:itunes_artwork_url] = itunes_artwork_url
+      attrs[:itunes_preview_url] = itunes_preview_url
+      attrs[:id_on_itunes] = id_on_itunes
+    end
+
+    attrs.compact
   end
 end
