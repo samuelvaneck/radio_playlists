@@ -36,9 +36,11 @@ class SongSerializer
              :release_date,
              :release_date_precision,
              :artists,
+             :id_on_deezer,
              :deezer_song_url,
              :deezer_artwork_url,
              :deezer_preview_url,
+             :id_on_itunes,
              :itunes_song_url,
              :itunes_artwork_url,
              :itunes_preview_url
