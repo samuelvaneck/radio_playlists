@@ -165,6 +165,20 @@ class Song < ApplicationRecord
     update(id_on_youtube: youtube_id) if youtube_id.present?
   end
 
+  def enrich_with_deezer
+    Deezer::SongEnricher.new(self).enrich
+  end
+
+  def enrich_with_itunes
+    Itunes::SongEnricher.new(self).enrich
+  end
+
+  # Enrich song with Deezer and iTunes data if missing
+  def enrich_with_external_services
+    enrich_with_deezer if should_enrich_with_deezer?
+    enrich_with_itunes if should_enrich_with_itunes?
+  end
+
   private
 
   def update_air_plays_obsolete_songs(songs, most_played_song)
@@ -208,19 +222,5 @@ class Song < ApplicationRecord
 
   def should_enrich_with_itunes?
     id_on_itunes.blank? && title.present?
-  end
-
-  def enrich_with_deezer
-    Deezer::SongEnricher.new(self).enrich
-  end
-
-  def enrich_with_itunes
-    Itunes::SongEnricher.new(self).enrich
-  end
-
-  # Enrich song with Deezer and iTunes data if missing
-  def enrich_with_external_services
-    enrich_with_deezer if should_enrich_with_deezer?
-    enrich_with_itunes if should_enrich_with_itunes?
   end
 end
