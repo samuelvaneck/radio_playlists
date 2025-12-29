@@ -40,6 +40,8 @@ class Song < ApplicationRecord
   before_create :set_search_text
   after_commit :update_search_text, on: [:update], if: :saved_change_to_title?
   after_commit :update_youtube_from_wikipedia, on: %i[create update], if: :should_update_youtube?
+  after_commit :enrich_with_deezer, on: %i[create update], if: :should_enrich_with_deezer?
+  after_commit :enrich_with_itunes, on: %i[create update], if: :should_enrich_with_itunes?
 
   scope :matching, lambda { |search_term|
     where('songs.search_text ILIKE ?', "%#{search_term}%") if search_term.present?
@@ -67,6 +69,14 @@ class Song < ApplicationRecord
                  songs.spotify_artwork_url,
                  songs.spotify_preview_url,
                  songs.id_on_youtube,
+                 songs.id_on_deezer,
+                 songs.deezer_song_url,
+                 songs.deezer_artwork_url,
+                 songs.deezer_preview_url,
+                 songs.id_on_itunes,
+                 songs.itunes_song_url,
+                 songs.itunes_artwork_url,
+                 songs.itunes_preview_url,
                  songs.release_date,
                  songs.release_date_precision,
                  COUNT(air_plays.id) AS counter,
@@ -190,5 +200,27 @@ class Song < ApplicationRecord
 
   def should_update_youtube?
     id_on_youtube.blank? && (id_on_spotify.present? || isrc.present? || title.present?)
+  end
+
+  def should_enrich_with_deezer?
+    id_on_deezer.blank? && (isrc.present? || title.present?)
+  end
+
+  def should_enrich_with_itunes?
+    id_on_itunes.blank? && title.present?
+  end
+
+  def enrich_with_deezer
+    Deezer::SongEnricher.new(self).enrich
+  end
+
+  def enrich_with_itunes
+    Itunes::SongEnricher.new(self).enrich
+  end
+
+  # Enrich song with Deezer and iTunes data if missing
+  def enrich_with_external_services
+    enrich_with_deezer if should_enrich_with_deezer?
+    enrich_with_itunes if should_enrich_with_itunes?
   end
 end
