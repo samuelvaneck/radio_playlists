@@ -29,6 +29,7 @@ class AirPlaySerializer
   attributes :id,
              :broadcasted_at,
              :created_at,
+             :status,
              :song,
              :radio_station,
              :artists

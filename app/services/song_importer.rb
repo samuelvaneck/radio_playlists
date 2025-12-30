@@ -17,9 +17,6 @@ class SongImporter
     elsif illegal_word_in_title
       Broadcaster.illegal_word_in_title(title:)
       return false
-    elsif !song_recognized_twice?
-      Broadcaster.not_recognized_twice(title:, artist_name:, radio_station_name: @radio_station.name)
-      return false
     elsif artists.nil? || song.nil?
       Broadcaster.no_artists_or_song(title:, radio_station_name: @radio_station.name)
       return false
@@ -93,10 +90,6 @@ class SongImporter
     end
   end
 
-  def song_recognized_twice?
-    SongRecognizerCache.new(radio_station_id: @radio_station.id, title:, artist_name:).recognized_twice?
-  end
-
   def scraper_import
     @scraper_import ||= @played_song.is_a?(TrackScraper)
   end
@@ -115,13 +108,24 @@ class SongImporter
   end
 
   def add_song
-    added_air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import)
+    existing_draft = AirPlay.find_draft_for_confirmation(@radio_station, song)
+
+    if existing_draft
+      # Confirm the existing draft
+      existing_draft.confirmed!
+      added_air_play = existing_draft
+      Broadcaster.song_confirmed(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+    else
+      # Create new draft air_play
+      added_air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import)
+      Broadcaster.song_draft_created(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+    end
+
     @radio_station.update_last_added_air_play_ids(added_air_play.id)
     song.update_artists(artists) if different_artists?
     @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song: song)
 
     RadioStationClassifierJob.perform_async(song.id_on_spotify, @radio_station.id)
-    Broadcaster.song_added(title: song.title, song_id: song.id, artists_names:, artist_ids: artists_ids_to_s, radio_station_name: @radio_station.name)
   end
 
   def different_artists?

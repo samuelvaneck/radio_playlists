@@ -50,7 +50,7 @@ class Chart < ApplicationRecord
         chart_type.most_played_group_by(:counter, start_time: start_time.strftime('%FT%R'), end_time:).each do |counter, chart_items|
           # reorder chart items by the number of air_plays they were played in the last month
           chart_items = chart_items.sort_by do |item|
-            -item.air_plays.where('broadcasted_at >= ? AND broadcasted_at <= ?', start_time - 1.week, end_time).count
+            -item.air_plays.confirmed.where('broadcasted_at >= ? AND broadcasted_at <= ?', start_time - 1.week, end_time).count
           end
 
           chart_items.each do |chart_item|
@@ -73,7 +73,7 @@ class Chart < ApplicationRecord
     __send__("yesterday_#{chart_type}_chart".to_sym).each do |counter, chart_items|
       # reorder chart items by the number of air_plays they were played in the last month
       chart_items = chart_items.sort_by do |item|
-        -item.air_plays.where('broadcasted_at >= ? AND broadcasted_at <= ?', 1.week.ago, 1.day.ago.end_of_day.strftime('%FT%R')).count
+        -item.air_plays.confirmed.where('broadcasted_at >= ? AND broadcasted_at <= ?', 1.week.ago, 1.day.ago.end_of_day.strftime('%FT%R')).count
       end
 
       chart_items.each do |chart_item|
