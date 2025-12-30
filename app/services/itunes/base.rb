@@ -33,8 +33,7 @@ module Itunes
 
     def connection
       Faraday.new(url: BASE_URL) do |conn|
-        # iTunes API returns 'text/javascript' content type instead of 'application/json'
-        conn.response :json, content_type: /\bjson$|\bjavascript$/
+        conn.response :json
       end
     end
 
