@@ -7,7 +7,6 @@ module Spotify
 
       TRACK_TYPES = %w[album single compilation].freeze
       FEATURING_REGEX = /\(feat\..+\)/
-      MINIMUM_TITLE_SIMILARITY = 70
 
       def initialize(args)
         super
@@ -81,7 +80,6 @@ module Spotify
       # Returns the best matching track based on the match_score_results.
       # It uses the highest score from match_score_results to determine the type of track to filter
       # and then returns the best matching track from that type.
-      # Returns nil if the best match's title_distance is below MINIMUM_TITLE_SIMILARITY threshold.
       #
       # @return [Spotify::TrackFinder, nil]
       def best_match
@@ -89,19 +87,7 @@ module Spotify
         type = match_score_results.key(match_score_results.values.max)
         return nil if type.blank?
 
-        track = type_to_filter_class(type).new(tracks: spotify_query_result, artists: @search_artists).best_matching_track
-        return nil if track && track['title_distance'].to_i < MINIMUM_TITLE_SIMILARITY
-
-        track
-      end
-
-      # Returns true if the track is a valid match (title_distance >= MINIMUM_TITLE_SIMILARITY)
-      #
-      # @return [Boolean]
-      def valid_match?
-        return false if @track.blank?
-
-        @track['title_distance'].to_i >= MINIMUM_TITLE_SIMILARITY
+        type_to_filter_class(type).new(tracks: spotify_query_result, artists: @search_artists).best_matching_track
       end
 
       private

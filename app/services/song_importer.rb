@@ -65,28 +65,7 @@ class SongImporter
   end
 
   def spotify_track
-    @track ||= find_track_with_fallback
-  end
-
-  def find_track_with_fallback
-    # 1. Try Spotify first
-    spotify_result = TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
-
-    return spotify_result if spotify_result&.valid_match?
-
-    Rails.logger.info("Spotify match below threshold for: #{title} by #{artist_name}, trying Deezer")
-
-    # 2. Fallback to Deezer
-    deezer_result = TrackExtractor::DeezerTrackFinder.new(played_song: @played_song).find
-
-    return deezer_result if deezer_result&.valid_match?
-
-    Rails.logger.info("Deezer match below threshold for: #{title} by #{artist_name}, trying iTunes")
-
-    # 3. Fallback to iTunes
-    itunes_result = TrackExtractor::ItunesTrackFinder.new(played_song: @played_song).find
-
-    itunes_result&.valid_match? ? itunes_result : nil
+    @track ||= TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
   end
 
   def recognize_song
