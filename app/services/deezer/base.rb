@@ -13,10 +13,11 @@ module Deezer
     def make_request(url)
       attempts ||= 1
 
-      Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
-        response = connection.get(url)
-        response.body
+      response = Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
+        connection.get(url).body
       end
+      # Deep duplicate to prevent mutation of cached objects
+      response.deep_dup
     rescue StandardError => e
       if attempts < 3
         attempts += 1

@@ -9,14 +9,14 @@ module Spotify
     def make_request(url)
       attempts ||= 1
 
-      Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
-        response = connection.get(url) do |req|
+      response = Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
+        connection.get(url) do |req|
           req.headers['Authorization'] = "Bearer #{token}"
           req.headers['Content-Type'] = 'application/json'
-        end
-
-        response.body
+        end.body
       end
+      # Deep duplicate to prevent mutation of cached objects
+      response.deep_dup
     rescue StandardError => e
       if attempts < 3
         attempts += 1
