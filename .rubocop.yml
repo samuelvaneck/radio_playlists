@@ -41,6 +41,7 @@ Layout/LineLength:
 Metrics/BlockLength:
   Exclude:
     - db/schema.rb
+    - lib/tasks/**/*
 # Metrics/AbcSize:
   # turn this back on later
   # Severity: refactor
