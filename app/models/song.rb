@@ -165,6 +165,15 @@ class Song < ApplicationRecord
     update(id_on_youtube: youtube_id) if youtube_id.present?
   end
 
+  def enrich_with_spotify(force: false)
+    Spotify::SongEnricher.new(self, force:).enrich
+  end
+
+  # Re-enrich song with all external services (force update)
+  def re_enrich_from_spotify
+    enrich_with_spotify(force: true)
+  end
+
   private
 
   def update_air_plays_obsolete_songs(songs, most_played_song)
@@ -218,18 +227,9 @@ class Song < ApplicationRecord
     Itunes::SongEnricher.new(self).enrich
   end
 
-  def enrich_with_spotify(force: false)
-    Spotify::SongEnricher.new(self, force:).enrich
-  end
-
   # Enrich song with Deezer and iTunes data if missing
   def enrich_with_external_services
     enrich_with_deezer if should_enrich_with_deezer?
     enrich_with_itunes if should_enrich_with_itunes?
-  end
-
-  # Re-enrich song with all external services (force update)
-  def re_enrich_from_spotify
-    enrich_with_spotify(force: true)
   end
 end

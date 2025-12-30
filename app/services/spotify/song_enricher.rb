@@ -15,7 +15,8 @@ module Spotify
       return if result.blank?
 
       updates = build_updates(result)
-      @song.update(updates.compact) if updates.present?
+      # Use update_columns to skip callbacks (avoid triggering Deezer/iTunes enrichment)
+      @song.update_columns(updates.compact) if updates.present? # rubocop:disable Rails/SkipsModelValidations
 
       update_artists(result) if @force
       @song
