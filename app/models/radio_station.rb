@@ -104,7 +104,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def last_played_song
-    last_added_air_plays.includes(:song).first&.song
+    last_added_air_plays.confirmed.includes(:song).first&.song
   end
 
   def last_added_air_plays
@@ -114,6 +114,7 @@ class RadioStation < ActiveRecord::Base
   def songs_played_last_hour
     Song.joins(:air_plays)
         .where(air_plays: { radio_station_id: id, created_at: 1.hour.ago..Time.zone.now })
+        .merge(AirPlay.confirmed)
         .includes(:artists)
         .distinct
   end
