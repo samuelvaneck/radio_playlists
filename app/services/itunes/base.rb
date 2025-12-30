@@ -14,11 +14,8 @@ module Itunes
     def make_request(url)
       attempts ||= 1
 
-      response = Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
-        connection.get(url).body
-      end
-      # Deep duplicate to prevent mutation of cached objects
-      response.deep_dup
+      response = connection.get(url)
+      response.body
     rescue StandardError => e
       if attempts < 3
         attempts += 1

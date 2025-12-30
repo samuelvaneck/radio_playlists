@@ -31,8 +31,11 @@ class AirPlay < ApplicationRecord
   belongs_to :radio_station
   has_many :artists, through: :song
 
+  enum :status, { draft: 0, confirmed: 1 }
+
   scope :scraper_imported, -> { where(scraper_import: true) }
   scope :recognizer_imported, -> { where(scraper_import: false) }
+  scope :drafts, -> { where(status: :draft) }
   scope :matching, lambda { |search_term|
     joins(:song).where('songs.search_text ILIKE ?', "%#{search_term}%") if search_term.present?
   }
@@ -62,8 +65,15 @@ class AirPlay < ApplicationRecord
     AirPlay.where(radio_station:, broadcasted_at:).count > 1
   end
 
-  def self.add_air_play(radio_station, song, broadcasted_at, scraper_import)
-    create(radio_station:, song:, broadcasted_at:, scraper_import:)
+  def self.add_air_play(radio_station, song, broadcasted_at, scraper_import, status: :draft)
+    create(radio_station:, song:, broadcasted_at:, scraper_import:, status:)
+  end
+
+  def self.find_draft_for_confirmation(radio_station, song)
+    draft
+      .where(radio_station:, song:)
+      .where('created_at > ?', 4.hours.ago)
+      .first
   end
 
   private

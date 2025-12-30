@@ -19,8 +19,12 @@ class Broadcaster
     new(message: "Found illegal word in #{title}", color: 'red').broadcast
   end
 
-  def self.not_recognized_twice(title:, artist_name:, radio_station_name:)
-    new(message: "#{title} from #{artist_name} recognized once on #{radio_station_name}", color: 'blue').broadcast
+  def self.song_draft_created(title:, song_id:, artists_names:, radio_station_name:)
+    new(message: "Draft: #{title} (#{song_id}) from #{artists_names} on #{radio_station_name}", color: 'blue').broadcast
+  end
+
+  def self.song_confirmed(title:, song_id:, artists_names:, radio_station_name:)
+    new(message: "*** Confirmed #{title} (#{song_id}) from #{artists_names} on #{radio_station_name}! ***", color: 'green').broadcast
   end
 
   def self.no_artists_or_song(title:, radio_station_name:)
