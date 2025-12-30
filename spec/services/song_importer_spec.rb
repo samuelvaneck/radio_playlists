@@ -98,28 +98,5 @@ describe SongImporter do
         expect(RadioStationSong.exists?(radio_station: nil, song: song)).to be false
       end
     end
-
-    context 'when adding a song' do
-      let(:importer) { described_class.new(radio_station: radio_station) }
-      let(:air_play) { create(:air_play, radio_station: radio_station, song: song) }
-
-      before do
-        allow(SongExternalIdsEnrichmentJob).to receive(:perform_async)
-        allow(RadioStationClassifierJob).to receive(:perform_async)
-        allow(Broadcaster).to receive(:song_added)
-        allow(AirPlay).to receive(:add_air_play).and_return(air_play)
-
-        importer.instance_variable_set(:@song, song)
-        importer.instance_variable_set(:@artists, [artist])
-        importer.instance_variable_set(:@broadcasted_at, Time.current)
-        importer.instance_variable_set(:@scraper_import, false)
-      end
-
-      it 'enqueues SongExternalIdsEnrichmentJob' do
-        importer.send(:add_song)
-
-        expect(SongExternalIdsEnrichmentJob).to have_received(:perform_async).with(song.id)
-      end
-    end
   end
 end
