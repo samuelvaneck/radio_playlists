@@ -3,6 +3,7 @@
 class TrackExtractor::SongExtractor < TrackExtractor
   def extract
     @song = find_or_create_song
+    maybe_update_spotify_data(@song)
     maybe_update_preview_urls(@song)
     maybe_update_release_date(@song)
     @song
@@ -36,6 +37,19 @@ class TrackExtractor::SongExtractor < TrackExtractor
     return if song.release_date.present? || release_date.blank?
 
     song.update(release_date:, release_date_precision:)
+  end
+
+  def maybe_update_spotify_data(song)
+    return if song.blank? || @track.blank?
+    return unless @track.respond_to?(:spotify_song_url)
+
+    updates = {}
+    updates[:id_on_spotify] = id_on_spotify if song.id_on_spotify.blank? && id_on_spotify.present?
+    updates[:spotify_song_url] = spotify_song_url if song.spotify_song_url.blank? && spotify_song_url.present?
+    updates[:spotify_artwork_url] = spotify_artwork_url if song.spotify_artwork_url.blank? && spotify_artwork_url.present?
+    updates[:isrc] = isrc if song.isrc.blank? && isrc.present?
+
+    song.update(updates) if updates.present?
   end
 
   # Methode for checking if there are songs with the same title.

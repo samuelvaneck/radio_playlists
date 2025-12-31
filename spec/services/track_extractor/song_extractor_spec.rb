@@ -100,5 +100,74 @@ describe TrackExtractor::SongExtractor do
         end.to change(existing_song, :release_date_precision).to('day')
       end
     end
+
+    context 'when song exists without Spotify data (found via ISRC)' do
+      let!(:existing_song) do
+        create(:song,
+               title: 'Test Song',
+               isrc: 'ISRC123',
+               id_on_spotify: nil,
+               spotify_song_url: nil,
+               spotify_artwork_url: nil,
+               artists: [artist])
+      end
+
+      it 'finds the existing song by ISRC' do
+        expect(song).to eq(existing_song)
+      end
+
+      it 'enriches with Spotify ID' do
+        expect do
+          extractor.extract
+          existing_song.reload
+        end.to change(existing_song, :id_on_spotify).from(nil).to('spotify123')
+      end
+
+      it 'enriches with Spotify song URL' do
+        expect do
+          extractor.extract
+          existing_song.reload
+        end.to change(existing_song, :spotify_song_url).from(nil).to('https://open.spotify.com/track/spotify123')
+      end
+
+      it 'enriches with Spotify artwork URL' do
+        expect do
+          extractor.extract
+          existing_song.reload
+        end.to change(existing_song, :spotify_artwork_url).from(nil).to('https://i.scdn.co/image/artwork')
+      end
+    end
+
+    context 'when song exists with Spotify data already' do
+      let!(:existing_song) do
+        create(:song,
+               title: 'Test Song',
+               id_on_spotify: 'existing_spotify_id',
+               spotify_song_url: 'https://open.spotify.com/track/existing',
+               spotify_artwork_url: 'https://existing-artwork.com',
+               artists: [artist])
+      end
+
+      it 'does not overwrite existing Spotify ID' do
+        expect do
+          extractor.extract
+          existing_song.reload
+        end.not_to change(existing_song, :id_on_spotify)
+      end
+
+      it 'does not overwrite existing Spotify song URL' do
+        expect do
+          extractor.extract
+          existing_song.reload
+        end.not_to change(existing_song, :spotify_song_url)
+      end
+
+      it 'does not overwrite existing Spotify artwork URL' do
+        expect do
+          extractor.extract
+          existing_song.reload
+        end.not_to change(existing_song, :spotify_artwork_url)
+      end
+    end
   end
 end
