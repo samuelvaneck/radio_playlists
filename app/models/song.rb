@@ -39,9 +39,9 @@ class Song < ApplicationRecord
 
   before_create :set_search_text
   after_commit :update_search_text, on: [:update], if: :saved_change_to_title?
-  after_commit :update_youtube_from_wikipedia, on: %i[create update], if: :should_update_youtube?
-  after_commit :enrich_with_deezer, on: %i[create update], if: :should_enrich_with_deezer?
-  after_commit :enrich_with_itunes, on: %i[create update], if: :should_enrich_with_itunes?
+  # after_commit :update_youtube_from_wikipedia, on: %i[create update], if: :should_update_youtube?
+  # after_commit :enrich_with_deezer, on: %i[create update], if: :should_enrich_with_deezer?
+  # after_commit :enrich_with_itunes, on: %i[create update], if: :should_enrich_with_itunes?
 
   scope :matching, lambda { |search_term|
     where('songs.search_text ILIKE ?', "%#{search_term}%") if search_term.present?
