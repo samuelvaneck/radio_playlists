@@ -412,7 +412,10 @@ describe Song do
   end
   # rubocop:enable RSpec/MultipleMemoizedHelpers
 
-  describe 'after_commit :update_youtube_from_wikipedia callback' do
+  # NOTE: The after_commit callbacks for update_youtube_from_wikipedia, enrich_with_deezer,
+  # and enrich_with_itunes were disabled in commit 28098bb2 to prevent race conditions
+  # where concurrent imports were causing incorrect data mutations.
+  describe 'after_commit :update_youtube_from_wikipedia callback', skip: 'Callback disabled to prevent race conditions' do
     let(:artist) { create(:artist, name: 'Adele') }
 
     context 'when creating a song without id_on_youtube' do
