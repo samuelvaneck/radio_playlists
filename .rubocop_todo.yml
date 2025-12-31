@@ -101,7 +101,7 @@ Lint/MissingSuper:
 # Offense count: 24
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
-  Max: 37
+  Max: 38
 
 # Offense count: 7
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns, inherit_mode.

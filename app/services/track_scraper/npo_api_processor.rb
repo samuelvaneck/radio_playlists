@@ -9,7 +9,7 @@ class TrackScraper::NpoApiProcessor < TrackScraper
     return false if track.blank?
 
     @artist_name = CGI.unescapeHTML(track[:artist]).titleize
-    @title = CGI.unescapeHTML(track[:title]).titleize
+    @title = TitleSanitizer.sanitize(CGI.unescapeHTML(track[:title])).titleize
     @broadcasted_at = Time.find_zone('Amsterdam').parse(track[:startdatetime])
     @spotify_url = track[:spotify_url]
     true

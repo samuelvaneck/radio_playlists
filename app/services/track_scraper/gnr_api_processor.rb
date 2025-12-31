@@ -9,7 +9,7 @@ class TrackScraper::GnrApiProcessor < TrackScraper
     return false if track.blank?
 
     @artist_name = track[:artist]
-    @title = track[:title].titleize
+    @title = TitleSanitizer.sanitize(track[:title]).titleize
     @broadcasted_at = Time.zone.now
     true
   rescue StandardError => e
