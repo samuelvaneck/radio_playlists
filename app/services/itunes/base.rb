@@ -15,7 +15,7 @@ module Itunes
       attempts ||= 1
 
       response = connection.get(url)
-      response.body
+      response.body.is_a?(String) ? JSON.parse(response.body) : response.body
     rescue StandardError => e
       if attempts < 3
         attempts += 1
