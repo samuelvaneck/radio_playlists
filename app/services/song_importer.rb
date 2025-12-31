@@ -122,7 +122,7 @@ class SongImporter
     end
 
     @radio_station.update_last_added_air_play_ids(added_air_play.id)
-    song.update_artists(artists) if different_artists?
+    song.update_artists(artists) if should_update_artists?
     @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song: song)
 
     RadioStationClassifierJob.perform_async(song.id_on_spotify, @radio_station.id)
@@ -130,6 +130,19 @@ class SongImporter
 
   def different_artists?
     @song.artist_ids.sort != Array.wrap(@artists).map(&:id).sort
+  end
+
+  # Only update artists if the song doesn't have artists with Spotify IDs yet.
+  # This prevents race conditions where concurrent imports overwrite each other's artist data.
+  def should_update_artists?
+    return false unless different_artists?
+
+    # If song has no artists, always update
+    return true if @song.artists.blank?
+
+    # If song's existing artists don't have Spotify IDs, update with new data
+    # (this means the song was imported without Spotify data initially)
+    @song.artists.none? { |artist| artist.id_on_spotify.present? }
   end
 
   def artists_names

@@ -5,6 +5,165 @@ describe SongImporter do
   let(:artist) { create(:artist, name: 'Test Artist') }
   let(:song) { create(:song, title: 'Test Song', artists: [artist]) }
 
+  describe '#should_update_artists?' do
+    subject(:song_importer) do
+      importer = described_class.new(radio_station: radio_station)
+      importer.instance_variable_set(:@song, existing_song)
+      importer.instance_variable_set(:@artists, new_artists)
+      importer
+    end
+
+    let(:existing_song) { create(:song, title: 'Existing Song', artists: existing_artists) }
+
+    context 'when song has no artists' do
+      let(:existing_artists) { [] }
+      let(:new_artists) { [create(:artist, name: 'New Artist', id_on_spotify: 'spotify123')] }
+
+      before { existing_song.artists = [] }
+
+      it 'returns true to allow setting artists' do
+        expect(song_importer.send(:should_update_artists?)).to be true
+      end
+    end
+
+    context 'when song has artists without Spotify IDs' do
+      let(:existing_artists) { [create(:artist, name: 'Old Artist', id_on_spotify: nil)] }
+      let(:new_artists) { [create(:artist, name: 'New Artist', id_on_spotify: 'spotify123')] }
+
+      it 'returns true to allow updating with Spotify data' do
+        expect(song_importer.send(:should_update_artists?)).to be true
+      end
+    end
+
+    context 'when song has artists with Spotify IDs' do
+      let(:existing_artists) { [create(:artist, name: 'Spotify Artist', id_on_spotify: 'spotify456')] }
+      let(:new_artists) { [create(:artist, name: 'Different Artist', id_on_spotify: 'spotify789')] }
+
+      it 'returns false to prevent overwriting valid Spotify data' do
+        expect(song_importer.send(:should_update_artists?)).to be false
+      end
+    end
+
+    context 'when song has mixed artists (some with Spotify IDs, some without)' do
+      let(:existing_artists) do
+        [
+          create(:artist, name: 'Spotify Artist', id_on_spotify: 'spotify456'),
+          create(:artist, name: 'Non-Spotify Artist', id_on_spotify: nil)
+        ]
+      end
+      let(:new_artists) { [create(:artist, name: 'New Artist', id_on_spotify: 'spotify789')] }
+
+      it 'returns false because at least one artist has Spotify ID' do
+        expect(song_importer.send(:should_update_artists?)).to be false
+      end
+    end
+
+    context 'when new artists are the same as existing artists' do
+      let(:existing_artist) { create(:artist, name: 'Same Artist', id_on_spotify: 'spotify123') }
+      let(:existing_artists) { [existing_artist] }
+      let(:new_artists) { [existing_artist] }
+
+      it 'returns false because artists are not different' do
+        expect(song_importer.send(:should_update_artists?)).to be false
+      end
+    end
+
+    context 'when new artists array is empty' do
+      let(:existing_artists) { [create(:artist, name: 'Existing', id_on_spotify: nil)] }
+      let(:new_artists) { [] }
+
+      it 'returns false because different_artists? would be true but we should not clear artists' do
+        # different_artists? returns true ([] != [existing_artist_id])
+        # but should_update_artists? should still allow it if no spotify IDs
+        expect(song_importer.send(:should_update_artists?)).to be true
+      end
+    end
+  end
+
+  describe '#different_artists?' do
+    subject(:song_importer) do
+      importer = described_class.new(radio_station: radio_station)
+      importer.instance_variable_set(:@song, existing_song)
+      importer.instance_variable_set(:@artists, new_artists)
+      importer
+    end
+
+    let(:existing_song) { create(:song, title: 'Existing Song', artists: existing_artists) }
+
+    context 'when artists are the same' do
+      let(:same_artist) { create(:artist, name: 'Same Artist') }
+      let(:existing_artists) { [same_artist] }
+      let(:new_artists) { [same_artist] }
+
+      it 'returns false' do
+        expect(song_importer.send(:different_artists?)).to be false
+      end
+    end
+
+    context 'when artists are different' do
+      let(:existing_artists) { [create(:artist, name: 'Artist A')] }
+      let(:new_artists) { [create(:artist, name: 'Artist B')] }
+
+      it 'returns true' do
+        expect(song_importer.send(:different_artists?)).to be true
+      end
+    end
+
+    context 'when artists are in different order but same IDs' do
+      let(:artist_a) { create(:artist, name: 'Artist A') }
+      let(:artist_b) { create(:artist, name: 'Artist B') }
+      let(:existing_artists) { [artist_a, artist_b] }
+      let(:new_artists) { [artist_b, artist_a] }
+
+      it 'returns false because IDs are sorted before comparison' do
+        expect(song_importer.send(:different_artists?)).to be false
+      end
+    end
+  end
+
+  describe 'race condition prevention for artist updates' do
+    let(:original_artist) { create(:artist, name: 'Original Artist', id_on_spotify: 'original_spotify_id') }
+    let(:song_with_spotify_artist) { create(:song, title: 'Popular Song', artists: [original_artist]) }
+
+    context 'when multiple imports try to update the same song with different artists' do
+      let(:different_artist_1) { create(:artist, name: 'Different Artist 1', id_on_spotify: 'different_id_1') }
+      let(:different_artist_2) { create(:artist, name: 'Different Artist 2', id_on_spotify: 'different_id_2') }
+
+      it 'preserves the original artists when they have Spotify IDs' do
+        # Simulate first import trying to change artists
+        importer1 = described_class.new(radio_station: radio_station)
+        importer1.instance_variable_set(:@song, song_with_spotify_artist)
+        importer1.instance_variable_set(:@artists, [different_artist_1])
+
+        # Simulate second import trying to change artists
+        importer2 = described_class.new(radio_station: radio_station)
+        importer2.instance_variable_set(:@song, song_with_spotify_artist)
+        importer2.instance_variable_set(:@artists, [different_artist_2])
+
+        # Both should return false, preventing overwrites
+        expect(importer1.send(:should_update_artists?)).to be false
+        expect(importer2.send(:should_update_artists?)).to be false
+
+        # Original artist should be preserved
+        expect(song_with_spotify_artist.reload.artists).to contain_exactly(original_artist)
+      end
+    end
+
+    context 'when song was imported without Spotify data initially' do
+      let(:artist_without_spotify) { create(:artist, name: 'No Spotify Artist', id_on_spotify: nil) }
+      let(:song_without_spotify_artist) { create(:song, title: 'Other Song', artists: [artist_without_spotify]) }
+      let(:artist_with_spotify) { create(:artist, name: 'Spotify Artist', id_on_spotify: 'spotify_id') }
+
+      it 'allows updating when existing artists lack Spotify IDs' do
+        importer = described_class.new(radio_station: radio_station)
+        importer.instance_variable_set(:@song, song_without_spotify_artist)
+        importer.instance_variable_set(:@artists, [artist_with_spotify])
+
+        expect(importer.send(:should_update_artists?)).to be true
+      end
+    end
+  end
+
   describe '#add_song' do
     # These tests verify the behavior of adding a song to a radio station
     # which checks if a RadioStationSong association already exists

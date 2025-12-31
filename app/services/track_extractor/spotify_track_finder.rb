@@ -28,15 +28,44 @@ class TrackExtractor::SpotifyTrackFinder < TrackExtractor
   end
 
   def find_existing_song
+    # First, try to find by ISRC (most reliable identifier from audio recognition)
+    if isrc_code.present?
+      song_by_isrc = Song.find_by(isrc: isrc_code)
+      return song_by_isrc if song_by_isrc&.id_on_spotify.present?
+    end
+
+    # Then try artist + title matching
     return if artist_name.blank? || title.blank?
 
     artist_ids = find_artist_ids
-    return if artist_ids.blank?
+    return find_by_title_with_fuzzy_artist if artist_ids.blank?
 
     Song.joins(:artists)
         .where(artists: { id: artist_ids })
         .where('LOWER(songs.title) = ?', title.downcase)
         .first
+  end
+
+  # When exact artist match fails, try to find song by title and verify
+  # that at least one of the recognized artist names partially matches
+  def find_by_title_with_fuzzy_artist
+    return if title.blank? || artist_name.blank?
+
+    songs_by_title = Song.where('LOWER(title) = ?', title.downcase)
+                         .where.not(id_on_spotify: nil)
+                         .includes(:artists)
+
+    recognized_artist_names = split_artist_names.map(&:downcase)
+
+    songs_by_title.find do |song|
+      song.artists.any? do |artist|
+        artist_name_downcase = artist.name.downcase
+        recognized_artist_names.any? do |recognized_name|
+          # Check if either name contains the other (handles "Ed Sheeran" vs "Ed Sheeran feat. X")
+          artist_name_downcase.include?(recognized_name) || recognized_name.include?(artist_name_downcase)
+        end
+      end
+    end
   end
 
   def find_artist_ids

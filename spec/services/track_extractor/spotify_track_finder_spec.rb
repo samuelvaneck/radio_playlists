@@ -273,5 +273,133 @@ describe TrackExtractor::SpotifyTrackFinder do
         expect(Spotify::TrackFinder::Result).to have_received(:new).with(artists: 'Test Artist', title: 'Test Song')
       end
     end
+
+    context 'when finding existing song by ISRC' do
+      let(:artist) { create(:artist, name: 'Different Artist Name') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Some Title',
+          artist_name: 'Completely Different Artist',
+          spotify_url: nil,
+          isrc_code: 'USRC12345678'
+        )
+      end
+
+      before { create(:song, title: 'Original Title', isrc: 'USRC12345678', id_on_spotify: 'isrc_match123', artists: [artist]) }
+
+      it 'finds the existing song by ISRC even when artist names do not match' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+          .with(artists: 'Completely Different Artist', title: 'Some Title', spotify_track_id: 'isrc_match123')
+      end
+    end
+
+    context 'when ISRC matches but song has no Spotify ID' do
+      let(:artist) { create(:artist, name: 'Test Artist') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Test Song',
+          artist_name: 'Test Artist',
+          spotify_url: nil,
+          isrc_code: 'USRC12345678'
+        )
+      end
+
+      before { create(:song, title: 'Test Song', isrc: 'USRC12345678', id_on_spotify: nil, artists: [artist]) }
+
+      it 'falls back to artist + title matching' do
+        finder.find
+        expect(Spotify::TrackFinder::Result).to have_received(:new).with(artists: 'Test Artist', title: 'Test Song')
+      end
+    end
+
+    context 'when artist name has extra featuring info' do
+      let(:artist) { create(:artist, name: 'Ed Sheeran') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Perfect',
+          artist_name: 'Ed Sheeran feat. Beyoncé',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before { create(:song, title: 'Perfect', id_on_spotify: 'perfect123', artists: [artist]) }
+
+      it 'finds the existing song using fuzzy artist matching' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+          .with(artists: 'Ed Sheeran feat. Beyoncé', title: 'Perfect', spotify_track_id: 'perfect123')
+      end
+    end
+
+    context 'when recognized artist is substring of existing artist' do
+      let(:artist) { create(:artist, name: 'Ed Sheeran feat. Beyoncé') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Perfect',
+          artist_name: 'Ed Sheeran',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before { create(:song, title: 'Perfect', id_on_spotify: 'perfect456', artists: [artist]) }
+
+      it 'finds the existing song when recognized artist is contained in existing artist name' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+          .with(artists: 'Ed Sheeran', title: 'Perfect', spotify_track_id: 'perfect456')
+      end
+    end
+
+    context 'when fuzzy matching should not match completely different artists' do
+      let(:artist) { create(:artist, name: 'Taylor Swift') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Love Story',
+          artist_name: 'Ed Sheeran',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before { create(:song, title: 'Love Story', id_on_spotify: 'lovestory123', artists: [artist]) }
+
+      it 'does not find the song when artists are completely different' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+          .with(artists: 'Ed Sheeran', title: 'Love Story')
+      end
+    end
+
+    context 'when multiple songs have the same title' do
+      let(:artist1) { create(:artist, name: 'Ed Sheeran') }
+      let(:artist2) { create(:artist, name: 'Taylor Swift') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Beautiful',
+          artist_name: 'Ed Sheeran feat. Someone',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before do
+        create(:song, title: 'Beautiful', id_on_spotify: 'taylor_beautiful', artists: [artist2])
+        create(:song, title: 'Beautiful', id_on_spotify: 'ed_beautiful', artists: [artist1])
+      end
+
+      it 'finds the correct song based on fuzzy artist matching' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+          .with(artists: 'Ed Sheeran feat. Someone', title: 'Beautiful', spotify_track_id: 'ed_beautiful')
+      end
+    end
   end
 end

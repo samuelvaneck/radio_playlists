@@ -20,7 +20,7 @@ class SongImporter::ScraperImporter < SongImporter
   private
 
   def not_last_added_song
-    last_added_scraper_song == @song
+    last_added_scraper_song != @song
   end
 
   def last_added_scraper_song

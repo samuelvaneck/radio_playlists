@@ -73,10 +73,8 @@ describe SongImporter::ScraperImporter do
                           scraper_import: true, broadcasted_at: 30.minutes.ago)
       end
 
-      it 'returns true when the song IS the last added scraper song (inverted semantics)' do
-        # NOTE: ScraperImporter#not_last_added_song returns true when current song == last_added_scraper_song,
-        #       which is inverted from RecognizerImporter (where true means a different song for deduplication).
-        expect(scraper_importer.send(:not_last_added_song)).to be true
+      it 'returns false to prevent duplicate import' do
+        expect(scraper_importer.send(:not_last_added_song)).to be false
       end
     end
 
@@ -86,14 +84,14 @@ describe SongImporter::ScraperImporter do
                           scraper_import: true, broadcasted_at: 30.minutes.ago)
       end
 
-      it 'returns false' do
-        expect(scraper_importer.send(:not_last_added_song)).to be false
+      it 'returns true to allow import of different song' do
+        expect(scraper_importer.send(:not_last_added_song)).to be true
       end
     end
 
     context 'when no scraper imports exist' do
-      it 'returns false (nil != song)' do
-        expect(scraper_importer.send(:not_last_added_song)).to be false
+      it 'returns true to allow first import (nil != song)' do
+        expect(scraper_importer.send(:not_last_added_song)).to be true
       end
     end
   end
@@ -102,33 +100,52 @@ describe SongImporter::ScraperImporter do
     context 'when song is the last added scraper song' do
       before do
         create(:air_play, radio_station: radio_station, song: song, scraper_import: true,
-                          broadcasted_at: 30.minutes.ago, created_at: 30.minutes.ago)
+                          broadcasted_at: 30.minutes.ago, created_at: 30.minutes.ago, status: :confirmed)
       end
 
-      it 'returns false because not_last_added_song is true and recent matches exist' do
+      it 'returns false because not_last_added_song is false (same song)' do
         expect(scraper_importer.may_import_song?).to be false
       end
     end
 
-    context 'when song is different from last added scraper song' do
+    context 'when song is different from last added scraper song and no recent matches' do
       before do
         create(:air_play, radio_station: radio_station, song: other_song, scraper_import: true,
-                          broadcasted_at: 30.minutes.ago, created_at: 30.minutes.ago)
-      end
-
-      it 'returns false because not_last_added_song is false' do
-        expect(scraper_importer.may_import_song?).to be false
-      end
-    end
-
-    context 'when song is the last added and played more than 1 hour ago' do
-      before do
-        create(:air_play, radio_station: radio_station, song: song, scraper_import: true,
-                          broadcasted_at: 2.hours.ago, created_at: 2.hours.ago)
+                          broadcasted_at: 2.hours.ago, created_at: 2.hours.ago, status: :confirmed)
       end
 
       it 'returns true because not_last_added_song is true and no recent matches' do
         expect(scraper_importer.may_import_song?).to be true
+      end
+    end
+
+    context 'when song is different but matches a song played in last hour' do
+      before do
+        create(:air_play, radio_station: radio_station, song: other_song, scraper_import: true,
+                          broadcasted_at: 30.minutes.ago, created_at: 30.minutes.ago, status: :confirmed)
+        create(:air_play, radio_station: radio_station, song: song, scraper_import: false,
+                          broadcasted_at: 30.minutes.ago, created_at: 30.minutes.ago, status: :confirmed)
+      end
+
+      it 'returns false because any_song_matches? is true' do
+        expect(scraper_importer.may_import_song?).to be false
+      end
+    end
+
+    context 'when no scraper imports exist' do
+      it 'returns true to allow first import' do
+        expect(scraper_importer.may_import_song?).to be true
+      end
+    end
+
+    context 'when song was last added but more than 1 hour ago' do
+      before do
+        create(:air_play, radio_station: radio_station, song: song, scraper_import: true,
+                          broadcasted_at: 2.hours.ago, created_at: 2.hours.ago, status: :confirmed)
+      end
+
+      it 'returns false because not_last_added_song is false (same song still last)' do
+        expect(scraper_importer.may_import_song?).to be false
       end
     end
   end
