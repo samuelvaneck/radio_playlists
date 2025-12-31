@@ -43,13 +43,17 @@ class TrackExtractor::SongExtractor < TrackExtractor
     return if song.blank? || @track.blank?
     return unless @track.respond_to?(:spotify_song_url)
 
-    updates = {}
-    updates[:id_on_spotify] = id_on_spotify if song.id_on_spotify.blank? && id_on_spotify.present?
-    updates[:spotify_song_url] = spotify_song_url if song.spotify_song_url.blank? && spotify_song_url.present?
-    updates[:spotify_artwork_url] = spotify_artwork_url if song.spotify_artwork_url.blank? && spotify_artwork_url.present?
-    updates[:isrc] = isrc if song.isrc.blank? && isrc.present?
-
+    updates = build_spotify_updates(song)
     song.update(updates) if updates.present?
+  end
+
+  def build_spotify_updates(song)
+    {
+      id_on_spotify: (id_on_spotify if song.id_on_spotify.blank?),
+      spotify_song_url: (spotify_song_url if song.spotify_song_url.blank?),
+      spotify_artwork_url: (spotify_artwork_url if song.spotify_artwork_url.blank?),
+      isrc: (isrc if song.isrc.blank?)
+    }.compact
   end
 
   # Methode for checking if there are songs with the same title.

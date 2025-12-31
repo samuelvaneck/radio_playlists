@@ -45,7 +45,7 @@ class TrackScraper::TalpaApiProcessor < TrackScraper
     return false if track.blank?
 
     @artist_name = track[:artistName].titleize
-    @title = track[:title].titleize
+    @title = TitleSanitizer.sanitize(track[:title]).titleize
     @isrc_code = track[:isrc]
     true
   rescue StandardError => e

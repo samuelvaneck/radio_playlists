@@ -260,7 +260,7 @@ namespace :data_repair do
       puts "    New: #{correct_result[:id]} (#{correct_result[:title]})"
 
       # Update with correct Spotify data
-      song.update_columns(
+      song.update_columns( # rubocop:disable Rails/SkipsModelValidations
         id_on_spotify: correct_result[:id],
         spotify_song_url: correct_result[:spotify_url],
         spotify_artwork_url: correct_result[:artwork_url],
@@ -341,7 +341,7 @@ namespace :data_repair do
     nil
   end
 
-  def detect_mismatch(song, spotify_data)
+  def detect_mismatch(song, spotify_data) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     issues = []
 
     # Check title mismatch (case-insensitive, ignoring minor differences)
@@ -378,7 +378,7 @@ namespace :data_repair do
     }
   end
 
-  def fix_song(song, spotify_data, mismatch)
+  def fix_song(song, spotify_data, mismatch) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     updates = {}
 
     # Update title if mismatched
@@ -446,7 +446,7 @@ namespace :data_repair do
     similarity >= threshold
   end
 
-  def levenshtein_distance(str1, str2)
+  def levenshtein_distance(str1, str2) # rubocop:disable Metrics/AbcSize
     m = str1.length
     n = str2.length
     return m if n.zero?

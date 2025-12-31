@@ -14,7 +14,7 @@ class TrackScraper::Scraper < TrackScraper
       return false if air_play.search('.play_artist')[-1].blank?
 
       @artist_name = air_play.search('.play_artist')[-1].text.strip
-      @title = air_play.search('.play_title')[-1].text.strip
+      @title = TitleSanitizer.sanitize(air_play.search('.play_title')[-1].text.strip)
       time = air_play.search('.play_time')[-1].text.strip
     else
       Rails.logger.info "Radio station #{@radio_station.name} not found in SCRAPER"

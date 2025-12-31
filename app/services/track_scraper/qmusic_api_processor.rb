@@ -10,7 +10,7 @@ class TrackScraper::QmusicApiProcessor < TrackScraper
 
     @broadcasted_at = Time.find_zone('Amsterdam')&.parse(track[:played_at])
     @artist_name = track.dig(:artist, :name).titleize
-    @title = track[:title].titleize
+    @title = TitleSanitizer.sanitize(track[:title]).titleize
     @spotify_url = track[:spotify_url]
     @youtube_id = track.dig(:videos, 0, :id)
     @website_url = track.dig(:artist, :website_url)

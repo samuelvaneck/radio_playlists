@@ -126,25 +126,20 @@ describe SongImporter do
     let(:song_with_spotify_artist) { create(:song, title: 'Popular Song', artists: [original_artist]) }
 
     context 'when multiple imports try to update the same song with different artists' do
-      let(:different_artist_1) { create(:artist, name: 'Different Artist 1', id_on_spotify: 'different_id_1') }
-      let(:different_artist_2) { create(:artist, name: 'Different Artist 2', id_on_spotify: 'different_id_2') }
+      let(:alternate_artist) { create(:artist, name: 'Different Artist 1', id_on_spotify: 'different_id_1') }
+      let(:another_artist) { create(:artist, name: 'Different Artist 2', id_on_spotify: 'different_id_2') }
 
-      it 'preserves the original artists when they have Spotify IDs' do
-        # Simulate first import trying to change artists
-        importer1 = described_class.new(radio_station: radio_station)
-        importer1.instance_variable_set(:@song, song_with_spotify_artist)
-        importer1.instance_variable_set(:@artists, [different_artist_1])
+      it 'preserves the original artists when they have Spotify IDs' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
+        importer_one = described_class.new(radio_station: radio_station)
+        importer_one.instance_variable_set(:@song, song_with_spotify_artist)
+        importer_one.instance_variable_set(:@artists, [alternate_artist])
 
-        # Simulate second import trying to change artists
-        importer2 = described_class.new(radio_station: radio_station)
-        importer2.instance_variable_set(:@song, song_with_spotify_artist)
-        importer2.instance_variable_set(:@artists, [different_artist_2])
+        importer_two = described_class.new(radio_station: radio_station)
+        importer_two.instance_variable_set(:@song, song_with_spotify_artist)
+        importer_two.instance_variable_set(:@artists, [another_artist])
 
-        # Both should return false, preventing overwrites
-        expect(importer1.send(:should_update_artists?)).to be false
-        expect(importer2.send(:should_update_artists?)).to be false
-
-        # Original artist should be preserved
+        expect(importer_one.send(:should_update_artists?)).to be false
+        expect(importer_two.send(:should_update_artists?)).to be false
         expect(song_with_spotify_artist.reload.artists).to contain_exactly(original_artist)
       end
     end

@@ -9,7 +9,7 @@ class TrackScraper::MediaHuisApiProcessor < TrackScraper
     return false if track.blank?
 
     @artist_name = track[:artist].titleize
-    @title = track[:title].titleize
+    @title = TitleSanitizer.sanitize(track[:title]).titleize
     @broadcasted_at = Time.zone.parse(track[:createdAt])
     @spotify_url = track[:spotifyLink]
     true

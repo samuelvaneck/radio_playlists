@@ -378,8 +378,8 @@ describe TrackExtractor::SpotifyTrackFinder do
     end
 
     context 'when multiple songs have the same title' do
-      let(:artist1) { create(:artist, name: 'Ed Sheeran') }
-      let(:artist2) { create(:artist, name: 'Taylor Swift') }
+      let(:ed_sheeran) { create(:artist, name: 'Ed Sheeran') }
+      let(:taylor_swift) { create(:artist, name: 'Taylor Swift') }
       let(:played_song) do
         OpenStruct.new(
           title: 'Beautiful',
@@ -390,8 +390,8 @@ describe TrackExtractor::SpotifyTrackFinder do
       end
 
       before do
-        create(:song, title: 'Beautiful', id_on_spotify: 'taylor_beautiful', artists: [artist2])
-        create(:song, title: 'Beautiful', id_on_spotify: 'ed_beautiful', artists: [artist1])
+        create(:song, title: 'Beautiful', id_on_spotify: 'taylor_beautiful', artists: [taylor_swift])
+        create(:song, title: 'Beautiful', id_on_spotify: 'ed_beautiful', artists: [ed_sheeran])
       end
 
       it 'finds the correct song based on fuzzy artist matching' do
