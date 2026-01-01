@@ -127,6 +127,6 @@ class SongImportLogger
   def extract_itunes_artist(itunes_track)
     return nil unless itunes_track.respond_to?(:artists) && itunes_track.artists
 
-    Array.wrap(itunes_track.artists).join(', ')
+    Array.wrap(itunes_track.artists).map { |a| a.is_a?(Hash) ? a['name'] : a }.join(', ')
   end
 end

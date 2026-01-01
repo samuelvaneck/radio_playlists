@@ -158,6 +158,125 @@ describe SongImportLogger do
     end
   end
 
+  describe '#log_deezer' do
+    let(:deezer_track) do
+      instance_double(
+        Deezer::TrackFinder::Result,
+        artists: [{ 'name' => 'Deezer Artist', 'id' => '123456' }],
+        title: 'Deezer Song',
+        id: 'deezer789',
+        track: { 'id' => 'deezer789', 'title' => 'Deezer Song' }
+      )
+    end
+
+    before { logger.start_log }
+
+    it 'updates deezer_artist with the artist name' do
+      logger.log_deezer(deezer_track)
+      expect(logger.log.deezer_artist).to eq('Deezer Artist')
+    end
+
+    it 'updates deezer_title' do
+      logger.log_deezer(deezer_track)
+      expect(logger.log.deezer_title).to eq('Deezer Song')
+    end
+
+    it 'updates deezer_track_id' do
+      logger.log_deezer(deezer_track)
+      expect(logger.log.deezer_track_id).to eq('deezer789')
+    end
+
+    it 'stores the raw track data' do
+      logger.log_deezer(deezer_track)
+      expect(logger.log.deezer_raw_response).to eq({ 'id' => 'deezer789', 'title' => 'Deezer Song' })
+    end
+
+    context 'with multiple artists' do
+      let(:deezer_track) do
+        instance_double(
+          Deezer::TrackFinder::Result,
+          artists: [{ 'name' => 'Artist One', 'id' => '111' }, { 'name' => 'Artist Two', 'id' => '222' }],
+          title: 'Collab Song',
+          id: 'deezer999',
+          track: {}
+        )
+      end
+
+      it 'joins multiple artist names with comma' do
+        logger.log_deezer(deezer_track)
+        expect(logger.log.deezer_artist).to eq('Artist One, Artist Two')
+      end
+    end
+  end
+
+  describe '#log_itunes' do
+    let(:itunes_track) do
+      instance_double(
+        Itunes::TrackFinder::Result,
+        artists: [{ 'name' => 'iTunes Artist', 'id' => '1046483358' }],
+        title: 'iTunes Song',
+        id: 'itunes123',
+        track: { 'trackId' => 'itunes123', 'trackName' => 'iTunes Song' }
+      )
+    end
+
+    before { logger.start_log }
+
+    it 'updates itunes_artist with the artist name' do
+      logger.log_itunes(itunes_track)
+      expect(logger.log.itunes_artist).to eq('iTunes Artist')
+    end
+
+    it 'updates itunes_title' do
+      logger.log_itunes(itunes_track)
+      expect(logger.log.itunes_title).to eq('iTunes Song')
+    end
+
+    it 'updates itunes_track_id' do
+      logger.log_itunes(itunes_track)
+      expect(logger.log.itunes_track_id).to eq('itunes123')
+    end
+
+    it 'stores the raw track data' do
+      logger.log_itunes(itunes_track)
+      expect(logger.log.itunes_raw_response).to eq({ 'trackId' => 'itunes123', 'trackName' => 'iTunes Song' })
+    end
+
+    context 'with multiple artists' do
+      let(:itunes_track) do
+        instance_double(
+          Itunes::TrackFinder::Result,
+          artists: [{ 'name' => 'Artist One', 'id' => '111' }, { 'name' => 'Artist Two', 'id' => '222' }],
+          title: 'Collab Song',
+          id: 'itunes999',
+          track: {}
+        )
+      end
+
+      it 'joins multiple artist names with comma' do
+        logger.log_itunes(itunes_track)
+        expect(logger.log.itunes_artist).to eq('Artist One, Artist Two')
+      end
+    end
+
+    context 'when artists is a hash instead of array' do
+      let(:itunes_track) do
+        instance_double(
+          Itunes::TrackFinder::Result,
+          artists: { 'name' => 'Single Artist', 'id' => '999' },
+          title: 'Solo Song',
+          id: 'itunes456',
+          track: {}
+        )
+      end
+
+      it 'handles single hash artist correctly' do
+        logger.log_itunes(itunes_track)
+        expect(logger.log.itunes_artist).to eq('Single Artist')
+      end
+    end
+  end
+
   describe '#complete_log' do
     let(:song) { create(:song) }
     let(:air_play) { create(:air_play, song:) }
