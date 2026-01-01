@@ -30,6 +30,10 @@ class SongImporter
       return false
     end
 
+    # Fetch and log Deezer/iTunes data for enrichment
+    deezer_track
+    itunes_track
+
     create_air_play
   rescue StandardError => e
     ExceptionNotifier.notify_new_relic(e)
@@ -74,6 +78,22 @@ class SongImporter
     @track ||= begin
       track = TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
       @import_logger.log_spotify(track) if track
+      track
+    end
+  end
+
+  def deezer_track
+    @deezer_track ||= begin
+      track = TrackExtractor::DeezerTrackFinder.new(played_song: @played_song).find
+      @import_logger.log_deezer(track) if track&.valid_match?
+      track
+    end
+  end
+
+  def itunes_track
+    @itunes_track ||= begin
+      track = TrackExtractor::ItunesTrackFinder.new(played_song: @played_song).find
+      @import_logger.log_itunes(track) if track&.valid_match?
       track
     end
   end
@@ -204,6 +224,8 @@ class SongImporter
     @artists = nil
     @song = nil
     @track = nil
+    @deezer_track = nil
+    @itunes_track = nil
     @scraper_import = nil
     @importer = nil
     @matching = nil

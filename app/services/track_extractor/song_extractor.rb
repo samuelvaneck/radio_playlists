@@ -80,10 +80,10 @@ class TrackExtractor::SongExtractor < TrackExtractor
   end
 
   def find_by_track
-    @find_by_track ||= Song.find_by(id_on_spotify:).presence ||
-                       Song.find_by(id_on_deezer:).presence ||
-                       Song.find_by(id_on_itunes:).presence ||
-                       Song.find_by(isrc:).presence
+    @find_by_track ||= (id_on_spotify.present? && Song.find_by(id_on_spotify:)) ||
+                       (id_on_deezer.present? && Song.find_by(id_on_deezer:)) ||
+                       (id_on_itunes.present? && Song.find_by(id_on_itunes:)) ||
+                       (isrc.present? && Song.find_by(isrc:))
   end
 
   def title
