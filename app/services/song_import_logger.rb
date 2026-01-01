@@ -109,7 +109,7 @@ class SongImportLogger
   private
 
   def sanitize_reason(reason)
-    reason.to_s.truncate(500).gsub(/\/Users\/\S+/, '[PATH]')
+    reason.to_s.truncate(500).gsub(%r{/Users/\S+}, '[PATH]')
   end
 
   def extract_spotify_artist(spotify_track)
