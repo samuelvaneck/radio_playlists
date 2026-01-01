@@ -10,10 +10,12 @@ module Spotify
       attempts ||= 1
 
       response = Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
-        connection.get(url) do |req|
+        api_response = connection.get(url) do |req|
           req.headers['Authorization'] = "Bearer #{token}"
           req.headers['Content-Type'] = 'application/json'
-        end.body
+        end
+        handle_rate_limit(api_response)
+        api_response.body
       end
       # Deep duplicate to prevent mutation of cached objects
       response.deep_dup
@@ -41,6 +43,15 @@ module Spotify
     end
 
     private
+
+    def handle_rate_limit(response)
+      return unless response.status == 429
+
+      retry_after = response.headers['Retry-After']&.to_i || 30
+      Rails.logger.warn("Spotify rate limit hit. Waiting #{retry_after} seconds.")
+      sleep(retry_after)
+      raise StandardError, 'Rate limited by Spotify API'
+    end
 
     def connection
       Faraday.new(url: 'https://api.spotify.com') do |conn|

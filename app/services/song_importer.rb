@@ -1,24 +1,32 @@
 # frozen_string_literal: true
 
 class SongImporter
-  attr_reader :radio_station
+  attr_reader :radio_station, :import_logger
+
   def initialize(radio_station:)
     @radio_station = radio_station
+    @import_logger = SongImportLogger.new(radio_station:)
   end
 
   def import
+    safe_start_log
     @played_song = recognize_song || scrape_song
+
     if @played_song.blank?
       Broadcaster.no_importing_song
+      @import_logger.skip_log(reason: 'No song recognized or scraped')
       return false
     elsif artist_name.blank?
       Broadcaster.no_importing_artists
+      @import_logger.skip_log(reason: 'No artist name found')
       return false
     elsif illegal_word_in_title
       Broadcaster.illegal_word_in_title(title:)
+      @import_logger.skip_log(reason: "Illegal word in title: #{title}")
       return false
     elsif artists.nil? || song.nil?
       Broadcaster.no_artists_or_song(title:, radio_station_name: @radio_station.name)
+      @import_logger.skip_log(reason: 'No artists or song could be extracted')
       return false
     end
 
@@ -26,6 +34,7 @@ class SongImporter
   rescue StandardError => e
     ExceptionNotifier.notify_new_relic(e)
     Broadcaster.error_during_import(error_message: e.message, radio_station_name: @radio_station.name)
+    @import_logger.fail_log(reason: e.message)
     nil
   ensure
     clear_instance_variables
@@ -62,13 +71,18 @@ class SongImporter
   end
 
   def spotify_track
-    @track ||= TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
+    @track ||= begin
+      track = TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
+      @import_logger.log_spotify(track) if track
+      track
+    end
   end
 
   def recognize_song
     recognizer = SongRecognizer.new(@radio_station)
     return nil unless recognizer.recognized?
 
+    @import_logger.log_recognition(recognizer)
     recognizer
   end
 
@@ -78,6 +92,7 @@ class SongImporter
     scrapper = "TrackScraper::#{@radio_station.processor.camelcase}".constantize.new(@radio_station)
     return nil unless scrapper.last_played_song
 
+    @import_logger.log_scraping(scrapper, raw_response: scrapper.raw_response)
     scrapper
   end
 
@@ -104,27 +119,48 @@ class SongImporter
       add_song
     else
       @importer.broadcast_error_message
+      @import_logger.skip_log(reason: 'Song already imported recently or matches last played song')
     end
   end
 
+  def safe_start_log
+    @import_logger.start_log
+  rescue StandardError => e
+    Rails.logger.error("Failed to create song import log: #{e.message}")
+  end
+
   def add_song
+    added_air_play = find_or_create_air_play
+    finalize_song_import(added_air_play)
+  end
+
+  def find_or_create_air_play
     existing_draft = AirPlay.find_draft_for_confirmation(@radio_station, song)
 
     if existing_draft
-      # Confirm the existing draft
-      existing_draft.confirmed!
-      added_air_play = existing_draft
-      Broadcaster.song_confirmed(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+      confirm_existing_draft(existing_draft)
     else
-      # Create new draft air_play
-      added_air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import)
-      Broadcaster.song_draft_created(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+      create_new_draft_air_play
     end
+  end
 
-    @radio_station.update_last_added_air_play_ids(added_air_play.id)
+  def confirm_existing_draft(draft)
+    draft.confirmed!
+    Broadcaster.song_confirmed(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+    draft
+  end
+
+  def create_new_draft_air_play
+    air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import)
+    Broadcaster.song_draft_created(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+    air_play
+  end
+
+  def finalize_song_import(air_play)
+    @import_logger.complete_log(song:, air_play:)
+    @radio_station.update_last_added_air_play_ids(air_play.id)
     song.update_artists(artists) if should_update_artists?
-    @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song: song)
-
+    @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song:)
     RadioStationClassifierJob.perform_async(song.id_on_spotify, @radio_station.id)
   end
 

@@ -5,6 +5,7 @@ class TrackScraper::SlamApiProcessor < TrackScraper
     response = make_request
     raise StandardError if response.blank?
 
+    @raw_response = response
     track = response[:data][:song]
     return false if track.blank?
 

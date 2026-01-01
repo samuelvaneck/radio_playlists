@@ -5,6 +5,7 @@ class TrackScraper::KinkApiProcessor < TrackScraper
     response = make_request
     raise StandardError if response.blank?
 
+    @raw_response = response
     track = response[:extended][:kink]
     return false if track.blank?
 

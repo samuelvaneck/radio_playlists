@@ -378,7 +378,7 @@ namespace :data_repair do
     }
   end
 
-  def fix_song(song, spotify_data, mismatch) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def fix_song(song, spotify_data, mismatch) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     updates = {}
 
     # Update title if mismatched

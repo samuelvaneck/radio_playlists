@@ -30,6 +30,7 @@ class AirPlay < ApplicationRecord
   belongs_to :song
   belongs_to :radio_station
   has_many :artists, through: :song
+  has_many :song_import_logs, dependent: :nullify
 
   enum :status, { draft: 0, confirmed: 1 }
 

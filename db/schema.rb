@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_30_203927) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_01_124459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -172,6 +172,48 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_30_203927) do
     t.text "url"
   end
 
+  create_table "song_import_logs", force: :cascade do |t|
+    t.bigint "air_play_id"
+    t.datetime "broadcasted_at"
+    t.datetime "created_at", null: false
+    t.string "deezer_artist"
+    t.jsonb "deezer_raw_response", default: {}
+    t.string "deezer_title"
+    t.string "deezer_track_id"
+    t.text "failure_reason"
+    t.string "import_source"
+    t.string "itunes_artist"
+    t.jsonb "itunes_raw_response", default: {}
+    t.string "itunes_title"
+    t.string "itunes_track_id"
+    t.bigint "radio_station_id", null: false
+    t.string "recognized_artist"
+    t.string "recognized_isrc"
+    t.jsonb "recognized_raw_response", default: {}
+    t.string "recognized_spotify_url"
+    t.string "recognized_title"
+    t.string "scraped_artist"
+    t.string "scraped_isrc"
+    t.jsonb "scraped_raw_response", default: {}
+    t.string "scraped_spotify_url"
+    t.string "scraped_title"
+    t.bigint "song_id"
+    t.string "spotify_artist"
+    t.string "spotify_isrc"
+    t.jsonb "spotify_raw_response", default: {}
+    t.string "spotify_title"
+    t.string "spotify_track_id"
+    t.string "status", default: "pending"
+    t.datetime "updated_at", null: false
+    t.index ["air_play_id"], name: "index_song_import_logs_on_air_play_id"
+    t.index ["broadcasted_at"], name: "index_song_import_logs_on_broadcasted_at"
+    t.index ["created_at"], name: "index_song_import_logs_on_created_at"
+    t.index ["import_source"], name: "index_song_import_logs_on_import_source"
+    t.index ["radio_station_id"], name: "index_song_import_logs_on_radio_station_id"
+    t.index ["song_id"], name: "index_song_import_logs_on_song_id"
+    t.index ["status"], name: "index_song_import_logs_on_status"
+  end
+
   create_table "songs", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.string "deezer_artwork_url"
@@ -218,4 +260,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_30_203927) do
   add_foreign_key "radio_station_classifiers", "radio_stations"
   add_foreign_key "radio_station_songs", "radio_stations"
   add_foreign_key "radio_station_songs", "songs"
+  add_foreign_key "song_import_logs", "air_plays"
+  add_foreign_key "song_import_logs", "radio_stations"
+  add_foreign_key "song_import_logs", "songs"
 end

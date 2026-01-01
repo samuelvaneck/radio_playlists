@@ -41,6 +41,7 @@ class TrackScraper::TalpaApiProcessor < TrackScraper
     raise StandardError if response.blank?
     raise StandardError, response[:errors] if response[:errors].present?
 
+    @raw_response = response
     track = response.dig(:data, :station, :getPlayouts, :playouts, 0, :track)
     return false if track.blank?
 
