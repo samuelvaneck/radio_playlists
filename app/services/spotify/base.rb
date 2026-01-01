@@ -55,6 +55,8 @@ module Spotify
 
     def connection
       Faraday.new(url: 'https://api.spotify.com') do |conn|
+        conn.options.timeout = 10
+        conn.options.open_timeout = 5
         conn.response :json
       end
     end
