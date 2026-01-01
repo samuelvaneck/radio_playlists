@@ -21,7 +21,7 @@ FactoryBot.define do
   factory :radio_station do
     name { Faker::Name.name }
     url { Faker::Internet.domain_name(subdomain: true, domain: 'example') }
-    processor { %w[npo_api_processor media_huis_api_processor talpa_api_processor qmusic_api_processor scraper'].sample }
+    processor { %w[npo_api_processor media_huis_api_processor talpa_api_processor qmusic_api_processor].sample }
     country_code { 'NLD' }
   end
 
@@ -95,8 +95,10 @@ FactoryBot.define do
 
   factory :sublime_fm, parent: :radio_station do
     name { 'Sublime FM' }
-    url { 'https://sublime.nl/sublime-playlist/' }
-    processor { 'scraper' }
+    url { 'https://api.mediahuisradio.nl/api/nowplaying/playlist?stationKey=sublime&brand=sublime' }
+    processor { 'media_huis_api_processor' }
+    stream_url { 'https://icecast.samuelvaneck.com/sublimefm.mp3' }
+    slug { 'sublime-fm' }
     country_code { 'NLD' }
   end
 

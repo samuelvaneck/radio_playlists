@@ -21,8 +21,8 @@ RadioStation.seed(
   },
   {
     name: 'Sublime FM',
-    url: 'https://sublime.nl/sublime-playlist/',
-    processor: 'scraper',
+    url: 'https://api.mediahuisradio.nl/api/nowplaying/playlist?stationKey=sublime&brand=sublime',
+    processor: 'media_huis_api_processor',
     stream_url: 'https://icecast.samuelvaneck.com/sublimefm.mp3',
     slug: 'sublime-fm',
     country_code: 'NLD'
