@@ -5,6 +5,7 @@ class TrackScraper::MediaHuisApiProcessor < TrackScraper
     response = make_request
     raise StandardError if response.blank?
 
+    @raw_response = response
     track = response[:tracks][0]
     return false if track.blank?
 

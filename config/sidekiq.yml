@@ -31,6 +31,10 @@
         cron: '0 * * * *' # every hour
         queue: low
         enabled: true
+      SongImportLogCleanupJob:
+        cron: '0 2 * * *' # at 2am daily
+        queue: low
+        enabled: true
   :sidekiq_default_hooks: true
   :sidekiq_pid: File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid')
   :sidekiq_env: fetch(:rack_env, fetch(:rails_env, fetch(:stage)))

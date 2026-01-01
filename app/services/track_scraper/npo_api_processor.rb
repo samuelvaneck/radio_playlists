@@ -5,6 +5,7 @@ class TrackScraper::NpoApiProcessor < TrackScraper
     response = make_request
     raise StandardError if response.blank?
 
+    @raw_response = response
     track = response.dig(:data, 0)
     return false if track.blank?
 

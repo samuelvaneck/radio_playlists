@@ -5,10 +5,11 @@ require 'open-uri'
 require 'net/http'
 
 class TrackScraper
-  attr_reader :artist_name, :title, :broadcasted_at, :spotify_url, :isrc_code
+  attr_reader :artist_name, :title, :broadcasted_at, :spotify_url, :isrc_code, :raw_response
 
   def initialize(radio_station)
     @radio_station = radio_station
+    @raw_response = {}
   end
 
   private

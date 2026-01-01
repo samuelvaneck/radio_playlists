@@ -5,6 +5,7 @@ class TrackScraper::GnrApiProcessor < TrackScraper
     response = make_request
     raise StandardError if response.blank?
 
+    @raw_response = response
     track = response.dig(:stations, :gnr)
     return false if track.blank?
 

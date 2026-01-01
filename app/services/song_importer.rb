@@ -1,24 +1,32 @@
 # frozen_string_literal: true
 
 class SongImporter
-  attr_reader :radio_station
+  attr_reader :radio_station, :import_logger
+
   def initialize(radio_station:)
     @radio_station = radio_station
+    @import_logger = SongImportLogger.new(radio_station:)
   end
 
   def import
+    @import_logger.start_log
     @played_song = recognize_song || scrape_song
+
     if @played_song.blank?
       Broadcaster.no_importing_song
+      @import_logger.skip_log(reason: 'No song recognized or scraped')
       return false
     elsif artist_name.blank?
       Broadcaster.no_importing_artists
+      @import_logger.skip_log(reason: 'No artist name found')
       return false
     elsif illegal_word_in_title
       Broadcaster.illegal_word_in_title(title:)
+      @import_logger.skip_log(reason: "Illegal word in title: #{title}")
       return false
     elsif artists.nil? || song.nil?
       Broadcaster.no_artists_or_song(title:, radio_station_name: @radio_station.name)
+      @import_logger.skip_log(reason: 'No artists or song could be extracted')
       return false
     end
 
@@ -26,6 +34,7 @@ class SongImporter
   rescue StandardError => e
     ExceptionNotifier.notify_new_relic(e)
     Broadcaster.error_during_import(error_message: e.message, radio_station_name: @radio_station.name)
+    @import_logger.fail_log(reason: e.message)
     nil
   ensure
     clear_instance_variables
@@ -62,13 +71,18 @@ class SongImporter
   end
 
   def spotify_track
-    @track ||= TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
+    @track ||= begin
+      track = TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
+      @import_logger.log_spotify(track) if track
+      track
+    end
   end
 
   def recognize_song
     recognizer = SongRecognizer.new(@radio_station)
     return nil unless recognizer.recognized?
 
+    @import_logger.log_recognition(recognizer)
     recognizer
   end
 
@@ -78,6 +92,7 @@ class SongImporter
     scrapper = "TrackScraper::#{@radio_station.processor.camelcase}".constantize.new(@radio_station)
     return nil unless scrapper.last_played_song
 
+    @import_logger.log_scraping(scrapper, raw_response: scrapper.raw_response)
     scrapper
   end
 
@@ -121,6 +136,7 @@ class SongImporter
       Broadcaster.song_draft_created(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
     end
 
+    @import_logger.complete_log(song:, air_play: added_air_play)
     @radio_station.update_last_added_air_play_ids(added_air_play.id)
     song.update_artists(artists) if should_update_artists?
     @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song: song)
