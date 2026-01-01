@@ -93,7 +93,7 @@ class SongImportLogger
 
     @log.update(
       status: :failed,
-      failure_reason: reason
+      failure_reason: sanitize_reason(reason)
     )
   end
 
@@ -102,11 +102,15 @@ class SongImportLogger
 
     @log.update(
       status: :skipped,
-      failure_reason: reason
+      failure_reason: sanitize_reason(reason)
     )
   end
 
   private
+
+  def sanitize_reason(reason)
+    reason.to_s.truncate(500).gsub(/\/Users\/\S+/, '[PATH]')
+  end
 
   def extract_spotify_artist(spotify_track)
     return nil unless spotify_track.artists

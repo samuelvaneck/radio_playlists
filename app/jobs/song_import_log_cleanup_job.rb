@@ -24,6 +24,7 @@ class SongImportLogCleanupJob
     ensure_export_directory_exists
     csv_content = SongImportLog.to_csv(logs)
     File.write(csv_file_path, csv_content)
+    File.chmod(0o600, csv_file_path) # Owner read/write only
     Rails.logger.info("SongImportLogCleanupJob: Exported logs to #{csv_file_path}")
   end
 
