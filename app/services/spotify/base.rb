@@ -1,5 +1,8 @@
 module Spotify
   class Base
+    ARTIST_SIMILARITY_THRESHOLD = 80
+    TITLE_SIMILARITY_THRESHOLD = 70
+
     attr_reader :args
 
     def initialize(args)
@@ -65,8 +68,12 @@ module Spotify
       Spotify::Token.new.token
     end
 
-    def string_distance(item_string)
-      (JaroWinkler.similarity(item_string, "#{args[:artists]} #{args[:title]}") * 100).to_i
+    def artist_distance(item_artist_names)
+      (JaroWinkler.similarity(item_artist_names.downcase, args[:artists].to_s.downcase) * 100).to_i
+    end
+
+    def title_distance(item_title)
+      (JaroWinkler.similarity(item_title.to_s.downcase, args[:title].to_s.downcase) * 100).to_i
     end
 
     def add_match(items)
@@ -74,10 +81,16 @@ module Spotify
         next if item.blank?
 
         item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }.join(' ')
-        item_full_name = "#{item_artist_names} #{item['name']}"
-        distance = string_distance(item_full_name)
-        item['title_distance'] = distance
-        item['match'] = item['popularity'] + (distance * 2)
+        item_title = item['name']
+
+        artist_dist = artist_distance(item_artist_names)
+        title_dist = title_distance(item_title)
+
+        item['artist_distance'] = artist_dist
+        item['title_distance'] = title_dist
+        # Use minimum of both distances to ensure both artist AND title match well
+        # This prevents different songs by the same artist from getting high scores
+        item['match'] = item['popularity'] + ([artist_dist, title_dist].min * 2)
         item
       end
     end

@@ -38,6 +38,18 @@ describe SongImporter::Matcher do
       end
     end
 
+    context 'when a different song by the same artist was played in the last hour' do
+      let(:different_song_same_artist) { create(:song, title: 'Completely Different Title', artists: [artist]) }
+
+      before do
+        create(:air_play, radio_station: radio_station, song: different_song_same_artist, created_at: 30.minutes.ago)
+      end
+
+      it 'returns false because title does not match' do
+        expect(matcher.matches_any_played_last_hour?).to be false
+      end
+    end
+
     context 'when a completely different song was played in the last hour' do
       let(:different_artist) { create(:artist, name: 'Different Artist') }
       let(:different_song) { create(:song, title: 'Completely Different', artists: [different_artist]) }
@@ -77,13 +89,28 @@ describe SongImporter::Matcher do
         create(:air_play, radio_station: radio_station, song: different_song, created_at: 30.minutes.ago)
       end
 
-      it 'returns an array of similarity scores' do
-        scores = matcher.song_matches
-        expect(scores).to be_an(Array)
+      it 'returns an array' do
+        expect(matcher.song_matches).to be_an(Array)
       end
 
-      it 'returns integer scores' do
-        expect(matcher.song_matches.first).to be_an(Integer)
+      it 'returns hashes' do
+        expect(matcher.song_matches.first).to be_a(Hash)
+      end
+
+      it 'returns hashes with artist_similarity key' do
+        expect(matcher.song_matches.first).to have_key(:artist_similarity)
+      end
+
+      it 'returns hashes with title_similarity key' do
+        expect(matcher.song_matches.first).to have_key(:title_similarity)
+      end
+
+      it 'returns integer artist_similarity scores' do
+        expect(matcher.song_matches.first[:artist_similarity]).to be_an(Integer)
+      end
+
+      it 'returns integer title_similarity scores' do
+        expect(matcher.song_matches.first[:title_similarity]).to be_an(Integer)
       end
     end
   end
@@ -107,6 +134,16 @@ describe SongImporter::Matcher do
       end
     end
 
+    context 'when comparing different song by same artist' do
+      let(:different_song_same_artist) { create(:song, title: 'Completely Different Title', artists: [artist]) }
+
+      it 'returns a low similarity score due to title mismatch' do
+        # Artist matches 100%, but title is very different
+        # song_match returns the minimum of artist and title similarity
+        expect(matcher.song_match(different_song_same_artist)).to be < 60
+      end
+    end
+
     context 'when comparing different songs' do
       let(:different_song) { create(:song, title: 'XYZ Unrelated Track ABC', artists: [different_artist]) }
 
@@ -127,6 +164,60 @@ describe SongImporter::Matcher do
     end
   end
 
+  describe '#artist_match' do
+    context 'when comparing identical artists' do
+      let(:same_artist_song) { create(:song, title: 'Different Title', artists: [artist]) }
+
+      it 'returns 100' do
+        expect(matcher.artist_match(same_artist_song)).to eq(100)
+      end
+    end
+
+    context 'when comparing similar artists' do
+      let(:similar_artist) { create(:artist, name: 'Test Artists') }
+      let(:similar_artist_song) { create(:song, title: 'Different Title', artists: [similar_artist]) }
+
+      it 'returns a high similarity score' do
+        expect(matcher.artist_match(similar_artist_song)).to be > 80
+      end
+    end
+
+    context 'when comparing different artists' do
+      let(:different_artist) { create(:artist, name: 'Completely Different Name') }
+      let(:different_artist_song) { create(:song, title: 'Test Song', artists: [different_artist]) }
+
+      it 'returns a low similarity score' do
+        expect(matcher.artist_match(different_artist_song)).to be < 60
+      end
+    end
+  end
+
+  describe '#title_match' do
+    context 'when comparing identical titles' do
+      let(:same_title_song) { create(:song, title: 'Test Song', artists: [create(:artist, name: 'Other Artist')]) }
+
+      it 'returns 100' do
+        expect(matcher.title_match(same_title_song)).to eq(100)
+      end
+    end
+
+    context 'when comparing similar titles' do
+      let(:similar_title_song) { create(:song, title: 'Test Songs', artists: [artist]) }
+
+      it 'returns a high similarity score' do
+        expect(matcher.title_match(similar_title_song)).to be > 80
+      end
+    end
+
+    context 'when comparing different titles' do
+      let(:different_title_song) { create(:song, title: 'Completely Different Title', artists: [artist]) }
+
+      it 'returns a low similarity score' do
+        expect(matcher.title_match(different_title_song)).to be < 60
+      end
+    end
+  end
+
   describe 'performance optimization' do
     context 'when using map instead of find_each.map' do
       before do
@@ -142,8 +233,12 @@ describe SongImporter::Matcher do
         expect(matcher.song_matches.length).to eq(5)
       end
 
-      it 'all scores are integers' do
-        expect(matcher.song_matches).to all(be_an(Integer))
+      it 'returns all results as hashes' do
+        expect(matcher.song_matches).to all(be_a(Hash))
+      end
+
+      it 'includes similarity scores in all results' do
+        expect(matcher.song_matches).to all(include(:artist_similarity, :title_similarity))
       end
     end
   end

@@ -63,8 +63,88 @@ describe Spotify::Base, type: :service do
       allow(spotify_base).to receive(:make_request).and_return(tracks_response)
     end
 
-    it 'adds match and title_distance to the tracks' do
-      expect(result['tracks']['items'].first).to include('match', 'title_distance')
+    it 'adds match, artist_distance and title_distance to the tracks' do
+      expect(result['tracks']['items'].first).to include('match', 'artist_distance', 'title_distance')
+    end
+  end
+
+  describe '#artist_distance' do
+    context 'when artist names match exactly' do
+      it 'returns 100' do
+        expect(spotify_base.send(:artist_distance, 'Artist Name')).to eq(100)
+      end
+    end
+
+    context 'when artist names are similar' do
+      it 'returns a high score' do
+        expect(spotify_base.send(:artist_distance, 'Artist Names')).to be > 80
+      end
+    end
+
+    context 'when artist names are different' do
+      it 'returns a low score' do
+        expect(spotify_base.send(:artist_distance, 'Completely Different')).to be < 60
+      end
+    end
+  end
+
+  describe '#title_distance' do
+    context 'when titles match exactly' do
+      it 'returns 100' do
+        expect(spotify_base.send(:title_distance, 'Song Title')).to eq(100)
+      end
+    end
+
+    context 'when titles are similar' do
+      it 'returns a high score' do
+        expect(spotify_base.send(:title_distance, 'Song Titles')).to be > 80
+      end
+    end
+
+    context 'when titles are different' do
+      it 'returns a low score' do
+        expect(spotify_base.send(:title_distance, 'Completely Different')).to be < 60
+      end
+    end
+  end
+
+  describe '#add_match' do
+    let(:items) do
+      [
+        { 'name' => 'Song Title', 'album' => { 'artists' => [{ 'name' => 'Artist Name' }] }, 'popularity' => 50 }
+      ]
+    end
+
+    context 'when both artist and title match well' do
+      it 'calculates a high match score' do
+        result = spotify_base.send(:add_match, items)
+        # popularity (50) + (min(100, 100) * 2) = 250
+        expect(result.first['match']).to eq(250)
+      end
+    end
+
+    context 'when same artist but different song title' do
+      let(:items) do
+        [
+          { 'name' => 'Completely Different Song', 'album' => { 'artists' => [{ 'name' => 'Artist Name' }] },
+            'popularity' => 50 }
+        ]
+      end
+
+      it 'calculates a low match score due to title mismatch' do
+        result = spotify_base.send(:add_match, items)
+        expect(result.first['match']).to be <= 150
+      end
+
+      it 'has full artist_distance despite title mismatch' do
+        result = spotify_base.send(:add_match, items)
+        expect(result.first['artist_distance']).to eq(100)
+      end
+
+      it 'has low title_distance for different song' do
+        result = spotify_base.send(:add_match, items)
+        expect(result.first['title_distance']).to be < 60
+      end
     end
   end
 end
