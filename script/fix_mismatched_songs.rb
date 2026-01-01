@@ -16,7 +16,7 @@
 #     rails runner "ENV['VERBOSE']='true'; load 'script/fix_mismatched_songs.rb'"
 
 class MismatchedSongFixer
-  MISMATCH_THRESHOLD = 0.5
+  MISMATCH_THRESHOLD = 0.7
   LOW_SIMILARITY_THRESHOLD = 0.8
   ARTIST_SIMILARITY_THRESHOLD = 0.8
 
@@ -155,13 +155,13 @@ class SongMismatchChecker
 
     log_low_similarity(spotify_title, title_similarity) if @verbose && title_similarity < 0.8
 
-    return nil if title_similarity >= 0.5 || artists_match?(song_artists, spotify_artists)
+    return nil if title_similarity >= MismatchedSongFixer::MISMATCH_THRESHOLD || artists_match?(song_artists, spotify_artists)
 
     build_mismatch_info(spotify_data, spotify_title, spotify_artists, title_similarity, song_artists)
   end
 
   def log_low_similarity(spotify_title, similarity)
-    return if similarity < 0.5
+    return if similarity < MismatchedSongFixer::MISMATCH_THRESHOLD
 
     puts "  [OK but low similarity] Song #{@song.id}: '#{@song.title}' vs '#{spotify_title}' (#{(similarity * 100).round}%)"
   end
