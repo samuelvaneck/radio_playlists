@@ -133,10 +133,16 @@ describe Spotify::Base, type: :service do
 
       it 'calculates a low match score due to title mismatch' do
         result = spotify_base.send(:add_match, items)
-        # The minimum of artist_distance (100) and title_distance (low) is used
-        # So the match score should be low despite matching artist
         expect(result.first['match']).to be <= 150
+      end
+
+      it 'has full artist_distance despite title mismatch' do
+        result = spotify_base.send(:add_match, items)
         expect(result.first['artist_distance']).to eq(100)
+      end
+
+      it 'has low title_distance for different song' do
+        result = spotify_base.send(:add_match, items)
         expect(result.first['title_distance']).to be < 60
       end
     end

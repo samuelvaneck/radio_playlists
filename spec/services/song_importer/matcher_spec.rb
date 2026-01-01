@@ -89,22 +89,28 @@ describe SongImporter::Matcher do
         create(:air_play, radio_station: radio_station, song: different_song, created_at: 30.minutes.ago)
       end
 
-      it 'returns an array of similarity hashes' do
-        scores = matcher.song_matches
-        expect(scores).to be_an(Array)
-        expect(scores.first).to be_a(Hash)
+      it 'returns an array' do
+        expect(matcher.song_matches).to be_an(Array)
       end
 
-      it 'returns hashes with artist_similarity and title_similarity keys' do
-        result = matcher.song_matches.first
-        expect(result).to have_key(:artist_similarity)
-        expect(result).to have_key(:title_similarity)
+      it 'returns hashes' do
+        expect(matcher.song_matches.first).to be_a(Hash)
       end
 
-      it 'returns integer similarity scores' do
-        result = matcher.song_matches.first
-        expect(result[:artist_similarity]).to be_an(Integer)
-        expect(result[:title_similarity]).to be_an(Integer)
+      it 'returns hashes with artist_similarity key' do
+        expect(matcher.song_matches.first).to have_key(:artist_similarity)
+      end
+
+      it 'returns hashes with title_similarity key' do
+        expect(matcher.song_matches.first).to have_key(:title_similarity)
+      end
+
+      it 'returns integer artist_similarity scores' do
+        expect(matcher.song_matches.first[:artist_similarity]).to be_an(Integer)
+      end
+
+      it 'returns integer title_similarity scores' do
+        expect(matcher.song_matches.first[:title_similarity]).to be_an(Integer)
       end
     end
   end
@@ -227,10 +233,12 @@ describe SongImporter::Matcher do
         expect(matcher.song_matches.length).to eq(5)
       end
 
-      it 'all results are hashes with similarity scores' do
-        results = matcher.song_matches
-        expect(results).to all(be_a(Hash))
-        expect(results).to all(include(:artist_similarity, :title_similarity))
+      it 'returns all results as hashes' do
+        expect(matcher.song_matches).to all(be_a(Hash))
+      end
+
+      it 'includes similarity scores in all results' do
+        expect(matcher.song_matches).to all(include(:artist_similarity, :title_similarity))
       end
     end
   end
