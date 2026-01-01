@@ -46,13 +46,28 @@ describe SongImportLogger do
 
     before { logger.start_log }
 
-    it 'updates the log with recognition data' do
+    it 'updates recognized_artist' do
       logger.log_recognition(recognizer)
-
       expect(logger.log.recognized_artist).to eq('Test Artist')
+    end
+
+    it 'updates recognized_title' do
+      logger.log_recognition(recognizer)
       expect(logger.log.recognized_title).to eq('Test Song')
+    end
+
+    it 'updates recognized_isrc' do
+      logger.log_recognition(recognizer)
       expect(logger.log.recognized_isrc).to eq('USTEST1234567')
+    end
+
+    it 'updates recognized_spotify_url' do
+      logger.log_recognition(recognizer)
       expect(logger.log.recognized_spotify_url).to eq('spotify:track:123abc')
+    end
+
+    it 'sets import_source to recognition' do
+      logger.log_recognition(recognizer)
       expect(logger.log.import_source).to eq('recognition')
     end
 
@@ -82,11 +97,18 @@ describe SongImportLogger do
 
     before { logger.start_log }
 
-    it 'updates the log with scraping data' do
+    it 'updates scraped_artist' do
       logger.log_scraping(scraper, raw_response:)
-
       expect(logger.log.scraped_artist).to eq('Scraped Artist')
+    end
+
+    it 'updates scraped_title' do
+      logger.log_scraping(scraper, raw_response:)
       expect(logger.log.scraped_title).to eq('Scraped Song')
+    end
+
+    it 'sets import_source to scraping' do
+      logger.log_scraping(scraper, raw_response:)
       expect(logger.log.import_source).to eq('scraping')
     end
 
@@ -110,12 +132,23 @@ describe SongImportLogger do
 
     before { logger.start_log }
 
-    it 'updates the log with Spotify data' do
+    it 'updates spotify_artist' do
       logger.log_spotify(spotify_track)
-
       expect(logger.log.spotify_artist).to eq('Spotify Artist')
+    end
+
+    it 'updates spotify_title' do
+      logger.log_spotify(spotify_track)
       expect(logger.log.spotify_title).to eq('Spotify Song')
+    end
+
+    it 'updates spotify_track_id' do
+      logger.log_spotify(spotify_track)
       expect(logger.log.spotify_track_id).to eq('spotify123')
+    end
+
+    it 'updates spotify_isrc' do
+      logger.log_spotify(spotify_track)
       expect(logger.log.spotify_isrc).to eq('USSPOTIFY1234')
     end
 
@@ -136,9 +169,13 @@ describe SongImportLogger do
       expect(logger.log.status).to eq('success')
     end
 
-    it 'links the song and air_play' do
+    it 'links the song' do
       logger.complete_log(song:, air_play:)
       expect(logger.log.song).to eq(song)
+    end
+
+    it 'links the air_play' do
+      logger.complete_log(song:, air_play:)
       expect(logger.log.air_play).to eq(air_play)
     end
   end

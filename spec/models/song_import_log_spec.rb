@@ -35,15 +35,21 @@ describe SongImportLog do
     let!(:recent_log) { create(:song_import_log) }
 
     describe '.older_than' do
-      it 'returns logs created before the given time' do
+      it 'includes logs created before the given time' do
         expect(described_class.older_than(1.day.ago)).to include(old_log)
+      end
+
+      it 'excludes logs created after the given time' do
         expect(described_class.older_than(1.day.ago)).not_to include(recent_log)
       end
     end
 
     describe '.recent' do
-      it 'returns logs from the last 24 hours' do
+      it 'includes logs from the last 24 hours' do
         expect(described_class.recent).to include(recent_log)
+      end
+
+      it 'excludes old logs' do
         expect(described_class.recent).not_to include(old_log)
       end
     end
@@ -52,8 +58,11 @@ describe SongImportLog do
       let(:radio_station) { create(:radio_station) }
       let!(:station_log) { create(:song_import_log, radio_station:) }
 
-      it 'filters by radio station id' do
+      it 'includes logs for the given station' do
         expect(described_class.by_radio_station(radio_station.id)).to include(station_log)
+      end
+
+      it 'excludes logs for other stations' do
         expect(described_class.by_radio_station(radio_station.id)).not_to include(old_log, recent_log)
       end
 
@@ -73,11 +82,18 @@ describe SongImportLog do
       expect(lines.first).to include('id', 'radio_station_id', 'recognized_artist', 'spotify_artist', 'status')
     end
 
-    it 'includes log data in the CSV' do
+    it 'includes log id in the CSV' do
       csv = described_class.to_csv(described_class.all)
-
       expect(csv).to include(log.id.to_s)
+    end
+
+    it 'includes recognized artist in the CSV' do
+      csv = described_class.to_csv(described_class.all)
       expect(csv).to include(log.recognized_artist)
+    end
+
+    it 'includes spotify artist in the CSV' do
+      csv = described_class.to_csv(described_class.all)
       expect(csv).to include(log.spotify_artist)
     end
   end

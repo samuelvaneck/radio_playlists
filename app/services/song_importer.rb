@@ -130,24 +130,37 @@ class SongImporter
   end
 
   def add_song
+    added_air_play = find_or_create_air_play
+    finalize_song_import(added_air_play)
+  end
+
+  def find_or_create_air_play
     existing_draft = AirPlay.find_draft_for_confirmation(@radio_station, song)
 
     if existing_draft
-      # Confirm the existing draft
-      existing_draft.confirmed!
-      added_air_play = existing_draft
-      Broadcaster.song_confirmed(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+      confirm_existing_draft(existing_draft)
     else
-      # Create new draft air_play
-      added_air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import)
-      Broadcaster.song_draft_created(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+      create_new_draft_air_play
     end
+  end
 
-    @import_logger.complete_log(song:, air_play: added_air_play)
-    @radio_station.update_last_added_air_play_ids(added_air_play.id)
+  def confirm_existing_draft(draft)
+    draft.confirmed!
+    Broadcaster.song_confirmed(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+    draft
+  end
+
+  def create_new_draft_air_play
+    air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import)
+    Broadcaster.song_draft_created(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+    air_play
+  end
+
+  def finalize_song_import(air_play)
+    @import_logger.complete_log(song:, air_play:)
+    @radio_station.update_last_added_air_play_ids(air_play.id)
     song.update_artists(artists) if should_update_artists?
-    @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song: song)
-
+    @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song:)
     RadioStationClassifierJob.perform_async(song.id_on_spotify, @radio_station.id)
   end
 

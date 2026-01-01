@@ -13,6 +13,10 @@ describe SongImportLogCleanupJob do
 
     it 'deletes logs older than 1 day' do
       expect { job.perform }.to change(SongImportLog, :count).by(-1)
+    end
+
+    it 'removes the old log from database' do
+      job.perform
       expect(SongImportLog.exists?(old_log.id)).to be false
     end
 
@@ -27,12 +31,19 @@ describe SongImportLogCleanupJob do
       expect(csv_files).not_to be_empty
     end
 
-    it 'creates CSV with correct data' do
+    it 'includes log id in CSV' do
       job.perform
       csv_file = Dir.glob(described_class::CSV_EXPORT_DIR.join('*.csv')).first
       csv_content = File.read(csv_file)
 
       expect(csv_content).to include(old_log.id.to_s)
+    end
+
+    it 'includes recognized artist in CSV' do
+      job.perform
+      csv_file = Dir.glob(described_class::CSV_EXPORT_DIR.join('*.csv')).first
+      csv_content = File.read(csv_file)
+
       expect(csv_content).to include(old_log.recognized_artist)
     end
 
