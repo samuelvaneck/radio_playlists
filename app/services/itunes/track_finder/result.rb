@@ -7,8 +7,6 @@ module Itunes
                   :itunes_artwork_url, :itunes_song_url, :itunes_preview_url,
                   :release_date
 
-      MINIMUM_TITLE_SIMILARITY = 70
-
       def initialize(args)
         super
         @search_artists = args[:artists]
@@ -35,7 +33,8 @@ module Itunes
       def valid_match?
         return false if @track.blank?
 
-        @track['title_distance'].to_i >= MINIMUM_TITLE_SIMILARITY
+        @track['artist_distance'].to_i >= ARTIST_SIMILARITY_THRESHOLD &&
+          @track['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD
       end
 
       private
@@ -55,9 +54,13 @@ module Itunes
         tracks = response['results']
         tracks_with_scores = tracks.map { |track| add_match_score(track) }.compact
 
-        # Select best match by title_distance that meets threshold
-        valid_tracks = tracks_with_scores.select { |t| t['title_distance'].to_i >= MINIMUM_TITLE_SIMILARITY }
-        valid_tracks.max_by { |t| t['title_distance'] }
+        # Select best match where both artist and title meet their thresholds
+        valid_tracks = tracks_with_scores.select do |t|
+          t['artist_distance'].to_i >= ARTIST_SIMILARITY_THRESHOLD &&
+            t['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD
+        end
+        # Use minimum of artist and title distance to rank matches
+        valid_tracks.max_by { |t| [t['artist_distance'], t['title_distance']].min }
       end
 
       def add_match_score(track)
@@ -66,8 +69,8 @@ module Itunes
         artist_name = track['artistName'] || ''
         track_name = track['trackName'] || ''
 
-        distance = string_distance("#{artist_name} #{track_name}")
-        track['title_distance'] = distance
+        track['artist_distance'] = artist_distance(artist_name)
+        track['title_distance'] = title_distance(track_name)
         track
       end
 

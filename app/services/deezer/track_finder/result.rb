@@ -7,8 +7,6 @@ module Deezer
                   :deezer_artwork_url, :deezer_song_url, :deezer_preview_url,
                   :release_date
 
-      MINIMUM_TITLE_SIMILARITY = 70
-
       def initialize(args)
         super
         @search_artists = args[:artists]
@@ -35,7 +33,8 @@ module Deezer
       def valid_match?
         return false if @track.blank?
 
-        @track['title_distance'].to_i >= MINIMUM_TITLE_SIMILARITY
+        @track['artist_distance'].to_i >= ARTIST_SIMILARITY_THRESHOLD &&
+          @track['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD
       end
 
       private
@@ -44,7 +43,11 @@ module Deezer
         # Try ISRC first if available (most accurate)
         if @isrc_code.present?
           isrc_result = search_by_isrc
-          return isrc_result if isrc_result.present? && isrc_result['title_distance'].to_i >= MINIMUM_TITLE_SIMILARITY
+          if isrc_result.present? &&
+             isrc_result['artist_distance'].to_i >= ARTIST_SIMILARITY_THRESHOLD &&
+             isrc_result['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD
+            return isrc_result
+          end
         end
 
         # Fall back to artist/title search
@@ -70,9 +73,13 @@ module Deezer
         tracks = response['data']
         tracks_with_scores = tracks.map { |track| add_match_score(track) }.compact
 
-        # Select best match by title_distance that meets threshold
-        valid_tracks = tracks_with_scores.select { |t| t['title_distance'].to_i >= MINIMUM_TITLE_SIMILARITY }
-        valid_tracks.max_by { |t| t['title_distance'] }
+        # Select best match where both artist and title meet their thresholds
+        valid_tracks = tracks_with_scores.select do |t|
+          t['artist_distance'].to_i >= ARTIST_SIMILARITY_THRESHOLD &&
+            t['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD
+        end
+        # Use minimum of artist and title distance to rank matches
+        valid_tracks.max_by { |t| [t['artist_distance'], t['title_distance']].min }
       end
 
       def add_match_score(track)
@@ -81,8 +88,8 @@ module Deezer
         artist_name = track.dig('artist', 'name') || ''
         track_name = track['title'] || ''
 
-        distance = string_distance("#{artist_name} #{track_name}")
-        track['title_distance'] = distance
+        track['artist_distance'] = artist_distance(artist_name)
+        track['title_distance'] = title_distance(track_name)
         track
       end
 

@@ -2,6 +2,9 @@
 
 module Deezer
   class Base
+    ARTIST_SIMILARITY_THRESHOLD = 80
+    TITLE_SIMILARITY_THRESHOLD = 70
+
     attr_reader :args
 
     BASE_URL = 'https://api.deezer.com'
@@ -34,8 +37,12 @@ module Deezer
       end
     end
 
-    def string_distance(item_string)
-      (JaroWinkler.similarity(item_string, "#{args[:artists]} #{args[:title]}") * 100).to_i
+    def artist_distance(item_artist_name)
+      (JaroWinkler.similarity(item_artist_name.to_s.downcase, args[:artists].to_s.downcase) * 100).to_i
+    end
+
+    def title_distance(item_title)
+      (JaroWinkler.similarity(item_title.to_s.downcase, args[:title].to_s.downcase) * 100).to_i
     end
   end
 end

@@ -90,9 +90,9 @@ describe Itunes::TrackFinder::Result do
   end
 
   describe '#valid_match?' do
-    context 'when track has high title_distance' do
+    context 'when both artist and title distances are high' do
       before do
-        result.instance_variable_set(:@track, { 'title_distance' => 85 })
+        result.instance_variable_set(:@track, { 'artist_distance' => 85, 'title_distance' => 85 })
       end
 
       it 'returns true' do
@@ -100,9 +100,19 @@ describe Itunes::TrackFinder::Result do
       end
     end
 
-    context 'when track has low title_distance' do
+    context 'when artist_distance is high but title_distance is low' do
       before do
-        result.instance_variable_set(:@track, { 'title_distance' => 50 })
+        result.instance_variable_set(:@track, { 'artist_distance' => 85, 'title_distance' => 50 })
+      end
+
+      it 'returns false' do
+        expect(result.valid_match?).to be false
+      end
+    end
+
+    context 'when title_distance is high but artist_distance is low' do
+      before do
+        result.instance_variable_set(:@track, { 'artist_distance' => 50, 'title_distance' => 85 })
       end
 
       it 'returns false' do
