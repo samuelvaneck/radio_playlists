@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       resources :radio_station_classifiers, only: %i[index] do
         get :descriptions, on: :collection
       end
+      resources :song_import_logs, only: %i[index]
     end
   end
 
