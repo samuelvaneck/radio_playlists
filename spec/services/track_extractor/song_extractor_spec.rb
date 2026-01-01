@@ -169,5 +169,181 @@ describe TrackExtractor::SongExtractor do
         end.not_to change(existing_song, :spotify_artwork_url)
       end
     end
+
+    context 'when track has nil values for IDs' do
+      let(:track) do
+        OpenStruct.new(
+          title: 'New Song',
+          id: nil,
+          isrc: nil,
+          spotify_song_url: nil,
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'New Song',
+          artist_name: 'Test Artist',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:existing_song_with_nil_spotify_id) do
+        create(:song,
+               title: 'Different Song',
+               id_on_spotify: nil,
+               isrc: nil,
+               artists: [create(:artist, name: 'Other Artist')])
+      end
+
+      it 'does not incorrectly match existing songs with nil spotify id' do
+        expect(song).not_to eq(existing_song_with_nil_spotify_id)
+      end
+
+      it 'creates a new song instead of matching nil values' do
+        expect(song.title).to eq('New Song')
+      end
+    end
+
+    context 'when track has nil isrc but song exists with nil isrc' do
+      let(:track) do
+        OpenStruct.new(
+          title: 'Another Song',
+          id: nil,
+          isrc: nil,
+          spotify_song_url: nil,
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Another Song',
+          artist_name: 'Test Artist',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:song_with_nil_isrc) do
+        create(:song,
+               title: 'Unrelated Song',
+               id_on_spotify: nil,
+               id_on_deezer: nil,
+               id_on_itunes: nil,
+               isrc: nil)
+      end
+
+      it 'does not match songs by nil isrc' do
+        expect(song).not_to eq(song_with_nil_isrc)
+      end
+    end
+
+    context 'when matching by deezer id' do
+      let(:track) do
+        OpenStruct.new(
+          title: 'Deezer Song',
+          id: 'deezer456',
+          isrc: nil,
+          deezer_song_url: 'https://deezer.com/track/deezer456',
+          deezer_artwork_url: 'https://deezer.com/artwork',
+          deezer_preview_url: 'https://deezer.com/preview',
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Deezer Song',
+          artist_name: 'Test Artist',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:existing_deezer_song) do
+        create(:song,
+               title: 'Deezer Song',
+               id_on_deezer: 'deezer456',
+               artists: [artist])
+      end
+
+      it 'finds the song by deezer id' do
+        expect(song).to eq(existing_deezer_song)
+      end
+    end
+
+    context 'when matching by itunes id' do
+      let(:track) do
+        OpenStruct.new(
+          title: 'iTunes Song',
+          id: 'itunes789',
+          isrc: nil,
+          itunes_song_url: 'https://music.apple.com/track/itunes789',
+          itunes_artwork_url: 'https://apple.com/artwork',
+          itunes_preview_url: 'https://apple.com/preview',
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'iTunes Song',
+          artist_name: 'Test Artist',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:existing_itunes_song) do
+        create(:song,
+               title: 'iTunes Song',
+               id_on_itunes: 'itunes789',
+               artists: [artist])
+      end
+
+      it 'finds the song by itunes id' do
+        expect(song).to eq(existing_itunes_song)
+      end
+    end
+
+    context 'when track has nil deezer id but song exists with nil deezer id' do
+      let(:track) do
+        OpenStruct.new(
+          title: 'Some Song',
+          id: nil,
+          isrc: nil,
+          deezer_song_url: 'https://deezer.com/track/nil',
+          deezer_artwork_url: nil,
+          deezer_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Some Song',
+          artist_name: 'Test Artist',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:song_with_nil_deezer_id) do
+        create(:song,
+               title: 'Other Song',
+               id_on_deezer: nil)
+      end
+
+      it 'does not match songs by nil deezer id' do
+        expect(song).not_to eq(song_with_nil_deezer_id)
+      end
+    end
   end
 end
