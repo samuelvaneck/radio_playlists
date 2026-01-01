@@ -9,7 +9,7 @@ class SongImporter
   end
 
   def import
-    @import_logger.start_log
+    safe_start_log
     @played_song = recognize_song || scrape_song
 
     if @played_song.blank?
@@ -119,7 +119,14 @@ class SongImporter
       add_song
     else
       @importer.broadcast_error_message
+      @import_logger.skip_log(reason: 'Song already imported recently or matches last played song')
     end
+  end
+
+  def safe_start_log
+    @import_logger.start_log
+  rescue StandardError => e
+    Rails.logger.error("Failed to create song import log: #{e.message}")
   end
 
   def add_song

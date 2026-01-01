@@ -25,7 +25,8 @@ class SongImportLogger
       recognized_isrc: recognizer.isrc_code,
       recognized_spotify_url: recognizer.spotify_url,
       recognized_raw_response: recognizer.result || {},
-      import_source: :recognition
+      import_source: :recognition,
+      broadcasted_at: recognizer.broadcasted_at || @log.broadcasted_at
     )
   end
 
@@ -38,7 +39,8 @@ class SongImportLogger
       scraped_isrc: scraper.isrc_code,
       scraped_spotify_url: scraper.spotify_url,
       scraped_raw_response: raw_response || {},
-      import_source: :scraping
+      import_source: :scraping,
+      broadcasted_at: scraper.broadcasted_at || @log.broadcasted_at
     )
   end
 

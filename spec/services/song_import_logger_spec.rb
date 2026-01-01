@@ -39,7 +39,8 @@ describe SongImportLogger do
         title: 'Test Song',
         isrc_code: 'USTEST1234567',
         spotify_url: 'spotify:track:123abc',
-        result: { track: { title: 'Test Song' } }
+        result: { track: { title: 'Test Song' } },
+        broadcasted_at: Time.zone.now
       )
     end
 
@@ -73,7 +74,8 @@ describe SongImportLogger do
         artist_name: 'Scraped Artist',
         title: 'Scraped Song',
         isrc_code: nil,
-        spotify_url: 'https://open.spotify.com/track/456'
+        spotify_url: 'https://open.spotify.com/track/456',
+        broadcasted_at: 30.minutes.ago
       )
     end
     let(:raw_response) { { tracks: [{ title: 'Scraped Song' }] } }
