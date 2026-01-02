@@ -25,8 +25,8 @@ module TimeAnalyticsConcern
   end
 
   def peak_play_times_summary(radio_station_ids: nil)
-    hours = peak_play_hours(radio_station_ids: radio_station_ids)
-    days = peak_play_days(radio_station_ids: radio_station_ids)
+    hours = peak_play_hours(radio_station_ids: radio_station_ids).compact
+    days = peak_play_days(radio_station_ids: radio_station_ids).compact
 
     {
       peak_hour: hours.first&.first,
