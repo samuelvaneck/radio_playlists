@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_01_124459) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_02_093022) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -122,6 +122,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_01_124459) do
     t.date "date"
     t.datetime "updated_at", null: false
     t.index ["date"], name: "index_charts_on_date"
+  end
+
+  create_table "music_profiles", force: :cascade do |t|
+    t.decimal "acousticness", precision: 5, scale: 4
+    t.datetime "created_at", null: false
+    t.decimal "danceability", precision: 5, scale: 4
+    t.decimal "energy", precision: 5, scale: 4
+    t.decimal "instrumentalness", precision: 5, scale: 4
+    t.decimal "liveness", precision: 5, scale: 4
+    t.bigint "song_id", null: false
+    t.decimal "speechiness", precision: 5, scale: 4
+    t.decimal "tempo", precision: 6, scale: 2
+    t.datetime "updated_at", null: false
+    t.decimal "valence", precision: 5, scale: 4
+    t.index ["song_id"], name: "index_music_profiles_on_song_id", unique: true
   end
 
   create_table "radio_station_classifiers", force: :cascade do |t|
@@ -257,6 +272,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_01_124459) do
   add_foreign_key "air_plays", "radio_stations"
   add_foreign_key "air_plays", "songs"
   add_foreign_key "chart_positions", "charts"
+  add_foreign_key "music_profiles", "songs"
   add_foreign_key "radio_station_classifiers", "radio_stations"
   add_foreign_key "radio_station_songs", "radio_stations"
   add_foreign_key "radio_station_songs", "songs"

@@ -37,6 +37,7 @@ class Song < ApplicationRecord
   has_many :radio_stations, through: :radio_station_songs
   has_many :chart_positions, as: :positianable
   has_many :song_import_logs, dependent: :nullify
+  has_one :music_profile, dependent: :destroy
 
   before_create :set_search_text
   after_commit :update_search_text, on: [:update], if: :saved_change_to_title?

@@ -24,7 +24,15 @@ module Api
       end
 
       def classifiers
-        render json: RadioStationClassifierSerializer.serializable_hash_with_descriptions(@radio_station.radio_station_classifiers).to_json
+        calculator = RadioStationMusicProfileCalculator.new(
+          radio_station: @radio_station,
+          day_part: params[:day_part],
+          start_time: parse_time_param(:start_time),
+          end_time: parse_time_param(:end_time)
+        )
+
+        profiles = calculator.calculate
+        render json: RadioStationMusicProfileSerializer.new(profiles, radio_station: @radio_station).serializable_hash.to_json
       end
 
       def last_played_songs
@@ -66,6 +74,10 @@ module Api
 
       def time_param_blank?
         params[:period].blank? && params[:start_time].blank?
+      end
+
+      def parse_time_param(param)
+        params[param].present? ? Time.zone.parse(params[param]) : nil
       end
 
       def new_played_items

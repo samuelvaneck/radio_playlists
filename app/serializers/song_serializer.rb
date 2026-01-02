@@ -59,4 +59,19 @@ class SongSerializer
       ArtistSerializer.new(artist, options)
     end
   end
+
+  attribute :music_profile do |object|
+    if object.music_profile.present?
+      {
+        danceability: object.music_profile.danceability,
+        energy: object.music_profile.energy,
+        speechiness: object.music_profile.speechiness,
+        acousticness: object.music_profile.acousticness,
+        instrumentalness: object.music_profile.instrumentalness,
+        liveness: object.music_profile.liveness,
+        valence: object.music_profile.valence,
+        tempo: object.music_profile.tempo
+      }
+    end
+  end
 end

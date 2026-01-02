@@ -181,7 +181,7 @@ class SongImporter
     @radio_station.update_last_added_air_play_ids(air_play.id)
     song.update_artists(artists) if should_update_artists?
     @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song:)
-    RadioStationClassifierJob.perform_async(song.id_on_spotify, @radio_station.id)
+    MusicProfileJob.perform_async(song.id, @radio_station.id)
   end
 
   def different_artists?
