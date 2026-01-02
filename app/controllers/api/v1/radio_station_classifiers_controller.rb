@@ -21,12 +21,12 @@ module Api
 
         render json: {
           data: profiles.map { |p| { type: 'radio_station_music_profile', attributes: p } },
-          meta: { attribute_descriptions: MusicProfile::ATTRIBUTE_DESCRIPTIONS }
+          meta: { attribute_descriptions: RadioStationClassifier::ATTRIBUTE_DESCRIPTIONS }
         }.to_json
       end
 
       def descriptions
-        render json: { data: MusicProfile.attribute_descriptions }.to_json
+        render json: { data: RadioStationClassifier.attribute_descriptions }.to_json
       end
     end
   end

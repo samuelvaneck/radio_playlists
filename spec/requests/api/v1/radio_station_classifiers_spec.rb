@@ -144,7 +144,11 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                }
 
         let!(:radio_station) { create(:radio_station) }
-        let!(:classifier) { create(:radio_station_classifier, radio_station: radio_station, day_part: 'morning') }
+        let!(:song) { create(:song) }
+        let!(:music_profile) { create(:music_profile, song: song) }
+        let!(:air_play) do
+          create(:air_play, song: song, radio_station: radio_station, broadcasted_at: 1.day.ago.change(hour: 10, min: 30))
+        end
 
         run_test! do |response|
           json = JSON.parse(response.body)
@@ -161,8 +165,16 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
       response '200', 'Classifiers filtered by radio station' do
         let!(:radio_station1) { create(:radio_station) }
         let!(:radio_station2) { create(:radio_station) }
-        let!(:classifier1) { create(:radio_station_classifier, radio_station: radio_station1, day_part: 'morning') }
-        let!(:classifier2) { create(:radio_station_classifier, radio_station: radio_station2, day_part: 'evening') }
+        let!(:song1) { create(:song) }
+        let!(:song2) { create(:song) }
+        let!(:music_profile1) { create(:music_profile, song: song1) }
+        let!(:music_profile2) { create(:music_profile, song: song2) }
+        let!(:air_play1) do
+          create(:air_play, song: song1, radio_station: radio_station1, broadcasted_at: 1.day.ago.change(hour: 10, min: 30))
+        end
+        let!(:air_play2) do
+          create(:air_play, song: song2, radio_station: radio_station2, broadcasted_at: 1.day.ago.change(hour: 21, min: 0))
+        end
         let(:radio_station_id) { radio_station1.id }
 
         run_test! do |response|
@@ -174,8 +186,17 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
 
       response '200', 'Classifiers filtered by day part' do
         let!(:radio_station) { create(:radio_station) }
-        let!(:morning_classifier) { create(:radio_station_classifier, radio_station: radio_station, day_part: 'morning') }
-        let!(:evening_classifier) { create(:radio_station_classifier, radio_station: radio_station, day_part: 'evening') }
+        let!(:song1) { create(:song) }
+        let!(:song2) { create(:song) }
+        let!(:music_profile1) { create(:music_profile, song: song1) }
+        let!(:music_profile2) { create(:music_profile, song: song2) }
+        let!(:morning_air_play) do
+          create(:air_play, song: song1, radio_station: radio_station, broadcasted_at: 1.day.ago.change(hour: 10, min: 30))
+        end
+        let!(:evening_air_play) do
+          create(:air_play, song: song2, radio_station: radio_station, broadcasted_at: 1.day.ago.change(hour: 21, min: 0))
+        end
+        let(:radio_station_id) { radio_station.id }
         let(:day_part) { 'evening' }
 
         run_test! do |response|
