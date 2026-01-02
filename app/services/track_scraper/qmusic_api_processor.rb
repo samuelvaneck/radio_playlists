@@ -9,7 +9,7 @@ class TrackScraper::QmusicApiProcessor < TrackScraper
     track = response[:played_tracks][0]
     return false if track.blank?
 
-    @broadcasted_at = Time.find_zone('Amsterdam')&.parse(track[:played_at])
+    @broadcasted_at = Time.find_zone('Amsterdam')&.parse(track[:played_at]) || Time.zone.now
     @artist_name = track.dig(:artist, :name).titleize
     @title = TitleSanitizer.sanitize(track[:title]).titleize
     @spotify_url = track[:spotify_url]

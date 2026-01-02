@@ -48,6 +48,7 @@ class TrackScraper::TalpaApiProcessor < TrackScraper
     @artist_name = track[:artistName].titleize
     @title = TitleSanitizer.sanitize(track[:title]).titleize
     @isrc_code = track[:isrc]
+    @broadcasted_at = Time.zone.now
     true
   rescue StandardError => e
     Rails.logger.info(e.message)

@@ -11,7 +11,7 @@ class TrackScraper::NpoApiProcessor < TrackScraper
 
     @artist_name = CGI.unescapeHTML(track[:artist]).titleize
     @title = TitleSanitizer.sanitize(CGI.unescapeHTML(track[:title])).titleize
-    @broadcasted_at = Time.find_zone('Amsterdam').parse(track[:startdatetime])
+    @broadcasted_at = Time.find_zone('Amsterdam').parse(track[:startdatetime]) || Time.zone.now
     @spotify_url = track[:spotify_url]
     true
   rescue StandardError => e

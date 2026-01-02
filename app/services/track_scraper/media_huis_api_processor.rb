@@ -11,7 +11,7 @@ class TrackScraper::MediaHuisApiProcessor < TrackScraper
 
     @artist_name = track[:artist].titleize
     @title = TitleSanitizer.sanitize(track[:title]).titleize
-    @broadcasted_at = Time.zone.parse(track[:createdAt])
+    @broadcasted_at = Time.zone.parse(track[:createdAt]) || Time.zone.now
     @spotify_url = track[:spotifyLink]
     true
   rescue StandardError => e
