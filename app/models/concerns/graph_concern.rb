@@ -32,9 +32,9 @@ module GraphConcern
     def get_air_plays(time_value)
       begin_date = graph_begin_date(time_value) unless time_value == 'all'
       end_date = 1.day.ago.end_of_day
-      result = air_plays
+      result = air_plays.where.not(broadcasted_at: nil)
       result = result.where(air_plays_time_slot_query, begin_date, end_date) unless time_value == 'all'
-      result.sort_by(&:broadcasted_at)
+      result.order(:broadcasted_at)
     end
 
     def min_max_date(results, strftime_value)
