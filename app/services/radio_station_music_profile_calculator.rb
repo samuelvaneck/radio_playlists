@@ -19,7 +19,7 @@ class RadioStationMusicProfileCalculator
   def initialize(radio_station:, day_part: nil, start_time: nil, end_time: nil)
     @radio_station = radio_station
     @day_part = day_part
-    @start_time = start_time || 1.month.ago
+    @start_time = start_time || 24.hours.ago
     @end_time = end_time || Time.current
   end
 
