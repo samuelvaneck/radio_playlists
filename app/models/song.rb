@@ -50,6 +50,20 @@ class Song < ApplicationRecord
   }
   scope :with_iscr, ->(isrc) { where(isrc: isrc) }
   scope :with_id_on_spotify, -> { where.not(id_on_spotify: nil) }
+  scope :with_music_profile, lambda { |filters|
+    return all if filters.blank?
+
+    scope = joins(:music_profile)
+    MusicProfile::AUDIO_FEATURES.each do |feature|
+      min_value = filters["#{feature}_min"]
+      max_value = filters["#{feature}_max"]
+      scope = scope.where("music_profiles.#{feature} >= ?", min_value.to_f) if min_value.present?
+      scope = scope.where("music_profiles.#{feature} <= ?", max_value.to_f) if max_value.present?
+    end
+    scope = scope.where('music_profiles.tempo >= ?', filters['tempo_min'].to_f) if filters['tempo_min'].present?
+    scope = scope.where('music_profiles.tempo <= ?', filters['tempo_max'].to_f) if filters['tempo_max'].present?
+    scope
+  }
 
   MULTIPLE_ARTIST_REGEX = ';|\bfeat\.|\bvs\.|\bft\.|\bft\b|\bfeat\b|\bft\b|&|\bvs\b|\bversus|\band\b|\bmet\b|\b,|\ben\b|\/'
   ARTISTS_FILTERS = ['karoke', 'cover', 'made famous', 'tribute', 'backing business', 'arcade', 'instrumental', '8-bit', '16-bit'].freeze
@@ -64,6 +78,7 @@ class Song < ApplicationRecord
         .played_between(start_time, end_time)
         .played_on(params[:radio_station_ids])
         .matching(params[:search_term])
+        .with_music_profile(params[:music_profile])
         .select("songs.id,
                  songs.title,
                  songs.search_text,

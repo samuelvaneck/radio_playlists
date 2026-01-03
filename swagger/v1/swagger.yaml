@@ -1495,6 +1495,102 @@ paths:
         description: Search by song title or artist name
         schema:
           type: string
+      - name: danceability_min
+        in: query
+        required: false
+        description: Minimum danceability (0.0 - 1.0)
+        schema:
+          type: number
+      - name: danceability_max
+        in: query
+        required: false
+        description: Maximum danceability (0.0 - 1.0)
+        schema:
+          type: number
+      - name: energy_min
+        in: query
+        required: false
+        description: Minimum energy (0.0 - 1.0)
+        schema:
+          type: number
+      - name: energy_max
+        in: query
+        required: false
+        description: Maximum energy (0.0 - 1.0)
+        schema:
+          type: number
+      - name: speechiness_min
+        in: query
+        required: false
+        description: Minimum speechiness (0.0 - 1.0)
+        schema:
+          type: number
+      - name: speechiness_max
+        in: query
+        required: false
+        description: Maximum speechiness (0.0 - 1.0)
+        schema:
+          type: number
+      - name: acousticness_min
+        in: query
+        required: false
+        description: Minimum acousticness (0.0 - 1.0)
+        schema:
+          type: number
+      - name: acousticness_max
+        in: query
+        required: false
+        description: Maximum acousticness (0.0 - 1.0)
+        schema:
+          type: number
+      - name: instrumentalness_min
+        in: query
+        required: false
+        description: Minimum instrumentalness (0.0 - 1.0)
+        schema:
+          type: number
+      - name: instrumentalness_max
+        in: query
+        required: false
+        description: Maximum instrumentalness (0.0 - 1.0)
+        schema:
+          type: number
+      - name: liveness_min
+        in: query
+        required: false
+        description: Minimum liveness (0.0 - 1.0)
+        schema:
+          type: number
+      - name: liveness_max
+        in: query
+        required: false
+        description: Maximum liveness (0.0 - 1.0)
+        schema:
+          type: number
+      - name: valence_min
+        in: query
+        required: false
+        description: Minimum valence/mood (0.0 - 1.0)
+        schema:
+          type: number
+      - name: valence_max
+        in: query
+        required: false
+        description: Maximum valence/mood (0.0 - 1.0)
+        schema:
+          type: number
+      - name: tempo_min
+        in: query
+        required: false
+        description: Minimum tempo in BPM
+        schema:
+          type: number
+      - name: tempo_max
+        in: query
+        required: false
+        description: Maximum tempo in BPM
+        schema:
+          type: number
       responses:
         '200':
           description: Songs retrieved successfully
