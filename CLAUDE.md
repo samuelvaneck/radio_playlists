@@ -18,6 +18,9 @@ bundle exec rspec spec/path/to/file_spec.rb:42 # Run specific test line
 bundle exec rubocop                         # Lint (auto-fixes enabled)
 bundle exec brakeman                        # Security scan
 
+# API Documentation
+bundle exec rake rswag:specs:swaggerize     # Regenerate swagger/v1/swagger.yaml
+
 # Database
 rails db:create db:schema:load db:seed      # Initial setup
 rails db:migrate                            # Run migrations
@@ -113,6 +116,16 @@ RESTful JSON API under `/api/v1/`:
 - `songs`, `artists`, `air_plays`, `radio_stations`
 - Admin endpoints with JWT authentication (Devise)
 - Swagger docs available at `/api-docs` (rswag)
+
+### Swagger Documentation
+
+API specs in `spec/requests/api/v1/` generate the Swagger documentation. After modifying API specs:
+
+```bash
+bundle exec rake rswag:specs:swaggerize     # Regenerates swagger/v1/swagger.yaml
+```
+
+Schema definitions are configured in `spec/swagger_helper.rb`. The generated `swagger/v1/swagger.yaml` should be committed to version control.
 
 ## External Dependencies
 

@@ -235,6 +235,47 @@ paths:
       responses:
         '200':
           description: Air plays retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: air_play
+                      attributes:
+                        id: 1
+                        broadcasted_at: '2024-12-01T14:30:00Z'
+                        song:
+                          id: 1
+                          title: Bohemian Rhapsody
+                          spotify_artwork_url: https://i.scdn.co/image/abc123
+                          artists:
+                          - id: 1
+                            name: Queen
+                        radio_station:
+                          id: 1
+                          name: Radio 538
+                          slug: radio-538
+                    - id: '2'
+                      type: air_play
+                      attributes:
+                        id: 2
+                        broadcasted_at: '2024-12-01T14:26:00Z'
+                        song:
+                          id: 2
+                          title: Blinding Lights
+                          spotify_artwork_url: https://i.scdn.co/image/def456
+                          artists:
+                          - id: 2
+                            name: The Weeknd
+                        radio_station:
+                          id: 2
+                          name: Qmusic
+                          slug: qmusic
+                    total_entries: 1500
+                    total_pages: 63
+                    current_page: 1
   "/api/v1/artists":
     get:
       summary: List artists
@@ -286,6 +327,23 @@ paths:
       responses:
         '200':
           description: Artists retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: artist
+                      attributes:
+                        id: 1
+                        name: Queen
+                        image: https://i.scdn.co/image/abc123
+                        id_on_spotify: 1dfeR4HaWDbWqFHLkxsg1d
+                        counter: 156
+                    total_entries: 50
+                    total_pages: 3
+                    current_page: 1
   "/api/v1/artists/{id}":
     get:
       summary: Get an artist
@@ -301,8 +359,29 @@ paths:
       responses:
         '200':
           description: Artist retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                      id: '1'
+                      type: artist
+                      attributes:
+                        id: 1
+                        name: Queen
+                        image: https://i.scdn.co/image/abc123
+                        id_on_spotify: 1dfeR4HaWDbWqFHLkxsg1d
+                        counter: 156
         '404':
           description: Artist not found
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    status: 404
+                    error: Not Found
   "/api/v1/artists/{id}/graph_data":
     get:
       summary: Get artist play count graph data
@@ -324,6 +403,23 @@ paths:
       responses:
         '200':
           description: Graph data retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    labels:
+                    - '2024-12-01'
+                    - '2024-12-02'
+                    - '2024-12-03'
+                    - '2024-12-04'
+                    - '2024-12-05'
+                    counts:
+                    - 12
+                    - 18
+                    - 25
+                    - 14
+                    - 30
   "/api/v1/artists/{id}/songs":
     get:
       summary: Get artist songs
@@ -339,6 +435,34 @@ paths:
       responses:
         '200':
           description: Artist songs retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: song
+                      attributes:
+                        id: 1
+                        title: Bohemian Rhapsody
+                        spotify_artwork_url: https://i.scdn.co/image/abc123
+                        id_on_spotify: 4u7EnebtmKWzUH433cf5Qv
+                        counter: 42
+                        artists:
+                        - id: 1
+                          name: Queen
+                    - id: '2'
+                      type: song
+                      attributes:
+                        id: 2
+                        title: We Will Rock You
+                        spotify_artwork_url: https://i.scdn.co/image/def456
+                        id_on_spotify: 54flyrjcdnQdco7300avMJ
+                        counter: 38
+                        artists:
+                        - id: 1
+                          name: Queen
   "/api/v1/artists/{id}/chart_positions":
     get:
       summary: Get artist chart positions over time
@@ -360,6 +484,20 @@ paths:
       responses:
         '200':
           description: Chart positions retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                  - date: '2024-12-01'
+                    position: 3
+                    counts: 85
+                  - date: '2024-12-02'
+                    position: 2
+                    counts: 92
+                  - date: '2024-12-03'
+                    position: 1
+                    counts: 110
   "/api/v1/artists/{id}/time_analytics":
     get:
       summary: Get artist time-based analytics
@@ -389,6 +527,41 @@ paths:
       responses:
         '200':
           description: Time analytics retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    peak_play_times:
+                      peak_hour: 14
+                      peak_day: 5
+                      peak_day_name: Friday
+                      hourly_distribution:
+                        '8': 12
+                        '14': 25
+                        '20': 18
+                      daily_distribution:
+                        Monday: 20
+                        Friday: 35
+                        Saturday: 28
+                    play_frequency_trend:
+                      trend: stable
+                      trend_percentage: 2.1
+                      weekly_counts:
+                        '2024-01-01': 45
+                        '2024-01-08': 46
+                      first_period_avg: 44.5
+                      second_period_avg: 45.5
+                    lifecycle_stats:
+                      first_play: '2020-03-15T08:00:00Z'
+                      last_play: '2024-12-01T22:00:00Z'
+                      total_plays: 5420
+                      days_since_first_play: 1722
+                      days_since_last_play: 1
+                      days_active: 1722
+                      unique_days_played: 1200
+                      average_plays_per_day: 3.15
+                      play_consistency: 69.7
   "/api/v1/artists/{id}/air_plays":
     get:
       summary: Get artist air plays
@@ -440,6 +613,29 @@ paths:
       responses:
         '200':
           description: Air plays retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: air_play
+                      attributes:
+                        id: 1
+                        broadcasted_at: '2024-12-01T14:30:00Z'
+                        song:
+                          id: 1
+                          title: Bohemian Rhapsody
+                          artists:
+                          - id: 1
+                            name: Queen
+                        radio_station:
+                          id: 1
+                          name: Radio 538
+                    total_entries: 150
+                    total_pages: 7
+                    current_page: 1
   "/api/v1/artists/{id}/bio":
     get:
       summary: Get artist biography from Wikipedia
@@ -462,6 +658,23 @@ paths:
       responses:
         '200':
           description: Artist bio retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    bio:
+                      summary: Coldplay are a British rock band formed in London in
+                        1996.
+                      content: Coldplay are a British rock band formed in London in
+                        1996. The band consists of vocalist and pianist Chris Martin...
+                      description: British rock band
+                      url: https://en.wikipedia.org/wiki/Coldplay
+                      wikibase_item: Q45188
+                      thumbnail:
+                        source: https://upload.wikimedia.org/coldplay.jpg
+                        width: 320
+                        height: 240
   "/api/v1/radio_station_classifiers":
     get:
       summary: List all radio station classifiers
@@ -489,6 +702,97 @@ paths:
           description: Classifiers filtered by day part
           content:
             application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: radio_station_classifier
+                      attributes:
+                        id: 1
+                        radio_station:
+                          id: 1
+                          name: Radio 538
+                        day_part: morning
+                        danceability_average: '0.65'
+                        high_danceability_percentage: 0.72
+                        energy_average: '0.72'
+                        high_energy_percentage: 0.68
+                        speechiness_average: '0.08'
+                        high_speechiness_percentage: 0.15
+                        acousticness_average: '0.25'
+                        high_acousticness_percentage: 0.3
+                        instrumentalness_average: '0.02'
+                        high_instrumentalness_percentage: 0.05
+                        liveness_average: '0.12'
+                        high_liveness_percentage: 0.18
+                        valence_average: '0.58'
+                        high_valence_percentage: 0.62
+                        tempo: '118.5'
+                        counter: 450
+                    meta:
+                      attribute_descriptions:
+                        danceability_average:
+                          name: Danceability Average
+                          description: Average danceability score for tracks played
+                            during this time period.
+                          range: 0.0 to 1.0
+                        high_danceability_percentage:
+                          name: High Danceability Percentage
+                          description: Percentage of tracks with danceability above
+                            the threshold.
+                          range: 0.0 to 1.0
+                        energy_average:
+                          name: Energy Average
+                          description: Average energy score for tracks played during
+                            this time period.
+                          range: 0.0 to 1.0
+                        day_part:
+                          name: Day Part
+                          description: Time segment of the day.
+                          values:
+                          - night
+                          - breakfast
+                          - morning
+                          - lunch
+                          - afternoon
+                          - dinner
+                          - evening
+                        counter:
+                          name: Counter
+                          description: Number of tracks analyzed for this classifier.
+                filtered_by_station:
+                  value:
+                    data:
+                    - id: '1'
+                      type: radio_station_classifier
+                      attributes:
+                        id: 1
+                        radio_station:
+                          id: 1
+                          name: Radio 538
+                        day_part: morning
+                        danceability_average: '0.65'
+                        energy_average: '0.72'
+                        counter: 450
+                    meta:
+                      attribute_descriptions: {}
+                filtered_by_day_part:
+                  value:
+                    data:
+                    - id: '1'
+                      type: radio_station_classifier
+                      attributes:
+                        id: 1
+                        radio_station:
+                          id: 1
+                          name: Radio 538
+                        day_part: evening
+                        danceability_average: '0.75'
+                        energy_average: '0.80'
+                        counter: 320
+                    meta:
+                      attribute_descriptions: {}
               schema:
                 type: object
                 properties:
@@ -650,6 +954,49 @@ paths:
           description: Descriptions retrieved successfully
           content:
             application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                      danceability_average:
+                        name: Danceability Average
+                        description: Average danceability score for tracks played
+                          during this time period. Higher values indicate more danceable
+                          tracks.
+                        range: 0.0 to 1.0
+                      high_danceability_percentage:
+                        name: High Danceability Percentage
+                        description: Percentage of tracks with danceability above
+                          0.5.
+                        range: 0.0 to 1.0
+                      energy_average:
+                        name: Energy Average
+                        description: Average energy score for tracks. Higher values
+                          indicate more intense, fast, loud tracks.
+                        range: 0.0 to 1.0
+                      valence_average:
+                        name: Valence Average
+                        description: Average musical positiveness. Higher values indicate
+                          happier, more cheerful tracks.
+                        range: 0.0 to 1.0
+                      tempo:
+                        name: Tempo
+                        description: Average tempo of tracks in beats per minute (BPM).
+                        range: 0 to 250 BPM
+                      day_part:
+                        name: Day Part
+                        description: Time segment of the day when tracks were played.
+                        values:
+                        - night
+                        - breakfast
+                        - morning
+                        - lunch
+                        - afternoon
+                        - dinner
+                        - evening
+                      counter:
+                        name: Counter
+                        description: Number of tracks analyzed for this classifier.
               schema:
                 type: object
                 properties:
@@ -754,6 +1101,30 @@ paths:
       responses:
         '200':
           description: Radio stations retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: radio_station
+                      attributes:
+                        id: 1
+                        name: Radio 538
+                        slug: radio-538
+                        stream_url: https://stream.538.nl/538/mp3
+                        url: https://www.538.nl
+                        country_code: NL
+                    - id: '2'
+                      type: radio_station
+                      attributes:
+                        id: 2
+                        name: Qmusic
+                        slug: qmusic
+                        stream_url: https://stream.qmusic.nl/qmusic/mp3
+                        url: https://www.qmusic.nl
+                        country_code: NL
   "/api/v1/radio_stations/{id}":
     get:
       summary: Get a radio station
@@ -769,8 +1140,30 @@ paths:
       responses:
         '200':
           description: Radio station retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                      id: '1'
+                      type: radio_station
+                      attributes:
+                        id: 1
+                        name: Radio 538
+                        slug: radio-538
+                        stream_url: https://stream.538.nl/538/mp3
+                        url: https://www.538.nl
+                        country_code: NL
         '404':
           description: Radio station not found
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    status: 404
+                    error: Not Found
   "/api/v1/radio_stations/{id}/status":
     get:
       summary: Get radio station status
@@ -786,6 +1179,15 @@ paths:
       responses:
         '200':
           description: Radio station status retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    status: online
+                    last_air_play: '2024-12-01T14:30:00Z'
+                    song_count_today: 245
+                    stream_available: true
   "/api/v1/radio_stations/{id}/data":
     get:
       summary: Get radio station data
@@ -801,6 +1203,31 @@ paths:
       responses:
         '200':
           description: Radio station data retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                      id: 1
+                      name: Radio 538
+                      total_air_plays: 125000
+                      unique_songs: 8500
+                      unique_artists: 3200
+                      top_songs:
+                      - id: 1
+                        title: Bohemian Rhapsody
+                        count: 150
+                      - id: 2
+                        title: Blinding Lights
+                        count: 142
+                      top_artists:
+                      - id: 1
+                        name: Queen
+                        count: 520
+                      - id: 2
+                        name: The Weeknd
+                        count: 485
   "/api/v1/radio_stations/{id}/classifiers":
     get:
       summary: Get radio station audio classifiers
@@ -816,6 +1243,35 @@ paths:
       responses:
         '200':
           description: Radio station classifiers retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - day_part: morning
+                      danceability_average: 0.65
+                      energy_average: 0.72
+                      valence_average: 0.58
+                      tempo: 118.5
+                      counter: 450
+                      high_danceability_percentage: 0.72
+                      high_energy_percentage: 0.68
+                    - day_part: afternoon
+                      danceability_average: 0.7
+                      energy_average: 0.75
+                      valence_average: 0.62
+                      tempo: 122.3
+                      counter: 380
+                      high_danceability_percentage: 0.78
+                      high_energy_percentage: 0.74
+                    meta:
+                      attribute_descriptions:
+                        danceability_average:
+                          name: Danceability Average
+                          description: Average danceability score for tracks played
+                            during this time period.
+                          range: 0.0 to 1.0
   "/api/v1/radio_stations/last_played_songs":
     get:
       summary: Get last played songs for all stations
@@ -824,6 +1280,34 @@ paths:
       responses:
         '200':
           description: Last played songs retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - radio_station:
+                        id: 1
+                        name: Radio 538
+                        slug: radio-538
+                      last_song:
+                        id: 1
+                        title: Bohemian Rhapsody
+                        artists:
+                        - id: 1
+                          name: Queen
+                        broadcasted_at: '2024-12-01T14:30:00Z'
+                    - radio_station:
+                        id: 2
+                        name: Qmusic
+                        slug: qmusic
+                      last_song:
+                        id: 2
+                        title: Blinding Lights
+                        artists:
+                        - id: 2
+                          name: The Weeknd
+                        broadcasted_at: '2024-12-01T14:28:00Z'
   "/api/v1/radio_stations/new_played_songs":
     get:
       summary: Get newly played songs across all stations
@@ -869,8 +1353,36 @@ paths:
       responses:
         '200':
           description: New played songs retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: song
+                      attributes:
+                        id: 1
+                        title: New Release Song
+                        spotify_artwork_url: https://i.scdn.co/image/new123
+                        artists:
+                        - id: 1
+                          name: New Artist
+                        first_broadcasted_at: '2024-12-01T10:00:00Z'
+                        radio_station:
+                          id: 1
+                          name: Radio 538
+                    total_entries: 25
+                    total_pages: 2
+                    current_page: 1
         '400':
           description: Period or start_time parameter is required
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    error: Period or start_time parameter is required
   "/api/v1/radio_stations/{id}/stream_proxy":
     get:
       summary: Proxy radio station stream
@@ -888,6 +1400,53 @@ paths:
           description: Stream proxied successfully
         '400':
           description: No stream URL configured
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    error: No stream URL configured for this radio station
+  "/api/v1/song_import_logs":
+    get:
+      summary: List song import logs
+      tags:
+      - SongImportLogs
+      description: Returns song import logs for debugging and auditing. Logs are automatically
+        deleted after 1 day.
+      parameters:
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      - name: per_page
+        in: query
+        required: false
+        description: Items per page (default 25)
+        schema:
+          type: integer
+      - name: radio_station_id
+        in: query
+        required: false
+        description: Filter by radio station ID
+        schema:
+          type: integer
+      - name: status
+        in: query
+        required: false
+        description: 'Filter by status: pending, success, failed, skipped'
+        schema:
+          type: string
+      - name: import_source
+        in: query
+        required: false
+        description: 'Filter by import source: recognition, scraping'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Filtered by radio station
   "/api/v1/songs":
     get:
       summary: List songs
@@ -939,6 +1498,35 @@ paths:
       responses:
         '200':
           description: Songs retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: song
+                      attributes:
+                        id: 1
+                        title: Bohemian Rhapsody
+                        spotify_artwork_url: https://i.scdn.co/image/abc123
+                        id_on_spotify: 4u7EnebtmKWzUH433cf5Qv
+                        counter: 42
+                        artists:
+                        - id: 1
+                          name: Queen
+                        music_profile:
+                          danceability: 0.39
+                          energy: 0.4
+                          speechiness: 0.05
+                          acousticness: 0.29
+                          instrumentalness: 0.0
+                          liveness: 0.24
+                          valence: 0.22
+                          tempo: 71.17
+                    total_entries: 100
+                    total_pages: 5
+                    current_page: 1
   "/api/v1/songs/{id}":
     get:
       summary: Get a song
@@ -954,8 +1542,41 @@ paths:
       responses:
         '200':
           description: Song retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                      id: '1'
+                      type: song
+                      attributes:
+                        id: 1
+                        title: Bohemian Rhapsody
+                        spotify_artwork_url: https://i.scdn.co/image/abc123
+                        id_on_spotify: 4u7EnebtmKWzUH433cf5Qv
+                        counter: 42
+                        artists:
+                        - id: 1
+                          name: Queen
+                        music_profile:
+                          danceability: 0.39
+                          energy: 0.4
+                          speechiness: 0.05
+                          acousticness: 0.29
+                          instrumentalness: 0.0
+                          liveness: 0.24
+                          valence: 0.22
+                          tempo: 71.17
         '404':
           description: Song not found
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    status: 404
+                    error: Not Found
   "/api/v1/songs/{id}/graph_data":
     get:
       summary: Get song play count graph data
@@ -977,6 +1598,23 @@ paths:
       responses:
         '200':
           description: Graph data retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    labels:
+                    - '2024-12-01'
+                    - '2024-12-02'
+                    - '2024-12-03'
+                    - '2024-12-04'
+                    - '2024-12-05'
+                    counts:
+                    - 5
+                    - 8
+                    - 12
+                    - 7
+                    - 15
   "/api/v1/songs/{id}/chart_positions":
     get:
       summary: Get song chart positions over time
@@ -998,6 +1636,20 @@ paths:
       responses:
         '200':
           description: Chart positions retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                  - date: '2024-12-01'
+                    position: 5
+                    counts: 42
+                  - date: '2024-12-02'
+                    position: 3
+                    counts: 58
+                  - date: '2024-12-03'
+                    position: 1
+                    counts: 75
   "/api/v1/songs/{id}/time_analytics":
     get:
       summary: Get song time-based analytics
@@ -1027,6 +1679,41 @@ paths:
       responses:
         '200':
           description: Time analytics retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    peak_play_times:
+                      peak_hour: 8
+                      peak_day: 1
+                      peak_day_name: Monday
+                      hourly_distribution:
+                        '8': 5
+                        '14': 3
+                        '20': 7
+                      daily_distribution:
+                        Monday: 10
+                        Tuesday: 8
+                        Wednesday: 12
+                    play_frequency_trend:
+                      trend: rising
+                      trend_percentage: 25.5
+                      weekly_counts:
+                        '2024-01-01': 5
+                        '2024-01-08': 7
+                      first_period_avg: 4.0
+                      second_period_avg: 5.0
+                    lifecycle_stats:
+                      first_play: '2024-01-01T10:00:00Z'
+                      last_play: '2024-12-01T15:00:00Z'
+                      total_plays: 150
+                      days_since_first_play: 335
+                      days_since_last_play: 7
+                      days_active: 335
+                      unique_days_played: 120
+                      average_plays_per_day: 0.45
+                      play_consistency: 35.8
   "/api/v1/songs/{id}/air_plays":
     get:
       summary: Get song air plays
@@ -1078,6 +1765,29 @@ paths:
       responses:
         '200':
           description: Air plays retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: air_play
+                      attributes:
+                        id: 1
+                        broadcasted_at: '2024-12-01T14:30:00Z'
+                        song:
+                          id: 1
+                          title: Bohemian Rhapsody
+                          artists:
+                          - id: 1
+                            name: Queen
+                        radio_station:
+                          id: 1
+                          name: Radio 538
+                    total_entries: 50
+                    total_pages: 3
+                    current_page: 1
   "/api/v1/songs/{id}/info":
     get:
       summary: Get song Wikipedia information
@@ -1102,6 +1812,34 @@ paths:
           description: Song info retrieved successfully
           content:
             application/json:
+              examples:
+                example:
+                  value:
+                    info:
+                      summary: 2010 single by Adele from the album 21
+                      content: Rolling in the Deep is a song recorded by English singer
+                        Adele...
+                      description: 2010 single by Adele
+                      url: https://en.wikipedia.org/wiki/Rolling_in_the_Deep
+                      wikibase_item: Q212764
+                      thumbnail:
+                        source: https://upload.wikimedia.org/image.jpg
+                        width: 320
+                        height: 213
+                      original_image:
+                        source: https://upload.wikimedia.org/original.jpg
+                        width: 4272
+                        height: 2848
+                      general_info:
+                        youtube_video_id: rYEDA3JcQqw
+                        publication_date: '2010-11-29'
+                        genres:
+                        - soul
+                        - pop
+                        performers:
+                        - Adele
+                        record_labels:
+                        - XL Recordings
               schema:
                 type: object
                 properties:
@@ -1174,6 +1912,63 @@ paths:
                             nullable: true
         '404':
           description: Song not found
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    status: 404
+                    error: Not Found
+  "/api/v1/songs/{id}/music_profile":
+    get:
+      summary: Get song music profile (Spotify audio features)
+      tags:
+      - Songs
+      description: Returns Spotify audio features for the song with attribute descriptions
+        in metadata
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Song ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Song has no music profile
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    meta:
+                      attribute_descriptions:
+                        danceability:
+                          name: Danceability
+                          description: Describes how suitable a track is for dancing.
+                          range: 0.0 to 1.0
+                          high_threshold: 0.5
+                        energy:
+                          name: Energy
+                          description: Represents intensity and activity. Energetic
+                            tracks feel fast, loud, and noisy.
+                          range: 0.0 to 1.0
+                          high_threshold: 0.5
+                        tempo:
+                          name: Tempo
+                          description: The overall estimated tempo of a track in beats
+                            per minute (BPM).
+                          range: 0 to 250 BPM
+        '404':
+          description: Song not found
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    status: 404
+                    error: Not Found
 servers:
 - url: https://api.radioplaylists.nl
   description: Production server
@@ -1209,30 +2004,6 @@ components:
               type: string
               nullable: true
             id_on_youtube:
-              type: string
-              nullable: true
-            id_on_deezer:
-              type: string
-              nullable: true
-            deezer_song_url:
-              type: string
-              nullable: true
-            deezer_artwork_url:
-              type: string
-              nullable: true
-            deezer_preview_url:
-              type: string
-              nullable: true
-            id_on_itunes:
-              type: string
-              nullable: true
-            itunes_song_url:
-              type: string
-              nullable: true
-            itunes_artwork_url:
-              type: string
-              nullable: true
-            itunes_preview_url:
               type: string
               nullable: true
             release_date:
