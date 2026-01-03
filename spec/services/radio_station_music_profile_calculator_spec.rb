@@ -9,7 +9,7 @@ RSpec.describe RadioStationMusicProfileCalculator do
     end
 
     it 'defines DAY_PART_HOURS' do
-      expect(described_class::DAY_PART_HOURS['afternoon']).to eq((13..15))
+      expect(described_class::DAY_PART_HOURS['afternoon']).to eq(13..15)
     end
   end
 
@@ -17,21 +17,8 @@ RSpec.describe RadioStationMusicProfileCalculator do
     let(:radio_station) { create(:radio_station) }
 
     context 'when profiles exist for the day_part' do
-      let(:song1) { create(:song) }
-      let(:song2) { create(:song) }
-
-      before do
-        create(:music_profile, song: song1, danceability: 0.6, energy: 0.7, speechiness: 0.1,
-                               acousticness: 0.3, instrumentalness: 0.1, liveness: 0.2, valence: 0.6, tempo: 120.0)
-        create(:music_profile, song: song2, danceability: 0.8, energy: 0.5, speechiness: 0.4,
-                               acousticness: 0.5, instrumentalness: 0.6, liveness: 0.9, valence: 0.4, tempo: 130.0)
-
-        # Create air plays with explicit UTC times that fall in afternoon (13-15) even after timezone conversion
-        # Using 13 and 14 UTC which become 14 and 15 in CET (still afternoon)
-        create(:air_play, song: song1, radio_station:, broadcasted_at: Time.utc(2026, 1, 2, 13, 0, 0))
-        create(:air_play, song: song2, radio_station:, broadcasted_at: Time.utc(2026, 1, 2, 14, 0, 0))
-      end
-
+      let(:danceable_song) { create(:song) }
+      let(:speechy_song) { create(:song) }
       let(:calculator) do
         described_class.new(
           radio_station:,
@@ -41,7 +28,19 @@ RSpec.describe RadioStationMusicProfileCalculator do
         )
       end
 
-      it 'returns aggregated profile' do
+      before do
+        create(:music_profile, song: danceable_song, danceability: 0.6, energy: 0.7, speechiness: 0.1,
+                               acousticness: 0.3, instrumentalness: 0.1, liveness: 0.2, valence: 0.6, tempo: 120.0)
+        create(:music_profile, song: speechy_song, danceability: 0.8, energy: 0.5, speechiness: 0.4,
+                               acousticness: 0.5, instrumentalness: 0.6, liveness: 0.9, valence: 0.4, tempo: 130.0)
+
+        # Create air plays with explicit UTC times that fall in afternoon (13-15) even after timezone conversion
+        # Using 13 and 14 UTC which become 14 and 15 in CET (still afternoon)
+        create(:air_play, song: danceable_song, radio_station:, broadcasted_at: Time.utc(2026, 1, 2, 13, 0, 0))
+        create(:air_play, song: speechy_song, radio_station:, broadcasted_at: Time.utc(2026, 1, 2, 14, 0, 0))
+      end
+
+      it 'returns aggregated profile', :aggregate_failures do
         result = calculator.calculate_for_day_part('afternoon')
 
         expect(result).not_to be_nil
@@ -49,7 +48,7 @@ RSpec.describe RadioStationMusicProfileCalculator do
         expect(result[:counter]).to eq(2)
       end
 
-      it 'calculates averages correctly' do
+      it 'calculates averages correctly', :aggregate_failures do
         result = calculator.calculate_for_day_part('afternoon')
 
         # (0.6 + 0.8) / 2 = 0.7
@@ -60,14 +59,14 @@ RSpec.describe RadioStationMusicProfileCalculator do
         expect(result[:tempo]).to eq(125.0)
       end
 
-      it 'calculates high percentages correctly' do
+      it 'calculates high percentages correctly', :aggregate_failures do
         result = calculator.calculate_for_day_part('afternoon')
 
         # Both songs have danceability > 0.5 threshold
         expect(result[:high_danceability_percentage]).to eq(1.0)
-        # One song has speechiness > 0.33 threshold (song2 = 0.4)
+        # One song has speechiness > 0.33 threshold (speechy_song = 0.4)
         expect(result[:high_speechiness_percentage]).to eq(0.5)
-        # One song has liveness > 0.8 threshold (song2 = 0.9)
+        # One song has liveness > 0.8 threshold (speechy_song = 0.9)
         expect(result[:high_liveness_percentage]).to eq(0.5)
       end
     end
@@ -103,7 +102,7 @@ RSpec.describe RadioStationMusicProfileCalculator do
         )
       end
 
-      it 'returns profiles for that day_part only' do
+      it 'returns profiles for that day_part only', :aggregate_failures do
         result = calculator.calculate
 
         expect(result.size).to eq(1)

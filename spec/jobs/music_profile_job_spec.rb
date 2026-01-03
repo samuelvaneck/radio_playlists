@@ -6,6 +6,7 @@ RSpec.describe MusicProfileJob do
   describe '#perform' do
     let(:song) { create(:song, id_on_spotify: '4iV5W9uYEdYUVa79Axb7Rh') }
     let(:radio_station) { create(:radio_station) }
+    let(:job) { described_class.new }
 
     let(:audio_features) do
       {
@@ -21,20 +22,21 @@ RSpec.describe MusicProfileJob do
     end
 
     before do
-      allow_any_instance_of(Spotify::AudioFeature).to receive(:audio_features).and_return(audio_features)
+      audio_feature_service = instance_double(Spotify::AudioFeature, audio_features: audio_features)
+      allow(Spotify::AudioFeature).to receive(:new).and_return(audio_feature_service)
       # Stub the tag updating methods to avoid external API calls
-      allow_any_instance_of(described_class).to receive(:update_radio_station_tags)
+      allow(job).to receive(:update_radio_station_tags)
     end
 
     context 'when song has Spotify ID and no music profile' do
       it 'creates a music profile' do
-        expect {
-          described_class.new.perform(song.id, radio_station.id)
-        }.to change { MusicProfile.count }.by(1)
+        expect do
+          job.perform(song.id, radio_station.id)
+        end.to change(MusicProfile, :count).by(1)
       end
 
-      it 'creates music profile with correct attributes' do
-        described_class.new.perform(song.id, radio_station.id)
+      it 'creates music profile with correct attributes', :aggregate_failures do
+        job.perform(song.id, radio_station.id)
 
         profile = song.reload.music_profile
         expect(profile.danceability).to eq(0.65)
@@ -47,9 +49,9 @@ RSpec.describe MusicProfileJob do
       before { create(:music_profile, song:) }
 
       it 'does not create a duplicate' do
-        expect {
-          described_class.new.perform(song.id, radio_station.id)
-        }.not_to change { MusicProfile.count }
+        expect do
+          job.perform(song.id, radio_station.id)
+        end.not_to change(MusicProfile, :count)
       end
     end
 
@@ -57,29 +59,30 @@ RSpec.describe MusicProfileJob do
       let(:song) { create(:song, id_on_spotify: nil) }
 
       it 'does not create a music profile' do
-        expect {
-          described_class.new.perform(song.id, radio_station.id)
-        }.not_to change { MusicProfile.count }
+        expect do
+          job.perform(song.id, radio_station.id)
+        end.not_to change(MusicProfile, :count)
       end
     end
 
     context 'when song does not exist' do
       it 'does not raise an error' do
-        expect {
-          described_class.new.perform(999_999, radio_station.id)
-        }.not_to raise_error
+        expect do
+          job.perform(999_999, radio_station.id)
+        end.not_to raise_error
       end
     end
 
     context 'when audio features are not available' do
       before do
-        allow_any_instance_of(Spotify::AudioFeature).to receive(:audio_features).and_return(nil)
+        audio_feature_service = instance_double(Spotify::AudioFeature, audio_features: nil)
+        allow(Spotify::AudioFeature).to receive(:new).and_return(audio_feature_service)
       end
 
       it 'does not create a music profile' do
-        expect {
-          described_class.new.perform(song.id, radio_station.id)
-        }.not_to change { MusicProfile.count }
+        expect do
+          job.perform(song.id, radio_station.id)
+        end.not_to change(MusicProfile, :count)
       end
     end
   end
