@@ -16,6 +16,64 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                 description: 'Filter by day part (night, breakfast, morning, lunch, afternoon, dinner, evening)'
 
       response '200', 'Classifiers retrieved successfully' do
+        example 'application/json', :example, {
+          data: [
+            {
+              id: '1',
+              type: 'radio_station_classifier',
+              attributes: {
+                id: 1,
+                radio_station: { id: 1, name: 'Radio 538' },
+                day_part: 'morning',
+                danceability_average: '0.65',
+                high_danceability_percentage: 0.72,
+                energy_average: '0.72',
+                high_energy_percentage: 0.68,
+                speechiness_average: '0.08',
+                high_speechiness_percentage: 0.15,
+                acousticness_average: '0.25',
+                high_acousticness_percentage: 0.30,
+                instrumentalness_average: '0.02',
+                high_instrumentalness_percentage: 0.05,
+                liveness_average: '0.12',
+                high_liveness_percentage: 0.18,
+                valence_average: '0.58',
+                high_valence_percentage: 0.62,
+                tempo: '118.5',
+                counter: 450
+              }
+            }
+          ],
+          meta: {
+            attribute_descriptions: {
+              danceability_average: {
+                name: 'Danceability Average',
+                description: 'Average danceability score for tracks played during this time period.',
+                range: '0.0 to 1.0'
+              },
+              high_danceability_percentage: {
+                name: 'High Danceability Percentage',
+                description: 'Percentage of tracks with danceability above the threshold.',
+                range: '0.0 to 1.0'
+              },
+              energy_average: {
+                name: 'Energy Average',
+                description: 'Average energy score for tracks played during this time period.',
+                range: '0.0 to 1.0'
+              },
+              day_part: {
+                name: 'Day Part',
+                description: 'Time segment of the day.',
+                values: %w[night breakfast morning lunch afternoon dinner evening]
+              },
+              counter: {
+                name: 'Counter',
+                description: 'Number of tracks analyzed for this classifier.'
+              }
+            }
+          }
+        }
+
         schema type: :object,
                properties: {
                  data: {
@@ -163,6 +221,24 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
       end
 
       response '200', 'Classifiers filtered by radio station' do
+        example 'application/json', :filtered_by_station, {
+          data: [
+            {
+              id: '1',
+              type: 'radio_station_classifier',
+              attributes: {
+                id: 1,
+                radio_station: { id: 1, name: 'Radio 538' },
+                day_part: 'morning',
+                danceability_average: '0.65',
+                energy_average: '0.72',
+                counter: 450
+              }
+            }
+          ],
+          meta: { attribute_descriptions: {} }
+        }
+
         let!(:radio_station1) { create(:radio_station) }
         let!(:radio_station2) { create(:radio_station) }
         let!(:song1) { create(:song) }
@@ -185,6 +261,24 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
       end
 
       response '200', 'Classifiers filtered by day part' do
+        example 'application/json', :filtered_by_day_part, {
+          data: [
+            {
+              id: '1',
+              type: 'radio_station_classifier',
+              attributes: {
+                id: 1,
+                radio_station: { id: 1, name: 'Radio 538' },
+                day_part: 'evening',
+                danceability_average: '0.75',
+                energy_average: '0.80',
+                counter: 320
+              }
+            }
+          ],
+          meta: { attribute_descriptions: {} }
+        }
+
         let!(:radio_station) { create(:radio_station) }
         let!(:song1) { create(:song) }
         let!(:song2) { create(:song) }
@@ -216,6 +310,45 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                   'Useful for displaying tooltips or help text in the frontend.'
 
       response '200', 'Descriptions retrieved successfully' do
+        example 'application/json', :example, {
+          data: {
+            danceability_average: {
+              name: 'Danceability Average',
+              description: 'Average danceability score for tracks played during this time period. Higher values indicate more danceable tracks.',
+              range: '0.0 to 1.0'
+            },
+            high_danceability_percentage: {
+              name: 'High Danceability Percentage',
+              description: 'Percentage of tracks with danceability above 0.5.',
+              range: '0.0 to 1.0'
+            },
+            energy_average: {
+              name: 'Energy Average',
+              description: 'Average energy score for tracks. Higher values indicate more intense, fast, loud tracks.',
+              range: '0.0 to 1.0'
+            },
+            valence_average: {
+              name: 'Valence Average',
+              description: 'Average musical positiveness. Higher values indicate happier, more cheerful tracks.',
+              range: '0.0 to 1.0'
+            },
+            tempo: {
+              name: 'Tempo',
+              description: 'Average tempo of tracks in beats per minute (BPM).',
+              range: '0 to 250 BPM'
+            },
+            day_part: {
+              name: 'Day Part',
+              description: 'Time segment of the day when tracks were played.',
+              values: %w[night breakfast morning lunch afternoon dinner evening]
+            },
+            counter: {
+              name: 'Counter',
+              description: 'Number of tracks analyzed for this classifier.'
+            }
+          }
+        }
+
         schema type: :object,
                properties: {
                  data: {

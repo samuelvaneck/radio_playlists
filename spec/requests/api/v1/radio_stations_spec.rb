@@ -9,6 +9,35 @@ RSpec.describe 'RadioStations API', type: :request do
       produces 'application/json'
 
       response '200', 'Radio stations retrieved successfully' do
+        example 'application/json', :example, {
+          data: [
+            {
+              id: '1',
+              type: 'radio_station',
+              attributes: {
+                id: 1,
+                name: 'Radio 538',
+                slug: 'radio-538',
+                stream_url: 'https://stream.538.nl/538/mp3',
+                url: 'https://www.538.nl',
+                country_code: 'NL'
+              }
+            },
+            {
+              id: '2',
+              type: 'radio_station',
+              attributes: {
+                id: 2,
+                name: 'Qmusic',
+                slug: 'qmusic',
+                stream_url: 'https://stream.qmusic.nl/qmusic/mp3',
+                url: 'https://www.qmusic.nl',
+                country_code: 'NL'
+              }
+            }
+          ]
+        }
+
         let!(:radio_station) { create(:radio_station) }
 
         run_test!
@@ -23,6 +52,21 @@ RSpec.describe 'RadioStations API', type: :request do
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
 
       response '200', 'Radio station retrieved successfully' do
+        example 'application/json', :example, {
+          data: {
+            id: '1',
+            type: 'radio_station',
+            attributes: {
+              id: 1,
+              name: 'Radio 538',
+              slug: 'radio-538',
+              stream_url: 'https://stream.538.nl/538/mp3',
+              url: 'https://www.538.nl',
+              country_code: 'NL'
+            }
+          }
+        }
+
         let(:radio_station) { create(:radio_station) }
         let(:id) { radio_station.id }
 
@@ -30,6 +74,11 @@ RSpec.describe 'RadioStations API', type: :request do
       end
 
       response '404', 'Radio station not found' do
+        example 'application/json', :example, {
+          status: 404,
+          error: 'Not Found'
+        }
+
         let(:id) { 0 }
 
         run_test!
@@ -44,6 +93,13 @@ RSpec.describe 'RadioStations API', type: :request do
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
 
       response '200', 'Radio station status retrieved successfully' do
+        example 'application/json', :example, {
+          status: 'online',
+          last_air_play: '2024-12-01T14:30:00Z',
+          song_count_today: 245,
+          stream_available: true
+        }
+
         let(:radio_station) { create(:radio_station) }
         let(:id) { radio_station.id }
 
@@ -59,6 +115,24 @@ RSpec.describe 'RadioStations API', type: :request do
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
 
       response '200', 'Radio station data retrieved successfully' do
+        example 'application/json', :example, {
+          data: {
+            id: 1,
+            name: 'Radio 538',
+            total_air_plays: 125_000,
+            unique_songs: 8500,
+            unique_artists: 3200,
+            top_songs: [
+              { id: 1, title: 'Bohemian Rhapsody', count: 150 },
+              { id: 2, title: 'Blinding Lights', count: 142 }
+            ],
+            top_artists: [
+              { id: 1, name: 'Queen', count: 520 },
+              { id: 2, name: 'The Weeknd', count: 485 }
+            ]
+          }
+        }
+
         let(:radio_station) { create(:radio_station) }
         let(:id) { radio_station.id }
 
@@ -74,6 +148,40 @@ RSpec.describe 'RadioStations API', type: :request do
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
 
       response '200', 'Radio station classifiers retrieved successfully' do
+        example 'application/json', :example, {
+          data: [
+            {
+              day_part: 'morning',
+              danceability_average: 0.65,
+              energy_average: 0.72,
+              valence_average: 0.58,
+              tempo: 118.5,
+              counter: 450,
+              high_danceability_percentage: 0.72,
+              high_energy_percentage: 0.68
+            },
+            {
+              day_part: 'afternoon',
+              danceability_average: 0.70,
+              energy_average: 0.75,
+              valence_average: 0.62,
+              tempo: 122.3,
+              counter: 380,
+              high_danceability_percentage: 0.78,
+              high_energy_percentage: 0.74
+            }
+          ],
+          meta: {
+            attribute_descriptions: {
+              danceability_average: {
+                name: 'Danceability Average',
+                description: 'Average danceability score for tracks played during this time period.',
+                range: '0.0 to 1.0'
+              }
+            }
+          }
+        }
+
         let(:radio_station) { create(:radio_station) }
         let(:id) { radio_station.id }
 
@@ -88,6 +196,37 @@ RSpec.describe 'RadioStations API', type: :request do
       produces 'application/json'
 
       response '200', 'Last played songs retrieved successfully' do
+        example 'application/json', :example, {
+          data: [
+            {
+              radio_station: {
+                id: 1,
+                name: 'Radio 538',
+                slug: 'radio-538'
+              },
+              last_song: {
+                id: 1,
+                title: 'Bohemian Rhapsody',
+                artists: [{ id: 1, name: 'Queen' }],
+                broadcasted_at: '2024-12-01T14:30:00Z'
+              }
+            },
+            {
+              radio_station: {
+                id: 2,
+                name: 'Qmusic',
+                slug: 'qmusic'
+              },
+              last_song: {
+                id: 2,
+                title: 'Blinding Lights',
+                artists: [{ id: 2, name: 'The Weeknd' }],
+                broadcasted_at: '2024-12-01T14:28:00Z'
+              }
+            }
+          ]
+        }
+
         let!(:radio_station) { create(:radio_station) }
 
         run_test!
@@ -112,6 +251,29 @@ RSpec.describe 'RadioStations API', type: :request do
       parameter name: :page, in: :query, type: :integer, required: false, description: 'Page number'
 
       response '200', 'New played songs retrieved successfully' do
+        example 'application/json', :example, {
+          data: [
+            {
+              id: '1',
+              type: 'song',
+              attributes: {
+                id: 1,
+                title: 'New Release Song',
+                spotify_artwork_url: 'https://i.scdn.co/image/new123',
+                artists: [{ id: 1, name: 'New Artist' }],
+                first_broadcasted_at: '2024-12-01T10:00:00Z',
+                radio_station: {
+                  id: 1,
+                  name: 'Radio 538'
+                }
+              }
+            }
+          ],
+          total_entries: 25,
+          total_pages: 2,
+          current_page: 1
+        }
+
         let(:period) { 'week' }
         let!(:radio_station) { create(:radio_station) }
 
@@ -119,6 +281,10 @@ RSpec.describe 'RadioStations API', type: :request do
       end
 
       response '400', 'Period or start_time parameter is required' do
+        example 'application/json', :example, {
+          error: 'Period or start_time parameter is required'
+        }
+
         let(:period) { nil }
 
         run_test!
@@ -146,6 +312,10 @@ RSpec.describe 'RadioStations API', type: :request do
       end
 
       response '400', 'No stream URL configured' do
+        example 'application/json', :example, {
+          error: 'No stream URL configured for this radio station'
+        }
+
         let(:radio_station) { create(:radio_station, stream_url: nil) }
         let(:id) { radio_station.id }
 
