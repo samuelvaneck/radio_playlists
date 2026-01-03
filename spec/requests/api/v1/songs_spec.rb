@@ -20,6 +20,38 @@ RSpec.describe 'Songs API', type: :request do
                 required: false, description: 'Filter by radio station IDs'
       parameter name: :search_term, in: :query, type: :string, required: false,
                 description: 'Search by song title or artist name'
+      parameter name: :danceability_min, in: :query, type: :number, required: false,
+                description: 'Minimum danceability (0.0 - 1.0)'
+      parameter name: :danceability_max, in: :query, type: :number, required: false,
+                description: 'Maximum danceability (0.0 - 1.0)'
+      parameter name: :energy_min, in: :query, type: :number, required: false,
+                description: 'Minimum energy (0.0 - 1.0)'
+      parameter name: :energy_max, in: :query, type: :number, required: false,
+                description: 'Maximum energy (0.0 - 1.0)'
+      parameter name: :speechiness_min, in: :query, type: :number, required: false,
+                description: 'Minimum speechiness (0.0 - 1.0)'
+      parameter name: :speechiness_max, in: :query, type: :number, required: false,
+                description: 'Maximum speechiness (0.0 - 1.0)'
+      parameter name: :acousticness_min, in: :query, type: :number, required: false,
+                description: 'Minimum acousticness (0.0 - 1.0)'
+      parameter name: :acousticness_max, in: :query, type: :number, required: false,
+                description: 'Maximum acousticness (0.0 - 1.0)'
+      parameter name: :instrumentalness_min, in: :query, type: :number, required: false,
+                description: 'Minimum instrumentalness (0.0 - 1.0)'
+      parameter name: :instrumentalness_max, in: :query, type: :number, required: false,
+                description: 'Maximum instrumentalness (0.0 - 1.0)'
+      parameter name: :liveness_min, in: :query, type: :number, required: false,
+                description: 'Minimum liveness (0.0 - 1.0)'
+      parameter name: :liveness_max, in: :query, type: :number, required: false,
+                description: 'Maximum liveness (0.0 - 1.0)'
+      parameter name: :valence_min, in: :query, type: :number, required: false,
+                description: 'Minimum valence/mood (0.0 - 1.0)'
+      parameter name: :valence_max, in: :query, type: :number, required: false,
+                description: 'Maximum valence/mood (0.0 - 1.0)'
+      parameter name: :tempo_min, in: :query, type: :number, required: false,
+                description: 'Minimum tempo in BPM'
+      parameter name: :tempo_max, in: :query, type: :number, required: false,
+                description: 'Maximum tempo in BPM'
 
       response '200', 'Songs retrieved successfully' do
         example 'application/json', :example, {

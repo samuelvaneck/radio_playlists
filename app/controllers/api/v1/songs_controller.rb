@@ -177,7 +177,31 @@ module Api
       end
 
       def songs
-        @songs ||= Song.most_played(params).paginate(page: params[:page], per_page: 24)
+        @songs ||= Song.most_played(songs_params).paginate(page: params[:page], per_page: 24)
+      end
+
+      def songs_params
+        {
+          period: params[:period],
+          start_time: params[:start_time],
+          end_time: params[:end_time],
+          radio_station_ids: params[:radio_station_ids],
+          search_term: params[:search_term],
+          music_profile: music_profile_params
+        }
+      end
+
+      def music_profile_params
+        params.permit(
+          :danceability_min, :danceability_max,
+          :energy_min, :energy_max,
+          :speechiness_min, :speechiness_max,
+          :acousticness_min, :acousticness_max,
+          :instrumentalness_min, :instrumentalness_max,
+          :liveness_min, :liveness_max,
+          :valence_min, :valence_max,
+          :tempo_min, :tempo_max
+        ).to_h.presence
       end
 
       def song

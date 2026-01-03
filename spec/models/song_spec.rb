@@ -72,6 +72,64 @@ describe Song do
         expect(most_played_with_radio_station_id[0].counter).to eq 2
       end
     end
+
+    # rubocop:disable RSpec/MultipleMemoizedHelpers
+    context 'with music_profile filter params present' do
+      let(:high_energy_song) { create(:song) }
+      let(:low_energy_song) { create(:song) }
+      let!(:high_energy_profile) do
+        create(:music_profile, song: high_energy_song, energy: 0.9, danceability: 0.8, tempo: 140)
+      end
+      let!(:low_energy_profile) do
+        create(:music_profile, song: low_energy_song, energy: 0.3, danceability: 0.4, tempo: 80)
+      end
+      let!(:high_energy_air_play) { create(:air_play, song: high_energy_song) }
+      let!(:low_energy_air_play) { create(:air_play, song: low_energy_song) }
+
+      it 'filters by minimum energy', :aggregate_failures do
+        result = Song.most_played({ music_profile: { 'energy_min' => '0.7' } })
+        expect(result).to include(high_energy_song)
+        expect(result).not_to include(low_energy_song)
+      end
+
+      it 'filters by maximum energy', :aggregate_failures do
+        result = Song.most_played({ music_profile: { 'energy_max' => '0.5' } })
+        expect(result).to include(low_energy_song)
+        expect(result).not_to include(high_energy_song)
+      end
+
+      it 'filters by energy range', :aggregate_failures do
+        result = Song.most_played({ music_profile: { 'energy_min' => '0.2', 'energy_max' => '0.5' } })
+        expect(result).to include(low_energy_song)
+        expect(result).not_to include(high_energy_song)
+      end
+
+      it 'filters by minimum danceability', :aggregate_failures do
+        result = Song.most_played({ music_profile: { 'danceability_min' => '0.6' } })
+        expect(result).to include(high_energy_song)
+        expect(result).not_to include(low_energy_song)
+      end
+
+      it 'filters by tempo range', :aggregate_failures do
+        result = Song.most_played({ music_profile: { 'tempo_min' => '100', 'tempo_max' => '160' } })
+        expect(result).to include(high_energy_song)
+        expect(result).not_to include(low_energy_song)
+      end
+
+      it 'combines multiple music profile filters', :aggregate_failures do
+        filters = { 'energy_min' => '0.7', 'danceability_min' => '0.6', 'tempo_min' => '120' }
+        result = Song.most_played({ music_profile: filters })
+        expect(result).to include(high_energy_song)
+        expect(result).not_to include(low_energy_song)
+      end
+
+      it 'returns no results when filters exclude all songs', :aggregate_failures do
+        result = Song.most_played({ music_profile: { 'energy_min' => '0.95' } })
+        expect(result).not_to include(high_energy_song)
+        expect(result).not_to include(low_energy_song)
+      end
+    end
+    # rubocop:enable RSpec/MultipleMemoizedHelpers
   end
 
   describe '#cleanup' do
