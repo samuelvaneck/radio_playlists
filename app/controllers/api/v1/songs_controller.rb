@@ -3,7 +3,7 @@
 module Api
   module V1
     class SongsController < ApiController
-      before_action :song, only: %i[show graph_data chart_positions time_analytics air_plays info]
+      before_action :song, only: %i[show graph_data chart_positions time_analytics air_plays info music_profile]
 
       def index
         render json: SongSerializer.new(songs)
@@ -127,6 +127,40 @@ module Api
         artist_name = song.artists.first&.name
         info_data = Wikipedia::SongFinder.new(language: language_param).get_info(song.title, artist_name)
         render json: { info: info_data }
+      end
+
+      # GET /api/v1/songs/:id/music_profile
+      #
+      # Returns the Spotify audio features for a song with attribute descriptions.
+      #
+      # Response:
+      # {
+      #   "data": {
+      #     "id": "1",
+      #     "type": "music_profile",
+      #     "attributes": {
+      #       "danceability": 0.65,
+      #       "energy": 0.72,
+      #       "speechiness": 0.08,
+      #       "acousticness": 0.25,
+      #       "instrumentalness": 0.02,
+      #       "liveness": 0.12,
+      #       "valence": 0.58,
+      #       "tempo": 120.5
+      #     }
+      #   },
+      #   "meta": {
+      #     "attribute_descriptions": { ... }
+      #   }
+      # }
+      def music_profile
+        hash = if song.music_profile.present?
+                 MusicProfileSerializer.new(song.music_profile).serializable_hash
+               else
+                 { data: nil }
+               end
+        hash[:meta] = { attribute_descriptions: MusicProfile::ATTRIBUTE_DESCRIPTIONS }
+        render json: hash.to_json
       end
 
       private

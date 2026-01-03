@@ -33,6 +33,7 @@ Rails.application.routes.draw do
         get :time_analytics, on: :member
         get :air_plays, on: :member
         get :info, on: :member
+        get :music_profile, on: :member
       end
       resources :radio_stations, only: %i[index show] do
         get :data, on: :member

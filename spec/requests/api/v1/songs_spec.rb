@@ -213,4 +213,39 @@ RSpec.describe 'Songs API', type: :request do
       end
     end
   end
+
+  path '/api/v1/songs/{id}/music_profile' do
+    get 'Get song music profile (Spotify audio features)' do
+      tags 'Songs'
+      produces 'application/json'
+      description 'Returns Spotify audio features for the song with attribute descriptions in metadata'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Song ID'
+
+      response '200', 'Music profile retrieved successfully' do
+        let(:song) { create(:song) }
+        let!(:music_profile) { create(:music_profile, song: song) }
+        let(:id) { song.id }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['data']).to be_present
+          expect(data['data']['attributes']).to include('danceability', 'energy', 'tempo')
+          expect(data['meta']['attribute_descriptions']).to be_present
+        end
+      end
+
+      response '200', 'Song has no music profile' do
+        let(:song) { create(:song) }
+        let(:id) { song.id }
+
+        run_test!
+      end
+
+      response '404', 'Song not found' do
+        let(:id) { 0 }
+
+        run_test!
+      end
+    end
+  end
 end
