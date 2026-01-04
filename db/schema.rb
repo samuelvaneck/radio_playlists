@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_02_093022) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_04_193919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -139,31 +139,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_02_093022) do
     t.index ["song_id"], name: "index_music_profiles_on_song_id", unique: true
   end
 
-  create_table "radio_station_classifiers", force: :cascade do |t|
-    t.decimal "acousticness_average", precision: 5, scale: 3, default: "0.0"
-    t.integer "counter", default: 0
-    t.datetime "created_at", null: false
-    t.decimal "danceability_average", precision: 5, scale: 3, default: "0.0"
-    t.string "day_part", null: false
-    t.decimal "energy_average", precision: 5, scale: 3, default: "0.0"
-    t.decimal "high_acousticness_percentage", precision: 5, scale: 4, default: "0.0"
-    t.decimal "high_danceability_percentage", precision: 5, scale: 4, default: "0.0"
-    t.decimal "high_energy_percentage", precision: 5, scale: 4, default: "0.0"
-    t.decimal "high_instrumentalness_percentage", precision: 5, scale: 4, default: "0.0"
-    t.decimal "high_liveness_percentage", precision: 5, scale: 4, default: "0.0"
-    t.decimal "high_speechiness_percentage", precision: 5, scale: 4, default: "0.0"
-    t.decimal "high_valence_percentage", precision: 5, scale: 4, default: "0.0"
-    t.decimal "instrumentalness_average", precision: 5, scale: 3, default: "0.0"
-    t.decimal "liveness_average", precision: 5, scale: 3, default: "0.0"
-    t.bigint "radio_station_id", null: false
-    t.decimal "speechiness_average", precision: 5, scale: 3, default: "0.0"
-    t.decimal "tempo", precision: 5, scale: 2, default: "0.0"
-    t.datetime "updated_at", null: false
-    t.decimal "valence_average", precision: 5, scale: 3, default: "0.0"
-    t.index ["radio_station_id", "day_part"], name: "idx_on_radio_station_id_day_part_3fdb6160cd", unique: true
-    t.index ["radio_station_id"], name: "index_radio_station_classifiers_on_radio_station_id"
-  end
-
   create_table "radio_station_songs", force: :cascade do |t|
     t.datetime "first_broadcasted_at"
     t.bigint "radio_station_id", null: false
@@ -273,7 +248,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_02_093022) do
   add_foreign_key "air_plays", "songs"
   add_foreign_key "chart_positions", "charts"
   add_foreign_key "music_profiles", "songs"
-  add_foreign_key "radio_station_classifiers", "radio_stations"
   add_foreign_key "radio_station_songs", "radio_stations"
   add_foreign_key "radio_station_songs", "songs"
   add_foreign_key "song_import_logs", "air_plays"
