@@ -80,7 +80,7 @@ class SongImporter
 
   def spotify_track_if_valid
     result = spotify_track
-    result&.track.present? ? result : nil
+    result&.valid_match? ? result : nil
   end
 
   def itunes_track_if_valid
