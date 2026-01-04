@@ -110,6 +110,20 @@ context 'with live API call', :real_http do
 end
 ```
 
+### Multiple Expectations
+
+The `RSpec/MultipleExpectations` cop is enabled with `Max: 1`. When you need multiple expectations in a single example, use `:aggregate_failures` to group them:
+
+```ruby
+it 'returns the correct response', :aggregate_failures do
+  expect(response).to have_http_status(:ok)
+  expect(json['data']).to be_an(Array)
+  expect(json['data'].first['id']).to eq(record.id)
+end
+```
+
+This tells RuboCop that the expectations are intentionally grouped, and RSpec will run all expectations even if earlier ones fail (providing better error messages).
+
 ## API Structure
 
 RESTful JSON API under `/api/v1/`:
