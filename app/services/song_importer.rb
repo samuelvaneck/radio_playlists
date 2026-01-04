@@ -67,34 +67,53 @@ class SongImporter
   end
 
   def artists
-    @artists ||= TrackExtractor::ArtistsExtractor.new(played_song: @played_song, track: spotify_track).extract
+    @artists ||= TrackExtractor::ArtistsExtractor.new(played_song: @played_song, track:).extract
   end
 
   def song
-    @song ||= TrackExtractor::SongExtractor.new(played_song: @played_song, track: spotify_track, artists:).extract
+    @song ||= TrackExtractor::SongExtractor.new(played_song: @played_song, track:, artists:).extract
+  end
+
+  def track
+    @track ||= spotify_track_if_valid || itunes_track_if_valid || deezer_track_if_valid
+  end
+
+  def spotify_track_if_valid
+    result = spotify_track
+    result&.valid_match? ? result : nil
+  end
+
+  def itunes_track_if_valid
+    result = itunes_track
+    result&.valid_match? ? result : nil
+  end
+
+  def deezer_track_if_valid
+    result = deezer_track
+    result&.valid_match? ? result : nil
   end
 
   def spotify_track
-    @track ||= begin
-      track = TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
-      @import_logger.log_spotify(track) if track
-      track
+    @spotify_track ||= begin
+      result = TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
+      @import_logger.log_spotify(result) if result
+      result
     end
   end
 
   def deezer_track
     @deezer_track ||= begin
-      track = TrackExtractor::DeezerTrackFinder.new(played_song: @played_song).find
-      @import_logger.log_deezer(track) if track&.valid_match?
-      track
+      result = TrackExtractor::DeezerTrackFinder.new(played_song: @played_song).find
+      @import_logger.log_deezer(result) if result&.valid_match?
+      result
     end
   end
 
   def itunes_track
     @itunes_track ||= begin
-      track = TrackExtractor::ItunesTrackFinder.new(played_song: @played_song).find
-      @import_logger.log_itunes(track) if track&.valid_match?
-      track
+      result = TrackExtractor::ItunesTrackFinder.new(played_song: @played_song).find
+      @import_logger.log_itunes(result) if result&.valid_match?
+      result
     end
   end
 
@@ -224,6 +243,7 @@ class SongImporter
     @artists = nil
     @song = nil
     @track = nil
+    @spotify_track = nil
     @deezer_track = nil
     @itunes_track = nil
     @scraper_import = nil

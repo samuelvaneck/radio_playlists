@@ -3,7 +3,8 @@ module Spotify
     class Result < Base
       attr_reader :track, :artists, :title, :id, :isrc, :spotify_artwork_url,
                   :spotify_song_url, :spotify_query_result, :filter_result, :tracks,
-                  :spotify_preview_url, :release_date, :release_date_precision
+                  :spotify_preview_url, :release_date, :release_date_precision,
+                  :matched_artist_distance, :matched_title_distance
 
       TRACK_TYPES = %w[album single compilation].freeze
       FEATURING_REGEX = /\(feat\..+\)/
@@ -29,7 +30,8 @@ module Spotify
         @spotify_song_url = set_spotify_song_url
         @spotify_artwork_url = set_spotify_artwork_url
         @spotify_preview_url = set_spotify_preview_url
-        @title_distance = set_title_distance
+        @matched_artist_distance = set_matched_artist_distance
+        @matched_title_distance = set_matched_title_distance
         @id = set_id
         @release_date = set_release_date
         @release_date_precision = set_release_date_precision
@@ -88,6 +90,13 @@ module Spotify
         return nil if type.blank?
 
         type_to_filter_class(type).new(tracks: spotify_query_result, artists: @search_artists).best_matching_track
+      end
+
+      def valid_match?
+        return false if @track.blank?
+
+        @matched_artist_distance.to_i >= ARTIST_SIMILARITY_THRESHOLD &&
+          @matched_title_distance.to_i >= TITLE_SIMILARITY_THRESHOLD
       end
 
       private
@@ -168,7 +177,13 @@ module Spotify
         @track['preview_url']
       end
 
-      def set_title_distance
+      def set_matched_artist_distance
+        return if @track.blank?
+
+        @track['artist_distance']
+      end
+
+      def set_matched_title_distance
         return if @track.blank?
 
         @track['title_distance']
