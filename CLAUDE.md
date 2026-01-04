@@ -65,7 +65,7 @@ Radio Stream → Audio Recognition/Scraping → Artist/Song Extraction
 - `AirPlay` - Song play events (unique per station/song/time)
 - `RadioStation` - Station metadata with last 12 airplay IDs (JSONB)
 - `ChartPosition` - Polymorphic rankings (can be Song or Artist)
-- `RadioStationClassifier` - Spotify audio features by time-of-day
+- `MusicProfile` - Spotify audio features per song (used for in-place classifier calculations)
 
 ### Model Concerns
 
