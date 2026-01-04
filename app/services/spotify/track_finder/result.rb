@@ -92,6 +92,13 @@ module Spotify
         type_to_filter_class(type).new(tracks: spotify_query_result, artists: @search_artists).best_matching_track
       end
 
+      def valid_match?
+        return false if @track.blank?
+
+        @matched_artist_distance.to_i >= ARTIST_SIMILARITY_THRESHOLD &&
+          @matched_title_distance.to_i >= TITLE_SIMILARITY_THRESHOLD
+      end
+
       private
 
       def search_url
@@ -180,13 +187,6 @@ module Spotify
         return if @track.blank?
 
         @track['title_distance']
-      end
-
-      def valid_match?
-        return false if @track.blank?
-
-        @matched_artist_distance.to_i >= ARTIST_SIMILARITY_THRESHOLD &&
-          @matched_title_distance.to_i >= TITLE_SIMILARITY_THRESHOLD
       end
 
       def dig_for_usable_tracks
