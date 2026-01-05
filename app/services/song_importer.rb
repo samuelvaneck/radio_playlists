@@ -174,7 +174,7 @@ class SongImporter
   end
 
   def find_or_create_air_play
-    existing_draft = AirPlay.find_draft_for_confirmation(@radio_station, song)
+    existing_draft = AirPlay.find_draft_for_confirmation(@radio_station, song, broadcasted_at)
 
     if existing_draft
       confirm_existing_draft(existing_draft)

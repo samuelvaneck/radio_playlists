@@ -219,4 +219,70 @@ describe AirPlay do
       end
     end
   end
+
+  describe '.find_draft_for_confirmation' do
+    let(:radio_station) { create(:radio_station) }
+    let(:song) { create(:song) }
+    let(:broadcasted_at) { Time.zone.now }
+
+    context 'when a draft exists within the 10-minute window' do
+      let!(:draft_air_play) do
+        create(:air_play, radio_station:, song:, broadcasted_at: broadcasted_at - 5.minutes, status: :draft)
+      end
+
+      it 'returns the draft' do
+        expect(described_class.find_draft_for_confirmation(radio_station, song, broadcasted_at)).to eq(draft_air_play)
+      end
+    end
+
+    context 'when a draft exists outside the 10-minute window' do
+      before do
+        create(:air_play, radio_station:, song:, broadcasted_at: broadcasted_at - 3.hours, status: :draft)
+      end
+
+      it 'returns nil' do
+        expect(described_class.find_draft_for_confirmation(radio_station, song, broadcasted_at)).to be_nil
+      end
+    end
+
+    context 'when a confirmed air_play exists within the window' do
+      before do
+        create(:air_play, radio_station:, song:, broadcasted_at: broadcasted_at - 5.minutes, status: :confirmed)
+      end
+
+      it 'returns nil' do
+        expect(described_class.find_draft_for_confirmation(radio_station, song, broadcasted_at)).to be_nil
+      end
+    end
+
+    context 'when a draft exists for a different song' do
+      let(:other_song) { create(:song) }
+
+      before do
+        create(:air_play, radio_station:, song: other_song, broadcasted_at: broadcasted_at - 5.minutes, status: :draft)
+      end
+
+      it 'returns nil' do
+        expect(described_class.find_draft_for_confirmation(radio_station, song, broadcasted_at)).to be_nil
+      end
+    end
+
+    context 'when a draft exists for a different radio station' do
+      let(:other_station) { create(:radio_station) }
+
+      before do
+        create(:air_play, radio_station: other_station, song:, broadcasted_at: broadcasted_at - 5.minutes, status: :draft)
+      end
+
+      it 'returns nil' do
+        expect(described_class.find_draft_for_confirmation(radio_station, song, broadcasted_at)).to be_nil
+      end
+    end
+
+    context 'when broadcasted_at is nil' do
+      it 'returns nil' do
+        expect(described_class.find_draft_for_confirmation(radio_station, song, nil)).to be_nil
+      end
+    end
+  end
 end

@@ -70,10 +70,12 @@ class AirPlay < ApplicationRecord
     create(radio_station:, song:, broadcasted_at:, scraper_import:, status:)
   end
 
-  def self.find_draft_for_confirmation(radio_station, song)
+  def self.find_draft_for_confirmation(radio_station, song, broadcasted_at)
+    return nil if broadcasted_at.blank?
+
     draft
       .where(radio_station:, song:)
-      .where('created_at > ?', 4.hours.ago)
+      .where(broadcasted_at: (broadcasted_at - 10.minutes)..(broadcasted_at + 10.minutes))
       .first
   end
 
