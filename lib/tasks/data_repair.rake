@@ -184,6 +184,183 @@ namespace :data_repair do
     end
   end
 
+  desc 'Merge songs with the same ISRC. Keeps the song with most air_plays, merges others into it.'
+  task merge_duplicate_isrcs: :environment do
+    puts 'Merging songs with duplicate ISRCs...'
+    puts '=' * 80
+
+    duplicate_isrcs = Song.where.not(isrc: [nil, ''])
+                          .group(:isrc)
+                          .having('COUNT(*) > 1')
+                          .pluck(:isrc)
+
+    if duplicate_isrcs.empty?
+      puts 'No duplicate ISRCs found. Nothing to merge.'
+      return
+    end
+
+    puts "Found #{duplicate_isrcs.count} ISRCs with multiple songs\n\n"
+
+    merged_count = 0
+    deleted_count = 0
+
+    duplicate_isrcs.each do |isrc|
+      songs = Song.includes(:artists, :air_plays).where(isrc: isrc).to_a
+
+      # Keep the song with the most air_plays, or the oldest if tied
+      keeper = songs.max_by { |s| [s.air_plays.count, -s.id] }
+      duplicates = songs - [keeper]
+
+      puts "ISRC: #{isrc}"
+      puts "  Keeping: ID #{keeper.id} | #{keeper.title} | #{keeper.air_plays.count} air_plays"
+
+      duplicates.each do |duplicate|
+        puts "  Merging: ID #{duplicate.id} | #{duplicate.title} | #{duplicate.air_plays.count} air_plays"
+
+        merge_song_into(duplicate, keeper)
+        deleted_count += 1
+      end
+
+      merged_count += 1
+      puts
+    end
+
+    puts '=' * 80
+    puts "Merged #{merged_count} ISRC groups, deleted #{deleted_count} duplicate songs."
+  end
+
+  desc 'Dry run: Show what would be merged without making changes'
+  task merge_duplicate_isrcs_dry_run: :environment do
+    puts 'DRY RUN: Showing what would be merged...'
+    puts '=' * 80
+
+    duplicate_isrcs = Song.where.not(isrc: [nil, ''])
+                          .group(:isrc)
+                          .having('COUNT(*) > 1')
+                          .pluck(:isrc)
+
+    if duplicate_isrcs.empty?
+      puts 'No duplicate ISRCs found. Nothing to merge.'
+      return
+    end
+
+    puts "Found #{duplicate_isrcs.count} ISRCs with multiple songs\n\n"
+
+    total_air_plays_to_merge = 0
+    total_songs_to_delete = 0
+
+    duplicate_isrcs.each do |isrc|
+      songs = Song.includes(:artists, :air_plays).where(isrc: isrc).to_a
+
+      keeper = songs.max_by { |s| [s.air_plays.count, -s.id] }
+      duplicates = songs - [keeper]
+
+      puts "ISRC: #{isrc}"
+      puts "  KEEP: ID #{keeper.id} | #{keeper.title} | Artists: #{keeper.artists.map(&:name).join(', ')}"
+      puts "        Spotify: #{keeper.id_on_spotify} | Air plays: #{keeper.air_plays.count}"
+
+      duplicates.each do |duplicate|
+        air_play_count = duplicate.air_plays.count
+        puts "  DELETE: ID #{duplicate.id} | #{duplicate.title} | Artists: #{duplicate.artists.map(&:name).join(', ')}"
+        puts "          Spotify: #{duplicate.id_on_spotify} | Air plays: #{air_play_count}"
+        total_air_plays_to_merge += air_play_count
+        total_songs_to_delete += 1
+      end
+      puts
+    end
+
+    puts '=' * 80
+    puts "Would merge #{duplicate_isrcs.count} ISRC groups"
+    puts "Would delete #{total_songs_to_delete} duplicate songs"
+    puts "Would reassign #{total_air_plays_to_merge} air_plays"
+    puts "\nRun 'rake data_repair:merge_duplicate_isrcs' to perform the merge."
+  end
+
+  def merge_song_into(source, target)
+    ActiveRecord::Base.transaction do
+      merge_air_plays(source, target)
+      merge_radio_station_songs(source, target)
+
+      # Merge chart_positions
+      source.chart_positions.update_all(positianable_id: target.id) # rubocop:disable Rails/SkipsModelValidations
+
+      # Reassign song_import_logs
+      source.song_import_logs.update_all(song_id: target.id) # rubocop:disable Rails/SkipsModelValidations
+
+      # Merge music_profile if target doesn't have one
+      source.music_profile.update!(song_id: target.id) if source.music_profile.present? && target.music_profile.blank?
+
+      # Enrich target with any missing data from source
+      enrich_target_from_source(target, source)
+
+      # Delete the source song
+      source.reload.destroy!
+    end
+  end
+
+  def merge_air_plays(source, target)
+    source.air_plays.find_each do |air_play|
+      existing = AirPlay.find_by(
+        song_id: target.id,
+        radio_station_id: air_play.radio_station_id,
+        broadcasted_at: air_play.broadcasted_at
+      )
+
+      if existing
+        air_play.destroy
+      else
+        air_play.update!(song_id: target.id)
+      end
+    end
+  end
+
+  def merge_radio_station_songs(source, target)
+    source.radio_station_songs.find_each do |rss|
+      existing = RadioStationSong.find_by(song_id: target.id, radio_station_id: rss.radio_station_id)
+
+      if existing
+        update_first_broadcasted_at(existing, rss)
+        rss.destroy
+      else
+        rss.update!(song_id: target.id)
+      end
+    end
+  end
+
+  def update_first_broadcasted_at(existing, source_rss)
+    return if source_rss.first_broadcasted_at.blank?
+    return unless existing.first_broadcasted_at.blank? || source_rss.first_broadcasted_at < existing.first_broadcasted_at
+
+    existing.update!(first_broadcasted_at: source_rss.first_broadcasted_at)
+  end
+
+  def enrich_target_from_source(target, source) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    updates = {}
+
+    # Copy over any missing IDs/URLs from source
+    updates[:id_on_spotify] = source.id_on_spotify if target.id_on_spotify.blank? && source.id_on_spotify.present?
+    updates[:id_on_youtube] = source.id_on_youtube if target.id_on_youtube.blank? && source.id_on_youtube.present?
+    updates[:id_on_deezer] = source.id_on_deezer if target.id_on_deezer.blank? && source.id_on_deezer.present?
+    updates[:id_on_itunes] = source.id_on_itunes if target.id_on_itunes.blank? && source.id_on_itunes.present?
+
+    updates[:spotify_song_url] = source.spotify_song_url if target.spotify_song_url.blank? && source.spotify_song_url.present?
+    updates[:spotify_artwork_url] = source.spotify_artwork_url if target.spotify_artwork_url.blank? && source.spotify_artwork_url.present?
+    updates[:spotify_preview_url] = source.spotify_preview_url if target.spotify_preview_url.blank? && source.spotify_preview_url.present?
+
+    updates[:deezer_song_url] = source.deezer_song_url if target.deezer_song_url.blank? && source.deezer_song_url.present?
+    updates[:deezer_artwork_url] = source.deezer_artwork_url if target.deezer_artwork_url.blank? && source.deezer_artwork_url.present?
+    updates[:deezer_preview_url] = source.deezer_preview_url if target.deezer_preview_url.blank? && source.deezer_preview_url.present?
+
+    updates[:itunes_song_url] = source.itunes_song_url if target.itunes_song_url.blank? && source.itunes_song_url.present?
+    updates[:itunes_artwork_url] = source.itunes_artwork_url if target.itunes_artwork_url.blank? && source.itunes_artwork_url.present?
+    updates[:itunes_preview_url] = source.itunes_preview_url if target.itunes_preview_url.blank? && source.itunes_preview_url.present?
+
+    updates[:release_date] = source.release_date if target.release_date.blank? && source.release_date.present?
+    updates[:release_date_precision] = source.release_date_precision if target.release_date_precision.blank? && source.release_date_precision.present?
+
+    target.update!(updates) if updates.present?
+  end
+
   desc 'Find songs where Spotify ID might be wrong by cross-referencing ISRC'
   task find_wrong_spotify_ids: :environment do
     puts 'Finding songs where Spotify ID might be wrong...'
