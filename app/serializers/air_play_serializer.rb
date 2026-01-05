@@ -42,7 +42,9 @@ class AirPlaySerializer
   end
 
   attributes :song do |object|
-    options = { fields: { song: %i[id title spotify_artwork_url spotify_song_url spotify_preview_url id_on_youtube] } }
+    options = { fields: { song: %i[id title spotify_artwork_url spotify_song_url spotify_preview_url id_on_youtube
+                                   deezer_artwork_url deezer_preview_url deezer_song_url itunes_artwork_url
+                                   itunes_preview_url itunes_song_url] } }
     SongSerializer.new(object.song, options)
   end
 
