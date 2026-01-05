@@ -4,39 +4,39 @@
 #
 # Table name: song_import_logs
 #
-#  id                       :bigint           not null, primary key
-#  broadcasted_at           :datetime
-#  deezer_artist            :string
-#  deezer_raw_response      :jsonb
-#  deezer_title             :string
-#  deezer_track_id          :string
-#  failure_reason           :text
-#  import_source            :string
-#  itunes_artist            :string
-#  itunes_raw_response      :jsonb
-#  itunes_title             :string
-#  itunes_track_id          :string
-#  recognized_artist        :string
-#  recognized_isrc          :string
-#  recognized_raw_response  :jsonb
-#  recognized_spotify_url   :string
-#  recognized_title         :string
-#  scraped_artist           :string
-#  scraped_isrc             :string
-#  scraped_raw_response     :jsonb
-#  scraped_spotify_url      :string
-#  scraped_title            :string
-#  spotify_artist           :string
-#  spotify_isrc             :string
-#  spotify_raw_response     :jsonb
-#  spotify_title            :string
-#  spotify_track_id         :string
-#  status                   :string           default("pending")
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
-#  air_play_id              :bigint
-#  radio_station_id         :bigint           not null
-#  song_id                  :bigint
+#  id                      :bigint           not null, primary key
+#  broadcasted_at          :datetime
+#  deezer_artist           :string
+#  deezer_raw_response     :jsonb
+#  deezer_title            :string
+#  failure_reason          :text
+#  import_source           :string
+#  itunes_artist           :string
+#  itunes_raw_response     :jsonb
+#  itunes_title            :string
+#  recognized_artist       :string
+#  recognized_isrc         :string
+#  recognized_raw_response :jsonb
+#  recognized_spotify_url  :string
+#  recognized_title        :string
+#  scraped_artist          :string
+#  scraped_isrc            :string
+#  scraped_raw_response    :jsonb
+#  scraped_spotify_url     :string
+#  scraped_title           :string
+#  spotify_artist          :string
+#  spotify_isrc            :string
+#  spotify_raw_response    :jsonb
+#  spotify_title           :string
+#  status                  :string           default("pending")
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  air_play_id             :bigint
+#  deezer_track_id         :string
+#  itunes_track_id         :string
+#  radio_station_id        :bigint           not null
+#  song_id                 :bigint
+#  spotify_track_id        :string
 #
 # Indexes
 #

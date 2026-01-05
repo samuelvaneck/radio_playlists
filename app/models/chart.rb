@@ -5,10 +5,14 @@
 # Table name: charts
 #
 #  id         :bigint           not null, primary key
-#  date       :date
 #  chart_type :string
+#  date       :date
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_charts_on_date  (date)
 #
 
 class Chart < ApplicationRecord

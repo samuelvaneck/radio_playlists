@@ -7,6 +7,7 @@
 #  id               :bigint           not null, primary key
 #  broadcasted_at   :datetime
 #  scraper_import   :boolean          default(FALSE)
+#  status           :integer          default("confirmed"), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  radio_station_id :bigint
@@ -15,8 +16,10 @@
 # Indexes
 #
 #  air_play_radio_song_time             (song_id,radio_station_id,broadcasted_at) UNIQUE
+#  index_air_plays_on_broadcasted_at    (broadcasted_at)
 #  index_air_plays_on_radio_station_id  (radio_station_id)
 #  index_air_plays_on_song_id           (song_id)
+#  index_air_plays_on_status            (status)
 #
 # Foreign Keys
 #

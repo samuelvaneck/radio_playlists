@@ -5,9 +5,17 @@
 # Table name: songs
 #
 #  id                     :bigint           not null, primary key
+#  deezer_artwork_url     :string
+#  deezer_preview_url     :string
+#  deezer_song_url        :string
+#  id_on_deezer           :string
+#  id_on_itunes           :string
 #  id_on_spotify          :string
 #  id_on_youtube          :string
 #  isrc                   :string
+#  itunes_artwork_url     :string
+#  itunes_preview_url     :string
+#  itunes_song_url        :string
 #  release_date           :date
 #  release_date_precision :string
 #  search_text            :text
@@ -20,6 +28,8 @@
 #
 # Indexes
 #
+#  index_songs_on_id_on_deezer  (id_on_deezer)
+#  index_songs_on_id_on_itunes  (id_on_itunes)
 #  index_songs_on_release_date  (release_date)
 #  index_songs_on_search_text   (search_text)
 #
