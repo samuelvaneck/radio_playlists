@@ -27,6 +27,9 @@
 class AirPlay < ApplicationRecord
   include DateConcern
 
+  TITLE_SIMILARITY_THRESHOLD = 70
+  ARTIST_SIMILARITY_THRESHOLD = 80
+
   belongs_to :song
   belongs_to :radio_station
   has_many :artists, through: :song
@@ -73,10 +76,37 @@ class AirPlay < ApplicationRecord
   def self.find_draft_for_confirmation(radio_station, song, broadcasted_at)
     return nil if broadcasted_at.blank?
 
-    draft
-      .where(radio_station:, song:)
-      .where(broadcasted_at: (broadcasted_at - 10.minutes)..(broadcasted_at + 10.minutes))
-      .first
+    time_window = (broadcasted_at - 10.minutes)..(broadcasted_at + 10.minutes)
+
+    # Fast path: exact song match
+    exact_match = draft
+                  .where(radio_station:, song:)
+                  .where(broadcasted_at: time_window)
+                  .first
+    return exact_match if exact_match
+
+    # Fallback: fuzzy match by title and artist within time window
+    find_draft_by_fuzzy_match(radio_station, song, time_window)
+  end
+
+  def self.find_draft_by_fuzzy_match(radio_station, song, time_window)
+    candidates = draft
+                 .includes(song: :artists)
+                 .where(radio_station:)
+                 .where(broadcasted_at: time_window)
+
+    song_title = song.title.to_s.downcase
+    song_artists = song.artists.map(&:name).join(' ').downcase
+
+    candidates.find do |candidate|
+      candidate_title = candidate.song.title.to_s.downcase
+      candidate_artists = candidate.song.artists.map(&:name).join(' ').downcase
+
+      title_similarity = (JaroWinkler.similarity(song_title, candidate_title) * 100).to_i
+      artist_similarity = (JaroWinkler.similarity(song_artists, candidate_artists) * 100).to_i
+
+      title_similarity >= TITLE_SIMILARITY_THRESHOLD && artist_similarity >= ARTIST_SIMILARITY_THRESHOLD
+    end
   end
 
   private

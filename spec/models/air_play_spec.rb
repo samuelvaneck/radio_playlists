@@ -255,8 +255,8 @@ describe AirPlay do
       end
     end
 
-    context 'when a draft exists for a different song' do
-      let(:other_song) { create(:song) }
+    context 'when a draft exists for a different song with completely different title/artist' do
+      let(:other_song) { create(:song, title: 'Completely Different Song') }
 
       before do
         create(:air_play, radio_station:, song: other_song, broadcasted_at: broadcasted_at - 5.minutes, status: :draft)
@@ -264,6 +264,50 @@ describe AirPlay do
 
       it 'returns nil' do
         expect(described_class.find_draft_for_confirmation(radio_station, song, broadcasted_at)).to be_nil
+      end
+    end
+
+    context 'when a draft exists for a different song with similar title and artist (fuzzy match)' do
+      let(:artist) { create(:artist, name: 'Rihanna') }
+      let(:song) { create(:song, title: 'Stay', artists: [artist]) }
+      let(:other_artist) { create(:artist, name: 'Rihanna') }
+      let(:featured_artist) { create(:artist, name: 'Mikky Ekko') }
+      let(:other_song) { create(:song, title: 'Stay', artists: [other_artist, featured_artist]) }
+      let!(:draft_air_play) do
+        create(:air_play, radio_station:, song:, broadcasted_at: broadcasted_at - 5.minutes, status: :draft)
+      end
+
+      it 'returns the draft via fuzzy matching' do
+        expect(described_class.find_draft_for_confirmation(radio_station, other_song, broadcasted_at)).to eq(draft_air_play)
+      end
+    end
+
+    context 'when a draft exists for a different song with similar title but different artist' do
+      let(:artist) { create(:artist, name: 'Kane') }
+      let(:song) { create(:song, title: 'Rain Down On Me', artists: [artist]) }
+      let(:other_artist) { create(:artist, name: 'Totally Different Artist') }
+      let(:other_song) { create(:song, title: 'Rain Down On Me', artists: [other_artist]) }
+
+      before do
+        create(:air_play, radio_station:, song:, broadcasted_at: broadcasted_at - 5.minutes, status: :draft)
+      end
+
+      it 'returns nil because artist does not match' do
+        expect(described_class.find_draft_for_confirmation(radio_station, other_song, broadcasted_at)).to be_nil
+      end
+    end
+
+    context 'when a draft exists with slightly different title spelling (fuzzy match)' do
+      let(:artist) { create(:artist, name: 'KANE') }
+      let(:song) { create(:song, title: 'Rain Down On Me', artists: [artist]) }
+      let(:other_artist) { create(:artist, name: 'Kane') }
+      let(:other_song) { create(:song, title: 'Rain Down on Me', artists: [other_artist]) }
+      let!(:draft_air_play) do
+        create(:air_play, radio_station:, song:, broadcasted_at: broadcasted_at - 5.minutes, status: :draft)
+      end
+
+      it 'returns the draft via fuzzy matching' do
+        expect(described_class.find_draft_for_confirmation(radio_station, other_song, broadcasted_at)).to eq(draft_air_play)
       end
     end
 

@@ -136,12 +136,8 @@ class SongImporter
   end
 
   def illegal_word_in_title
-    # 2 single qoutes, reklame/reclame/nieuws/pingel and 2 dots
-    if title.match(/'{2,}|(reklame|reclame|nieuws|pingel)|\.{2,}/i)
-      true
-    else
-      false
-    end
+    # 2 single quotes, reklame/reclame/nieuws/pingel and 2 dots
+    title.match?(/'{2,}|(reklame|reclame|nieuws|pingel)|\.{2,}/i)
   end
 
   def scraper_import
@@ -184,6 +180,11 @@ class SongImporter
   end
 
   def confirm_existing_draft(draft)
+    if draft.song_id != song.id
+      old_song = draft.song
+      draft.update!(song:, broadcasted_at:)
+      old_song.cleanup
+    end
     draft.confirmed!
     Broadcaster.song_confirmed(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
     draft
