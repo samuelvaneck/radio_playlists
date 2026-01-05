@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+# Fuzzy matching thresholds (same as AirPlay model)
+FUZZY_TITLE_SIMILARITY_THRESHOLD = 70
+FUZZY_ARTIST_SIMILARITY_THRESHOLD = 80
+
 namespace :data_repair do
   desc 'Verify songs against Spotify data and report mismatches. Usage: rake data_repair:verify_songs[100]'
   task :verify_songs, [:limit] => :environment do |_t, args|
@@ -359,6 +363,180 @@ namespace :data_repair do
     updates[:release_date_precision] = source.release_date_precision if target.release_date_precision.blank? && source.release_date_precision.present?
 
     target.update!(updates) if updates.present?
+  end
+
+  desc 'Find songs that might be duplicates based on fuzzy title/artist matching'
+  task find_fuzzy_duplicates: :environment do
+    puts 'Finding potential duplicate songs using fuzzy matching...'
+    puts '=' * 80
+
+    duplicates = find_fuzzy_duplicate_groups
+    print_fuzzy_duplicate_report(duplicates)
+  end
+
+  desc 'Dry run: Show what would be merged using fuzzy matching'
+  task merge_fuzzy_duplicates_dry_run: :environment do
+    puts 'DRY RUN: Showing what would be merged using fuzzy matching...'
+    puts '=' * 80
+
+    duplicates = find_fuzzy_duplicate_groups
+
+    if duplicates.empty?
+      puts 'No fuzzy duplicates found. Nothing to merge.'
+      return
+    end
+
+    puts "Found #{duplicates.count} potential duplicate groups\n\n"
+
+    total_air_plays_to_merge = 0
+    total_songs_to_delete = 0
+
+    duplicates.each do |group|
+      keeper = group[:keeper]
+      dupes = group[:duplicates]
+
+      puts "Group: #{group[:normalized_key]}"
+      puts "  KEEP: ID #{keeper.id} | #{keeper.title} | Artists: #{keeper.artists.map(&:name).join(', ')}"
+      puts "        Spotify: #{keeper.id_on_spotify || 'none'} | ISRC: #{keeper.isrc || 'none'} | Air plays: #{keeper.air_plays.count}"
+
+      dupes.each do |duplicate|
+        air_play_count = duplicate.air_plays.count
+        puts "  DELETE: ID #{duplicate.id} | #{duplicate.title} | Artists: #{duplicate.artists.map(&:name).join(', ')}"
+        puts "          Spotify: #{duplicate.id_on_spotify || 'none'} | ISRC: #{duplicate.isrc || 'none'} | Air plays: #{air_play_count}"
+        total_air_plays_to_merge += air_play_count
+        total_songs_to_delete += 1
+      end
+      puts
+    end
+
+    puts '=' * 80
+    puts "Would merge #{duplicates.count} duplicate groups"
+    puts "Would delete #{total_songs_to_delete} duplicate songs"
+    puts "Would reassign #{total_air_plays_to_merge} air_plays"
+    puts "\nRun 'rake data_repair:merge_fuzzy_duplicates' to perform the merge."
+  end
+
+  desc 'Merge songs that are duplicates based on fuzzy title/artist matching'
+  task merge_fuzzy_duplicates: :environment do
+    puts 'Merging songs with fuzzy matching...'
+    puts '=' * 80
+
+    duplicates = find_fuzzy_duplicate_groups
+
+    if duplicates.empty?
+      puts 'No fuzzy duplicates found. Nothing to merge.'
+      return
+    end
+
+    puts "Found #{duplicates.count} duplicate groups to merge\n\n"
+
+    merged_count = 0
+    deleted_count = 0
+
+    duplicates.each do |group|
+      keeper = group[:keeper]
+      dupes = group[:duplicates]
+
+      puts "Group: #{group[:normalized_key]}"
+      puts "  Keeping: ID #{keeper.id} | #{keeper.title} | #{keeper.air_plays.count} air_plays"
+
+      dupes.each do |duplicate|
+        puts "  Merging: ID #{duplicate.id} | #{duplicate.title} | #{duplicate.air_plays.count} air_plays"
+
+        merge_song_into(duplicate, keeper)
+        deleted_count += 1
+      end
+
+      merged_count += 1
+      puts
+    end
+
+    puts '=' * 80
+    puts "Merged #{merged_count} duplicate groups, deleted #{deleted_count} duplicate songs."
+  end
+
+  def find_fuzzy_duplicate_groups # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    songs = Song.includes(:artists, :air_plays).to_a
+    groups = {}
+
+    songs.each do |song|
+      title = song.title.to_s.downcase.strip
+      artists = song.artists.map(&:name).sort.join(' ').downcase.strip
+      next if title.blank? || artists.blank?
+
+      # Find if this song matches any existing group
+      matched_group = nil
+      groups.each do |key, group|
+        ref_song = group.first
+        ref_title = ref_song.title.to_s.downcase.strip
+        ref_artists = ref_song.artists.map(&:name).sort.join(' ').downcase.strip
+
+        title_similarity = (JaroWinkler.similarity(title, ref_title) * 100).to_i
+        artist_similarity = (JaroWinkler.similarity(artists, ref_artists) * 100).to_i
+
+        if title_similarity >= FUZZY_TITLE_SIMILARITY_THRESHOLD && artist_similarity >= FUZZY_ARTIST_SIMILARITY_THRESHOLD
+          matched_group = key
+          break
+        end
+      end
+
+      if matched_group
+        groups[matched_group] << song
+      else
+        # Create a new group with normalized key
+        normalized_key = "#{title} - #{artists}"
+        groups[normalized_key] = [song]
+      end
+    end
+
+    # Filter to only groups with more than one song
+    duplicate_groups = groups.select { |_key, songs| songs.size > 1 }
+
+    # Transform into structured format with keeper selection
+    duplicate_groups.map do |key, songs_in_group|
+      # Prefer song with Spotify ID, then most air_plays, then oldest (lowest ID)
+      sorted = songs_in_group.sort_by do |s|
+        [
+          s.id_on_spotify.present? ? 0 : 1, # Spotify ID first
+          -s.air_plays.count,                   # Most air_plays second
+          s.id                                  # Oldest ID as tiebreaker
+        ]
+      end
+
+      keeper = sorted.first
+      duplicates = sorted[1..]
+
+      {
+        normalized_key: key,
+        keeper: keeper,
+        duplicates: duplicates
+      }
+    end
+  end
+
+  def print_fuzzy_duplicate_report(duplicates)
+    if duplicates.empty?
+      puts 'No fuzzy duplicates found.'
+      return
+    end
+
+    puts "Found #{duplicates.count} potential duplicate groups:\n\n"
+
+    duplicates.each do |group|
+      puts "Group: #{group[:normalized_key]}"
+      all_songs = [group[:keeper]] + group[:duplicates]
+      all_songs.each do |song|
+        marker = song == group[:keeper] ? '[KEEPER]' : '[DUPLICATE]'
+        puts "  #{marker} ID: #{song.id} | Title: #{song.title}"
+        puts "           Artists: #{song.artists.map(&:name).join(', ')}"
+        puts "           Spotify: #{song.id_on_spotify || 'none'} | ISRC: #{song.isrc || 'none'}"
+        puts "           Air plays: #{song.air_plays.count}"
+      end
+      puts
+    end
+
+    puts "\nRun 'rake data_repair:merge_fuzzy_duplicates_dry_run' to see merge plan."
+    puts "Run 'rake data_repair:merge_fuzzy_duplicates' to perform the merge."
   end
 
   desc 'Find songs where Spotify ID might be wrong by cross-referencing ISRC'
