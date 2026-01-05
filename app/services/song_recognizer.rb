@@ -2,6 +2,54 @@
 
 require 'resolv'
 
+# SongRecognizer uses SongRec (Shazam audio fingerprinting) to identify songs from radio streams.
+#
+# == Shazam Response Structure
+#
+# The full response is stored in SongImportLog#recognized_raw_response for debugging.
+# Below is a reference of available fields in the Shazam response:
+#
+# === Currently Extracted Fields
+#   track.title        → title (song title)
+#   track.subtitle     → artist_name
+#   track.isrc         → isrc_code
+#   track.hub.providers[type=SPOTIFY].actions[0].uri → spotify_url
+#
+# === Available But Not Yet Extracted
+#   track.key                           - Shazam track ID (e.g., "154067072")
+#   track.url                           - Shazam track URL
+#   track.genres.primary                - Genre (e.g., "Pop")
+#   track.images.coverart               - Album artwork URL (400x400)
+#   track.images.coverarthq             - High-quality album artwork
+#   track.images.background             - Artist background image (800x800)
+#   track.sections[0].metadata          - Array containing:
+#                                           - Album name (title: "Album")
+#                                           - Record label (title: "Label")
+#                                           - Release year (title: "Released")
+#   hub.actions[0].id                   - Apple Music track ID
+#   track.albumadamid                   - Apple Music album ID
+#   hub.explicit                        - Explicit content flag (boolean)
+#   hub.providers[type=YOUTUBEMUSIC]    - YouTube Music search URL
+#   hub.providers[type=DEEZER]          - Deezer search URL
+#   matches[0].offset                   - Match offset in audio (seconds)
+#   matches[0].timeskew                 - Time skew of match
+#
+# === Example Response Structure
+#   {
+#     "tagid": "uuid",
+#     "track": {
+#       "key": "154067072",
+#       "title": "Nothing Really Matters",
+#       "subtitle": "Mr. Probz",
+#       "isrc": "NLB8R1400010",
+#       "genres": { "primary": "Pop" },
+#       "images": { "coverart": "...", "background": "..." },
+#       "sections": [{ "metadata": [{ "title": "Album", "text": "..." }, ...] }],
+#       "hub": { "providers": [...], "explicit": false }
+#     },
+#     "matches": [{ "offset": 155.93, ... }]
+#   }
+#
 class SongRecognizer
   attr_reader :audio_stream, :result, :title, :artist_name, :broadcasted_at, :spotify_url, :isrc_code
 
