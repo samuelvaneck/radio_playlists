@@ -79,11 +79,15 @@ class TrackExtractor::SongExtractor < TrackExtractor
                                        .where('lower(title) LIKE ?', title.downcase)
   end
 
+  # ISRC is checked first because it uniquely identifies a recording regardless of
+  # which platform version is found. This prevents duplicate songs when the scraper
+  # and recognizer find different platform versions of the same recording
+  # (e.g., "Frank Boeijen" vs "Frank Boeijen Groep" versions with same ISRC).
   def find_by_track
-    @find_by_track ||= (id_on_spotify.present? && Song.find_by(id_on_spotify:)) ||
+    @find_by_track ||= (isrc.present? && Song.find_by(isrc:)) ||
+                       (id_on_spotify.present? && Song.find_by(id_on_spotify:)) ||
                        (id_on_deezer.present? && Song.find_by(id_on_deezer:)) ||
-                       (id_on_itunes.present? && Song.find_by(id_on_itunes:)) ||
-                       (isrc.present? && Song.find_by(isrc:))
+                       (id_on_itunes.present? && Song.find_by(id_on_itunes:))
   end
 
   def title

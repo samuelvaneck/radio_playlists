@@ -345,5 +345,45 @@ describe TrackExtractor::SongExtractor do
         expect(song).not_to eq(song_with_nil_deezer_id)
       end
     end
+
+    context 'when song exists with different Spotify ID but same ISRC' do
+      let(:track) do
+        OpenStruct.new(
+          track: { 'id' => 'spotify_solo_version' },
+          title: 'Zwart Wit',
+          id: 'spotify_solo_version',
+          isrc: 'NLA200200321',
+          spotify_song_url: 'https://open.spotify.com/track/spotify_solo_version',
+          spotify_artwork_url: 'https://i.scdn.co/image/solo',
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Zwart Wit',
+          artist_name: 'Frank Boeijen',
+          spotify_url: 'https://open.spotify.com/track/spotify_solo_version',
+          isrc_code: 'NLA200200321'
+        )
+      end
+
+      let!(:existing_song_with_different_spotify_id) do
+        create(:song,
+               title: 'Zwart Wit',
+               id_on_spotify: 'spotify_band_version',
+               isrc: 'NLA200200321',
+               artists: [create(:artist, name: 'Frank Boeijen Groep')])
+      end
+
+      it 'finds the existing song by ISRC instead of creating a duplicate' do
+        expect(song).to eq(existing_song_with_different_spotify_id)
+      end
+
+      it 'does not create a new song' do
+        expect { song }.not_to change(Song, :count)
+      end
+    end
   end
 end
