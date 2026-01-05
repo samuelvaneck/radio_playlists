@@ -456,20 +456,33 @@ namespace :data_repair do
   end
 
   def find_fuzzy_duplicate_groups # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-    songs = Song.includes(:artists, :air_plays).to_a
-    groups = {}
+    # Phase 1: Build groups using lightweight data (only IDs and strings)
+    # This avoids loading all songs with associations into memory at once
+    groups = {} # key => array of {id:, title:, artists:, has_spotify:}
+    processed = 0
 
-    songs.each do |song|
+    Song.includes(:artists).select(:id, :title, :id_on_spotify).find_each do |song|
+      processed += 1
+      print "\rPhase 1: Processing song #{processed}..." if (processed % 1000).zero?
+
       title = song.title.to_s.downcase.strip
       artists = song.artists.map(&:name).sort.join(' ').downcase.strip
       next if title.blank? || artists.blank?
 
+      song_data = {
+        id: song.id,
+        title: title,
+        original_title: song.title,
+        artists: artists,
+        has_spotify: song.id_on_spotify.present?
+      }
+
       # Find if this song matches any existing group
       matched_group = nil
       groups.each do |key, group|
-        ref_song = group.first
-        ref_title = ref_song.title.to_s.downcase.strip
-        ref_artists = ref_song.artists.map(&:name).sort.join(' ').downcase.strip
+        ref = group.first
+        ref_title = ref[:title]
+        ref_artists = ref[:artists]
 
         title_similarity = (JaroWinkler.similarity(title, ref_title) * 100).to_i
         artist_similarity = (JaroWinkler.similarity(artists, ref_artists) * 100).to_i
@@ -481,25 +494,36 @@ namespace :data_repair do
       end
 
       if matched_group
-        groups[matched_group] << song
+        groups[matched_group] << song_data
       else
-        # Create a new group with normalized key
         normalized_key = "#{title} - #{artists}"
-        groups[normalized_key] = [song]
+        groups[normalized_key] = [song_data]
       end
     end
 
+    puts "\rPhase 1: Processed #{processed} songs, found #{groups.count} groups"
+
     # Filter to only groups with more than one song
-    duplicate_groups = groups.select { |_key, songs| songs.size > 1 }
+    duplicate_groups = groups.select { |_key, song_list| song_list.size > 1 }
+    puts "Phase 2: Found #{duplicate_groups.count} duplicate groups"
+
+    return [] if duplicate_groups.empty?
+
+    # Phase 2: Load full song objects only for duplicates, with air_play counts
+    duplicate_song_ids = duplicate_groups.values.flatten.map { |s| s[:id] }
+    air_play_counts = AirPlay.where(song_id: duplicate_song_ids).group(:song_id).count
+    songs_by_id = Song.includes(:artists, :air_plays).where(id: duplicate_song_ids).index_by(&:id)
 
     # Transform into structured format with keeper selection
-    duplicate_groups.map do |key, songs_in_group|
+    duplicate_groups.map do |key, song_data_list|
+      songs_in_group = song_data_list.map { |data| songs_by_id[data[:id]] }.compact
+
       # Prefer song with Spotify ID, then most air_plays, then oldest (lowest ID)
       sorted = songs_in_group.sort_by do |s|
         [
-          s.id_on_spotify.present? ? 0 : 1, # Spotify ID first
-          -s.air_plays.count,                   # Most air_plays second
-          s.id                                  # Oldest ID as tiebreaker
+          s.id_on_spotify.present? ? 0 : 1,
+          -(air_play_counts[s.id] || 0),
+          s.id
         ]
       end
 
