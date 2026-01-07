@@ -202,6 +202,7 @@ class SongImporter
     song.update_artists(artists) if should_update_artists?
     @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song:)
     MusicProfileJob.perform_async(song.id, @radio_station.id)
+    SongExternalIdsEnrichmentJob.perform_async(song.id)
   end
 
   def different_artists?
