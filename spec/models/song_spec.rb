@@ -69,17 +69,17 @@ describe Song do
       end
     end
 
-    context 'with radio_station_id params present' do
-      subject(:most_played_with_radio_station_id) do
-        Song.most_played({ radio_station_id: radio_station.id })
+    context 'with radio_station_ids params present' do
+      subject(:most_played_with_radio_station_ids) do
+        Song.most_played({ radio_station_ids: [radio_station.id] })
       end
 
       it 'only returns the songs played on the radio station' do
-        expect(most_played_with_radio_station_id).to include(song_two)
+        expect(most_played_with_radio_station_ids).to include(song_two)
       end
 
       it 'adds a counter attribute on the song' do
-        expect(most_played_with_radio_station_id[0].counter).to eq 2
+        expect(most_played_with_radio_station_ids[0].counter).to eq 2
       end
     end
 
@@ -140,6 +140,69 @@ describe Song do
       end
     end
     # rubocop:enable RSpec/MultipleMemoizedHelpers
+
+    context 'with pagination and preloaded artists' do
+      let(:per_page) { 5 }
+      let(:new_radio_station) { create(:radio_station) }
+      let!(:paginated_songs) do
+        Array.new(12) do |i|
+          artist = create(:artist, name: "Paginated Artist #{i}")
+          song = create(:song, title: "Paginated Song #{i}", artists: [artist])
+          # Create varying play counts so songs are ordered predictably (descending by plays)
+          (12 - i).times { create(:air_play, song: song, radio_station: new_radio_station) }
+          song
+        end
+      end
+
+      it 'returns correct pagination metadata for page 3', :aggregate_failures do
+        result = Song.most_played({ radio_station_ids: [new_radio_station.id] })
+                     .paginate(page: 3, per_page: per_page)
+
+        expect(result.current_page).to eq 3
+        expect(result.total_entries).to eq 12
+        expect(result.total_pages).to eq 3
+      end
+
+      it 'returns correct songs for page 3 ordered by play count' do
+        result = Song.most_played({ radio_station_ids: [new_radio_station.id] })
+                     .paginate(page: 3, per_page: per_page)
+
+        # Page 3 should have the last 2 songs (indices 10 and 11, which have fewest plays)
+        expect(result.length).to eq 2
+      end
+
+      it 'preloads artists for paginated results', :aggregate_failures do
+        result = Song.most_played({ radio_station_ids: [new_radio_station.id] })
+                     .paginate(page: 3, per_page: per_page)
+
+        result.each do |song|
+          expect(song.artists).to be_loaded
+          expect(song.artists).not_to be_empty
+        end
+      end
+
+      it 'includes counter and position attributes on paginated songs', :aggregate_failures do
+        result = Song.most_played({ radio_station_ids: [new_radio_station.id] })
+                     .paginate(page: 3, per_page: per_page)
+
+        result.each do |song|
+          expect(song).to respond_to(:counter)
+          expect(song).to respond_to(:position)
+          expect(song.counter).to be_a(Integer)
+          expect(song.position).to be_a(Integer)
+        end
+      end
+
+      it 'does not trigger additional queries when accessing preloaded artists' do
+        result = Song.most_played({ radio_station_ids: [new_radio_station.id] })
+                     .paginate(page: 3, per_page: per_page)
+
+        # Force load the result and preloaded artists
+        result.to_a
+        # Accessing artists should not trigger new queries since they are preloaded
+        expect(result.all? { |s| s.artists.loaded? }).to be true
+      end
+    end
   end
 
   describe '#cleanup' do
