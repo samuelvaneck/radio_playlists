@@ -69,17 +69,17 @@ describe Song do
       end
     end
 
-    context 'with radio_station_id params present' do
-      subject(:most_played_with_radio_station_id) do
-        Song.most_played({ radio_station_id: radio_station.id })
+    context 'with radio_station_ids params present' do
+      subject(:most_played_with_radio_station_ids) do
+        Song.most_played({ radio_station_ids: [radio_station.id] })
       end
 
       it 'only returns the songs played on the radio station' do
-        expect(most_played_with_radio_station_id).to include(song_two)
+        expect(most_played_with_radio_station_ids).to include(song_two)
       end
 
       it 'adds a counter attribute on the song' do
-        expect(most_played_with_radio_station_id[0].counter).to eq 2
+        expect(most_played_with_radio_station_ids[0].counter).to eq 2
       end
     end
 
