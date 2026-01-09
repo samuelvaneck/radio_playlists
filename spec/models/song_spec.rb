@@ -61,11 +61,14 @@ describe Song do
   describe '#self.most_played' do
     context 'with search term params present' do
       subject(:most_played_with_search_term) do
-        Song.most_played({ search_term: song_one.title })
+        Song.most_played({ search_term: searchable_song.title })
       end
 
+      let(:searchable_song) { create :song, title: 'Unique Test Song Title', artists: [artist_one] }
+      let!(:searchable_air_play) { create :air_play, song: searchable_song }
+
       it 'only returns the songs matching the search term' do
-        expect(most_played_with_search_term).to contain_exactly song_one
+        expect(most_played_with_search_term).to contain_exactly searchable_song
       end
     end
 
