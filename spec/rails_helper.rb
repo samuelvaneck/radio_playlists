@@ -12,6 +12,7 @@ require 'support/shoulda_matchers'
 require 'support/vcr'
 require 'support/webmock_support'
 require 'support/jwt_auth_helper'
+require 'support/circuit_breaker_helpers'
 require 'rspec/rails'
 require 'webmock/rspec'
 require Rails.root.join('app/services/spotify/base')

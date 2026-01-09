@@ -2,6 +2,8 @@
 
 module CircuitBreakerHelpers
   def reset_circuit_store
+    # Clear the cached circuits so new circuits use the fresh store
+    Circuitbox.instance_variable_set(:@cached_circuits, {})
     Circuitbox.configure do |c|
       c.default_circuit_store = Circuitbox::MemoryStore.new
     end
