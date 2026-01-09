@@ -1,5 +1,9 @@
 module Spotify
   class Base
+    include CircuitBreakable
+
+    circuit_breaker_for :spotify
+
     ARTIST_SIMILARITY_THRESHOLD = 80
     TITLE_SIMILARITY_THRESHOLD = 70
 
@@ -10,27 +14,23 @@ module Spotify
     end
 
     def make_request(url)
-      attempts ||= 1
-
       response = Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
-        api_response = connection.get(url) do |req|
-          req.headers['Authorization'] = "Bearer #{token}"
-          req.headers['Content-Type'] = 'application/json'
+        with_circuit_breaker do
+          with_exponential_backoff(max_attempts: 3, base_delay: 1) do
+            api_response = connection.get(url) do |req|
+              req.headers['Authorization'] = "Bearer #{token}"
+              req.headers['Content-Type'] = 'application/json'
+            end
+            handle_rate_limit_response(api_response)
+            api_response.body
+          end
         end
-        handle_rate_limit(api_response)
-        api_response.body
       end
-      # Deep duplicate to prevent mutation of cached objects
-      response.deep_dup
+      response&.deep_dup
     rescue StandardError => e
-      if attempts < 3
-        attempts += 1
-        retry
-      else
-        ExceptionNotifier.notify_new_relic(e)
-        Rails.logger.error(e.message)
-        nil
-      end
+      ExceptionNotifier.notify_new_relic(e)
+      Rails.logger.error(e.message)
+      nil
     end
 
     def make_request_with_match(url)
@@ -46,15 +46,6 @@ module Spotify
     end
 
     private
-
-    def handle_rate_limit(response)
-      return unless response.status == 429
-
-      retry_after = response.headers['Retry-After']&.to_i || 30
-      Rails.logger.warn("Spotify rate limit hit. Waiting #{retry_after} seconds.")
-      sleep(retry_after)
-      raise StandardError, 'Rate limited by Spotify API'
-    end
 
     def connection
       Faraday.new(url: 'https://api.spotify.com') do |conn|

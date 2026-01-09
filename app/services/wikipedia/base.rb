@@ -2,6 +2,10 @@
 
 module Wikipedia
   class Base
+    include CircuitBreakable
+
+    circuit_breaker_for :wikipedia
+
     DEFAULT_LANGUAGE = 'en'
     SUPPORTED_LANGUAGES = %w[en nl de fr es it pt pl ru ja zh].freeze
 
@@ -20,8 +24,11 @@ module Wikipedia
     def make_rest_request(path)
       full_path = "/api/rest_v1#{path}"
       Rails.cache.fetch(cache_key(full_path), expires_in: 24.hours) do
-        response = connection.get(full_path)
-        response.body
+        with_circuit_breaker do
+          response = connection.get(full_path)
+          handle_rate_limit_response(response)
+          response.body
+        end
       end
     rescue StandardError => e
       ExceptionNotifier.notify_new_relic(e)
@@ -31,10 +38,13 @@ module Wikipedia
 
     def make_mediawiki_request(params)
       Rails.cache.fetch(cache_key("mediawiki:#{params.values.join(':')}"), expires_in: 24.hours) do
-        response = connection.get('/w/api.php') do |req|
-          req.params = default_mediawiki_params.merge(params)
+        with_circuit_breaker do
+          response = connection.get('/w/api.php') do |req|
+            req.params = default_mediawiki_params.merge(params)
+          end
+          handle_rate_limit_response(response)
+          response.body
         end
-        response.body
       end
     rescue StandardError => e
       ExceptionNotifier.notify_new_relic(e)
@@ -44,6 +54,8 @@ module Wikipedia
 
     def connection
       @connection ||= Faraday.new(url: base_url) do |conn|
+        conn.options.timeout = 10
+        conn.options.open_timeout = 5
         conn.response :json
       end
     end
