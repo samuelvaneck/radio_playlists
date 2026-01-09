@@ -51,6 +51,16 @@ require 'resolv'
 #   }
 #
 class SongRecognizer
+  class RecognitionError < StandardError; end
+  class RateLimitError < RecognitionError; end
+
+  RATE_LIMIT_PATTERNS = [
+    /rate limit/i,
+    /too many requests/i,
+    /429/,
+    /retry after/i
+  ].freeze
+
   attr_reader :audio_stream, :result, :title, :artist_name, :broadcasted_at, :spotify_url, :isrc_code
 
   def initialize(radio_station)
@@ -64,8 +74,14 @@ class SongRecognizer
     audio_stream.capture
     response = run_song_recognizer
     handle_response(response)
+  rescue RateLimitError => e
+    Rails.logger.warn "SongRecognizer rate limited for #{@radio_station.name}: #{e.message}"
+    false
+  rescue RecognitionError => e
+    Rails.logger.error "SongRecognizer failed for #{@radio_station.name}: #{e.message}"
+    false
   rescue StandardError => e
-    Rails.logger.error "SongRecognizer error: #{e.message}"
+    Rails.logger.error "SongRecognizer unexpected error for #{@radio_station.name}: #{e.class} - #{e.message}"
     false
   ensure
     audio_stream.delete_file
@@ -83,6 +99,8 @@ class SongRecognizer
   end
 
   def handle_response(response)
+    validate_response!(response)
+
     @result = JSON.parse(response)&.with_indifferent_access
     return false if @result[:matches].blank?
 
@@ -91,9 +109,26 @@ class SongRecognizer
     @title = @result.dig(:track, :title)
     @artist_name = @result.dig(:track, :subtitle)
     true
-  rescue StandardError => e
-    Rails.logger.error "SongRecognizer error: #{e.message}"
-    false
+  rescue JSON::ParserError
+    raise RecognitionError, "Invalid JSON response: #{response.truncate(200)}"
+  end
+
+  def validate_response!(response)
+    return if response.blank?
+
+    if rate_limit_error?(response)
+      raise RateLimitError, response.truncate(200)
+    elsif error_response?(response)
+      raise RecognitionError, response.truncate(200)
+    end
+  end
+
+  def rate_limit_error?(response)
+    RATE_LIMIT_PATTERNS.any? { |pattern| response.match?(pattern) }
+  end
+
+  def error_response?(response)
+    response.start_with?('Error:', 'error:') || response.match?(/\A\s*Error/i)
   end
 
   def set_audio_stream
