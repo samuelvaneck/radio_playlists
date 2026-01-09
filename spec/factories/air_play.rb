@@ -34,5 +34,19 @@ FactoryBot.define do
     trait :confirmed do
       status { :confirmed }
     end
+
+    trait :morning do
+      broadcasted_at do
+        time = Time.current.change(hour: 10, min: 30)
+        time > Time.current ? time - 1.day : time
+      end
+    end
+
+    trait :evening do
+      broadcasted_at do
+        time = Time.current.change(hour: 21, min: 0)
+        time > Time.current ? time - 1.day : time
+      end
+    end
   end
 end

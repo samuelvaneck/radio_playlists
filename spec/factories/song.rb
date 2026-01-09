@@ -38,5 +38,11 @@ FactoryBot.define do
     after(:build) do |song|
       song.artists << build(:artist) if song.artists.blank?
     end
+
+    trait :with_music_profile do
+      after(:create) do |song|
+        create(:music_profile, song: song)
+      end
+    end
   end
 end

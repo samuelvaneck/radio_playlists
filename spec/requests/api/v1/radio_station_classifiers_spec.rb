@@ -204,16 +204,8 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                }
 
         let!(:radio_station) { create(:radio_station) }
-        let!(:song) { create(:song) }
-        let!(:music_profile) { create(:music_profile, song: song) }
-        # Use a morning time (10:30) that's guaranteed to be within the last 24 hours
-        let(:morning_time) do
-          time = Time.current.change(hour: 10, min: 30)
-          time > Time.current ? time - 1.day : time
-        end
-        let!(:air_play) do
-          create(:air_play, song: song, radio_station: radio_station, broadcasted_at: morning_time)
-        end
+        let!(:song) { create(:song, :with_music_profile) }
+        let!(:air_play) { create(:air_play, :morning, song: song, radio_station: radio_station) }
 
         run_test! do |response|
           json = JSON.parse(response.body)
@@ -248,25 +240,10 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
 
         let!(:radio_station1) { create(:radio_station) }
         let!(:radio_station2) { create(:radio_station) }
-        let!(:song1) { create(:song) }
-        let!(:song2) { create(:song) }
-        let!(:music_profile1) { create(:music_profile, song: song1) }
-        let!(:music_profile2) { create(:music_profile, song: song2) }
-        # Use times that are guaranteed to be within the last 24 hours
-        let(:morning_time) do
-          time = Time.current.change(hour: 10, min: 30)
-          time > Time.current ? time - 1.day : time
-        end
-        let(:evening_time) do
-          time = Time.current.change(hour: 21, min: 0)
-          time > Time.current ? time - 1.day : time
-        end
-        let!(:air_play1) do
-          create(:air_play, song: song1, radio_station: radio_station1, broadcasted_at: morning_time)
-        end
-        let!(:air_play2) do
-          create(:air_play, song: song2, radio_station: radio_station2, broadcasted_at: evening_time)
-        end
+        let!(:song1) { create(:song, :with_music_profile) }
+        let!(:song2) { create(:song, :with_music_profile) }
+        let!(:air_play1) { create(:air_play, :morning, song: song1, radio_station: radio_station1) }
+        let!(:air_play2) { create(:air_play, :evening, song: song2, radio_station: radio_station2) }
         let(:radio_station_id) { radio_station1.id }
 
         run_test! do |response|
@@ -296,25 +273,10 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
         }
 
         let!(:radio_station) { create(:radio_station) }
-        let!(:song1) { create(:song) }
-        let!(:song2) { create(:song) }
-        let!(:music_profile1) { create(:music_profile, song: song1) }
-        let!(:music_profile2) { create(:music_profile, song: song2) }
-        # Use times that are guaranteed to be within the last 24 hours
-        let(:morning_time) do
-          time = Time.current.change(hour: 10, min: 30)
-          time > Time.current ? time - 1.day : time
-        end
-        let(:evening_time) do
-          time = Time.current.change(hour: 21, min: 0)
-          time > Time.current ? time - 1.day : time
-        end
-        let!(:morning_air_play) do
-          create(:air_play, song: song1, radio_station: radio_station, broadcasted_at: morning_time)
-        end
-        let!(:evening_air_play) do
-          create(:air_play, song: song2, radio_station: radio_station, broadcasted_at: evening_time)
-        end
+        let!(:song1) { create(:song, :with_music_profile) }
+        let!(:song2) { create(:song, :with_music_profile) }
+        let!(:morning_air_play) { create(:air_play, :morning, song: song1, radio_station: radio_station) }
+        let!(:evening_air_play) { create(:air_play, :evening, song: song2, radio_station: radio_station) }
         let(:radio_station_id) { radio_station.id }
         let(:day_part) { 'evening' }
 
@@ -345,20 +307,11 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
         }
 
         let!(:radio_station) { create(:radio_station) }
-        let!(:song_recent) { create(:song) }
-        let!(:song_old) { create(:song) }
-        let!(:music_profile_recent) { create(:music_profile, song: song_recent) }
-        let!(:music_profile_old) { create(:music_profile, song: song_old) }
-        let(:morning_time) do
-          time = Time.current.change(hour: 10, min: 30)
-          time > Time.current ? time - 1.day : time
-        end
-        let(:old_time) { 2.weeks.ago.change(hour: 10, min: 30) }
-        let!(:recent_air_play) do
-          create(:air_play, song: song_recent, radio_station: radio_station, broadcasted_at: morning_time)
-        end
+        let!(:song_recent) { create(:song, :with_music_profile) }
+        let!(:song_old) { create(:song, :with_music_profile) }
+        let!(:recent_air_play) { create(:air_play, :morning, song: song_recent, radio_station: radio_station) }
         let!(:old_air_play) do
-          create(:air_play, song: song_old, radio_station: radio_station, broadcasted_at: old_time)
+          create(:air_play, song: song_old, radio_station: radio_station, broadcasted_at: 2.weeks.ago.change(hour: 10, min: 30))
         end
         let(:radio_station_id) { radio_station.id }
         let(:time_period) { 'week' }
