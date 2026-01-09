@@ -26,7 +26,6 @@ class RadioStationTracksScraperJob
   def maybe_update_id_on_youtube
     return unless song.present? && song.id_on_youtube.blank? && id_on_youtube.present?
 
-    Rails.logger.info("Updating #{artist_name} #{song_title} with id_on_youtube: #{id_on_youtube}")
     song.update(id_on_youtube:)
   end
 

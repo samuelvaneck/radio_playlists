@@ -15,7 +15,7 @@ class TrackScraper::NpoApiProcessor < TrackScraper
     @spotify_url = track[:spotify_url]
     true
   rescue StandardError => e
-    Rails.logger.info(e.message)
+    Rails.logger.warn("NpoApiProcessor: #{e.message}")
     ExceptionNotifier.notify_new_relic(e)
     false
   end

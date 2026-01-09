@@ -65,7 +65,7 @@ describe TrackScraper::QmusicApiProcessor, type: :service do
       let(:api_response) { nil }
 
       before do
-        allow(Rails.logger).to receive(:info).and_call_original
+        allow(Rails.logger).to receive(:warn).and_call_original
         allow(ExceptionNotifier).to receive(:notify_new_relic).and_call_original
       end
 
@@ -80,7 +80,7 @@ describe TrackScraper::QmusicApiProcessor, type: :service do
 
       it 'logs the error' do
         last_played_song
-        expect(Rails.logger).to have_received(:info).with(instance_of(String))
+        expect(Rails.logger).to have_received(:warn).with(/QmusicApiProcessor:/)
       end
     end
   end

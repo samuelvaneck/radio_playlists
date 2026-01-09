@@ -18,7 +18,7 @@ class TrackScraper::QmusicApiProcessor < TrackScraper
     @instagram_url = track.dig(:artist, :instagram_url)
     true
   rescue StandardError => e
-    Rails.logger.info(e.message)
+    Rails.logger.warn("QmusicApiProcessor: #{e.message}")
     ExceptionNotifier.notify_new_relic(e)
     false
   end

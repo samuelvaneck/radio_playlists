@@ -10,7 +10,7 @@ class AudioStream
   end
 
   def capture
-    Rails.logger.info "Capturing stream command #{command}"
+    Rails.logger.debug "Capturing stream command #{command}"
     Open3.popen3(*command) do |_stdin, stdout, stderr, _wait_thr|
       @stdout = stdout.read
       @stderr = stderr.read

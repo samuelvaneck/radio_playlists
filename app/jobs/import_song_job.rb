@@ -7,9 +7,9 @@ class ImportSongJob
 
   def perform(id)
     radio_station = RadioStation.find(id)
-    Rails.logger.info "****** Import song #{radio_station.name} ******"
     SongImporter.new(radio_station: radio_station).import
   rescue StandardError => e
-    Rails.logger.info "****** Error #{e} ******"
+    Rails.logger.error "ImportSongJob error for #{radio_station&.name}: #{e.message}"
+    ExceptionNotifier.notify_new_relic(e, 'ImportSongJob')
   end
 end

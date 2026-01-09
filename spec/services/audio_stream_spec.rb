@@ -34,7 +34,7 @@ describe AudioStream, type: :service do
     let(:stderr) { instance_double(IO, read: stderr_content) }
 
     before do
-      allow(Rails.logger).to receive(:info)
+      allow(Rails.logger).to receive(:debug)
       allow(Rails.logger).to receive(:error)
     end
 
@@ -52,7 +52,7 @@ describe AudioStream, type: :service do
 
       it 'logs the capture command' do
         audio_stream.capture
-        expect(Rails.logger).to have_received(:info).with(/Capturing stream command/)
+        expect(Rails.logger).to have_received(:debug).with(/Capturing stream command/)
       end
 
       it 'executes the ffmpeg command' do

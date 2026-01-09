@@ -5,15 +5,11 @@ class YoutubeApiImportJob
 
   def perform
     song = first_song_without_youtube_id
-    if song.blank?
-      Rails.logger.info 'No song without youtube id found'
-      return nil
-    end
+    return nil if song.blank?
 
     id_on_youtube = Youtube::Search.new(args_for_youtube_search(song)).find_id
     id_on_youtube = '' if id_on_youtube.blank?
 
-    Rails.logger.info("Updating #{song.title} with id_on_youtube: #{id_on_youtube}")
     song.update(id_on_youtube:)
   rescue StandardError => e
     Rails.logger.error "Error in YoutubeApiImportJob: #{e.message}"

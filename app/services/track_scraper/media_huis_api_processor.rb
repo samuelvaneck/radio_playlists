@@ -15,7 +15,7 @@ class TrackScraper::MediaHuisApiProcessor < TrackScraper
     @spotify_url = track[:spotifyLink]
     true
   rescue StandardError => e
-    Rails.logger.info(e.message)
+    Rails.logger.warn("MediaHuisApiProcessor: #{e.message}")
     ExceptionNotifier.notify_new_relic(e)
     false
   end

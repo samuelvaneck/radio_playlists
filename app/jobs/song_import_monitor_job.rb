@@ -18,8 +18,10 @@ class SongImportMonitorJob
   private
 
   def log_stats(stats)
-    Rails.logger.info(
-      'SongImportMonitorJob: Last hour stats - ' \
+    return unless stats[:failure_rate] > 0.1 # Only log if failure rate exceeds 10%
+
+    Rails.logger.warn(
+      'SongImportMonitorJob: High failure rate - ' \
       "Total: #{stats[:total]}, " \
       "Success: #{stats[:success]}, " \
       "Failed: #{stats[:failed]}, " \

@@ -51,7 +51,7 @@ class TrackScraper::TalpaApiProcessor < TrackScraper
     @broadcasted_at = Time.zone.now
     true
   rescue StandardError => e
-    Rails.logger.info(e.message)
+    Rails.logger.warn("TalpaApiProcessor: #{e.message}")
     ExceptionNotifier.notify_new_relic(e)
     false
   end
