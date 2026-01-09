@@ -27,7 +27,7 @@ describe Lastfm::ArtistFinder do
       before do
         allow(Rails.cache).to receive(:fetch).and_yield
         allow_any_instance_of(Faraday::Connection).to receive(:get).and_return( # rubocop:disable RSpec/AnyInstance
-          instance_double(Faraday::Response, body: api_response)
+          instance_double(Faraday::Response, body: api_response, status: 200)
         )
       end
 
@@ -48,7 +48,7 @@ describe Lastfm::ArtistFinder do
       before do
         allow(Rails.cache).to receive(:fetch).and_yield
         allow_any_instance_of(Faraday::Connection).to receive(:get).and_return( # rubocop:disable RSpec/AnyInstance
-          instance_double(Faraday::Response, body: error_response)
+          instance_double(Faraday::Response, body: error_response, status: 200)
         )
       end
 

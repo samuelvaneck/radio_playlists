@@ -9,6 +9,10 @@ module Youtube
     BASE_URL = 'https://www.googleapis.com/youtube/v3/search'.freeze
     API_KEY = ENV['YOUTUBE_API_KEY']
 
+    include CircuitBreakable
+
+    circuit_breaker_for :youtube
+
     attr_reader :args
 
     def initialize(args)
@@ -17,6 +21,8 @@ module Youtube
 
     def find_id
       response = make_request
+      return nil if response.blank?
+
       only_official = Youtube::Filter.new(videos: response['items'], title: @args[:title]).only_official
       only_official_with_same_title = Youtube::Filter.new(videos: only_official, title: @args[:title]).with_same_title
 
@@ -24,15 +30,17 @@ module Youtube
     end
 
     def make_request
-      response = Faraday.get(BASE_URL) do |req|
-        req.params['part'] = part
-        req.params['key'] = API_KEY
-        req.params['type'] = type
-        req.params['videoCategoryId'] = video_category_id
-        req.params['q'] = query
+      with_circuit_breaker do
+        response = connection.get do |req|
+          req.params['part'] = part
+          req.params['key'] = API_KEY
+          req.params['type'] = type
+          req.params['videoCategoryId'] = video_category_id
+          req.params['q'] = query
+        end
+        handle_rate_limit_response(response)
+        handle_response(response)
       end
-
-      handle_response(response)
     rescue Faraday::Error => e
       Rails.logger.error(e.message)
       ExceptionNotifier.notify_new_relic(e)
@@ -51,6 +59,13 @@ module Youtube
     # end
 
     private
+
+    def connection
+      @connection ||= Faraday.new(url: BASE_URL) do |conn|
+        conn.options.timeout = 15
+        conn.options.open_timeout = 5
+      end
+    end
 
     def query
       ERB::Util.url_encode("#{@args[:artists]} #{@args[:title]} official music video")

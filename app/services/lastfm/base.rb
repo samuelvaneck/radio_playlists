@@ -4,15 +4,21 @@ module Lastfm
   class Base
     BASE_URL = 'https://ws.audioscrobbler.com/2.0/'
 
+    include CircuitBreakable
+
+    circuit_breaker_for :lastfm
+
     private
 
     def make_request(params)
       Rails.cache.fetch(cache_key(params), expires_in: 24.hours) do
-        response = connection.get do |req|
-          req.params = default_params.merge(params)
+        with_circuit_breaker do
+          response = connection.get do |req|
+            req.params = default_params.merge(params)
+          end
+          handle_rate_limit_response(response)
+          response.body
         end
-
-        response.body
       end
     rescue StandardError => e
       ExceptionNotifier.notify_new_relic(e)
@@ -22,6 +28,8 @@ module Lastfm
 
     def connection
       @connection ||= Faraday.new(url: BASE_URL) do |conn|
+        conn.options.timeout = 10
+        conn.options.open_timeout = 5
         conn.response :json
       end
     end
