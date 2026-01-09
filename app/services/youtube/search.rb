@@ -6,12 +6,12 @@
 #
 module Youtube
   class Search
+    BASE_URL = 'https://www.googleapis.com/youtube/v3/search'.freeze
+    API_KEY = ENV['YOUTUBE_API_KEY']
+
     include CircuitBreakable
 
     circuit_breaker_for :youtube
-
-    BASE_URL = 'https://www.googleapis.com/youtube/v3/search'.freeze
-    API_KEY = ENV['YOUTUBE_API_KEY']
 
     attr_reader :args
 

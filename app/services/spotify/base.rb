@@ -1,11 +1,11 @@
 module Spotify
   class Base
+    ARTIST_SIMILARITY_THRESHOLD = 80
+    TITLE_SIMILARITY_THRESHOLD = 70
+
     include CircuitBreakable
 
     circuit_breaker_for :spotify
-
-    ARTIST_SIMILARITY_THRESHOLD = 80
-    TITLE_SIMILARITY_THRESHOLD = 70
 
     attr_reader :args
 

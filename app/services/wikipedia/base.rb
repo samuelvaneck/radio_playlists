@@ -2,12 +2,12 @@
 
 module Wikipedia
   class Base
+    DEFAULT_LANGUAGE = 'en'
+    SUPPORTED_LANGUAGES = %w[en nl de fr es it pt pl ru ja zh].freeze
+
     include CircuitBreakable
 
     circuit_breaker_for :wikipedia
-
-    DEFAULT_LANGUAGE = 'en'
-    SUPPORTED_LANGUAGES = %w[en nl de fr es it pt pl ru ja zh].freeze
 
     def initialize(language: DEFAULT_LANGUAGE)
       @language = SUPPORTED_LANGUAGES.include?(language) ? language : DEFAULT_LANGUAGE

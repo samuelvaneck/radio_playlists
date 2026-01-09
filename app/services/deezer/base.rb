@@ -2,16 +2,15 @@
 
 module Deezer
   class Base
+    ARTIST_SIMILARITY_THRESHOLD = 80
+    TITLE_SIMILARITY_THRESHOLD = 70
+    BASE_URL = 'https://api.deezer.com'
+
     include CircuitBreakable
 
     circuit_breaker_for :deezer
 
-    ARTIST_SIMILARITY_THRESHOLD = 80
-    TITLE_SIMILARITY_THRESHOLD = 70
-
     attr_reader :args
-
-    BASE_URL = 'https://api.deezer.com'
 
     def initialize(args = {})
       @args = args

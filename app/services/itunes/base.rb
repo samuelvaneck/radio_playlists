@@ -2,17 +2,16 @@
 
 module Itunes
   class Base
+    ARTIST_SIMILARITY_THRESHOLD = 80
+    TITLE_SIMILARITY_THRESHOLD = 70
+    BASE_URL = 'https://itunes.apple.com'
+    DEFAULT_COUNTRY = 'nl'
+
     include CircuitBreakable
 
     circuit_breaker_for :itunes
 
-    ARTIST_SIMILARITY_THRESHOLD = 80
-    TITLE_SIMILARITY_THRESHOLD = 70
-
     attr_reader :args
-
-    BASE_URL = 'https://itunes.apple.com'
-    DEFAULT_COUNTRY = 'nl'
 
     def initialize(args = {})
       @args = args
