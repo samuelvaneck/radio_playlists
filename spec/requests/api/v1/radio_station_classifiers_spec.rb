@@ -14,6 +14,8 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                 description: 'Filter by radio station ID'
       parameter name: :day_part, in: :query, type: :string, required: false,
                 description: 'Filter by day part (night, breakfast, morning, lunch, afternoon, dinner, evening)'
+      parameter name: :time_period, in: :query, type: :string, required: false,
+                description: 'Time period for analysis (day, week, month, year). Defaults to day if not specified.'
 
       response '200', 'Classifiers retrieved successfully' do
         example 'application/json', :example, {
@@ -320,6 +322,52 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
           json = JSON.parse(response.body)
           expect(json['data'].length).to eq(1)
           expect(json['data'].first['attributes']['day_part']).to eq('evening')
+        end
+      end
+
+      response '200', 'Classifiers filtered by time period' do
+        example 'application/json', :filtered_by_time_period, {
+          data: [
+            {
+              id: '1',
+              type: 'radio_station_classifier',
+              attributes: {
+                id: 1,
+                radio_station: { id: 1, name: 'Radio 538' },
+                day_part: 'morning',
+                danceability_average: '0.65',
+                energy_average: '0.72',
+                counter: 450
+              }
+            }
+          ],
+          meta: { attribute_descriptions: {} }
+        }
+
+        let!(:radio_station) { create(:radio_station) }
+        let!(:song_recent) { create(:song) }
+        let!(:song_old) { create(:song) }
+        let!(:music_profile_recent) { create(:music_profile, song: song_recent) }
+        let!(:music_profile_old) { create(:music_profile, song: song_old) }
+        let(:morning_time) do
+          time = Time.current.change(hour: 10, min: 30)
+          time > Time.current ? time - 1.day : time
+        end
+        let(:old_time) { 2.weeks.ago.change(hour: 10, min: 30) }
+        let!(:recent_air_play) do
+          create(:air_play, song: song_recent, radio_station: radio_station, broadcasted_at: morning_time)
+        end
+        let!(:old_air_play) do
+          create(:air_play, song: song_old, radio_station: radio_station, broadcasted_at: old_time)
+        end
+        let(:radio_station_id) { radio_station.id }
+        let(:time_period) { 'week' }
+
+        run_test! do |response|
+          json = JSON.parse(response.body)
+          # With time_period=week, only the recent air_play should be included (not the 2 weeks old one)
+          expect(json['data'].length).to eq(1)
+          expect(json['data'].first['attributes']['counter']).to eq(1)
         end
       end
     end

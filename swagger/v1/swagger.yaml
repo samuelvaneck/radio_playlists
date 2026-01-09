@@ -697,9 +697,16 @@ paths:
           dinner, evening)
         schema:
           type: string
+      - name: time_period
+        in: query
+        required: false
+        description: Time period for analysis (day, week, month, year). Defaults to
+          day if not specified.
+        schema:
+          type: string
       responses:
         '200':
-          description: Classifiers filtered by day part
+          description: Classifiers filtered by time period
           content:
             application/json:
               examples:
@@ -791,6 +798,22 @@ paths:
                         danceability_average: '0.75'
                         energy_average: '0.80'
                         counter: 320
+                    meta:
+                      attribute_descriptions: {}
+                filtered_by_time_period:
+                  value:
+                    data:
+                    - id: '1'
+                      type: radio_station_classifier
+                      attributes:
+                        id: 1
+                        radio_station:
+                          id: 1
+                          name: Radio 538
+                        day_part: morning
+                        danceability_average: '0.65'
+                        energy_average: '0.72'
+                        counter: 450
                     meta:
                       attribute_descriptions: {}
               schema:
