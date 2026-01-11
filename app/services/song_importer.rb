@@ -128,10 +128,10 @@ class SongImporter
     songrec_result = songrec.recognized?
     @import_logger.log_recognition(songrec) if songrec_result
 
-    # Run AcoustID on the same audio file
+    # Run AcoustID on the same audio file (always log for comparison)
     acoustid = AcoustidRecognizer.new(output_file)
-    acoustid_result = acoustid.recognized?
-    @import_logger.log_acoustid(acoustid) if acoustid_result
+    acoustid.recognized?
+    @import_logger.log_acoustid(acoustid)
 
     # Return SongRec result for now (primary recognizer)
     songrec_result ? songrec : nil
