@@ -7,13 +7,13 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
     get 'List all radio station classifiers' do
       tags 'Radio Station Classifiers'
       produces 'application/json'
-      description 'Returns audio feature classifiers for radio stations, aggregated by day part. ' \
+      description 'Returns audio feature classifiers for radio stations, aggregated by hour (0-23). ' \
                   'Includes Spotify audio features like danceability, energy, valence, etc. ' \
                   'Response includes attribute descriptions in the meta section.'
       parameter name: :radio_station_id, in: :query, type: :integer, required: false,
                 description: 'Filter by radio station ID'
-      parameter name: :day_part, in: :query, type: :string, required: false,
-                description: 'Filter by day part (night, breakfast, morning, lunch, afternoon, dinner, evening)'
+      parameter name: :hour, in: :query, type: :integer, required: false,
+                description: 'Filter by hour (0-23)'
       parameter name: :time_period, in: :query, type: :string, required: false,
                 description: 'Time period for analysis (day, week, month, year). Defaults to day if not specified.'
 
@@ -26,7 +26,7 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
               attributes: {
                 id: 1,
                 radio_station: { id: 1, name: 'Radio 538' },
-                day_part: 'morning',
+                hour: 10,
                 danceability_average: '0.65',
                 high_danceability_percentage: 0.72,
                 energy_average: '0.72',
@@ -63,10 +63,10 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                 description: 'Average energy score for tracks played during this time period.',
                 range: '0.0 to 1.0'
               },
-              day_part: {
-                name: 'Day Part',
-                description: 'Time segment of the day.',
-                values: %w[night breakfast morning lunch afternoon dinner evening]
+              hour: {
+                name: 'Hour',
+                description: 'Hour of the day (0-23).',
+                values: (0..23).to_a
               },
               counter: {
                 name: 'Counter',
@@ -90,7 +90,7 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                          properties: {
                            id: { type: :integer },
                            radio_station: { type: :object },
-                           day_part: { type: :string },
+                           hour: { type: :integer },
                            danceability: { type: :integer },
                            danceability_average: { type: :string },
                            energy: { type: :integer },
@@ -182,12 +182,12 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                              range: { type: :string }
                            }
                          },
-                         day_part: {
+                         hour: {
                            type: :object,
                            properties: {
                              name: { type: :string },
                              description: { type: :string },
-                             values: { type: :array, items: { type: :string } }
+                             values: { type: :array, items: { type: :integer } }
                            }
                          },
                          counter: {
@@ -210,7 +210,7 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
         run_test! do |response|
           json = JSON.parse(response.body)
           expect(json['data']).to be_an(Array)
-          expect(json['data'].first['attributes']['day_part']).to eq('morning')
+          expect(json['data'].first['attributes']['hour']).to eq(10)
           expect(json['data'].first['attributes']['danceability_average']).to be_present
           expect(json['data'].first['attributes']['high_danceability_percentage']).to be_present
           expect(json['meta']['attribute_descriptions']).to be_present
@@ -228,7 +228,7 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
               attributes: {
                 id: 1,
                 radio_station: { id: 1, name: 'Radio 538' },
-                day_part: 'morning',
+                hour: 10,
                 danceability_average: '0.65',
                 energy_average: '0.72',
                 counter: 450
@@ -249,12 +249,12 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
         run_test! do |response|
           json = JSON.parse(response.body)
           expect(json['data'].length).to eq(1)
-          expect(json['data'].first['attributes']['day_part']).to eq('morning')
+          expect(json['data'].first['attributes']['hour']).to eq(10)
         end
       end
 
-      response '200', 'Classifiers filtered by day part' do
-        example 'application/json', :filtered_by_day_part, {
+      response '200', 'Classifiers filtered by hour' do
+        example 'application/json', :filtered_by_hour, {
           data: [
             {
               id: '1',
@@ -262,7 +262,7 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
               attributes: {
                 id: 1,
                 radio_station: { id: 1, name: 'Radio 538' },
-                day_part: 'evening',
+                hour: 21,
                 danceability_average: '0.75',
                 energy_average: '0.80',
                 counter: 320
@@ -278,12 +278,12 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
         let!(:morning_air_play) { create(:air_play, :morning, song: song1, radio_station: radio_station) }
         let!(:evening_air_play) { create(:air_play, :evening, song: song2, radio_station: radio_station) }
         let(:radio_station_id) { radio_station.id }
-        let(:day_part) { 'evening' }
+        let(:hour) { 21 }
 
         run_test! do |response|
           json = JSON.parse(response.body)
           expect(json['data'].length).to eq(1)
-          expect(json['data'].first['attributes']['day_part']).to eq('evening')
+          expect(json['data'].first['attributes']['hour']).to eq(21)
         end
       end
 
@@ -296,7 +296,7 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
               attributes: {
                 id: 1,
                 radio_station: { id: 1, name: 'Radio 538' },
-                day_part: 'morning',
+                hour: 10,
                 danceability_average: '0.65',
                 energy_average: '0.72',
                 counter: 450
@@ -361,10 +361,10 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
               description: 'Average tempo of tracks in beats per minute (BPM).',
               range: '0 to 250 BPM'
             },
-            day_part: {
-              name: 'Day Part',
-              description: 'Time segment of the day when tracks were played.',
-              values: %w[night breakfast morning lunch afternoon dinner evening]
+            hour: {
+              name: 'Hour',
+              description: 'Hour of the day (0-23) when tracks were played.',
+              values: (0..23).to_a
             },
             counter: {
               name: 'Counter',
@@ -442,12 +442,12 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                          range: { type: :string }
                        }
                      },
-                     day_part: {
+                     hour: {
                        type: :object,
                        properties: {
                          name: { type: :string },
                          description: { type: :string },
-                         values: { type: :array, items: { type: :string } }
+                         values: { type: :array, items: { type: :integer } }
                        }
                      },
                      counter: {
@@ -469,7 +469,7 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
           expect(json['data']['energy_average']).to include('name', 'description', 'range')
           expect(json['data']['valence_average']).to include('name', 'description', 'range')
           expect(json['data']['tempo']).to include('name', 'description', 'range')
-          expect(json['data']['day_part']).to include('name', 'description', 'values')
+          expect(json['data']['hour']).to include('name', 'description', 'values')
         end
       end
     end

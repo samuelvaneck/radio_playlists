@@ -26,7 +26,7 @@ module Api
       def classifiers
         calculator = RadioStationMusicProfileCalculator.new(
           radio_station: @radio_station,
-          day_part: params[:day_part],
+          hour: params[:hour].presence&.to_i,
           start_time: parse_time_param(:start_time),
           end_time: parse_time_param(:end_time)
         )
