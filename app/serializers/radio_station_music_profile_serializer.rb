@@ -84,14 +84,14 @@ class RadioStationMusicProfileSerializer
       description: 'The average tempo of tracks in beats per minute (BPM).',
       range: '0 - 250 BPM'
     },
-    day_part: {
-      name: 'Day Part',
-      description: 'The time segment of the day when these audio characteristics were measured.',
-      values: RadioStationMusicProfileCalculator::DAY_PARTS
+    hour: {
+      name: 'Hour',
+      description: 'The hour of the day (0-23) when these audio characteristics were measured.',
+      values: RadioStationMusicProfileCalculator::HOURS
     },
     counter: {
       name: 'Sample Count',
-      description: 'The total number of songs analyzed for this day part.'
+      description: 'The total number of songs analyzed for this hour.'
     }
   }.freeze
 

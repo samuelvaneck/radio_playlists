@@ -1,47 +1,36 @@
 # frozen_string_literal: true
 
 class RadioStationMusicProfileCalculator
-  DAY_PARTS = %w[night breakfast morning lunch afternoon dinner evening].freeze
-
-  DAY_PART_HOURS = {
-    'night' => (0..5),
-    'breakfast' => (6..9),
-    'morning' => (10..11),
-    'lunch' => (12..12),
-    'afternoon' => (13..15),
-    'dinner' => (16..19),
-    'evening' => (20..23)
-  }.freeze
+  HOURS = (0..23).to_a.freeze
 
   AUDIO_FEATURES = MusicProfile::AUDIO_FEATURES
   HIGH_VALUE_THRESHOLDS = MusicProfile::HIGH_VALUE_THRESHOLDS
 
-  def initialize(radio_station:, day_part: nil, start_time: nil, end_time: nil)
+  def initialize(radio_station:, hour: nil, start_time: nil, end_time: nil)
     @radio_station = radio_station
-    @day_part = day_part
+    @hour = hour
     @start_time = start_time || 24.hours.ago
     @end_time = end_time || Time.current
   end
 
   def calculate
-    if @day_part.present?
-      [calculate_for_day_part(@day_part)].compact
+    if @hour.present?
+      [calculate_for_hour(@hour)].compact
     else
-      DAY_PARTS.filter_map { |dp| calculate_for_day_part(dp) }
+      HOURS.filter_map { |h| calculate_for_hour(h) }
     end
   end
 
-  def calculate_for_day_part(day_part)
-    profiles = music_profiles_for_day_part(day_part)
+  def calculate_for_hour(hour)
+    profiles = music_profiles_for_hour(hour)
     return nil if profiles.empty?
 
-    build_aggregated_profile(day_part, profiles)
+    build_aggregated_profile(hour, profiles)
   end
 
   private
 
-  def music_profiles_for_day_part(day_part)
-    hours = DAY_PART_HOURS[day_part].to_a
+  def music_profiles_for_hour(hour)
     timezone = Time.zone.tzinfo.name
 
     MusicProfile
@@ -50,18 +39,18 @@ class RadioStationMusicProfileCalculator
                radio_station_id: @radio_station.id,
                broadcasted_at: @start_time..@end_time
              })
-      .where("EXTRACT(HOUR FROM air_plays.broadcasted_at AT TIME ZONE 'UTC' AT TIME ZONE ?) IN (?)", timezone, hours)
+      .where("EXTRACT(HOUR FROM air_plays.broadcasted_at AT TIME ZONE 'UTC' AT TIME ZONE ?) = ?", timezone, hour)
       .distinct
   end
 
-  def build_aggregated_profile(day_part, profiles)
+  def build_aggregated_profile(hour, profiles)
     all_features = [:tempo] + AUDIO_FEATURES.map(&:to_sym)
     data = profiles.pluck(*all_features)
 
     return nil if data.empty?
 
     result = {
-      day_part:,
+      hour:,
       counter: data.size,
       tempo: calculate_average_from_array(data, 0)
     }

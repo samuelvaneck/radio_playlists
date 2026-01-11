@@ -8,11 +8,13 @@ module Api
       def index
         start_time, end_time = time_range_from_period
 
+        hour = params[:hour].presence&.to_i
+
         profiles = if params[:radio_station_id].present?
                      radio_station = RadioStation.find(params[:radio_station_id])
                      calculator = RadioStationMusicProfileCalculator.new(
                        radio_station:,
-                       day_part: params[:day_part],
+                       hour:,
                        start_time:,
                        end_time:
                      )
@@ -21,7 +23,7 @@ module Api
                      RadioStation.all.flat_map do |rs|
                        calculator = RadioStationMusicProfileCalculator.new(
                          radio_station: rs,
-                         day_part: params[:day_part],
+                         hour:,
                          start_time:,
                          end_time:
                        )
