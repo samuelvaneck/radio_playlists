@@ -143,7 +143,23 @@ Schema definitions are configured in `spec/swagger_helper.rb`. The generated `sw
 
 ## External Dependencies
 
-- **SongRec** - Audio fingerprinting (must be installed locally)
+- **SongRec** - Audio fingerprinting (must be installed locally) - *to be replaced*
 - **FFmpeg** - Audio processing (must be installed locally)
 - **PostgreSQL** - Primary database
 - **Redis** - Caching (db #1) and Sidekiq (db #2)
+
+## Planned Changes
+
+### Audio Recognition: Switch to AcoustID + Chromaprint
+
+Replace SongRec (Shazam-based) with AcoustID + Chromaprint for audio fingerprinting due to rate limiting issues.
+
+**Strategy:**
+1. Primary: AcoustID + Chromaprint for audio fingerprinting (open source, unlimited, queries MusicBrainz database)
+2. Fallback: TrackScraper for stations with reliable APIs when fingerprinting fails
+
+**Implementation notes:**
+- Chromaprint generates audio fingerprints locally (requires `fpcalc` CLI tool)
+- AcoustID API looks up fingerprints against MusicBrainz database (free, requires API key)
+- Limitation: Only recognizes songs already in MusicBrainz (may not cover all Dutch radio songs)
+- Keep existing `AudioStream` services for capturing audio via FFmpeg
