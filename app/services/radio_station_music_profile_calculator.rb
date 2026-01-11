@@ -55,34 +55,38 @@ class RadioStationMusicProfileCalculator
   end
 
   def build_aggregated_profile(day_part, profiles)
-    counter = profiles.count
+    all_features = [:tempo] + AUDIO_FEATURES.map(&:to_sym)
+    data = profiles.pluck(*all_features)
+
+    return nil if data.empty?
 
     result = {
       day_part:,
-      counter:,
-      tempo: calculate_average(profiles, :tempo)
+      counter: data.size,
+      tempo: calculate_average_from_array(data, 0)
     }
 
-    AUDIO_FEATURES.each do |feature|
-      result[:"#{feature}_average"] = calculate_average(profiles, feature)
-      result[:"high_#{feature}_percentage"] = calculate_high_percentage(profiles, feature)
+    AUDIO_FEATURES.each_with_index do |feature, index|
+      column_index = index + 1
+      result[:"#{feature}_average"] = calculate_average_from_array(data, column_index)
+      result[:"high_#{feature}_percentage"] = calculate_high_percentage_from_array(data, column_index, feature)
     end
 
     result
   end
 
-  def calculate_average(profiles, feature)
-    values = profiles.pluck(feature).compact
+  def calculate_average_from_array(data, column_index)
+    values = data.filter_map { |row| row[column_index] }
     return 0.0 if values.empty?
 
     (values.sum / values.size).round(3)
   end
 
-  def calculate_high_percentage(profiles, feature)
+  def calculate_high_percentage_from_array(data, column_index, feature)
     threshold = HIGH_VALUE_THRESHOLDS[feature.to_sym]
     return 0.0 if threshold.nil?
 
-    values = profiles.pluck(feature).compact
+    values = data.filter_map { |row| row[column_index] }
     return 0.0 if values.empty?
 
     high_count = values.count { |v| v > threshold }
