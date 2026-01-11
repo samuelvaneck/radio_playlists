@@ -59,6 +59,7 @@ class SongImportLog < ApplicationRecord
   CSV_COLUMNS = %w[
     id radio_station_id song_id air_play_id
     recognized_artist recognized_title recognized_isrc recognized_spotify_url
+    acoustid_artist acoustid_title acoustid_recording_id acoustid_score
     scraped_artist scraped_title scraped_isrc scraped_spotify_url
     import_source
     spotify_artist spotify_title spotify_track_id spotify_isrc

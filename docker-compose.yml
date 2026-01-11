@@ -30,6 +30,7 @@ services:
       - RAILS_LOG_TO_STDOUT=true
       - REDIS_SIDEKIQ_URL=redis://redis:6379/2
       - REDIS_CACHE_URL=redis://redis:6379/1
+      - ACOUSTID_API_KEY=${ACOUSTID_API_KEY}
     volumes:
       - .:/app
 
@@ -56,5 +57,6 @@ services:
       - POSTGRES_USER=postgres
       - REDIS_SIDEKIQ_URL=redis://redis:6379/2
       - REDIS_CACHE_URL=redis://redis:6379/1
+      - ACOUSTID_API_KEY=${ACOUSTID_API_KEY}
     tty: true
     stdin_open: true

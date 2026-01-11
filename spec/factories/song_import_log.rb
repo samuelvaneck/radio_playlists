@@ -13,6 +13,13 @@ FactoryBot.define do
       import_source { :recognition }
     end
 
+    trait :with_acoustid do
+      acoustid_artist { Faker::Music.band }
+      acoustid_title { Faker::Music::RockBand.song }
+      acoustid_recording_id { SecureRandom.uuid }
+      acoustid_score { rand(0.7..1.0).round(4) }
+    end
+
     trait :with_scraping do
       scraped_artist { Faker::Music.band }
       scraped_title { Faker::Music::RockBand.song }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_04_193919) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_11_183201) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -163,6 +163,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_04_193919) do
   end
 
   create_table "song_import_logs", force: :cascade do |t|
+    t.string "acoustid_artist"
+    t.jsonb "acoustid_raw_response"
+    t.string "acoustid_recording_id"
+    t.decimal "acoustid_score", precision: 5, scale: 4
+    t.string "acoustid_title"
     t.bigint "air_play_id"
     t.datetime "broadcasted_at"
     t.datetime "created_at", null: false

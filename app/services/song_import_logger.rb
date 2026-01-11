@@ -30,6 +30,18 @@ class SongImportLogger
     )
   end
 
+  def log_acoustid(recognizer)
+    return unless @log && recognizer
+
+    @log.update(
+      acoustid_artist: recognizer.artist_name,
+      acoustid_title: recognizer.title,
+      acoustid_recording_id: recognizer.recording_id,
+      acoustid_score: recognizer.score,
+      acoustid_raw_response: recognizer.result || {}
+    )
+  end
+
   def log_scraping(scraper, raw_response: nil)
     return unless @log && scraper
 

@@ -8,6 +8,7 @@ RUN apt-get update -qq && \
                        libpq-dev \
                        software-properties-common \
                        ffmpeg \
+                       libchromaprint-tools \
                        libpq-dev \
                        yarn \
                        python3-launchpadlib

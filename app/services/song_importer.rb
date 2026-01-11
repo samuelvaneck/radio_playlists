@@ -118,11 +118,35 @@ class SongImporter
   end
 
   def recognize_song
-    recognizer = SongRecognizer.new(@radio_station)
-    return nil unless recognizer.recognized?
+    # Capture audio once for both recognizers
+    output_file = @radio_station.audio_file_path
+    audio_stream = build_audio_stream(output_file)
+    audio_stream.capture
 
-    @import_logger.log_recognition(recognizer)
-    recognizer
+    # Run SongRec (skip cleanup so AcoustID can use the same file)
+    songrec = SongRecognizer.new(@radio_station, audio_stream:, skip_cleanup: true)
+    songrec_result = songrec.recognized?
+    @import_logger.log_recognition(songrec) if songrec_result
+
+    # Run AcoustID on the same audio file (always log for comparison)
+    acoustid = AcoustidRecognizer.new(output_file)
+    acoustid.recognized?
+    @import_logger.log_acoustid(acoustid)
+
+    # Return SongRec result for now (primary recognizer)
+    songrec_result ? songrec : nil
+  ensure
+    # Clean up the audio file
+    audio_stream&.delete_file
+  end
+
+  def build_audio_stream(output_file)
+    extension = @radio_station.stream_url.split(/\.|-/).last
+    if extension.match?(/m3u8/)
+      AudioStream::M3u8.new(@radio_station.stream_url, output_file)
+    else
+      AudioStream::Mp3.new(@radio_station.stream_url, output_file)
+    end
   end
 
   def scrape_song
