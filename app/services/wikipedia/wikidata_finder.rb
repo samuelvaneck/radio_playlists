@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Wikipedia
-  class WikidataFinder # rubocop:disable Metrics/ClassLength
+  class WikidataFinder
     WIKIDATA_API_URL = 'https://www.wikidata.org'
     DEFAULT_LANGUAGE = 'en'
 

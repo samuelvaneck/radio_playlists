@@ -142,7 +142,7 @@ RSpec.describe AcoustidRecognizer, type: :service do
         expect(recognizer.score).to eq(0.95)
       end
 
-      it 'sets the result' do
+      it 'sets the result', :aggregate_failures do
         recognizer.recognized?
         expect(recognizer.result).to be_a(Hash)
         expect(recognizer.result[:status]).to eq('ok')
