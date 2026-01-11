@@ -37,12 +37,13 @@ docker-compose up                           # Full stack with Docker
 
 The app uses service objects extensively in `app/services/`:
 - `SongImporter` - Orchestrates song import workflow (matcher, recognizer, scraper sub-services)
+- `SongRecognizer` - Shazam-based audio fingerprinting via SongRec
+- `AcoustidRecognizer` - Chromaprint + AcoustID API fingerprinting
 - `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis)
 - `TrackExtractor/` - Extracts artist/song info and finds Spotify tracks
 - `Spotify/` and `Youtube/` - External API integrations
 - `Lastfm/` and `Wikipedia/` - Artist bio/info enrichment
 - `AudioStream/` - M3U8 and MP3 stream handling
-- `SongRecognizer` - Audio fingerprinting via SongRec
 
 ### Background Jobs
 
@@ -143,23 +144,55 @@ Schema definitions are configured in `spec/swagger_helper.rb`. The generated `sw
 
 ## External Dependencies
 
-- **SongRec** - Audio fingerprinting (must be installed locally) - *to be replaced*
+- **SongRec** - Shazam-based audio fingerprinting (must be installed locally)
+- **Chromaprint** - AcoustID fingerprinting via `fpcalc` CLI (must be installed locally)
 - **FFmpeg** - Audio processing (must be installed locally)
 - **PostgreSQL** - Primary database
 - **Redis** - Caching (db #1) and Sidekiq (db #2)
 
-## Planned Changes
+## Audio Recognition
 
-### Audio Recognition: Switch to AcoustID + Chromaprint
+### Current Implementation: Dual Recognition (SongRec + AcoustID)
 
-Replace SongRec (Shazam-based) with AcoustID + Chromaprint for audio fingerprinting due to rate limiting issues.
+Both recognizers run on each import for comparison. Results are stored in `SongImportLog`.
 
-**Strategy:**
-1. Primary: AcoustID + Chromaprint for audio fingerprinting (open source, unlimited, queries MusicBrainz database)
-2. Fallback: TrackScraper for stations with reliable APIs when fingerprinting fails
+**Services:**
+- `SongRecognizer` - Shazam-based recognition via SongRec CLI (primary, high accuracy)
+- `AcoustidRecognizer` - Chromaprint + AcoustID API (queries MusicBrainz database)
+
+**Comparison fields in SongImportLog:**
+- `recognized_*` - SongRec results (artist, title, isrc, spotify_url, raw_response)
+- `acoustid_*` - AcoustID results (artist, title, recording_id, score, raw_response)
+
+**Limitation:** AcoustID only recognizes songs in MusicBrainz database (limited Dutch radio coverage).
+
+### Planned: Populate AcoustID Database
+
+To improve AcoustID coverage for Dutch radio songs, submit fingerprints from known songs.
+
+**Strategy: Use YouTube audio tracks**
+1. When SongRec identifies a song, get the YouTube video (already stored in `Song#id_on_youtube`)
+2. Download audio from YouTube using `yt-dlp`
+3. Generate fingerprint with `fpcalc`
+4. Look up MusicBrainz recording ID (via artist + title search)
+5. Submit fingerprint + MusicBrainz ID to AcoustID
+
+**AcoustID Submit API:**
+```
+POST https://api.acoustid.org/v2/submit
+
+Parameters:
+- client: Application API key (ACOUSTID_API_KEY)
+- user: Personal user API key (get from acoustid.org after signing in)
+- duration.0: Audio duration in seconds
+- fingerprint.0: Chromaprint fingerprint
+- mbid.0: MusicBrainz recording ID (links fingerprint to metadata)
+- track.0, artist.0: Optional metadata
+```
 
 **Implementation notes:**
-- Chromaprint generates audio fingerprints locally (requires `fpcalc` CLI tool)
-- AcoustID API looks up fingerprints against MusicBrainz database (free, requires API key)
-- Limitation: Only recognizes songs already in MusicBrainz (may not cover all Dutch radio songs)
-- Keep existing `AudioStream` services for capturing audio via FFmpeg
+- Submissions are processed asynchronously
+- Rate limit: max 3 requests/second
+- Need to register for a user API key at https://acoustid.org
+- Consider batch processing existing songs with YouTube IDs
+- MusicBrainz API: https://musicbrainz.org/doc/MusicBrainz_API
