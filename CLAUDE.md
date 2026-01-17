@@ -166,6 +166,28 @@ Both recognizers run on each import for comparison. Results are stored in `SongI
 
 **Limitation:** AcoustID only recognizes songs in MusicBrainz database (limited Dutch radio coverage).
 
+### Audio Duration Requirements
+
+Current recording duration is **5 seconds** (configured in `app/services/audio_stream/mp3.rb` and `m3u8.rb`).
+
+**SongRec vs AcoustID duration needs:**
+
+| Duration | SongRec (Shazam) | AcoustID |
+|----------|------------------|----------|
+| 5 sec    | Works well       | Too short |
+| 30 sec   | Works well       | Marginal |
+| 60+ sec  | Works well       | Reliable |
+
+**AcoustID requirements:**
+- Very short tracks (15-30 seconds) produce too small a sample size and are prone to incorrect matches
+- Chromaprint analyzes approximately 2 minutes of audio for optimal fingerprinting
+- Recordings differing by more than 7 seconds in length will always get different AcoustIDs
+- The current 5-second samples are insufficient for reliable AcoustID matching
+
+**Sources:**
+- https://wiki.musicbrainz.org/Guides/AcoustID
+- https://groups.google.com/g/acoustid/c/C3EHIkZVpZI
+
 ### Planned: Populate AcoustID Database
 
 To improve AcoustID coverage for Dutch radio songs, submit fingerprints from known songs.

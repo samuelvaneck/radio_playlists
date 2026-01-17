@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_11_183201) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_12_120008) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -210,6 +210,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_11_183201) do
   end
 
   create_table "songs", force: :cascade do |t|
+    t.datetime "acoustid_submitted_at"
     t.datetime "created_at", precision: nil, null: false
     t.string "deezer_artwork_url"
     t.string "deezer_preview_url"
@@ -230,6 +231,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_11_183201) do
     t.string "spotify_song_url"
     t.string "title"
     t.datetime "updated_at", precision: nil, null: false
+    t.index ["acoustid_submitted_at"], name: "index_songs_on_acoustid_submitted_at"
     t.index ["id_on_deezer"], name: "index_songs_on_id_on_deezer"
     t.index ["id_on_itunes"], name: "index_songs_on_id_on_itunes"
     t.index ["release_date"], name: "index_songs_on_release_date"
