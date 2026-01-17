@@ -5,7 +5,7 @@ module Api
     class RadioStationsController < ApiController
       include ActionController::Live
 
-      before_action :set_radio_station, only: %i[show status data classifiers stream_proxy]
+      before_action :set_radio_station, only: %i[show status data classifiers stream_proxy timeline]
 
       def index
         render json: RadioStationSerializer.new(RadioStation.all).serializable_hash.to_json
@@ -64,6 +64,18 @@ module Api
         end
       ensure
         response.stream.close
+      end
+
+      def timeline
+        return render json: { error: 'Period or start_time parameter is required' }, status: :bad_request if time_param_blank?
+
+        timeline = RadioStationTimeline.new(radio_station: @radio_station, params: params)
+        paginated = timeline.songs.paginate(page: params[:page], per_page: params[:per_page] || 24)
+
+        render json: SongSerializer.new(paginated, meta: timeline.meta)
+                                   .serializable_hash
+                                   .merge(pagination_data(paginated))
+                                   .to_json
       end
 
       private

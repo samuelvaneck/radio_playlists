@@ -681,8 +681,8 @@ paths:
       tags:
       - Radio Station Classifiers
       description: Returns audio feature classifiers for radio stations, aggregated
-        by day part. Includes Spotify audio features like danceability, energy, valence,
-        etc. Response includes attribute descriptions in the meta section.
+        by hour (0-23). Includes Spotify audio features like danceability, energy,
+        valence, etc. Response includes attribute descriptions in the meta section.
       parameters:
       - name: radio_station_id
         in: query
@@ -690,13 +690,12 @@ paths:
         description: Filter by radio station ID
         schema:
           type: integer
-      - name: day_part
+      - name: hour
         in: query
         required: false
-        description: Filter by day part (night, breakfast, morning, lunch, afternoon,
-          dinner, evening)
+        description: Filter by hour (0-23)
         schema:
-          type: string
+          type: integer
       - name: time_period
         in: query
         required: false
@@ -720,7 +719,7 @@ paths:
                         radio_station:
                           id: 1
                           name: Radio 538
-                        day_part: morning
+                        hour: 10
                         danceability_average: '0.65'
                         high_danceability_percentage: 0.72
                         energy_average: '0.72'
@@ -754,17 +753,34 @@ paths:
                           description: Average energy score for tracks played during
                             this time period.
                           range: 0.0 to 1.0
-                        day_part:
-                          name: Day Part
-                          description: Time segment of the day.
+                        hour:
+                          name: Hour
+                          description: Hour of the day (0-23).
                           values:
-                          - night
-                          - breakfast
-                          - morning
-                          - lunch
-                          - afternoon
-                          - dinner
-                          - evening
+                          - 0
+                          - 1
+                          - 2
+                          - 3
+                          - 4
+                          - 5
+                          - 6
+                          - 7
+                          - 8
+                          - 9
+                          - 10
+                          - 11
+                          - 12
+                          - 13
+                          - 14
+                          - 15
+                          - 16
+                          - 17
+                          - 18
+                          - 19
+                          - 20
+                          - 21
+                          - 22
+                          - 23
                         counter:
                           name: Counter
                           description: Number of tracks analyzed for this classifier.
@@ -778,13 +794,13 @@ paths:
                         radio_station:
                           id: 1
                           name: Radio 538
-                        day_part: morning
+                        hour: 10
                         danceability_average: '0.65'
                         energy_average: '0.72'
                         counter: 450
                     meta:
                       attribute_descriptions: {}
-                filtered_by_day_part:
+                filtered_by_hour:
                   value:
                     data:
                     - id: '1'
@@ -794,7 +810,7 @@ paths:
                         radio_station:
                           id: 1
                           name: Radio 538
-                        day_part: evening
+                        hour: 21
                         danceability_average: '0.75'
                         energy_average: '0.80'
                         counter: 320
@@ -810,7 +826,7 @@ paths:
                         radio_station:
                           id: 1
                           name: Radio 538
-                        day_part: morning
+                        hour: 10
                         danceability_average: '0.65'
                         energy_average: '0.72'
                         counter: 450
@@ -835,8 +851,8 @@ paths:
                               type: integer
                             radio_station:
                               type: object
-                            day_part:
-                              type: string
+                            hour:
+                              type: integer
                             danceability:
                               type: integer
                             danceability_average:
@@ -947,7 +963,7 @@ paths:
                                 type: string
                               range:
                                 type: string
-                          day_part:
+                          hour:
                             type: object
                             properties:
                               name:
@@ -957,7 +973,7 @@ paths:
                               values:
                                 type: array
                                 items:
-                                  type: string
+                                  type: integer
                           counter:
                             type: object
                             properties:
@@ -1006,17 +1022,34 @@ paths:
                         name: Tempo
                         description: Average tempo of tracks in beats per minute (BPM).
                         range: 0 to 250 BPM
-                      day_part:
-                        name: Day Part
-                        description: Time segment of the day when tracks were played.
+                      hour:
+                        name: Hour
+                        description: Hour of the day (0-23) when tracks were played.
                         values:
-                        - night
-                        - breakfast
-                        - morning
-                        - lunch
-                        - afternoon
-                        - dinner
-                        - evening
+                        - 0
+                        - 1
+                        - 2
+                        - 3
+                        - 4
+                        - 5
+                        - 6
+                        - 7
+                        - 8
+                        - 9
+                        - 10
+                        - 11
+                        - 12
+                        - 13
+                        - 14
+                        - 15
+                        - 16
+                        - 17
+                        - 18
+                        - 19
+                        - 20
+                        - 21
+                        - 22
+                        - 23
                       counter:
                         name: Counter
                         description: Number of tracks analyzed for this classifier.
@@ -1098,7 +1131,7 @@ paths:
                             type: string
                           range:
                             type: string
-                      day_part:
+                      hour:
                         type: object
                         properties:
                           name:
@@ -1108,7 +1141,7 @@ paths:
                           values:
                             type: array
                             items:
-                              type: string
+                              type: integer
                       counter:
                         type: object
                         properties:
@@ -1406,6 +1439,100 @@ paths:
                 example:
                   value:
                     error: Period or start_time parameter is required
+  "/api/v1/radio_stations/{id}/timeline":
+    get:
+      summary: Get radio station timeline with daily plays
+      tags:
+      - Radio Stations
+      description: Returns most played songs for a radio station with day-by-day play
+        distribution. Use either period OR start_time/end_time (mutually exclusive).
+        Returns 400 if neither provided.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Radio station ID
+        schema:
+          type: integer
+      - name: period
+        in: query
+        required: false
+        description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours,
+          day, week, month, year, all. Mutually exclusive with start_time/end_time'
+        schema:
+          type: string
+      - name: start_time
+        in: query
+        required: false
+        description: Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with
+          period
+        schema:
+          type: string
+      - name: end_time
+        in: query
+        required: false
+        description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      - name: per_page
+        in: query
+        required: false
+        description: 'Items per page (default: 24)'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Timeline retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: song
+                      attributes:
+                        title: Popular Song
+                        counter: 50
+                        position: 1
+                        daily_plays:
+                          '2026-01-10': 8
+                          '2026-01-11': 12
+                          '2026-01-12': 10
+                        artists:
+                        - id: '1'
+                          name: Artist Name
+                        spotify_artwork_url: https://i.scdn.co/image/abc123
+                    meta:
+                      period: week
+                      start_time: '2026-01-10T00:00:00Z'
+                      end_time: '2026-01-17T00:00:00Z'
+                    total_entries: 120
+                    total_pages: 5
+                    current_page: 1
+        '400':
+          description: Period or start_time parameter is required
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    error: Period or start_time parameter is required
+        '404':
+          description: Radio station not found
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    status: 404
+                    error: Not Found
   "/api/v1/radio_stations/{id}/stream_proxy":
     get:
       summary: Proxy radio station stream

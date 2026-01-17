@@ -292,6 +292,87 @@ RSpec.describe 'RadioStations API', type: :request do
     end
   end
 
+  path '/api/v1/radio_stations/{id}/timeline' do
+    get 'Get radio station timeline with daily plays' do
+      tags 'Radio Stations'
+      produces 'application/json'
+      description 'Returns most played songs for a radio station with day-by-day play distribution. ' \
+                  'Use either period OR start_time/end_time (mutually exclusive). Returns 400 if neither provided.'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
+      parameter name: :period, in: :query, type: :string, required: false,
+                description: 'Time period: hour, two_hours, four_hours, eight_hours, twelve_hours, day, week, ' \
+                             'month, year, all. Mutually exclusive with start_time/end_time'
+      parameter name: :start_time, in: :query, type: :string, required: false,
+                description: 'Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with period'
+      parameter name: :end_time, in: :query, type: :string, required: false,
+                description: 'Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time'
+      parameter name: :page, in: :query, type: :integer, required: false, description: 'Page number'
+      parameter name: :per_page, in: :query, type: :integer, required: false,
+                description: 'Items per page (default: 24)'
+
+      response '200', 'Timeline retrieved successfully' do
+        example 'application/json', :example, {
+          data: [
+            {
+              id: '1',
+              type: 'song',
+              attributes: {
+                title: 'Popular Song',
+                counter: 50,
+                position: 1,
+                daily_plays: {
+                  '2026-01-10': 8,
+                  '2026-01-11': 12,
+                  '2026-01-12': 10
+                },
+                artists: [{ id: '1', name: 'Artist Name' }],
+                spotify_artwork_url: 'https://i.scdn.co/image/abc123'
+              }
+            }
+          ],
+          meta: {
+            period: 'week',
+            start_time: '2026-01-10T00:00:00Z',
+            end_time: '2026-01-17T00:00:00Z'
+          },
+          total_entries: 120,
+          total_pages: 5,
+          current_page: 1
+        }
+
+        let(:radio_station) { create(:radio_station) }
+        let(:id) { radio_station.id }
+        let(:period) { 'week' }
+
+        run_test!
+      end
+
+      response '400', 'Period or start_time parameter is required' do
+        example 'application/json', :example, {
+          error: 'Period or start_time parameter is required'
+        }
+
+        let(:radio_station) { create(:radio_station) }
+        let(:id) { radio_station.id }
+        let(:period) { nil }
+
+        run_test!
+      end
+
+      response '404', 'Radio station not found' do
+        example 'application/json', :example, {
+          status: 404,
+          error: 'Not Found'
+        }
+
+        let(:id) { 0 }
+        let(:period) { 'week' }
+
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/radio_stations/{id}/stream_proxy' do
     get 'Proxy radio station stream' do
       tags 'Radio Stations'
