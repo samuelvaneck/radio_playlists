@@ -6,11 +6,6 @@ RSpec.describe MusicBrainz::RecordingFinder, type: :service do
   let(:song) { create(:song, title: 'Test Song', isrc: 'USRC12345678') }
   let(:artist) { create(:artist, name: 'Test Artist') }
   let(:finder) { described_class.new(song) }
-
-  before do
-    song.artists << artist
-  end
-
   let(:successful_response) do
     {
       'recordings' => [
@@ -24,9 +19,12 @@ RSpec.describe MusicBrainz::RecordingFinder, type: :service do
       ]
     }
   end
-
   let(:empty_response) do
     { 'recordings' => [] }
+  end
+
+  before do
+    song.artists << artist
   end
 
   describe '#find_recording_id' do

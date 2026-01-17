@@ -96,17 +96,12 @@ RSpec.describe AcoustidSubmitter, type: :service do
         expect(submitter.submitted?).to be true
       end
 
-      it 'sends correct parameters', :aggregate_failures do
+      it 'sends correct parameters' do
         submitter.submit
+        expected_params = { 'client' => api_key, 'user' => user_key, 'duration.0' => '212', 'mbid.0' => musicbrainz_id,
+                            'track.0' => 'Test Song', 'artist.0' => 'Test Artist' }
         expect(WebMock).to have_requested(:post, 'https://api.acoustid.org/v2/submit')
-          .with(body: hash_including(
-            'client' => api_key,
-            'user' => user_key,
-            'duration.0' => '212',
-            'mbid.0' => musicbrainz_id,
-            'track.0' => 'Test Song',
-            'artist.0' => 'Test Artist'
-          ))
+          .with(body: hash_including(expected_params))
       end
     end
 
@@ -122,8 +117,8 @@ RSpec.describe AcoustidSubmitter, type: :service do
 
       it 'does not include mbid parameter' do
         submitter.submit
-        expect(WebMock).to have_requested(:post, 'https://api.acoustid.org/v2/submit')
-          .with { |req| !req.body.include?('mbid.0') }
+        expect(WebMock).to(have_requested(:post, 'https://api.acoustid.org/v2/submit')
+          .with { |req| !req.body.include?('mbid.0') })
       end
     end
 

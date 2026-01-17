@@ -50,13 +50,13 @@ RSpec.describe AcoustidPopulationJob do
     end
 
     context 'when processing succeeds' do
-      it 'downloads audio from YouTube' do
+      it 'downloads audio from YouTube', :aggregate_failures do
         job.perform(song.id)
         expect(YoutubeAudioDownloader).to have_received(:new).with('dQw4w9WgXcQ')
         expect(downloader).to have_received(:download)
       end
 
-      it 'looks up MusicBrainz recording ID' do
+      it 'looks up MusicBrainz recording ID', :aggregate_failures do
         job.perform(song.id)
         expect(MusicBrainz::RecordingFinder).to have_received(:new).with(song)
         expect(finder).to have_received(:find_recording_id)
@@ -171,7 +171,9 @@ RSpec.describe AcoustidPopulationJob do
     end
 
     context 'with limit parameter' do
-      let!(:song_with_youtube_2) { create(:song, id_on_youtube: 'def456ghijk', acoustid_submitted_at: nil) }
+      before do
+        create(:song, id_on_youtube: 'def456ghijk', acoustid_submitted_at: nil)
+      end
 
       it 'respects the limit' do
         count = described_class.enqueue_all(limit: 1)
