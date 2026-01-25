@@ -23,7 +23,7 @@ module Api
           }, status: :ok
         end
 
-        def respond_to_on_destroy
+        def respond_to_on_destroy(_resource_or_scope)
           if current_admin
             render json: {
               status: 200,
