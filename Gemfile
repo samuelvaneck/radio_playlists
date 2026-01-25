@@ -38,6 +38,8 @@ gem 'seed-fu', '~> 2.3'
 # API Documentation
 gem 'rswag-api'
 gem 'rswag-ui'
+# Ruby 4.0 extracted gems (no longer in stdlib) but used by rswag-ui
+gem 'ostruct'
 
 # Until mail gem is updated
 # https://github.com/mikel/mail/pull/1439

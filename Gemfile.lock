@@ -597,6 +597,7 @@ DEPENDENCIES
   newrelic_rpm
   nokogiri (>= 1.10.9)
   open3 (~> 0.2.1)
+  ostruct
   pg
   pry-byebug
   pry-rails
