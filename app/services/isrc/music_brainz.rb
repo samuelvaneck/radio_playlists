@@ -14,7 +14,7 @@ class Isrc::MusicBrainz < Isrc
   def request_headers
     headers = {}
     headers['Content-Type'] = 'application/json'
-    headers['User-Agent'] = 'Airwave/1.0.0 (https://airwave.fm)'
+    headers['User-Agent'] = 'Airwave/1.0.0 (https://airwaveapp.nl)'
     headers
   end
 
