@@ -268,7 +268,7 @@ module Wikipedia
       @sparql_connection ||= Faraday.new(url: WIKIDATA_SPARQL_URL) do |conn|
         conn.response :json
         conn.headers['Accept'] = 'application/sparql-results+json'
-        conn.headers['User-Agent'] = 'RadioPlaylists/1.0 (https://radioplaylists.nl)'
+        conn.headers['User-Agent'] = 'Airwave/1.0 (https://airwave.fm)'
       end
     end
   end

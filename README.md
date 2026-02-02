@@ -1,6 +1,6 @@
-# Radio Playlists
+# Airwave
 
-Radio Playlists is a Ruby on Rails application designed listen to and process the latest played songs from various radio stations. The application integrates with multiple APIs and web scraping tools to fetch and display real-time playlist data.
+Airwave is a Ruby on Rails application designed to listen to and process the latest played songs from various radio stations. The application integrates with multiple APIs and web scraping tools to fetch and display real-time playlist data.
 
 ## Features
 
