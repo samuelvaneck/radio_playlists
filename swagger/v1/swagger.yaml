@@ -365,11 +365,26 @@ paths:
           type: integer
       responses:
         '200':
-          description: Empty results when no match
+          description: Autocomplete results retrieved successfully
           content:
             application/json:
               examples:
-                example:
+                with_results:
+                  value:
+                    data:
+                    - id: '1'
+                      type: artist
+                      attributes:
+                        id: 1
+                        name: Queen
+                        spotify_artwork_url: https://i.scdn.co/image/abc123
+                    - id: '2'
+                      type: artist
+                      attributes:
+                        id: 2
+                        name: Queens of the Stone Age
+                        spotify_artwork_url: https://i.scdn.co/image/def456
+                empty_results:
                   value:
                     data: []
   "/api/v1/artists/{id}":
@@ -1822,11 +1837,32 @@ paths:
           type: integer
       responses:
         '200':
-          description: Empty results when no match
+          description: Autocomplete results retrieved successfully
           content:
             application/json:
               examples:
-                example:
+                with_results:
+                  value:
+                    data:
+                    - id: '1'
+                      type: song
+                      attributes:
+                        id: 1
+                        title: Bohemian Rhapsody
+                        spotify_artwork_url: https://i.scdn.co/image/abc123
+                        artists:
+                        - id: 1
+                          name: Queen
+                    - id: '2'
+                      type: song
+                      attributes:
+                        id: 2
+                        title: Bohemian Like You
+                        spotify_artwork_url: https://i.scdn.co/image/def456
+                        artists:
+                        - id: 2
+                          name: The Dandy Warhols
+                empty_results:
                   value:
                     data: []
   "/api/v1/songs/{id}":

@@ -61,7 +61,7 @@ RSpec.describe 'Artists API', type: :request do
                 description: 'Maximum number of results (default: 10, max: 20)'
 
       response '200', 'Autocomplete results retrieved successfully' do
-        example 'application/json', :example, {
+        example 'application/json', :with_results, {
           data: [
             {
               id: '1',
@@ -71,9 +71,19 @@ RSpec.describe 'Artists API', type: :request do
                 name: 'Queen',
                 spotify_artwork_url: 'https://i.scdn.co/image/abc123'
               }
+            },
+            {
+              id: '2',
+              type: 'artist',
+              attributes: {
+                id: 2,
+                name: 'Queens of the Stone Age',
+                spotify_artwork_url: 'https://i.scdn.co/image/def456'
+              }
             }
           ]
         }
+        example 'application/json', :empty_results, { data: [] }
 
         let!(:artist) { create(:artist, name: 'Queen') }
         let(:q) { 'Queen' }
@@ -81,17 +91,6 @@ RSpec.describe 'Artists API', type: :request do
         run_test! do |response|
           data = JSON.parse(response.body)
           expect(data['data']).to be_an(Array)
-        end
-      end
-
-      response '200', 'Empty results when no match' do
-        example 'application/json', :example, { data: [] }
-
-        let(:q) { 'nonexistentartist12345' }
-
-        run_test! do |response|
-          data = JSON.parse(response.body)
-          expect(data['data']).to be_empty
         end
       end
     end
