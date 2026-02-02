@@ -92,6 +92,55 @@ RSpec.describe 'Songs API', type: :request do
     end
   end
 
+  path '/api/v1/songs/autocomplete' do
+    get 'Autocomplete songs by search text' do
+      tags 'Songs'
+      produces 'application/json'
+      description 'Search songs by title or artist name for autocomplete functionality'
+      parameter name: :q, in: :query, type: :string, required: true,
+                description: 'Search query string'
+      parameter name: :limit, in: :query, type: :integer, required: false,
+                description: 'Maximum number of results (default: 10, max: 20)'
+
+      response '200', 'Autocomplete results retrieved successfully' do
+        example 'application/json', :example, {
+          data: [
+            {
+              id: '1',
+              type: 'song',
+              attributes: {
+                id: 1,
+                title: 'Bohemian Rhapsody',
+                spotify_artwork_url: 'https://i.scdn.co/image/abc123',
+                artists: [{ id: 1, name: 'Queen' }]
+              }
+            }
+          ]
+        }
+
+        let!(:artist) { create(:artist, name: 'Queen') }
+        let!(:song) { create(:song, title: 'Bohemian Rhapsody', artists: [artist]) }
+        let(:q) { 'Bohemian' }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['data']).to be_an(Array)
+        end
+      end
+
+      response '200', 'Empty results when no match' do
+        example 'application/json', :example, { data: [] }
+
+        let(:q) { 'nonexistentsong12345' }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['data']).to be_empty
+        end
+      end
+    end
+  end
+
   path '/api/v1/songs/{id}' do
     get 'Get a song' do
       tags 'Songs'
