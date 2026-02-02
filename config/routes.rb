@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       # Redirect old playlists routes to air_plays
       get '/playlists', to: redirect('/api/v1/air_plays')
       resources :artists, only: %i[index show] do
+        get :autocomplete, on: :collection
         get :graph_data, on: :member
         get :songs, on: :member
         get :chart_positions, on: :member
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
         get :bio, on: :member
       end
       resources :songs, only: %i[index show] do
+        get :autocomplete, on: :collection
         get :graph_data, on: :member
         get :chart_positions, on: :member
         get :time_analytics, on: :member

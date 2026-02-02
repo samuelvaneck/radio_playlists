@@ -16,6 +16,26 @@ module Api
         render json: SongSerializer.new(song).serializable_hash.to_json
       end
 
+      # GET /api/v1/songs/autocomplete
+      #
+      # Parameters:
+      #   - q (required): Search query string
+      #   - limit (optional, default: 10): Maximum number of results (max: 20)
+      #
+      # Response:
+      # {
+      #   "data": [
+      #     { "id": "1", "type": "song", "attributes": { "id": 1, "title": "...", "artists": [...] } }
+      #   ]
+      # }
+      def autocomplete
+        results = Song.matching(params[:q])
+                      .includes(:artists)
+                      .limit(autocomplete_limit)
+
+        render json: SongSerializer.new(results).serializable_hash.to_json
+      end
+
       def graph_data
         render json: song.graph_data(params[:period])
       end
@@ -224,6 +244,10 @@ module Api
 
       def language_param
         params[:language] || 'en'
+      end
+
+      def autocomplete_limit
+        [params.fetch(:limit, 10).to_i, 20].min
       end
     end
   end

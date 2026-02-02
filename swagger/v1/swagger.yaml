@@ -344,6 +344,34 @@ paths:
                     total_entries: 50
                     total_pages: 3
                     current_page: 1
+  "/api/v1/artists/autocomplete":
+    get:
+      summary: Autocomplete artists by name
+      tags:
+      - Artists
+      description: Search artists by name for autocomplete functionality
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: Search query string
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: 'Maximum number of results (default: 10, max: 20)'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Empty results when no match
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data: []
   "/api/v1/artists/{id}":
     get:
       summary: Get an artist
@@ -1773,6 +1801,34 @@ paths:
                     total_entries: 100
                     total_pages: 5
                     current_page: 1
+  "/api/v1/songs/autocomplete":
+    get:
+      summary: Autocomplete songs by search text
+      tags:
+      - Songs
+      description: Search songs by title or artist name for autocomplete functionality
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: Search query string
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: 'Maximum number of results (default: 10, max: 20)'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Empty results when no match
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data: []
   "/api/v1/songs/{id}":
     get:
       summary: Get a song
