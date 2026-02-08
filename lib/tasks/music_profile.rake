@@ -12,10 +12,10 @@ namespace :music_profile do
       .left_joins(:music_profile)
       .where(music_profiles: { id: nil })
       .find_each do |song|
-    MusicProfileJob.perform_async(song.id)
-    processed += 1
-    puts "Enqueued #{processed}/#{total}" if (processed % 1000).zero?
-  end
+        MusicProfileJob.perform_async(song.id)
+        processed += 1
+        puts "Enqueued #{processed}/#{total}" if (processed % 1000).zero?
+      end
 
     puts "Enqueued #{total} songs for music profile creation"
   end
@@ -32,13 +32,13 @@ namespace :music_profile do
       .left_joins(:music_profile)
       .where(music_profiles: { id: nil })
       .find_each do |song|
-    MusicProfileJob.new.perform(song.id)
-    processed += 1
-    puts "Processed #{processed}/#{total}" if (processed % 100).zero?
-  rescue StandardError => e
-    failed += 1
-    puts "Failed for song #{song.id}: #{e.message}"
-  end
+        MusicProfileJob.new.perform(song.id)
+        processed += 1
+        puts "Processed #{processed}/#{total}" if (processed % 100).zero?
+      rescue StandardError => e
+        failed += 1
+        puts "Failed for song #{song.id}: #{e.message}"
+      end
 
     puts "Completed: #{processed - failed} succeeded, #{failed} failed"
   end
