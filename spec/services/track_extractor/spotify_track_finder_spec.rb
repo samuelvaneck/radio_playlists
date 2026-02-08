@@ -56,7 +56,7 @@ describe TrackExtractor::SpotifyTrackFinder do
         finder.find
         expect(Spotify::TrackFinder::Result)
           .to have_received(:new)
-          .with(artists: 'Test Artist', title: 'Test Song', spotify_search_url: 'spotify:search:test')
+                .with(artists: 'Test Artist', title: 'Test Song', spotify_search_url: 'spotify:search:test')
       end
     end
 
@@ -74,7 +74,7 @@ describe TrackExtractor::SpotifyTrackFinder do
         finder.find
         expect(Spotify::TrackFinder::Result)
           .to have_received(:new)
-          .with(artists: 'Test Artist', title: 'Test Song', spotify_track_id: 'abc123')
+                .with(artists: 'Test Artist', title: 'Test Song', spotify_track_id: 'abc123')
       end
     end
 
@@ -87,7 +87,7 @@ describe TrackExtractor::SpotifyTrackFinder do
         finder.find
         expect(Spotify::TrackFinder::Result)
           .to have_received(:new)
-          .with(artists: 'Test Artist', title: 'Test Song', spotify_track_id: 'existing123')
+                .with(artists: 'Test Artist', title: 'Test Song', spotify_track_id: 'existing123')
       end
 
       context 'when spotify_url is present' do
@@ -104,7 +104,7 @@ describe TrackExtractor::SpotifyTrackFinder do
           finder.find
           expect(Spotify::TrackFinder::Result)
             .to have_received(:new)
-            .with(artists: 'Test Artist', title: 'Test Song', spotify_track_id: 'newtrack456')
+                  .with(artists: 'Test Artist', title: 'Test Song', spotify_track_id: 'newtrack456')
         end
       end
 
@@ -122,7 +122,7 @@ describe TrackExtractor::SpotifyTrackFinder do
           finder.find
           expect(Spotify::TrackFinder::Result)
             .to have_received(:new)
-            .with(artists: 'Test Artist', title: 'TEST SONG', spotify_track_id: 'existing123')
+                  .with(artists: 'Test Artist', title: 'TEST SONG', spotify_track_id: 'existing123')
         end
       end
 
@@ -140,7 +140,7 @@ describe TrackExtractor::SpotifyTrackFinder do
           finder.find
           expect(Spotify::TrackFinder::Result)
             .to have_received(:new)
-            .with(artists: 'TEST ARTIST', title: 'Test Song', spotify_track_id: 'existing123')
+                  .with(artists: 'TEST ARTIST', title: 'Test Song', spotify_track_id: 'existing123')
         end
       end
     end
@@ -165,7 +165,7 @@ describe TrackExtractor::SpotifyTrackFinder do
           finder.find
           expect(Spotify::TrackFinder::Result)
             .to have_received(:new)
-            .with(artists: 'Artist One feat. Artist Two', title: 'Collab Song', spotify_track_id: 'collab123')
+                  .with(artists: 'Artist One feat. Artist Two', title: 'Collab Song', spotify_track_id: 'collab123')
         end
       end
 
@@ -183,7 +183,7 @@ describe TrackExtractor::SpotifyTrackFinder do
           finder.find
           expect(Spotify::TrackFinder::Result)
             .to have_received(:new)
-            .with(artists: 'Artist One & Artist Two', title: 'Collab Song', spotify_track_id: 'collab123')
+                  .with(artists: 'Artist One & Artist Two', title: 'Collab Song', spotify_track_id: 'collab123')
         end
       end
 
@@ -201,7 +201,7 @@ describe TrackExtractor::SpotifyTrackFinder do
           finder.find
           expect(Spotify::TrackFinder::Result)
             .to have_received(:new)
-            .with(artists: 'Artist One ft. Artist Two', title: 'Collab Song', spotify_track_id: 'collab123')
+                  .with(artists: 'Artist One ft. Artist Two', title: 'Collab Song', spotify_track_id: 'collab123')
         end
       end
     end
@@ -291,7 +291,7 @@ describe TrackExtractor::SpotifyTrackFinder do
         finder.find
         expect(Spotify::TrackFinder::Result)
           .to have_received(:new)
-          .with(artists: 'Completely Different Artist', title: 'Some Title', spotify_track_id: 'isrc_match123')
+                .with(artists: 'Completely Different Artist', title: 'Some Title', spotify_track_id: 'isrc_match123')
       end
     end
 
@@ -331,7 +331,7 @@ describe TrackExtractor::SpotifyTrackFinder do
         finder.find
         expect(Spotify::TrackFinder::Result)
           .to have_received(:new)
-          .with(artists: 'Ed Sheeran feat. Beyoncé', title: 'Perfect', spotify_track_id: 'perfect123')
+                .with(artists: 'Ed Sheeran feat. Beyoncé', title: 'Perfect', spotify_track_id: 'perfect123')
       end
     end
 
@@ -352,7 +352,7 @@ describe TrackExtractor::SpotifyTrackFinder do
         finder.find
         expect(Spotify::TrackFinder::Result)
           .to have_received(:new)
-          .with(artists: 'Ed Sheeran', title: 'Perfect', spotify_track_id: 'perfect456')
+                .with(artists: 'Ed Sheeran', title: 'Perfect', spotify_track_id: 'perfect456')
       end
     end
 
@@ -373,7 +373,7 @@ describe TrackExtractor::SpotifyTrackFinder do
         finder.find
         expect(Spotify::TrackFinder::Result)
           .to have_received(:new)
-          .with(artists: 'Ed Sheeran', title: 'Love Story')
+                .with(artists: 'Ed Sheeran', title: 'Love Story')
       end
     end
 
@@ -398,7 +398,7 @@ describe TrackExtractor::SpotifyTrackFinder do
         finder.find
         expect(Spotify::TrackFinder::Result)
           .to have_received(:new)
-          .with(artists: 'Ed Sheeran feat. Someone', title: 'Beautiful', spotify_track_id: 'ed_beautiful')
+                .with(artists: 'Ed Sheeran feat. Someone', title: 'Beautiful', spotify_track_id: 'ed_beautiful')
       end
     end
   end

@@ -26,7 +26,7 @@ RSpec.describe YoutubeAudioDownloader, type: :service do
     context 'when yt-dlp fails' do
       before do
         allow(Open3).to receive(:capture3)
-          .and_return(['', 'ERROR: Video unavailable', instance_double(Process::Status, success?: false)])
+                          .and_return(['', 'ERROR: Video unavailable', instance_double(Process::Status, success?: false)])
       end
 
       it 'raises a DownloadError' do
@@ -42,7 +42,7 @@ RSpec.describe YoutubeAudioDownloader, type: :service do
 
       before do
         allow(Open3).to receive(:capture3)
-          .and_return([json_output, '', instance_double(Process::Status, success?: true)])
+                          .and_return([json_output, '', instance_double(Process::Status, success?: true)])
       end
 
       it 'returns download result with output_file', :aggregate_failures do
@@ -69,7 +69,7 @@ RSpec.describe YoutubeAudioDownloader, type: :service do
     context 'when yt-dlp output is not valid JSON' do
       before do
         allow(Open3).to receive(:capture3)
-          .and_return(['not json', '', instance_double(Process::Status, success?: true)])
+                          .and_return(['not json', '', instance_double(Process::Status, success?: true)])
       end
 
       it 'does not raise an error' do

@@ -167,9 +167,9 @@ namespace :data_repair do
     puts '=' * 80
 
     duplicates = Song.where.not(isrc: [nil, ''])
-                     .group(:isrc)
-                     .having('COUNT(*) > 1')
-                     .count
+                   .group(:isrc)
+                   .having('COUNT(*) > 1')
+                   .count
 
     if duplicates.empty?
       puts 'No duplicate ISRCs found.'
@@ -194,9 +194,9 @@ namespace :data_repair do
     puts '=' * 80
 
     duplicate_isrcs = Song.where.not(isrc: [nil, ''])
-                          .group(:isrc)
-                          .having('COUNT(*) > 1')
-                          .pluck(:isrc)
+                        .group(:isrc)
+                        .having('COUNT(*) > 1')
+                        .pluck(:isrc)
 
     if duplicate_isrcs.empty?
       puts 'No duplicate ISRCs found. Nothing to merge.'
@@ -239,9 +239,9 @@ namespace :data_repair do
     puts '=' * 80
 
     duplicate_isrcs = Song.where.not(isrc: [nil, ''])
-                          .group(:isrc)
-                          .having('COUNT(*) > 1')
-                          .pluck(:isrc)
+                        .group(:isrc)
+                        .having('COUNT(*) > 1')
+                        .pluck(:isrc)
 
     if duplicate_isrcs.empty?
       puts 'No duplicate ISRCs found. Nothing to merge.'

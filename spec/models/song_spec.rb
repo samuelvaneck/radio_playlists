@@ -159,7 +159,7 @@ describe Song do
 
       it 'returns correct pagination metadata for page 3', :aggregate_failures do
         result = Song.most_played({ radio_station_ids: [new_radio_station.id] })
-                     .paginate(page: 3, per_page: per_page)
+                   .paginate(page: 3, per_page: per_page)
 
         expect(result.current_page).to eq 3
         expect(result.total_entries).to eq 12
@@ -168,7 +168,7 @@ describe Song do
 
       it 'returns correct songs for page 3 ordered by play count' do
         result = Song.most_played({ radio_station_ids: [new_radio_station.id] })
-                     .paginate(page: 3, per_page: per_page)
+                   .paginate(page: 3, per_page: per_page)
 
         # Page 3 should have the last 2 songs (indices 10 and 11, which have fewest plays)
         expect(result.length).to eq 2
@@ -176,7 +176,7 @@ describe Song do
 
       it 'preloads artists for paginated results', :aggregate_failures do
         result = Song.most_played({ radio_station_ids: [new_radio_station.id] })
-                     .paginate(page: 3, per_page: per_page)
+                   .paginate(page: 3, per_page: per_page)
 
         result.each do |song|
           expect(song.artists).to be_loaded
@@ -186,7 +186,7 @@ describe Song do
 
       it 'includes counter and position attributes on paginated songs', :aggregate_failures do
         result = Song.most_played({ radio_station_ids: [new_radio_station.id] })
-                     .paginate(page: 3, per_page: per_page)
+                   .paginate(page: 3, per_page: per_page)
 
         result.each do |song|
           expect(song).to respond_to(:counter)
@@ -198,7 +198,7 @@ describe Song do
 
       it 'does not trigger additional queries when accessing preloaded artists' do
         result = Song.most_played({ radio_station_ids: [new_radio_station.id] })
-                     .paginate(page: 3, per_page: per_page)
+                   .paginate(page: 3, per_page: per_page)
 
         # Force load the result and preloaded artists
         result.to_a

@@ -7,9 +7,9 @@ module Api
 
       def index
         render json: SongSerializer.new(songs)
-                                   .serializable_hash
-                                   .merge(pagination_data(songs))
-                                   .to_json
+                       .serializable_hash
+                       .merge(pagination_data(songs))
+                       .to_json
       end
 
       def show
@@ -30,8 +30,8 @@ module Api
       # }
       def autocomplete
         results = Song.matching(params[:q])
-                      .includes(:artists)
-                      .limit(autocomplete_limit)
+                    .includes(:artists)
+                    .limit(autocomplete_limit)
 
         render json: SongSerializer.new(results).serializable_hash.to_json
       end
@@ -113,9 +113,9 @@ module Api
       #   - radio_station_ids[] (optional): Filter by specific radio stations
       def air_plays
         render json: AirPlaySerializer.new(song_air_plays)
-                                      .serializable_hash
-                                      .merge(pagination_data(song_air_plays))
-                                      .to_json
+                       .serializable_hash
+                       .merge(pagination_data(song_air_plays))
+                       .to_json
       end
 
       # GET /api/v1/songs/:id/info
@@ -189,11 +189,11 @@ module Api
         start_time, end_time = AirPlay.time_range_from_params(params, default_period: 'day')
 
         @song_air_plays ||= song.air_plays
-                                .includes(:radio_station, song: :artists)
-                                .played_between(start_time, end_time)
-                                .played_on(radio_station_ids)
-                                .order(broadcasted_at: :desc)
-                                .paginate(page: params[:page], per_page: 24)
+                              .includes(:radio_station, song: :artists)
+                              .played_between(start_time, end_time)
+                              .played_on(radio_station_ids)
+                              .order(broadcasted_at: :desc)
+                              .paginate(page: params[:page], per_page: 24)
       end
 
       def songs

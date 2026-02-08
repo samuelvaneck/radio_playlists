@@ -53,11 +53,11 @@ class AirPlay < ApplicationRecord
     start_time, end_time = time_range_from_params(params, default_period: 'day')
 
     AirPlay.joins(:song, :radio_station)
-           .played_between(start_time, end_time)
-           .played_on(params[:radio_station_ids])
-           .matching(params[:search_term])
-           .group(:id, 'songs.id', 'radio_stations.id')
-           .order(created_at: :desc)
+      .played_between(start_time, end_time)
+      .played_on(params[:radio_station_ids])
+      .matching(params[:search_term])
+      .group(:id, 'songs.id', 'radio_stations.id')
+      .order(created_at: :desc)
   end
 
   def deduplicate
@@ -83,9 +83,9 @@ class AirPlay < ApplicationRecord
 
     # Fast path: exact song match
     exact_match = draft
-                  .where(radio_station:, song:)
-                  .where(broadcasted_at: time_window)
-                  .first
+                    .where(radio_station:, song:)
+                    .where(broadcasted_at: time_window)
+                    .first
     return exact_match if exact_match
 
     # Fallback: fuzzy match by title and artist within time window
@@ -94,9 +94,9 @@ class AirPlay < ApplicationRecord
 
   def self.find_draft_by_fuzzy_match(radio_station, song, time_window)
     candidates = draft
-                 .includes(song: :artists)
-                 .where(radio_station:)
-                 .where(broadcasted_at: time_window)
+                   .includes(song: :artists)
+                   .where(radio_station:)
+                   .where(broadcasted_at: time_window)
 
     song_title = song.title.to_s.downcase
     song_artists = song.artists.map(&:name).join(' ').downcase

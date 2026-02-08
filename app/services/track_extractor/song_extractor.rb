@@ -75,8 +75,8 @@ class TrackExtractor::SongExtractor < TrackExtractor
 
   def song_by_artists_and_title
     @song_by_artists_and_title ||= Song.joins(:artists)
-                                       .where(artists: @artists)
-                                       .where('lower(title) LIKE ?', title.downcase)
+                                     .where(artists: @artists)
+                                     .where('lower(title) LIKE ?', title.downcase)
   end
 
   # ISRC is checked first because it uniquely identifies a recording regardless of

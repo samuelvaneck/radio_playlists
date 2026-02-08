@@ -59,7 +59,7 @@ RSpec.describe AcoustidRecognizer, type: :service do
     context 'when fpcalc fails' do
       before do
         allow(Open3).to receive(:capture3)
-          .and_return(['', 'fpcalc error', instance_double(Process::Status, success?: false)])
+                          .and_return(['', 'fpcalc error', instance_double(Process::Status, success?: false)])
       end
 
       it 'returns false' do
@@ -80,7 +80,7 @@ RSpec.describe AcoustidRecognizer, type: :service do
 
       before do
         allow(Open3).to receive(:capture3)
-          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
+                          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
         stub_request(:get, /api.acoustid.org/)
           .to_return(status: 200, body: empty_api_response.to_json)
       end
@@ -100,7 +100,7 @@ RSpec.describe AcoustidRecognizer, type: :service do
 
       before do
         allow(Open3).to receive(:capture3)
-          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
+                          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
         stub_request(:get, /api.acoustid.org/)
           .to_return(status: 200, body: low_score_response.to_json)
       end
@@ -113,7 +113,7 @@ RSpec.describe AcoustidRecognizer, type: :service do
     context 'when recognition is successful' do
       before do
         allow(Open3).to receive(:capture3)
-          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
+                          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
         stub_request(:get, /api.acoustid.org/)
           .to_return(status: 200, body: successful_api_response.to_json)
       end
@@ -174,7 +174,7 @@ RSpec.describe AcoustidRecognizer, type: :service do
 
       before do
         allow(Open3).to receive(:capture3)
-          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
+                          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
         stub_request(:get, /api.acoustid.org/)
           .to_return(status: 200, body: multi_artist_response.to_json)
       end
@@ -192,7 +192,7 @@ RSpec.describe AcoustidRecognizer, type: :service do
 
       before do
         allow(Open3).to receive(:capture3)
-          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
+                          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
         stub_request(:get, /api.acoustid.org/)
           .to_return(status: 200, body: error_response.to_json)
       end
@@ -211,7 +211,7 @@ RSpec.describe AcoustidRecognizer, type: :service do
     context 'when API returns HTTP error' do
       before do
         allow(Open3).to receive(:capture3)
-          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
+                          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
         stub_request(:get, /api.acoustid.org/)
           .to_return(status: 500, body: 'Internal Server Error')
       end

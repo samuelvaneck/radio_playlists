@@ -29,6 +29,8 @@ plugins:
 ################################################################################
 # Add more cops from here as we go: https://docs.rubocop.org/rubocop/index.html
 ################################################################################
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
 Layout/LineLength:
   Enabled: true
   Details: >-

@@ -43,10 +43,10 @@ class RadioStationTimeline
 
   def fetch_daily_counts(song_ids)
     counts = AirPlay.confirmed
-                    .where(radio_station: @radio_station, song_id: song_ids)
-                    .where(broadcasted_at: @start_time..@end_time)
-                    .group(:song_id, Arel.sql('DATE(broadcasted_at)'))
-                    .count
+               .where(radio_station: @radio_station, song_id: song_ids)
+               .where(broadcasted_at: @start_time..@end_time)
+               .group(:song_id, Arel.sql('DATE(broadcasted_at)'))
+               .count
 
     counts.each_with_object({}) do |((song_id, date), count), hash|
       hash[song_id] ||= {}
