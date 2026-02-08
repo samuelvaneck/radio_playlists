@@ -29,8 +29,19 @@ class RadioStation < ActiveRecord::Base
 
   default_scope -> { order(name: :asc) }
 
+  VALID_PROCESSORS = %w[
+    npo_api_processor
+    qmusic_api_processor
+    media_huis_api_processor
+    talpa_api_processor
+    slam_api_processor
+    kink_api_processor
+    gnr_api_processor
+  ].freeze
+
   validates :name, presence: true
   validates :name, uniqueness: true
+  validates :processor, inclusion: { in: VALID_PROCESSORS }, allow_blank: true
 
   def self.last_played_songs
     all.map do |radio_station|
