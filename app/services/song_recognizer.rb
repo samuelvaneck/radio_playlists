@@ -95,8 +95,7 @@ class SongRecognizer
   private
 
   def run_song_recognizer
-    command = "songrec audio-file-to-recognized-song #{@output_file}"
-    Open3.popen3(command) do |_stdin, stdout, stderr, _wait_thr|
+    Open3.popen3('songrec', 'audio-file-to-recognized-song', @output_file.to_s) do |_stdin, stdout, stderr, _wait_thr|
       output = stdout.read
       error = stderr.read
       output.presence || error
