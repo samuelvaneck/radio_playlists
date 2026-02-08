@@ -3,9 +3,9 @@
 class Api::V1::Admins::SongsController < ApplicationController
   def index
     songs = Song.includes(:artists)
-                .search(params[:search_term])
-                .order(created_at: :desc)
-                .paginate(page: params[:page], per_page: params[:per_page] || 24)
+              .search(params[:search_term])
+              .order(created_at: :desc)
+              .paginate(page: params[:page], per_page: params[:per_page] || 24)
     render json: SongSerializer.new(songs).serializable_hash, status: :ok
   end
 

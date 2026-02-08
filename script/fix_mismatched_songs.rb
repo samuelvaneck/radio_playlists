@@ -233,9 +233,9 @@ class SongFixer
       next unless artist
 
       existing = Song.joins(:artists)
-                     .where(artists: { id: artist.id })
-                     .where('LOWER(songs.title) = ?', @info[:spotify_title].downcase)
-                     .first
+                   .where(artists: { id: artist.id })
+                   .where('LOWER(songs.title) = ?', @info[:spotify_title].downcase)
+                   .first
       return existing if existing
     end
     nil

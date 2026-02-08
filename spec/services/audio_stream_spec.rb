@@ -46,8 +46,8 @@ describe AudioStream, type: :service do
         allow(Open3).to receive(:popen3).and_yield(stdin, stdout, stderr, wait_thr)
         allow(CharlockHolmes::EncodingDetector).to receive(:detect).with(stderr_content).and_return(detection)
         allow(CharlockHolmes::Converter).to receive(:convert)
-          .with(stderr_content, 'ISO-8859-1', 'UTF-8')
-          .and_return(utf8_content)
+                                              .with(stderr_content, 'ISO-8859-1', 'UTF-8')
+                                              .and_return(utf8_content)
       end
 
       it 'logs the capture command' do
@@ -73,7 +73,7 @@ describe AudioStream, type: :service do
       it 'converts stderr to UTF-8' do
         audio_stream.capture
         expect(CharlockHolmes::Converter).to have_received(:convert)
-          .with(stderr_content, 'ISO-8859-1', 'UTF-8')
+                                               .with(stderr_content, 'ISO-8859-1', 'UTF-8')
       end
     end
 
@@ -197,8 +197,8 @@ describe AudioStream, type: :service do
       audio_stream.instance_variable_set(:@stderr, stderr_content)
       allow(CharlockHolmes::EncodingDetector).to receive(:detect).with(stderr_content).and_return(detection)
       allow(CharlockHolmes::Converter).to receive(:convert)
-        .with(stderr_content, 'ISO-8859-1', 'UTF-8')
-        .and_return(utf8_content)
+                                            .with(stderr_content, 'ISO-8859-1', 'UTF-8')
+                                            .and_return(utf8_content)
     end
 
     it 'detects the encoding of stderr' do
@@ -209,7 +209,7 @@ describe AudioStream, type: :service do
     it 'converts stderr to UTF-8' do
       audio_stream.convert_stderr_to_utf8
       expect(CharlockHolmes::Converter).to have_received(:convert)
-        .with(stderr_content, 'ISO-8859-1', 'UTF-8')
+                                             .with(stderr_content, 'ISO-8859-1', 'UTF-8')
     end
 
     it 'returns the line containing StreamTitle' do

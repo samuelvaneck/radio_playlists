@@ -25,9 +25,9 @@ class SongImporter::ScraperImporter < SongImporter
 
   def last_added_scraper_song
     @last_added_scraper_song ||= @radio_station.air_plays
-                                               .scraper_imported
-                                               .includes(:song)
-                                               .order(created_at: :desc)
-                                               .first&.song
+                                   .scraper_imported
+                                   .includes(:song)
+                                   .order(created_at: :desc)
+                                   .first&.song
   end
 end

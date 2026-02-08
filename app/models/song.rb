@@ -84,13 +84,13 @@ class Song < ApplicationRecord
     start_time, end_time = time_range_from_params(params, default_period: 'week')
 
     Song.joins(:air_plays)
-        .preload(:artists)
-        .merge(AirPlay.confirmed)
-        .played_between(start_time, end_time)
-        .played_on(params[:radio_station_ids])
-        .matching(params[:search_term])
-        .with_music_profile(params[:music_profile])
-        .select("songs.id,
+      .preload(:artists)
+      .merge(AirPlay.confirmed)
+      .played_between(start_time, end_time)
+      .played_on(params[:radio_station_ids])
+      .matching(params[:search_term])
+      .with_music_profile(params[:music_profile])
+      .select("songs.id,
                  songs.title,
                  songs.search_text,
                  songs.id_on_spotify,
@@ -110,8 +110,8 @@ class Song < ApplicationRecord
                  songs.release_date_precision,
                  COUNT(air_plays.id) AS counter,
                  ROW_NUMBER() OVER (ORDER BY COUNT(air_plays.id) DESC NULLS LAST) AS position")
-        .group('songs.id, songs.title')
-        .order('COUNTER DESC NULLS LAST')
+      .group('songs.id, songs.title')
+      .order('COUNTER DESC NULLS LAST')
   end
 
   def self.most_played_group_by(column, params)

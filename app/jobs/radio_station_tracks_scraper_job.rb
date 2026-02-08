@@ -89,7 +89,7 @@ class RadioStationTracksScraperJob
 
   def id_on_youtube
     youtube_video = @response&.dig(:played_tracks, 0, :videos)
-                             &.find { |video| video[:type] == 'youtube' }
+                      &.find { |video| video[:type] == 'youtube' }
     return nil if youtube_video.blank?
 
     youtube_video['id']

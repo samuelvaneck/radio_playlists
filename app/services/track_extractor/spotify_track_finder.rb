@@ -41,9 +41,9 @@ class TrackExtractor::SpotifyTrackFinder < TrackExtractor
     return find_by_title_with_fuzzy_artist if artist_ids.blank?
 
     Song.joins(:artists)
-        .where(artists: { id: artist_ids })
-        .where('LOWER(songs.title) = ?', title.downcase)
-        .first
+      .where(artists: { id: artist_ids })
+      .where('LOWER(songs.title) = ?', title.downcase)
+      .first
   end
 
   # When exact artist match fails, try to find song by title and verify
@@ -52,8 +52,8 @@ class TrackExtractor::SpotifyTrackFinder < TrackExtractor
     return if title.blank? || artist_name.blank?
 
     songs_by_title = Song.where('LOWER(title) = ?', title.downcase)
-                         .where.not(id_on_spotify: nil)
-                         .includes(:artists)
+                       .where.not(id_on_spotify: nil)
+                       .includes(:artists)
 
     recognized_artist_names = split_artist_names.map(&:downcase)
 

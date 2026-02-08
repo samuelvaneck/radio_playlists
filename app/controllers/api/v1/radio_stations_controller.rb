@@ -43,9 +43,9 @@ module Api
         return render json: { error: 'Period or start_time parameter is required' }, status: :bad_request if time_param_blank?
 
         render json: RadioStationSongSerializer.new(new_played_items)
-                                               .serializable_hash
-                                               .merge(pagination_data(new_played_items))
-                                               .to_json
+                       .serializable_hash
+                       .merge(pagination_data(new_played_items))
+                       .to_json
       end
 
       def stream_proxy
@@ -73,9 +73,9 @@ module Api
         paginated = timeline.songs.paginate(page: params[:page], per_page: params[:per_page] || 24)
 
         render json: SongSerializer.new(paginated, meta: timeline.meta)
-                                   .serializable_hash
-                                   .merge(pagination_data(paginated))
-                                   .to_json
+                       .serializable_hash
+                       .merge(pagination_data(paginated))
+                       .to_json
       end
 
       private

@@ -40,11 +40,11 @@ class Artist < ApplicationRecord
     start_time, end_time = time_range_from_params(params, default_period: 'week')
 
     Artist.joins(:air_plays)
-          .merge(AirPlay.confirmed)
-          .played_between(start_time, end_time)
-          .played_on(params[:radio_station_ids])
-          .matching(params[:search_term])
-          .select("artists.id,
+      .merge(AirPlay.confirmed)
+      .played_between(start_time, end_time)
+      .played_on(params[:radio_station_ids])
+      .matching(params[:search_term])
+      .select("artists.id,
                    artists.name,
                    artists.image,
                    artists.id_on_spotify,
@@ -53,8 +53,8 @@ class Artist < ApplicationRecord
                    artists.instagram_url,
                    artists.website_url,
                    COUNT(DISTINCT air_plays.id) AS counter")
-          .group(:id)
-          .order('COUNTER DESC')
+      .group(:id)
+      .order('COUNTER DESC')
   end
 
   def self.most_played_group_by(column, params)

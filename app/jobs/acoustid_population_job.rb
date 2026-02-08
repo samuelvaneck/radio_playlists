@@ -21,7 +21,7 @@ class AcoustidPopulationJob
   # Enqueue jobs for all songs with YouTube IDs that haven't been submitted yet
   def self.enqueue_all(limit: nil)
     scope = Song.where(acoustid_submitted_at: nil)
-                .where.not(id_on_youtube: nil)
+              .where.not(id_on_youtube: nil)
     scope = scope.limit(limit) if limit
 
     count = 0

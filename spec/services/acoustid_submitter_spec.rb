@@ -66,7 +66,7 @@ RSpec.describe AcoustidSubmitter, type: :service do
     context 'when fpcalc fails' do
       before do
         allow(Open3).to receive(:capture3)
-          .and_return(['', 'fpcalc error', instance_double(Process::Status, success?: false)])
+                          .and_return(['', 'fpcalc error', instance_double(Process::Status, success?: false)])
       end
 
       it 'raises a FingerprintError' do
@@ -77,7 +77,7 @@ RSpec.describe AcoustidSubmitter, type: :service do
     context 'when submission is successful' do
       before do
         allow(Open3).to receive(:capture3)
-          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
+                          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
         stub_request(:post, 'https://api.acoustid.org/v2/submit')
           .to_return(status: 200, body: successful_response.to_json)
       end
@@ -101,7 +101,7 @@ RSpec.describe AcoustidSubmitter, type: :service do
         expected_params = { 'client' => api_key, 'user' => user_key, 'duration.0' => '212', 'mbid.0' => musicbrainz_id,
                             'track.0' => 'Test Song', 'artist.0' => 'Test Artist' }
         expect(WebMock).to have_requested(:post, 'https://api.acoustid.org/v2/submit')
-          .with(body: hash_including(expected_params))
+                             .with(body: hash_including(expected_params))
       end
     end
 
@@ -110,7 +110,7 @@ RSpec.describe AcoustidSubmitter, type: :service do
 
       before do
         allow(Open3).to receive(:capture3)
-          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
+                          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
         stub_request(:post, 'https://api.acoustid.org/v2/submit')
           .to_return(status: 200, body: successful_response.to_json)
       end
@@ -129,7 +129,7 @@ RSpec.describe AcoustidSubmitter, type: :service do
 
       before do
         allow(Open3).to receive(:capture3)
-          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
+                          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
         stub_request(:post, 'https://api.acoustid.org/v2/submit')
           .to_return(status: 200, body: error_response.to_json)
       end
@@ -142,7 +142,7 @@ RSpec.describe AcoustidSubmitter, type: :service do
     context 'when API returns HTTP error' do
       before do
         allow(Open3).to receive(:capture3)
-          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
+                          .and_return([fingerprint_output, '', instance_double(Process::Status, success?: true)])
         stub_request(:post, 'https://api.acoustid.org/v2/submit')
           .to_return(status: 500, body: 'Internal Server Error')
       end

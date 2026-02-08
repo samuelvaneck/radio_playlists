@@ -6,8 +6,8 @@ namespace :acoustid do
     puts 'Enqueuing songs for AcoustID population...'
 
     pending_count = Song.where(acoustid_submitted_at: nil)
-                        .where.not(id_on_youtube: nil)
-                        .count
+                      .where.not(id_on_youtube: nil)
+                      .count
 
     puts "Found #{pending_count} songs with YouTube IDs pending submission"
 

@@ -49,13 +49,13 @@ class RadioStation < ActiveRecord::Base
     start_time, end_time = time_range_from_params(params, default_period: 'day')
 
     RadioStationSong.includes(:radio_station, song: :artists)
-                    .played_between(start_time, end_time)
-                    .played_on(params[:radio_station_ids])
-                    .joins('INNER JOIN air_plays ON air_plays.song_id = radio_station_songs.song_id
+      .played_between(start_time, end_time)
+      .played_on(params[:radio_station_ids])
+      .joins('INNER JOIN air_plays ON air_plays.song_id = radio_station_songs.song_id
                                                  AND air_plays.radio_station_id = radio_station_songs.radio_station_id')
-                    .select('radio_station_songs.*, COUNT(air_plays.id) AS air_plays_count')
-                    .group('radio_station_songs.id')
-                    .order('air_plays_count DESC')
+      .select('radio_station_songs.*, COUNT(air_plays.id) AS air_plays_count')
+      .group('radio_station_songs.id')
+      .order('air_plays_count DESC')
   end
 
   def status_data
@@ -113,10 +113,10 @@ class RadioStation < ActiveRecord::Base
 
   def songs_played_last_hour
     Song.joins(:air_plays)
-        .where(air_plays: { radio_station_id: id, created_at: 1.hour.ago..Time.zone.now })
-        .merge(AirPlay.confirmed)
-        .includes(:artists)
-        .distinct
+      .where(air_plays: { radio_station_id: id, created_at: 1.hour.ago..Time.zone.now })
+      .merge(AirPlay.confirmed)
+      .includes(:artists)
+      .distinct
   end
 
   def update_last_added_air_play_ids(air_play_id)

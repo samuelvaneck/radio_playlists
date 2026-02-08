@@ -70,9 +70,9 @@ module TimeAnalyticsConcern
     end_date = Time.current.beginning_of_week
 
     actual_counts = filtered_air_plays(radio_station_ids)
-                    .where('broadcasted_at >= ?', start_date)
-                    .group("DATE_TRUNC('week', broadcasted_at)")
-                    .count
+                      .where('broadcasted_at >= ?', start_date)
+                      .group("DATE_TRUNC('week', broadcasted_at)")
+                      .count
 
     all_weeks = {}
     current_week = start_date

@@ -8,11 +8,11 @@ namespace :songs do
 
     # Find songs that have airplays from many different stations within a short time window
     suspicious_songs = Song.joins(:air_plays)
-                           .where(air_plays: { broadcasted_at: 24.hours.ago.. })
-                           .group('songs.id')
-                           .having('COUNT(DISTINCT air_plays.radio_station_id) >= 5')
-                           .having('MAX(air_plays.broadcasted_at) - MIN(air_plays.broadcasted_at) < interval \'30 minutes\'')
-                           .select('songs.*, COUNT(DISTINCT air_plays.radio_station_id) as station_count')
+                         .where(air_plays: { broadcasted_at: 24.hours.ago.. })
+                         .group('songs.id')
+                         .having('COUNT(DISTINCT air_plays.radio_station_id) >= 5')
+                         .having('MAX(air_plays.broadcasted_at) - MIN(air_plays.broadcasted_at) < interval \'30 minutes\'')
+                         .select('songs.*, COUNT(DISTINCT air_plays.radio_station_id) as station_count')
 
     if suspicious_songs.empty?
       puts 'No suspicious songs found.'
@@ -66,10 +66,10 @@ namespace :songs do
     puts 'Finding and fixing suspicious songs...'
 
     suspicious_songs = Song.joins(:air_plays)
-                           .where(air_plays: { broadcasted_at: 24.hours.ago.. })
-                           .group('songs.id')
-                           .having('COUNT(DISTINCT air_plays.radio_station_id) >= 5')
-                           .having('MAX(air_plays.broadcasted_at) - MIN(air_plays.broadcasted_at) < interval \'30 minutes\'')
+                         .where(air_plays: { broadcasted_at: 24.hours.ago.. })
+                         .group('songs.id')
+                         .having('COUNT(DISTINCT air_plays.radio_station_id) >= 5')
+                         .having('MAX(air_plays.broadcasted_at) - MIN(air_plays.broadcasted_at) < interval \'30 minutes\'')
 
     if suspicious_songs.empty?
       puts 'No suspicious songs found.'
@@ -104,8 +104,8 @@ namespace :songs do
     abort 'Please provide start and end times' if start_time.blank? || end_time.blank?
 
     songs = Song.joins(:air_plays)
-                .where(air_plays: { broadcasted_at: start_time..end_time })
-                .distinct
+              .where(air_plays: { broadcasted_at: start_time..end_time })
+              .distinct
 
     puts "Found #{songs.count} songs with airplays between #{start_time} and #{end_time}"
 
