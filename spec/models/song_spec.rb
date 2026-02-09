@@ -5,6 +5,7 @@
 # Table name: songs
 #
 #  id                     :bigint           not null, primary key
+#  acoustid_submitted_at  :datetime
 #  deezer_artwork_url     :string
 #  deezer_preview_url     :string
 #  deezer_song_url        :string
@@ -28,10 +29,11 @@
 #
 # Indexes
 #
-#  index_songs_on_id_on_deezer  (id_on_deezer)
-#  index_songs_on_id_on_itunes  (id_on_itunes)
-#  index_songs_on_release_date  (release_date)
-#  index_songs_on_search_text   (search_text)
+#  index_songs_on_acoustid_submitted_at  (acoustid_submitted_at)
+#  index_songs_on_id_on_deezer           (id_on_deezer)
+#  index_songs_on_id_on_itunes           (id_on_itunes)
+#  index_songs_on_release_date           (release_date)
+#  index_songs_on_search_text            (search_text)
 #
 describe Song do
   let(:artist_one) { create :artist }
