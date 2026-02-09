@@ -23,6 +23,10 @@ FactoryBot.define do
     url { Faker::Internet.domain_name(subdomain: true, domain: 'example') }
     processor { %w[npo_api_processor media_huis_api_processor talpa_api_processor qmusic_api_processor].sample }
     country_code { 'NLD' }
+
+    trait :with_direct_stream do
+      direct_stream_url { 'https://stream.example.com/radio.mp3' }
+    end
   end
 
   factory :radio_1, parent: :radio_station do

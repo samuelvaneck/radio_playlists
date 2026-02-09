@@ -29,6 +29,10 @@ rails db:migrate                            # Run migrations
 rails server                                # Start Rails (port 3000)
 bundle exec sidekiq                         # Start background jobs
 docker-compose up                           # Full stack with Docker
+
+# Persistent Streams
+bundle exec rake persistent_streams:start   # Start stream manager (blocking)
+bundle exec rake persistent_streams:status  # Show per-station status
 ```
 
 ## Architecture
@@ -43,7 +47,8 @@ The app uses service objects extensively in `app/services/`:
 - `TrackExtractor/` - Extracts artist/song info and finds Spotify tracks
 - `Spotify/` and `Youtube/` - External API integrations
 - `Lastfm/` and `Wikipedia/` - Artist bio/info enrichment
-- `AudioStream/` - M3U8 and MP3 stream handling
+- `AudioStream/` - M3U8, MP3, and PersistentSegment stream handling
+- `PersistentStream/` - Long-lived ffmpeg processes for ad-free stream capture (see below)
 
 ### Background Jobs
 
@@ -52,6 +57,20 @@ Sidekiq jobs in `app/jobs/` run on schedules defined in `config/sidekiq.yml`:
 - `RadioStationTracksScraperJob` - Every 3 minutes, scrapes station playlists
 - `ChartCreationJob` - Daily at 00:10, generates charts
 - `YoutubeApiImportJob` - Every 15 minutes
+
+### Persistent Stream Manager
+
+Replaces Icecast relay dependency for ad-free stream capture. Radio stations connecting directly trigger ~30s pre-roll ads; persistent streams avoid this by maintaining long-lived ffmpeg connections.
+
+- `RadioStation#direct_stream_url` — direct station stream URL (when set, persistent streams are preferred)
+- `RadioStation#stream_url` — Icecast relay URL (used as fallback)
+- `PersistentStream::Process` — manages one ffmpeg process per station, writing rolling 10-second segments to `tmp/audio/persistent/{station}/`
+- `PersistentStream::SegmentReader` — reads latest completed segment from ffmpeg's `segments.csv`, with 30s staleness threshold
+- `PersistentStream::Manager` — orchestrates all processes, health-checks every 30s, auto-restarts dead processes
+- `AudioStream::PersistentSegment` — AudioStream subclass used by SongImporter when persistent segments are available
+- `SongImporter#build_audio_stream` — prefers persistent segments, falls back to Icecast stream
+
+Run via `Procfile.dev` (`streams` entry) or `docker-compose.yml` (`persistent_streams` service).
 
 ### Data Flow
 
@@ -168,7 +187,7 @@ Both recognizers run on each import for comparison. Results are stored in `SongI
 
 ### Audio Duration Requirements
 
-Current recording duration is **5 seconds** (configured in `app/services/audio_stream/mp3.rb` and `m3u8.rb`).
+Current recording duration is **5 seconds** for direct Icecast capture (configured in `app/services/audio_stream/mp3.rb` and `m3u8.rb`) and **10 seconds** for persistent stream segments (configured in `app/services/persistent_stream/process.rb`).
 
 **SongRec vs AcoustID duration needs:**
 

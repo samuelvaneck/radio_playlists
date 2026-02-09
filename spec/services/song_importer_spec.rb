@@ -253,4 +253,56 @@ describe SongImporter do
       end
     end
   end
+
+  describe '#build_audio_stream' do
+    subject(:importer) { described_class.new(radio_station: station) }
+
+    let(:output_file) { Rails.root.join('tmp/test_build_audio_stream.mp3') }
+
+    context 'when persistent segment is available' do
+      let(:station) { create(:radio_station, :with_direct_stream, stream_url: 'https://icecast.example.com/test.mp3') }
+
+      before do
+        reader = instance_double(PersistentStream::SegmentReader, available?: true)
+        allow(PersistentStream::SegmentReader).to receive(:new).and_return(reader)
+      end
+
+      it 'returns a PersistentSegment instance' do
+        result = importer.send(:build_audio_stream, output_file)
+        expect(result).to be_a(AudioStream::PersistentSegment)
+      end
+    end
+
+    context 'when persistent segment is not available and stream is MP3' do
+      let(:station) { create(:radio_station, stream_url: 'https://icecast.example.com/test.mp3') }
+
+      it 'returns an Mp3 instance' do
+        result = importer.send(:build_audio_stream, output_file)
+        expect(result).to be_a(AudioStream::Mp3)
+      end
+    end
+
+    context 'when persistent segment is not available and stream is M3U8' do
+      let(:station) { create(:radio_station, stream_url: 'https://stream.example.com/test-m3u8') }
+
+      it 'returns an M3u8 instance' do
+        result = importer.send(:build_audio_stream, output_file)
+        expect(result).to be_a(AudioStream::M3u8)
+      end
+    end
+
+    context 'when station has direct_stream_url but segments are stale' do
+      let(:station) { create(:radio_station, :with_direct_stream, stream_url: 'https://icecast.example.com/test.mp3') }
+
+      before do
+        reader = instance_double(PersistentStream::SegmentReader, available?: false)
+        allow(PersistentStream::SegmentReader).to receive(:new).and_return(reader)
+      end
+
+      it 'falls back to Mp3 stream' do
+        result = importer.send(:build_audio_stream, output_file)
+        expect(result).to be_a(AudioStream::Mp3)
+      end
+    end
+  end
 end

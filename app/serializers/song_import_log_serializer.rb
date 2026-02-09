@@ -5,6 +5,10 @@
 # Table name: song_import_logs
 #
 #  id                      :bigint           not null, primary key
+#  acoustid_artist         :string
+#  acoustid_raw_response   :jsonb
+#  acoustid_score          :decimal(5, 4)
+#  acoustid_title          :string
 #  broadcasted_at          :datetime
 #  deezer_artist           :string
 #  deezer_raw_response     :jsonb
@@ -31,6 +35,7 @@
 #  status                  :string           default("pending")
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  acoustid_recording_id   :string
 #  air_play_id             :bigint
 #  deezer_track_id         :string
 #  itunes_track_id         :string
