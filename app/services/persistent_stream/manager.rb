@@ -2,6 +2,8 @@
 
 class PersistentStream::Manager
   HEALTH_CHECK_INTERVAL = 30
+  SEGMENT_TRACK_INTERVAL = 5
+  STALE_THRESHOLD = 30
 
   attr_reader :processes
 
@@ -61,10 +63,34 @@ class PersistentStream::Manager
   end
 
   def monitor_loop
+    last_health_check = Time.current
     while @running
-      sleep HEALTH_CHECK_INTERVAL
-      check_health
+      sleep SEGMENT_TRACK_INTERVAL
+      track_segments
+      if Time.current - last_health_check >= HEALTH_CHECK_INTERVAL
+        check_health
+        last_health_check = Time.current
+      end
     end
+  end
+
+  def track_segments
+    processes.each_value do |process|
+      next unless process.alive?
+
+      latest = find_latest_completed_segment(process.segment_directory)
+      next unless latest
+
+      cache_key = "persistent_streams:#{process.radio_station.audio_file_name}"
+      Rails.cache.write(cache_key, latest.to_s, expires_in: STALE_THRESHOLD.seconds)
+    end
+  end
+
+  def find_latest_completed_segment(directory)
+    segments = Dir.glob(directory.join('segment*.mp3')).sort_by { |f| File.mtime(f) }
+    return nil if segments.size < 2
+
+    Pathname.new(segments[-2])
   end
 
   def check_health

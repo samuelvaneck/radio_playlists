@@ -49,10 +49,6 @@ class PersistentStream::Process
     PersistentStream::SEGMENT_DIRECTORY.join(radio_station.audio_file_name)
   end
 
-  def segment_list_path
-    segment_directory.join('segments.csv')
-  end
-
   private
 
   def ffmpeg_command
@@ -82,8 +78,6 @@ class PersistentStream::Process
       '-f', 'segment',
       '-segment_time', SEGMENT_TIME.to_s,
       '-segment_wrap', SEGMENT_WRAP.to_s,
-      '-segment_list', segment_list_path.to_s,
-      '-segment_list_type', 'csv',
       '-reset_timestamps', '1'
     ]
   end

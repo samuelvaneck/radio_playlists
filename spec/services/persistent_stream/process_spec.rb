@@ -23,12 +23,6 @@ describe PersistentStream::Process, type: :service do
     end
   end
 
-  describe '#segment_list_path' do
-    it 'returns the segments.csv path within the segment directory' do
-      expect(process_instance.segment_list_path).to eq(process_instance.segment_directory.join('segments.csv'))
-    end
-  end
-
   describe '#start' do
     let(:spawn_args) { [] }
 
@@ -59,6 +53,12 @@ describe PersistentStream::Process, type: :service do
     it 'includes segment muxer options in the ffmpeg command' do
       process_instance.start
       expect(spawn_args).to include('-f', 'segment', '-segment_time', '10')
+    end
+
+    it 'does not include segment_list options in the ffmpeg command', :aggregate_failures do
+      process_instance.start
+      expect(spawn_args).not_to include('-segment_list')
+      expect(spawn_args).not_to include('-segment_list_type')
     end
 
     context 'when stream is MP3' do

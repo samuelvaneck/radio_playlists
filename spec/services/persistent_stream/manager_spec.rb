@@ -82,6 +82,69 @@ describe PersistentStream::Manager, type: :service do
     end
   end
 
+  describe '#track_segments' do
+    let(:segment_dir) { PersistentStream::SEGMENT_DIRECTORY.join(station_with_stream.audio_file_name) }
+    let(:cache_key) { "persistent_streams:#{station_with_stream.audio_file_name}" }
+    let(:memory_cache) { ActiveSupport::Cache::MemoryStore.new }
+
+    before do
+      allow(Rails).to receive(:cache).and_return(memory_cache)
+      allow(manager).to receive(:monitor_loop)
+      allow(manager).to receive(:stop_all_processes)
+      manager.start
+      FileUtils.mkdir_p(segment_dir)
+    end
+
+    after do
+      FileUtils.rm_rf(segment_dir)
+    end
+
+    context 'when process is alive with multiple segments' do
+      before do
+        process = manager.processes[station_with_stream.id]
+        allow(process).to receive(:alive?).and_return(true)
+
+        File.write(segment_dir.join('segment000.mp3'), 'oldest')
+        FileUtils.touch(segment_dir.join('segment000.mp3'), mtime: 20.seconds.ago.to_time)
+        File.write(segment_dir.join('segment001.mp3'), 'second newest')
+        FileUtils.touch(segment_dir.join('segment001.mp3'), mtime: 10.seconds.ago.to_time)
+        File.write(segment_dir.join('segment002.mp3'), 'newest - still writing')
+      end
+
+      it 'writes the second-newest segment path to Rails.cache' do
+        manager.send(:track_segments)
+        cached_path = Rails.cache.read(cache_key)
+        expect(cached_path).to eq(segment_dir.join('segment001.mp3').to_s)
+      end
+    end
+
+    context 'when process is alive with only one segment' do
+      before do
+        process = manager.processes[station_with_stream.id]
+        allow(process).to receive(:alive?).and_return(true)
+
+        File.write(segment_dir.join('segment000.mp3'), 'only segment')
+      end
+
+      it 'does not write to cache' do
+        manager.send(:track_segments)
+        expect(Rails.cache.read(cache_key)).to be_nil
+      end
+    end
+
+    context 'when process is not alive' do
+      before do
+        process = manager.processes[station_with_stream.id]
+        allow(process).to receive(:alive?).and_return(false)
+      end
+
+      it 'does not write to cache' do
+        manager.send(:track_segments)
+        expect(Rails.cache.read(cache_key)).to be_nil
+      end
+    end
+  end
+
   describe 'health checking' do
     before do
       allow(manager).to receive(:monitor_loop)
