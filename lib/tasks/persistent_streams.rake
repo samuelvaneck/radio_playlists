@@ -4,14 +4,11 @@ namespace :persistent_streams do
   desc 'Start the persistent stream manager (long-lived, blocking process)'
   task start: :environment do
     puts 'Starting PersistentStream::Manager...'
-    manager = PersistentStream::Manager.new
-    manager.start
+    PersistentStream::Manager.new.start
   end
 
   desc 'Show status of all persistent stream processes'
   task status: :environment do
-    manager = PersistentStream::Manager.new
-
     stations = RadioStation.unscoped.where.not(direct_stream_url: [nil, ''])
 
     if stations.none?
@@ -34,7 +31,7 @@ namespace :persistent_streams do
                 'NOT RUNNING'
               end
 
-      printf "%-25s %s\n", station.name, state
+      printf "%-25<name>s %<state>s\n", name: station.name, state: state
     end
   end
 end

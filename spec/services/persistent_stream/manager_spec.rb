@@ -8,11 +8,9 @@ describe PersistentStream::Manager, type: :service do
   let!(:station_with_stream) do
     create(:radio_station, name: 'Stream FM', direct_stream_url: 'https://stream.example.com/test.mp3')
   end
-  let!(:station_without_stream) do
-    create(:radio_station, name: 'No Stream FM', direct_stream_url: nil)
-  end
 
   before do
+    create(:radio_station, name: 'No Stream FM', direct_stream_url: nil)
     allow(::Process).to receive(:spawn).and_return(12_345)
     allow(::Process).to receive(:detach)
   end
