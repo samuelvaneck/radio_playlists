@@ -4,14 +4,12 @@ require 'rails_helper'
 
 describe PersistentStream::Manager, type: :service do
   let(:manager) { described_class.new }
-
-  before { RadioStation.update_all(direct_stream_url: nil) }
-
   let!(:station_with_stream) do
     create(:radio_station, name: 'Stream FM', direct_stream_url: 'https://stream.example.com/test.mp3')
   end
 
   before do
+    RadioStation.find_each { |station| station.update(direct_stream_url: nil) }
     create(:radio_station, name: 'No Stream FM', direct_stream_url: nil)
     allow(::Process).to receive(:spawn).and_return(12_345)
     allow(::Process).to receive(:detach)
