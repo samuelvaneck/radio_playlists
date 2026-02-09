@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_12_120008) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_09_100047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -152,6 +152,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_12_120008) do
   create_table "radio_stations", force: :cascade do |t|
     t.string "country_code"
     t.datetime "created_at", precision: nil, null: false
+    t.string "direct_stream_url"
     t.string "genre"
     t.jsonb "last_added_air_play_ids"
     t.string "name"
