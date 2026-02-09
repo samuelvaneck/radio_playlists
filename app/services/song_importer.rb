@@ -141,12 +141,21 @@ class SongImporter
   end
 
   def build_audio_stream(output_file)
-    extension = @radio_station.stream_url.split(/\.|-/).last
-    if extension.match?(/m3u8/)
-      AudioStream::M3u8.new(@radio_station.stream_url, output_file)
+    if persistent_segment_available?
+      AudioStream::PersistentSegment.new(@radio_station, output_file)
     else
-      AudioStream::Mp3.new(@radio_station.stream_url, output_file)
+      extension = @radio_station.stream_url.split(/\.|-/).last
+      if extension.match?(/m3u8/)
+        AudioStream::M3u8.new(@radio_station.stream_url, output_file)
+      else
+        AudioStream::Mp3.new(@radio_station.stream_url, output_file)
+      end
     end
+  end
+
+  def persistent_segment_available?
+    @radio_station.direct_stream_url.present? &&
+      PersistentStream::SegmentReader.new(@radio_station).available?
   end
 
   def scrape_song
