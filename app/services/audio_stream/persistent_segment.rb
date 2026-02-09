@@ -12,5 +12,6 @@ class AudioStream::PersistentSegment < AudioStream
     Rails.logger.debug "PersistentSegment: copied segment for #{@radio_station.name} to #{@output_file}"
   rescue PersistentStream::SegmentReader::NoSegmentError, PersistentStream::SegmentReader::StaleSegmentError => e
     Rails.logger.error "PersistentSegment capture failed for #{@radio_station.name}: #{e.message}"
+    raise
   end
 end
