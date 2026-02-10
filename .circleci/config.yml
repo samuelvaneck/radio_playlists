@@ -2,17 +2,17 @@
   version: 2
   jobs:
     build:
-      working_directory: ~/radio_playlists
+      working_directory: ~/airwave
       docker:
         - image: cimg/ruby:4.0.1-browsers
           environment:
             POSTGRES_HOST: localhost
-            POSTGRES_USER: radio_playlists
+            POSTGRES_USER: airwave
             RAILS_ENV: test
         - image: postgres:13
           environment:
-            POSTGRES_USER: radio_playlists
-            POSTGRES_DB: radio_playlists_test
+            POSTGRES_USER: airwave
+            POSTGRES_DB: airwave_test
             POSTGRES_PASSWORD: "Super-C0mpl3X"
 
       steps:
@@ -24,7 +24,7 @@
         # Restore Cached Dependencies
         - type: cache-restore
           name: Restore bundle cache
-          key: radio_playlists-{{ checksum "Gemfile.lock" }}
+          key: airwave-{{ checksum "Gemfile.lock" }}
 
         # install bundler
         - run: gem install bundler:2.4.10
@@ -36,7 +36,7 @@
         # Cache Dependencies
         - type: cache-save
           name: Store bundle cache
-          key: radio_playlists-{{ checksum "Gemfile.lock" }}
+          key: airwave-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -59,6 +59,6 @@
         - run: bundle exec rubocop
 
         - store_artifacts:
-            path: ~/radio_playlists/coverage
+            path: ~/airwave/coverage
         - store_artifacts:
-            path: ~/radio_playlists/log
+            path: ~/airwave/log

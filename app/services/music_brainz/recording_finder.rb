@@ -5,7 +5,7 @@ module MusicBrainz
     class ApiError < StandardError; end
 
     ENDPOINT = 'https://musicbrainz.org/ws/2/recording'
-    USER_AGENT = 'RadioPlaylists/1.0.0 (https://playlists.samuelvaneck.com)'
+    USER_AGENT = 'Airwave/1.0.0 (https://airwaveapp.nl)'
     RATE_LIMIT_DELAY = 1.0 # MusicBrainz requires max 1 request/second
 
     attr_reader :recording_id, :title, :artist_name
