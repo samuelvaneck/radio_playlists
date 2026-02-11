@@ -22,7 +22,7 @@ describe RadioListener, type: :service do
 
       before do
         stub_request(:post, "#{ENV['RADIO_LISTENER_URL']}/listen")
-          .with(body: { url: radio_station.stream_url }.to_json)
+          .with(body: { url: radio_station.direct_stream_url }.to_json)
           .to_return(status: 200, body: response_body.to_json, headers: { 'Content-Type' => 'application/json' })
       end
 
@@ -54,7 +54,7 @@ describe RadioListener, type: :service do
     context 'when the response is unsuccessful' do
       before do
         stub_request(:post, "#{ENV['RADIO_LISTENER_URL']}/listen")
-          .with(body: { url: radio_station.stream_url }.to_json)
+          .with(body: { url: radio_station.direct_stream_url }.to_json)
           .to_return(status: 500, body: { error: 'Internal Server Error' }.to_json)
         allow(Rails.logger).to receive(:error)
       end
@@ -74,7 +74,7 @@ describe RadioListener, type: :service do
 
       before do
         stub_request(:post, "#{ENV['RADIO_LISTENER_URL']}/listen")
-          .with(body: { url: radio_station.stream_url }.to_json)
+          .with(body: { url: radio_station.direct_stream_url }.to_json)
           .to_return(status: 200, body: response_body.to_json, headers: { 'Content-Type' => 'application/json' })
       end
 

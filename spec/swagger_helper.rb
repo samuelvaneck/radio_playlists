@@ -117,7 +117,7 @@ RSpec.configure do |config|
                   id: { type: :integer },
                   name: { type: :string },
                   slug: { type: :string, nullable: true },
-                  stream_url: { type: :string, nullable: true },
+                  direct_stream_url: { type: :string, nullable: true },
                   country_code: { type: :string }
                 }
               }

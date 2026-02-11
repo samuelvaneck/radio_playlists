@@ -49,7 +49,7 @@ module Api
       end
 
       def stream_proxy
-        url = @radio_station.stream_url
+        url = @radio_station.direct_stream_url
         return head :bad_request if url.blank?
 
         response.headers['Access-Control-Allow-Origin'] = '*'

@@ -18,7 +18,7 @@ RSpec.describe 'RadioStations API', type: :request do
                 id: 1,
                 name: 'Radio 538',
                 slug: 'radio-538',
-                stream_url: 'https://stream.538.nl/538/mp3',
+                direct_stream_url: 'https://stream.538.nl/538/mp3',
                 url: 'https://www.538.nl',
                 country_code: 'NL'
               }
@@ -30,7 +30,7 @@ RSpec.describe 'RadioStations API', type: :request do
                 id: 2,
                 name: 'Qmusic',
                 slug: 'qmusic',
-                stream_url: 'https://stream.qmusic.nl/qmusic/mp3',
+                direct_stream_url: 'https://stream.qmusic.nl/qmusic/mp3',
                 url: 'https://www.qmusic.nl',
                 country_code: 'NL'
               }
@@ -60,7 +60,7 @@ RSpec.describe 'RadioStations API', type: :request do
               id: 1,
               name: 'Radio 538',
               slug: 'radio-538',
-              stream_url: 'https://stream.538.nl/538/mp3',
+              direct_stream_url: 'https://stream.538.nl/538/mp3',
               url: 'https://www.538.nl',
               country_code: 'NL'
             }
@@ -380,7 +380,7 @@ RSpec.describe 'RadioStations API', type: :request do
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
 
       response '200', 'Stream proxied successfully' do
-        let(:radio_station) { create(:radio_station, stream_url: 'https://example.com/stream') }
+        let(:radio_station) { create(:radio_station, direct_stream_url: 'https://example.com/stream') }
         let(:id) { radio_station.id }
 
         before do
@@ -397,7 +397,7 @@ RSpec.describe 'RadioStations API', type: :request do
           error: 'No stream URL configured for this radio station'
         }
 
-        let(:radio_station) { create(:radio_station, stream_url: nil) }
+        let(:radio_station) { create(:radio_station, direct_stream_url: nil) }
         let(:id) { radio_station.id }
 
         run_test!

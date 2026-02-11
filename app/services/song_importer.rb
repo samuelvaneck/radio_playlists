@@ -149,11 +149,11 @@ class SongImporter
   end
 
   def build_icecast_stream(output_file)
-    extension = @radio_station.stream_url.split(/\.|-/).last
+    extension = @radio_station.direct_stream_url.split(/\.|-/).last
     if extension.match?(/m3u8/)
-      AudioStream::M3u8.new(@radio_station.stream_url, output_file)
+      AudioStream::M3u8.new(@radio_station.direct_stream_url, output_file)
     else
-      AudioStream::Mp3.new(@radio_station.stream_url, output_file)
+      AudioStream::Mp3.new(@radio_station.direct_stream_url, output_file)
     end
   end
 
