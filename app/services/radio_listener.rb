@@ -10,7 +10,7 @@ class RadioListener
   def listen
     response = connection.post('/listen') do |req|
       req.headers['Content-Type'] = 'application/json'
-      req.body = { url: @radio_station.stream_url }.to_json
+      req.body = { url: @radio_station.direct_stream_url }.to_json
     end
 
     if response.success?
