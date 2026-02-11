@@ -12,7 +12,6 @@
 #  name                    :string
 #  processor               :string
 #  slug                    :string
-#  stream_url              :string
 #  url                     :text
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null

@@ -11,7 +11,6 @@
 #  updated_at              :datetime         not null
 #  url                     :text
 #  processor               :string
-#  stream_url              :string
 #  slug                    :string
 #  country_code            :string
 #  last_added_air_play_ids :jsonb
@@ -60,7 +59,7 @@ FactoryBot.define do
   factory :sky_radio, parent: :radio_station do
     name { 'Sky Radio' }
     url { 'https://graph.talparad.io/?query=%7B%0A%20%20getStation(profile%3A%20%22radio-brand-web%22%2C%20slug%3A%20%22sky-radio%22)%20%7B%0A%20%20%20%20title%0A%20%20%20%20playouts(profile%3A%20%22%22%2C%20limit%3A%2010)%20%7B%0A%20%20%20%20%20%20broadcastDate%0A%20%20%20%20%20%20track%20%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20artistName%0A%20%20%20%20%20%20%20%20isrc%0A%20%20%20%20%20%20%20%20images%20%7B%0A%20%20%20%20%20%20%20%20%20%20type%0A%20%20%20%20%20%20%20%20%20%20uri%0A%20%20%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20__typename%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20__typename%0A%20%20%20%20%7D%0A%20%20%20%20__typename%0A%20%20%7D%0A%7D%0A&variables=%7B%7D' }
-    stream_url { 'https://icecast.samuelvaneck.com/skyradio.mp3' }
+    direct_stream_url { 'https://playerservices.streamtheworld.com/api/livestream-redirect/SKYRADIO.mp3' }
     processor { 'talpa_api_processor' }
     country_code { 'NLD' }
   end
@@ -69,7 +68,7 @@ FactoryBot.define do
     name { 'Radio Veronica' }
     url { 'https://api.radioveronica.nl/api/nowplaying/playlist?stationKey=veronica&brand=veronica' }
     processor { 'media_huis_api_processor' }
-    stream_url { 'https://icecast.samuelvaneck.com/veronica.mp3' }
+    direct_stream_url { 'https://playerservices.streamtheworld.com/api/livestream-redirect/VERONICA.mp3' }
     slug { 'radio-veronica' }
     country_code { 'NLD' }
   end
@@ -92,7 +91,7 @@ FactoryBot.define do
     name { 'Qmusic' }
     url { 'https://api.qmusic.nl/2.4/tracks/plays?limit=1&next=true' }
     processor { 'qmusic_api_processor' }
-    stream_url { 'https://icecast.samuelvaneck.com/qmusic.mp3' }
+    direct_stream_url { 'https://stream.qmusic.nl/qmusic/mp3' }
     slug { 'qmusic' }
     country_code { 'NLD' }
   end
@@ -101,7 +100,7 @@ FactoryBot.define do
     name { 'Sublime FM' }
     url { 'https://api.mediahuisradio.nl/api/nowplaying/playlist?stationKey=sublime&brand=sublime' }
     processor { 'media_huis_api_processor' }
-    stream_url { 'https://icecast.samuelvaneck.com/sublimefm.mp3' }
+    direct_stream_url { 'https://playerservices.streamtheworld.com/api/livestream-redirect/SUBLIME.mp3' }
     slug { 'sublime-fm' }
     country_code { 'NLD' }
   end
@@ -117,7 +116,7 @@ FactoryBot.define do
     name { 'SLAM!' }
     url { 'https://api.radioveronica.nl/api/nowplaying/playlist?stationKey=slam&brand=slam' }
     processor { 'media_huis_api_processor' }
-    stream_url { 'https://icecast.samuelvaneck.com/slam.mp3' }
+    direct_stream_url { 'https://playerservices.streamtheworld.com/api/livestream-redirect/web14_mp3' }
     slug { 'slam' }
     country_code { 'NLD' }
   end
@@ -126,7 +125,7 @@ FactoryBot.define do
     name { 'KINK' }
     url { 'https://api.kink.nl/api/live?brand=kink' }
     processor { 'kink_api_processor' }
-    stream_url { 'https://icecast.samuelvaneck.com/kink.mp3' }
+    direct_stream_url { 'https://playerservices.streamtheworld.com/api/livestream-redirect/KINK.mp3' }
     slug { 'kink' }
     country_code { 'NLD' }
   end
@@ -135,7 +134,7 @@ FactoryBot.define do
     name { '100% NL' }
     url { 'https://api.radioveronica.nl/api/nowplaying/playlist?stationKey=100pnl&brand=100nl' }
     processor { 'media_huis_api_processor' }
-    stream_url { 'https://icecast.samuelvaneck.com/100pnl.mp3' }
+    direct_stream_url { 'https://stream.100p.nl/100pctnl.mp3' }
     slug { '100-nl' }
     country_code { 'NLD' }
   end
