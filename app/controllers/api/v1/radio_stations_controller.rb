@@ -55,13 +55,7 @@ module Api
         response.headers['Access-Control-Allow-Origin'] = '*'
         response.headers['Content-Type'] = 'audio/mpeg'
 
-        uri = URI.parse(url)
-        Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
-          request = Net::HTTP::Get.new(uri)
-          http.request(request) do |res|
-            res.read_body { |chunk| response.stream.write(chunk) }
-          end
-        end
+        stream_audio(url)
       ensure
         response.stream.close
       end
@@ -82,6 +76,25 @@ module Api
 
       def set_radio_station
         @radio_station = RadioStation.find params[:id]
+      end
+
+      def stream_audio(url, redirect_limit = 5)
+        raise 'Too many redirects' if redirect_limit.zero?
+
+        uri = URI.parse(url)
+        Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+          request = Net::HTTP::Get.new(uri)
+          request['User-Agent'] = 'Mozilla/5.0'
+          request['Icy-MetaData'] = '0'
+          http.request(request) do |res|
+            if res.is_a?(Net::HTTPRedirection)
+              redirect_url = URI.join(uri, res['location']).to_s
+              return stream_audio(redirect_url, redirect_limit - 1)
+            end
+
+            res.read_body { |chunk| response.stream.write(chunk) }
+          end
+        end
       end
 
       def time_param_blank?
