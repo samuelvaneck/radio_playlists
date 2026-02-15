@@ -14,4 +14,13 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
              methods: [:get, :post, :put, :patch, :delete, :options, :head],
              expose: %w[Authorization]
   end
+
+  allow do
+    origins(/\Ahttps:\/\/deploy-preview-\d+--playlists-interface\.netlify\.app\z/)
+
+    resource '*',
+             headers: :any,
+             methods: [:get, :post, :put, :patch, :delete, :options, :head],
+             expose: %w[Authorization]
+  end
 end
