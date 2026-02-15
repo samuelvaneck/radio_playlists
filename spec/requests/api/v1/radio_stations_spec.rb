@@ -18,7 +18,6 @@ RSpec.describe 'RadioStations API', type: :request do
                 id: 1,
                 name: 'Radio 538',
                 slug: 'radio-538',
-                direct_stream_url: 'https://stream.538.nl/538/mp3',
                 url: 'https://www.538.nl',
                 country_code: 'NL'
               }
@@ -30,7 +29,6 @@ RSpec.describe 'RadioStations API', type: :request do
                 id: 2,
                 name: 'Qmusic',
                 slug: 'qmusic',
-                direct_stream_url: 'https://stream.qmusic.nl/qmusic/mp3',
                 url: 'https://www.qmusic.nl',
                 country_code: 'NL'
               }
@@ -60,7 +58,6 @@ RSpec.describe 'RadioStations API', type: :request do
               id: 1,
               name: 'Radio 538',
               slug: 'radio-538',
-              direct_stream_url: 'https://stream.538.nl/538/mp3',
               url: 'https://www.538.nl',
               country_code: 'NL'
             }
@@ -384,6 +381,7 @@ RSpec.describe 'RadioStations API', type: :request do
         let(:id) { radio_station.id }
 
         before do
+          allow(Resolv).to receive(:getaddress).with('example.com').and_return('93.184.216.34')
           allow(Net::HTTP).to receive(:start).and_return(nil)
         end
 
@@ -401,6 +399,110 @@ RSpec.describe 'RadioStations API', type: :request do
         let(:id) { radio_station.id }
 
         run_test!
+      end
+
+      response '403', 'Forbidden when URL resolves to a private IP' do
+        let(:radio_station) { create(:radio_station, direct_stream_url: 'https://example.com/stream') }
+        let(:id) { radio_station.id }
+
+        before do
+          allow(Resolv).to receive(:getaddress).with('example.com').and_return('192.168.1.1')
+        end
+
+        run_test!
+      end
+
+      response '403', 'Forbidden when URL resolves to a loopback IP' do
+        let(:radio_station) { create(:radio_station, direct_stream_url: 'https://example.com/stream') }
+        let(:id) { radio_station.id }
+
+        before do
+          allow(Resolv).to receive(:getaddress).with('example.com').and_return('127.0.0.1')
+        end
+
+        run_test!
+      end
+
+      response '403', 'Forbidden when URL resolves to a link-local IP' do
+        let(:radio_station) { create(:radio_station, direct_stream_url: 'https://example.com/stream') }
+        let(:id) { radio_station.id }
+
+        before do
+          allow(Resolv).to receive(:getaddress).with('example.com').and_return('169.254.169.254')
+        end
+
+        run_test!
+      end
+
+      response '403', 'Forbidden when hostname cannot be resolved' do
+        let(:radio_station) { create(:radio_station, direct_stream_url: 'https://nonexistent.invalid/stream') }
+        let(:id) { radio_station.id }
+
+        before do
+          allow(Resolv).to receive(:getaddress).with('nonexistent.invalid').and_raise(Resolv::ResolvError)
+        end
+
+        run_test!
+      end
+    end
+  end
+
+  describe 'stream_proxy redirect security' do
+    let(:radio_station) { create(:radio_station, direct_stream_url: 'https://stream.example.com/radio.mp3') }
+
+    before do
+      allow(Resolv).to receive(:getaddress).with('stream.example.com').and_return('93.184.216.34')
+    end
+
+    context 'when redirect points to a private IP' do
+      it 'returns 403' do
+        redirect_response = instance_double(Net::HTTPRedirection, is_a?: false)
+        allow(redirect_response).to receive(:is_a?).with(Net::HTTPRedirection).and_return(true)
+        allow(redirect_response).to receive(:[]).with('location').and_return('https://internal.example.com/stream')
+        allow(Resolv).to receive(:getaddress).with('internal.example.com').and_return('10.0.0.1')
+
+        allow(Net::HTTP).to receive(:start).with('stream.example.com', 443, use_ssl: true) do |*, &block|
+          http = instance_double(Net::HTTP)
+          allow(http).to receive(:request).and_yield(redirect_response)
+          block.call(http)
+        end
+
+        get "/api/v1/radio_stations/#{radio_station.id}/stream_proxy"
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+
+    context 'when redirect downgrades to HTTP' do
+      it 'returns 403' do
+        redirect_response = instance_double(Net::HTTPRedirection, is_a?: false)
+        allow(redirect_response).to receive(:is_a?).with(Net::HTTPRedirection).and_return(true)
+        allow(redirect_response).to receive(:[]).with('location').and_return('http://cdn.example.com/stream')
+
+        allow(Net::HTTP).to receive(:start).with('stream.example.com', 443, use_ssl: true) do |*, &block|
+          http = instance_double(Net::HTTP)
+          allow(http).to receive(:request).and_yield(redirect_response)
+          block.call(http)
+        end
+
+        get "/api/v1/radio_stations/#{radio_station.id}/stream_proxy"
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+
+    context 'when too many redirects occur' do
+      it 'returns 403' do
+        redirect_response = instance_double(Net::HTTPRedirection, is_a?: false)
+        allow(redirect_response).to receive(:is_a?).with(Net::HTTPRedirection).and_return(true)
+        allow(redirect_response).to receive(:[]).with('location').and_return('https://stream.example.com/radio.mp3')
+
+        allow(Net::HTTP).to receive(:start).with('stream.example.com', 443, use_ssl: true) do |*, &block|
+          http = instance_double(Net::HTTP)
+          allow(http).to receive(:request).and_yield(redirect_response)
+          block.call(http)
+        end
+
+        get "/api/v1/radio_stations/#{radio_station.id}/stream_proxy"
+        expect(response).to have_http_status(:forbidden)
       end
     end
   end

@@ -52,9 +52,14 @@ module Api
         url = @radio_station.direct_stream_url
         return head :bad_request if url.blank?
 
-        response.headers['Content-Type'] = 'audio/mpeg'
+        uri = URI.parse(url)
+        return head :forbidden unless uri.scheme == 'https'
+        return head :forbidden if private_ip?(uri.host)
 
+        response.headers['Content-Type'] = 'audio/mpeg'
         stream_audio(url)
+      rescue RuntimeError
+        head :forbidden
       ensure
         response.stream.close
       end
