@@ -9,7 +9,7 @@ RSpec.describe 'Admin Artists API', type: :request do
   path '/api/v1/admins/artists' do
     get 'List artists for admin' do
       tags 'Admin Artists'
-      security [bearer_auth: []]
+      security [{ bearer_auth: [] }]
       produces 'application/json'
       parameter name: :page, in: :query, type: :integer, required: false, description: 'Page number'
       parameter name: :per_page, in: :query, type: :integer, required: false, description: 'Items per page'
@@ -32,7 +32,7 @@ RSpec.describe 'Admin Artists API', type: :request do
   path '/api/v1/admins/artists/{id}' do
     patch 'Update an artist' do
       tags 'Admin Artists'
-      security [bearer_auth: []]
+      security [{ bearer_auth: [] }]
       consumes 'application/json'
       produces 'application/json'
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Artist ID'
