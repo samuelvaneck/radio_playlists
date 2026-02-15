@@ -52,7 +52,6 @@ module Api
         url = @radio_station.direct_stream_url
         return head :bad_request if url.blank?
 
-        response.headers['Access-Control-Allow-Origin'] = '*'
         response.headers['Content-Type'] = 'audio/mpeg'
 
         stream_audio(url)
@@ -82,7 +81,10 @@ module Api
         raise 'Too many redirects' if redirect_limit.zero?
 
         uri = URI.parse(url)
-        Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+        raise 'Only HTTPS URLs are allowed' unless uri.scheme == 'https'
+        raise 'Invalid redirect target' if private_ip?(uri.host)
+
+        Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
           request = Net::HTTP::Get.new(uri)
           request['User-Agent'] = 'Mozilla/5.0'
           request['Icy-MetaData'] = '0'
@@ -95,6 +97,14 @@ module Api
             res.read_body { |chunk| response.stream.write(chunk) }
           end
         end
+      end
+
+      def private_ip?(host)
+        ip = Resolv.getaddress(host)
+        addr = IPAddr.new(ip)
+        addr.loopback? || addr.private? || addr.link_local?
+      rescue Resolv::ResolvError
+        true
       end
 
       def time_param_blank?

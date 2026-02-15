@@ -19,5 +19,5 @@
 class RadioStationSerializer
   include FastJsonapi::ObjectSerializer
 
-  attributes :id, :name, :slug, :direct_stream_url, :country_code
+  attributes :id, :name, :slug, :country_code
 end

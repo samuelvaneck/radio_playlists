@@ -42,6 +42,7 @@ class RadioStation < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :processor, inclusion: { in: VALID_PROCESSORS }, allow_blank: true
+  validates :direct_stream_url, format: { with: /\Ahttps:\/\//i, message: 'must start with https://' }, allow_blank: true
 
   def self.last_played_songs
     all.map do |radio_station|
@@ -49,7 +50,6 @@ class RadioStation < ActiveRecord::Base
         id: radio_station.id,
         name: radio_station.name,
         slug: radio_station.slug,
-        direct_stream_url: radio_station.direct_stream_url,
         country_code: radio_station.country_code,
         last_played_song: AirPlaySerializer.new(radio_station.last_added_air_plays).serializable_hash
       }
@@ -145,7 +145,6 @@ class RadioStation < ActiveRecord::Base
       genre: genre,
       url: url,
       processor: processor,
-      direct_stream_url: direct_stream_url,
       country_code: country_code,
       last_added_air_play_ids: last_added_air_play_ids,
       last_played_song: AirPlaySerializer.new(last_added_air_plays).serializable_hash
