@@ -53,6 +53,10 @@ Rails.application.routes.draw do
     end
   end
 
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    ActiveSupport::SecurityUtils.secure_compare(username, ENV.fetch('SIDEKIQ_USERNAME', 'admin')) &
+      ActiveSupport::SecurityUtils.secure_compare(password, ENV.fetch('SIDEKIQ_PASSWORD', ''))
+  end
   mount Sidekiq::Web => '/sidekiq'
   mount HealthBit.rack => '/health'
 end

@@ -20,7 +20,7 @@ class YoutubeAudioDownloader
     command = build_command
     Rails.logger.info "YoutubeAudioDownloader: Downloading #{youtube_url}"
 
-    output, error, status = Open3.capture3(command)
+    output, error, status = Open3.capture3(*command)
 
     unless status.success?
       Rails.logger.error "YoutubeAudioDownloader failed: #{error}"
@@ -67,7 +67,7 @@ class YoutubeAudioDownloader
       '--no-warnings',               # Suppress warnings
       '--print-json',                # Output metadata as JSON (for duration)
       youtube_url
-    ].join(' ')
+    ]
   end
 
   def extract_duration(output)

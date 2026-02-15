@@ -70,8 +70,7 @@ class AcoustidRecognizer
   private
 
   def generate_fingerprint
-    command = "fpcalc -json #{Shellwords.escape(@audio_file_path)}"
-    output, error, status = Open3.capture3(command)
+    output, error, status = Open3.capture3('fpcalc', '-json', @audio_file_path.to_s)
 
     raise FingerprintError, "fpcalc failed: #{error.presence || 'unknown error'}" unless status.success?
 

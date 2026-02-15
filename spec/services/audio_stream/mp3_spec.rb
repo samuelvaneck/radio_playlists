@@ -17,7 +17,7 @@ describe AudioStream::Mp3, type: :service do
     end
 
     it 'sets the command with ffmpeg mp3 copy command' do
-      expected_command = ["ffmpeg -y -t 00:00:05 -i #{url} -c copy #{output_file}"]
+      expected_command = ['ffmpeg', '-y', '-t', '00:00:05', '-i', url, '-c', 'copy', output_file]
       expect(audio_stream.command).to eq(expected_command)
     end
   end

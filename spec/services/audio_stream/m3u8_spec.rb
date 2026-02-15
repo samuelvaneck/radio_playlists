@@ -17,7 +17,7 @@ describe AudioStream::M3u8, type: :service do
     end
 
     it 'sets the command with ffmpeg m3u8 conversion command' do
-      expected_command = ["ffmpeg -y -t 00:00:05 -i #{url} -codec:a libmp3lame #{output_file}"]
+      expected_command = ['ffmpeg', '-y', '-t', '00:00:05', '-i', url, '-codec:a', 'libmp3lame', output_file]
       expect(audio_stream.command).to eq(expected_command)
     end
   end
