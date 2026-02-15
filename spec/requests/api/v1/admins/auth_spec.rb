@@ -40,7 +40,7 @@ RSpec.describe 'Admin Authentication API', type: :request do
   path '/api/v1/admins/sign_out' do
     delete 'Admin sign out' do
       tags 'Admin Authentication'
-      security [bearer_auth: []]
+      security [{ bearer_auth: [] }]
       produces 'application/json'
 
       response '200', 'Logged out successfully' do

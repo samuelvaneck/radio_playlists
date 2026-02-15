@@ -6,7 +6,7 @@ RSpec.describe 'Current Admin API', type: :request do
   path '/api/v1/admins/current' do
     get 'Get current admin' do
       tags 'Admin'
-      security [bearer_auth: []]
+      security [{ bearer_auth: [] }]
       produces 'application/json'
 
       response '200', 'Current admin retrieved successfully' do
