@@ -16,7 +16,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
 
   allow do
-    origins(/\Ahttps:\/\/deploy-preview-\d+--playlists-interface\.netlify\.app\z/)
+    origins(%r{\Ahttps://deploy-preview-\d+--playlists-interface\.netlify\.app\z})
 
     resource '*',
              headers: :any,
