@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://musicbrainz.org/ws/2/isrc/USRC12345678?fmt=json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - RadioPlaylists/1.0.0 (https://playlists.samuelvaneck.com)
+      Host:
+      - musicbrainz.org
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Sat, 21 Feb 2026 06:37:28 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '93'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      X-Ratelimit-Limit:
+      - '1200'
+      X-Ratelimit-Remaining:
+      - '953'
+      X-Ratelimit-Reset:
+      - '1771655849'
+      Server:
+      - Plack::Handler::Starlet
+      Etag:
+      - '"8b5a62e76b15ec04b7cbc0eb576f7f62"'
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Runtime:
+      - '0.013643'
+    body:
+      encoding: UTF-8
+      string: '{"help":"For usage, please see: https://musicbrainz.org/development/mmd","error":"Not
+        Found"}'
+  recorded_at: Sat, 21 Feb 2026 06:37:28 GMT
+recorded_with: VCR 6.4.0
