@@ -52,7 +52,8 @@ class TrackExtractor::SongExtractor < TrackExtractor
       id_on_spotify: (id_on_spotify if song.id_on_spotify.blank?),
       spotify_song_url: (spotify_song_url if song.spotify_song_url.blank?),
       spotify_artwork_url: (spotify_artwork_url if song.spotify_artwork_url.blank?),
-      isrc: (isrc if song.isrc.blank?)
+      isrc: (isrc if song.isrc.blank?),
+      duration_ms: (duration_ms if song.duration_ms.blank?)
     }.compact
   end
 
@@ -116,6 +117,10 @@ class TrackExtractor::SongExtractor < TrackExtractor
     @track&.isrc
   end
 
+  def duration_ms
+    @track&.duration_ms if @track.respond_to?(:duration_ms)
+  end
+
   # Spotify methods
   def spotify_song_url
     @track&.spotify_song_url if @track.respond_to?(:spotify_song_url)
@@ -177,6 +182,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
       attrs[:spotify_artwork_url] = spotify_artwork_url
       attrs[:spotify_preview_url] = spotify_preview_url
       attrs[:id_on_spotify] = id_on_spotify
+      attrs[:duration_ms] = duration_ms
     end
 
     # Add Deezer attributes if available

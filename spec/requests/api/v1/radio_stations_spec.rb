@@ -196,12 +196,12 @@ describe 'RadioStations API', type: :request do
         example 'application/json', :example, {
           data: [
             {
-              radio_station: {
-                id: 1,
-                name: 'Radio 538',
-                slug: 'radio-538'
-              },
-              last_song: {
+              id: 1,
+              name: 'Radio 538',
+              slug: 'radio-538',
+              country_code: 'NL',
+              is_currently_playing: true,
+              last_played_song: {
                 id: 1,
                 title: 'Bohemian Rhapsody',
                 artists: [{ id: 1, name: 'Queen' }],
@@ -209,12 +209,12 @@ describe 'RadioStations API', type: :request do
               }
             },
             {
-              radio_station: {
-                id: 2,
-                name: 'Qmusic',
-                slug: 'qmusic'
-              },
-              last_song: {
+              id: 2,
+              name: 'Qmusic',
+              slug: 'qmusic',
+              country_code: 'NL',
+              is_currently_playing: false,
+              last_played_song: {
                 id: 2,
                 title: 'Blinding Lights',
                 artists: [{ id: 2, name: 'The Weeknd' }],

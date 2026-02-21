@@ -97,6 +97,60 @@ describe RadioStation, :use_vcr, :with_valid_token do
     end
   end
 
+  describe '.currently_playing?' do
+    context 'when air_play is nil' do
+      it 'returns false' do
+        expect(described_class.currently_playing?(nil)).to be false
+      end
+    end
+
+    context 'when broadcasted_at is blank' do
+      let(:air_play) { create(:air_play, broadcasted_at: nil) }
+
+      it 'returns false' do
+        expect(described_class.currently_playing?(air_play)).to be false
+      end
+    end
+
+    context 'when song is within duration window' do
+      let(:song) { create(:song, duration_ms: 210_000) }
+      let(:air_play) { create(:air_play, song: song, broadcasted_at: 1.minute.ago) }
+
+      it 'returns true' do
+        expect(described_class.currently_playing?(air_play)).to be true
+      end
+    end
+
+    context 'when song has ended' do
+      let(:song) { create(:song, duration_ms: 210_000) }
+      let(:air_play) { create(:air_play, song: song, broadcasted_at: 10.minutes.ago) }
+
+      it 'returns false' do
+        expect(described_class.currently_playing?(air_play)).to be false
+      end
+    end
+
+    context 'when duration_ms is nil' do
+      let(:song) { create(:song, duration_ms: nil) }
+
+      context 'when within default 5-minute fallback' do
+        let(:air_play) { create(:air_play, song: song, broadcasted_at: 2.minutes.ago) }
+
+        it 'returns true' do
+          expect(described_class.currently_playing?(air_play)).to be true
+        end
+      end
+
+      context 'when past the default 5-minute fallback' do
+        let(:air_play) { create(:air_play, song: song, broadcasted_at: 6.minutes.ago) }
+
+        it 'returns false' do
+          expect(described_class.currently_playing?(air_play)).to be false
+        end
+      end
+    end
+  end
+
   describe '#songs_played_last_hour' do
     let(:artist) { create(:artist) }
     let(:song_recent) { create(:song, artists: [artist]) }
