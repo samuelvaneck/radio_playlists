@@ -46,6 +46,7 @@ module Spotify
         spotify_artwork_url: response.dig('album', 'images', 0, 'url'),
         spotify_preview_url: response['preview_url'],
         isrc: response.dig('external_ids', 'isrc'),
+        duration_ms: response['duration_ms'],
         artists: response['artists']
       )
     end
@@ -66,6 +67,7 @@ module Spotify
       updates[:spotify_artwork_url] = result.spotify_artwork_url if result.spotify_artwork_url.present?
       updates[:spotify_preview_url] = result.spotify_preview_url if result.spotify_preview_url.present?
       updates[:isrc] = result.isrc if result.isrc.present? && @song.isrc.blank?
+      updates[:duration_ms] = result.duration_ms if result.duration_ms.present?
       updates
     end
 

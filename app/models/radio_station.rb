@@ -46,14 +46,24 @@ class RadioStation < ActiveRecord::Base
 
   def self.last_played_songs
     all.map do |radio_station|
+      last_air_play = radio_station.last_added_air_plays.confirmed.includes(:song).first
       {
         id: radio_station.id,
         name: radio_station.name,
         slug: radio_station.slug,
         country_code: radio_station.country_code,
+        is_currently_playing: currently_playing?(last_air_play),
         last_played_song: AirPlaySerializer.new(radio_station.last_added_air_plays).serializable_hash
       }
     end
+  end
+
+  def self.currently_playing?(air_play)
+    return false if air_play&.broadcasted_at.blank?
+
+    duration_ms = air_play.song&.duration_ms || 300_000
+    end_time = air_play.broadcasted_at + (duration_ms / 1000).seconds
+    end_time > Time.current
   end
 
   def self.new_songs_played_for_period(params)
