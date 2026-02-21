@@ -95,7 +95,7 @@ RadioStation.seed(
     name: 'SLAM!',
     url: 'https://api.radioveronica.nl/api/nowplaying/playlist?stationKey=slam&brand=slam',
     processor: 'media_huis_api_processor',
-    direct_stream_url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/web14_mp3',
+    direct_stream_url: 'https://stream.slam.nl/slam_mp3',
     slug: 'slam',
     country_code: 'NLD'
   },
