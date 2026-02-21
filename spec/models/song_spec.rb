@@ -14,6 +14,7 @@
 #  id_on_spotify          :string
 #  id_on_youtube          :string
 #  isrc                   :string
+#  isrcs                  :string           default([]), is an Array
 #  itunes_artwork_url     :string
 #  itunes_preview_url     :string
 #  itunes_song_url        :string
