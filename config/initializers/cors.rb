@@ -16,6 +16,15 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
 
   allow do
+    origins 'https://playlists-admin.samuelvaneck.com'
+
+    resource '*',
+             headers: :any,
+             methods: [:get, :post, :put, :patch, :delete, :options, :head],
+             expose: %w[Authorization]
+  end
+
+  allow do
     origins(%r{\Ahttps://deploy-preview-\d+--playlists-interface\.netlify\.app\z})
 
     resource '*',
