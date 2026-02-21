@@ -7,9 +7,12 @@ class SongExternalIdsEnrichmentJob
 
   # Enqueue jobs for all songs missing external IDs
   def self.enqueue_all
-    Song.where(id_on_deezer: nil).or(Song.where(id_on_itunes: nil)).find_each do |song|
-      perform_async(song.id)
-    end
+    scope = Song
+              .where(id_on_deezer: nil)
+              .or(Song.where(id_on_itunes: nil))
+              .or(Song.where(isrcs: []).where.not(isrc: [nil, '']))
+
+    scope.find_each { |song| perform_async(song.id) }
   end
 
   # Enrich a single song with Deezer and iTunes IDs

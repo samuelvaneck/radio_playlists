@@ -214,10 +214,15 @@ class Song < ApplicationRecord
     Itunes::SongEnricher.new(self).enrich
   end
 
-  # Enrich song with Deezer and iTunes data if missing
+  def enrich_with_music_brainz
+    MusicBrainz::SongEnricher.new(self).enrich
+  end
+
+  # Enrich song with Deezer, iTunes, and MusicBrainz data if missing
   def enrich_with_external_services
     enrich_with_deezer if should_enrich_with_deezer?
     enrich_with_itunes if should_enrich_with_itunes?
+    enrich_with_music_brainz if should_enrich_with_music_brainz?
   end
 
   private
@@ -263,5 +268,9 @@ class Song < ApplicationRecord
 
   def should_enrich_with_itunes?
     id_on_itunes.blank? && title.present?
+  end
+
+  def should_enrich_with_music_brainz?
+    isrcs.blank? && isrc.present?
   end
 end
