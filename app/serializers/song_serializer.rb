@@ -9,6 +9,7 @@
 #  deezer_artwork_url     :string
 #  deezer_preview_url     :string
 #  deezer_song_url        :string
+#  duration_ms            :integer
 #  id_on_deezer           :string
 #  id_on_itunes           :string
 #  id_on_spotify          :string
