@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_11_193320) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_21_060243) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -220,6 +220,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_11_193320) do
     t.string "id_on_spotify"
     t.string "id_on_youtube"
     t.string "isrc"
+    t.string "isrcs", default: [], array: true
     t.string "itunes_artwork_url"
     t.string "itunes_preview_url"
     t.string "itunes_song_url"
