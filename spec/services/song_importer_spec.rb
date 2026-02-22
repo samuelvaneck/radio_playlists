@@ -35,11 +35,59 @@ describe SongImporter do
       end
     end
 
-    context 'when song has artists with Spotify IDs' do
+    context 'when song has artists with Spotify IDs and no matching track' do
       let(:existing_artists) { [create(:artist, name: 'Spotify Artist', id_on_spotify: 'spotify456')] }
       let(:new_artists) { [create(:artist, name: 'Different Artist', id_on_spotify: 'spotify789')] }
 
       it 'returns false to prevent overwriting valid Spotify data' do
+        expect(song_importer.send(:should_update_artists?)).to be false
+      end
+    end
+
+    context 'when song has artists with Spotify IDs and track matches song Spotify ID' do
+      let(:existing_artists) { [create(:artist, name: 'Wrong Artist', id_on_spotify: 'wrong_spotify_id')] }
+      let(:new_artists) { [create(:artist, name: 'Correct Artist', id_on_spotify: 'correct_spotify_id')] }
+      let(:existing_song) { create(:song, title: 'Existing Song', artists: existing_artists, id_on_spotify: 'track_spotify_id') }
+      let(:mock_track) do
+        instance_double(Spotify::TrackFinder::Result, id: 'track_spotify_id',
+                                                      spotify_song_url: 'https://open.spotify.com/track/track_spotify_id')
+      end
+
+      before { song_importer.instance_variable_set(:@track, mock_track) }
+
+      it 'returns true to allow correcting artists from authoritative Spotify data' do
+        expect(song_importer.send(:should_update_artists?)).to be true
+      end
+    end
+
+    context 'when song has artists with Spotify IDs but track has different Spotify ID' do
+      let(:existing_artists) { [create(:artist, name: 'Spotify Artist', id_on_spotify: 'spotify456')] }
+      let(:new_artists) { [create(:artist, name: 'Different Artist', id_on_spotify: 'spotify789')] }
+      let(:existing_song) { create(:song, title: 'Existing Song', artists: existing_artists, id_on_spotify: 'song_spotify_id') }
+      let(:mock_track) do
+        instance_double(Spotify::TrackFinder::Result, id: 'different_track_id',
+                                                      spotify_song_url: 'https://open.spotify.com/track/different_track_id')
+      end
+
+      before { song_importer.instance_variable_set(:@track, mock_track) }
+
+      it 'returns false because track Spotify ID does not match song' do
+        expect(song_importer.send(:should_update_artists?)).to be false
+      end
+    end
+
+    context 'when new artists lack Spotify IDs even though track matches' do
+      let(:existing_artists) { [create(:artist, name: 'Spotify Artist', id_on_spotify: 'spotify456')] }
+      let(:new_artists) { [create(:artist, name: 'Non-Spotify Artist', id_on_spotify: nil)] }
+      let(:existing_song) { create(:song, title: 'Existing Song', artists: existing_artists, id_on_spotify: 'track_spotify_id') }
+      let(:mock_track) do
+        instance_double(Spotify::TrackFinder::Result, id: 'track_spotify_id',
+                                                      spotify_song_url: 'https://open.spotify.com/track/track_spotify_id')
+      end
+
+      before { song_importer.instance_variable_set(:@track, mock_track) }
+
+      it 'returns false because new artists are not from Spotify' do
         expect(song_importer.send(:should_update_artists?)).to be false
       end
     end
