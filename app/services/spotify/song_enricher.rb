@@ -66,7 +66,7 @@ module Spotify
       updates[:spotify_song_url] = result.spotify_song_url if result.spotify_song_url.present?
       updates[:spotify_artwork_url] = result.spotify_artwork_url if result.spotify_artwork_url.present?
       updates[:spotify_preview_url] = result.spotify_preview_url if result.spotify_preview_url.present?
-      updates[:isrc] = result.isrc if result.isrc.present? && @song.isrc.blank?
+      updates[:isrcs] = @song.isrcs | [result.isrc] if result.isrc.present? && !@song.isrcs.include?(result.isrc)
       updates[:duration_ms] = result.duration_ms if result.duration_ms.present?
       updates
     end

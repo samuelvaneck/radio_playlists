@@ -27,7 +27,7 @@ module Deezer
       result = Deezer::TrackFinder::Result.new(
         artists: @song.artists.map(&:name).join(' '),
         title: @song.title,
-        isrc: @song.isrc
+        isrc: @song.isrcs&.first
       )
       result.execute
       result

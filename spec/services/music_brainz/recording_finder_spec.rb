@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe MusicBrainz::RecordingFinder, type: :service do
-  let(:song) { create(:song, title: 'Test Song', isrc: 'USRC12345678') }
+  let(:song) { create(:song, title: 'Test Song', isrcs: ['USRC12345678']) }
   let(:artist) { create(:artist, name: 'Test Artist') }
   let(:finder) { described_class.new(song) }
   let(:successful_response) do
@@ -50,7 +50,7 @@ RSpec.describe MusicBrainz::RecordingFinder, type: :service do
     end
 
     context 'when ISRC search returns no results but title/artist search succeeds' do
-      let(:song) { create(:song, title: 'Another Song', isrc: 'NORC00000000') }
+      let(:song) { create(:song, title: 'Another Song', isrcs: ['NORC00000000']) }
 
       before do
         stub_request(:get, /musicbrainz.org.*isrc/)
@@ -65,7 +65,7 @@ RSpec.describe MusicBrainz::RecordingFinder, type: :service do
     end
 
     context 'when song has no ISRC' do
-      let(:song) { create(:song, title: 'No ISRC Song', isrc: nil) }
+      let(:song) { create(:song, title: 'No ISRC Song', isrcs: []) }
 
       before do
         stub_request(:get, /musicbrainz.org/)

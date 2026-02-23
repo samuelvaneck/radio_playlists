@@ -25,10 +25,10 @@ module MusicBrainz
     private
 
     def find_by_isrc
-      return nil if @song.isrc.blank?
+      return nil if @song.isrcs.blank?
 
-      Rails.logger.info "MusicBrainz::RecordingFinder: Searching by ISRC #{@song.isrc}"
-      query = "isrc:#{@song.isrc}"
+      Rails.logger.info "MusicBrainz::RecordingFinder: Searching by ISRC #{@song.isrcs.first}"
+      query = "isrc:#{@song.isrcs.first}"
       search(query)
     end
 
