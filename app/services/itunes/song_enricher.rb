@@ -13,12 +13,15 @@ module Itunes
       result = find_on_itunes
       return unless result&.valid_match?
 
-      @song.update(
+      attributes = {
         id_on_itunes: result.id,
         itunes_song_url: result.itunes_song_url,
         itunes_artwork_url: result.itunes_artwork_url,
         itunes_preview_url: result.itunes_preview_url
-      )
+      }
+      attributes[:duration_ms] = result.duration_ms if @song.duration_ms.blank? && result.duration_ms.present?
+
+      @song.update(attributes)
     end
 
     private
