@@ -59,7 +59,10 @@ RSpec.describe SongExternalIdsEnrichmentJob do
     end
 
     context 'when song already has all external ids' do
-      let(:song) { create(:song, title: 'Test Song', id_on_deezer: '123456', id_on_itunes: '789012', isrcs: %w[USRC12345678 GBABC1234567]) }
+      let(:song) do
+        create(:song, title: 'Test Song', id_on_deezer: '123456', id_on_itunes: '789012',
+                      isrcs: %w[USRC12345678 GBABC1234567], duration_ms: 210_000)
+      end
 
       it 'does not call enrichment services', :aggregate_failures do
         allow(Deezer::SongEnricher).to receive(:new)
@@ -80,7 +83,7 @@ RSpec.describe SongExternalIdsEnrichmentJob do
     let!(:song_missing_itunes) { create(:song, id_on_deezer: '456', id_on_itunes: nil) }
     let!(:song_missing_both) { create(:song, id_on_deezer: nil, id_on_itunes: nil) }
     let!(:song_missing_isrcs) { create(:song, id_on_deezer: '111', id_on_itunes: '222', isrcs: ['USRC12345678']) }
-    let!(:song_complete) { create(:song, id_on_deezer: '789', id_on_itunes: '012', isrcs: %w[USRC12345678 GBABC1234567]) }
+    let!(:song_complete) { create(:song, id_on_deezer: '789', id_on_itunes: '012', isrcs: %w[USRC12345678 GBABC1234567], duration_ms: 210_000) }
 
     it 'enqueues jobs for songs missing external IDs', :aggregate_failures do
       allow(described_class).to receive(:perform_async)

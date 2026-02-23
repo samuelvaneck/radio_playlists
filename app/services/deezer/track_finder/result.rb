@@ -5,7 +5,7 @@ module Deezer
     class Result < Base
       attr_reader :track, :artists, :title, :id, :isrc,
                   :deezer_artwork_url, :deezer_song_url, :deezer_preview_url,
-                  :release_date
+                  :release_date, :duration_ms
 
       def initialize(args)
         super
@@ -26,6 +26,7 @@ module Deezer
         @deezer_artwork_url = set_artwork_url
         @deezer_preview_url = set_preview_url
         @release_date = set_release_date
+        @duration_ms = set_duration_ms
 
         @track
       end
@@ -122,6 +123,12 @@ module Deezer
 
       def set_preview_url
         @track&.dig('preview')
+      end
+
+      def set_duration_ms
+        # Deezer returns duration in seconds, convert to milliseconds
+        duration = @track&.dig('duration')
+        duration.present? ? duration * 1000 : nil
       end
 
       def set_release_date

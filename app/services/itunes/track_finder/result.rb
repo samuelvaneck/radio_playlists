@@ -5,7 +5,7 @@ module Itunes
     class Result < Base
       attr_reader :track, :artists, :title, :id, :isrc,
                   :itunes_artwork_url, :itunes_song_url, :itunes_preview_url,
-                  :release_date
+                  :release_date, :duration_ms
 
       def initialize(args)
         super
@@ -26,6 +26,7 @@ module Itunes
         @itunes_artwork_url = set_artwork_url
         @itunes_preview_url = set_preview_url
         @release_date = set_release_date
+        @duration_ms = set_duration_ms
 
         @track
       end
@@ -106,6 +107,10 @@ module Itunes
 
       def set_preview_url
         @track&.dig('previewUrl')
+      end
+
+      def set_duration_ms
+        @track&.dig('trackTimeMillis')
       end
 
       def set_release_date

@@ -10,6 +10,7 @@ class SongExternalIdsEnrichmentJob
     scope = Song
               .where(id_on_deezer: nil)
               .or(Song.where(id_on_itunes: nil))
+              .or(Song.where(duration_ms: nil))
               .or(Song.where('array_length(isrcs, 1) = 1'))
 
     scope.find_each { |song| perform_async(song.id) }
