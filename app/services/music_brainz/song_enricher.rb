@@ -8,10 +8,10 @@ module MusicBrainz
 
     def enrich
       return if @song.blank?
-      return if @song.isrc.blank?
-      return if @song.isrcs.present?
+      return if @song.isrcs.blank?
+      return if @song.isrcs.size > 1
 
-      isrcs = MusicBrainz::IsrcsFinder.new(@song.isrc).find
+      isrcs = MusicBrainz::IsrcsFinder.new(@song.isrcs.first).find
       return if isrcs.blank?
 
       @song.update(isrcs: isrcs)

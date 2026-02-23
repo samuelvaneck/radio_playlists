@@ -48,13 +48,14 @@ class TrackExtractor::SongExtractor < TrackExtractor
   end
 
   def build_spotify_updates(song)
-    {
+    updates = {
       id_on_spotify: (id_on_spotify if song.id_on_spotify.blank?),
       spotify_song_url: (spotify_song_url if song.spotify_song_url.blank?),
       spotify_artwork_url: (spotify_artwork_url if song.spotify_artwork_url.blank?),
-      isrc: (isrc if song.isrc.blank?),
       duration_ms: (duration_ms if song.duration_ms.blank?)
     }.compact
+    updates[:isrcs] = song.isrcs | [isrc] if isrc.present? && !song.isrcs.include?(isrc)
+    updates
   end
 
   # Methode for checking if there are songs with the same title.
@@ -85,7 +86,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
   # and recognizer find different platform versions of the same recording
   # (e.g., "Frank Boeijen" vs "Frank Boeijen Groep" versions with same ISRC).
   def find_by_track
-    @find_by_track ||= (isrc.present? && Song.find_by(isrc:)) ||
+    @find_by_track ||= (isrc.present? && Song.where('? = ANY(isrcs)', isrc).first) ||
                        (id_on_spotify.present? && Song.find_by(id_on_spotify:)) ||
                        (id_on_deezer.present? && Song.find_by(id_on_deezer:)) ||
                        (id_on_itunes.present? && Song.find_by(id_on_itunes:))
@@ -171,7 +172,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
   def song_attributes
     attrs = {
       title:,
-      isrc:,
+      isrcs: [isrc].compact,
       release_date:,
       release_date_precision:
     }

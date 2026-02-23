@@ -27,7 +27,7 @@
 FactoryBot.define do
   factory :song do
     title { Faker::Music::RockBand.song }
-    isrc { Faker::Alphanumeric.alphanumeric(number: 12).upcase }
+    isrcs { [Faker::Alphanumeric.alphanumeric(number: 12).upcase] }
     id_on_spotify { Faker::Alphanumeric.alphanumeric(number: 22) }
     spotify_song_url { Faker::Internet.url(host: 'open.spotify.com', path: "/track/#{id_on_spotify}") }
     spotify_artwork_url { Faker::Internet.url(host: 'i.scdn.co', path: '/image/random') }

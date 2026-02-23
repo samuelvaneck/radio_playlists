@@ -49,7 +49,7 @@ describe TrackExtractor::SongExtractor do
       end
 
       it 'sets the isrc code' do
-        expect(song.isrc).to eq('ISRC123')
+        expect(song.isrcs).to include('ISRC123')
       end
 
       it 'sets the spotify preview URL' do
@@ -105,7 +105,7 @@ describe TrackExtractor::SongExtractor do
       let!(:existing_song) do
         create(:song,
                title: 'Test Song',
-               isrc: 'ISRC123',
+               isrcs: ['ISRC123'],
                id_on_spotify: nil,
                spotify_song_url: nil,
                spotify_artwork_url: nil,
@@ -196,7 +196,7 @@ describe TrackExtractor::SongExtractor do
         create(:song,
                title: 'Different Song',
                id_on_spotify: nil,
-               isrc: nil,
+               isrcs: [],
                artists: [create(:artist, name: 'Other Artist')])
       end
 
@@ -209,7 +209,7 @@ describe TrackExtractor::SongExtractor do
       end
     end
 
-    context 'when track has nil isrc but song exists with nil isrc' do
+    context 'when track has nil isrc but song exists with empty isrcs' do
       let(:track) do
         OpenStruct.new(
           title: 'Another Song',
@@ -237,10 +237,10 @@ describe TrackExtractor::SongExtractor do
                id_on_spotify: nil,
                id_on_deezer: nil,
                id_on_itunes: nil,
-               isrc: nil)
+               isrcs: [])
       end
 
-      it 'does not match songs by nil isrc' do
+      it 'does not match songs by empty isrcs' do
         expect(song).not_to eq(song_with_nil_isrc)
       end
     end
@@ -373,7 +373,7 @@ describe TrackExtractor::SongExtractor do
         create(:song,
                title: 'Zwart Wit',
                id_on_spotify: 'spotify_band_version',
-               isrc: 'NLA200200321',
+               isrcs: ['NLA200200321'],
                artists: [create(:artist, name: 'Frank Boeijen Groep')])
       end
 

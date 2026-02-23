@@ -30,7 +30,7 @@ class TrackExtractor::SpotifyTrackFinder < TrackExtractor
   def find_existing_song
     # First, try to find by ISRC (most reliable identifier from audio recognition)
     if isrc_code.present?
-      song_by_isrc = Song.find_by(isrc: isrc_code)
+      song_by_isrc = Song.where('? = ANY(isrcs)', isrc_code).first
       return song_by_isrc if song_by_isrc&.id_on_spotify.present?
     end
 

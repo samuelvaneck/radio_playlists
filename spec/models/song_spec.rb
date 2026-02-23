@@ -596,7 +596,7 @@ describe Song do
 
     context 'when song has no searchable data' do
       it 'does not call update_youtube_from_wikipedia' do
-        song = build(:song, title: nil, id_on_youtube: nil, id_on_spotify: nil, isrc: nil)
+        song = build(:song, title: nil, id_on_youtube: nil, id_on_spotify: nil, isrcs: [])
         allow(song).to receive(:update_youtube_from_wikipedia)
         song.save!
         expect(song).not_to have_received(:update_youtube_from_wikipedia)
@@ -605,16 +605,16 @@ describe Song do
 
     context 'when song has only title' do
       it 'calls update_youtube_from_wikipedia' do
-        song = build(:song, title: 'Some Title', id_on_youtube: nil, id_on_spotify: nil, isrc: nil)
+        song = build(:song, title: 'Some Title', id_on_youtube: nil, id_on_spotify: nil, isrcs: [])
         allow(song).to receive(:update_youtube_from_wikipedia)
         song.save!
         expect(song).to have_received(:update_youtube_from_wikipedia)
       end
     end
 
-    context 'when song has only isrc' do
+    context 'when song has only isrcs' do
       it 'calls update_youtube_from_wikipedia' do
-        song = build(:song, title: nil, id_on_youtube: nil, id_on_spotify: nil, isrc: 'USRC12345678')
+        song = build(:song, title: nil, id_on_youtube: nil, id_on_spotify: nil, isrcs: ['USRC12345678'])
         allow(song).to receive(:update_youtube_from_wikipedia)
         song.save!
         expect(song).to have_received(:update_youtube_from_wikipedia)
@@ -658,7 +658,7 @@ describe Song do
                title: 'Rolling in the Deep',
                artists: [artist],
                id_on_youtube: nil,
-               isrc: 'GBBKS1000094')
+               isrcs: ['GBBKS1000094'])
       end
 
       it 'updates id_on_youtube if found' do

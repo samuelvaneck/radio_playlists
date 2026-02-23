@@ -285,7 +285,7 @@ describe TrackExtractor::SpotifyTrackFinder do
         )
       end
 
-      before { create(:song, title: 'Original Title', isrc: 'USRC12345678', id_on_spotify: 'isrc_match123', artists: [artist]) }
+      before { create(:song, title: 'Original Title', isrcs: ['USRC12345678'], id_on_spotify: 'isrc_match123', artists: [artist]) }
 
       it 'finds the existing song by ISRC even when artist names do not match' do
         finder.find
@@ -306,7 +306,7 @@ describe TrackExtractor::SpotifyTrackFinder do
         )
       end
 
-      before { create(:song, title: 'Test Song', isrc: 'USRC12345678', id_on_spotify: nil, artists: [artist]) }
+      before { create(:song, title: 'Test Song', isrcs: ['USRC12345678'], id_on_spotify: nil, artists: [artist]) }
 
       it 'falls back to artist + title matching' do
         finder.find

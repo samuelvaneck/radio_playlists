@@ -62,7 +62,7 @@ class Song < ApplicationRecord
   scope :matching, lambda { |search_term|
     where('songs.search_text ILIKE ?', "%#{search_term}%") if search_term.present?
   }
-  scope :with_iscr, ->(isrc) { where(isrc: isrc) }
+  scope :with_isrc, ->(isrc) { where('? = ANY(isrcs)', isrc) }
   scope :with_id_on_spotify, -> { where.not(id_on_spotify: nil) }
   scope :with_music_profile, lambda { |filters|
     return all if filters.blank?
@@ -188,8 +188,8 @@ class Song < ApplicationRecord
     end
 
     # Try by ISRC
-    if isrc.present?
-      youtube_id = song_finder.get_youtube_video_id_by_isrc(isrc)
+    if isrcs.present?
+      youtube_id = song_finder.get_youtube_video_id_by_isrc(isrcs.first)
       return update(id_on_youtube: youtube_id) if youtube_id.present?
     end
 
@@ -260,11 +260,11 @@ class Song < ApplicationRecord
   end
 
   def should_update_youtube?
-    id_on_youtube.blank? && (id_on_spotify.present? || isrc.present? || title.present?)
+    id_on_youtube.blank? && (id_on_spotify.present? || isrcs.present? || title.present?)
   end
 
   def should_enrich_with_deezer?
-    id_on_deezer.blank? && (isrc.present? || title.present?)
+    id_on_deezer.blank? && (isrcs.present? || title.present?)
   end
 
   def should_enrich_with_itunes?
@@ -272,6 +272,6 @@ class Song < ApplicationRecord
   end
 
   def should_enrich_with_music_brainz?
-    isrcs.blank? && isrc.present?
+    isrcs.size == 1
   end
 end

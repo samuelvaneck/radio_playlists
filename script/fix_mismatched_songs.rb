@@ -253,7 +253,7 @@ class SongFixer
   end
 
   def clear_incorrect_song_data
-    @song.update!(id_on_spotify: nil, isrc: nil, spotify_song_url: nil, spotify_artwork_url: nil)
+    @song.update!(id_on_spotify: nil, isrcs: [], spotify_song_url: nil, spotify_artwork_url: nil)
     @song.artists.clear
   end
 
@@ -267,7 +267,7 @@ class SongFixer
   def update_song_attributes
     @song.update!(
       title: @info[:spotify_title],
-      isrc: @spotify_data.dig('external_ids', 'isrc'),
+      isrcs: [@spotify_data.dig('external_ids', 'isrc')].compact,
       spotify_song_url: @spotify_data.dig('external_urls', 'spotify'),
       spotify_artwork_url: @spotify_data.dig('album', 'images', 0, 'url'),
       spotify_preview_url: @spotify_data['preview_url']
