@@ -264,11 +264,11 @@ class Song < ApplicationRecord
   end
 
   def should_enrich_with_deezer?
-    id_on_deezer.blank? && (isrcs.present? || title.present?)
+    (id_on_deezer.blank? || duration_ms.blank?) && (isrcs.present? || title.present?)
   end
 
   def should_enrich_with_itunes?
-    id_on_itunes.blank? && title.present?
+    (id_on_itunes.blank? || duration_ms.blank?) && title.present?
   end
 
   def should_enrich_with_music_brainz?

@@ -8,7 +8,7 @@ module Deezer
 
     def enrich
       return if @song.blank?
-      return if @song.id_on_deezer.present?
+      return if @song.id_on_deezer.present? && @song.duration_ms.present?
 
       result = find_on_deezer
       return unless result&.valid_match?

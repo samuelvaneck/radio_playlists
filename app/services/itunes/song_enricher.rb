@@ -8,7 +8,7 @@ module Itunes
 
     def enrich
       return if @song.blank?
-      return if @song.id_on_itunes.present?
+      return if @song.id_on_itunes.present? && @song.duration_ms.present?
 
       result = find_on_itunes
       return unless result&.valid_match?
