@@ -44,6 +44,7 @@ RSpec.configure do |config|
                   release_date: { type: :string, format: :date, nullable: true },
                   release_date_precision: { type: :string, nullable: true },
                   artists: { type: :array, items: { '$ref' => '#/components/schemas/ArtistCompact' } },
+                  duration_ms: { type: :integer, nullable: true },
                   counter: { type: :integer, nullable: true },
                   position: { type: :integer, nullable: true }
                 }
