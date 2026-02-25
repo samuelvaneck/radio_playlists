@@ -64,6 +64,7 @@ RSpec.describe 'Songs API', type: :request do
                 title: 'Bohemian Rhapsody',
                 spotify_artwork_url: 'https://i.scdn.co/image/abc123',
                 id_on_spotify: '4u7EnebtmKWzUH433cf5Qv',
+                duration_ms: 354_320,
                 counter: 42,
                 artists: [{ id: 1, name: 'Queen' }],
                 music_profile: {
@@ -157,6 +158,7 @@ RSpec.describe 'Songs API', type: :request do
               title: 'Bohemian Rhapsody',
               spotify_artwork_url: 'https://i.scdn.co/image/abc123',
               id_on_spotify: '4u7EnebtmKWzUH433cf5Qv',
+              duration_ms: 354_320,
               counter: 42,
               artists: [{ id: 1, name: 'Queen' }],
               music_profile: {

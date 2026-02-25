@@ -57,7 +57,8 @@ class SongSerializer
              :id_on_itunes,
              :itunes_song_url,
              :itunes_artwork_url,
-             :itunes_preview_url
+             :itunes_preview_url,
+             :duration_ms
 
   attribute :counter do |object|
     object.counter if object.respond_to?(:counter)
