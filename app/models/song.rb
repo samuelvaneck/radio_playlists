@@ -112,6 +112,7 @@ class Song < ApplicationRecord
                  songs.itunes_preview_url,
                  songs.release_date,
                  songs.release_date_precision,
+                 songs.duration_ms,
                  COUNT(air_plays.id) AS counter,
                  ROW_NUMBER() OVER (ORDER BY COUNT(air_plays.id) DESC NULLS LAST) AS position")
       .group('songs.id, songs.title')
