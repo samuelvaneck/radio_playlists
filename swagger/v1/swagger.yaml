@@ -1801,6 +1801,7 @@ paths:
                         title: Bohemian Rhapsody
                         spotify_artwork_url: https://i.scdn.co/image/abc123
                         id_on_spotify: 4u7EnebtmKWzUH433cf5Qv
+                        duration_ms: 354320
                         counter: 42
                         artists:
                         - id: 1
@@ -1894,6 +1895,7 @@ paths:
                         title: Bohemian Rhapsody
                         spotify_artwork_url: https://i.scdn.co/image/abc123
                         id_on_spotify: 4u7EnebtmKWzUH433cf5Qv
+                        duration_ms: 354320
                         counter: 42
                         artists:
                         - id: 1
@@ -2356,6 +2358,9 @@ components:
               type: array
               items:
                 "$ref": "#/components/schemas/ArtistCompact"
+            duration_ms:
+              type: integer
+              nullable: true
             counter:
               type: integer
               nullable: true
