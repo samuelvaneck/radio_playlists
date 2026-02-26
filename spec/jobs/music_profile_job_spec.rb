@@ -39,17 +39,13 @@ RSpec.describe MusicProfileJob do
         end.to change(MusicProfile, :count).by(1)
       end
 
-      it 'creates music profile with correct attributes', :aggregate_failures do
+      it 'creates music profile with correct attributes' do
         job.perform(song.id, radio_station.id)
 
-        profile = song.reload.music_profile
-        expect(profile.danceability).to eq(0.65)
-        expect(profile.energy).to eq(0.72)
-        expect(profile.tempo).to eq(120.5)
-        expect(profile.key).to eq(5)
-        expect(profile.mode).to eq(1)
-        expect(profile.loudness).to eq(-5.5)
-        expect(profile.time_signature).to eq(4)
+        expect(song.reload.music_profile).to have_attributes(
+          danceability: 0.65, energy: 0.72, tempo: 120.5,
+          key: 5, mode: 1, loudness: -5.5, time_signature: 4
+        )
       end
     end
 
