@@ -17,7 +17,11 @@ RSpec.describe MusicProfileJob do
         'instrumentalness' => 0.02,
         'liveness' => 0.12,
         'valence' => 0.58,
-        'tempo' => 120.5
+        'tempo' => 120.5,
+        'key' => 5,
+        'mode' => 1,
+        'loudness' => -5.5,
+        'time_signature' => 4
       }
     end
 
@@ -35,13 +39,13 @@ RSpec.describe MusicProfileJob do
         end.to change(MusicProfile, :count).by(1)
       end
 
-      it 'creates music profile with correct attributes', :aggregate_failures do
+      it 'creates music profile with correct attributes' do
         job.perform(song.id, radio_station.id)
 
-        profile = song.reload.music_profile
-        expect(profile.danceability).to eq(0.65)
-        expect(profile.energy).to eq(0.72)
-        expect(profile.tempo).to eq(120.5)
+        expect(song.reload.music_profile).to have_attributes(
+          danceability: 0.65, energy: 0.72, tempo: 120.5,
+          key: 5, mode: 1, loudness: -5.5, time_signature: 4
+        )
       end
     end
 
@@ -83,6 +87,62 @@ RSpec.describe MusicProfileJob do
         expect do
           job.perform(song.id, radio_station.id)
         end.not_to change(MusicProfile, :count)
+      end
+    end
+  end
+
+  describe '#update_radio_station_tags' do
+    let(:artist_spotify_id) { 'artist_spotify_id_123' }
+    let(:artist) { create(:artist, id_on_spotify: artist_spotify_id, genres: []) }
+    let(:song) { create(:song, id_on_spotify: '4iV5W9uYEdYUVa79Axb7Rh', artists: [artist]) }
+    let(:radio_station) { create(:radio_station) }
+    let(:job) { described_class.new }
+
+    let(:track_response) do
+      { 'artists' => [{ 'id' => artist_spotify_id }] }
+    end
+
+    let(:artist_response) do
+      { 'genres' => ['dutch pop', 'nederpop'] }
+    end
+
+    before do
+      track_finder = instance_double(Spotify::TrackFinder::FindById, execute: track_response)
+      allow(Spotify::TrackFinder::FindById).to receive(:new).and_return(track_finder)
+
+      artist_finder = instance_double(Spotify::ArtistFinder, info: artist_response)
+      allow(Spotify::ArtistFinder).to receive(:new).and_return(artist_finder)
+
+      tag_record = instance_double(Tag, counter: 0, save: true)
+      allow(tag_record).to receive(:counter=)
+      allow(Tag).to receive(:find_or_initialize_by).and_return(tag_record)
+    end
+
+    context 'when artist exists with no genres and Spotify returns genres' do
+      it 'stores genres on the artist' do
+        job.send(:update_radio_station_tags, song.id_on_spotify, radio_station.id)
+
+        expect(artist.reload.genres).to eq(['dutch pop', 'nederpop'])
+      end
+    end
+
+    context 'when artist already has genres' do
+      before { artist.update(genres: ['existing genre']) }
+
+      it 'does not overwrite existing genres' do
+        job.send(:update_radio_station_tags, song.id_on_spotify, radio_station.id)
+
+        expect(artist.reload.genres).to eq(['existing genre'])
+      end
+    end
+
+    context 'when Spotify returns no genres for the artist' do
+      let(:artist_response) { { 'genres' => [] } }
+
+      it 'does not update the artist genres' do
+        job.send(:update_radio_station_tags, song.id_on_spotify, radio_station.id)
+
+        expect(artist.reload.genres).to eq([])
       end
     end
   end

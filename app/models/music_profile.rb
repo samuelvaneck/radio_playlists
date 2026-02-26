@@ -9,9 +9,13 @@
 #  danceability     :decimal(5, 4)
 #  energy           :decimal(5, 4)
 #  instrumentalness :decimal(5, 4)
+#  key              :integer
 #  liveness         :decimal(5, 4)
+#  loudness         :decimal(5, 2)
+#  mode             :integer
 #  speechiness      :decimal(5, 4)
 #  tempo            :decimal(6, 2)
+#  time_signature   :integer
 #  valence          :decimal(5, 4)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -95,6 +99,30 @@ class MusicProfile < ApplicationRecord
       description: 'The tempo of the track in beats per minute (BPM). ' \
                    'Typical ranges: slow ballads (60-80 BPM), pop music (100-130 BPM), dance music (120-150 BPM).',
       range: '0 - 250 BPM'
+    },
+    key: {
+      name: 'Key',
+      description: 'The musical key of the track using standard Pitch Class notation. ' \
+                   '0 = C, 1 = C♯/D♭, 2 = D, etc. -1 if no key detected.',
+      range: '-1 - 11'
+    },
+    mode: {
+      name: 'Mode',
+      description: 'The modality (major or minor) of the track. Major (1) generally sounds ' \
+                   'happy and bright, while minor (0) sounds sad and dark.',
+      range: '0 or 1'
+    },
+    loudness: {
+      name: 'Loudness',
+      description: 'The overall loudness of the track in decibels (dB). Loudness values are averaged ' \
+                   'across the entire track. Values typically range between -60 and 0 dB.',
+      range: '-60.0 - 0.0 dB'
+    },
+    time_signature: {
+      name: 'Time Signature',
+      description: 'The estimated time signature (meter) of the track — the number of beats per measure. ' \
+                   'Common values: 3 (waltz), 4 (standard), 5, 6, 7.',
+      range: '3 - 7'
     }
   }.freeze
 

@@ -5,7 +5,7 @@
 # Table name: artists
 #
 #  id                  :bigint           not null, primary key
-#  genre               :string
+#  genres              :string           default([]), is an Array
 #  id_on_spotify       :string
 #  image               :string
 #  instagram_url       :string
@@ -52,6 +52,7 @@ class Artist < ApplicationRecord
                    artists.spotify_artwork_url,
                    artists.instagram_url,
                    artists.website_url,
+                   artists.genres,
                    COUNT(DISTINCT air_plays.id) AS counter")
       .group(:id)
       .order('COUNTER DESC')

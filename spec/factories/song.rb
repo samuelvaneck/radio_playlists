@@ -5,9 +5,11 @@
 # Table name: songs
 #
 #  id                     :bigint           not null, primary key
+#  explicit               :boolean          default(false)
 #  id_on_spotify          :string
 #  id_on_youtube          :string
 #  isrc                   :string
+#  popularity             :integer
 #  release_date           :date
 #  release_date_precision :string
 #  search_text            :text
@@ -33,6 +35,8 @@ FactoryBot.define do
     spotify_artwork_url { Faker::Internet.url(host: 'i.scdn.co', path: '/image/random') }
     spotify_preview_url { Faker::Internet.url(host: 'p.scdn.co', path: '/mp3-preview/random') }
     id_on_youtube { Faker::Alphanumeric.alphanumeric(number: 11) }
+    popularity { nil }
+    explicit { false }
     artists { [build(:artist)] }
 
     after(:build) do |song|

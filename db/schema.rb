@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_21_192706) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_26_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -84,7 +84,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_192706) do
 
   create_table "artists", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
-    t.string "genre"
+    t.string "genres", default: [], array: true
     t.string "id_on_spotify"
     t.string "image"
     t.string "instagram_url"
@@ -130,10 +130,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_192706) do
     t.decimal "danceability", precision: 5, scale: 4
     t.decimal "energy", precision: 5, scale: 4
     t.decimal "instrumentalness", precision: 5, scale: 4
+    t.integer "key"
     t.decimal "liveness", precision: 5, scale: 4
+    t.decimal "loudness", precision: 5, scale: 2
+    t.integer "mode"
     t.bigint "song_id", null: false
     t.decimal "speechiness", precision: 5, scale: 4
     t.decimal "tempo", precision: 6, scale: 2
+    t.integer "time_signature"
     t.datetime "updated_at", null: false
     t.decimal "valence", precision: 5, scale: 4
     t.index ["song_id"], name: "index_music_profiles_on_song_id", unique: true
@@ -216,6 +220,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_192706) do
     t.string "deezer_preview_url"
     t.string "deezer_song_url"
     t.integer "duration_ms"
+    t.boolean "explicit", default: false
     t.string "id_on_deezer"
     t.string "id_on_itunes"
     t.string "id_on_spotify"
@@ -225,6 +230,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_192706) do
     t.string "itunes_artwork_url"
     t.string "itunes_preview_url"
     t.string "itunes_song_url"
+    t.integer "popularity"
     t.date "release_date"
     t.string "release_date_precision"
     t.text "search_text"

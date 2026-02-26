@@ -38,7 +38,11 @@ class MusicProfileJob
       instrumentalness: audio_features['instrumentalness'],
       liveness: audio_features['liveness'],
       valence: audio_features['valence'],
-      tempo: audio_features['tempo']
+      tempo: audio_features['tempo'],
+      key: audio_features['key'],
+      mode: audio_features['mode'],
+      loudness: audio_features['loudness'],
+      time_signature: audio_features['time_signature']
     )
   end
 
@@ -57,7 +61,16 @@ class MusicProfileJob
     track = Spotify::TrackFinder::FindById.new(id_on_spotify:).execute
     track['artists'].flat_map do |artist|
       spotify_artist = Spotify::ArtistFinder.new(id_on_spotify: artist['id']).info
-      spotify_artist['genres']
+      genres = spotify_artist['genres']
+      update_artist_genres(artist['id'], genres)
+      genres
     end.uniq
+  end
+
+  def update_artist_genres(id_on_spotify, genres)
+    return if genres.blank?
+
+    artist = Artist.find_by(id_on_spotify:)
+    artist&.update(genres:) if artist&.genres.blank?
   end
 end
