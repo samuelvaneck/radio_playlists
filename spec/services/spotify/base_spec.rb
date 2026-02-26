@@ -32,12 +32,12 @@ describe Spotify::Base, type: :service do
     context 'when the request fails' do
       before do
         stub_request(:get, url).to_raise(Faraday::Error)
-        allow(ExceptionNotifier).to receive(:notify_new_relic)
+        allow(ExceptionNotifier).to receive(:notify)
       end
 
       it 'notifies the error to New Relic' do
         make_request
-        expect(ExceptionNotifier).to have_received(:notify_new_relic).once
+        expect(ExceptionNotifier).to have_received(:notify).once
       end
 
       it 'returns nil after 3 attempts' do

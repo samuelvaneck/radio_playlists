@@ -59,7 +59,7 @@ module CircuitBreakable
 
   def handle_circuit_failure(error)
     log_circuit_state(:open)
-    ExceptionNotifier.notify_new_relic(
+    ExceptionNotifier.notify(
       error,
       { service: circuit_breaker_service_name, circuit_state: 'open' }
     )

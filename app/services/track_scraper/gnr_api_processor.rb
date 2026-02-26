@@ -15,7 +15,7 @@ class TrackScraper::GnrApiProcessor < TrackScraper
     true
   rescue StandardError => e
     Rails.logger.info e
-    ExceptionNotifier.notify_new_relic(e)
+    ExceptionNotifier.notify(e)
     false
   end
 end

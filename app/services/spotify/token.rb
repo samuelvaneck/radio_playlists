@@ -19,7 +19,7 @@ module Spotify
         generate_token
       end
     rescue Errno::EACCES, TokenGenerationError => e
-      ExceptionNotifier.notify_new_relic(e)
+      ExceptionNotifier.notify(e)
       raise e
     end
 
@@ -51,7 +51,7 @@ module Spotify
     end
 
     def output_error(error)
-      ExceptionNotifier.notify_new_relic(error)
+      ExceptionNotifier.notify(error)
       Rails.logger.error(error.response[:body])
       Rails.logger.error(error.response[:status])
     end

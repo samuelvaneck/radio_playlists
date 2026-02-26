@@ -100,7 +100,7 @@ module Wikipedia
         response.body
       end
     rescue StandardError => e
-      ExceptionNotifier.notify_new_relic(e)
+      ExceptionNotifier.notify(e)
       Rails.logger.error("Wikidata API error: #{e.message}")
       nil
     end
@@ -189,7 +189,7 @@ module Wikipedia
         response.dig('entities', entity_id, 'labels', language, 'value')
       end
     rescue StandardError => e
-      ExceptionNotifier.notify_new_relic(e)
+      ExceptionNotifier.notify(e)
       Rails.logger.error("Wikidata API error fetching labels: #{e.message}")
       nil
     end
@@ -232,7 +232,7 @@ module Wikipedia
         extract_wikibase_item_from_sparql(response.body)
       end
     rescue StandardError => e
-      ExceptionNotifier.notify_new_relic(e)
+      ExceptionNotifier.notify(e)
       Rails.logger.error("Wikidata SPARQL error: #{e.message}")
       nil
     end

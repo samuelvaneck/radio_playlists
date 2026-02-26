@@ -28,7 +28,7 @@ module Spotify
       end
       response&.deep_dup
     rescue StandardError => e
-      ExceptionNotifier.notify_new_relic(e)
+      ExceptionNotifier.notify(e)
       Rails.logger.error(e.message)
       nil
     end

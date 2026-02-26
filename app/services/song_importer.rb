@@ -36,7 +36,7 @@ class SongImporter
 
     create_air_play
   rescue StandardError => e
-    ExceptionNotifier.notify_new_relic(e)
+    ExceptionNotifier.notify(e)
     Broadcaster.error_during_import(error_message: e.message, radio_station_name: @radio_station.name)
     @import_logger.fail_log(reason: e.message)
     nil

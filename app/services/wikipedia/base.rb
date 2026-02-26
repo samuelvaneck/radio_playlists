@@ -31,7 +31,7 @@ module Wikipedia
         end
       end
     rescue StandardError => e
-      ExceptionNotifier.notify_new_relic(e)
+      ExceptionNotifier.notify(e)
       Rails.logger.error("Wikipedia API error: #{e.message}")
       nil
     end
@@ -47,7 +47,7 @@ module Wikipedia
         end
       end
     rescue StandardError => e
-      ExceptionNotifier.notify_new_relic(e)
+      ExceptionNotifier.notify(e)
       Rails.logger.error("Wikipedia API error: #{e.message}")
       nil
     end

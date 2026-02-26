@@ -120,6 +120,12 @@ Style/FrozenStringLiteralComment:
 ################################################################################
 Rails:
   Enabled: true
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - staging
 Rails/CreateTableWithTimestamps:
   Exclude:
     - db/schema.rb

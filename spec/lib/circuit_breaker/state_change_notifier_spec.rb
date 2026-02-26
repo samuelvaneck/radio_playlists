@@ -10,7 +10,7 @@ RSpec.describe CircuitBreaker::StateChangeNotifier do
     context 'when event is :open' do
       before do
         allow(Rails.logger).to receive(:error)
-        allow(NewRelic::Agent).to receive(:record_custom_event)
+        allow(Sentry).to receive(:capture_message)
       end
 
       it 'logs the state change at error level' do
@@ -18,11 +18,12 @@ RSpec.describe CircuitBreaker::StateChangeNotifier do
         expect(Rails.logger).to have_received(:error).with(/test_circuit state changed to open/)
       end
 
-      it 'sends event to NewRelic' do
+      it 'sends event to Sentry' do
         notifier.notify(:test_circuit, :open)
-        expect(NewRelic::Agent).to have_received(:record_custom_event).with(
-          'CircuitBreakerStateChange',
-          hash_including(circuit_name: 'test_circuit', state: 'open')
+        expect(Sentry).to have_received(:capture_message).with(
+          '[CircuitBreaker] test_circuit state changed to open',
+          level: :warning,
+          extra: hash_including(circuit_name: 'test_circuit', state: 'open')
         )
       end
     end
@@ -30,7 +31,7 @@ RSpec.describe CircuitBreaker::StateChangeNotifier do
     context 'when event is :close' do
       before do
         allow(Rails.logger).to receive(:info)
-        allow(NewRelic::Agent).to receive(:record_custom_event)
+        allow(Sentry).to receive(:capture_message)
       end
 
       it 'logs the state change at info level' do
@@ -38,11 +39,12 @@ RSpec.describe CircuitBreaker::StateChangeNotifier do
         expect(Rails.logger).to have_received(:info).with(/test_circuit state changed to closed/)
       end
 
-      it 'sends event to NewRelic' do
+      it 'sends event to Sentry' do
         notifier.notify(:test_circuit, :close)
-        expect(NewRelic::Agent).to have_received(:record_custom_event).with(
-          'CircuitBreakerStateChange',
-          hash_including(circuit_name: 'test_circuit', state: 'closed')
+        expect(Sentry).to have_received(:capture_message).with(
+          '[CircuitBreaker] test_circuit state changed to closed',
+          level: :info,
+          extra: hash_including(circuit_name: 'test_circuit', state: 'closed')
         )
       end
     end
@@ -83,15 +85,15 @@ RSpec.describe CircuitBreaker::StateChangeNotifier do
       end
     end
 
-    context 'when NewRelic fails' do
+    context 'when Sentry fails' do
       before do
         allow(Rails.logger).to receive(:error)
-        allow(NewRelic::Agent).to receive(:record_custom_event).and_raise(StandardError, 'NewRelic error')
+        allow(Sentry).to receive(:capture_message).and_raise(StandardError, 'Sentry error')
       end
 
       it 'logs the error and does not raise', :aggregate_failures do
         expect { notifier.notify(:test_circuit, :open) }.not_to raise_error
-        expect(Rails.logger).to have_received(:error).with(/Failed to send to NewRelic/)
+        expect(Rails.logger).to have_received(:error).with(/Failed to send to Sentry/)
       end
     end
   end
