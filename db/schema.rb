@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_26_000001) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_26_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -216,6 +216,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_000001) do
     t.string "deezer_preview_url"
     t.string "deezer_song_url"
     t.integer "duration_ms"
+    t.boolean "explicit", default: false
     t.string "id_on_deezer"
     t.string "id_on_itunes"
     t.string "id_on_spotify"
@@ -225,6 +226,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_000001) do
     t.string "itunes_artwork_url"
     t.string "itunes_preview_url"
     t.string "itunes_song_url"
+    t.integer "popularity"
     t.date "release_date"
     t.string "release_date_precision"
     t.text "search_text"
