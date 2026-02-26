@@ -72,7 +72,7 @@ describe Wikipedia::ArtistFinder do
       before do
         allow(Rails.cache).to receive(:fetch).and_yield
         allow_any_instance_of(Faraday::Connection).to receive(:get).and_raise(Faraday::Error) # rubocop:disable RSpec/AnyInstance
-        allow(ExceptionNotifier).to receive(:notify_new_relic)
+        allow(ExceptionNotifier).to receive(:notify)
         allow(Rails.logger).to receive(:error)
       end
 

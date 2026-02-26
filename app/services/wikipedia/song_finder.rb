@@ -145,7 +145,7 @@ module Wikipedia
         response.body
       end
     rescue StandardError => e
-      ExceptionNotifier.notify_new_relic(e)
+      ExceptionNotifier.notify(e)
       Rails.logger.error("Wikidata sitelinks error: #{e.message}")
       nil
     end

@@ -19,7 +19,7 @@ class TrackScraper::QmusicApiProcessor < TrackScraper
     true
   rescue StandardError => e
     Rails.logger.warn("QmusicApiProcessor: #{e.message}")
-    ExceptionNotifier.notify_new_relic(e)
+    ExceptionNotifier.notify(e)
     false
   end
 end

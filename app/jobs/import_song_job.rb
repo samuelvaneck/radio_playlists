@@ -10,6 +10,6 @@ class ImportSongJob
     SongImporter.new(radio_station: radio_station).import
   rescue StandardError => e
     Rails.logger.error "ImportSongJob error for #{radio_station&.name}: #{e.message}"
-    ExceptionNotifier.notify_new_relic(e, 'ImportSongJob')
+    ExceptionNotifier.notify(e, 'ImportSongJob')
   end
 end

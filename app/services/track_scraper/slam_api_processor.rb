@@ -15,7 +15,7 @@ class TrackScraper::SlamApiProcessor < TrackScraper
     true
   rescue StandardError => e
     Rails.logger.warn("SlamApiProcessor: #{e.message}")
-    ExceptionNotifier.notify_new_relic(e)
+    ExceptionNotifier.notify(e)
     false
   end
 end

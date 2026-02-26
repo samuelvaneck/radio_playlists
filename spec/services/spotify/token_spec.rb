@@ -40,7 +40,7 @@ describe Spotify::Token, type: :service do
     context 'when an error occurs during token generation' do
       before do
         allow(spotify_token).to receive(:generate_token).and_raise(Spotify::Token::TokenGenerationError)
-        allow(ExceptionNotifier).to receive(:notify_new_relic)
+        allow(ExceptionNotifier).to receive(:notify)
       end
 
       it 'raises a TokenGenerationError' do

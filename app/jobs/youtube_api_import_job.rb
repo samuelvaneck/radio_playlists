@@ -13,7 +13,7 @@ class YoutubeApiImportJob
     song.update(id_on_youtube:)
   rescue StandardError => e
     Rails.logger.error "Error in YoutubeApiImportJob: #{e.message}"
-    ExceptionNotifier.notify_new_relic(e, 'YoutubeApiImportJob')
+    ExceptionNotifier.notify(e, 'YoutubeApiImportJob')
     nil
   end
 

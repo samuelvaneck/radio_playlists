@@ -16,7 +16,7 @@ class TrackScraper::MediaHuisApiProcessor < TrackScraper
     true
   rescue StandardError => e
     Rails.logger.warn("MediaHuisApiProcessor: #{e.message}")
-    ExceptionNotifier.notify_new_relic(e)
+    ExceptionNotifier.notify(e)
     false
   end
 end

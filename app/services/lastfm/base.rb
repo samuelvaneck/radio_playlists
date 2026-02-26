@@ -21,7 +21,7 @@ module Lastfm
         end
       end
     rescue StandardError => e
-      ExceptionNotifier.notify_new_relic(e)
+      ExceptionNotifier.notify(e)
       Rails.logger.error("Lastfm API error: #{e.message}")
       nil
     end

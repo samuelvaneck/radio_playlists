@@ -60,7 +60,7 @@ describe TrackScraper::NpoApiProcessor, type: :service do
 
       before do
         allow(Rails.logger).to receive(:warn).and_call_original
-        allow(ExceptionNotifier).to receive(:notify_new_relic).and_call_original
+        allow(ExceptionNotifier).to receive(:notify).and_call_original
       end
 
       it 'returns false' do
@@ -69,7 +69,7 @@ describe TrackScraper::NpoApiProcessor, type: :service do
 
       it 'notifies New Relic' do
         last_played_song
-        expect(ExceptionNotifier).to have_received(:notify_new_relic).with(instance_of(StandardError))
+        expect(ExceptionNotifier).to have_received(:notify).with(instance_of(StandardError))
       end
 
       it 'logs the error' do

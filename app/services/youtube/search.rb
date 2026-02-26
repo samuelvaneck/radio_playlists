@@ -43,7 +43,7 @@ module Youtube
       end
     rescue Faraday::Error => e
       Rails.logger.error(e.message)
-      ExceptionNotifier.notify_new_relic(e)
+      ExceptionNotifier.notify(e)
       []
     end
     # def make_request
@@ -54,7 +54,7 @@ module Youtube
     #   hande_response(https.request(request))
     # rescue StandardError => e
     #   Rails.logger.error(e.message)
-    #   ExceptionNotifier.notify_new_relic(e)
+    #   ExceptionNotifier.notify(e)
     #   []
     # end
 

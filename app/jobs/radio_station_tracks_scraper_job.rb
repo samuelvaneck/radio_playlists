@@ -15,7 +15,7 @@ class RadioStationTracksScraperJob
     end
   rescue StandardError => e
     Rails.logger.error "Error in YoutubeImportJob: #{e.message}"
-    ExceptionNotifier.notify_new_relic(e, 'YoutubeScrapeImportJob')
+    ExceptionNotifier.notify(e, 'YoutubeScrapeImportJob')
     nil
   ensure
     clear_instance_variables

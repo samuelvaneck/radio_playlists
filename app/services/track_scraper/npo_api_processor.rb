@@ -16,7 +16,7 @@ class TrackScraper::NpoApiProcessor < TrackScraper
     true
   rescue StandardError => e
     Rails.logger.warn("NpoApiProcessor: #{e.message}")
-    ExceptionNotifier.notify_new_relic(e)
+    ExceptionNotifier.notify(e)
     false
   end
 end

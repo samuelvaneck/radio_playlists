@@ -52,7 +52,7 @@ class TrackScraper::TalpaApiProcessor < TrackScraper
     true
   rescue StandardError => e
     Rails.logger.warn("TalpaApiProcessor: #{e.message}")
-    ExceptionNotifier.notify_new_relic(e)
+    ExceptionNotifier.notify(e)
     false
   end
 end
