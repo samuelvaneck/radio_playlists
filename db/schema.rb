@@ -130,10 +130,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_120000) do
     t.decimal "danceability", precision: 5, scale: 4
     t.decimal "energy", precision: 5, scale: 4
     t.decimal "instrumentalness", precision: 5, scale: 4
+    t.integer "key"
     t.decimal "liveness", precision: 5, scale: 4
+    t.decimal "loudness", precision: 5, scale: 2
+    t.integer "mode"
     t.bigint "song_id", null: false
     t.decimal "speechiness", precision: 5, scale: 4
     t.decimal "tempo", precision: 6, scale: 2
+    t.integer "time_signature"
     t.datetime "updated_at", null: false
     t.decimal "valence", precision: 5, scale: 4
     t.index ["song_id"], name: "index_music_profiles_on_song_id", unique: true
