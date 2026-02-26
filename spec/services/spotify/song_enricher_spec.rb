@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-describe Spotify::SongEnricher do # rubocop:disable Metrics/BlockLength
+describe Spotify::SongEnricher do
   subject(:enricher) { described_class.new(song, force: force) }
 
   let(:song) { create(:song, id_on_spotify: 'spotify_id_123', spotify_song_url: nil, isrcs: []) }
   let(:force) { false }
 
-  describe '#enrich' do # rubocop:disable Metrics/BlockLength
+  describe '#enrich' do
     context 'when song is blank' do
       subject(:enricher) { described_class.new(nil) }
 
@@ -132,7 +132,7 @@ describe Spotify::SongEnricher do # rubocop:disable Metrics/BlockLength
     end
   end
 
-  describe '#build_updates' do # rubocop:disable Metrics/BlockLength
+  describe '#build_updates' do
     subject(:updates) { enricher.send(:build_updates, result) }
 
     let(:result) do
