@@ -10,6 +10,7 @@
 #  deezer_preview_url     :string
 #  deezer_song_url        :string
 #  duration_ms            :integer
+#  explicit               :boolean          default(false)
 #  id_on_deezer           :string
 #  id_on_itunes           :string
 #  id_on_spotify          :string
@@ -19,6 +20,7 @@
 #  itunes_artwork_url     :string
 #  itunes_preview_url     :string
 #  itunes_song_url        :string
+#  popularity             :integer
 #  release_date           :date
 #  release_date_precision :string
 #  search_text            :text
@@ -58,7 +60,9 @@ class SongSerializer
              :itunes_song_url,
              :itunes_artwork_url,
              :itunes_preview_url,
-             :duration_ms
+             :duration_ms,
+             :popularity,
+             :explicit
 
   attribute :counter do |object|
     object.counter if object.respond_to?(:counter)

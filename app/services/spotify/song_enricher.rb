@@ -47,7 +47,9 @@ module Spotify
         spotify_preview_url: response['preview_url'],
         isrc: response.dig('external_ids', 'isrc'),
         duration_ms: response['duration_ms'],
-        artists: response['artists']
+        artists: response['artists'],
+        popularity: response['popularity'],
+        explicit: response['explicit']
       )
     end
 
@@ -60,7 +62,7 @@ module Spotify
       result
     end
 
-    def build_updates(result)
+    def build_updates(result) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
       updates = {}
       updates[:id_on_spotify] = result.id if result.id.present?
       updates[:spotify_song_url] = result.spotify_song_url if result.spotify_song_url.present?
@@ -68,6 +70,8 @@ module Spotify
       updates[:spotify_preview_url] = result.spotify_preview_url if result.spotify_preview_url.present?
       updates[:isrcs] = @song.isrcs | [result.isrc] if result.isrc.present? && !@song.isrcs.include?(result.isrc)
       updates[:duration_ms] = result.duration_ms if result.duration_ms.present?
+      updates[:popularity] = result.popularity unless result.popularity.nil?
+      updates[:explicit] = result.explicit unless result.explicit.nil?
       updates
     end
 
