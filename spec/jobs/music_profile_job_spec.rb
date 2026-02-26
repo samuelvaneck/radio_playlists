@@ -86,4 +86,60 @@ RSpec.describe MusicProfileJob do
       end
     end
   end
+
+  describe '#update_radio_station_tags' do
+    let(:artist_spotify_id) { 'artist_spotify_id_123' }
+    let(:artist) { create(:artist, id_on_spotify: artist_spotify_id, genres: []) }
+    let(:song) { create(:song, id_on_spotify: '4iV5W9uYEdYUVa79Axb7Rh', artists: [artist]) }
+    let(:radio_station) { create(:radio_station) }
+    let(:job) { described_class.new }
+
+    let(:track_response) do
+      { 'artists' => [{ 'id' => artist_spotify_id }] }
+    end
+
+    let(:artist_response) do
+      { 'genres' => ['dutch pop', 'nederpop'] }
+    end
+
+    before do
+      track_finder = instance_double(Spotify::TrackFinder::FindById, execute: track_response)
+      allow(Spotify::TrackFinder::FindById).to receive(:new).and_return(track_finder)
+
+      artist_finder = instance_double(Spotify::ArtistFinder, info: artist_response)
+      allow(Spotify::ArtistFinder).to receive(:new).and_return(artist_finder)
+
+      tag_record = instance_double(Tag, counter: 0, save: true)
+      allow(tag_record).to receive(:counter=)
+      allow(Tag).to receive(:find_or_initialize_by).and_return(tag_record)
+    end
+
+    context 'when artist exists with no genres and Spotify returns genres' do
+      it 'stores genres on the artist' do
+        job.send(:update_radio_station_tags, song.id_on_spotify, radio_station.id)
+
+        expect(artist.reload.genres).to eq(['dutch pop', 'nederpop'])
+      end
+    end
+
+    context 'when artist already has genres' do
+      before { artist.update(genres: ['existing genre']) }
+
+      it 'does not overwrite existing genres' do
+        job.send(:update_radio_station_tags, song.id_on_spotify, radio_station.id)
+
+        expect(artist.reload.genres).to eq(['existing genre'])
+      end
+    end
+
+    context 'when Spotify returns no genres for the artist' do
+      let(:artist_response) { { 'genres' => [] } }
+
+      it 'does not update the artist genres' do
+        job.send(:update_radio_station_tags, song.id_on_spotify, radio_station.id)
+
+        expect(artist.reload.genres).to eq([])
+      end
+    end
+  end
 end
