@@ -62,3 +62,6 @@ spec/examples.txt
 # IntelliJ
 *.iml
 .idea
+
+# Claude
+.claude
