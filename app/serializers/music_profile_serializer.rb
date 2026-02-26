@@ -9,9 +9,13 @@
 #  danceability     :decimal(5, 4)
 #  energy           :decimal(5, 4)
 #  instrumentalness :decimal(5, 4)
+#  key              :integer
 #  liveness         :decimal(5, 4)
+#  loudness         :decimal(5, 2)
+#  mode             :integer
 #  speechiness      :decimal(5, 4)
 #  tempo            :decimal(6, 2)
+#  time_signature   :integer
 #  valence          :decimal(5, 4)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -36,7 +40,11 @@ class MusicProfileSerializer
              :instrumentalness,
              :liveness,
              :valence,
-             :tempo
+             :tempo,
+             :key,
+             :mode,
+             :loudness,
+             :time_signature
 
   class << self
     def attribute_descriptions

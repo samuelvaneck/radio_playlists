@@ -17,7 +17,11 @@ RSpec.describe MusicProfileJob do
         'instrumentalness' => 0.02,
         'liveness' => 0.12,
         'valence' => 0.58,
-        'tempo' => 120.5
+        'tempo' => 120.5,
+        'key' => 5,
+        'mode' => 1,
+        'loudness' => -5.5,
+        'time_signature' => 4
       }
     end
 
@@ -42,6 +46,10 @@ RSpec.describe MusicProfileJob do
         expect(profile.danceability).to eq(0.65)
         expect(profile.energy).to eq(0.72)
         expect(profile.tempo).to eq(120.5)
+        expect(profile.key).to eq(5)
+        expect(profile.mode).to eq(1)
+        expect(profile.loudness).to eq(-5.5)
+        expect(profile.time_signature).to eq(4)
       end
     end
 

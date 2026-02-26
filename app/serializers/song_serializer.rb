@@ -93,7 +93,11 @@ class SongSerializer
         instrumentalness: object.music_profile.instrumentalness,
         liveness: object.music_profile.liveness,
         valence: object.music_profile.valence,
-        tempo: object.music_profile.tempo
+        tempo: object.music_profile.tempo,
+        key: object.music_profile.key,
+        mode: object.music_profile.mode,
+        loudness: object.music_profile.loudness,
+        time_signature: object.music_profile.time_signature
       }
     end
   end

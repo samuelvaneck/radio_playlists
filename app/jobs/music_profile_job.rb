@@ -38,7 +38,11 @@ class MusicProfileJob
       instrumentalness: audio_features['instrumentalness'],
       liveness: audio_features['liveness'],
       valence: audio_features['valence'],
-      tempo: audio_features['tempo']
+      tempo: audio_features['tempo'],
+      key: audio_features['key'],
+      mode: audio_features['mode'],
+      loudness: audio_features['loudness'],
+      time_signature: audio_features['time_signature']
     )
   end
 
