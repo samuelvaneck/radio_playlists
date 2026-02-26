@@ -10,6 +10,7 @@
 #  deezer_preview_url     :string
 #  deezer_song_url        :string
 #  duration_ms            :integer
+#  explicit               :boolean          default(false)
 #  id_on_deezer           :string
 #  id_on_itunes           :string
 #  id_on_spotify          :string
@@ -19,6 +20,7 @@
 #  itunes_artwork_url     :string
 #  itunes_preview_url     :string
 #  itunes_song_url        :string
+#  popularity             :integer
 #  release_date           :date
 #  release_date_precision :string
 #  search_text            :text
@@ -84,7 +86,7 @@ class Song < ApplicationRecord
   public_constant :MULTIPLE_ARTIST_REGEX
   public_constant :ARTISTS_FILTERS
 
-  def self.most_played(params = {})
+  def self.most_played(params = {}) # rubocop:disable Metrics/MethodLength
     start_time, end_time = time_range_from_params(params, default_period: 'week')
 
     Song.joins(:air_plays)
@@ -113,6 +115,8 @@ class Song < ApplicationRecord
                  songs.release_date,
                  songs.release_date_precision,
                  songs.duration_ms,
+                 songs.popularity,
+                 songs.explicit,
                  COUNT(air_plays.id) AS counter,
                  ROW_NUMBER() OVER (ORDER BY COUNT(air_plays.id) DESC NULLS LAST) AS position")
       .group('songs.id, songs.title')

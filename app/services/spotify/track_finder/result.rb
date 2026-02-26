@@ -4,7 +4,8 @@ module Spotify
       attr_reader :track, :artists, :title, :id, :isrc, :spotify_artwork_url,
                   :spotify_song_url, :spotify_query_result, :filter_result, :tracks,
                   :spotify_preview_url, :release_date, :release_date_precision,
-                  :matched_artist_distance, :matched_title_distance, :duration_ms
+                  :matched_artist_distance, :matched_title_distance, :duration_ms,
+                  :popularity, :explicit
 
       TRACK_TYPES = %w[album single compilation].freeze
       FEATURING_REGEX = /\(feat\..+\)/
@@ -36,6 +37,8 @@ module Spotify
         @release_date = set_release_date
         @release_date_precision = set_release_date_precision
         @duration_ms = set_duration_ms
+        @popularity = set_popularity
+        @explicit = set_explicit
 
         @track
       end
@@ -194,6 +197,18 @@ module Spotify
         return if @track.blank?
 
         @track['duration_ms']
+      end
+
+      def set_popularity
+        return if @track.blank?
+
+        @track['popularity']
+      end
+
+      def set_explicit
+        return if @track.blank?
+
+        @track['explicit']
       end
 
       def dig_for_usable_tracks
