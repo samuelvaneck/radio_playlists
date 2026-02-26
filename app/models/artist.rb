@@ -52,6 +52,7 @@ class Artist < ApplicationRecord
                    artists.spotify_artwork_url,
                    artists.instagram_url,
                    artists.website_url,
+                   artists.genres,
                    COUNT(DISTINCT air_plays.id) AS counter")
       .group(:id)
       .order('COUNTER DESC')
