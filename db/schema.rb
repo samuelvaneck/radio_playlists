@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_21_192706) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_26_000001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -84,7 +84,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_192706) do
 
   create_table "artists", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
-    t.string "genre"
+    t.string "genres", default: [], array: true
     t.string "id_on_spotify"
     t.string "image"
     t.string "instagram_url"

@@ -5,7 +5,7 @@
 # Table name: artists
 #
 #  id                  :bigint           not null, primary key
-#  genre               :string
+#  genres              :string           default([]), is an Array
 #  id_on_spotify       :string
 #  image               :string
 #  instagram_url       :string

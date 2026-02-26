@@ -5,7 +5,7 @@
 # Table name: artists
 #
 #  id                  :bigint           not null, primary key
-#  genre               :string
+#  genres              :string           default([]), is an Array
 #  id_on_spotify       :string
 #  image               :string
 #  instagram_url       :string
@@ -23,7 +23,7 @@
 class ArtistSerializer
   include FastJsonapi::ObjectSerializer
 
-  attributes :id, :name, :spotify_artist_url, :spotify_artwork_url, :instagram_url, :website_url
+  attributes :id, :name, :spotify_artist_url, :spotify_artwork_url, :instagram_url, :website_url, :genres
 
   has_many :songs
 
