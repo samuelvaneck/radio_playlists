@@ -17,7 +17,8 @@ module Lastfm
             req.params = default_params.merge(params)
           end
           handle_rate_limit_response(response)
-          response.body
+          body = response.body
+          body.is_a?(Hash) ? body : nil
         end
       end
     rescue StandardError => e

@@ -142,28 +142,28 @@ RSpec.describe LastfmEnrichmentJob do
     let!(:song_fresh) { create(:song, lastfm_enriched_at: 1.day.ago) }
 
     before do
-      allow(described_class).to receive(:perform_async)
+      allow(described_class).to receive(:perform_in)
     end
 
     it 'enqueues artists that need enrichment', :aggregate_failures do
       described_class.enqueue_all
-      expect(described_class).to have_received(:perform_async).with('Artist', artist_not_enriched.id)
-      expect(described_class).to have_received(:perform_async).with('Artist', artist_stale.id)
+      expect(described_class).to have_received(:perform_in).with(anything, 'Artist', artist_not_enriched.id)
+      expect(described_class).to have_received(:perform_in).with(anything, 'Artist', artist_stale.id)
     end
 
     it 'does not enqueue fresh artists' do
       described_class.enqueue_all
-      expect(described_class).not_to have_received(:perform_async).with('Artist', artist_fresh.id)
+      expect(described_class).not_to have_received(:perform_in).with(anything, 'Artist', artist_fresh.id)
     end
 
     it 'enqueues songs that need enrichment' do
       described_class.enqueue_all
-      expect(described_class).to have_received(:perform_async).with('Song', song_not_enriched.id)
+      expect(described_class).to have_received(:perform_in).with(anything, 'Song', song_not_enriched.id)
     end
 
     it 'does not enqueue fresh songs' do
       described_class.enqueue_all
-      expect(described_class).not_to have_received(:perform_async).with('Song', song_fresh.id)
+      expect(described_class).not_to have_received(:perform_in).with(anything, 'Song', song_fresh.id)
     end
   end
 end

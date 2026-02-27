@@ -1,18 +1,23 @@
 # frozen_string_literal: true
 
 class LastfmEnrichmentJob
+  THROTTLE_INTERVAL = 2 # seconds between jobs
+
   include Sidekiq::Job
   sidekiq_options queue: 'low'
 
   def self.enqueue_all
     stale_threshold = 30.days.ago
+    index = 0
 
     Artist.where(lastfm_enriched_at: nil).or(Artist.where(lastfm_enriched_at: ...stale_threshold)).find_each do |artist|
-      perform_async('Artist', artist.id)
+      perform_in((index * THROTTLE_INTERVAL).seconds, 'Artist', artist.id)
+      index += 1
     end
 
     Song.where(lastfm_enriched_at: nil).or(Song.where(lastfm_enriched_at: ...stale_threshold)).find_each do |song|
-      perform_async('Song', song.id)
+      perform_in((index * THROTTLE_INTERVAL).seconds, 'Song', song.id)
+      index += 1
     end
   end
 
