@@ -49,7 +49,8 @@ module Spotify
         duration_ms: response['duration_ms'],
         artists: response['artists'],
         popularity: response['popularity'],
-        explicit: response['explicit']
+        explicit: response['explicit'],
+        album_name: response.dig('album', 'name')
       )
     end
 
@@ -62,7 +63,7 @@ module Spotify
       result
     end
 
-    def build_updates(result) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+    def build_updates(result) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       updates = {}
       updates[:id_on_spotify] = result.id if result.id.present?
       updates[:spotify_song_url] = result.spotify_song_url if result.spotify_song_url.present?
@@ -72,6 +73,7 @@ module Spotify
       updates[:duration_ms] = result.duration_ms if result.duration_ms.present?
       updates[:popularity] = result.popularity unless result.popularity.nil?
       updates[:explicit] = result.explicit unless result.explicit.nil?
+      updates[:album_name] = result.album_name if result.album_name.present? && @song.album_name.blank?
       updates
     end
 
