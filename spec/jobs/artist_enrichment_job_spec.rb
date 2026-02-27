@@ -83,17 +83,17 @@ RSpec.describe ArtistEnrichmentJob do
     let!(:artist_with_country) { create(:artist, country_of_origin: ['Netherlands']) }
 
     before do
-      allow(described_class).to receive(:perform_async)
+      allow(described_class).to receive(:perform_in)
     end
 
     it 'enqueues jobs for artists without country_of_origin' do
       described_class.enqueue_all
-      expect(described_class).to have_received(:perform_async).with(artist_without_country.id)
+      expect(described_class).to have_received(:perform_in).with(0.seconds, artist_without_country.id)
     end
 
     it 'does not enqueue jobs for artists with country_of_origin' do
       described_class.enqueue_all
-      expect(described_class).not_to have_received(:perform_async).with(artist_with_country.id)
+      expect(described_class).not_to have_received(:perform_in).with(anything, artist_with_country.id)
     end
   end
 end
