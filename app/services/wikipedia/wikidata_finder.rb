@@ -97,7 +97,8 @@ module Wikipedia
             languages: language
           }
         end
-        response.body
+        body = response.body
+        body.is_a?(Hash) ? body : nil
       end
     rescue StandardError => e
       ExceptionNotifier.notify(e)
@@ -172,7 +173,7 @@ module Wikipedia
       return nil if entity_ids.empty?
 
       response = Rails.cache.fetch(cache_key("labels:#{entity_ids.join(',')}"), expires_in: 24.hours) do
-        connection.get('/w/api.php') do |req|
+        body = connection.get('/w/api.php') do |req|
           req.params = {
             action: 'wbgetentities',
             ids: entity_ids.join('|'),
@@ -181,6 +182,7 @@ module Wikipedia
             languages: language
           }
         end.body
+        body.is_a?(Hash) ? body : nil
       end
 
       return nil if response.nil?
