@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_27_100347) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_26_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -83,21 +83,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_27_100347) do
   end
 
   create_table "artists", force: :cascade do |t|
-    t.string "country_of_origin", default: [], array: true
     t.datetime "created_at", precision: nil, null: false
     t.string "genres", default: [], array: true
     t.string "id_on_spotify"
     t.string "image"
     t.string "instagram_url"
-    t.datetime "lastfm_enriched_at"
-    t.bigint "lastfm_listeners"
-    t.bigint "lastfm_playcount"
-    t.string "lastfm_tags", default: [], array: true
     t.string "name"
     t.string "spotify_artist_url"
     t.string "spotify_artwork_url"
-    t.integer "spotify_followers_count"
-    t.integer "spotify_popularity"
     t.datetime "updated_at", precision: nil, null: false
     t.string "website_url"
     t.index ["name"], name: "index_artists_on_name"
@@ -222,7 +215,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_27_100347) do
 
   create_table "songs", force: :cascade do |t|
     t.datetime "acoustid_submitted_at"
-    t.string "album_name"
     t.datetime "created_at", precision: nil, null: false
     t.string "deezer_artwork_url"
     t.string "deezer_preview_url"
@@ -238,10 +230,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_27_100347) do
     t.string "itunes_artwork_url"
     t.string "itunes_preview_url"
     t.string "itunes_song_url"
-    t.datetime "lastfm_enriched_at"
-    t.bigint "lastfm_listeners"
-    t.bigint "lastfm_playcount"
-    t.string "lastfm_tags", default: [], array: true
     t.integer "popularity"
     t.date "release_date"
     t.string "release_date_precision"

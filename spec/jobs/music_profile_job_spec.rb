@@ -103,7 +103,7 @@ RSpec.describe MusicProfileJob do
     end
 
     let(:artist_response) do
-      { 'genres' => ['dutch pop', 'nederpop'], 'popularity' => 72, 'followers' => { 'total' => 150_000 } }
+      { 'genres' => ['dutch pop', 'nederpop'] }
     end
 
     before do
@@ -124,18 +124,6 @@ RSpec.describe MusicProfileJob do
 
         expect(artist.reload.genres).to eq(['dutch pop', 'nederpop'])
       end
-
-      it 'stores spotify_popularity on the artist' do
-        job.send(:update_radio_station_tags, song.id_on_spotify, radio_station.id)
-
-        expect(artist.reload.spotify_popularity).to eq(72)
-      end
-
-      it 'stores spotify_followers_count on the artist' do
-        job.send(:update_radio_station_tags, song.id_on_spotify, radio_station.id)
-
-        expect(artist.reload.spotify_followers_count).to eq(150_000)
-      end
     end
 
     context 'when artist already has genres' do
@@ -149,7 +137,7 @@ RSpec.describe MusicProfileJob do
     end
 
     context 'when Spotify returns no genres for the artist' do
-      let(:artist_response) { { 'genres' => [], 'popularity' => nil, 'followers' => nil } }
+      let(:artist_response) { { 'genres' => [] } }
 
       it 'does not update the artist genres' do
         job.send(:update_radio_station_tags, song.id_on_spotify, radio_station.id)

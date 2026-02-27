@@ -45,7 +45,6 @@ class SongSerializer
   attributes :id,
              :title,
              :search_text,
-             :album_name,
              :spotify_song_url,
              :spotify_artwork_url,
              :spotify_preview_url,
@@ -63,10 +62,7 @@ class SongSerializer
              :itunes_preview_url,
              :duration_ms,
              :popularity,
-             :explicit,
-             :lastfm_listeners,
-             :lastfm_playcount,
-             :lastfm_tags
+             :explicit
 
   attribute :counter do |object|
     object.counter if object.respond_to?(:counter)

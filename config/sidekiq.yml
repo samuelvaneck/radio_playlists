@@ -39,14 +39,6 @@
         cron: '0 * * * *' # every hour
         queue: low
         enabled: true
-      ArtistEnrichmentBatchJob:
-        cron: '0 3 * * 0' # weekly Sunday 3am
-        queue: low
-        enabled: true
-      LastfmEnrichmentBatchJob:
-        cron: '0 4 * * 0' # weekly Sunday 4am
-        queue: low
-        enabled: true
   :sidekiq_default_hooks: true
   :sidekiq_pid: File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid')
   :sidekiq_env: fetch(:rack_env, fetch(:rails_env, fetch(:stage)))

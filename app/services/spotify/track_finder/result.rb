@@ -5,7 +5,7 @@ module Spotify
                   :spotify_song_url, :spotify_query_result, :filter_result, :tracks,
                   :spotify_preview_url, :release_date, :release_date_precision,
                   :matched_artist_distance, :matched_title_distance, :duration_ms,
-                  :popularity, :explicit, :album_name
+                  :popularity, :explicit
 
       TRACK_TYPES = %w[album single compilation].freeze
       FEATURING_REGEX = /\(feat\..+\)/
@@ -39,7 +39,6 @@ module Spotify
         @duration_ms = set_duration_ms
         @popularity = set_popularity
         @explicit = set_explicit
-        @album_name = set_album_name
 
         @track
       end
@@ -210,12 +209,6 @@ module Spotify
         return if @track.blank?
 
         @track['explicit']
-      end
-
-      def set_album_name
-        return if @track.blank?
-
-        @track.dig('album', 'name')
       end
 
       def dig_for_usable_tracks

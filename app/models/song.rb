@@ -99,7 +99,6 @@ class Song < ApplicationRecord
       .select("songs.id,
                  songs.title,
                  songs.search_text,
-                 songs.album_name,
                  songs.id_on_spotify,
                  songs.spotify_song_url,
                  songs.spotify_artwork_url,
@@ -118,9 +117,6 @@ class Song < ApplicationRecord
                  songs.duration_ms,
                  songs.popularity,
                  songs.explicit,
-                 songs.lastfm_listeners,
-                 songs.lastfm_playcount,
-                 songs.lastfm_tags,
                  COUNT(air_plays.id) AS counter,
                  ROW_NUMBER() OVER (ORDER BY COUNT(air_plays.id) DESC NULLS LAST) AS position")
       .group('songs.id, songs.title')
