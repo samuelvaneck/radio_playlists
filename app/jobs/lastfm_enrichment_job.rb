@@ -63,6 +63,6 @@ class LastfmEnrichmentJob
   def extract_tags(tags)
     return [] if tags.blank?
 
-    tags.first(10).filter_map { |tag| tag['name']&.downcase }
+    Array.wrap(tags).first(10).filter_map { |tag| tag['name']&.downcase }
   end
 end

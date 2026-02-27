@@ -46,6 +46,21 @@ RSpec.describe LastfmEnrichmentJob do
         expect(artist.reload.lastfm_enriched_at).to be_within(5.seconds).of(Time.current)
       end
 
+      context 'when Last.fm returns a single tag as a hash instead of array' do
+        let(:lastfm_artist_info) do
+          {
+            'name' => artist.name,
+            'stats' => { 'listeners' => '1000', 'playcount' => '5000' },
+            'tags' => { 'tag' => { 'name' => 'Rock', 'url' => 'https://www.last.fm/tag/rock' } }
+          }
+        end
+
+        it 'wraps the single tag and stores it as an array' do
+          job.perform('Artist', artist.id)
+          expect(artist.reload.lastfm_tags).to eq(%w[rock])
+        end
+      end
+
       context 'when Last.fm returns no data' do
         before do
           allow_any_instance_of(Lastfm::ArtistFinder).to receive(:get_full_info).and_return(nil) # rubocop:disable RSpec/AnyInstance
