@@ -32,6 +32,13 @@ RSpec.describe 'Artists API', type: :request do
                 name: 'Queen',
                 image: 'https://i.scdn.co/image/abc123',
                 id_on_spotify: '1dfeR4HaWDbWqFHLkxsg1d',
+                genres: %w[rock classic-rock],
+                spotify_popularity: 85,
+                spotify_followers_count: 42_000_000,
+                country_of_origin: ['United Kingdom'],
+                lastfm_listeners: 5_800_000,
+                lastfm_playcount: 200_000_000,
+                lastfm_tags: %w[rock classic-rock british],
                 counter: 156
               }
             }
@@ -112,6 +119,13 @@ RSpec.describe 'Artists API', type: :request do
               name: 'Queen',
               image: 'https://i.scdn.co/image/abc123',
               id_on_spotify: '1dfeR4HaWDbWqFHLkxsg1d',
+              genres: %w[rock classic-rock],
+              spotify_popularity: 85,
+              spotify_followers_count: 42_000_000,
+              country_of_origin: ['United Kingdom'],
+              lastfm_listeners: 5_800_000,
+              lastfm_playcount: 200_000_000,
+              lastfm_tags: %w[rock classic-rock british],
               counter: 156
             }
           }
@@ -176,6 +190,10 @@ RSpec.describe 'Artists API', type: :request do
                 title: 'Bohemian Rhapsody',
                 spotify_artwork_url: 'https://i.scdn.co/image/abc123',
                 id_on_spotify: '4u7EnebtmKWzUH433cf5Qv',
+                album_name: 'A Night at the Opera',
+                lastfm_listeners: 1_200_000,
+                lastfm_playcount: 5_500_000,
+                lastfm_tags: %w[rock classic-rock],
                 counter: 42,
                 artists: [{ id: 1, name: 'Queen' }]
               }
@@ -188,6 +206,10 @@ RSpec.describe 'Artists API', type: :request do
                 title: 'We Will Rock You',
                 spotify_artwork_url: 'https://i.scdn.co/image/def456',
                 id_on_spotify: '54flyrjcdnQdco7300avMJ',
+                album_name: 'News of the World',
+                lastfm_listeners: 980_000,
+                lastfm_playcount: 4_200_000,
+                lastfm_tags: %w[rock classic-rock],
                 counter: 38,
                 artists: [{ id: 1, name: 'Queen' }]
               }

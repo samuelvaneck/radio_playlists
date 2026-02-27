@@ -30,7 +30,7 @@ describe Spotify::SongEnricher do
         {
           'id' => 'spotify_id_123',
           'external_urls' => { 'spotify' => 'https://open.spotify.com/track/spotify_id_123' },
-          'album' => { 'images' => [{ 'url' => 'https://i.scdn.co/image/artwork' }] },
+          'album' => { 'name' => 'Parachutes', 'images' => [{ 'url' => 'https://i.scdn.co/image/artwork' }] },
           'preview_url' => 'https://p.scdn.co/mp3-preview/abc',
           'external_ids' => { 'isrc' => 'USGB12345678' },
           'duration_ms' => 210_000,
@@ -64,6 +64,11 @@ describe Spotify::SongEnricher do
       it 'updates the song with duration_ms' do
         enricher.enrich
         expect(song.reload.duration_ms).to eq(210_000)
+      end
+
+      it 'updates the song with album_name' do
+        enricher.enrich
+        expect(song.reload.album_name).to eq('Parachutes')
       end
     end
 
@@ -144,7 +149,8 @@ describe Spotify::SongEnricher do
         isrc: 'USGB12345678',
         duration_ms: 210_000,
         popularity: 82,
-        explicit: true
+        explicit: true,
+        album_name: 'Parachutes'
       )
     end
 
@@ -154,6 +160,10 @@ describe Spotify::SongEnricher do
 
     it 'includes explicit in updates' do
       expect(updates[:explicit]).to be(true)
+    end
+
+    it 'includes album_name in updates' do
+      expect(updates[:album_name]).to eq('Parachutes')
     end
 
     context 'when popularity is nil' do
@@ -166,7 +176,8 @@ describe Spotify::SongEnricher do
           isrc: nil,
           duration_ms: nil,
           popularity: nil,
-          explicit: nil
+          explicit: nil,
+          album_name: nil
         )
       end
 
@@ -189,7 +200,8 @@ describe Spotify::SongEnricher do
           isrc: nil,
           duration_ms: nil,
           popularity: 0,
-          explicit: false
+          explicit: false,
+          album_name: nil
         )
       end
 

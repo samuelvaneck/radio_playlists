@@ -77,4 +77,92 @@ describe Lastfm::ArtistFinder do
       end
     end
   end
+
+  describe '#get_full_info' do
+    let(:artist_name) { 'Coldplay' }
+
+    context 'when API returns valid data' do
+      let(:api_response) do
+        {
+          'artist' => {
+            'name' => 'Coldplay',
+            'stats' => { 'listeners' => '5000000', 'playcount' => '300000000' },
+            'tags' => { 'tag' => [{ 'name' => 'rock' }, { 'name' => 'alternative' }] },
+            'bio' => { 'summary' => 'Coldplay are a British rock band.' }
+          }
+        }
+      end
+
+      before do
+        allow(Rails.cache).to receive(:fetch).and_yield
+        allow_any_instance_of(Faraday::Connection).to receive(:get).and_return( # rubocop:disable RSpec/AnyInstance
+          instance_double(Faraday::Response, body: api_response, status: 200)
+        )
+      end
+
+      it 'returns the full artist hash' do
+        result = artist_finder.get_full_info(artist_name)
+        expect(result).to eq(api_response['artist'])
+      end
+    end
+
+    context 'when API returns an error' do
+      let(:error_response) { { 'error' => 6, 'message' => 'Artist not found' } }
+
+      before do
+        allow(Rails.cache).to receive(:fetch).and_yield
+        allow_any_instance_of(Faraday::Connection).to receive(:get).and_return( # rubocop:disable RSpec/AnyInstance
+          instance_double(Faraday::Response, body: error_response, status: 200)
+        )
+      end
+
+      it 'returns nil' do
+        expect(artist_finder.get_full_info(artist_name)).to be_nil
+      end
+    end
+  end
+
+  describe '#get_top_tags' do
+    let(:artist_name) { 'Coldplay' }
+
+    context 'when API returns valid data' do
+      let(:api_response) do
+        {
+          'toptags' => {
+            'tag' => [
+              { 'name' => 'rock', 'count' => 100 },
+              { 'name' => 'alternative', 'count' => 90 }
+            ]
+          }
+        }
+      end
+
+      before do
+        allow(Rails.cache).to receive(:fetch).and_yield
+        allow_any_instance_of(Faraday::Connection).to receive(:get).and_return( # rubocop:disable RSpec/AnyInstance
+          instance_double(Faraday::Response, body: api_response, status: 200)
+        )
+      end
+
+      it 'returns the tags array' do
+        result = artist_finder.get_top_tags(artist_name)
+        expect(result).to eq(api_response['toptags']['tag'])
+      end
+    end
+
+    context 'when API returns an error' do
+      let(:error_response) { { 'error' => 6, 'message' => 'Artist not found' } }
+
+      before do
+        allow(Rails.cache).to receive(:fetch).and_yield
+        allow_any_instance_of(Faraday::Connection).to receive(:get).and_return( # rubocop:disable RSpec/AnyInstance
+          instance_double(Faraday::Response, body: error_response, status: 200)
+        )
+      end
+
+      it 'returns nil' do
+        expect(artist_finder.get_top_tags(artist_name)).to be_nil
+      end
+    end
+  end
 end

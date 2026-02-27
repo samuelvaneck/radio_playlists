@@ -61,16 +61,21 @@ class MusicProfileJob
     track = Spotify::TrackFinder::FindById.new(id_on_spotify:).execute
     track['artists'].flat_map do |artist|
       spotify_artist = Spotify::ArtistFinder.new(id_on_spotify: artist['id']).info
-      genres = spotify_artist['genres']
-      update_artist_genres(artist['id'], genres)
-      genres
+      update_artist_from_spotify(artist['id'], spotify_artist)
+      spotify_artist['genres']
     end.uniq
   end
 
-  def update_artist_genres(id_on_spotify, genres)
-    return if genres.blank?
+  def update_artist_from_spotify(id_on_spotify, spotify_artist)
+    return if spotify_artist.blank?
 
     artist = Artist.find_by(id_on_spotify:)
-    artist&.update(genres:) if artist&.genres.blank?
+    return if artist.blank?
+
+    updates = {}
+    updates[:genres] = spotify_artist['genres'] if artist.genres.blank? && spotify_artist['genres'].present?
+    updates[:spotify_popularity] = spotify_artist['popularity'] if spotify_artist['popularity'].present?
+    updates[:spotify_followers_count] = spotify_artist.dig('followers', 'total') if spotify_artist.dig('followers', 'total').present?
+    artist.update(updates) if updates.present?
   end
 end
