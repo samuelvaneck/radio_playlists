@@ -45,6 +45,10 @@ RSpec.configure do |config|
                   release_date_precision: { type: :string, nullable: true },
                   artists: { type: :array, items: { '$ref' => '#/components/schemas/ArtistCompact' } },
                   duration_ms: { type: :integer, nullable: true },
+                  album_name: { type: :string, nullable: true },
+                  lastfm_listeners: { type: :integer, nullable: true },
+                  lastfm_playcount: { type: :integer, nullable: true },
+                  lastfm_tags: { type: :array, items: { type: :string }, nullable: true },
                   counter: { type: :integer, nullable: true },
                   position: { type: :integer, nullable: true }
                 }
@@ -65,6 +69,13 @@ RSpec.configure do |config|
                   spotify_artwork_url: { type: :string, nullable: true },
                   instagram_url: { type: :string, nullable: true },
                   website_url: { type: :string, nullable: true },
+                  genres: { type: :array, items: { type: :string }, nullable: true },
+                  spotify_popularity: { type: :integer, nullable: true },
+                  spotify_followers_count: { type: :integer, nullable: true },
+                  country_of_origin: { type: :array, items: { type: :string }, nullable: true },
+                  lastfm_listeners: { type: :integer, nullable: true },
+                  lastfm_playcount: { type: :integer, nullable: true },
+                  lastfm_tags: { type: :array, items: { type: :string }, nullable: true },
                   counter: { type: :integer, nullable: true }
                 }
               }

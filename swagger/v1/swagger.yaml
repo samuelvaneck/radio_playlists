@@ -340,6 +340,19 @@ paths:
                         name: Queen
                         image: https://i.scdn.co/image/abc123
                         id_on_spotify: 1dfeR4HaWDbWqFHLkxsg1d
+                        genres:
+                        - rock
+                        - classic-rock
+                        spotify_popularity: 85
+                        spotify_followers_count: 42000000
+                        country_of_origin:
+                        - United Kingdom
+                        lastfm_listeners: 5800000
+                        lastfm_playcount: 200000000
+                        lastfm_tags:
+                        - rock
+                        - classic-rock
+                        - british
                         counter: 156
                     total_entries: 50
                     total_pages: 3
@@ -415,6 +428,19 @@ paths:
                         name: Queen
                         image: https://i.scdn.co/image/abc123
                         id_on_spotify: 1dfeR4HaWDbWqFHLkxsg1d
+                        genres:
+                        - rock
+                        - classic-rock
+                        spotify_popularity: 85
+                        spotify_followers_count: 42000000
+                        country_of_origin:
+                        - United Kingdom
+                        lastfm_listeners: 5800000
+                        lastfm_playcount: 200000000
+                        lastfm_tags:
+                        - rock
+                        - classic-rock
+                        - british
                         counter: 156
         '404':
           description: Artist not found
@@ -491,6 +517,12 @@ paths:
                         title: Bohemian Rhapsody
                         spotify_artwork_url: https://i.scdn.co/image/abc123
                         id_on_spotify: 4u7EnebtmKWzUH433cf5Qv
+                        album_name: A Night at the Opera
+                        lastfm_listeners: 1200000
+                        lastfm_playcount: 5500000
+                        lastfm_tags:
+                        - rock
+                        - classic-rock
                         counter: 42
                         artists:
                         - id: 1
@@ -502,6 +534,12 @@ paths:
                         title: We Will Rock You
                         spotify_artwork_url: https://i.scdn.co/image/def456
                         id_on_spotify: 54flyrjcdnQdco7300avMJ
+                        album_name: News of the World
+                        lastfm_listeners: 980000
+                        lastfm_playcount: 4200000
+                        lastfm_tags:
+                        - rock
+                        - classic-rock
                         counter: 38
                         artists:
                         - id: 1
@@ -1802,6 +1840,12 @@ paths:
                         spotify_artwork_url: https://i.scdn.co/image/abc123
                         id_on_spotify: 4u7EnebtmKWzUH433cf5Qv
                         duration_ms: 354320
+                        album_name: A Night at the Opera
+                        lastfm_listeners: 1200000
+                        lastfm_playcount: 5500000
+                        lastfm_tags:
+                        - rock
+                        - classic-rock
                         counter: 42
                         artists:
                         - id: 1
@@ -1896,6 +1940,12 @@ paths:
                         spotify_artwork_url: https://i.scdn.co/image/abc123
                         id_on_spotify: 4u7EnebtmKWzUH433cf5Qv
                         duration_ms: 354320
+                        album_name: A Night at the Opera
+                        lastfm_listeners: 1200000
+                        lastfm_playcount: 5500000
+                        lastfm_tags:
+                        - rock
+                        - classic-rock
                         counter: 42
                         artists:
                         - id: 1
@@ -2361,6 +2411,20 @@ components:
             duration_ms:
               type: integer
               nullable: true
+            album_name:
+              type: string
+              nullable: true
+            lastfm_listeners:
+              type: integer
+              nullable: true
+            lastfm_playcount:
+              type: integer
+              nullable: true
+            lastfm_tags:
+              type: array
+              items:
+                type: string
+              nullable: true
             counter:
               type: integer
               nullable: true
@@ -2393,6 +2457,33 @@ components:
               nullable: true
             website_url:
               type: string
+              nullable: true
+            genres:
+              type: array
+              items:
+                type: string
+              nullable: true
+            spotify_popularity:
+              type: integer
+              nullable: true
+            spotify_followers_count:
+              type: integer
+              nullable: true
+            country_of_origin:
+              type: array
+              items:
+                type: string
+              nullable: true
+            lastfm_listeners:
+              type: integer
+              nullable: true
+            lastfm_playcount:
+              type: integer
+              nullable: true
+            lastfm_tags:
+              type: array
+              items:
+                type: string
               nullable: true
             counter:
               type: integer
