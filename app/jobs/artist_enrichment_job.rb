@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class ArtistEnrichmentJob
+  THROTTLE_INTERVAL = 2 # seconds between jobs
+
   include Sidekiq::Job
   sidekiq_options queue: 'low'
-
-  THROTTLE_INTERVAL = 2 # seconds between jobs
 
   def self.enqueue_all
     Artist.where(country_of_origin: []).find_each.with_index do |artist, index|
