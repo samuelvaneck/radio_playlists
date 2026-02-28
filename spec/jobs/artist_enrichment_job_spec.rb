@@ -88,7 +88,9 @@ RSpec.describe ArtistEnrichmentJob do
 
     it 'enqueues jobs for artists without country_of_origin' do
       described_class.enqueue_all
-      expect(described_class).to have_received(:perform_in).with(0.seconds, artist_without_country.id)
+      expect(described_class).to have_received(:perform_in).with(
+        0.seconds, artist_without_country.id
+      )
     end
 
     it 'does not enqueue jobs for artists with country_of_origin' do

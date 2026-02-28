@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class ArtistEnrichmentJob
-  THROTTLE_INTERVAL = 2 # seconds between jobs
+  # Wikipedia allows 500 requests/hour without a token.
+  # Each job makes ~2 Wikipedia API calls (summary + full content),
+  # so max 250 jobs/hour → 3600 / 250 ≈ 15 seconds between jobs.
+  WIKIPEDIA_RATE_LIMIT_PER_HOUR = 500
+  WIKIPEDIA_REQUESTS_PER_JOB = 2
+  THROTTLE_INTERVAL = (3600.0 / (WIKIPEDIA_RATE_LIMIT_PER_HOUR / WIKIPEDIA_REQUESTS_PER_JOB)).ceil
 
   include Sidekiq::Job
   sidekiq_options queue: 'low'
