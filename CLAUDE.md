@@ -46,7 +46,9 @@ The app uses service objects extensively in `app/services/`:
 - `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis)
 - `TrackExtractor/` - Extracts artist/song info and finds Spotify tracks
 - `Spotify/` and `Youtube/` - External API integrations
-- `Lastfm/` and `Wikipedia/` - Artist bio/info enrichment
+- `Lastfm/` and `Wikipedia/` - Artist bio/info enrichment (Last.fm listeners/playcount/tags, Wikipedia nationality via Wikidata)
+- `Deezer/` and `Itunes/` - Additional enrichment sources (duration_ms backfill)
+- `MusicBrainz/` - ISRCs enrichment for songs
 - `AudioStream/` - M3U8, MP3, and PersistentSegment stream handling
 - `PersistentStream/` - Long-lived ffmpeg processes for ad-free stream capture (see below)
 
@@ -56,7 +58,10 @@ Sidekiq jobs in `app/jobs/` run on schedules defined in `config/sidekiq.yml`:
 - `ImportSongsAllRadioStationsJob` - Every minute, imports songs from all stations
 - `RadioStationTracksScraperJob` - Every 3 minutes, scrapes station playlists
 - `ChartCreationJob` - Daily at 00:10, generates charts
+- `ChartSongEnrichmentJob` - Daily at 00:30, re-enriches charted songs with latest Last.fm/Spotify data for popularity boost
 - `YoutubeApiImportJob` - Every 15 minutes
+- `ArtistEnrichmentBatchJob` - Weekly Sunday 3am, batch enqueues artist enrichment
+- `LastfmEnrichmentBatchJob` - Weekly Sunday 4am, batch enqueues Last.fm enrichment for songs/artists
 
 ### Persistent Stream Manager
 
@@ -79,13 +84,23 @@ Radio Stream → Audio Recognition/Scraping → Artist/Song Extraction
     → Spotify API Lookup → Database Storage → Chart Generation
 ```
 
+### Chart Scoring & Popularity Boost
+
+Chart positions are sorted by weekly airplay count. Tiebreakers use a popularity boost multiplier (1.0–~1.30) calculated from:
+- Spotify popularity: up to +15% contribution
+- Last.fm listeners: up to +10% (log-normalized)
+- Last.fm playcount: up to +5% (log-normalized)
+
+Formula: `(weekly_airplay * 100) + (popularity_boost * 50)`. Artists default to boost of 1.0.
+
 ### Key Models
 
-- `Song` / `Artist` - Core entities with Spotify/YouTube IDs
+- `Song` - Core entity with Spotify/YouTube IDs, enrichment fields (`album_name`, `popularity`, `explicit`, `duration_ms`, `isrcs` array, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`)
+- `Artist` - Core entity with enrichment fields (`genres` array, `country_of_origin` array, `spotify_popularity`, `spotify_followers_count`, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`)
 - `AirPlay` - Song play events (unique per station/song/time)
-- `RadioStation` - Station metadata with last 12 airplay IDs (JSONB)
-- `ChartPosition` - Polymorphic rankings (can be Song or Artist)
-- `MusicProfile` - Spotify audio features per song (used for in-place classifier calculations)
+- `RadioStation` - Station metadata with last 12 airplay IDs (JSONB), `is_currently_playing` flag on last_played_songs endpoint
+- `ChartPosition` - Polymorphic rankings (can be Song or Artist), with popularity boost tiebreaker
+- `MusicProfile` - Spotify audio features per song: 7 core features + extended features (`key`, `mode`, `loudness`, `time_signature`)
 
 ### Model Concerns
 
@@ -161,6 +176,14 @@ bundle exec rake rswag:specs:swaggerize     # Regenerates swagger/v1/swagger.yam
 
 Schema definitions are configured in `spec/swagger_helper.rb`. The generated `swagger/v1/swagger.yaml` should be committed to version control.
 
+### Security
+
+- **SSRF protection** - Stream proxy validates HTTPS-only URLs, blocks private IPs (loopback, private ranges, link-local), limits redirect chains to 5 levels
+- **Command injection prevention** - All external CLI calls (`fpcalc`, `songrec`, `ffmpeg`) use array-based `Open3.capture3` instead of shell strings
+- **Stream URL privacy** - `direct_stream_url` hidden from public API serializer
+- **CORS** - Whitelisted origins via `CORS_ALLOWED_ORIGINS` env var, Netlify preview pattern, and production domain
+- **Sidekiq Web UI** - Protected with basic auth
+
 ## External Dependencies
 
 - **SongRec** - Shazam-based audio fingerprinting (must be installed locally)
@@ -168,6 +191,7 @@ Schema definitions are configured in `spec/swagger_helper.rb`. The generated `sw
 - **FFmpeg** - Audio processing (must be installed locally)
 - **PostgreSQL** - Primary database
 - **Redis** - Caching (db #1) and Sidekiq (db #2)
+- **Sentry** - Error tracking and performance monitoring (env var: `SENTRY_DSN`)
 
 ## Audio Recognition
 
@@ -180,7 +204,7 @@ Both recognizers run on each import for comparison. Results are stored in `SongI
 - `AcoustidRecognizer` - Chromaprint + AcoustID API (queries MusicBrainz database)
 
 **Comparison fields in SongImportLog:**
-- `recognized_*` - SongRec results (artist, title, isrc, spotify_url, raw_response)
+- `recognized_*` - SongRec results (artist, title, isrcs, spotify_url, raw_response)
 - `acoustid_*` - AcoustID results (artist, title, recording_id, score, raw_response)
 
 **Limitation:** AcoustID only recognizes songs in MusicBrainz database (limited Dutch radio coverage).
