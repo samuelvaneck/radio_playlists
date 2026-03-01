@@ -44,7 +44,7 @@ class Chart < ApplicationRecord
     Chart.where(chart_type: 'artists').order(date: :desc).first
   end
 
-  def self.recreate_past_charts # rubocop:disable Metrics/AbcSize
+  def self.recreate_past_charts
     (Date.parse('2021-01-17')..Time.zone.today).each do |date|
       [Song, Artist].each do |chart_type|
         chart = Chart.new(date: date, chart_type:)
@@ -69,6 +69,16 @@ class Chart < ApplicationRecord
     end
   end
 
+  # Sort chart items by composite tiebreaker score: weekly airplay count * 100 + popularity boost * 50.
+  # Songs get a popularity boost from Spotify/Last.fm data; artists use weekly airplay only.
+  def self.sort_chart_items(chart_items, start_time, end_time)
+    chart_items.sort_by do |item|
+      weekly_count = item.air_plays.confirmed.where('broadcasted_at >= ? AND broadcasted_at <= ?', start_time, end_time).count
+      boost = item.respond_to?(:popularity_boost) ? item.popularity_boost : 1.0
+      -((weekly_count * 100) + (boost * 50))
+    end
+  end
+
   def create_chart_positions
     index = 1
     __send__("yesterday_#{chart_type}_chart".to_sym).each do |counter, chart_items|
@@ -82,16 +92,6 @@ class Chart < ApplicationRecord
         position.save!
         index += 1
       end
-    end
-  end
-
-  # Sort chart items by composite tiebreaker score: weekly airplay count * 100 + popularity boost * 50.
-  # Songs get a popularity boost from Spotify/Last.fm data; artists use weekly airplay only.
-  def self.sort_chart_items(chart_items, start_time, end_time)
-    chart_items.sort_by do |item|
-      weekly_count = item.air_plays.confirmed.where('broadcasted_at >= ? AND broadcasted_at <= ?', start_time, end_time).count
-      boost = item.respond_to?(:popularity_boost) ? item.popularity_boost : 1.0
-      -((weekly_count * 100) + (boost * 50))
     end
   end
 

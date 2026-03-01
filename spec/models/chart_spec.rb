@@ -38,8 +38,8 @@ describe Chart do
     context 'when weekly airplay difference outweighs popularity boost', :aggregate_failures do
       let(:chart) { create(:chart, chart_type: 'songs', date: Time.zone.today) }
       let(:popular_song) do
-        create(:song, title: 'Popular But Less Played', popularity: 100, lastfm_listeners: 100_000_000,
-                                                        lastfm_playcount: 1_000_000_000)
+        create(:song, title: 'Popular But Less Played',
+                      popularity: 100, lastfm_listeners: 100_000_000, lastfm_playcount: 1_000_000_000)
       end
       let(:heavily_played_song) do
         create(:song, title: 'Heavily Played', popularity: 0, lastfm_listeners: nil, lastfm_playcount: nil)
@@ -105,7 +105,7 @@ describe Chart do
       end
 
       it 'sorts by popularity boost as tiebreaker' do
-        sorted = Chart.sort_chart_items([unpopular_song, popular_song], start_time, end_time)
+        sorted = described_class.sort_chart_items([unpopular_song, popular_song], start_time, end_time)
         expect(sorted.first).to eq(popular_song)
       end
     end
@@ -119,7 +119,7 @@ describe Chart do
       end
 
       it 'falls back to default boost of 1.0' do
-        sorted = Chart.sort_chart_items([artist], start_time, end_time)
+        sorted = described_class.sort_chart_items([artist], start_time, end_time)
         expect(sorted).to eq([artist])
       end
     end

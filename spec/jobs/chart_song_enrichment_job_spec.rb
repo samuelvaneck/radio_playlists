@@ -9,41 +9,35 @@ describe ChartSongEnrichmentJob do
       let(:stale_song) { create(:song, title: 'Stale Song', lastfm_enriched_at: 2.days.ago) }
       let(:fresh_song) { create(:song, title: 'Fresh Song', lastfm_enriched_at: 1.hour.ago) }
       let(:never_enriched_song) { create(:song, title: 'Never Enriched', lastfm_enriched_at: nil) }
+      let(:enricher_double) { instance_double(Spotify::SongEnricher, enrich: nil) }
 
       before do
         chart.chart_positions.create!(positianable: stale_song, position: 1, counts: 10)
         chart.chart_positions.create!(positianable: fresh_song, position: 2, counts: 8)
         chart.chart_positions.create!(positianable: never_enriched_song, position: 3, counts: 5)
 
-        allow(Spotify::SongEnricher).to receive(:new).and_return(instance_double(Spotify::SongEnricher, enrich: nil))
+        allow(Spotify::SongEnricher).to receive(:new).and_return(enricher_double)
+        allow(LastfmEnrichmentJob).to receive(:perform_in)
       end
 
-      it 'enqueues LastfmEnrichmentJob for stale songs' do
-        expect(LastfmEnrichmentJob).to receive(:perform_in).with(0.seconds, 'Song', stale_song.id)
-        expect(LastfmEnrichmentJob).to receive(:perform_in).with(2.seconds, 'Song', never_enriched_song.id)
-
+      it 'enqueues LastfmEnrichmentJob for stale songs', :aggregate_failures do
         described_class.new.perform
+
+        expect(LastfmEnrichmentJob).to have_received(:perform_in).with(0.seconds, 'Song', stale_song.id)
+        expect(LastfmEnrichmentJob).to have_received(:perform_in).with(2.seconds, 'Song', never_enriched_song.id)
       end
 
       it 'does not enqueue LastfmEnrichmentJob for fresh songs' do
-        allow(LastfmEnrichmentJob).to receive(:perform_in)
-
         described_class.new.perform
 
         expect(LastfmEnrichmentJob).not_to have_received(:perform_in).with(anything, 'Song', fresh_song.id)
       end
 
       it 'calls enrich_with_spotify for stale songs', :aggregate_failures do
-        allow(LastfmEnrichmentJob).to receive(:perform_in)
-
-        expect(Spotify::SongEnricher).to receive(:new).with(stale_song, force: true).and_return(
-          instance_double(Spotify::SongEnricher, enrich: nil)
-        )
-        expect(Spotify::SongEnricher).to receive(:new).with(never_enriched_song, force: true).and_return(
-          instance_double(Spotify::SongEnricher, enrich: nil)
-        )
-
         described_class.new.perform
+
+        expect(Spotify::SongEnricher).to have_received(:new).with(stale_song, force: true)
+        expect(Spotify::SongEnricher).to have_received(:new).with(never_enriched_song, force: true)
       end
     end
 
