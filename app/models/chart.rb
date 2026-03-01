@@ -52,10 +52,7 @@ class Chart < ApplicationRecord
         start_time = (date - 1).beginning_of_day
         end_time = (date - 1).end_of_day.strftime('%FT%R')
         chart_type.most_played_group_by(:counter, start_time: start_time.strftime('%FT%R'), end_time:).each do |counter, chart_items|
-          # reorder chart items by the number of air_plays they were played in the last month
-          chart_items = chart_items.sort_by do |item|
-            -item.air_plays.confirmed.where('broadcasted_at >= ? AND broadcasted_at <= ?', start_time - 1.week, end_time).count
-          end
+          chart_items = sort_chart_items(chart_items, start_time - 1.week, end_time)
 
           chart_items.each do |chart_item|
             position = chart.chart_positions.build
@@ -72,13 +69,20 @@ class Chart < ApplicationRecord
     end
   end
 
+  # Sort chart items by composite tiebreaker score: weekly airplay count * 100 + popularity boost * 50.
+  # Songs get a popularity boost from Spotify/Last.fm data; artists use weekly airplay only.
+  def self.sort_chart_items(chart_items, start_time, end_time)
+    chart_items.sort_by do |item|
+      weekly_count = item.air_plays.confirmed.where('broadcasted_at >= ? AND broadcasted_at <= ?', start_time, end_time).count
+      boost = item.respond_to?(:popularity_boost) ? item.popularity_boost : 1.0
+      -((weekly_count * 100) + (boost * 50))
+    end
+  end
+
   def create_chart_positions
     index = 1
     __send__("yesterday_#{chart_type}_chart".to_sym).each do |counter, chart_items|
-      # reorder chart items by the number of air_plays they were played in the last month
-      chart_items = chart_items.sort_by do |item|
-        -item.air_plays.confirmed.where('broadcasted_at >= ? AND broadcasted_at <= ?', 1.week.ago, 1.day.ago.end_of_day.strftime('%FT%R')).count
-      end
+      chart_items = self.class.sort_chart_items(chart_items, 1.week.ago, 1.day.ago.end_of_day.strftime('%FT%R'))
 
       chart_items.each do |chart_item|
         position = chart_positions.build

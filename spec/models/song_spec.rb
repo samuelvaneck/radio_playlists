@@ -552,6 +552,110 @@ describe Song do
   end
   # rubocop:enable RSpec/MultipleMemoizedHelpers
 
+  describe '#popularity_boost' do
+    let(:artist) { create(:artist, name: 'Boost Artist') }
+
+    context 'when song has no popularity data' do
+      let(:song) { create(:song, title: 'No Data', artists: [artist], popularity: nil, lastfm_listeners: nil, lastfm_playcount: nil) }
+
+      it 'returns 1.0 (no boost)' do
+        expect(song.popularity_boost).to eq(1.0)
+      end
+    end
+
+    context 'when song has maximum Spotify popularity' do
+      let(:song) { create(:song, title: 'Popular', artists: [artist], popularity: 100, lastfm_listeners: nil, lastfm_playcount: nil) }
+
+      it 'returns 1.15' do
+        expect(song.popularity_boost).to eq(1.15)
+      end
+    end
+
+    context 'when song has all popularity data at high values' do
+      let(:song) do
+        create(:song, title: 'Very Popular', artists: [artist], popularity: 100, lastfm_listeners: 100_000_000, lastfm_playcount: 1_000_000_000)
+      end
+
+      it 'returns the maximum boost of 1.30' do
+        expect(song.popularity_boost).to eq(1.30)
+      end
+    end
+
+    context 'when song has moderate popularity data' do
+      let(:song) { create(:song, title: 'Moderate', artists: [artist], popularity: 50, lastfm_listeners: 1_000_000, lastfm_playcount: 10_000_000) }
+
+      it 'returns a boost between 1.0 and 1.30', :aggregate_failures do
+        boost = song.popularity_boost
+        expect(boost).to be > 1.0
+        expect(boost).to be < 1.30
+      end
+    end
+  end
+
+  describe '#normalized_lastfm_listeners' do
+    let(:artist) { create(:artist, name: 'Norm Artist') }
+
+    context 'when lastfm_listeners is nil' do
+      let(:song) { create(:song, title: 'Nil Listeners', artists: [artist], lastfm_listeners: nil) }
+
+      it 'returns 0.0' do
+        expect(song.normalized_lastfm_listeners).to eq(0.0)
+      end
+    end
+
+    context 'when lastfm_listeners is 0' do
+      let(:song) { create(:song, title: 'Zero Listeners', artists: [artist], lastfm_listeners: 0) }
+
+      it 'returns 0.0' do
+        expect(song.normalized_lastfm_listeners).to eq(0.0)
+      end
+    end
+
+    context 'when lastfm_listeners is 100_000_000 (max normalization)' do
+      let(:song) { create(:song, title: 'Max Listeners', artists: [artist], lastfm_listeners: 100_000_000) }
+
+      it 'returns 1.0' do
+        expect(song.normalized_lastfm_listeners).to eq(1.0)
+      end
+    end
+
+    context 'when lastfm_listeners exceeds max (clamped)' do
+      let(:song) { create(:song, title: 'Over Max', artists: [artist], lastfm_listeners: 1_000_000_000) }
+
+      it 'returns 1.0 (clamped)' do
+        expect(song.normalized_lastfm_listeners).to eq(1.0)
+      end
+    end
+  end
+
+  describe '#normalized_lastfm_playcount' do
+    let(:artist) { create(:artist, name: 'Playcount Artist') }
+
+    context 'when lastfm_playcount is nil' do
+      let(:song) { create(:song, title: 'Nil Playcount', artists: [artist], lastfm_playcount: nil) }
+
+      it 'returns 0.0' do
+        expect(song.normalized_lastfm_playcount).to eq(0.0)
+      end
+    end
+
+    context 'when lastfm_playcount is 0' do
+      let(:song) { create(:song, title: 'Zero Playcount', artists: [artist], lastfm_playcount: 0) }
+
+      it 'returns 0.0' do
+        expect(song.normalized_lastfm_playcount).to eq(0.0)
+      end
+    end
+
+    context 'when lastfm_playcount is 1_000_000_000 (max normalization)' do
+      let(:song) { create(:song, title: 'Max Playcount', artists: [artist], lastfm_playcount: 1_000_000_000) }
+
+      it 'returns 1.0' do
+        expect(song.normalized_lastfm_playcount).to eq(1.0)
+      end
+    end
+  end
+
   # NOTE: The after_commit callbacks for update_youtube_from_wikipedia, enrich_with_deezer,
   # and enrich_with_itunes were disabled in commit 28098bb2 to prevent race conditions
   # where concurrent imports were causing incorrect data mutations.

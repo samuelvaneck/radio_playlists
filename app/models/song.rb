@@ -228,6 +228,27 @@ class Song < ApplicationRecord
     MusicBrainz::SongEnricher.new(self).enrich
   end
 
+  # Returns a multiplier (1.0 to ~1.30) based on external popularity data.
+  # Max boost: +15% from Spotify popularity, +10% from Last.fm listeners, +5% from Last.fm playcount
+  def popularity_boost
+    spotify_component = ((popularity || 0) / 100.0) * 0.15
+    listeners_component = normalized_lastfm_listeners * 0.10
+    playcount_component = normalized_lastfm_playcount * 0.05
+    1.0 + spotify_component + listeners_component + playcount_component
+  end
+
+  def normalized_lastfm_listeners
+    return 0.0 if lastfm_listeners.nil? || lastfm_listeners <= 0
+
+    Math.log10(lastfm_listeners).clamp(0.0, 8.0) / 8.0
+  end
+
+  def normalized_lastfm_playcount
+    return 0.0 if lastfm_playcount.nil? || lastfm_playcount <= 0
+
+    Math.log10(lastfm_playcount).clamp(0.0, 9.0) / 9.0
+  end
+
   # Enrich song with Deezer, iTunes, and MusicBrainz data if missing
   def enrich_with_external_services
     enrich_with_deezer if should_enrich_with_deezer?
