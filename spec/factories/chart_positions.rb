@@ -22,5 +22,9 @@
 #
 FactoryBot.define do
   factory :chart_position do
+    chart
+    sequence(:position) { |n| n }
+    counts { 10 }
+    positianable { association :song }
   end
 end

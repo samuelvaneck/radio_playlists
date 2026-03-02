@@ -196,6 +196,34 @@ RSpec.configure do |config|
               counts: { type: :integer }
             }
           },
+          ChartPositionEntry: {
+            type: :object,
+            properties: {
+              id: { type: :string },
+              type: { type: :string, example: 'chart_position' },
+              attributes: {
+                type: :object,
+                properties: {
+                  position: { type: :integer },
+                  counts: { type: :integer },
+                  previous_position: { type: :integer, nullable: true },
+                  song: { '$ref' => '#/components/schemas/Song', nullable: true },
+                  artist: { '$ref' => '#/components/schemas/Artist', nullable: true }
+                }
+              }
+            }
+          },
+          ChartResponse: {
+            type: :object,
+            properties: {
+              data: { type: :array, items: { '$ref' => '#/components/schemas/ChartPositionEntry' } },
+              chart_date: { type: :string, format: :date },
+              chart_type: { type: :string, enum: %w[songs artists] },
+              total_entries: { type: :integer },
+              total_pages: { type: :integer },
+              current_page: { type: :integer }
+            }
+          },
           TimeAnalytics: {
             type: :object,
             properties: {
