@@ -162,9 +162,20 @@ This tells RuboCop that the expectations are intentionally grouped, and RSpec wi
 ## API Structure
 
 RESTful JSON API under `/api/v1/`:
-- `songs`, `artists`, `air_plays`, `radio_stations`
+- `songs`, `artists`, `air_plays`, `radio_stations`, `charts`
 - Admin endpoints with JWT authentication (Devise)
 - Swagger docs available at `/api-docs` (rswag)
+
+### Charts Endpoint
+
+`GET /api/v1/charts` — Returns paginated chart positions with nested song/artist data.
+
+**Query parameters:**
+- `type` — `songs` (default) or `artists`
+- `date` — specific chart date (`YYYY-MM-DD`), defaults to latest available
+- `page` — pagination (24 items per page)
+
+Each entry includes `previous_position` (from the prior day's chart) for movement indicators. Returns `null` for new entries not on the previous chart. Uses `ChartPositionSerializer` with nested `SongSerializer`/`ArtistSerializer`.
 
 ### Swagger Documentation
 
