@@ -11,6 +11,14 @@ module Api
                        .to_json
       end
 
+      def search
+        render json: ChartPositionSerializer.new(searched_chart_positions, params: { previous_positions: previous_positions })
+                       .serializable_hash
+                       .merge(chart_metadata)
+                       .merge(pagination_data(searched_chart_positions))
+                       .to_json
+      end
+
       private
 
       def chart
@@ -26,6 +34,16 @@ module Api
                                .includes(positianable: :artists)
                                .order(position: :asc)
                                .paginate(page: params[:page], per_page: 24)
+      end
+
+      def searched_chart_positions
+        @searched_chart_positions ||= chart.chart_positions
+                                        .joins('INNER JOIN songs ON songs.id = chart_positions.positianable_id')
+                                        .where(positianable_type: 'Song')
+                                        .where('songs.search_text ILIKE ?', "%#{params[:search_term]}%")
+                                        .includes(positianable: :artists)
+                                        .order(position: :asc)
+                                        .paginate(page: params[:page], per_page: 24)
       end
 
       def previous_positions
