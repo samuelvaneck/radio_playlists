@@ -8,11 +8,11 @@ default: &default
 
 development:
   <<: *default
-  database: radio_playlists_development
+  database: airwave_development
 
 test:
   <<: *default
-  database: radio_playlists_test
+  database: airwave_test
 
 production:
   <<: *default
