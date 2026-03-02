@@ -756,6 +756,73 @@ paths:
                         source: https://upload.wikimedia.org/coldplay.jpg
                         width: 320
                         height: 240
+  "/api/v1/charts":
+    get:
+      summary: List chart positions
+      tags:
+      - Charts
+      description: Returns chart positions with optional type, date, and pagination.
+        Includes previous_position from the prior chart for movement indicators.
+      parameters:
+      - name: type
+        in: query
+        required: false
+        description: 'Chart type: songs (default) or artists'
+        schema:
+          type: string
+      - name: date
+        in: query
+        format: date
+        required: false
+        description: Chart date (YYYY-MM-DD). Defaults to latest available
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Paginated chart positions
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: chart_position
+                      attributes:
+                        position: 1
+                        counts: 42
+                        previous_position: 3
+                        song:
+                          id: '5'
+                          type: song
+                          attributes:
+                            id: 5
+                            title: Bohemian Rhapsody
+                            spotify_artwork_url: https://i.scdn.co/image/abc123
+                            artists:
+                            - id: 1
+                              name: Queen
+                        artist:
+                    chart_date: '2026-03-01'
+                    chart_type: songs
+                    total_entries: 150
+                    total_pages: 7
+                    current_page: 1
+        '404':
+          description: Chart not found for given date
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    status: 404
+                    error: Not Found
   "/api/v1/radio_station_classifiers":
     get:
       summary: List all radio station classifiers
@@ -2641,6 +2708,51 @@ components:
         position:
           type: integer
         counts:
+          type: integer
+    ChartPositionEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: chart_position
+        attributes:
+          type: object
+          properties:
+            position:
+              type: integer
+            counts:
+              type: integer
+            previous_position:
+              type: integer
+              nullable: true
+            song:
+              "$ref": "#/components/schemas/Song"
+              nullable: true
+            artist:
+              "$ref": "#/components/schemas/Artist"
+              nullable: true
+    ChartResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ChartPositionEntry"
+        chart_date:
+          type: string
+          format: date
+        chart_type:
+          type: string
+          enum:
+          - songs
+          - artists
+        total_entries:
+          type: integer
+        total_pages:
+          type: integer
+        current_page:
           type: integer
     TimeAnalytics:
       type: object
