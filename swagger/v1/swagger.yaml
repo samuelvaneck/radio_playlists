@@ -823,6 +823,64 @@ paths:
                   value:
                     status: 404
                     error: Not Found
+  "/api/v1/charts/search":
+    get:
+      summary: Search chart positions by song title or artist name
+      tags:
+      - Charts
+      description: Search within chart positions by song title or artist name. Returns
+        matching chart positions with previous_position for movement indicators.
+      parameters:
+      - name: search_term
+        in: query
+        required: true
+        description: Search term to match against song title or artist name
+        schema:
+          type: string
+      - name: date
+        in: query
+        format: date
+        required: false
+        description: Chart date (YYYY-MM-DD). Defaults to latest available
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Empty results when no songs match
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '1'
+                      type: chart_position
+                      attributes:
+                        position: 3
+                        counts: 35
+                        previous_position: 5
+                        song:
+                          id: '5'
+                          type: song
+                          attributes:
+                            id: 5
+                            title: Hello
+                            spotify_artwork_url: https://i.scdn.co/image/abc123
+                            artists:
+                            - id: 1
+                              name: Adele
+                        artist:
+                    chart_date: '2026-03-01'
+                    chart_type: songs
+                    total_entries: 1
+                    total_pages: 1
+                    current_page: 1
   "/api/v1/radio_station_classifiers":
     get:
       summary: List all radio station classifiers
