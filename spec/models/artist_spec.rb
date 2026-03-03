@@ -57,6 +57,22 @@ describe Artist do
     end
   end
 
+  describe '.search_by_name' do
+    let!(:coldplay) { create(:artist, name: 'Coldplay') }
+
+    it 'finds artists with exact match' do
+      expect(Artist.search_by_name('Coldplay')).to include(coldplay)
+    end
+
+    it 'finds artists with typo in query' do
+      expect(Artist.search_by_name('Coldpaly')).to include(coldplay)
+    end
+
+    it 'finds artists with prefix match' do
+      expect(Artist.search_by_name('Coldp')).to include(coldplay)
+    end
+  end
+
   describe '#cleanup' do
     context 'if the artist has no songs' do
       let!(:artist_no_songs) { create :artist }
