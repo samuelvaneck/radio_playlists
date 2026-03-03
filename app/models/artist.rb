@@ -31,9 +31,10 @@ class Artist < ApplicationRecord
   pg_search_scope :search_by_name,
                   against: :name,
                   using: {
-                    trigram: {},
+                    trigram: { threshold: 0.3, word_similarity: true },
                     tsearch: { prefix: true }
-                  }
+                  },
+                  ranked_by: ":trigram + (0.25 * :tsearch) + (0.01 * COALESCE(artists.spotify_popularity, 0))"
 
   has_many :artists_songs
   has_many :songs, through: :artists_songs

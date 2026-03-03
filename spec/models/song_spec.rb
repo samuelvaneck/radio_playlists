@@ -216,7 +216,7 @@ describe Song do
 
   describe '.search_by_text' do
     let(:artist) { create(:artist, name: 'Queen') }
-    let!(:bohemian) { create(:song, title: 'Bohemian Rhapsody', artists: [artist]) }
+    let!(:bohemian) { create(:song, title: 'Bohemian Rhapsody', artists: [artist], popularity: 85) }
 
     it 'finds songs with exact match' do
       expect(Song.search_by_text('Bohemian Rhapsody')).to include(bohemian)
@@ -232,6 +232,13 @@ describe Song do
 
     it 'finds songs with prefix match' do
       expect(Song.search_by_text('Bohem')).to include(bohemian)
+    end
+
+    it 'ranks more popular songs higher' do
+      less_popular = create(:song, title: 'Bohemian Nights', artists: [artist], popularity: 5)
+      results = Song.search_by_text('Bohemian')
+
+      expect(results.index(bohemian)).to be < results.index(less_popular)
     end
   end
 
