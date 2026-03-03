@@ -58,7 +58,7 @@ describe Artist do
   end
 
   describe '.search_by_name' do
-    let!(:coldplay) { create(:artist, name: 'Coldplay') }
+    let!(:coldplay) { create(:artist, name: 'Coldplay', spotify_popularity: 90) }
 
     it 'finds artists with exact match' do
       expect(Artist.search_by_name('Coldplay')).to include(coldplay)
@@ -70,6 +70,13 @@ describe Artist do
 
     it 'finds artists with prefix match' do
       expect(Artist.search_by_name('Coldp')).to include(coldplay)
+    end
+
+    it 'ranks more popular artists higher' do
+      less_popular = create(:artist, name: 'Coldploy', spotify_popularity: 5)
+      results = Artist.search_by_name('Coldplay')
+
+      expect(results.index(coldplay)).to be < results.index(less_popular)
     end
   end
 
