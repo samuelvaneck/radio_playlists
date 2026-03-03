@@ -22,17 +22,25 @@
 #
 
 class Artist < ApplicationRecord
+  include PgSearch::Model
   include GraphConcern
   include DateConcern
   include ChartConcern
   include TimeAnalyticsConcern
+
+  pg_search_scope :search_by_name,
+                  against: :name,
+                  using: {
+                    trigram: {},
+                    tsearch: { prefix: true }
+                  }
 
   has_many :artists_songs
   has_many :songs, through: :artists_songs
   has_many :air_plays, through: :songs
   has_many :chart_positions, as: :positianable
 
-  scope :matching, ->(search_term) { where!('artists.name ILIKE ?', "%#{search_term}%") if search_term.present? }
+  scope :matching, ->(search_term) { search_by_name(search_term).reorder(nil) if search_term.present? }
 
   validates :name, presence: true
 

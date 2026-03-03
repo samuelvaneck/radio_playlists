@@ -29,7 +29,7 @@ module Api
       #   ]
       # }
       def autocomplete
-        results = Song.matching(params[:q])
+        results = Song.search_by_text(params[:q])
                     .includes(:artists)
                     .limit(autocomplete_limit)
 

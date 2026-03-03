@@ -214,6 +214,27 @@ describe Song do
     end
   end
 
+  describe '.search_by_text' do
+    let(:artist) { create(:artist, name: 'Queen') }
+    let!(:bohemian) { create(:song, title: 'Bohemian Rhapsody', artists: [artist]) }
+
+    it 'finds songs with exact match' do
+      expect(Song.search_by_text('Bohemian Rhapsody')).to include(bohemian)
+    end
+
+    it 'finds songs with typo in query' do
+      expect(Song.search_by_text('Bohemien Rapsody')).to include(bohemian)
+    end
+
+    it 'finds songs by artist name' do
+      expect(Song.search_by_text('Queen')).to include(bohemian)
+    end
+
+    it 'finds songs with prefix match' do
+      expect(Song.search_by_text('Bohem')).to include(bohemian)
+    end
+  end
+
   describe '#cleanup' do
     context 'if the song has no air plays' do
       let!(:song_no_air_play) { create :song }

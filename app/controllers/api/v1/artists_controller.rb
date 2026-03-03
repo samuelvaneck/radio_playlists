@@ -28,7 +28,7 @@ module Api
       #   ]
       # }
       def autocomplete
-        results = Artist.matching(params[:q])
+        results = Artist.search_by_name(params[:q])
                     .limit(autocomplete_limit)
 
         render json: ArtistSerializer.new(results).serializable_hash.to_json

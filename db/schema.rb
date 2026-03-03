@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_27_100347) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_03_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
@@ -100,7 +101,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_27_100347) do
     t.integer "spotify_popularity"
     t.datetime "updated_at", precision: nil, null: false
     t.string "website_url"
-    t.index ["name"], name: "index_artists_on_name"
+    t.index ["name"], name: "index_artists_on_name_trgm", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "artists_songs", id: false, force: :cascade do |t|
@@ -255,7 +256,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_27_100347) do
     t.index ["id_on_deezer"], name: "index_songs_on_id_on_deezer"
     t.index ["id_on_itunes"], name: "index_songs_on_id_on_itunes"
     t.index ["release_date"], name: "index_songs_on_release_date"
-    t.index ["search_text"], name: "index_songs_on_search_text"
+    t.index ["search_text"], name: "index_songs_on_search_text_trgm", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "tags", force: :cascade do |t|
