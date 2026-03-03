@@ -19,6 +19,17 @@ module Api
                        .to_json
       end
 
+      def autocomplete
+        results = autocomplete_from_chart
+        in_chart = results.any?
+        results = autocomplete_from_songs unless in_chart
+
+        render json: SongSerializer.new(results)
+                       .serializable_hash
+                       .merge(in_chart: in_chart)
+                       .to_json
+      end
+
       private
 
       def chart
@@ -56,6 +67,31 @@ module Api
 
           previous_chart.chart_positions.pluck(:positianable_id, :position).to_h
         end
+      end
+
+      def autocomplete_from_chart
+        latest_songs_chart.chart_positions
+          .joins('INNER JOIN songs ON songs.id = chart_positions.positianable_id')
+          .where(positianable_type: 'Song')
+          .where('songs.search_text ILIKE ?', "%#{params[:q]}%")
+          .includes(positianable: :artists)
+          .order(position: :asc)
+          .limit(autocomplete_limit)
+          .map(&:positianable)
+      end
+
+      def autocomplete_from_songs
+        Song.matching(params[:q])
+          .includes(:artists)
+          .limit(autocomplete_limit)
+      end
+
+      def latest_songs_chart
+        @latest_songs_chart ||= Chart.where(chart_type: 'songs').order(date: :desc).first!
+      end
+
+      def autocomplete_limit
+        [params.fetch(:limit, 10).to_i, 20].min
       end
 
       def chart_type

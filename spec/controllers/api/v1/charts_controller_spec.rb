@@ -93,4 +93,87 @@ describe Api::V1::ChartsController do
       end
     end
   end
+
+  describe 'GET #autocomplete' do
+    subject(:get_autocomplete) { get :autocomplete, params: { q: query, format: :json } }
+
+    let(:artist) { create :artist, name: 'Adele' }
+    let(:chart_song) { create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello' }
+    let(:non_chart_song) { create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory' }
+    let(:chart) { create :chart, date: Time.zone.yesterday, chart_type: 'songs' }
+
+    before do
+      create :chart_position, chart: chart, positianable: chart_song, position: 1, counts: 50
+    end
+
+    context 'when query matches a song in the chart' do
+      let(:query) { 'Hello' }
+
+      before { non_chart_song }
+
+      it 'returns status OK/200' do
+        get_autocomplete
+        expect(response.status).to eq 200
+      end
+
+      it 'returns matching chart songs', :aggregate_failures do
+        get_autocomplete
+        expect(json[:data].count).to eq(1)
+        expect(json[:data].first[:attributes][:title]).to eq('Hello')
+      end
+
+      it 'sets in_chart to true' do
+        get_autocomplete
+        expect(json[:in_chart]).to be true
+      end
+    end
+
+    context 'when query does not match any chart song' do
+      let(:query) { 'Hometown' }
+
+      before { non_chart_song }
+
+      it 'falls back to global song search' do
+        get_autocomplete
+        expect(json[:data].count).to eq(1)
+      end
+
+      it 'returns the matching song from global search' do
+        get_autocomplete
+        expect(json[:data].first[:attributes][:title]).to eq('Hometown Glory')
+      end
+
+      it 'sets in_chart to false' do
+        get_autocomplete
+        expect(json[:in_chart]).to be false
+      end
+    end
+
+    context 'when query matches nothing' do
+      let(:query) { 'Nonexistent Song' }
+
+      it 'returns an empty data array' do
+        get_autocomplete
+        expect(json[:data]).to be_empty
+      end
+
+      it 'sets in_chart to false' do
+        get_autocomplete
+        expect(json[:in_chart]).to be false
+      end
+    end
+
+    context 'with limit parameter' do
+      let(:query) { 'Adele' }
+
+      before do
+        create :chart_position, chart: chart, positianable: non_chart_song, position: 2, counts: 30
+      end
+
+      it 'respects the limit parameter' do
+        get :autocomplete, params: { q: query, limit: 1, format: :json }
+        expect(json[:data].count).to eq(1)
+      end
+    end
+  end
 end
