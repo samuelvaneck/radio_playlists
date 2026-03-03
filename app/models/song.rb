@@ -41,10 +41,18 @@
 #
 
 class Song < ApplicationRecord
+  include PgSearch::Model
   include GraphConcern
   include DateConcern
   include ChartConcern
   include TimeAnalyticsConcern
+
+  pg_search_scope :search_by_text,
+                  against: :search_text,
+                  using: {
+                    trigram: {},
+                    tsearch: { prefix: true }
+                  }
 
   has_many :artists_songs
   has_many :artists, through: :artists_songs
@@ -62,7 +70,7 @@ class Song < ApplicationRecord
   # after_commit :enrich_with_itunes, on: %i[create update], if: :should_enrich_with_itunes?
 
   scope :matching, lambda { |search_term|
-    where('songs.search_text ILIKE ?', "%#{search_term}%") if search_term.present?
+    search_by_text(search_term).reorder(nil) if search_term.present?
   }
   scope :with_isrc, ->(isrc) { where('? = ANY(isrcs)', isrc) }
   scope :with_id_on_spotify, -> { where.not(id_on_spotify: nil) }
@@ -132,7 +140,9 @@ class Song < ApplicationRecord
   end
 
   def self.search(search_term)
-    where('search_text ILIKE ?', "%#{search_term}%")
+    return all if search_term.blank?
+
+    search_by_text(search_term)
   end
 
   def cleanup
