@@ -3,7 +3,7 @@
 require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
 
-Rails.application.routes.draw do
+Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   devise_for :admins
