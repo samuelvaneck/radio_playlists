@@ -224,4 +224,79 @@ RSpec.describe 'Charts API', type: :request do
       end
     end
   end
+
+  path '/api/v1/charts/autocomplete' do
+    get 'Autocomplete songs from charts with global fallback' do
+      tags 'Charts'
+      produces 'application/json'
+      description 'Search songs for autocomplete. Searches the latest chart first; ' \
+                  'falls back to a global song search if no chart matches are found. ' \
+                  'Returns an in_chart boolean indicating the result source.'
+      parameter name: :q, in: :query, type: :string, required: true,
+                description: 'Search query string'
+      parameter name: :limit, in: :query, type: :integer, required: false,
+                description: 'Maximum number of results (default: 10, max: 20)'
+
+      response '200', 'Autocomplete results from chart' do
+        example 'application/json', :from_chart, {
+          data: [
+            {
+              id: '1',
+              type: 'song',
+              attributes: {
+                id: 1,
+                title: 'Hello',
+                spotify_artwork_url: 'https://i.scdn.co/image/abc123',
+                artists: [{ id: 1, name: 'Adele' }]
+              }
+            }
+          ],
+          in_chart: true
+        }
+        example 'application/json', :from_global, {
+          data: [
+            {
+              id: '2',
+              type: 'song',
+              attributes: {
+                id: 2,
+                title: 'Hometown Glory',
+                spotify_artwork_url: 'https://i.scdn.co/image/def456',
+                artists: [{ id: 1, name: 'Adele' }]
+              }
+            }
+          ],
+          in_chart: false
+        }
+
+        let(:q) { 'Hello' }
+        let!(:artist) { create(:artist, name: 'Adele') }
+        let!(:chart) { create(:chart, chart_type: 'songs', date: 1.day.ago.to_date) }
+        let!(:song) { create(:song, title: 'Hello', artists: [artist], search_text: 'Adele Hello') }
+        let!(:chart_position) { create(:chart_position, chart: chart, positianable: song, position: 1, counts: 42) }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['data']).to be_an(Array)
+          expect(data['in_chart']).to be true
+        end
+      end
+
+      context 'with global fallback' do
+        response '200', 'Autocomplete results from global search' do
+          let(:q) { 'Hometown' }
+          let!(:chart) { create(:chart, chart_type: 'songs', date: 1.day.ago.to_date) }
+          let!(:chart_song) { create(:song, title: 'Hello', search_text: 'Adele Hello') }
+          let!(:chart_position) { create(:chart_position, chart: chart, positianable: chart_song, position: 1, counts: 42) }
+          let!(:global_song) { create(:song, title: 'Hometown Glory', search_text: 'Adele Hometown Glory') }
+
+          run_test! do |response|
+            data = JSON.parse(response.body)
+            expect(data['data'].length).to eq(1)
+            expect(data['in_chart']).to be false
+          end
+        end
+      end
+    end
+  end
 end

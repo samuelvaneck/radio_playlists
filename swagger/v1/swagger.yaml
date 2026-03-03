@@ -881,6 +881,59 @@ paths:
                     total_entries: 1
                     total_pages: 1
                     current_page: 1
+  "/api/v1/charts/autocomplete":
+    get:
+      summary: Autocomplete songs from charts with global fallback
+      tags:
+      - Charts
+      description: Search songs for autocomplete. Searches the latest chart first;
+        falls back to a global song search if no chart matches are found. Returns
+        an in_chart boolean indicating the result source.
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: Search query string
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: 'Maximum number of results (default: 10, max: 20)'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Autocomplete results from global search
+          content:
+            application/json:
+              examples:
+                from_chart:
+                  value:
+                    data:
+                    - id: '1'
+                      type: song
+                      attributes:
+                        id: 1
+                        title: Hello
+                        spotify_artwork_url: https://i.scdn.co/image/abc123
+                        artists:
+                        - id: 1
+                          name: Adele
+                    in_chart: true
+                from_global:
+                  value:
+                    data:
+                    - id: '2'
+                      type: song
+                      attributes:
+                        id: 2
+                        title: Hometown Glory
+                        spotify_artwork_url: https://i.scdn.co/image/def456
+                        artists:
+                        - id: 1
+                          name: Adele
+                    in_chart: false
   "/api/v1/radio_station_classifiers":
     get:
       summary: List all radio station classifiers

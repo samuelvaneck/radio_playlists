@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       end
       resources :charts, only: %i[index] do
         get :search, on: :collection
+        get :autocomplete, on: :collection
       end
       resources :song_import_logs, only: %i[index]
     end
