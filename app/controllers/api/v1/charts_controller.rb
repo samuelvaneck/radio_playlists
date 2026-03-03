@@ -51,7 +51,7 @@ module Api
         @searched_chart_positions ||= chart.chart_positions
                                         .joins('INNER JOIN songs ON songs.id = chart_positions.positianable_id')
                                         .where(positianable_type: 'Song')
-                                        .where('songs.search_text ILIKE ?', "%#{params[:search_term]}%")
+                                        .where('word_similarity(?, songs.search_text) > 0.3', params[:search_term])
                                         .includes(positianable: :artists)
                                         .order(position: :asc)
                                         .paginate(page: params[:page], per_page: 24)
@@ -73,7 +73,7 @@ module Api
         latest_songs_chart.chart_positions
           .joins('INNER JOIN songs ON songs.id = chart_positions.positianable_id')
           .where(positianable_type: 'Song')
-          .where('songs.search_text ILIKE ?', "%#{params[:q]}%")
+          .where('word_similarity(?, songs.search_text) > 0.3', params[:q])
           .includes(positianable: :artists)
           .order(position: :asc)
           .limit(autocomplete_limit)
