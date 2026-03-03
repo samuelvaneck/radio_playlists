@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 describe Api::V1::ArtistsController do
-  let(:artist_one) { create :artist }
+  let(:artist_one) { create :artist, name: 'Coldplay' }
   let(:song_one) { create :song, artists: [artist_one] }
-  let(:artist_two) { create :artist }
+  let(:artist_two) { create :artist, name: 'Beyonce' }
   let(:song_two) { create :song, artists: [artist_two] }
-  let(:artist_three) { create :artist }
+  let(:artist_three) { create :artist, name: 'Kraftwerk' }
   let(:song_three) { create :song, artists: [artist_three] }
   let(:radio_station_one) { create :radio_station }
   let(:radio_station_two) { create :radio_station }
