@@ -124,7 +124,12 @@ describe Api::V1::ChartsController do
 
       it 'sets in_chart to true' do
         get_autocomplete
-        expect(json[:in_chart]).to be true
+        expect(json[:data].first[:attributes][:in_chart]).to be true
+      end
+
+      it 'sets last_chart_date to the latest chart date' do
+        get_autocomplete
+        expect(json[:data].first[:attributes][:last_chart_date]).to eq(chart.date.to_s)
       end
     end
 
@@ -133,19 +138,77 @@ describe Api::V1::ChartsController do
 
       before { non_chart_song }
 
-      it 'falls back to global song search' do
+      it 'returns the matching song from global search' do
         get_autocomplete
         expect(json[:data].count).to eq(1)
       end
 
-      it 'returns the matching song from global search' do
+      it 'sets in_chart to false' do
         get_autocomplete
-        expect(json[:data].first[:attributes][:title]).to eq('Hometown Glory')
+        expect(json[:data].first[:attributes][:in_chart]).to be false
+      end
+
+      it 'sets last_chart_date to nil for a never-charted song' do
+        get_autocomplete
+        expect(json[:data].first[:attributes][:last_chart_date]).to be_nil
+      end
+    end
+
+    context 'when song was in a previous chart but not the latest' do
+      let(:query) { 'Hometown' }
+      let(:old_chart) { create :chart, date: 2.weeks.ago.to_date, chart_type: 'songs' }
+
+      before do
+        create :chart_position, chart: old_chart, positianable: non_chart_song, position: 5, counts: 20
       end
 
       it 'sets in_chart to false' do
         get_autocomplete
-        expect(json[:in_chart]).to be false
+        expect(json[:data].first[:attributes][:in_chart]).to be false
+      end
+
+      it 'sets last_chart_date to the previous chart date' do
+        get_autocomplete
+        expect(json[:data].first[:attributes][:last_chart_date]).to eq(old_chart.date.to_s)
+      end
+    end
+
+    context 'when query matches both chart and non-chart songs' do
+      let(:query) { 'Adele' }
+
+      before do
+        non_chart_song
+      end
+
+      it 'returns both songs' do
+        get_autocomplete
+        expect(json[:data].count).to eq(2)
+      end
+
+      it 'includes per-song in_chart status' do
+        get_autocomplete
+        in_chart_values = json[:data].map { |s| s[:attributes][:in_chart] }
+        expect(in_chart_values).to contain_exactly(true, false)
+      end
+    end
+
+    context 'when song was aired today' do
+      let(:query) { 'Brand New' }
+      let!(:radio_station) { create :radio_station }
+      let!(:aired_song) { create :song, title: 'Brand New Song', search_text: 'Artist Brand New Song' }
+
+      before do
+        create :air_play, song: aired_song, radio_station: radio_station, created_at: Time.current
+      end
+
+      it 'includes the song in results' do
+        get_autocomplete
+        expect(json[:data].count).to eq(1)
+      end
+
+      it 'sets in_chart to false for a song only aired today' do
+        get_autocomplete
+        expect(json[:data].first[:attributes][:in_chart]).to be false
       end
     end
 
@@ -155,11 +218,6 @@ describe Api::V1::ChartsController do
       it 'returns an empty data array' do
         get_autocomplete
         expect(json[:data]).to be_empty
-      end
-
-      it 'sets in_chart to false' do
-        get_autocomplete
-        expect(json[:in_chart]).to be false
       end
     end
 
