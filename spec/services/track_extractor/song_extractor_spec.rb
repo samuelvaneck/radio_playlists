@@ -346,6 +346,80 @@ describe TrackExtractor::SongExtractor do
       end
     end
 
+    context 'when song exists with fuzzy title match' do
+      let(:track) do
+        OpenStruct.new(
+          title: "Don\u2019t Stop Me Now",
+          id: nil,
+          isrc: nil,
+          spotify_song_url: nil,
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: "Don\u2019t Stop Me Now",
+          artist_name: artist.name,
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:existing_song) do
+        create(:song,
+               title: "Don't Stop Me Now",
+               id_on_spotify: nil,
+               artists: [artist])
+      end
+
+      it 'finds the existing song via fuzzy search instead of creating a duplicate' do
+        expect(song).to eq(existing_song)
+      end
+
+      it 'does not create a new song' do
+        expect { song }.not_to change(Song, :count)
+      end
+    end
+
+    context 'when fuzzy match exists but artist does not overlap' do
+      let(:other_artist) { create(:artist, name: 'Completely Different Artist') }
+      let(:track) do
+        OpenStruct.new(
+          title: "Don\u2019t Stop Me Now",
+          id: nil,
+          isrc: nil,
+          spotify_song_url: nil,
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: "Don\u2019t Stop Me Now",
+          artist_name: artist.name,
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before do
+        create(:song,
+               title: "Don't Stop Me Now",
+               id_on_spotify: nil,
+               artists: [other_artist])
+      end
+
+      it 'does not match a song with different artists' do
+        expect(song.artists).to include(artist)
+        expect(song.artists).not_to include(other_artist)
+      end
+    end
+
     context 'when song exists with different Spotify ID but same ISRC' do
       let(:track) do
         OpenStruct.new(
