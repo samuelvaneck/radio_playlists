@@ -23,8 +23,9 @@ module Api
         songs = autocomplete_songs
         chart_data = autocomplete_chart_data(songs.map(&:id))
 
-        render json: SongSerializer.new(songs, params: { chart_data: chart_data })
+        render json: AutocompleteSongSerializer.new(songs, params: { chart_data: chart_data })
                        .serializable_hash
+                       .merge(pagination_data(songs))
                        .to_json
       end
 
@@ -69,13 +70,12 @@ module Api
 
       def autocomplete_songs
         Song.matching(params[:q])
-          .select('songs.*, MAX(air_plays.created_at) AS last_played_at')
+          .select('songs.id, songs.title, songs.spotify_artwork_url, MAX(air_plays.created_at) AS last_played_at')
           .left_joins(:air_plays)
           .group('songs.id')
           .order(Arel.sql('MAX(air_plays.created_at) DESC NULLS LAST, COALESCE(songs.popularity, 0) DESC'))
           .includes(:artists)
-          .limit(autocomplete_limit)
-          .to_a
+          .paginate(page: params[:page], per_page: autocomplete_limit)
       end
 
       def autocomplete_chart_data(song_ids)

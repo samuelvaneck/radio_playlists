@@ -30,10 +30,11 @@ module Api
       # }
       def autocomplete
         results = Song.search_by_text(params[:q])
+                    .select(:id, :title, :spotify_artwork_url)
                     .includes(:artists)
                     .limit(autocomplete_limit)
 
-        render json: SongSerializer.new(results).serializable_hash.to_json
+        render json: AutocompleteSongSerializer.new(results).serializable_hash.to_json
       end
 
       def graph_data
