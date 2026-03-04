@@ -883,12 +883,13 @@ paths:
                     current_page: 1
   "/api/v1/charts/autocomplete":
     get:
-      summary: Autocomplete songs from charts with global fallback
+      summary: Autocomplete songs with chart status
       tags:
       - Charts
-      description: Search songs for autocomplete. Searches the latest chart first;
-        falls back to a global song search if no chart matches are found. Returns
-        an in_chart boolean indicating the result source.
+      description: Search all songs for autocomplete. Each result includes in_chart
+        (whether the song is in the latest chart) and last_chart_date (the date of
+        the latest chart appearance, or null if never charted). Songs aired today
+        are included in the results.
       parameters:
       - name: q
         in: query
@@ -904,11 +905,11 @@ paths:
           type: integer
       responses:
         '200':
-          description: Autocomplete results from global search
+          description: Includes songs aired today
           content:
             application/json:
               examples:
-                from_chart:
+                song_in_chart:
                   value:
                     data:
                     - id: '1'
@@ -916,12 +917,12 @@ paths:
                       attributes:
                         id: 1
                         title: Hello
-                        spotify_artwork_url: https://i.scdn.co/image/abc123
+                        in_chart: true
+                        last_chart_date: '2026-03-01'
                         artists:
                         - id: 1
                           name: Adele
-                    in_chart: true
-                from_global:
+                song_not_in_chart:
                   value:
                     data:
                     - id: '2'
@@ -929,11 +930,11 @@ paths:
                       attributes:
                         id: 2
                         title: Hometown Glory
-                        spotify_artwork_url: https://i.scdn.co/image/def456
+                        in_chart: false
+                        last_chart_date: '2026-02-15'
                         artists:
                         - id: 1
                           name: Adele
-                    in_chart: false
   "/api/v1/radio_station_classifiers":
     get:
       summary: List all radio station classifiers

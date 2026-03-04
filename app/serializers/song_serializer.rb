@@ -87,6 +87,14 @@ class SongSerializer
     end
   end
 
+  attribute :in_chart do |object, params|
+    params.dig(:chart_data, object.id, :in_chart)
+  end
+
+  attribute :last_chart_date do |object, params|
+    params.dig(:chart_data, object.id, :last_chart_date)
+  end
+
   attribute :music_profile do |object|
     if object.music_profile.present?
       {
