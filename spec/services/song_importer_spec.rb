@@ -5,6 +5,77 @@ describe SongImporter do
   let(:artist) { create(:artist, name: 'Test Artist') }
   let(:song) { create(:song, title: 'Test Song', artists: [artist]) }
 
+  describe '#import' do
+    let(:station) { create(:radio_station, url: 'https://example.com/api', processor: 'npo_api_processor') }
+    let(:importer) { described_class.new(radio_station: station) }
+    let(:scraper) do
+      instance_double(
+        TrackScraper::NpoApiProcessor,
+        last_played_song: true,
+        title: 'Test Song',
+        artist_name: 'Test Artist',
+        spotify_url: nil,
+        isrc_code: nil,
+        broadcasted_at: Time.current,
+        raw_response: {},
+        is_a?: false
+      )
+    end
+
+    before do
+      allow(SongImportLogger).to receive(:new).and_return(
+        instance_double(SongImportLogger, start_log: nil, log_scraping: nil, skip_log: nil,
+                                          complete_log: nil, log_recognition: nil, log_acoustid: nil,
+                                          fail_log: nil, log_spotify: nil, log_deezer: nil, log_itunes: nil)
+      )
+    end
+
+    context 'when scraper returns a result' do
+      before do
+        allow(TrackScraper::NpoApiProcessor).to receive(:new).and_return(scraper)
+      end
+
+      it 'does not attempt audio recognition' do
+        allow(importer).to receive_messages(artists: [artist], song: song, create_air_play: true,
+                                            deezer_track: nil, itunes_track: nil)
+        allow(SongRecognizer).to receive(:new)
+        importer.import
+        expect(SongRecognizer).not_to have_received(:new)
+      end
+    end
+
+    context 'when scraper returns nil' do
+      before do
+        allow(TrackScraper::NpoApiProcessor).to receive(:new).and_return(
+          instance_double(TrackScraper::NpoApiProcessor, last_played_song: nil)
+        )
+        allow(importer).to receive(:recognize_song).and_return(nil)
+        allow(Broadcaster).to receive(:no_importing_song)
+      end
+
+      it 'attempts audio recognition as fallback' do
+        importer.import
+        expect(importer).to have_received(:recognize_song)
+      end
+    end
+
+    context 'when both scraper and recognizer return nil' do
+      before do
+        allow(TrackScraper::NpoApiProcessor).to receive(:new).and_return(
+          instance_double(TrackScraper::NpoApiProcessor, last_played_song: nil)
+        )
+        allow(importer).to receive(:recognize_song).and_return(nil)
+        allow(Broadcaster).to receive(:no_importing_song)
+      end
+
+      it 'returns false', :aggregate_failures do
+        result = importer.import
+        expect(result).to be false
+        expect(Broadcaster).to have_received(:no_importing_song)
+      end
+    end
+  end
+
   describe '#should_update_artists?' do
     subject(:song_importer) do
       importer = described_class.new(radio_station: radio_station)
