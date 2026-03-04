@@ -10,11 +10,11 @@ class SongImporter
 
   def import
     safe_start_log
-    @played_song = recognize_song || scrape_song
+    @played_song = scrape_song || recognize_song
 
     if @played_song.blank?
       Broadcaster.no_importing_song
-      @import_logger.skip_log(reason: 'No song recognized or scraped')
+      @import_logger.skip_log(reason: 'No song scraped or recognized')
       return false
     elsif artist_name.blank?
       Broadcaster.no_importing_artists
