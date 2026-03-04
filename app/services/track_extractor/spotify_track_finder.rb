@@ -43,7 +43,7 @@ class TrackExtractor::SpotifyTrackFinder < TrackExtractor
     Song.joins(:artists)
       .where(artists: { id: artist_ids })
       .where('LOWER(songs.title) = ?', title.downcase)
-      .first
+      .first || find_by_title_with_fuzzy_artist
   end
 
   # When exact artist match fails, try to find song using fuzzy text search
