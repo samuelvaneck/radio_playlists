@@ -20,13 +20,11 @@ module Api
       end
 
       def autocomplete
-        results = autocomplete_from_chart
-        in_chart = results.any?
-        results = autocomplete_from_songs unless in_chart
+        songs = autocomplete_songs
+        chart_data = autocomplete_chart_data(songs.map(&:id))
 
-        render json: SongSerializer.new(results)
+        render json: SongSerializer.new(songs, params: { chart_data: chart_data })
                        .serializable_hash
-                       .merge(in_chart: in_chart)
                        .to_json
       end
 
@@ -69,25 +67,51 @@ module Api
         end
       end
 
-      def autocomplete_from_chart
-        latest_songs_chart.chart_positions
-          .joins('INNER JOIN songs ON songs.id = chart_positions.positianable_id')
-          .where(positianable_type: 'Song')
-          .where('word_similarity(?, songs.search_text) > 0.3', params[:q])
-          .includes(positianable: :artists)
-          .order(position: :asc)
-          .limit(autocomplete_limit)
-          .map(&:positianable)
+      def autocomplete_songs
+        songs = Song.matching(params[:q]).includes(:artists).limit(autocomplete_limit).to_a
+        aired_today_songs = songs_aired_today
+        combined = songs | aired_today_songs
+        combined.first(autocomplete_limit)
       end
 
-      def autocomplete_from_songs
+      def songs_aired_today
         Song.matching(params[:q])
+          .joins(:air_plays)
+          .where(air_plays: { created_at: Time.current.beginning_of_day.. })
           .includes(:artists)
           .limit(autocomplete_limit)
+          .to_a
       end
 
-      def latest_songs_chart
-        @latest_songs_chart ||= Chart.where(chart_type: 'songs').order(date: :desc).first!
+      def autocomplete_chart_data(song_ids)
+        return {} if song_ids.empty?
+
+        latest_chart = Chart.where(chart_type: 'songs').order(date: :desc).first
+        return {} unless latest_chart
+
+        in_chart_ids = latest_chart.chart_positions
+                         .where(positianable_type: 'Song', positianable_id: song_ids)
+                         .pluck(:positianable_id)
+                         .to_set
+
+        not_in_chart_ids = song_ids - in_chart_ids.to_a
+        last_chart_dates = last_chart_appearance(not_in_chart_ids)
+
+        song_ids.index_with do |song_id|
+          {
+            in_chart: in_chart_ids.include?(song_id),
+            last_chart_date: in_chart_ids.include?(song_id) ? latest_chart.date : last_chart_dates[song_id]
+          }
+        end
+      end
+
+      def last_chart_appearance(song_ids)
+        return {} if song_ids.empty?
+
+        ChartPosition.where(positianable_type: 'Song', positianable_id: song_ids)
+          .joins(:chart)
+          .group(:positianable_id)
+          .maximum('charts.date')
       end
 
       def autocomplete_limit
