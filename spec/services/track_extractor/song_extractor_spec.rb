@@ -414,8 +414,11 @@ describe TrackExtractor::SongExtractor do
                artists: [other_artist])
       end
 
-      it 'does not match a song with different artists' do
+      it 'creates a new song with the correct artist' do
         expect(song.artists).to include(artist)
+      end
+
+      it 'does not match the existing song with different artists' do
         expect(song.artists).not_to include(other_artist)
       end
     end
