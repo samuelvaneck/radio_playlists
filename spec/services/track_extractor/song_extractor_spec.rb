@@ -423,6 +423,222 @@ describe TrackExtractor::SongExtractor do
       end
     end
 
+    context 'when exact title match takes precedence over fuzzy match' do
+      let(:track) do
+        OpenStruct.new(
+          title: "Don't Stop Me Now",
+          id: nil,
+          isrc: nil,
+          spotify_song_url: nil,
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: "Don't Stop Me Now",
+          artist_name: artist.name,
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:existing_song) do
+        create(:song,
+               title: "Don't Stop Me Now",
+               id_on_spotify: 'exact123',
+               artists: [artist])
+      end
+
+      it 'finds the exact match' do
+        expect(song).to eq(existing_song)
+      end
+
+      it 'does not create a new song' do
+        expect { song }.not_to change(Song, :count)
+      end
+    end
+
+    context 'when title has accent differences' do
+      let(:track) do
+        OpenStruct.new(
+          title: 'Señorita',
+          id: nil,
+          isrc: nil,
+          spotify_song_url: nil,
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Señorita',
+          artist_name: artist.name,
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:existing_song) do
+        create(:song,
+               title: 'Senorita',
+               id_on_spotify: nil,
+               artists: [artist])
+      end
+
+      it 'finds the existing song via fuzzy search despite accent difference' do
+        expect(song).to eq(existing_song)
+      end
+
+      it 'does not create a duplicate song' do
+        expect { song }.not_to change(Song, :count)
+      end
+    end
+
+    context 'when title has extra parenthetical info' do
+      let(:track) do
+        OpenStruct.new(
+          title: 'Flowers (Radio Edit)',
+          id: nil,
+          isrc: nil,
+          spotify_song_url: nil,
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Flowers (Radio Edit)',
+          artist_name: artist.name,
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:existing_song) do
+        create(:song,
+               title: 'Flowers',
+               id_on_spotify: nil,
+               artists: [artist])
+      end
+
+      it 'finds the existing song via fuzzy search' do
+        expect(song).to eq(existing_song)
+      end
+    end
+
+    context 'when fuzzy search has no artists' do
+      subject(:extractor) { described_class.new(played_song:, track:, artists: []) }
+
+      let(:track) do
+        OpenStruct.new(
+          title: "Don\u2019t Stop Me Now",
+          id: nil,
+          isrc: nil,
+          spotify_song_url: nil,
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: "Don\u2019t Stop Me Now",
+          artist_name: '',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before do
+        create(:song,
+               title: "Don't Stop Me Now",
+               id_on_spotify: nil,
+               artists: [create(:artist, name: 'Queen')])
+      end
+
+      it 'does not use fuzzy search and creates the song without artists' do
+        expect(song.artists).to be_empty
+      end
+    end
+
+    context 'when fuzzy match exists with multiple artists' do
+      let(:second_artist) { create(:artist, name: 'Second Artist') }
+
+      let(:track) do
+        OpenStruct.new(
+          title: "Don\u2019t Stop Me Now",
+          id: nil,
+          isrc: nil,
+          spotify_song_url: nil,
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: "Don\u2019t Stop Me Now",
+          artist_name: "#{artist.name} feat. #{second_artist.name}",
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:existing_song) do
+        create(:song,
+               title: "Don't Stop Me Now",
+               id_on_spotify: nil,
+               artists: [artist, second_artist])
+      end
+
+      it 'finds the existing song when both artists match' do
+        expect(song).to eq(existing_song)
+      end
+    end
+
+    context 'when fuzzy match exists with different dash type in title' do
+      let(:track) do
+        OpenStruct.new(
+          title: "Re\u2013Start",
+          id: nil,
+          isrc: nil,
+          spotify_song_url: nil,
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: "Re\u2013Start",
+          artist_name: artist.name,
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:existing_song) do
+        create(:song,
+               title: 'Re-Start',
+               id_on_spotify: nil,
+               artists: [artist])
+      end
+
+      it 'finds the existing song via fuzzy search despite dash difference' do
+        expect(song).to eq(existing_song)
+      end
+    end
+
     context 'when song exists with different Spotify ID but same ISRC' do
       let(:track) do
         OpenStruct.new(

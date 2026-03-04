@@ -422,5 +422,159 @@ describe TrackExtractor::SpotifyTrackFinder do
                 .with(artists: 'Ed Sheeran feat. Someone', title: 'Beautiful', spotify_track_id: 'ed_beautiful')
       end
     end
+
+    context 'when title has accent differences' do
+      let(:artist) { create(:artist, name: 'Camila Cabello') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Señorita',
+          artist_name: 'Camila Cabello',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before { create(:song, title: 'Senorita', id_on_spotify: 'senor123', artists: [artist]) }
+
+      it 'finds the existing song via fuzzy matching despite accent difference' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Camila Cabello', title: 'Señorita', spotify_track_id: 'senor123')
+      end
+    end
+
+    context 'when title includes extra parenthetical info' do
+      let(:artist) { create(:artist, name: 'Miley Cyrus') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Flowers (Radio Edit)',
+          artist_name: 'Miley Cyrus',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before { create(:song, title: 'Flowers', id_on_spotify: 'flowers123', artists: [artist]) }
+
+      it 'finds the existing song via fuzzy matching' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Miley Cyrus', title: 'Flowers (Radio Edit)', spotify_track_id: 'flowers123')
+      end
+    end
+
+    context 'when title has different dash types' do
+      let(:artist) { create(:artist, name: 'Test Band') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: "Re\u2013Start",
+          artist_name: 'Test Band',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before { create(:song, title: 'Re-Start', id_on_spotify: 'restart123', artists: [artist]) }
+
+      it 'finds the existing song via fuzzy matching despite dash difference' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Test Band', title: "Re\u2013Start", spotify_track_id: 'restart123')
+      end
+    end
+
+    context 'when fuzzy matches exist but none have Spotify IDs' do
+      let(:artist) { create(:artist, name: 'Queen') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: "Don\u2019t Stop Me Now",
+          artist_name: 'Queen',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before { create(:song, title: "Don't Stop Me Now", id_on_spotify: nil, artists: [artist]) }
+
+      it 'does not find the song since it has no Spotify ID' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Queen', title: "Don\u2019t Stop Me Now")
+      end
+    end
+
+    context 'when artist is not in the database but fuzzy match finds song via artist substring' do
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Perfect',
+          artist_name: 'Ed Sheeran',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before do
+        artist = create(:artist, name: 'Ed Sheeran')
+        create(:song, title: 'Perfect', id_on_spotify: 'perfect789', artists: [artist])
+        # Delete the artist record so find_artist_ids returns blank,
+        # but the song still has the artist association cached in search_text
+        Artist.where(name: 'Ed Sheeran').find_each { |a| a.update(name: 'Ed Sheeran (Duet)') }
+      end
+
+      it 'finds the song through fuzzy text search with artist substring matching' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Ed Sheeran', title: 'Perfect', spotify_track_id: 'perfect789')
+      end
+    end
+
+    context 'when recognized artist uses "and" separator but DB artist uses "&"' do
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Under Pressure',
+          artist_name: 'Queen and David Bowie',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before do
+        queen = create(:artist, name: 'Queen')
+        create(:song, title: 'Under Pressure', id_on_spotify: 'pressure123', artists: [queen])
+      end
+
+      it 'finds the existing song because "Queen" is split as separate artist name' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Queen and David Bowie', title: 'Under Pressure', spotify_track_id: 'pressure123')
+      end
+    end
+
+    context 'when title and artist are both slightly different' do
+      let(:artist) { create(:artist, name: 'Avicii') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: "Wake Me Up\u2014Official",
+          artist_name: 'Avicii',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before { create(:song, title: 'Wake Me Up', id_on_spotify: 'wakeup123', artists: [artist]) }
+
+      it 'finds the existing song via fuzzy search' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Avicii', title: "Wake Me Up\u2014Official", spotify_track_id: 'wakeup123')
+      end
+    end
   end
 end
