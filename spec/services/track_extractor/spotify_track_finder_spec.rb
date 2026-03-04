@@ -314,6 +314,27 @@ describe TrackExtractor::SpotifyTrackFinder do
       end
     end
 
+    context 'when title has fuzzy variation' do
+      let(:artist) { create(:artist, name: 'Queen') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: "Don\u2019t Stop Me Now",
+          artist_name: 'Queen',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before { create(:song, title: "Don't Stop Me Now", id_on_spotify: 'fuzzy123', artists: [artist]) }
+
+      it 'finds the existing song via fuzzy title matching' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Queen', title: "Don\u2019t Stop Me Now", spotify_track_id: 'fuzzy123')
+      end
+    end
+
     context 'when artist name has extra featuring info' do
       let(:artist) { create(:artist, name: 'Ed Sheeran') }
       let(:played_song) do

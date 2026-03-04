@@ -64,7 +64,9 @@ class TrackExtractor::SongExtractor < TrackExtractor
   def find_or_create_by_title
     result = if song_by_artists_and_title.present?
                song_by_artists_and_title
-             elsif song_by_artists_and_title.blank? && @artists.blank?
+             elsif find_by_fuzzy_search.present?
+               find_by_fuzzy_search
+             elsif @artists.blank?
                Song.find_or_create_by(song_attributes)
              else
                song = Song.new(song_attributes)
@@ -79,6 +81,18 @@ class TrackExtractor::SongExtractor < TrackExtractor
     @song_by_artists_and_title ||= Song.joins(:artists)
                                      .where(artists: @artists)
                                      .where('lower(title) LIKE ?', title.downcase)
+  end
+
+  def find_by_fuzzy_search
+    return @find_by_fuzzy_search if defined?(@find_by_fuzzy_search)
+
+    @find_by_fuzzy_search = begin
+      return nil if title.blank? || @artists.blank?
+
+      artist_ids = Array.wrap(@artists).map(&:id)
+      search_query = "#{Array.wrap(@artists).map(&:name).join(' ')} #{title}"
+      Song.search_by_text(search_query).joins(:artists).where(artists: { id: artist_ids }).first
+    end
   end
 
   # ISRC is checked first because it uniquely identifies a recording regardless of
