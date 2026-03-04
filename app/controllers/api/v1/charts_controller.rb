@@ -68,16 +68,11 @@ module Api
       end
 
       def autocomplete_songs
-        songs = Song.matching(params[:q]).includes(:artists).limit(autocomplete_limit).to_a
-        aired_today_songs = songs_aired_today
-        combined = songs | aired_today_songs
-        combined.first(autocomplete_limit)
-      end
-
-      def songs_aired_today
         Song.matching(params[:q])
-          .joins(:air_plays)
-          .where(air_plays: { created_at: Time.current.beginning_of_day.. })
+          .select('songs.*, MAX(air_plays.created_at) AS last_played_at')
+          .left_joins(:air_plays)
+          .group('songs.id')
+          .order(Arel.sql('MAX(air_plays.created_at) DESC NULLS LAST, COALESCE(songs.popularity, 0) DESC'))
           .includes(:artists)
           .limit(autocomplete_limit)
           .to_a
