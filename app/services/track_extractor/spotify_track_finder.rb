@@ -46,22 +46,22 @@ class TrackExtractor::SpotifyTrackFinder < TrackExtractor
       .first
   end
 
-  # When exact artist match fails, try to find song by title and verify
-  # that at least one of the recognized artist names partially matches
+  # When exact artist match fails, try to find song using fuzzy text search
+  # and verify that at least one of the recognized artist names partially matches
   def find_by_title_with_fuzzy_artist
     return if title.blank? || artist_name.blank?
 
-    songs_by_title = Song.where('LOWER(title) = ?', title.downcase)
-                       .where.not(id_on_spotify: nil)
-                       .includes(:artists)
+    fuzzy_matches = Song.search_by_text("#{artist_name} #{title}")
+                      .where.not(id_on_spotify: nil)
+                      .includes(:artists)
+                      .limit(5)
 
     recognized_artist_names = split_artist_names.map(&:downcase)
 
-    songs_by_title.find do |song|
+    fuzzy_matches.find do |song|
       song.artists.any? do |artist|
         artist_name_downcase = artist.name.downcase
         recognized_artist_names.any? do |recognized_name|
-          # Check if either name contains the other (handles "Ed Sheeran" vs "Ed Sheeran feat. X")
           artist_name_downcase.include?(recognized_name) || recognized_name.include?(artist_name_downcase)
         end
       end
