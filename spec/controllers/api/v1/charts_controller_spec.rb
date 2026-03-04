@@ -212,6 +212,35 @@ describe Api::V1::ChartsController do
       end
     end
 
+    context 'when sorting by most recent airplay and popularity' do
+      let(:query) { 'Adele' }
+      let!(:radio_station) { create :radio_station }
+      let!(:popular_song) { create :song, title: 'Someone Like You', artists: [artist], search_text: 'Adele Someone Like You', popularity: 90 }
+      let!(:recently_played_song) { create :song, title: 'Easy On Me', artists: [artist], search_text: 'Adele Easy On Me', popularity: 50 }
+
+      before do
+        non_chart_song
+        create :air_play, song: recently_played_song, radio_station: radio_station, created_at: 1.hour.ago
+        create :air_play, song: popular_song, radio_station: radio_station, created_at: 1.day.ago
+      end
+
+      it 'returns recently played songs before older popular songs', :aggregate_failures do
+        get_autocomplete
+        titles = json[:data].map { |s| s[:attributes][:title] }
+        recently_played_index = titles.index('Easy On Me')
+        popular_index = titles.index('Someone Like You')
+        expect(recently_played_index).to be < popular_index
+      end
+
+      it 'returns songs with airplays before songs without airplays', :aggregate_failures do
+        get_autocomplete
+        titles = json[:data].map { |s| s[:attributes][:title] }
+        played_index = titles.index('Easy On Me')
+        unplayed_index = titles.index('Hometown Glory')
+        expect(played_index).to be < unplayed_index
+      end
+    end
+
     context 'when query matches nothing' do
       let(:query) { 'Nonexistent Song' }
 
