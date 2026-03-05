@@ -10,5 +10,4 @@ class AutocompleteSongSerializer
   attribute :artists do |object|
     object.artists.map { |artist| { id: artist.id, name: artist.name } }
   end
-
 end

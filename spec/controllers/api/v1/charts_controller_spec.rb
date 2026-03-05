@@ -101,7 +101,8 @@ describe Api::V1::ChartsController do
 
     context 'when query matches a song' do
       let(:query) { 'Hello' }
-      let!(:song) { create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello' }
+
+      before { create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello' }
 
       it 'returns status OK/200' do
         get_autocomplete
@@ -117,8 +118,11 @@ describe Api::V1::ChartsController do
 
     context 'when query matches multiple songs' do
       let(:query) { 'Adele' }
-      let!(:song1) { create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello' }
-      let!(:song2) { create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory' }
+
+      before do
+        create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello'
+        create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory'
+      end
 
       it 'returns all matching songs' do
         get_autocomplete
@@ -128,8 +132,11 @@ describe Api::V1::ChartsController do
 
     context 'when sorting by popularity' do
       let(:query) { 'Adele' }
-      let!(:popular_song) { create :song, title: 'Someone Like You', artists: [artist], search_text: 'Adele Someone Like You', popularity: 90 }
-      let!(:less_popular_song) { create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory', popularity: 50 }
+
+      before do
+        create :song, title: 'Someone Like You', artists: [artist], search_text: 'Adele Someone Like You', popularity: 90
+        create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory', popularity: 50
+      end
 
       it 'returns more popular songs first', :aggregate_failures do
         get_autocomplete
@@ -149,8 +156,11 @@ describe Api::V1::ChartsController do
 
     context 'with limit parameter' do
       let(:query) { 'Adele' }
-      let!(:song1) { create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello' }
-      let!(:song2) { create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory' }
+
+      before do
+        create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello'
+        create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory'
+      end
 
       it 'respects the limit parameter' do
         get :autocomplete, params: { q: query, limit: 1, format: :json }
