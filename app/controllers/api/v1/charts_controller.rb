@@ -20,12 +20,9 @@ module Api
       end
 
       def autocomplete
-        songs = autocomplete_songs
-        chart_data = autocomplete_chart_data(songs.map(&:id))
-
-        render json: AutocompleteSongSerializer.new(songs, params: { chart_data: chart_data })
+        render json: AutocompleteSongSerializer.new(autocomplete_songs)
                        .serializable_hash
-                       .merge(pagination_data(songs))
+                       .merge(pagination_data(autocomplete_songs))
                        .to_json
       end
 
@@ -69,44 +66,10 @@ module Api
       end
 
       def autocomplete_songs
-        Song.matching(params[:q])
-          .select('songs.id, songs.title, songs.spotify_artwork_url, MAX(air_plays.created_at) AS last_played_at')
-          .left_joins(:air_plays)
-          .group('songs.id')
-          .order(Arel.sql('MAX(air_plays.created_at) DESC NULLS LAST, COALESCE(songs.popularity, 0) DESC'))
-          .includes(:artists)
-          .paginate(page: params[:page], per_page: autocomplete_limit)
-      end
-
-      def autocomplete_chart_data(song_ids)
-        return {} if song_ids.empty?
-
-        latest_chart = Chart.where(chart_type: 'songs').order(date: :desc).first
-        return {} unless latest_chart
-
-        in_chart_ids = latest_chart.chart_positions
-                         .where(positianable_type: 'Song', positianable_id: song_ids)
-                         .pluck(:positianable_id)
-                         .to_set
-
-        not_in_chart_ids = song_ids - in_chart_ids.to_a
-        last_chart_dates = last_chart_appearance(not_in_chart_ids)
-
-        song_ids.index_with do |song_id|
-          {
-            in_chart: in_chart_ids.include?(song_id),
-            last_chart_date: in_chart_ids.include?(song_id) ? latest_chart.date : last_chart_dates[song_id]
-          }
-        end
-      end
-
-      def last_chart_appearance(song_ids)
-        return {} if song_ids.empty?
-
-        ChartPosition.where(positianable_type: 'Song', positianable_id: song_ids)
-          .joins(:chart)
-          .group(:positianable_id)
-          .maximum('charts.date')
+        @autocomplete_songs ||= Song.matching(params[:q])
+                                  .order(Arel.sql('COALESCE(songs.popularity, 0) DESC'))
+                                  .includes(:artists)
+                                  .paginate(page: params[:page], per_page: autocomplete_limit)
       end
 
       def autocomplete_limit
