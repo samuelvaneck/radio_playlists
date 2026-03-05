@@ -883,13 +883,10 @@ paths:
                     current_page: 1
   "/api/v1/charts/autocomplete":
     get:
-      summary: Autocomplete songs with chart status
+      summary: Autocomplete songs
       tags:
       - Charts
-      description: Search all songs for autocomplete. Each result includes in_chart
-        (whether the song is in the latest chart) and last_chart_date (the date of
-        the latest chart appearance, or null if never charted). Songs aired today
-        are included in the results.
+      description: Search all songs for autocomplete, sorted by popularity.
       parameters:
       - name: q
         in: query
@@ -905,11 +902,11 @@ paths:
           type: integer
       responses:
         '200':
-          description: Includes songs aired today
+          description: Empty results
           content:
             application/json:
               examples:
-                song_in_chart:
+                autocomplete_result:
                   value:
                     data:
                     - id: '1'
@@ -917,21 +914,7 @@ paths:
                       attributes:
                         id: 1
                         title: Hello
-                        in_chart: true
-                        last_chart_date: '2026-03-01'
-                        artists:
-                        - id: 1
-                          name: Adele
-                song_not_in_chart:
-                  value:
-                    data:
-                    - id: '2'
-                      type: song
-                      attributes:
-                        id: 2
-                        title: Hometown Glory
-                        in_chart: false
-                        last_chart_date: '2026-02-15'
+                        spotify_artwork_url: https://example.com/artwork.jpg
                         artists:
                         - id: 1
                           name: Adele
