@@ -226,19 +226,17 @@ RSpec.describe 'Charts API', type: :request do
   end
 
   path '/api/v1/charts/autocomplete' do
-    get 'Autocomplete songs with chart status' do
+    get 'Autocomplete songs' do
       tags 'Charts'
       produces 'application/json'
-      description 'Search all songs for autocomplete. Each result includes in_chart (whether the song is in the latest chart) ' \
-                  'and last_chart_date (the date of the latest chart appearance, or null if never charted). ' \
-                  'Songs aired today are included in the results.'
+      description 'Search all songs for autocomplete, sorted by popularity.'
       parameter name: :q, in: :query, type: :string, required: true,
                 description: 'Search query string'
       parameter name: :limit, in: :query, type: :integer, required: false,
                 description: 'Maximum number of results (default: 10, max: 20)'
 
-      response '200', 'Autocomplete results with chart status' do
-        example 'application/json', :song_in_chart, {
+      response '200', 'Autocomplete results' do
+        example 'application/json', :autocomplete_result, {
           data: [
             {
               id: '1',
@@ -246,23 +244,7 @@ RSpec.describe 'Charts API', type: :request do
               attributes: {
                 id: 1,
                 title: 'Hello',
-                in_chart: true,
-                last_chart_date: '2026-03-01',
-                artists: [{ id: 1, name: 'Adele' }]
-              }
-            }
-          ]
-        }
-        example 'application/json', :song_not_in_chart, {
-          data: [
-            {
-              id: '2',
-              type: 'song',
-              attributes: {
-                id: 2,
-                title: 'Hometown Glory',
-                in_chart: false,
-                last_chart_date: '2026-02-15',
+                spotify_artwork_url: 'https://example.com/artwork.jpg',
                 artists: [{ id: 1, name: 'Adele' }]
               }
             }
@@ -271,63 +253,22 @@ RSpec.describe 'Charts API', type: :request do
 
         let(:q) { 'Hello' }
         let!(:artist) { create(:artist, name: 'Adele') }
-        let!(:chart) { create(:chart, chart_type: 'songs', date: 1.day.ago.to_date) }
         let!(:song) { create(:song, title: 'Hello', artists: [artist], search_text: 'Adele Hello') }
-        let!(:chart_position) { create(:chart_position, chart: chart, positianable: song, position: 1, counts: 42) }
 
         run_test! do |response|
           data = JSON.parse(response.body)
           song_attrs = data['data'].first['attributes']
-          expect(song_attrs['in_chart']).to be true
-          expect(song_attrs['last_chart_date']).to eq(1.day.ago.to_date.to_s)
+          expect(song_attrs['title']).to eq('Hello')
         end
       end
 
-      context 'when song is not in the latest chart but was charted before' do
-        response '200', 'Song with last chart date' do
-          let(:q) { 'Hometown' }
-          let!(:old_chart) { create(:chart, chart_type: 'songs', date: 2.weeks.ago.to_date) }
-          let!(:latest_chart) { create(:chart, chart_type: 'songs', date: 1.day.ago.to_date) }
-          let!(:chart_song) { create(:song, title: 'Hello', search_text: 'Adele Hello') }
-          let!(:chart_position) { create(:chart_position, chart: latest_chart, positianable: chart_song, position: 1, counts: 42) }
-          let!(:old_song) { create(:song, title: 'Hometown Glory', search_text: 'Adele Hometown Glory') }
-          let!(:old_chart_position) { create(:chart_position, chart: old_chart, positianable: old_song, position: 5, counts: 20) }
+      context 'when query matches nothing' do
+        response '200', 'Empty results' do
+          let(:q) { 'Nonexistent' }
 
           run_test! do |response|
             data = JSON.parse(response.body)
-            song_attrs = data['data'].first['attributes']
-            expect(song_attrs['in_chart']).to be false
-            expect(song_attrs['last_chart_date']).to eq(2.weeks.ago.to_date.to_s)
-          end
-        end
-      end
-
-      context 'when song has never been charted' do
-        response '200', 'Song with null last chart date' do
-          let(:q) { 'Hometown' }
-          let!(:chart) { create(:chart, chart_type: 'songs', date: 1.day.ago.to_date) }
-          let!(:song) { create(:song, title: 'Hometown Glory', search_text: 'Adele Hometown Glory') }
-
-          run_test! do |response|
-            data = JSON.parse(response.body)
-            song_attrs = data['data'].first['attributes']
-            expect(song_attrs['in_chart']).to be false
-            expect(song_attrs['last_chart_date']).to be_nil
-          end
-        end
-      end
-
-      context 'when song was aired today' do
-        response '200', 'Includes songs aired today' do
-          let(:q) { 'Brand New' }
-          let!(:chart) { create(:chart, chart_type: 'songs', date: 1.day.ago.to_date) }
-          let!(:radio_station) { create(:radio_station) }
-          let!(:song) { create(:song, title: 'Brand New Song', search_text: 'Artist Brand New Song') }
-          let!(:air_play) { create(:air_play, song: song, radio_station: radio_station, created_at: Time.current) }
-
-          run_test! do |response|
-            data = JSON.parse(response.body)
-            expect(data['data'].length).to eq(1)
+            expect(data['data']).to be_empty
           end
         end
       end

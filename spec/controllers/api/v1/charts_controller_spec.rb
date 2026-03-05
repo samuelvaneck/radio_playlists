@@ -98,146 +98,50 @@ describe Api::V1::ChartsController do
     subject(:get_autocomplete) { get :autocomplete, params: { q: query, format: :json } }
 
     let(:artist) { create :artist, name: 'Adele' }
-    let(:chart_song) { create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello' }
-    let(:non_chart_song) { create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory' }
-    let(:chart) { create :chart, date: Time.zone.yesterday, chart_type: 'songs' }
 
-    before do
-      create :chart_position, chart: chart, positianable: chart_song, position: 1, counts: 50
-    end
-
-    context 'when query matches a song in the chart' do
+    context 'when query matches a song' do
       let(:query) { 'Hello' }
 
-      before { non_chart_song }
+      before { create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello' }
 
       it 'returns status OK/200' do
         get_autocomplete
         expect(response.status).to eq 200
       end
 
-      it 'returns matching chart songs', :aggregate_failures do
+      it 'returns matching songs', :aggregate_failures do
         get_autocomplete
         expect(json[:data].count).to eq(1)
         expect(json[:data].first[:attributes][:title]).to eq('Hello')
       end
-
-      it 'sets in_chart to true' do
-        get_autocomplete
-        expect(json[:data].first[:attributes][:in_chart]).to be true
-      end
-
-      it 'sets last_chart_date to the latest chart date' do
-        get_autocomplete
-        expect(json[:data].first[:attributes][:last_chart_date]).to eq(chart.date.to_s)
-      end
     end
 
-    context 'when query does not match any chart song' do
-      let(:query) { 'Hometown' }
-
-      before { non_chart_song }
-
-      it 'returns the matching song from global search' do
-        get_autocomplete
-        expect(json[:data].count).to eq(1)
-      end
-
-      it 'sets in_chart to false' do
-        get_autocomplete
-        expect(json[:data].first[:attributes][:in_chart]).to be false
-      end
-
-      it 'sets last_chart_date to nil for a never-charted song' do
-        get_autocomplete
-        expect(json[:data].first[:attributes][:last_chart_date]).to be_nil
-      end
-    end
-
-    context 'when song was in a previous chart but not the latest' do
-      let(:query) { 'Hometown' }
-      let(:old_chart) { create :chart, date: 2.weeks.ago.to_date, chart_type: 'songs' }
-
-      before do
-        create :chart_position, chart: old_chart, positianable: non_chart_song, position: 5, counts: 20
-      end
-
-      it 'sets in_chart to false' do
-        get_autocomplete
-        expect(json[:data].first[:attributes][:in_chart]).to be false
-      end
-
-      it 'sets last_chart_date to the previous chart date' do
-        get_autocomplete
-        expect(json[:data].first[:attributes][:last_chart_date]).to eq(old_chart.date.to_s)
-      end
-    end
-
-    context 'when query matches both chart and non-chart songs' do
+    context 'when query matches multiple songs' do
       let(:query) { 'Adele' }
 
       before do
-        non_chart_song
+        create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello'
+        create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory'
       end
 
-      it 'returns both songs' do
+      it 'returns all matching songs' do
         get_autocomplete
         expect(json[:data].count).to eq(2)
       end
-
-      it 'includes per-song in_chart status' do
-        get_autocomplete
-        in_chart_values = json[:data].map { |s| s[:attributes][:in_chart] }
-        expect(in_chart_values).to contain_exactly(true, false)
-      end
     end
 
-    context 'when song was aired today' do
-      let(:query) { 'Brand New' }
-      let!(:radio_station) { create :radio_station }
-      let!(:aired_song) { create :song, title: 'Brand New Song', search_text: 'Artist Brand New Song' }
-
-      before do
-        create :air_play, song: aired_song, radio_station: radio_station, created_at: Time.current
-      end
-
-      it 'includes the song in results' do
-        get_autocomplete
-        expect(json[:data].count).to eq(1)
-      end
-
-      it 'sets in_chart to false for a song only aired today' do
-        get_autocomplete
-        expect(json[:data].first[:attributes][:in_chart]).to be false
-      end
-    end
-
-    context 'when sorting by most recent airplay and popularity' do
+    context 'when sorting by popularity' do
       let(:query) { 'Adele' }
-      let!(:radio_station) { create :radio_station }
-      let!(:popular_song) { create :song, title: 'Someone Like You', artists: [artist], search_text: 'Adele Someone Like You', popularity: 90 }
-      let!(:recently_played_song) { create :song, title: 'Easy On Me', artists: [artist], search_text: 'Adele Easy On Me', popularity: 50 }
 
       before do
-        non_chart_song
-        create :air_play, song: recently_played_song, radio_station: radio_station, created_at: 1.hour.ago
-        create :air_play, song: popular_song, radio_station: radio_station, created_at: 1.day.ago
+        create :song, title: 'Someone Like You', artists: [artist], search_text: 'Adele Someone Like You', popularity: 90
+        create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory', popularity: 50
       end
 
-      it 'returns recently played songs before older popular songs', :aggregate_failures do
+      it 'returns more popular songs first', :aggregate_failures do
         get_autocomplete
         titles = json[:data].map { |s| s[:attributes][:title] }
-        recently_played_index = titles.index('Easy On Me')
-        popular_index = titles.index('Someone Like You')
-        expect(recently_played_index).to be < popular_index
-      end
-
-      it 'returns songs with airplays before songs without airplays', :aggregate_failures do
-        get_autocomplete
-        titles = json[:data].map { |s| s[:attributes][:title] }
-        played_index = titles.index('Easy On Me')
-        unplayed_index = titles.index('Hometown Glory')
-        expect(played_index).to be < unplayed_index
+        expect(titles.index('Someone Like You')).to be < titles.index('Hometown Glory')
       end
     end
 
@@ -254,7 +158,8 @@ describe Api::V1::ChartsController do
       let(:query) { 'Adele' }
 
       before do
-        create :chart_position, chart: chart, positianable: non_chart_song, position: 2, counts: 30
+        create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello'
+        create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory'
       end
 
       it 'respects the limit parameter' do
