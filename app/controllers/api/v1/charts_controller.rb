@@ -66,8 +66,8 @@ module Api
       end
 
       def autocomplete_songs
-        @autocomplete_songs ||= Song.matching(params[:q])
-                                  .order(Arel.sql('COALESCE(songs.popularity, 0) DESC'))
+        @autocomplete_songs ||= Song.search_by_text(params[:q])
+                                  .select(:id, :title, :spotify_artwork_url)
                                   .includes(:artists)
                                   .paginate(page: params[:page], per_page: autocomplete_limit)
       end
