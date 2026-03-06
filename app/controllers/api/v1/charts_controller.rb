@@ -20,7 +20,10 @@ module Api
       end
 
       def autocomplete
-        render json: AutocompleteSongSerializer.new(autocomplete_songs).serializable_hash.to_json
+        render json: AutocompleteSongSerializer.new(autocomplete_songs)
+                       .serializable_hash
+                       .merge(pagination_data(autocomplete_songs))
+                       .to_json
       end
 
       private
@@ -66,7 +69,7 @@ module Api
         @autocomplete_songs ||= Song.search_by_text(params[:q])
                                   .select(:id, :title, :spotify_artwork_url)
                                   .includes(:artists)
-                                  .limit(autocomplete_limit)
+                                  .paginate(page: params[:page], per_page: autocomplete_limit)
       end
 
       def autocomplete_limit
