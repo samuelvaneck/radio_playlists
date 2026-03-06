@@ -97,6 +97,53 @@ describe RadioStation, :use_vcr, :with_valid_token do
     end
   end
 
+  describe '.last_played_songs' do
+    let(:song) { create(:song, duration_ms: 210_000) }
+
+    context 'when the most recent air play is a draft' do
+      let(:draft_air_play) { create(:air_play, radio_station:, song:, broadcasted_at: 1.minute.ago, status: :draft) }
+
+      before do
+        radio_station.update(last_added_air_play_ids: [draft_air_play.id])
+      end
+
+      it 'still returns is_currently_playing as true', :aggregate_failures do
+        result = described_class.last_played_songs.find { |rs| rs[:id] == radio_station.id }
+
+        expect(result[:is_currently_playing]).to be true
+      end
+    end
+
+    context 'when only draft air plays exist and song has ended' do
+      let(:draft_air_play) { create(:air_play, radio_station:, song:, broadcasted_at: 10.minutes.ago, status: :draft) }
+
+      before do
+        radio_station.update(last_added_air_play_ids: [draft_air_play.id])
+      end
+
+      it 'returns is_currently_playing as false' do
+        result = described_class.last_played_songs.find { |rs| rs[:id] == radio_station.id }
+
+        expect(result[:is_currently_playing]).to be false
+      end
+    end
+
+    context 'when both draft and confirmed air plays exist' do
+      let(:confirmed_air_play) { create(:air_play, radio_station:, broadcasted_at: 10.minutes.ago, status: :confirmed, created_at: 5.minutes.ago) }
+      let(:draft_air_play) { create(:air_play, radio_station:, song:, broadcasted_at: 1.minute.ago, status: :draft, created_at: 1.minute.ago) }
+
+      before do
+        radio_station.update(last_added_air_play_ids: [confirmed_air_play.id, draft_air_play.id])
+      end
+
+      it 'uses the most recent air play for is_currently_playing' do
+        result = described_class.last_played_songs.find { |rs| rs[:id] == radio_station.id }
+
+        expect(result[:is_currently_playing]).to be true
+      end
+    end
+  end
+
   describe '.currently_playing?' do
     context 'when air_play is nil' do
       it 'returns false' do

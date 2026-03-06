@@ -47,7 +47,7 @@ class RadioStation < ActiveRecord::Base
 
   def self.last_played_songs
     all.map do |radio_station|
-      last_air_play = radio_station.last_added_air_plays.confirmed.includes(:song).first
+      last_air_play = radio_station.last_added_air_plays.includes(:song).first
       {
         id: radio_station.id,
         name: radio_station.name,
