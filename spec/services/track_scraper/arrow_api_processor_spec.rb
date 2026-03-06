@@ -74,11 +74,11 @@ describe TrackScraper::ArrowApiProcessor, type: :service do
         {
           current: {
             artist: '',
-            title: 'ARROW C R - COMMERCIALS',
+            title: 'UNKNOWN TRACK',
             startTime: 1_772_788_355_684,
             length: 207_606,
-            type: '',
-            category: 'Start commercials'
+            type: 'Standard',
+            category: 'ARROW - TOP 500 [ACTIEF]'
           }
         }
       end
