@@ -130,6 +130,15 @@ FactoryBot.define do
     country_code { 'NLD' }
   end
 
+  factory :arrow_classic_rock, parent: :radio_station do
+    name { 'Arrow Classic Rock' }
+    url { 'https://www.arrow.nl/wp-content/plugins/adeko-arrow-onair/playlistdata/Arrow_PLAYING_NOW.json' }
+    processor { 'arrow_api_processor' }
+    direct_stream_url { 'https://stream.player.arrow.nl/arrow' }
+    slug { 'arrow-classic-rock' }
+    country_code { 'NLD' }
+  end
+
   factory :one_hundred_p_nl, parent: :radio_station do
     name { '100% NL' }
     url { 'https://api.radioveronica.nl/api/nowplaying/playlist?stationKey=100pnl&brand=100nl' }
