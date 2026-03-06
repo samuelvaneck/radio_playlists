@@ -130,5 +130,13 @@ RadioStation.seed(
     direct_stream_url: 'https://stream.yoursaferadio.nl/audio',
     slug: 'yoursafe-radio',
     country_code: 'NLD'
+  },
+  {
+    name: 'Jumbo Radio',
+    url: '',
+    processor: '',
+    direct_stream_url: 'https://streams.automates.media/jumboradio',
+    slug: 'jumbo-radio',
+    country_code: 'NLD'
   }
 )
