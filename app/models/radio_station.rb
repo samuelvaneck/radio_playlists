@@ -54,7 +54,10 @@ class RadioStation < ActiveRecord::Base
         slug: radio_station.slug,
         country_code: radio_station.country_code,
         is_currently_playing: currently_playing?(last_air_play),
-        last_played_song: AirPlaySerializer.new(radio_station.last_added_air_plays).serializable_hash
+        last_played_song: AirPlaySerializer.new(
+          radio_station.last_added_air_plays.limit(3),
+          fields: { air_play: %i[id broadcasted_at created_at status song artists] }
+        ).serializable_hash
       }
     end
   end
