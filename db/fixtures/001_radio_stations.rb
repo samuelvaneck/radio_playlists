@@ -138,5 +138,13 @@ RadioStation.seed(
     direct_stream_url: 'https://streams.automates.media/jumboradio',
     slug: 'jumbo-radio',
     country_code: 'NLD'
+  },
+  {
+    name: 'FunX',
+    url: 'https://www.funx.nl/api/tracks',
+    processor: 'npo_api_processor',
+    direct_stream_url: 'https://icecast.omroep.nl/funx-bb-mp3',
+    slug: 'funx',
+    country_code: 'NLD'
   }
 )
