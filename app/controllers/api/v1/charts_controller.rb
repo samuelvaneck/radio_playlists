@@ -20,10 +20,7 @@ module Api
       end
 
       def autocomplete
-        render json: AutocompleteSongSerializer.new(autocomplete_songs)
-                       .serializable_hash
-                       .merge(pagination_data(autocomplete_songs))
-                       .to_json
+        render json: AutocompleteSongSerializer.new(autocomplete_songs).serializable_hash.to_json
       end
 
       private
@@ -66,10 +63,10 @@ module Api
       end
 
       def autocomplete_songs
-        @autocomplete_songs ||= Song.matching(params[:q])
-                                  .order(Arel.sql('COALESCE(songs.popularity, 0) DESC'))
+        @autocomplete_songs ||= Song.search_by_text(params[:q])
+                                  .select(:id, :title, :spotify_artwork_url)
                                   .includes(:artists)
-                                  .paginate(page: params[:page], per_page: autocomplete_limit)
+                                  .limit(autocomplete_limit)
       end
 
       def autocomplete_limit
