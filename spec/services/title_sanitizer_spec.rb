@@ -38,6 +38,20 @@ RSpec.describe TitleSanitizer do
       end
     end
 
+    context 'when title has FunX program prefix' do
+      it 'removes "**FF FunX New Week 49 " prefix' do
+        expect(described_class.sanitize('**FF FunX New Week 49 Margiela')).to eq('Margiela')
+      end
+
+      it 'removes "*D FunX DiXte Week 50 " prefix' do
+        expect(described_class.sanitize('*D FunX DiXte Week 50 Controlando')).to eq('Controlando')
+      end
+
+      it 'removes "**Ff FunX New Week 04 " prefix' do
+        expect(described_class.sanitize('**Ff FunX New Week 04 Some Song Title')).to eq('Some Song Title')
+      end
+    end
+
     context 'when title has no chart position prefix' do
       it 'returns the title unchanged' do
         expect(described_class.sanitize('Enjoy The Silence')).to eq('Enjoy The Silence')
