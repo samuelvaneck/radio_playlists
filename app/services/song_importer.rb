@@ -211,7 +211,7 @@ class SongImporter
     if existing_draft
       confirm_existing_draft(existing_draft)
     else
-      create_new_draft_air_play
+      create_new_air_play
     end
   end
 
@@ -226,9 +226,14 @@ class SongImporter
     draft
   end
 
-  def create_new_draft_air_play
-    air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import)
-    Broadcaster.song_draft_created(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+  def create_new_air_play
+    status = scraper_import ? :confirmed : :draft
+    air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import, status:)
+    if scraper_import
+      Broadcaster.song_confirmed(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+    else
+      Broadcaster.song_draft_created(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
+    end
     air_play
   end
 
