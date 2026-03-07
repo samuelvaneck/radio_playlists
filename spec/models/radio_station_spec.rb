@@ -221,6 +221,18 @@ describe RadioStation, :use_vcr, :with_valid_token do
       expect(songs.first.association(:artists)).to be_loaded
     end
 
+    context 'when a draft air play exists within the last hour' do
+      let(:song_draft) { create(:song, artists: [artist]) }
+
+      before do
+        create(:air_play, radio_station: radio_station, song: song_draft, created_at: 20.minutes.ago, status: :draft)
+      end
+
+      it 'includes draft air plays in the results' do
+        expect(radio_station.songs_played_last_hour).to include(song_draft)
+      end
+    end
+
     context 'when no songs played in the last hour' do
       let(:radio_station_empty) { create(:radio_station) }
 

@@ -100,6 +100,31 @@ describe SongImporter::RecognizerImporter do
         expect(recognizer_importer.may_import_song?).to be true
       end
     end
+
+    context 'when a draft air play for the same song exists in last hour' do
+      before do
+        air_play_other = create(:air_play, radio_station: radio_station, song: other_song, broadcasted_at: 10.minutes.ago,
+                                           created_at: 10.minutes.ago)
+        create(:air_play, radio_station: radio_station, song: song, broadcasted_at: 30.minutes.ago, created_at: 30.minutes.ago, status: :draft)
+        radio_station.update(last_added_air_play_ids: [air_play_other.id])
+      end
+
+      it 'returns false because draft matches exist' do
+        expect(recognizer_importer.may_import_song?).to be false
+      end
+    end
+
+    context 'when a draft air play is the last added song' do
+      before do
+        air_play = create(:air_play, radio_station: radio_station, song: song, broadcasted_at: 10.minutes.ago,
+                                     created_at: 10.minutes.ago, status: :draft)
+        radio_station.update(last_added_air_play_ids: [air_play.id])
+      end
+
+      it 'returns false' do
+        expect(recognizer_importer.may_import_song?).to be false
+      end
+    end
   end
 
   describe '#broadcast_error_message' do
