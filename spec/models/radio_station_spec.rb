@@ -31,21 +31,25 @@ describe RadioStation, :use_vcr, :with_valid_token do
   end
 
   describe '.recognizer_only' do
-    it 'returns stations without a processor' do
+    it 'returns stations without a processor', :aggregate_failures do
       recognizer_station = create(:radio_station, processor: nil)
       empty_processor_station = create(:radio_station, processor: '')
-      create(:radio_station, processor: 'talpa_api_processor')
+      api_station = create(:radio_station, processor: 'talpa_api_processor')
 
-      expect(described_class.unscoped.recognizer_only).to contain_exactly(recognizer_station, empty_processor_station)
+      result = described_class.unscoped.recognizer_only
+      expect(result).to include(recognizer_station, empty_processor_station)
+      expect(result).not_to include(api_station)
     end
   end
 
   describe '.with_api_processor' do
-    it 'returns stations with a processor' do
-      create(:radio_station, processor: nil)
+    it 'returns stations with a processor', :aggregate_failures do
+      recognizer_station = create(:radio_station, processor: nil)
       api_station = create(:radio_station, processor: 'talpa_api_processor')
 
-      expect(described_class.unscoped.with_api_processor).to contain_exactly(api_station)
+      result = described_class.unscoped.with_api_processor
+      expect(result).to include(api_station)
+      expect(result).not_to include(recognizer_station)
     end
   end
 

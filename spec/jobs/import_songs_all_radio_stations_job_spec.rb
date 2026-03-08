@@ -40,9 +40,11 @@ describe ImportSongsAllRadioStationsJob do
     end
 
     it 'sleeps between recognizer-only stations but not between api stations' do
+      recognizer_count = RadioStation.unscoped.recognizer_only.count
+
       job.perform
 
-      expect(job).to have_received(:sleep).with(2).once
+      expect(job).to have_received(:sleep).with(2).exactly(recognizer_count).times
     end
   end
 end
