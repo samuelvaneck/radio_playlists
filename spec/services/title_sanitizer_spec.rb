@@ -52,6 +52,20 @@ RSpec.describe TitleSanitizer do
       end
     end
 
+    context 'when title has titleized FunX program prefix' do
+      it 'removes "**Ff Fun X New Week 04 " prefix (titleized)' do
+        expect(described_class.sanitize('**Ff Fun X New Week 04 Nobody Body')).to eq('Nobody Body')
+      end
+
+      it 'removes "*D Fun X Di Xte Week 50 " prefix (titleized)' do
+        expect(described_class.sanitize('*D Fun X Di Xte Week 50 Controlando')).to eq('Controlando')
+      end
+
+      it 'removes "**Ff Fun X New Week 44 " prefix (titleized)' do
+        expect(described_class.sanitize('**Ff Fun X New Week 44 Chanel')).to eq('Chanel')
+      end
+    end
+
     context 'when title has no chart position prefix' do
       it 'returns the title unchanged' do
         expect(described_class.sanitize('Enjoy The Silence')).to eq('Enjoy The Silence')

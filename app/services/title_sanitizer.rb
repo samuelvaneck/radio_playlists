@@ -4,8 +4,9 @@ class TitleSanitizer
   # Matches patterns like "#89: ", "#1: ", "#89 ", "89: ", "89. ", "#10000: "
   CHART_POSITION_REGEX = /\A\#?\d{1,5}[:.]\s*/
 
-  # Matches FunX program prefixes like "**FF FunX New Week 49 " or "*D FunX DiXte Week 50 "
-  FUNX_PROGRAM_PREFIX_REGEX = /\A\*+\w+\s+FunX\s+\S+\s+Week\s+\d+\s+/i
+  # Matches FunX program prefixes like "**FF FunX New Week 49 ", "*D FunX DiXte Week 50 "
+  # Also handles titleized variants like "**Ff Fun X New Week 04 ", "*D Fun X Di Xte Week 50 "
+  FUNX_PROGRAM_PREFIX_REGEX = /\A\*+\w+\s+Fun\s*X\s+(?:\w+\s+)*Week\s+\d+\s+/i
 
   def self.sanitize(title)
     new(title).sanitize

@@ -3,6 +3,7 @@
 class TrackExtractor::SongExtractor < TrackExtractor
   def extract
     @song = find_or_create_song
+    maybe_sanitize_title(@song)
     maybe_update_spotify_data(@song)
     maybe_update_preview_urls(@song)
     maybe_update_release_date(@song)
@@ -20,6 +21,13 @@ class TrackExtractor::SongExtractor < TrackExtractor
   rescue StandardError => e
     ExceptionNotifier.notify(e)
     nil
+  end
+
+  def maybe_sanitize_title(song)
+    return if song.blank?
+
+    sanitized = TitleSanitizer.sanitize(song.title)
+    song.update(title: sanitized) if sanitized != song.title
   end
 
   def maybe_update_preview_urls(song)
