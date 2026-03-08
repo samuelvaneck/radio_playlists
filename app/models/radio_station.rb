@@ -38,6 +38,9 @@ class RadioStation < ActiveRecord::Base
   has_many :song_import_logs, dependent: :destroy
   has_many :tags, dependent: :destroy, as: :taggable
 
+  scope :recognizer_only, -> { where(processor: [nil, '']) }
+  scope :with_api_processor, -> { where.not(processor: [nil, '']) }
+
   default_scope -> { order(name: :asc) }
 
   validates :name, presence: true
