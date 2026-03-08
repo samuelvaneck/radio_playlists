@@ -30,6 +30,29 @@ describe RadioStation, :use_vcr, :with_valid_token do
     }
   end
 
+  describe '.recognizer_only' do
+    it 'returns stations without a processor', :aggregate_failures do
+      recognizer_station = create(:radio_station, processor: nil)
+      empty_processor_station = create(:radio_station, processor: '')
+      api_station = create(:radio_station, processor: 'talpa_api_processor')
+
+      result = described_class.unscoped.recognizer_only
+      expect(result).to include(recognizer_station, empty_processor_station)
+      expect(result).not_to include(api_station)
+    end
+  end
+
+  describe '.with_api_processor' do
+    it 'returns stations with a processor', :aggregate_failures do
+      recognizer_station = create(:radio_station, processor: nil)
+      api_station = create(:radio_station, processor: 'talpa_api_processor')
+
+      result = described_class.unscoped.with_api_processor
+      expect(result).to include(api_station)
+      expect(result).not_to include(recognizer_station)
+    end
+  end
+
   describe '#last_added_air_plays' do
     before do
       radio_station.update(last_added_air_play_ids: [air_play_4_hours_ago.id, air_play_1_minute_ago.id])

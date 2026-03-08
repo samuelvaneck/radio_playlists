@@ -1,6 +1,8 @@
 ---
   :queues:
     - critical
+    - recognition
+    - api_scraping
     - default
     - low
   :concurrency: 20
