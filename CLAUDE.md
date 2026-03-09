@@ -44,7 +44,7 @@ The app uses service objects extensively in `app/services/`:
 - `SongRecognizer` - Shazam-based audio fingerprinting via SongRec
 - `AcoustidRecognizer` - Chromaprint + AcoustID API fingerprinting
 - `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis)
-- `TrackExtractor/` - Extracts artist/song info and finds Spotify tracks
+- `TrackExtractor/` - Extracts artist/song info and finds tracks via `SpotifyTrackFinder`, `DeezerTrackFinder`, `ItunesTrackFinder`
 - `Spotify/` and `Youtube/` - External API integrations
 - `Lastfm/` and `Wikipedia/` - Artist bio/info enrichment (Last.fm listeners/playcount/tags, Wikipedia nationality via Wikidata)
 - `Deezer/` and `Itunes/` - Additional enrichment sources (duration_ms backfill)
@@ -80,9 +80,15 @@ Run via `Procfile.dev` (`streams` entry) or `docker-compose.yml` (`persistent_st
 ### Data Flow
 
 ```
-Radio Stream → Audio Recognition/Scraping → Artist/Song Extraction
-    → Spotify API Lookup → Database Storage → Chart Generation
+Radio Stream → Audio Recognition/Scraping → @played_song (artist, title, isrc)
+    ├→ SpotifyTrackFinder  (artist, title, isrc from @played_song)
+    ├→ DeezerTrackFinder   (artist, title, isrc from @played_song)
+    └→ ItunesTrackFinder   (artist, title from @played_song)
+    → Song matching (prefers Spotify, falls back to iTunes, then Deezer)
+    → AirPlay creation → Chart Generation
 ```
+
+**Important:** All three enrichment services (Spotify, Deezer, iTunes) independently receive the recognized/scraped data from `@played_song`. Deezer and iTunes do **not** use Spotify's response — they each search using the original artist/title/ISRC from the recognizer or scraper. `SongImporter#track` prefers Spotify, falls back to iTunes, then Deezer.
 
 ### Chart Scoring & Popularity Boost
 
