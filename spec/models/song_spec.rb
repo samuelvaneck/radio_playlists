@@ -6,11 +6,12 @@
 #
 #  id                     :bigint           not null, primary key
 #  acoustid_submitted_at  :datetime
+#  album_name             :string
 #  deezer_artwork_url     :string
 #  deezer_preview_url     :string
 #  deezer_song_url        :string
 #  duration_ms            :integer
-#  explicit               :boolean          default(false)
+#  explicit               :boolean          default(FALSE)
 #  id_on_deezer           :string
 #  id_on_itunes           :string
 #  id_on_spotify          :string
@@ -20,6 +21,10 @@
 #  itunes_artwork_url     :string
 #  itunes_preview_url     :string
 #  itunes_song_url        :string
+#  lastfm_enriched_at     :datetime
+#  lastfm_listeners       :bigint
+#  lastfm_playcount       :bigint
+#  lastfm_tags            :string           default([]), is an Array
 #  popularity             :integer
 #  release_date           :date
 #  release_date_precision :string
@@ -37,7 +42,7 @@
 #  index_songs_on_id_on_deezer           (id_on_deezer)
 #  index_songs_on_id_on_itunes           (id_on_itunes)
 #  index_songs_on_release_date           (release_date)
-#  index_songs_on_search_text            (search_text)
+#  index_songs_on_search_text_trgm       (search_text) USING gin
 #
 describe Song do
   let(:artist_one) { create :artist }
