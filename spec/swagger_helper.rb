@@ -93,7 +93,8 @@ RSpec.configure do |config|
                     type: :object,
                     properties: {
                       id: { type: :integer },
-                      name: { type: :string }
+                      name: { type: :string },
+                      country_of_origin: { type: :array, items: { type: :string }, nullable: true }
                     }
                   }
                 }

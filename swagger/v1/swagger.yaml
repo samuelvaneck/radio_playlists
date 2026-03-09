@@ -527,6 +527,8 @@ paths:
                         artists:
                         - id: 1
                           name: Queen
+                          country_of_origin:
+                          - United Kingdom
                     - id: '2'
                       type: song
                       attributes:
@@ -544,6 +546,8 @@ paths:
                         artists:
                         - id: 1
                           name: Queen
+                          country_of_origin:
+                          - United Kingdom
   "/api/v1/artists/{id}/chart_positions":
     get:
       summary: Get artist chart positions over time
@@ -2673,6 +2677,11 @@ components:
                   type: integer
                 name:
                   type: string
+                country_of_origin:
+                  type: array
+                  items:
+                    type: string
+                  nullable: true
     AirPlay:
       type: object
       properties:

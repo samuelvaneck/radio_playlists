@@ -87,7 +87,7 @@ class SongSerializer
 
   attribute :artists do |object|
     object.artists.map do |artist|
-      options = { fields: { artist: %i[id name] } }
+      options = { fields: { artist: %i[id name country_of_origin] } }
       ArtistSerializer.new(artist, options)
     end
   end
