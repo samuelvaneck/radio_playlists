@@ -195,7 +195,7 @@ RSpec.describe 'Artists API', type: :request do
                 lastfm_playcount: 5_500_000,
                 lastfm_tags: %w[rock classic-rock],
                 counter: 42,
-                artists: [{ id: 1, name: 'Queen' }]
+                artists: [{ id: 1, name: 'Queen', country_of_origin: ['United Kingdom'] }]
               }
             },
             {
@@ -211,7 +211,7 @@ RSpec.describe 'Artists API', type: :request do
                 lastfm_playcount: 4_200_000,
                 lastfm_tags: %w[rock classic-rock],
                 counter: 38,
-                artists: [{ id: 1, name: 'Queen' }]
+                artists: [{ id: 1, name: 'Queen', country_of_origin: ['United Kingdom'] }]
               }
             }
           ]
