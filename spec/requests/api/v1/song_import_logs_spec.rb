@@ -16,6 +16,8 @@ RSpec.describe 'SongImportLogs API', type: :request do
                 description: 'Filter by status: pending, success, failed, skipped'
       parameter name: :import_source, in: :query, type: :string, required: false,
                 description: 'Filter by import source: recognition, scraping'
+      parameter name: :song_id, in: :query, type: :integer, required: false,
+                description: 'Filter by song ID'
 
       response '200', 'Song import logs retrieved successfully' do
         let!(:song_import_log) { create(:song_import_log, :with_recognition) }
@@ -32,6 +34,19 @@ RSpec.describe 'SongImportLogs API', type: :request do
           json = JSON.parse(response.body)
           expect(json['data'].length).to eq(1)
           expect(json['data'].first['attributes']['status']).to eq('failed')
+        end
+      end
+
+      response '200', 'Filtered by song' do
+        let(:song) { create(:song) }
+        let!(:log1) { create(:song_import_log, :with_recognition, song:) }
+        let!(:log2) { create(:song_import_log, :with_recognition) }
+        let(:song_id) { song.id }
+
+        run_test! do |response|
+          json = JSON.parse(response.body)
+          expect(json['data'].length).to eq(1)
+          expect(json['data'].first['attributes']['song']['id']).to eq(song.id)
         end
       end
 

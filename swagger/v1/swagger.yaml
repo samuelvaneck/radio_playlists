@@ -1838,6 +1838,12 @@ paths:
         description: 'Filter by import source: recognition, scraping'
         schema:
           type: string
+      - name: song_id
+        in: query
+        required: false
+        description: Filter by song ID
+        schema:
+          type: integer
       responses:
         '200':
           description: Filtered by radio station
