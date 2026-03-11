@@ -1,32 +1,21 @@
 module ChartConcern
   extend ActiveSupport::Concern
 
-  PERIOD_RANGES = {
-    'week' => 1.week,
-    'month' => 1.month,
-    'year' => 1.year,
-    'all' => nil
-  }.freeze
-
   # Returns chart positions for a given time period
   #
-  # @param period [String] one of 'week', 'month', 'year', 'all' (default: 'month')
+  # @param period [String] e.g. '3_days', '2_weeks', '6_months', 'year', 'all' (default: '1_month')
   # @return [Array<Hash>] array of hashes with keys date, position, and counts
-  def chart_positions_for_period(period = 'month')
-    period = 'month' unless PERIOD_RANGES.key?(period)
+  def chart_positions_for_period(period = '1_month')
+    duration = PeriodParser.parse_duration(period)
+    duration = 1.month if duration.nil? && period != 'all'
 
-    start_date = calculate_start_date(period)
+    start_date = duration ? Time.zone.today - duration : nil
     positions = chart_positions_in_range(start_date)
 
     format_positions(positions, start_date)
   end
 
   private
-
-  def calculate_start_date(period)
-    duration = PERIOD_RANGES[period]
-    duration ? Time.zone.today - duration : nil
-  end
 
   def chart_positions_in_range(start_date)
     scope = chart_positions.joins(:chart).order('charts.date ASC')
