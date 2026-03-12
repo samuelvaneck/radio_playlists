@@ -3,8 +3,6 @@
 module Api
   module V1
     class RadioStationClassifiersController < ApiController
-      VALID_TIME_PERIODS = %w[day week month year].freeze
-
       def index
         start_time, end_time = time_range_from_period
 
@@ -46,17 +44,10 @@ module Api
 
       def time_range_from_period
         period = params[:time_period]
-        return [nil, nil] if period.blank? || !VALID_TIME_PERIODS.include?(period)
+        duration = PeriodParser.parse_duration(period) if period.present?
+        return [nil, nil] unless duration
 
-        end_time = Time.current
-        start_time = case period
-                     when 'day' then 1.day.ago
-                     when 'week' then 1.week.ago
-                     when 'month' then 1.month.ago
-                     when 'year' then 1.year.ago
-                     end
-
-        [start_time, end_time]
+        [duration.ago, Time.current]
       end
     end
   end
