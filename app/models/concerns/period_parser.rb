@@ -2,7 +2,7 @@
 
 module PeriodParser
   VALID_UNITS = %w[day days week weeks month months year years].freeze
-  LEGACY_PERIODS = { 'week' => '1_week', 'month' => '1_month', 'year' => '1_year' }.freeze
+  LEGACY_PERIODS = { 'day' => '1_day', 'week' => '1_week', 'month' => '1_month', 'year' => '1_year' }.freeze
 
   AGGREGATION_CONFIG = {
     days: { strftime: '%Y-%m-%dT%H:00', time_step: 1.hour },
