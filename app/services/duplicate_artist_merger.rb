@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DuplicateArtistMerger
-  FUZZY_NAME_THRESHOLD = 80
+  FUZZY_NAME_THRESHOLD = 92
 
   attr_reader :groups
 
@@ -74,29 +74,42 @@ class DuplicateArtistMerger
 
   def build_name_groups(seen_ids)
     name_groups = {}
+    # Index groups by prefix bucket for O(1) lookup instead of O(n) scan
+    bucket_index = Hash.new { |h, k| h[k] = [] }
 
     Artist.includes(:songs).order(:id).find_each do |artist|
       next if seen_ids.include?(artist.id)
 
       normalized = normalize_name(artist.name)
-      matched_key = find_matching_group(name_groups, normalized)
+      matched_key = find_matching_group(bucket_index, normalized)
       entry = { artist:, normalized: }
 
       if matched_key
         name_groups[matched_key] << entry
       else
         name_groups[normalized] = [entry]
+        name_bucket_keys(normalized).each { |bucket| bucket_index[bucket] << normalized }
       end
     end
 
     name_groups
   end
 
-  def find_matching_group(name_groups, normalized)
-    name_groups.each do |key, group|
-      return key if names_match?(normalized, group.first[:normalized])
+  def find_matching_group(bucket_index, normalized)
+    candidates = name_bucket_keys(normalized).flat_map { |bucket| bucket_index[bucket] }.uniq
+
+    candidates.each do |candidate_key|
+      return candidate_key if names_match?(normalized, candidate_key)
     end
     nil
+  end
+
+  # Generate bucket keys: first 3 chars of each word token + sorted first chars
+  def name_bucket_keys(normalized)
+    tokens = normalized.split
+    keys = tokens.map { |t| t[0, 3] }
+    keys << tokens.map { |t| t[0] }.sort.join
+    keys.compact.uniq
   end
 
   def select_keeper_and_duplicates(artists)
@@ -112,10 +125,26 @@ class DuplicateArtistMerger
     normalized.gsub(/[^\w\s]/, '').gsub(/\s+/, ' ').strip
   end
 
-  def names_match?(name1, name2)
+  def names_match?(name1, name2) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     return true if name1 == name2
+    return false if (name1.length - name2.length).abs > 2
 
-    (JaroWinkler.similarity(name1, name2) * 100).to_i >= FUZZY_NAME_THRESHOLD
+    tokens1 = name1.split
+    tokens2 = name2.split
+    return false if tokens1.size != tokens2.size
+    # Reject short single-word names — too prone to false positives
+    return false if tokens1.size == 1 && (name1.length < 5 || name2.length < 5)
+
+    full_similarity = (JaroWinkler.similarity(name1, name2) * 100).to_i
+    return false if full_similarity < FUZZY_NAME_THRESHOLD
+
+    # For multi-word names, verify each token pair matches and lengths are close
+    return true if tokens1.size <= 1
+
+    tokens1.zip(tokens2).all? do |t1, t2|
+      length_diff = (t1.length - t2.length).abs
+      length_diff <= 1 && (JaroWinkler.similarity(t1, t2) * 100).to_i >= FUZZY_NAME_THRESHOLD
+    end
   end
 
   def reassign_songs(source, target)
