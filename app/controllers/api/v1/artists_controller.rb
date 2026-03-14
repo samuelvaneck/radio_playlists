@@ -3,7 +3,7 @@
 module Api
   module V1
     class ArtistsController < ApiController
-      before_action :artist, only: %i[show graph_data songs chart_positions time_analytics air_plays bio]
+      before_action :artist, only: %i[show graph_data songs chart_positions time_analytics air_plays bio similar_artists]
       def index
         render json: ArtistSerializer.new(artists)
                        .serializable_hash
@@ -110,6 +110,18 @@ module Api
       #     }
       #   }
       # }
+      # GET /api/v1/artists/:id/similar_artists
+      #
+      # Parameters:
+      #   - limit (optional, default: 10): Maximum number of results (max: 20)
+      #
+      # Returns artists with the most overlapping genres and Last.fm tags,
+      # using Spotify popularity as tiebreaker.
+      def similar_artists
+        results = artist.similar_artists(limit: similar_artists_limit)
+        render json: ArtistSerializer.new(results).serializable_hash.to_json
+      end
+
       def bio
         bio_data = Wikipedia::ArtistFinder.new(language: language_param).get_info(artist.name)
         render json: { bio: bio_data }
@@ -152,6 +164,10 @@ module Api
 
       def language_param
         params[:language] || 'en'
+      end
+
+      def similar_artists_limit
+        [params.fetch(:limit, 10).to_i, 20].min
       end
 
       def autocomplete_limit

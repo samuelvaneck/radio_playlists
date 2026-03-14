@@ -99,12 +99,33 @@ class Artist < ApplicationRecord
     end
   end
 
+  def similar_artists(limit: 10)
+    return Artist.none if genres.blank? && lastfm_tags.blank?
+
+    Artist.where.not(id:)
+      .where('genres && ARRAY[:genres]::varchar[] OR lastfm_tags && ARRAY[:tags]::varchar[]', genres:, tags: lastfm_tags)
+      .select(
+        'artists.*',
+        "COALESCE(cardinality(ARRAY(SELECT unnest(genres) INTERSECT SELECT unnest(ARRAY[#{sanitized_array(genres)}]))), 0) + " \
+        "COALESCE(cardinality(ARRAY(SELECT unnest(lastfm_tags) INTERSECT SELECT unnest(ARRAY[#{sanitized_array(lastfm_tags)}]))), 0) " \
+        'AS similarity_score'
+      )
+      .order(Arel.sql('similarity_score DESC, COALESCE(spotify_popularity, 0) DESC'))
+      .limit(limit)
+  end
+
   def cleanup
     destroy if songs.blank?
   end
 
   def played
     air_plays.size
+  end
+
+  def sanitized_array(array)
+    return '' if array.blank?
+
+    array.map { |element| ActiveRecord::Base.connection.quote(element) }.join(', ')
   end
 
   def update_website_from_wikipedia

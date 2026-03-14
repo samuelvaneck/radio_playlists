@@ -349,6 +349,63 @@ RSpec.describe 'Artists API', type: :request do
     end
   end
 
+  path '/api/v1/artists/{id}/similar_artists' do
+    get 'Get similar artists' do
+      tags 'Artists'
+      produces 'application/json'
+      description 'Returns artists with the most overlapping genres and Last.fm tags, using Spotify popularity as tiebreaker'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Artist ID'
+      parameter name: :limit, in: :query, type: :integer, required: false,
+                description: 'Maximum number of results (default: 10, max: 20)'
+
+      response '200', 'Similar artists retrieved successfully' do
+        example 'application/json', :example, {
+          data: [
+            {
+              id: '2',
+              type: 'artist',
+              attributes: {
+                id: 2,
+                name: 'Oasis',
+                genres: %w[rock britpop],
+                lastfm_tags: %w[rock britpop british],
+                spotify_popularity: 80
+              }
+            }
+          ]
+        }
+
+        let(:artist) do
+          create(:artist, name: 'Coldplay', genres: %w[rock pop britpop], lastfm_tags: %w[rock british alternative])
+        end
+        let!(:similar) do
+          create(:artist, name: 'Oasis', genres: %w[rock britpop], lastfm_tags: %w[rock britpop british],
+                          spotify_popularity: 80)
+        end
+        let!(:different) { create(:artist, name: 'Eminem', genres: %w[hip-hop rap], lastfm_tags: %w[rap hip-hop]) }
+        let!(:partial_match) do
+          create(:artist, name: 'U2', genres: %w[rock], lastfm_tags: %w[irish rock], spotify_popularity: 75)
+        end
+        let(:id) { artist.id }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)['data']
+          expect(data.first['attributes']['name']).to eq('Oasis')
+        end
+      end
+
+      response '200', 'No similar artists when artist has no genres or tags' do
+        let(:artist) { create(:artist, name: 'Unknown', genres: [], lastfm_tags: []) }
+        let(:id) { artist.id }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)['data']
+          expect(data).to eq([])
+        end
+      end
+    end
+  end
+
   path '/api/v1/artists/{id}/bio' do
     get 'Get artist biography from Wikipedia' do
       tags 'Artists'
