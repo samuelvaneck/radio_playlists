@@ -27,7 +27,13 @@ module DateConcern
       return fallback if time.blank?
       return time if time.is_a?(Time)
 
-      TIME_MAPPINGS[time]&.() || Time.zone.strptime(time, '%Y-%m-%dT%R')
+      if TIME_MAPPINGS.key?(time)
+        TIME_MAPPINGS[time].()
+      elsif (duration = PeriodParser.parse_duration(time))
+        duration.ago
+      else
+        Time.zone.strptime(time, '%Y-%m-%dT%R')
+      end
     end
 
     def self.time_range_from_params(params, default_period: 'day')

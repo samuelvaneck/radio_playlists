@@ -247,6 +247,24 @@ describe Api::V1::SongsController do
       end
     end
 
+    context 'with granular period=3_days' do
+      subject(:get_air_plays_granular) do
+        get :air_plays, params: { id: song.id, period: '3_days', format: :json }
+      end
+
+      let!(:old_air_play) do
+        air_play = create(:air_play, song:, radio_station: radio_station_one, broadcasted_at: 5.days.ago)
+        air_play.update_column(:created_at, 5.days.ago) # rubocop:disable Rails/SkipsModelValidations
+        air_play
+      end
+
+      it 'excludes air plays older than 3 days' do
+        get_air_plays_granular
+        air_play_ids = json[:data].map { |ap| ap[:id].to_i }
+        expect(air_play_ids).not_to include(old_air_play.id)
+      end
+    end
+
     context 'with radio_station_ids filter' do
       subject(:get_air_plays_filtered) do
         get :air_plays, params: { id: song.id, radio_station_ids: [radio_station_one.id], format: :json }
