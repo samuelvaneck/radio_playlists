@@ -105,7 +105,8 @@ describe DuplicateArtistMerger do
     context 'when there are duplicates to merge' do
       let!(:keeper) { create(:artist, name: 'David Guetta', id_on_spotify: 'spotify456', spotify_popularity: 90) }
       let!(:duplicate) { create(:artist, name: 'David Guetta', id_on_spotify: 'spotify456', spotify_popularity: 50) }
-      let!(:song) { create(:song, artists: [duplicate]) }
+      let!(:keeper_song) { create(:song, artists: [keeper]) }
+      let!(:duplicate_song) { create(:song, artists: [duplicate]) }
 
       it 'merges duplicates and returns counts', :aggregate_failures do
         result = merger.merge_all
@@ -113,7 +114,7 @@ describe DuplicateArtistMerger do
         expect(result[:merged]).to eq(1)
         expect(result[:deleted]).to eq(1)
         expect(Artist.find_by(id: duplicate.id)).to be_nil
-        expect(keeper.reload.songs).to include(song)
+        expect(keeper.reload.songs).to include(keeper_song, duplicate_song)
       end
     end
 

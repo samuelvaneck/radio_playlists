@@ -162,10 +162,15 @@ class DuplicateArtistMerger
   end
 
   def reassign_songs(source, target)
-    source.artists_songs.each do |artists_song|
-      existing = ArtistsSong.find_by(artist_id: target.id, song_id: artists_song.song_id)
-      artists_song.destroy
-      ArtistsSong.create!(artist_id: target.id, song_id: artists_song.song_id) unless existing
+    song_ids = source.artists_songs.pluck(:song_id)
+    existing_song_ids = ArtistsSong.where(artist_id: target.id, song_id: song_ids).pluck(:song_id)
+
+    # Delete all source associations
+    ArtistsSong.where(artist_id: source.id).delete_all
+
+    # Create new associations for songs not already linked to target
+    (song_ids - existing_song_ids).each do |song_id|
+      ArtistsSong.create!(artist_id: target.id, song_id:)
     end
   end
 
