@@ -106,11 +106,8 @@ module Api
       #
       # Parameters:
       #   - period (optional, default: 'day'): Time period for air plays
-      #     - 'day': last 24 hours
-      #     - 'week': last 7 days
-      #     - 'month': last 30 days
-      #     - 'year': last 365 days
-      #     - 'all': all time
+      #     Legacy: 'day', 'week', 'month', 'year', 'all'
+      #     Granular: '1_day', '3_days', '2_weeks', '6_months', '1_year', etc.
       #   - radio_station_ids[] (optional): Filter by specific radio stations
       def air_plays
         render json: AirPlaySerializer.new(song_air_plays)
