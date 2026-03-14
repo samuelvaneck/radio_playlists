@@ -115,11 +115,11 @@ describe DuplicateSongMerger do
   describe '#merge_song' do
     let!(:radio_station) { create(:radio_station) }
     let!(:keeper) do
-      create(:song, title: 'Love Story', id_on_spotify: 'spotify_1', artists: [artist], popularity: 80)
+      create(:song, title: 'Love Story', id_on_spotify: 'spotify_1', id_on_youtube: nil, artists: [artist], popularity: 80)
     end
     let!(:duplicate) do
-      create(:song, title: 'Love Story', id_on_spotify: nil, artists: [artist],
-                    id_on_youtube: 'yt_123', release_date: Date.new(2008, 9, 12), popularity: 60)
+      create(:song, title: 'Love Story', id_on_spotify: nil, id_on_youtube: 'yt_123', artists: [artist],
+                    release_date: Date.new(2008, 9, 12), popularity: 60)
     end
 
     it 'transfers air plays from source to target', :aggregate_failures do
