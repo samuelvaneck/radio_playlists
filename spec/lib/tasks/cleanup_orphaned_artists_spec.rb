@@ -54,7 +54,7 @@ describe 'data_repair:cleanup_orphaned_artists' do # rubocop:disable RSpec/Descr
 
       it 'does not destroy the artist' do
         expect { Rake::Task['data_repair:cleanup_orphaned_artists'].invoke }
-          .not_to change { Artist.find_by(id: artist.id) }
+          .not_to(change { Artist.find_by(id: artist.id) })
       end
     end
   end
