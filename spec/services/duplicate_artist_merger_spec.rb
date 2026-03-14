@@ -114,6 +114,18 @@ describe DuplicateArtistMerger do
       expect(Artist.find_by(id: duplicate.id)).to be_nil
     end
 
+    context 'with air plays on duplicate artist songs' do
+      let!(:air_play_a) { create(:air_play, song: song_a) }
+      let!(:air_play_b) { create(:air_play, song: song_b) }
+
+      it 'makes air plays accessible through the keeper', :aggregate_failures do
+        merger.merge_artist(duplicate, keeper)
+
+        expect(keeper.reload.air_plays).to include(air_play_a, air_play_b)
+        expect(air_play_b.reload.song).to eq(song_b)
+      end
+    end
+
     it 'enriches the target with source metadata', :aggregate_failures do
       merger.merge_artist(duplicate, keeper)
 
