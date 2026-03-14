@@ -721,6 +721,48 @@ paths:
                     total_entries: 150
                     total_pages: 7
                     current_page: 1
+  "/api/v1/artists/{id}/similar_artists":
+    get:
+      summary: Get similar artists
+      tags:
+      - Artists
+      description: Returns artists with the most overlapping genres and Last.fm tags,
+        using Spotify popularity as tiebreaker
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Artist ID
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: 'Maximum number of results (default: 10, max: 20)'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: No similar artists when artist has no genres or tags
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                    - id: '2'
+                      type: artist
+                      attributes:
+                        id: 2
+                        name: Oasis
+                        genres:
+                        - rock
+                        - britpop
+                        lastfm_tags:
+                        - rock
+                        - britpop
+                        - british
+                        spotify_popularity: 80
   "/api/v1/artists/{id}/bio":
     get:
       summary: Get artist biography from Wikipedia

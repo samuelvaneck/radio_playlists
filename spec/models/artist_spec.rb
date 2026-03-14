@@ -341,6 +341,88 @@ describe Artist do
     end
   end
 
+  describe '#similar_artists' do
+    let(:artist) { create(:artist, name: 'Coldplay', genres: %w[rock pop britpop], lastfm_tags: %w[rock british alternative]) }
+
+    context 'when matching only on genres' do
+      let!(:genre_match) { create(:artist, name: 'Muse', genres: %w[rock alternative], lastfm_tags: %w[space-rock]) }
+
+      it 'returns artists with overlapping genres' do
+        results = artist.similar_artists
+        expect(results).to include(genre_match)
+      end
+    end
+
+    context 'when matching only on lastfm_tags' do
+      let!(:tag_match) { create(:artist, name: 'Radiohead', genres: %w[art-rock], lastfm_tags: %w[british alternative]) }
+
+      it 'returns artists with overlapping tags' do
+        results = artist.similar_artists
+        expect(results).to include(tag_match)
+      end
+    end
+
+    context 'when breaking ties with spotify_popularity' do
+      let!(:popular) { create(:artist, name: 'U2', genres: %w[rock], lastfm_tags: [], spotify_popularity: 90) }
+      let!(:unpopular) { create(:artist, name: 'Indie Band', genres: %w[rock], lastfm_tags: [], spotify_popularity: 10) }
+
+      it 'ranks more popular artist first among equal similarity scores', :aggregate_failures do
+        results = artist.similar_artists
+        expect(results.index(popular)).to be < results.index(unpopular)
+      end
+    end
+
+    context 'when the artist has no genres or tags' do
+      let(:empty_artist) { create(:artist, name: 'Unknown', genres: [], lastfm_tags: []) }
+
+      it 'returns an empty relation' do
+        expect(empty_artist.similar_artists).to be_empty
+      end
+    end
+
+    it 'excludes the artist itself' do
+      create(:artist, name: 'Clone', genres: %w[rock pop britpop], lastfm_tags: %w[rock british alternative])
+      results = artist.similar_artists
+      expect(results).not_to include(artist)
+    end
+
+    it 'excludes artists with no overlap' do
+      no_overlap = create(:artist, name: 'Eminem', genres: %w[hip-hop rap], lastfm_tags: %w[rap hip-hop])
+      results = artist.similar_artists
+      expect(results).not_to include(no_overlap)
+    end
+
+    it 'respects the limit parameter' do
+      15.times { |i| create(:artist, name: "Band #{i}", genres: %w[rock], lastfm_tags: []) }
+      results = artist.similar_artists(limit: 5)
+      expect(results.size).to eq(5)
+    end
+
+    context 'when tags contain special characters' do
+      let!(:special) { create(:artist, name: "Destiny's Child", genres: %w[r&b pop], lastfm_tags: %w[rnb]) }
+      let(:artist_with_special) { create(:artist, name: 'Beyonce', genres: %w[r&b pop], lastfm_tags: %w[rnb soul]) }
+
+      it 'handles special characters safely' do
+        results = artist_with_special.similar_artists
+        expect(results).to include(special)
+      end
+    end
+
+    context 'when ordering by similarity score' do
+      let!(:high_match) do
+        create(:artist, name: 'Oasis', genres: %w[rock britpop], lastfm_tags: %w[rock british], spotify_popularity: 50)
+      end
+      let!(:low_match) do
+        create(:artist, name: 'Jay-Z', genres: %w[pop], lastfm_tags: [], spotify_popularity: 95)
+      end
+
+      it 'ranks higher similarity above higher popularity', :aggregate_failures do
+        results = artist.similar_artists
+        expect(results.index(high_match)).to be < results.index(low_match)
+      end
+    end
+  end
+
   describe '#update_website_from_wikipedia' do
     context 'when artist has no website_url', :use_vcr do
       let(:artist) { create(:artist, name: 'Coldplay', website_url: nil) }
