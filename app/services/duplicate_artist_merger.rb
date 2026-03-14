@@ -67,9 +67,21 @@ class DuplicateArtistMerger
       next if entries.size < 2
 
       artists_in_group = entries.map { |e| e[:artist] }
-      keeper, duplicates = select_keeper_and_duplicates(artists_in_group)
+      # Skip groups where all artists have distinct Spotify IDs — they are different artists
+      filtered = filter_conflicting_spotify_ids(artists_in_group)
+      next if filtered.size < 2
+
+      keeper, duplicates = select_keeper_and_duplicates(filtered)
       @groups << { keeper:, duplicates:, reason: 'fuzzy name match' }
     end
+  end
+
+  # Remove artists whose Spotify ID conflicts with the group's primary Spotify ID
+  def filter_conflicting_spotify_ids(artists)
+    primary_spotify_id = artists.filter_map(&:id_on_spotify).tally.max_by(&:last)&.first
+    return artists if primary_spotify_id.blank?
+
+    artists.select { |a| a.id_on_spotify.blank? || a.id_on_spotify == primary_spotify_id }
   end
 
   def build_name_groups(seen_ids)
@@ -133,10 +145,12 @@ class DuplicateArtistMerger
     tokens2 = name2.split
     return false if tokens1.size != tokens2.size
     # Reject short single-word names — too prone to false positives
-    return false if tokens1.size == 1 && (name1.length < 5 || name2.length < 5)
+    return false if tokens1.size == 1 && (name1.length < 6 || name2.length < 6)
 
     full_similarity = (JaroWinkler.similarity(name1, name2) * 100).to_i
-    return false if full_similarity < FUZZY_NAME_THRESHOLD
+    # Stricter threshold for single-word names
+    threshold = tokens1.size == 1 ? 95 : FUZZY_NAME_THRESHOLD
+    return false if full_similarity < threshold
 
     # For multi-word names, verify each token pair matches and lengths are close
     return true if tokens1.size <= 1

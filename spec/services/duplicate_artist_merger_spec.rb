@@ -66,6 +66,32 @@ describe DuplicateArtistMerger do
       end
     end
 
+    context 'when fuzzy-matched artists have different Spotify IDs' do
+      before do
+        create(:artist, name: 'Paul Simon', id_on_spotify: 'spotify_paul_simon')
+        create(:artist, name: 'Paul Simonon', id_on_spotify: 'spotify_paul_simonon')
+      end
+
+      it 'does not group them' do
+        groups = merger.find_duplicates
+
+        expect(groups).to be_empty
+      end
+    end
+
+    context 'when fuzzy-matched artist has no Spotify ID' do
+      let!(:with_spotify) { create(:artist, name: 'David Guetta', id_on_spotify: 'spotify456') }
+      let!(:without_spotify) { create(:artist, name: 'David Gueta', id_on_spotify: nil) }
+
+      before { create(:song, artists: [with_spotify]) }
+
+      it 'groups the one without Spotify ID as duplicate' do
+        groups = merger.find_duplicates
+
+        expect(groups.first[:duplicates]).to eq([without_spotify])
+      end
+    end
+
     context 'when no duplicates exist' do
       before { create(:artist, name: 'Unique Artist') }
 
