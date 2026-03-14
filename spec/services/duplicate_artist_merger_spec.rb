@@ -177,6 +177,21 @@ describe DuplicateArtistMerger do
       end
     end
 
+    context 'when source has orphaned song references' do
+      before do
+        # Create an orphaned artists_songs record by deleting the song directly
+        orphan_song = create(:song, artists: [duplicate])
+        orphan_song.delete
+      end
+
+      it 'skips orphaned songs and merges successfully', :aggregate_failures do
+        merger.merge_artist(duplicate, keeper)
+
+        expect(keeper.reload.songs).to include(song_a, song_b, shared_song)
+        expect(Artist.find_by(id: duplicate.id)).to be_nil
+      end
+    end
+
     context 'with chart_positions only on source' do
       let!(:chart) { create(:chart) }
       let!(:duplicate_position) { create(:chart_position, positianable: duplicate, chart:, position: 5, counts: 8) }
