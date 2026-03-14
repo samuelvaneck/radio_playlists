@@ -734,23 +734,25 @@ namespace :data_repair do
     puts 'Finding orphaned artists_songs records...'
     puts '=' * 80
 
-    orphaned_by_song = ArtistsSong.where.not(song_id: Song.select(:id))
-    orphaned_by_artist = ArtistsSong.where.not(artist_id: Artist.select(:id))
-    orphaned_by_song_count = orphaned_by_song.count
-    orphaned_by_artist_count = orphaned_by_artist.count
+    orphaned_by_song_count = ActiveRecord::Base.connection.delete(<<~SQL.squish)
+      DELETE FROM artists_songs
+      WHERE NOT EXISTS (SELECT 1 FROM songs WHERE songs.id = artists_songs.song_id)
+    SQL
 
-    if orphaned_by_song_count.zero? && orphaned_by_artist_count.zero?
+    orphaned_by_artist_count = ActiveRecord::Base.connection.delete(<<~SQL.squish)
+      DELETE FROM artists_songs
+      WHERE NOT EXISTS (SELECT 1 FROM artists WHERE artists.id = artists_songs.artist_id)
+    SQL
+
+    puts "Deleted #{orphaned_by_song_count} records with non-existent songs"
+    puts "Deleted #{orphaned_by_artist_count} records with non-existent artists"
+
+    total = orphaned_by_song_count + orphaned_by_artist_count
+    if total.zero?
       puts 'No orphaned artists_songs records found.'
-      next
+    else
+      puts "\nDeleted #{total} orphaned records total."
     end
-
-    puts "Found #{orphaned_by_song_count} records with non-existent songs"
-    puts "Found #{orphaned_by_artist_count} records with non-existent artists"
-
-    orphaned_by_song.delete_all if orphaned_by_song_count.positive?
-    orphaned_by_artist.delete_all if orphaned_by_artist_count.positive?
-
-    puts "\nDeleted #{orphaned_by_song_count + orphaned_by_artist_count} orphaned records."
   end
 
   desc 'Dry run: Show orphaned artists_songs records'
@@ -758,31 +760,31 @@ namespace :data_repair do
     puts 'DRY RUN: Finding orphaned artists_songs records...'
     puts '=' * 80
 
-    orphaned_by_song = ArtistsSong.where.not(song_id: Song.select(:id))
-    orphaned_by_artist = ArtistsSong.where.not(artist_id: Artist.select(:id))
+    orphaned_by_song = ArtistsSong.joins('LEFT JOIN songs ON songs.id = artists_songs.song_id').where(songs: { id: nil })
+    orphaned_by_artist = ArtistsSong.joins('LEFT JOIN artists ON artists.id = artists_songs.artist_id').where(artists: { id: nil })
 
-    puts "Found #{orphaned_by_song.count} records with non-existent songs"
-    puts "Found #{orphaned_by_artist.count} records with non-existent artists"
+    orphaned_by_song_count = orphaned_by_song.count
+    orphaned_by_artist_count = orphaned_by_artist.count
 
-    if orphaned_by_song.count.positive?
+    puts "Found #{orphaned_by_song_count} records with non-existent songs"
+    puts "Found #{orphaned_by_artist_count} records with non-existent artists"
+
+    if orphaned_by_song_count.positive?
       puts "\nSample orphaned-by-song (first 20):"
-      orphaned_by_song.limit(20).each do |record|
-        artist = Artist.find_by(id: record.artist_id)
-        puts "  artist_id: #{record.artist_id} (#{artist&.name || 'MISSING'}) → song_id: #{record.song_id} (MISSING)"
+      orphaned_by_song.includes(:artist).limit(20).each do |record|
+        puts "  artist_id: #{record.artist_id} (#{record.artist&.name || 'MISSING'}) → song_id: #{record.song_id} (MISSING)"
       end
     end
 
-    if orphaned_by_artist.count.positive?
+    if orphaned_by_artist_count.positive?
       puts "\nSample orphaned-by-artist (first 20):"
-      orphaned_by_artist.limit(20).each do |record|
-        song = Song.find_by(id: record.song_id)
-        puts "  artist_id: #{record.artist_id} (MISSING) → song_id: #{record.song_id} (#{song&.title || 'MISSING'})"
+      orphaned_by_artist.includes(:song).limit(20).each do |record|
+        puts "  artist_id: #{record.artist_id} (MISSING) → song_id: #{record.song_id} (#{record.song&.title || 'MISSING'})"
       end
     end
 
-    total = orphaned_by_song.count + orphaned_by_artist.count
     puts "\n#{'=' * 80}"
-    puts "Would delete #{total} orphaned artists_songs records."
+    puts "Would delete #{orphaned_by_song_count + orphaned_by_artist_count} orphaned artists_songs records."
     puts "\nRun 'rake data_repair:cleanup_orphaned_artists_songs' to perform the cleanup."
   end
 
