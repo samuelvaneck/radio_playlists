@@ -106,8 +106,8 @@ class Artist < ApplicationRecord
       .where('genres && ARRAY[:genres]::varchar[] OR lastfm_tags && ARRAY[:tags]::varchar[]', genres:, tags: lastfm_tags)
       .select(
         'artists.*',
-        "COALESCE(cardinality(ARRAY(SELECT unnest(genres) INTERSECT SELECT unnest(ARRAY[#{sanitized_array(genres)}]))), 0) + " \
-        "COALESCE(cardinality(ARRAY(SELECT unnest(lastfm_tags) INTERSECT SELECT unnest(ARRAY[#{sanitized_array(lastfm_tags)}]))), 0) " \
+        "COALESCE(cardinality(ARRAY(SELECT unnest(genres) INTERSECT SELECT unnest(#{sanitized_sql_array(genres)}))), 0) + " \
+        "COALESCE(cardinality(ARRAY(SELECT unnest(lastfm_tags) INTERSECT SELECT unnest(#{sanitized_sql_array(lastfm_tags)}))), 0) " \
         'AS similarity_score'
       )
       .order(Arel.sql('similarity_score DESC, COALESCE(spotify_popularity, 0) DESC'))
@@ -122,10 +122,10 @@ class Artist < ApplicationRecord
     air_plays.size
   end
 
-  def sanitized_array(array)
-    return '' if array.blank?
+  def sanitized_sql_array(array)
+    return 'ARRAY[]::varchar[]' if array.blank?
 
-    array.map { |element| ActiveRecord::Base.connection.quote(element) }.join(', ')
+    "ARRAY[#{array.map { |element| ActiveRecord::Base.connection.quote(element) }.join(', ')}]"
   end
 
   def update_website_from_wikipedia

@@ -380,6 +380,16 @@ describe Artist do
       end
     end
 
+    context 'when the artist has tags but no genres' do
+      let(:tags_only_artist) { create(:artist, name: 'Taylor Swift', genres: [], lastfm_tags: %w[pop country]) }
+      let!(:tag_match) { create(:artist, name: 'Kacey Musgraves', genres: %w[country], lastfm_tags: %w[country americana]) }
+
+      it 'returns artists matching on tags' do
+        results = tags_only_artist.similar_artists
+        expect(results).to include(tag_match)
+      end
+    end
+
     it 'excludes the artist itself' do
       create(:artist, name: 'Clone', genres: %w[rock pop britpop], lastfm_tags: %w[rock british alternative])
       results = artist.similar_artists
