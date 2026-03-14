@@ -678,6 +678,137 @@ namespace :data_repair do
     end
   end
 
+  desc 'Destroy artists that have no songs and no air plays. Usage: rake data_repair:cleanup_orphaned_artists'
+  task cleanup_orphaned_artists: :environment do
+    puts 'Finding orphaned artists (no songs, no air plays)...'
+    puts '=' * 80
+
+    orphaned_artists = Artist.left_joins(:songs).where(songs: { id: nil })
+    total = orphaned_artists.count
+
+    if total.zero?
+      puts 'No orphaned artists found.'
+      next
+    end
+
+    puts "Found #{total} orphaned artists to destroy\n\n"
+
+    destroyed_count = 0
+
+    orphaned_artists.find_each do |artist|
+      puts "  Destroying: ID #{artist.id} | #{artist.name}"
+      artist.destroy
+      destroyed_count += 1
+    end
+
+    puts "\n#{'=' * 80}"
+    puts "Destroyed #{destroyed_count} orphaned artists."
+  end
+
+  desc 'Dry run: Show orphaned artists that would be destroyed'
+  task cleanup_orphaned_artists_dry_run: :environment do
+    puts 'DRY RUN: Finding orphaned artists (no songs, no air plays)...'
+    puts '=' * 80
+
+    orphaned_artists = Artist.left_joins(:songs).where(songs: { id: nil })
+    total = orphaned_artists.count
+
+    if total.zero?
+      puts 'No orphaned artists found.'
+      next
+    end
+
+    puts "Found #{total} orphaned artists:\n\n"
+
+    orphaned_artists.find_each do |artist|
+      puts "  ID #{artist.id} | #{artist.name} | Spotify: #{artist.id_on_spotify || 'none'}"
+    end
+
+    puts "\n#{'=' * 80}"
+    puts "Would destroy #{total} orphaned artists."
+    puts "\nRun 'rake data_repair:cleanup_orphaned_artists' to perform the cleanup."
+  end
+
+  desc 'Find duplicate artists by Spotify ID and fuzzy name matching. Usage: rake data_repair:find_duplicate_artists'
+  task find_duplicate_artists: :environment do
+    puts 'Finding duplicate artists...'
+    puts '=' * 80
+
+    merger = DuplicateArtistMerger.new
+    groups = merger.find_duplicates
+    print_duplicate_artist_report(groups)
+  end
+
+  desc 'Dry run: Show what artist merges would happen. Usage: rake data_repair:merge_duplicate_artists_dry_run'
+  task merge_duplicate_artists_dry_run: :environment do
+    puts 'DRY RUN: Finding duplicate artists to merge...'
+    puts '=' * 80
+
+    merger = DuplicateArtistMerger.new
+    groups = merger.find_duplicates
+
+    if groups.empty?
+      puts 'No duplicate artists found.'
+      next
+    end
+
+    puts "Found #{groups.count} duplicate groups\n\n"
+
+    total_to_delete = 0
+
+    groups.each do |group|
+      puts "  KEEP: ID #{group[:keeper].id} | #{group[:keeper].name} | " \
+           "Spotify: #{group[:keeper].id_on_spotify || 'none'} | Songs: #{group[:keeper].songs.count}"
+      group[:duplicates].each do |dup_artist|
+        puts "  DELETE: ID #{dup_artist.id} | #{dup_artist.name} | " \
+             "Spotify: #{dup_artist.id_on_spotify || 'none'} | Songs: #{dup_artist.songs.count}"
+        total_to_delete += 1
+      end
+      puts
+    end
+
+    puts '=' * 80
+    puts "Would merge #{groups.count} duplicate groups, removing #{total_to_delete} duplicate artists."
+    puts "\nRun 'rake data_repair:merge_duplicate_artists' to perform the merge."
+  end
+
+  desc 'Merge duplicate artists. Usage: rake data_repair:merge_duplicate_artists'
+  task merge_duplicate_artists: :environment do
+    puts 'Merging duplicate artists...'
+    puts '=' * 80
+
+    merger = DuplicateArtistMerger.new
+    result = merger.merge_all
+
+    if result[:merged].zero?
+      puts 'No duplicate artists found.'
+    else
+      puts "Merged #{result[:merged]} duplicate groups, removed #{result[:deleted]} duplicate artists."
+    end
+  end
+
+  def print_duplicate_artist_report(groups)
+    if groups.empty?
+      puts 'No duplicate artists found.'
+      return
+    end
+
+    puts "Found #{groups.count} duplicate artist groups:\n\n"
+
+    groups.each do |group|
+      puts "Group (#{group[:reason]}):"
+      all = [group[:keeper]] + group[:duplicates]
+      all.each do |artist|
+        marker = artist == group[:keeper] ? '[KEEPER]' : '[DUPLICATE]'
+        puts "  #{marker} ID: #{artist.id} | #{artist.name} | Spotify: #{artist.id_on_spotify || 'none'} | Songs: #{artist.songs.count}"
+      end
+      puts
+    end
+
+    puts "\nRun 'rake data_repair:merge_duplicate_artists_dry_run' to see merge plan."
+    puts "Run 'rake data_repair:merge_duplicate_artists' to perform the merge."
+  end
+
   # Helper methods
   def search_spotify_by_isrc(isrc)
     # Search Spotify for a track with this ISRC
