@@ -683,7 +683,7 @@ namespace :data_repair do
     puts 'Finding orphaned artists (no songs, no air plays)...'
     puts '=' * 80
 
-    orphaned_artists = Artist.left_joins(:songs).where(songs: { id: nil })
+    orphaned_artists = Artist.where.not(id: ArtistsSong.where(song_id: Song.select(:id)).select(:artist_id))
     total = orphaned_artists.count
 
     if total.zero?
@@ -710,7 +710,7 @@ namespace :data_repair do
     puts 'DRY RUN: Finding orphaned artists (no songs, no air plays)...'
     puts '=' * 80
 
-    orphaned_artists = Artist.left_joins(:songs).where(songs: { id: nil })
+    orphaned_artists = Artist.where.not(id: ArtistsSong.where(song_id: Song.select(:id)).select(:artist_id))
     total = orphaned_artists.count
 
     if total.zero?
@@ -727,6 +727,63 @@ namespace :data_repair do
     puts "\n#{'=' * 80}"
     puts "Would destroy #{total} orphaned artists."
     puts "\nRun 'rake data_repair:cleanup_orphaned_artists' to perform the cleanup."
+  end
+
+  desc 'Destroy orphaned artists_songs records pointing to non-existent songs or artists'
+  task cleanup_orphaned_artists_songs: :environment do
+    puts 'Finding orphaned artists_songs records...'
+    puts '=' * 80
+
+    orphaned_by_song = ArtistsSong.where.not(song_id: Song.select(:id))
+    orphaned_by_artist = ArtistsSong.where.not(artist_id: Artist.select(:id))
+    orphaned_by_song_count = orphaned_by_song.count
+    orphaned_by_artist_count = orphaned_by_artist.count
+
+    if orphaned_by_song_count.zero? && orphaned_by_artist_count.zero?
+      puts 'No orphaned artists_songs records found.'
+      next
+    end
+
+    puts "Found #{orphaned_by_song_count} records with non-existent songs"
+    puts "Found #{orphaned_by_artist_count} records with non-existent artists"
+
+    orphaned_by_song.delete_all if orphaned_by_song_count.positive?
+    orphaned_by_artist.delete_all if orphaned_by_artist_count.positive?
+
+    puts "\nDeleted #{orphaned_by_song_count + orphaned_by_artist_count} orphaned records."
+  end
+
+  desc 'Dry run: Show orphaned artists_songs records'
+  task cleanup_orphaned_artists_songs_dry_run: :environment do
+    puts 'DRY RUN: Finding orphaned artists_songs records...'
+    puts '=' * 80
+
+    orphaned_by_song = ArtistsSong.where.not(song_id: Song.select(:id))
+    orphaned_by_artist = ArtistsSong.where.not(artist_id: Artist.select(:id))
+
+    puts "Found #{orphaned_by_song.count} records with non-existent songs"
+    puts "Found #{orphaned_by_artist.count} records with non-existent artists"
+
+    if orphaned_by_song.count.positive?
+      puts "\nSample orphaned-by-song (first 20):"
+      orphaned_by_song.limit(20).each do |record|
+        artist = Artist.find_by(id: record.artist_id)
+        puts "  artist_id: #{record.artist_id} (#{artist&.name || 'MISSING'}) → song_id: #{record.song_id} (MISSING)"
+      end
+    end
+
+    if orphaned_by_artist.count.positive?
+      puts "\nSample orphaned-by-artist (first 20):"
+      orphaned_by_artist.limit(20).each do |record|
+        song = Song.find_by(id: record.song_id)
+        puts "  artist_id: #{record.artist_id} (MISSING) → song_id: #{record.song_id} (#{song&.title || 'MISSING'})"
+      end
+    end
+
+    total = orphaned_by_song.count + orphaned_by_artist.count
+    puts "\n#{'=' * 80}"
+    puts "Would delete #{total} orphaned artists_songs records."
+    puts "\nRun 'rake data_repair:cleanup_orphaned_artists_songs' to perform the cleanup."
   end
 
   desc 'Find duplicate artists by Spotify ID and fuzzy name matching. Usage: rake data_repair:find_duplicate_artists'

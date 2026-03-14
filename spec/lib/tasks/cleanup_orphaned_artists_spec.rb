@@ -41,6 +41,22 @@ describe 'data_repair:cleanup_orphaned_artists' do # rubocop:disable RSpec/Descr
           .to output(/No orphaned artists found/).to_stdout
       end
     end
+
+    context 'when an artist has orphaned join records but also valid songs' do
+      let!(:artist) { create(:artist, name: 'Taylor Swift') }
+
+      before do
+        create(:song, artists: [artist])
+        # Create orphaned artists_songs record by deleting the song directly
+        orphan_song = create(:song, artists: [artist])
+        Song.where(id: orphan_song.id).delete_all
+      end
+
+      it 'does not destroy the artist' do
+        expect { Rake::Task['data_repair:cleanup_orphaned_artists'].invoke }
+          .not_to change { Artist.find_by(id: artist.id) }
+      end
+    end
   end
 
   describe 'cleanup_orphaned_artists_dry_run' do
