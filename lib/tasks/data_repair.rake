@@ -678,6 +678,57 @@ namespace :data_repair do
     end
   end
 
+  desc 'Destroy artists that have no songs and no air plays. Usage: rake data_repair:cleanup_orphaned_artists'
+  task cleanup_orphaned_artists: :environment do
+    puts 'Finding orphaned artists (no songs, no air plays)...'
+    puts '=' * 80
+
+    orphaned_artists = Artist.left_joins(:songs).where(songs: { id: nil })
+    total = orphaned_artists.count
+
+    if total.zero?
+      puts 'No orphaned artists found.'
+      return
+    end
+
+    puts "Found #{total} orphaned artists to destroy\n\n"
+
+    destroyed_count = 0
+
+    orphaned_artists.find_each do |artist|
+      puts "  Destroying: ID #{artist.id} | #{artist.name}"
+      artist.destroy
+      destroyed_count += 1
+    end
+
+    puts "\n#{'=' * 80}"
+    puts "Destroyed #{destroyed_count} orphaned artists."
+  end
+
+  desc 'Dry run: Show orphaned artists that would be destroyed'
+  task cleanup_orphaned_artists_dry_run: :environment do
+    puts 'DRY RUN: Finding orphaned artists (no songs, no air plays)...'
+    puts '=' * 80
+
+    orphaned_artists = Artist.left_joins(:songs).where(songs: { id: nil })
+    total = orphaned_artists.count
+
+    if total.zero?
+      puts 'No orphaned artists found.'
+      return
+    end
+
+    puts "Found #{total} orphaned artists:\n\n"
+
+    orphaned_artists.find_each do |artist|
+      puts "  ID #{artist.id} | #{artist.name} | Spotify: #{artist.id_on_spotify || 'none'}"
+    end
+
+    puts "\n#{'=' * 80}"
+    puts "Would destroy #{total} orphaned artists."
+    puts "\nRun 'rake data_repair:cleanup_orphaned_artists' to perform the cleanup."
+  end
+
   # Helper methods
   def search_spotify_by_isrc(isrc)
     # Search Spotify for a track with this ISRC
