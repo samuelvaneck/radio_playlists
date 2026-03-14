@@ -688,7 +688,7 @@ namespace :data_repair do
 
     if total.zero?
       puts 'No orphaned artists found.'
-      return
+      next
     end
 
     puts "Found #{total} orphaned artists to destroy\n\n"
@@ -715,7 +715,7 @@ namespace :data_repair do
 
     if total.zero?
       puts 'No orphaned artists found.'
-      return
+      next
     end
 
     puts "Found #{total} orphaned artists:\n\n"
@@ -749,7 +749,7 @@ namespace :data_repair do
 
     if groups.empty?
       puts 'No duplicate artists found.'
-      return
+      next
     end
 
     puts "Found #{groups.count} duplicate groups\n\n"

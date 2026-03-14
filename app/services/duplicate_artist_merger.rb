@@ -164,11 +164,8 @@ class DuplicateArtistMerger
   def reassign_songs(source, target)
     source.artists_songs.each do |artists_song|
       existing = ArtistsSong.find_by(artist_id: target.id, song_id: artists_song.song_id)
-      if existing
-        artists_song.destroy
-      else
-        artists_song.update!(artist_id: target.id)
-      end
+      artists_song.destroy
+      ArtistsSong.create!(artist_id: target.id, song_id: artists_song.song_id) unless existing
     end
   end
 
