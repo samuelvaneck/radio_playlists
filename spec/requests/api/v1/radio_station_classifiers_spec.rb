@@ -14,8 +14,15 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
                 description: 'Filter by radio station ID'
       parameter name: :hour, in: :query, type: :integer, required: false,
                 description: 'Filter by hour (0-23)'
+      parameter name: :period, in: :query, type: :string, required: false,
+                description: 'Time period for analysis. Legacy: day, week, month, year. ' \
+                             'Granular: 1_day, 3_days, 2_weeks, 6_months, 1_year, etc.'
+      parameter name: :start_time, in: :query, type: :string, required: false,
+                description: 'Start time (ISO8601 or period string). Cannot be combined with period.'
+      parameter name: :end_time, in: :query, type: :string, required: false,
+                description: 'End time (ISO8601 or period string). Defaults to now.'
       parameter name: :time_period, in: :query, type: :string, required: false,
-                description: 'Time period for analysis (day, week, month, year). Defaults to day if not specified.'
+                description: 'Deprecated: use period instead. Time period for analysis (day, week, month, year).'
 
       response '200', 'Classifiers retrieved successfully' do
         example 'application/json', :example, {
@@ -287,7 +294,7 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
         end
       end
 
-      response '200', 'Classifiers filtered by time period' do
+      response '200', 'Classifiers filtered by time period (legacy time_period param)' do
         example 'application/json', :filtered_by_time_period, {
           data: [
             {
@@ -319,6 +326,24 @@ RSpec.describe 'RadioStationClassifiers API', type: :request do
         run_test! do |response|
           json = JSON.parse(response.body)
           # With time_period=week, only the recent air_play should be included (not the 2 weeks old one)
+          expect(json['data'].length).to eq(1)
+          expect(json['data'].first['attributes']['counter']).to eq(1)
+        end
+      end
+
+      response '200', 'Classifiers filtered by granular period param' do
+        let!(:radio_station) { create(:radio_station) }
+        let!(:song_recent) { create(:song, :with_music_profile) }
+        let!(:song_old) { create(:song, :with_music_profile) }
+        let!(:recent_air_play) { create(:air_play, :morning, song: song_recent, radio_station: radio_station) }
+        let!(:old_air_play) do
+          create(:air_play, song: song_old, radio_station: radio_station, broadcasted_at: 2.weeks.ago.change(hour: 10, min: 30))
+        end
+        let(:radio_station_id) { radio_station.id }
+        let(:period) { '3_days' }
+
+        run_test! do |response|
+          json = JSON.parse(response.body)
           expect(json['data'].length).to eq(1)
           expect(json['data'].first['attributes']['counter']).to eq(1)
         end
