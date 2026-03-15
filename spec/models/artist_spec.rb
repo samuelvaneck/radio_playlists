@@ -418,17 +418,17 @@ describe Artist do
       end
     end
 
-    context 'when ordering by similarity score' do
-      let!(:high_match) do
-        create(:artist, name: 'Oasis', genres: %w[rock britpop], lastfm_tags: %w[rock british], spotify_popularity: 50)
-      end
-      let!(:low_match) do
+    context 'when ordering by popularity' do
+      let!(:popular_match) do
         create(:artist, name: 'Jay-Z', genres: %w[pop], lastfm_tags: [], spotify_popularity: 95)
       end
+      let!(:unpopular_match) do
+        create(:artist, name: 'Oasis', genres: %w[rock britpop], lastfm_tags: %w[rock british], spotify_popularity: 50)
+      end
 
-      it 'ranks higher similarity above higher popularity', :aggregate_failures do
+      it 'ranks higher popularity above higher similarity', :aggregate_failures do
         results = artist.similar_artists
-        expect(results.index(high_match)).to be < results.index(low_match)
+        expect(results.index(popular_match)).to be < results.index(unpopular_match)
       end
     end
   end

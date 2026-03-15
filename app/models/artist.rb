@@ -110,7 +110,7 @@ class Artist < ApplicationRecord
         "COALESCE(cardinality(ARRAY(SELECT unnest(lastfm_tags) INTERSECT SELECT unnest(#{sanitized_sql_array(lastfm_tags)}))), 0) " \
         'AS similarity_score'
       )
-      .order(Arel.sql('similarity_score DESC, COALESCE(spotify_popularity, 0) DESC'))
+      .order(Arel.sql('COALESCE(spotify_popularity, 0) DESC, similarity_score DESC'))
       .limit(limit)
   end
 

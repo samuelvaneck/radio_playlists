@@ -115,8 +115,8 @@ module Api
       # Parameters:
       #   - limit (optional, default: 10): Maximum number of results (max: 20)
       #
-      # Returns artists with the most overlapping genres and Last.fm tags,
-      # using Spotify popularity as tiebreaker.
+      # Returns artists with overlapping genres and Last.fm tags,
+      # sorted by Spotify popularity, using similarity score as tiebreaker.
       def similar_artists
         results = artist.similar_artists(limit: similar_artists_limit)
         render json: ArtistSerializer.new(results).serializable_hash.to_json
