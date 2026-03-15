@@ -683,22 +683,23 @@ namespace :data_repair do
     puts 'Finding orphaned artists (no songs, no air plays)...'
     puts '=' * 80
 
-    orphaned_artists = Artist.where.not(id: ArtistsSong.where(song_id: Song.select(:id)).select(:artist_id))
-    total = orphaned_artists.count
+    orphaned_ids = orphaned_artist_ids
+    total = orphaned_ids.size
 
     if total.zero?
       puts 'No orphaned artists found.'
       next
     end
 
-    puts "Found #{total} orphaned artists to destroy\n\n"
+    puts "Found #{total} orphaned artists to destroy"
 
+    # Bulk-delete dependent records and artists in batches
     destroyed_count = 0
-
-    orphaned_artists.find_each do |artist|
-      puts "  Destroying: ID #{artist.id} | #{artist.name}"
-      artist.destroy
-      destroyed_count += 1
+    orphaned_ids.each_slice(1000) do |batch_ids|
+      ArtistsSong.where(artist_id: batch_ids).delete_all
+      ChartPosition.where(positianable_type: 'Artist', positianable_id: batch_ids).delete_all
+      destroyed_count += Artist.where(id: batch_ids).delete_all
+      puts "  Destroyed #{destroyed_count}/#{total}..."
     end
 
     puts "\n#{'=' * 80}"
@@ -710,19 +711,21 @@ namespace :data_repair do
     puts 'DRY RUN: Finding orphaned artists (no songs, no air plays)...'
     puts '=' * 80
 
-    orphaned_artists = Artist.where.not(id: ArtistsSong.where(song_id: Song.select(:id)).select(:artist_id))
-    total = orphaned_artists.count
+    orphaned_ids = orphaned_artist_ids
+    total = orphaned_ids.size
 
     if total.zero?
       puts 'No orphaned artists found.'
       next
     end
 
-    puts "Found #{total} orphaned artists:\n\n"
+    puts "Found #{total} orphaned artists\n\n"
 
-    orphaned_artists.find_each do |artist|
+    puts 'Sample (first 20):'
+    Artist.where(id: orphaned_ids.first(20)).find_each do |artist|
       puts "  ID #{artist.id} | #{artist.name} | Spotify: #{artist.id_on_spotify || 'none'}"
     end
+    puts "  ... and #{total - 20} more" if total > 20
 
     puts "\n#{'=' * 80}"
     puts "Would destroy #{total} orphaned artists."
@@ -951,6 +954,16 @@ namespace :data_repair do
   end
 
   # Helper methods
+  def orphaned_artist_ids
+    Artist.where(<<~SQL.squish).pluck(:id)
+      NOT EXISTS (
+        SELECT 1 FROM artists_songs
+        INNER JOIN songs ON songs.id = artists_songs.song_id
+        WHERE artists_songs.artist_id = artists.id
+      )
+    SQL
+  end
+
   def search_spotify_by_isrc(isrc)
     # Search Spotify for a track with this ISRC
     search_url = URI("https://api.spotify.com/v1/search?q=isrc:#{isrc}&type=track&limit=1")
