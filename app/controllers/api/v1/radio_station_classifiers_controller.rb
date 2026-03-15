@@ -4,7 +4,7 @@ module Api
   module V1
     class RadioStationClassifiersController < ApiController
       def index
-        start_time, end_time = time_range_from_period
+        start_time, end_time = classifiers_time_range
 
         hour = params[:hour].presence&.to_i
 
@@ -42,12 +42,16 @@ module Api
 
       private
 
-      def time_range_from_period
-        period = params[:time_period]
-        duration = PeriodParser.parse_duration(period) if period.present?
-        return [nil, nil] unless duration
+      def classifiers_time_range
+        normalized_params = normalize_time_params
+        return [nil, nil] if normalized_params[:period].blank? && normalized_params[:start_time].blank?
 
-        [duration.ago, Time.current]
+        RadioStation.time_range_from_params(normalized_params, default_period: 'day')
+      end
+
+      def normalize_time_params
+        period = params[:period] || params[:time_period]
+        { period:, start_time: params[:start_time], end_time: params[:end_time] }
       end
     end
   end
