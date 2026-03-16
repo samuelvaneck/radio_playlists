@@ -1131,6 +1131,48 @@ namespace :data_repair do
     d[m][n]
   end
 
+  desc 'Split a combined artist into individual artists. Usage: rake data_repair:split_combined_artist[1037]'
+  task :split_combined_artist, [:artist_id] => :environment do |_t, args|
+    abort 'Please provide an artist ID' if args[:artist_id].blank?
+
+    artist = Artist.find(args[:artist_id])
+    puts "Splitting combined artist: '#{artist.name}' (ID: #{artist.id})"
+    puts "  Songs: #{artist.songs.count}"
+    puts "  Chart positions: #{artist.chart_positions.count}"
+
+    splitter = CombinedArtistSplitter.new(artist)
+    individual_artists = splitter.split
+
+    puts "\nSplit into #{individual_artists.size} artists:"
+    individual_artists.each do |a|
+      puts "  - '#{a.name}' (ID: #{a.id}, songs: #{a.songs.count})"
+    end
+    puts "\nDone! Combined artist '#{artist.name}' has been removed."
+  end
+
+  desc 'Dry run: Show what a combined artist split would do. Usage: rake data_repair:split_combined_artist_dry_run[1037]'
+  task :split_combined_artist_dry_run, [:artist_id] => :environment do |_t, args|
+    abort 'Please provide an artist ID' if args[:artist_id].blank?
+
+    artist = Artist.find(args[:artist_id])
+    regex = Regexp.new(Song::MULTIPLE_ARTIST_REGEX, Regexp::IGNORECASE)
+    names = artist.name.split(regex).map(&:strip).reject(&:blank?)
+
+    puts "Combined artist: '#{artist.name}' (ID: #{artist.id})"
+    puts "  Songs: #{artist.songs.count}"
+    puts "  Chart positions: #{artist.chart_positions.count}"
+    puts "\nWould split into:"
+    names.each do |name|
+      existing = Artist.find_by(name:)
+      if existing
+        puts "  - '#{name}' (existing, ID: #{existing.id}, songs: #{existing.songs.count})"
+      else
+        puts "  - '#{name}' (new artist, will be created)"
+      end
+    end
+    puts "\nRun 'rake data_repair:split_combined_artist[#{artist.id}]' to perform the split."
+  end
+
   def print_mismatch_report(mismatches)
     if mismatches.empty?
       puts 'No mismatches found. All verified songs match Spotify data.'
