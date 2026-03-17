@@ -74,6 +74,32 @@ describe SongImporter do
       end
     end
 
+    context 'when scraper cannot be enriched and recognizer returns the same song' do
+      let(:recognizer) do
+        instance_double(
+          SongRecognizer,
+          title: 'Test Song',
+          artist_name: 'Test Artist',
+          spotify_url: nil,
+          isrc_code: nil,
+          broadcasted_at: Time.current,
+          is_a?: false
+        )
+      end
+
+      before do
+        allow(TrackScraper::NpoApiProcessor).to receive(:new).and_return(scraper)
+        allow(importer).to receive(:recognize_song).and_return(recognizer)
+        allow(importer).to receive_messages(track: nil, artists: [artist], song: song, create_air_play: true,
+                                            deezer_track: nil, itunes_track: nil)
+      end
+
+      it 'ignores the recognizer result and uses scraper data as last resort' do
+        importer.import
+        expect(importer.instance_variable_get(:@played_song)).to eq(scraper)
+      end
+    end
+
     context 'when scraper cannot be enriched and recognizer also fails' do
       before do
         allow(TrackScraper::NpoApiProcessor).to receive(:new).and_return(scraper)
