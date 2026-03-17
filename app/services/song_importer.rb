@@ -51,11 +51,25 @@ class SongImporter
 
   private
 
-  def title = @title ||= @played_song.title
-  def artist_name = @artist_name ||= @played_song.artist_name
-  def spotify_url = @spotify_url ||= @played_song.spotify_url
-  def isrc_code = @isrc_code ||= @played_song.isrc_code
-  def broadcasted_at = @broadcasted_at ||= @played_song.broadcasted_at
+  def title
+    @title ||= @played_song.title
+  end
+
+  def artist_name
+    @artist_name ||= @played_song.artist_name
+  end
+
+  def spotify_url
+    @spotify_url ||= @played_song.spotify_url
+  end
+
+  def isrc_code
+    @isrc_code ||= @played_song.isrc_code
+  end
+
+  def broadcasted_at
+    @broadcasted_at ||= @played_song.broadcasted_at
+  end
 
   def artists
     @artists ||= TrackExtractor::ArtistsExtractor.new(played_song: @played_song, track:).extract
