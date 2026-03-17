@@ -94,9 +94,11 @@ describe SongImporter do
                                             deezer_track: nil, itunes_track: nil)
       end
 
-      it 'ignores the recognizer result and uses scraper data as last resort' do
+      it 'ignores the recognizer result and uses scraper data' do
+        played_songs = []
+        allow(importer).to receive(:create_air_play) { played_songs << importer.instance_variable_get(:@played_song) }
         importer.import
-        expect(importer.instance_variable_get(:@played_song)).to eq(scraper)
+        expect(played_songs.last).to eq(scraper)
       end
     end
 
@@ -104,13 +106,15 @@ describe SongImporter do
       before do
         allow(TrackScraper::NpoApiProcessor).to receive(:new).and_return(scraper)
         allow(importer).to receive_messages(track: nil, recognize_song: nil,
-                                            artists: [artist], song: song, create_air_play: true,
+                                            artists: [artist], song: song,
                                             deezer_track: nil, itunes_track: nil)
       end
 
       it 'uses scraper data as last resort' do
+        played_songs = []
+        allow(importer).to receive(:create_air_play) { played_songs << importer.instance_variable_get(:@played_song) }
         importer.import
-        expect(importer.instance_variable_get(:@played_song)).to eq(scraper)
+        expect(played_songs.last).to eq(scraper)
       end
     end
 
