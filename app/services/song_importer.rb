@@ -15,7 +15,7 @@ class SongImporter
 
   def import
     safe_start_log
-    @played_song = scrape_song || recognize_song
+    @played_song = scrape_song_with_enrichment_fallback || recognize_song
 
     if @played_song.blank?
       Broadcaster.no_importing_song
@@ -51,25 +51,11 @@ class SongImporter
 
   private
 
-  def title
-    @title ||= @played_song.title
-  end
-
-  def artist_name
-    @artist_name ||= @played_song.artist_name
-  end
-
-  def spotify_url
-    @spotify_url ||= @played_song.spotify_url
-  end
-
-  def isrc_code
-    @isrc_code ||= @played_song.isrc_code
-  end
-
-  def broadcasted_at
-    @broadcasted_at ||= @played_song.broadcasted_at
-  end
+  def title = @title ||= @played_song.title
+  def artist_name = @artist_name ||= @played_song.artist_name
+  def spotify_url = @spotify_url ||= @played_song.spotify_url
+  def isrc_code = @isrc_code ||= @played_song.isrc_code
+  def broadcasted_at = @broadcasted_at ||= @played_song.broadcasted_at
 
   def artists
     @artists ||= TrackExtractor::ArtistsExtractor.new(played_song: @played_song, track:).extract
@@ -77,6 +63,31 @@ class SongImporter
 
   def song
     @song ||= TrackExtractor::SongExtractor.new(played_song: @played_song, track:, artists:).extract
+  end
+
+  def scrape_song_with_enrichment_fallback
+    scraped = scrape_song
+    return nil if scraped.nil?
+
+    @played_song = scraped
+    return scraped if track.present?
+
+    # Scraper data couldn't be enriched, try recognizer instead
+    @import_logger.skip_log(reason: "Scraped song '#{scraped.artist_name} - #{scraped.title}' could not be enriched, falling back to recognizer")
+    clear_track_data
+    recognized = recognize_song
+    return recognized if recognized && !same_song?(scraped, recognized)
+
+    # Recognizer also failed, use scraper data as last resort
+    clear_track_data
+    @played_song = scraped
+    scraped
+  end
+
+  def same_song?(scraped, recognized)
+    artist_similarity = JaroWinkler.similarity(scraped.artist_name.to_s.downcase, recognized.artist_name.to_s.downcase) * 100
+    title_similarity = JaroWinkler.similarity(scraped.title.to_s.downcase, recognized.title.to_s.downcase) * 100
+    artist_similarity >= 80 && title_similarity >= 70
   end
 
   def scrape_song
@@ -117,21 +128,15 @@ class SongImporter
     Rails.logger.error("Failed to create song import log: #{e.message}")
   end
 
+  def clear_track_data
+    @track = @spotify_track = @deezer_track = @itunes_track = nil
+    @title = @artist_name = @spotify_url = @isrc_code = @broadcasted_at = nil
+    @artists = @song = @scraper_import = nil
+  end
+
   def clear_instance_variables
     @played_song = nil
-    @title = nil
-    @artist_name = nil
-    @spotify_url = nil
-    @isrc_code = nil
-    @broadcasted_at = nil
-    @artists = nil
-    @song = nil
-    @track = nil
-    @spotify_track = nil
-    @deezer_track = nil
-    @itunes_track = nil
-    @scraper_import = nil
-    @importer = nil
-    @matching = nil
+    clear_track_data
+    @importer = @matching = nil
   end
 end
