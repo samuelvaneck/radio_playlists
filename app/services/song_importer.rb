@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class SongImporter
+  include SongImporter::Concerns::AudioRecognition
+  include SongImporter::Concerns::TrackFinding
+  include SongImporter::Concerns::AirPlayCreation
+  include SongImporter::Concerns::ArtistUpdating
+
   attr_reader :radio_station, :import_logger
 
   def initialize(radio_station:)
@@ -74,93 +79,6 @@ class SongImporter
     @song ||= TrackExtractor::SongExtractor.new(played_song: @played_song, track:, artists:).extract
   end
 
-  def track
-    @track ||= spotify_track_if_valid || itunes_track_if_valid || deezer_track_if_valid
-  end
-
-  def spotify_track_if_valid
-    result = spotify_track
-    result&.valid_match? ? result : nil
-  end
-
-  def itunes_track_if_valid
-    result = itunes_track
-    result&.valid_match? ? result : nil
-  end
-
-  def deezer_track_if_valid
-    result = deezer_track
-    result&.valid_match? ? result : nil
-  end
-
-  def spotify_track
-    @spotify_track ||= begin
-      result = TrackExtractor::SpotifyTrackFinder.new(played_song: @played_song).find
-      @import_logger.log_spotify(result) if result
-      result
-    end
-  end
-
-  def deezer_track
-    @deezer_track ||= begin
-      result = TrackExtractor::DeezerTrackFinder.new(played_song: @played_song).find
-      @import_logger.log_deezer(result) if result&.valid_match?
-      result
-    end
-  end
-
-  def itunes_track
-    @itunes_track ||= begin
-      result = TrackExtractor::ItunesTrackFinder.new(played_song: @played_song).find
-      @import_logger.log_itunes(result) if result&.valid_match?
-      result
-    end
-  end
-
-  def recognize_song
-    output_file = @radio_station.audio_file_path
-    audio_stream = build_audio_stream(output_file)
-
-    begin
-      audio_stream.capture
-    rescue PersistentStream::SegmentReader::NoSegmentError, PersistentStream::SegmentReader::StaleSegmentError => e
-      Rails.logger.warn "Persistent segment unavailable for #{@radio_station.name}, falling back to Icecast: #{e.message}"
-      audio_stream = build_icecast_stream(output_file)
-      audio_stream.capture
-    end
-
-    songrec = SongRecognizer.new(@radio_station, audio_stream:, skip_cleanup: true)
-    songrec_result = songrec.recognized?
-    @import_logger.log_recognition(songrec) if songrec_result
-
-    acoustid = AcoustidRecognizer.new(output_file)
-    acoustid.recognized?
-    @import_logger.log_acoustid(acoustid)
-
-    songrec_result ? songrec : nil
-  ensure
-    audio_stream&.delete_file
-  end
-
-  def build_audio_stream(output_file)
-    return AudioStream::PersistentSegment.new(@radio_station, output_file) if persistent_segment_available?
-
-    build_icecast_stream(output_file)
-  end
-
-  def build_icecast_stream(output_file)
-    extension = @radio_station.direct_stream_url.split(/\.|-/).last
-    if extension.match?(/m3u8/)
-      AudioStream::M3u8.new(@radio_station.direct_stream_url, output_file)
-    else
-      AudioStream::Mp3.new(@radio_station.direct_stream_url, output_file)
-    end
-  end
-
-  def persistent_segment_available?
-    @radio_station.direct_stream_url.present? && PersistentStream::SegmentReader.new(@radio_station).available?
-  end
-
   def scrape_song
     return nil if @radio_station.url.blank? || @radio_station.processor.blank?
 
@@ -180,108 +98,6 @@ class SongImporter
     @scraper_import ||= @played_song.is_a?(TrackScraper)
   end
 
-  def create_air_play
-    @importer = if scraper_import
-                  SongImporter::ScraperImporter.new(radio_station: @radio_station, artists:, song:)
-                else
-                  SongImporter::RecognizerImporter.new(radio_station: @radio_station, artists:, song:)
-                end
-    if @importer.may_import_song?
-      add_song
-    else
-      @importer.broadcast_error_message
-      @import_logger.skip_log(reason: 'Song already imported recently or matches last played song')
-    end
-  end
-
-  def safe_start_log
-    @import_logger.start_log
-  rescue StandardError => e
-    Rails.logger.error("Failed to create song import log: #{e.message}")
-  end
-
-  def add_song
-    added_air_play = find_or_create_air_play
-    finalize_song_import(added_air_play)
-  end
-
-  def find_or_create_air_play
-    existing_draft = AirPlay.find_draft_for_confirmation(@radio_station, song, broadcasted_at)
-
-    if existing_draft
-      confirm_existing_draft(existing_draft)
-    else
-      create_new_air_play
-    end
-  end
-
-  def confirm_existing_draft(draft)
-    if draft.song_id != song.id
-      old_song = draft.song
-      draft.update!(song:, broadcasted_at:)
-      old_song.cleanup
-    end
-    draft.confirmed!
-    Broadcaster.song_confirmed(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
-    draft
-  end
-
-  def create_new_air_play
-    status = scraper_import ? :confirmed : :draft
-    air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import, status:)
-    if scraper_import
-      Broadcaster.song_confirmed(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
-    else
-      Broadcaster.song_draft_created(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
-    end
-    air_play
-  end
-
-  def finalize_song_import(air_play)
-    @import_logger.complete_log(song:, air_play:)
-    @radio_station.update_last_added_air_play_ids(air_play.id)
-    song.update_artists(artists) if should_update_artists?
-    @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song:)
-    MusicProfileJob.perform_async(song.id, @radio_station.id)
-    SongExternalIdsEnrichmentJob.perform_async(song.id)
-  end
-
-  def different_artists?
-    @song.artist_ids.sort != Array.wrap(@artists).map(&:id).sort
-  end
-
-  # Only update artists if the song doesn't have artists with Spotify IDs yet,
-  # OR if the new artists come from the same Spotify track as the song.
-  # This prevents race conditions where concurrent imports overwrite each other's artist data,
-  # while allowing correction of wrong artists when authoritative Spotify data is available.
-  def should_update_artists?
-    return false unless different_artists?
-
-    # If song has no artists, always update
-    return true if @song.artists.blank?
-
-    # If song's existing artists don't have Spotify IDs, update with new data
-    # (this means the song was imported without Spotify data initially)
-    return true if @song.artists.none? { |artist| artist.id_on_spotify.present? }
-
-    # If new artists come from a Spotify track that matches the song's stored Spotify ID,
-    # allow the update. This corrects wrong artists that were locked in by a previous import.
-    new_artists_from_spotify? && matching_spotify_track?
-  end
-
-  def new_artists_from_spotify?
-    Array.wrap(@artists).any? { |artist| artist.id_on_spotify.present? }
-  end
-
-  # Check if the current import's Spotify track matches the song's stored Spotify ID.
-  # Uses @track directly (already computed earlier in the import flow) to avoid side effects.
-  def matching_spotify_track?
-    return false if @track.blank? || !@track.respond_to?(:spotify_song_url) || @track.id.blank?
-    return false if @song.id_on_spotify.blank?
-
-    @track.id == @song.id_on_spotify
-  end
-
   def artists_names
     Array.wrap(artists).map(&:name).join(', ')
   end
@@ -293,6 +109,12 @@ class SongImporter
   ### check if any song played last hour matches the song we are importing
   def any_song_matches?
     @matching = SongImporter::Matcher.new(radio_station: @radio_station, song: @song).matches_any_played_last_hour?
+  end
+
+  def safe_start_log
+    @import_logger.start_log
+  rescue StandardError => e
+    Rails.logger.error("Failed to create song import log: #{e.message}")
   end
 
   def clear_instance_variables
