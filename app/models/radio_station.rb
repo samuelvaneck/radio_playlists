@@ -5,6 +5,7 @@
 # Table name: radio_stations
 #
 #  id                      :bigint           not null, primary key
+#  avg_song_gap_per_hour   :jsonb
 #  country_code            :string
 #  direct_stream_url       :string
 #  genre                   :string
@@ -154,6 +155,16 @@ class RadioStation < ActiveRecord::Base
     update(last_added_air_play_ids: current_last_added_air_play_ids)
   end
 
+  def calculate_avg_song_gap_per_hour(days: 7)
+    averages = gaps_by_hour(days).transform_values { |gaps| (gaps.sum.to_f / gaps.size).round }
+    update(avg_song_gap_per_hour: averages)
+    averages
+  end
+
+  def expected_song_gap(hour: Time.current.utc.hour)
+    avg_song_gap_per_hour&.fetch(hour.to_s, nil)
+  end
+
   def data
     {
       id: id,
@@ -165,5 +176,24 @@ class RadioStation < ActiveRecord::Base
       last_added_air_play_ids: last_added_air_play_ids,
       last_played_song: AirPlaySerializer.new(last_added_air_plays).serializable_hash
     }
+  end
+
+  private
+
+  def gaps_by_hour(days)
+    broadcasted_at_timestamps(days).each_cons(2)
+      .each_with_object(Hash.new { |h, k| h[k] = [] }) do |(prev_time, next_time), result|
+        gap_seconds = (next_time - prev_time).to_i
+        next if gap_seconds > 900
+
+        result[prev_time.utc.hour] << gap_seconds
+      end
+  end
+
+  def broadcasted_at_timestamps(days)
+    air_plays
+      .where(broadcasted_at: days.days.ago..Time.current)
+      .order(:broadcasted_at)
+      .pluck(:broadcasted_at)
   end
 end
