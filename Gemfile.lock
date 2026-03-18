@@ -84,7 +84,6 @@ GEM
     base64 (0.3.0)
     bcrypt (3.1.21)
     bigdecimal (4.0.1)
-    bindex (0.8.1)
     bootsnap (1.23.0)
       msgpack (~> 1.2)
     brakeman (8.0.4)
@@ -144,7 +143,6 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
-    execjs (2.10.0)
     factory_bot (6.5.5)
       activesupport (>= 6.1.0)
     factory_bot_rails (6.5.1)
@@ -513,13 +511,8 @@ GEM
     timecop (0.9.10)
     timeout (0.6.0)
     tsort (0.2.0)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.1)
-      execjs (>= 0.3.0, < 3)
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.2.0)
@@ -534,10 +527,6 @@ GEM
       dry-configurable (>= 0.13, < 2)
       jwt (>= 2.1, < 4)
       warden (~> 1.2)
-    web-console (4.3.0)
-      actionview (>= 8.0.0)
-      bindex (>= 0.4.0)
-      railties (>= 8.0.0)
     webmock (3.26.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -634,11 +623,8 @@ DEPENDENCIES
   spring
   stackprof
   timecop
-  turbolinks
-  uglifier
   uri (~> 1.1.1)
   vcr
-  web-console
   webmock
   will_paginate
 
