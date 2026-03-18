@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Radio Playlists is a Ruby on Rails 8 API application that monitors Dutch radio stations, recognizes/scrapes songs, enriches them with Spotify/YouTube data, and generates charts. Uses Sidekiq for background job processing.
+Radio Playlists is a Ruby on Rails 8 API-only application that monitors Dutch radio stations, recognizes/scrapes songs, enriches them with Spotify/YouTube data, and generates charts. Uses Sidekiq for background job processing.
 
 ## Common Commands
 
@@ -33,6 +33,13 @@ docker-compose up                           # Full stack with Docker
 # Persistent Streams
 bundle exec rake persistent_streams:start   # Start stream manager (blocking)
 bundle exec rake persistent_streams:status  # Show per-station status
+
+# Data Repair
+bundle exec rake data_repair:verify_songs[limit]              # Detect Spotify mismatches
+bundle exec rake data_repair:fix_songs[limit]                 # Auto-fix mismatched songs
+bundle exec rake data_repair:merge_duplicate_isrcs             # Merge songs with same ISRC
+bundle exec rake data_repair:find_fuzzy_duplicates             # Find fuzzy song duplicates
+bundle exec rake optimization:vacuum                           # PostgreSQL VACUUM FULL ANALYZE
 ```
 
 ## Architecture
@@ -40,7 +47,7 @@ bundle exec rake persistent_streams:status  # Show per-station status
 ### Service-Oriented Design
 
 The app uses service objects extensively in `app/services/`:
-- `SongImporter` - Orchestrates song import workflow (matcher, recognizer, scraper sub-services)
+- `SongImporter` - Orchestrates song import workflow, split into concerns: `AudioRecognition`, `TrackFinding`, `AirPlayCreation`, `ArtistUpdating` (in `app/services/song_importer/concerns/`)
 - `SongRecognizer` - Shazam-based audio fingerprinting via SongRec
 - `AcoustidRecognizer` - Chromaprint + AcoustID API fingerprinting
 - `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis)
@@ -51,6 +58,9 @@ The app uses service objects extensively in `app/services/`:
 - `MusicBrainz/` - ISRCs enrichment for songs
 - `AudioStream/` - M3U8, MP3, and PersistentSegment stream handling
 - `PersistentStream/` - Long-lived ffmpeg processes for ad-free stream capture (see below)
+- `CombinedArtistSplitter` - Splits combined artist names (e.g., "Artist feat. Artist2") into individual Artist records
+- `DuplicateArtistMerger` - Finds and merges duplicate artists via Spotify ID or fuzzy name matching (Jaro-Winkler, threshold: 92)
+- `DuplicateSongMerger` - Finds and merges duplicate songs via Spotify ID or fuzzy title matching (Jaro-Winkler, threshold: 92)
 
 ### Background Jobs
 
@@ -116,6 +126,7 @@ Located in `app/models/concerns/`:
 - `DateConcern` - Date filtering utilities
 - `TimeAnalyticsConcern` - Temporal analysis
 - `LifecycleConcern` - Model lifecycle callbacks
+- `PeriodParser` - Parses granular time ranges (`1_day`, `7_days`, `4_weeks`, `1_year`, etc.) into durations and aggregation patterns for charts and analytics
 
 ## Code Style
 
@@ -169,6 +180,7 @@ This tells RuboCop that the expectations are intentionally grouped, and RSpec wi
 
 RESTful JSON API under `/api/v1/`:
 - `songs`, `artists`, `air_plays`, `radio_stations`, `charts`
+- `GET /api/v1/artists/:id/similar_artists` — Returns artists with overlapping genres/Last.fm tags, sorted by similarity score then Spotify popularity
 - Admin endpoints with JWT authentication (Devise)
 - Swagger docs available at `/api-docs` (rswag)
 
@@ -179,6 +191,7 @@ RESTful JSON API under `/api/v1/`:
 **Query parameters:**
 - `type` — `songs` (default) or `artists`
 - `date` — specific chart date (`YYYY-MM-DD`), defaults to latest available
+- `period` — granular time range (`1_day`, `7_days`, `4_weeks`, `1_year`, etc.), parsed by `PeriodParser`
 - `page` — pagination (24 items per page)
 
 Each entry includes `previous_position` (from the prior day's chart) for movement indicators. Returns `null` for new entries not on the previous chart. Uses `ChartPositionSerializer` with nested `SongSerializer`/`ArtistSerializer`.
