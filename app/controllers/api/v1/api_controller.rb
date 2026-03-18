@@ -2,11 +2,7 @@
 
 module Api
   module V1
-    class ApiController < ActionController::Base
-      # Prevent CSRF attacks by raising an exception.
-      # For APIs, you may want to use :null_session instead
-      protect_from_forgery with: :null_session
-
+    class ApiController < ActionController::API
       rescue_from DateConcern::ConflictingTimeParametersError, with: :render_conflicting_params_error
 
       private
