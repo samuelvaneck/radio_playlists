@@ -155,11 +155,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def calculate_avg_song_gap_per_hour(days: 7)
-    gaps_by_hour = air_plays
-                     .where(broadcasted_at: days.days.ago..Time.current)
-                     .order(:broadcasted_at)
-                     .pluck(:broadcasted_at)
-                     .each_cons(2)
+    gaps_by_hour = broadcasted_at_timestamps(days).each_cons(2)
                      .each_with_object(Hash.new { |h, k| h[k] = [] }) do |(prev_time, next_time), gaps|
                        gap_seconds = (next_time - prev_time).to_i
                        next if gap_seconds > 900
@@ -188,5 +184,14 @@ class RadioStation < ActiveRecord::Base
       last_added_air_play_ids: last_added_air_play_ids,
       last_played_song: AirPlaySerializer.new(last_added_air_plays).serializable_hash
     }
+  end
+
+  private
+
+  def broadcasted_at_timestamps(days)
+    air_plays
+      .where(broadcasted_at: days.days.ago..Time.current)
+      .order(:broadcasted_at)
+      .pluck(:broadcasted_at)
   end
 end
