@@ -5,6 +5,7 @@
 # Table name: radio_stations
 #
 #  id                      :bigint           not null, primary key
+#  avg_song_gap_per_hour   :jsonb
 #  country_code            :string
 #  direct_stream_url       :string
 #  genre                   :string
@@ -155,16 +156,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def calculate_avg_song_gap_per_hour(days: 7)
-    gaps_by_hour = broadcasted_at_timestamps(days).each_cons(2)
-                     .each_with_object(Hash.new { |h, k| h[k] = [] }) do |(prev_time, next_time), gaps|
-                       gap_seconds = (next_time - prev_time).to_i
-                       next if gap_seconds > 900
-
-                       hour = prev_time.hour
-                       gaps[hour] << gap_seconds
-                     end
-
-    averages = gaps_by_hour.transform_values { |gaps| (gaps.sum.to_f / gaps.size).round }
+    averages = gaps_by_hour(days).transform_values { |gaps| (gaps.sum.to_f / gaps.size).round }
     update(avg_song_gap_per_hour: averages)
     averages
   end
@@ -187,6 +179,16 @@ class RadioStation < ActiveRecord::Base
   end
 
   private
+
+  def gaps_by_hour(days)
+    broadcasted_at_timestamps(days).each_cons(2)
+      .each_with_object(Hash.new { |h, k| h[k] = [] }) do |(prev_time, next_time), result|
+        gap_seconds = (next_time - prev_time).to_i
+        next if gap_seconds > 900
+
+        result[prev_time.hour] << gap_seconds
+      end
+  end
 
   def broadcasted_at_timestamps(days)
     air_plays

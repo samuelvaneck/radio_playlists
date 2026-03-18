@@ -5,6 +5,7 @@
 # Table name: radio_stations
 #
 #  id                      :bigint           not null, primary key
+#  avg_song_gap_per_hour   :jsonb
 #  country_code            :string
 #  direct_stream_url       :string
 #  genre                   :string
