@@ -127,7 +127,7 @@ RadioStation.seed(
     name: 'Yoursafe Radio',
     url: '',
     processor: '',
-    direct_stream_url: 'https://stream.yoursaferadio.nl/audio',
+    direct_stream_url: 'https://4e2623dcced8.eu-central-1.playback.live-video.net/api/video/v1/eu-central-1.384301552878.channel.qoqD1R97L2kw.m3u8',
     slug: 'yoursafe-radio',
     country_code: 'NLD'
   },
