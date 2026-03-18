@@ -356,6 +356,46 @@ describe RadioStation, :use_vcr, :with_valid_token do
     end
   end
 
+  describe '#audio_file_name' do
+    it 'returns downcased name with non-word characters removed' do
+      radio_station = build(:radio_station, name: 'Radio 538')
+
+      expect(radio_station.audio_file_name).to eq('radio538')
+    end
+
+    context 'when name contains special characters' do
+      it 'strips all non-word characters' do
+        radio_station = build(:radio_station, name: 'Q-Music!')
+
+        expect(radio_station.audio_file_name).to eq('qmusic')
+      end
+    end
+
+    context 'when name is nil' do
+      it 'returns nil' do
+        radio_station = build(:radio_station, name: nil)
+
+        expect(radio_station.audio_file_name).to be_nil
+      end
+    end
+  end
+
+  describe '#audio_file_path' do
+    it 'returns a path under tmp/audio with the sanitized name' do
+      radio_station = build(:radio_station, name: 'Radio 538')
+
+      expect(radio_station.audio_file_path).to eq(Rails.root.join('tmp/audio/radio538.mp3'))
+    end
+
+    context 'when name contains special characters' do
+      it 'returns a clean file path' do
+        radio_station = build(:radio_station, name: 'Q-Music!')
+
+        expect(radio_station.audio_file_path).to eq(Rails.root.join('tmp/audio/qmusic.mp3'))
+      end
+    end
+  end
+
   describe '#npo_api_processor' do
     let(:radio_1) { described_class.find_by(name: 'Radio 1') || create(:radio_1) }
 
