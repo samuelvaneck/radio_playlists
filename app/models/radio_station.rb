@@ -161,7 +161,7 @@ class RadioStation < ActiveRecord::Base
     averages
   end
 
-  def expected_song_gap(hour: Time.current.hour)
+  def expected_song_gap(hour: Time.current.utc.hour)
     avg_song_gap_per_hour&.fetch(hour.to_s, nil)
   end
 
@@ -186,7 +186,7 @@ class RadioStation < ActiveRecord::Base
         gap_seconds = (next_time - prev_time).to_i
         next if gap_seconds > 900
 
-        result[prev_time.hour] << gap_seconds
+        result[prev_time.utc.hour] << gap_seconds
       end
   end
 
