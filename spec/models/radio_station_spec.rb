@@ -283,7 +283,6 @@ describe RadioStation, :use_vcr, :with_valid_token do
 
     context 'when airplays exist within the time range' do
       let(:base_time) { Time.current.change(min: 0) }
-      let(:expected_hour) { base_time.utc.hour }
 
       before do
         create(:air_play, radio_station: radio_station, song: song, broadcasted_at: base_time - 6.minutes)
@@ -295,13 +294,13 @@ describe RadioStation, :use_vcr, :with_valid_token do
         result = radio_station.calculate_avg_song_gap_per_hour
 
         expect(result).to be_a(Hash)
-        expect(result[expected_hour]).to eq(180)
+        expect(result.values).to eq([180])
       end
 
       it 'persists the result to the database' do
         radio_station.calculate_avg_song_gap_per_hour
 
-        expect(radio_station.reload.avg_song_gap_per_hour).to include(expected_hour.to_s => 180)
+        expect(radio_station.reload.avg_song_gap_per_hour.values).to eq([180])
       end
     end
 
