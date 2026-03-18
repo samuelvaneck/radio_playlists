@@ -124,7 +124,7 @@ class RadioStation < ActiveRecord::Base
   end
 
   def audio_file_path
-    Rails.root.join("tmp/audio/#{audio_file_name}.mp3")
+    Rails.root.join("tmp/audio/persistent/#{audio_file_name}.mp3")
   end
 
   def logo_path

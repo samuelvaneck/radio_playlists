@@ -384,14 +384,14 @@ describe RadioStation, :use_vcr, :with_valid_token do
     it 'returns a path under tmp/audio with the sanitized name' do
       radio_station = build(:radio_station, name: 'Radio 538')
 
-      expect(radio_station.audio_file_path).to eq(Rails.root.join('tmp/audio/radio538.mp3'))
+      expect(radio_station.audio_file_path).to eq(Rails.root.join('tmp/audio/persistent/radio538.mp3'))
     end
 
     context 'when name contains special characters' do
       it 'returns a clean file path' do
         radio_station = build(:radio_station, name: 'Q-Music!')
 
-        expect(radio_station.audio_file_path).to eq(Rails.root.join('tmp/audio/qmusic.mp3'))
+        expect(radio_station.audio_file_path).to eq(Rails.root.join('tmp/audio/persistent/qmusic.mp3'))
       end
     end
   end
