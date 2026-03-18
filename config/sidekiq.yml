@@ -53,6 +53,10 @@
         cron: '0 4 * * 0' # weekly Sunday 4am
         queue: low
         enabled: true
+      AvgSongGapCalculationJob:
+        cron: '0 5 * * *' # daily at 5am
+        queue: low
+        enabled: true
   :sidekiq_default_hooks: true
   :sidekiq_pid: File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid')
   :sidekiq_env: fetch(:rack_env, fetch(:rails_env, fetch(:stage)))

@@ -277,6 +277,86 @@ describe RadioStation, :use_vcr, :with_valid_token do
     end
   end
 
+  describe '#calculate_avg_song_gap_per_hour' do
+    let(:song) { create(:song) }
+
+    context 'when airplays exist within the time range' do
+      before do
+        now = Time.current.change(hour: 14, min: 0)
+        travel_to(now) do
+          create(:air_play, radio_station: radio_station, song: song, broadcasted_at: now - 6.minutes)
+          create(:air_play, radio_station: radio_station, broadcasted_at: now - 3.minutes)
+          create(:air_play, radio_station: radio_station, broadcasted_at: now)
+        end
+      end
+
+      it 'calculates the average gap in seconds per hour', :aggregate_failures do
+        result = radio_station.calculate_avg_song_gap_per_hour
+
+        expect(result).to be_a(Hash)
+        expect(result[14]).to eq(180)
+      end
+
+      it 'persists the result to the database' do
+        radio_station.calculate_avg_song_gap_per_hour
+
+        expect(radio_station.reload.avg_song_gap_per_hour).to include('14' => 180)
+      end
+    end
+
+    context 'when gaps exceed 15 minutes' do
+      before do
+        now = Time.current.change(hour: 10, min: 0)
+        travel_to(now) do
+          create(:air_play, radio_station: radio_station, song: song, broadcasted_at: now - 20.minutes)
+          create(:air_play, radio_station: radio_station, broadcasted_at: now)
+        end
+      end
+
+      it 'excludes gaps over 15 minutes' do
+        result = radio_station.calculate_avg_song_gap_per_hour
+
+        expect(result).to be_empty
+      end
+    end
+
+    context 'when no airplays exist' do
+      it 'returns an empty hash' do
+        result = radio_station.calculate_avg_song_gap_per_hour
+
+        expect(result).to eq({})
+      end
+    end
+  end
+
+  describe '#expected_song_gap' do
+    context 'when avg_song_gap_per_hour has data' do
+      before do
+        radio_station.update(avg_song_gap_per_hour: { '14' => 180, '15' => 200 })
+      end
+
+      it 'returns the gap for the given hour' do
+        expect(radio_station.expected_song_gap(hour: 14)).to eq(180)
+      end
+    end
+
+    context 'when no data exists for the hour' do
+      before do
+        radio_station.update(avg_song_gap_per_hour: { '14' => 180 })
+      end
+
+      it 'returns nil' do
+        expect(radio_station.expected_song_gap(hour: 3)).to be_nil
+      end
+    end
+
+    context 'when avg_song_gap_per_hour is empty' do
+      it 'returns nil' do
+        expect(radio_station.expected_song_gap(hour: 14)).to be_nil
+      end
+    end
+  end
+
   describe '#npo_api_processor' do
     let(:radio_1) { described_class.find_by(name: 'Radio 1') || create(:radio_1) }
 

@@ -154,6 +154,29 @@ class RadioStation < ActiveRecord::Base
     update(last_added_air_play_ids: current_last_added_air_play_ids)
   end
 
+  def calculate_avg_song_gap_per_hour(days: 7)
+    gaps_by_hour = air_plays
+                     .where(broadcasted_at: days.days.ago..Time.current)
+                     .order(:broadcasted_at)
+                     .pluck(:broadcasted_at)
+                     .each_cons(2)
+                     .each_with_object(Hash.new { |h, k| h[k] = [] }) do |(prev_time, next_time), gaps|
+                       gap_seconds = (next_time - prev_time).to_i
+                       next if gap_seconds > 900
+
+                       hour = prev_time.hour
+                       gaps[hour] << gap_seconds
+                     end
+
+    averages = gaps_by_hour.transform_values { |gaps| (gaps.sum.to_f / gaps.size).round }
+    update(avg_song_gap_per_hour: averages)
+    averages
+  end
+
+  def expected_song_gap(hour: Time.current.hour)
+    avg_song_gap_per_hour&.fetch(hour.to_s, nil)
+  end
+
   def data
     {
       id: id,
