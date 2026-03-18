@@ -282,13 +282,12 @@ describe RadioStation, :use_vcr, :with_valid_token do
     let(:song) { create(:song) }
 
     context 'when airplays exist within the time range' do
+      let(:base_time) { Time.current.change(hour: 14, min: 0) }
+
       before do
-        now = Time.current.change(hour: 14, min: 0)
-        travel_to(now) do
-          create(:air_play, radio_station: radio_station, song: song, broadcasted_at: now - 6.minutes)
-          create(:air_play, radio_station: radio_station, broadcasted_at: now - 3.minutes)
-          create(:air_play, radio_station: radio_station, broadcasted_at: now)
-        end
+        create(:air_play, radio_station: radio_station, song: song, broadcasted_at: base_time - 6.minutes)
+        create(:air_play, radio_station: radio_station, broadcasted_at: base_time - 3.minutes)
+        create(:air_play, radio_station: radio_station, broadcasted_at: base_time)
       end
 
       it 'calculates the average gap in seconds per hour', :aggregate_failures do
@@ -306,12 +305,11 @@ describe RadioStation, :use_vcr, :with_valid_token do
     end
 
     context 'when gaps exceed 15 minutes' do
+      let(:base_time) { Time.current.change(hour: 10, min: 0) }
+
       before do
-        now = Time.current.change(hour: 10, min: 0)
-        travel_to(now) do
-          create(:air_play, radio_station: radio_station, song: song, broadcasted_at: now - 20.minutes)
-          create(:air_play, radio_station: radio_station, broadcasted_at: now)
-        end
+        create(:air_play, radio_station: radio_station, song: song, broadcasted_at: base_time - 20.minutes)
+        create(:air_play, radio_station: radio_station, broadcasted_at: base_time)
       end
 
       it 'excludes gaps over 15 minutes' do
