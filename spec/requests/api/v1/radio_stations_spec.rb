@@ -499,4 +499,48 @@ describe 'RadioStations API', type: :request do
       end
     end
   end
+
+  describe 'stream_proxy with M3U8 streams' do
+    let(:radio_station) { create(:radio_station, direct_stream_url: 'https://stream.example.com/playlist.m3u8') }
+
+    before do
+      allow(Resolv).to receive(:getaddress).with('stream.example.com').and_return('93.184.216.34')
+    end
+
+    context 'when stream URL is M3U8' do
+      let(:fake_stdout) { StringIO.new('fake-mp3-audio-data') }
+      let(:fake_stderr) { StringIO.new('') }
+      let(:fake_stdin) { StringIO.new }
+      let(:wait_thr) { instance_double(Process::Waiter, value: instance_double(Process::Status, success?: true)) }
+
+      before do
+        allow(Open3).to receive(:popen3).with(
+          'ffmpeg', '-i', 'https://stream.example.com/playlist.m3u8',
+          '-codec:a', 'libmp3lame', '-f', 'mp3', 'pipe:1'
+        ).and_yield(fake_stdin, fake_stdout, fake_stderr, wait_thr)
+      end
+
+      it 'uses ffmpeg to transcode the stream', :aggregate_failures do
+        get "/api/v1/radio_stations/#{radio_station.id}/stream_proxy"
+
+        expect(response).to have_http_status(:ok)
+        expect(response.headers['Content-Type']).to eq('audio/mpeg')
+        expect(Open3).to have_received(:popen3).with(
+          'ffmpeg', '-i', 'https://stream.example.com/playlist.m3u8',
+          '-codec:a', 'libmp3lame', '-f', 'mp3', 'pipe:1'
+        )
+      end
+    end
+
+    context 'when stream URL is M3U8 with private IP' do
+      before do
+        allow(Resolv).to receive(:getaddress).with('stream.example.com').and_return('192.168.1.1')
+      end
+
+      it 'returns 403' do
+        get "/api/v1/radio_stations/#{radio_station.id}/stream_proxy"
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+  end
 end

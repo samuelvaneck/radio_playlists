@@ -57,7 +57,12 @@ module Api
         return head :forbidden if private_ip?(uri.host)
 
         response.headers['Content-Type'] = 'audio/mpeg'
-        stream_audio(url)
+
+        if m3u8_stream?(url)
+          stream_audio_via_ffmpeg(url)
+        else
+          stream_audio(url)
+        end
       rescue RuntimeError
         head :forbidden
       ensure
@@ -102,6 +107,22 @@ module Api
             res.read_body { |chunk| response.stream.write(chunk) }
           end
         end
+      end
+
+      def stream_audio_via_ffmpeg(url)
+        cmd = ['ffmpeg', '-i', url, '-codec:a', 'libmp3lame', '-f', 'mp3', 'pipe:1']
+        Open3.popen3(*cmd) do |_stdin, stdout, _stderr, wait_thr|
+          while (chunk = stdout.read(8192))
+            break if chunk.empty?
+
+            response.stream.write(chunk)
+          end
+          wait_thr.value
+        end
+      end
+
+      def m3u8_stream?(url)
+        url.match?(/m3u8/i)
       end
 
       def private_ip?(host)
