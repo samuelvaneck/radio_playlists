@@ -10,6 +10,9 @@ RUN apt-get update -qq && \
                        ffmpeg \
                        libchromaprint-tools \
                        libpq-dev \
+                       tesseract-ocr \
+                       tesseract-ocr-eng \
+                       tesseract-ocr-nld \
                        yarn \
                        python3-launchpadlib
 

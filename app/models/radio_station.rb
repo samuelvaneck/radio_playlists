@@ -28,6 +28,7 @@ class RadioStation < ActiveRecord::Base
     kink_api_processor
     gnr_api_processor
     arrow_api_processor
+    yoursafe_video_processor
   ].freeze
 
   include DateConcern

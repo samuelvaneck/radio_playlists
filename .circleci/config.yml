@@ -26,6 +26,9 @@
           name: Restore bundle cache
           key: radio_playlists-{{ checksum "Gemfile.lock" }}
 
+        # Install system dependencies
+        - run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
+
         # install bundler
         - run: gem install bundler:2.4.10
 
