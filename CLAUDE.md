@@ -50,7 +50,7 @@ The app uses service objects extensively in `app/services/`:
 - `SongImporter` - Orchestrates song import workflow, split into concerns: `AudioRecognition`, `TrackFinding`, `AirPlayCreation`, `ArtistUpdating` (in `app/services/song_importer/concerns/`)
 - `SongRecognizer` - Shazam-based audio fingerprinting via SongRec
 - `AcoustidRecognizer` - Chromaprint + AcoustID API fingerprinting
-- `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis)
+- `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis, Arrow) and video OCR (Yoursafe)
 - `TrackExtractor/` - Extracts artist/song info and finds tracks via `SpotifyTrackFinder`, `DeezerTrackFinder`, `ItunesTrackFinder`
 - `Spotify/` and `Youtube/` - External API integrations
 - `Lastfm/` and `Wikipedia/` - Artist bio/info enrichment (Last.fm listeners/playcount/tags, Wikipedia nationality via Wikidata)
@@ -209,7 +209,7 @@ Schema definitions are configured in `spec/swagger_helper.rb`. The generated `sw
 ### Security
 
 - **SSRF protection** - Stream proxy validates HTTPS-only URLs, blocks private IPs (loopback, private ranges, link-local), limits redirect chains to 5 levels
-- **Command injection prevention** - All external CLI calls (`fpcalc`, `songrec`, `ffmpeg`) use array-based `Open3.capture3` instead of shell strings
+- **Command injection prevention** - All external CLI calls (`fpcalc`, `songrec`, `ffmpeg`, `tesseract`) use array-based `Open3.capture3` instead of shell strings
 - **Stream URL privacy** - `direct_stream_url` hidden from public API serializer
 - **CORS** - Whitelisted origins via `CORS_ALLOWED_ORIGINS` env var, Netlify preview pattern, and production domain
 - **Sidekiq Web UI** - Protected with basic auth
@@ -218,7 +218,8 @@ Schema definitions are configured in `spec/swagger_helper.rb`. The generated `sw
 
 - **SongRec** - Shazam-based audio fingerprinting (must be installed locally)
 - **Chromaprint** - AcoustID fingerprinting via `fpcalc` CLI (must be installed locally)
-- **FFmpeg** - Audio processing (must be installed locally)
+- **Tesseract** - OCR engine for video frame text extraction (must be installed locally, used by `rtesseract` gem)
+- **FFmpeg** - Audio/video processing (must be installed locally)
 - **PostgreSQL** - Primary database
 - **Redis** - Caching (db #1) and Sidekiq (db #2)
 - **Sentry** - Error tracking and performance monitoring (env var: `SENTRY_DSN`)
@@ -260,6 +261,18 @@ Current recording duration is **5 seconds** for direct Icecast capture (configur
 **Sources:**
 - https://wiki.musicbrainz.org/Guides/AcoustID
 - https://groups.google.com/g/acoustid/c/C3EHIkZVpZI
+
+### Video OCR Recognition (Yoursafe Radio)
+
+Yoursafe Radio streams via Amazon IVS HLS with a video overlay displaying "JE LUISTERT NAAR" + album art + "Artist - Title". Since the stream has no API and the timed_id3 metadata only contains infrastructure data (segment numbers, timestamps, loudness), the `YoursafeVideoProcessor` uses OCR to extract track info.
+
+**Flow:**
+1. `ffmpeg` captures a single video frame from the HLS stream
+2. `RTesseract` (Tesseract OCR wrapper) reads text from the frame
+3. Parser finds the last line containing ` - ` separator (skipping header lines like "JE LUISTERT NAAR")
+4. Splits into artist name and title
+
+**Dependencies:** `tesseract-ocr` + `tesseract-ocr-eng` system packages, `rtesseract` gem.
 
 ### Planned: Populate AcoustID Database
 
