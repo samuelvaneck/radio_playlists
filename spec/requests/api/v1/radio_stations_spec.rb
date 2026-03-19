@@ -512,12 +512,18 @@ describe 'RadioStations API', type: :request do
       let(:fake_stderr) { StringIO.new('') }
       let(:fake_stdin) { StringIO.new }
       let(:wait_thr) { instance_double(Process::Waiter, value: instance_double(Process::Status, success?: true)) }
+      let(:expected_cmd) do
+        [
+          'ffmpeg',
+          '-reconnect', '1', '-reconnect_streamed', '1', '-reconnect_delay_max', '30',
+          '-re',
+          '-i', 'https://stream.example.com/playlist.m3u8',
+          '-codec:a', 'libmp3lame', '-f', 'mp3', 'pipe:1'
+        ]
+      end
 
       before do
-        allow(Open3).to receive(:popen3).with(
-          'ffmpeg', '-i', 'https://stream.example.com/playlist.m3u8',
-          '-codec:a', 'libmp3lame', '-f', 'mp3', 'pipe:1'
-        ).and_yield(fake_stdin, fake_stdout, fake_stderr, wait_thr)
+        allow(Open3).to receive(:popen3).with(*expected_cmd).and_yield(fake_stdin, fake_stdout, fake_stderr, wait_thr)
       end
 
       it 'uses ffmpeg to transcode the stream', :aggregate_failures do
@@ -525,10 +531,7 @@ describe 'RadioStations API', type: :request do
 
         expect(response).to have_http_status(:ok)
         expect(response.headers['Content-Type']).to eq('audio/mpeg')
-        expect(Open3).to have_received(:popen3).with(
-          'ffmpeg', '-i', 'https://stream.example.com/playlist.m3u8',
-          '-codec:a', 'libmp3lame', '-f', 'mp3', 'pipe:1'
-        )
+        expect(Open3).to have_received(:popen3).with(*expected_cmd)
       end
     end
 
