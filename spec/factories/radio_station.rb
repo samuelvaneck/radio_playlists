@@ -139,6 +139,15 @@ FactoryBot.define do
     country_code { 'NLD' }
   end
 
+  factory :yoursafe_radio, parent: :radio_station do
+    name { 'Yoursafe Radio' }
+    url { '' }
+    processor { 'yoursafe_video_processor' }
+    direct_stream_url { 'https://4e2623dcced8.eu-central-1.playback.live-video.net/api/video/v1/eu-central-1.384301552878.channel.qoqD1R97L2kw.m3u8' }
+    slug { 'yoursafe-radio' }
+    country_code { 'NLD' }
+  end
+
   factory :one_hundred_p_nl, parent: :radio_station do
     name { '100% NL' }
     url { 'https://api.radioveronica.nl/api/nowplaying/playlist?stationKey=100pnl&brand=100nl' }

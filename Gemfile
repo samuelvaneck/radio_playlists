@@ -30,6 +30,7 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler', '~> 6.0'
 gem 'sidekiq-unique-jobs', '~> 8.0'
 gem 'uri', '~> 1.1.1'
+gem 'rtesseract', '~> 3.1'
 gem 'will_paginate'
 gem 'seed-fu', '~> 2.3'
 
