@@ -110,7 +110,17 @@ module Api
       end
 
       def stream_audio_via_ffmpeg(url)
-        cmd = ['ffmpeg', '-i', url, '-codec:a', 'libmp3lame', '-f', 'mp3', 'pipe:1']
+        cmd = [
+          'ffmpeg',
+          '-reconnect', '1',
+          '-reconnect_streamed', '1',
+          '-reconnect_delay_max', '30',
+          '-re',
+          '-i', url,
+          '-codec:a', 'libmp3lame',
+          '-f', 'mp3',
+          'pipe:1'
+        ]
         Open3.popen3(*cmd) do |_stdin, stdout, _stderr, wait_thr|
           while (chunk = stdout.read(8192))
             break if chunk.empty?
