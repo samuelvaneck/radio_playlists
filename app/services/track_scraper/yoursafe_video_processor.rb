@@ -50,9 +50,13 @@ class TrackScraper::YoursafeVideoProcessor < TrackScraper
   def extract_artist_title_line(text)
     lines = text.split("\n").map(&:strip).reject(&:blank?)
     lines.reverse_each do |line|
-      return line if line.include?(ARTIST_TITLE_SEPARATOR) && !line.match?(/luistert|yoursafe|radio/i)
+      return line if line.include?(ARTIST_TITLE_SEPARATOR) && !header_line?(line)
     end
     nil
+  end
+
+  def header_line?(line)
+    line.match?(/je luistert naar|yoursafe/i)
   end
 
   def parse_artist_title(line)
