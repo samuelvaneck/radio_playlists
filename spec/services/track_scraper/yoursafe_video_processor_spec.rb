@@ -15,6 +15,7 @@ describe TrackScraper::YoursafeVideoProcessor, type: :service do
     before do
       allow(processor).to receive(:extract_video_frame).and_return(frame_result)
       allow(File).to receive(:delete).and_call_original
+      allow(File).to receive(:delete).with(frame_file).and_return(1)
       allow(File).to receive(:exist?).and_call_original
     end
 
