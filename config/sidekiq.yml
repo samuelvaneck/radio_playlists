@@ -5,7 +5,7 @@
     - api_scraping
     - default
     - low
-  :concurrency: 20
+  :concurrency: 10
   :max_retries: 3
   :scheduler:
     :schedule:

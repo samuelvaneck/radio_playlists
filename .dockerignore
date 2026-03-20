@@ -1,8 +1,16 @@
 .git
 .DS_Store
 .idea
+.claude
+.rspec
+.rubocop.yml
 /log
 /tmp
 /node_modules
 /vendor/bundle
 /public/assets
+/spec
+/coverage
+/.github
+*.md
+!README.md
