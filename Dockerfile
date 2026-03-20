@@ -7,6 +7,10 @@ RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
       build-essential \
       libpq-dev \
+      libyaml-dev \
+      libicu-dev \
+      zlib1g-dev \
+      pkg-config \
       wget \
       curl \
       gnupg && \
@@ -46,6 +50,8 @@ FROM ruby:4.0.1-slim-bookworm
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
       libpq5 \
+      libyaml-0-2 \
+      libicu72 \
       ffmpeg \
       libchromaprint-tools \
       tesseract-ocr \
@@ -68,7 +74,8 @@ RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o 
     chmod a+rx /usr/local/bin/yt-dlp
 
 # Enable jemalloc for reduced memory fragmentation
-ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2 \
+# Use bare library name so the linker finds it on both x86_64 and aarch64
+ENV LD_PRELOAD="libjemalloc.so.2" \
     MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true" \
     MALLOC_ARENA_MAX=2 \
     RAILS_ENV=production \

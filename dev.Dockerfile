@@ -4,6 +4,10 @@ RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
       build-essential \
       libpq-dev \
+      libyaml-dev \
+      libicu-dev \
+      zlib1g-dev \
+      pkg-config \
       ffmpeg \
       libchromaprint-tools \
       tesseract-ocr \
@@ -23,11 +27,7 @@ RUN apt-get update -qq && \
 RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && \
     chmod a+rx /usr/local/bin/yt-dlp
 
-# Enable jemalloc for reduced memory fragmentation
-ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2 \
-    MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true" \
-    MALLOC_ARENA_MAX=2 \
-    RUBYOPT='-W0'
+ENV RUBYOPT='-W0'
 
 WORKDIR /app
 COPY . /app
@@ -35,3 +35,8 @@ COPY . /app
 RUN gem install bundler && \
     bundle config build.nokogiri --use-system-libraries && \
     bundle install --jobs "$(nproc --all)"
+
+# Enable jemalloc for reduced memory fragmentation (set after bundle install)
+ENV LD_PRELOAD="libjemalloc.so.2" \
+    MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true" \
+    MALLOC_ARENA_MAX=2
