@@ -1,47 +1,88 @@
-FROM ruby:4.0.1-bookworm
+# ============================================
+# Stage 1: Build dependencies
+# ============================================
+FROM ruby:4.0.1-slim-bookworm AS builder
 
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update -qq && \
-    apt-get install -y build-essential \
-                       libpq-dev \
-                       software-properties-common \
-                       ffmpeg \
-                       libchromaprint-tools \
-                       libpq-dev \
-                       tesseract-ocr \
-                       tesseract-ocr-eng \
-                       tesseract-ocr-nld \
-                       yarn \
-                       python3-launchpadlib
+    apt-get install -y --no-install-recommends \
+      build-essential \
+      libpq-dev \
+      libyaml-dev \
+      libicu-dev \
+      zlib1g-dev \
+      pkg-config \
+      wget \
+      curl \
+      gnupg && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | tee /etc/apt/trusted.gpg.d/songrec.asc
-RUN add-apt-repository 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main'
-# RUN apt update --allow-insecure-repositories
-# RUN apt install songrec -y --allow-unauthenticated
-RUN apt update
-RUN apt install songrec -y
-RUN apt auto-clean && apt auto-remove
+# Install SongRec from PPA
+RUN wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | gpg --dearmor -o /etc/apt/trusted.gpg.d/songrec.gpg && \
+    echo 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' > /etc/apt/sources.list.d/songrec.list && \
+    apt-get update -qq && \
+    apt-get install -y --no-install-recommends songrec && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install yt-dlp for YouTube audio downloads (AcoustID population)
+ARG RAILS_ENV=production
+ENV RAILS_ENV=$RAILS_ENV \
+    RUBYOPT='-W0'
+
+WORKDIR /app
+
+# Install gems (cached unless Gemfile changes)
+COPY Gemfile Gemfile.lock ./
+RUN gem install bundler && \
+    bundle config set deployment 'true' && \
+    bundle config build.nokogiri --use-system-libraries && \
+    bundle config set --local without 'development test' && \
+    bundle lock --add-platform ruby && \
+    bundle install --jobs "$(nproc --all)" --retry 3
+
+COPY . .
+RUN rm -rf tmp spec .rspec .rubocop.yml .claude coverage
+
+# ============================================
+# Stage 2: Runtime image
+# ============================================
+FROM ruby:4.0.1-slim-bookworm
+
+# Install jemalloc and runtime dependencies only
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends \
+      libpq5 \
+      libyaml-0-2 \
+      libicu72 \
+      ffmpeg \
+      libchromaprint-tools \
+      tesseract-ocr \
+      tesseract-ocr-eng \
+      tesseract-ocr-nld \
+      libjemalloc2 \
+      curl \
+      wget \
+      gnupg && \
+    wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | gpg --dearmor -o /etc/apt/trusted.gpg.d/songrec.gpg && \
+    echo 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' > /etc/apt/sources.list.d/songrec.list && \
+    apt-get update -qq && \
+    apt-get install -y --no-install-recommends songrec && \
+    apt-get purge -y wget gnupg && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install yt-dlp
 RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && \
     chmod a+rx /usr/local/bin/yt-dlp
 
-ARG RAILS_ENV=production
-ENV RUBYOPT='-W0' \
-    RAILS_ENV=$RAILS_ENV
+# Enable jemalloc for reduced memory fragmentation
+# Use bare library name so the linker finds it on both x86_64 and aarch64
+ENV LD_PRELOAD="libjemalloc.so.2" \
+    MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true" \
+    MALLOC_ARENA_MAX=2 \
+    RAILS_ENV=production \
+    RUBYOPT='-W0'
 
-ENV INSTALL_PATH=/app
-RUN mkdir $INSTALL_PATH
-WORKDIR $INSTALL_PATH
-COPY . $INSTALL_PATH
-RUN rm -rf "${INSTALL_PATH}/tmp"
+WORKDIR /app
 
-RUN gem update --system
-RUN gem install bundler
-RUN bundle config set deployment 'true'
-RUN bundle config build.nokogiri --use-system-libraries
-RUN bundle config set --local without 'development test'
-RUN bundle lock --add-platform ruby
-RUN bundle install --jobs "$(nproc --all)" --retry 3
+# Copy built app and gems from builder
+COPY --from=builder /app /app
+COPY --from=builder /usr/local/bundle /usr/local/bundle

@@ -33,6 +33,10 @@ services:
       - ACOUSTID_API_KEY=${ACOUSTID_API_KEY}
     volumes:
       - .:/app
+    deploy:
+      resources:
+        limits:
+          memory: 1G
 
   radio_web:
     build:
@@ -60,6 +64,10 @@ services:
       - ACOUSTID_API_KEY=${ACOUSTID_API_KEY}
     tty: true
     stdin_open: true
+    deploy:
+      resources:
+        limits:
+          memory: 512M
 
   persistent_streams:
     depends_on:
@@ -78,3 +86,7 @@ services:
       - REDIS_CACHE_URL=redis://redis:6379/1
     volumes:
       - .:/app
+    deploy:
+      resources:
+        limits:
+          memory: 512M
