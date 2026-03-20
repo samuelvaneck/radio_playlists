@@ -15,8 +15,8 @@ RSpec.describe BarChartRace do
 
       before do
         5.times { |i| create(:air_play, song: song_a, radio_station:, broadcasted_at: 2.days.ago.midday + i.minutes) }
-        3.times { |i| create(:air_play, song: song_b, radio_station:, broadcasted_at: 2.days.ago.midday + i.minutes) }
-        2.times { |i| create(:air_play, song: song_b, radio_station:, broadcasted_at: 1.day.ago.midday + i.minutes) }
+        4.times { |i| create(:air_play, song: song_b, radio_station:, broadcasted_at: 2.days.ago.midday + i.minutes) }
+        3.times { |i| create(:air_play, song: song_b, radio_station:, broadcasted_at: 1.day.ago.midday + i.minutes) }
       end
 
       it 'returns frames as a non-empty array' do
@@ -29,7 +29,7 @@ RSpec.describe BarChartRace do
 
         first_entry = last_frame[:entries].first
         expect(first_entry[:song][:title]).to eq('Song B')
-        expect(first_entry[:count]).to eq(5)
+        expect(first_entry[:count]).to eq(7)
         expect(first_entry[:position]).to eq(1)
       end
 
