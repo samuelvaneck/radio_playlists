@@ -985,16 +985,36 @@ paths:
         description: Filter by hour (0-23)
         schema:
           type: integer
+      - name: period
+        in: query
+        required: false
+        description: 'Time period for analysis. Legacy: day, week, month, year. Granular:
+          1_day, 3_days, 2_weeks, 6_months, 1_year, etc.'
+        schema:
+          type: string
+      - name: start_time
+        in: query
+        required: false
+        description: Start time (ISO8601 or period string). Cannot be combined with
+          period.
+        schema:
+          type: string
+      - name: end_time
+        in: query
+        required: false
+        description: End time (ISO8601 or period string). Defaults to now.
+        schema:
+          type: string
       - name: time_period
         in: query
         required: false
-        description: Time period for analysis (day, week, month, year). Defaults to
-          day if not specified.
+        description: 'Deprecated: use period instead. Time period for analysis (day,
+          week, month, year).'
         schema:
           type: string
       responses:
         '200':
-          description: Classifiers filtered by time period
+          description: Classifiers filtered by granular period param
           content:
             application/json:
               examples:
@@ -1727,13 +1747,13 @@ paths:
                 example:
                   value:
                     error: Period or start_time parameter is required
-  "/api/v1/radio_stations/{id}/timeline":
+  "/api/v1/radio_stations/{id}/bar_chart_race":
     get:
-      summary: Get radio station timeline with daily plays
+      summary: Get bar chart race data for a radio station
       tags:
       - Radio Stations
-      description: Returns most played songs for a radio station with day-by-day play
-        distribution. Use either period OR start_time/end_time (mutually exclusive).
+      description: Returns daily top 10 songs with cumulative play counts for bar
+        chart race animation. Use either period OR start_time/end_time (mutually exclusive).
         Returns 400 if neither provided.
       parameters:
       - name: id
@@ -1762,48 +1782,30 @@ paths:
         description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
         schema:
           type: string
-      - name: page
-        in: query
-        required: false
-        description: Page number
-        schema:
-          type: integer
-      - name: per_page
-        in: query
-        required: false
-        description: 'Items per page (default: 24)'
-        schema:
-          type: integer
       responses:
         '200':
-          description: Timeline retrieved successfully
+          description: Bar chart race data retrieved successfully
           content:
             application/json:
               examples:
                 example:
                   value:
                     data:
-                    - id: '1'
-                      type: song
-                      attributes:
-                        title: Popular Song
-                        counter: 50
-                        position: 1
-                        daily_plays:
-                          '2026-01-10': 8
-                          '2026-01-11': 12
-                          '2026-01-12': 10
-                        artists:
-                        - id: '1'
-                          name: Artist Name
-                        spotify_artwork_url: https://i.scdn.co/image/abc123
+                    - date: '2026-01-10'
+                      entries:
+                      - position: 1
+                        count: 12
+                        song:
+                          id: 1
+                          title: Popular Song
+                          spotify_artwork_url: https://i.scdn.co/image/abc123
+                          artists:
+                          - id: 1
+                            name: Artist Name
                     meta:
                       period: week
                       start_time: '2026-01-10T00:00:00Z'
                       end_time: '2026-01-17T00:00:00Z'
-                    total_entries: 120
-                    total_pages: 5
-                    current_page: 1
         '400':
           description: Period or start_time parameter is required
           content:
