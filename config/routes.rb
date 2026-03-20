@@ -43,7 +43,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get :classifiers, on: :member
         get :status, on: :member
         get :stream_proxy, on: :member
-        get :timeline, on: :member
+        get :bar_chart_race, on: :member
         get :last_played_songs, on: :collection
         get :new_played_songs, on: :collection
       end

@@ -81,10 +81,6 @@ class SongSerializer
     object.position if object.respond_to?(:position)
   end
 
-  attribute :daily_plays do |object|
-    object.daily_plays if object.respond_to?(:daily_plays)
-  end
-
   attribute :artists do |object|
     object.artists.map do |artist|
       options = { fields: { artist: %i[id name country_of_origin] } }

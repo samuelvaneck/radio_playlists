@@ -289,11 +289,11 @@ describe 'RadioStations API', type: :request do
     end
   end
 
-  path '/api/v1/radio_stations/{id}/timeline' do
-    get 'Get radio station timeline with daily plays' do
+  path '/api/v1/radio_stations/{id}/bar_chart_race' do
+    get 'Get bar chart race data for a radio station' do
       tags 'Radio Stations'
       produces 'application/json'
-      description 'Returns most played songs for a radio station with day-by-day play distribution. ' \
+      description 'Returns daily top 10 songs with cumulative play counts for bar chart race animation. ' \
                   'Use either period OR start_time/end_time (mutually exclusive). Returns 400 if neither provided.'
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
       parameter name: :period, in: :query, type: :string, required: false,
@@ -303,38 +303,31 @@ describe 'RadioStations API', type: :request do
                 description: 'Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with period'
       parameter name: :end_time, in: :query, type: :string, required: false,
                 description: 'Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time'
-      parameter name: :page, in: :query, type: :integer, required: false, description: 'Page number'
-      parameter name: :per_page, in: :query, type: :integer, required: false,
-                description: 'Items per page (default: 24)'
 
-      response '200', 'Timeline retrieved successfully' do
+      response '200', 'Bar chart race data retrieved successfully' do
         example 'application/json', :example, {
           data: [
             {
-              id: '1',
-              type: 'song',
-              attributes: {
-                title: 'Popular Song',
-                counter: 50,
-                position: 1,
-                daily_plays: {
-                  '2026-01-10': 8,
-                  '2026-01-11': 12,
-                  '2026-01-12': 10
-                },
-                artists: [{ id: '1', name: 'Artist Name' }],
-                spotify_artwork_url: 'https://i.scdn.co/image/abc123'
-              }
+              date: '2026-01-10',
+              entries: [
+                {
+                  position: 1,
+                  count: 12,
+                  song: {
+                    id: 1,
+                    title: 'Popular Song',
+                    spotify_artwork_url: 'https://i.scdn.co/image/abc123',
+                    artists: [{ id: 1, name: 'Artist Name' }]
+                  }
+                }
+              ]
             }
           ],
           meta: {
             period: 'week',
             start_time: '2026-01-10T00:00:00Z',
             end_time: '2026-01-17T00:00:00Z'
-          },
-          total_entries: 120,
-          total_pages: 5,
-          current_page: 1
+          }
         }
 
         let(:radio_station) { create(:radio_station) }
