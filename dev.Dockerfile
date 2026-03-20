@@ -4,7 +4,6 @@ RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
       build-essential \
       libpq-dev \
-      software-properties-common \
       ffmpeg \
       libchromaprint-tools \
       tesseract-ocr \
@@ -13,10 +12,9 @@ RUN apt-get update -qq && \
       libjemalloc2 \
       curl \
       wget \
-      gnupg \
-      python3-launchpadlib && \
-    wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | tee /etc/apt/trusted.gpg.d/songrec.asc && \
-    add-apt-repository 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' && \
+      gnupg && \
+    wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | gpg --dearmor -o /etc/apt/trusted.gpg.d/songrec.gpg && \
+    echo 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' > /etc/apt/sources.list.d/songrec.list && \
     apt-get update -qq && \
     apt-get install -y --no-install-recommends songrec && \
     rm -rf /var/lib/apt/lists/*

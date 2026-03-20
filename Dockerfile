@@ -7,16 +7,14 @@ RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
       build-essential \
       libpq-dev \
-      software-properties-common \
       wget \
       curl \
-      gnupg \
-      python3-launchpadlib && \
+      gnupg && \
     rm -rf /var/lib/apt/lists/*
 
 # Install SongRec from PPA
-RUN wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | tee /etc/apt/trusted.gpg.d/songrec.asc && \
-    add-apt-repository 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' && \
+RUN wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | gpg --dearmor -o /etc/apt/trusted.gpg.d/songrec.gpg && \
+    echo 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' > /etc/apt/sources.list.d/songrec.list && \
     apt-get update -qq && \
     apt-get install -y --no-install-recommends songrec && \
     rm -rf /var/lib/apt/lists/*
@@ -55,15 +53,13 @@ RUN apt-get update -qq && \
       tesseract-ocr-nld \
       libjemalloc2 \
       curl \
-      software-properties-common \
       wget \
-      gnupg \
-      python3-launchpadlib && \
-    wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | tee /etc/apt/trusted.gpg.d/songrec.asc && \
-    add-apt-repository 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' && \
+      gnupg && \
+    wget -qO- 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x6888550b2fc77d09' | gpg --dearmor -o /etc/apt/trusted.gpg.d/songrec.gpg && \
+    echo 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' > /etc/apt/sources.list.d/songrec.list && \
     apt-get update -qq && \
     apt-get install -y --no-install-recommends songrec && \
-    apt-get purge -y software-properties-common wget gnupg python3-launchpadlib && \
+    apt-get purge -y wget gnupg && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
