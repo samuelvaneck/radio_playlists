@@ -214,6 +214,35 @@ Schema definitions are configured in `spec/swagger_helper.rb`. The generated `sw
 - **CORS** - Whitelisted origins via `CORS_ALLOWED_ORIGINS` env var, Netlify preview pattern, and production domain
 - **Sidekiq Web UI** - Protected with basic auth
 
+## Docker
+
+### Production Image (Multi-Stage Build)
+
+The `Dockerfile` uses a two-stage build with `ruby:4.0.1-slim-bookworm`:
+
+1. **Builder stage** — installs build deps (`build-essential`, `libpq-dev`, `libyaml-dev`, `libicu-dev`, `zlib1g-dev`, `pkg-config`), SongRec from PPA, and runs `bundle install`
+2. **Runtime stage** — installs only runtime deps (`libpq5`, `libyaml-0-2`, `libicu72`, `ffmpeg`, `libchromaprint-tools`, `tesseract-ocr`, `libjemalloc2`, `songrec`), copies built app and gems from builder
+
+### Memory Optimization
+
+- **jemalloc** enabled via `LD_PRELOAD="libjemalloc.so.2"` — reduces Ruby memory fragmentation by 20-40%. Uses bare library name (not full path) to work on both x86_64 and aarch64.
+- **`MALLOC_ARENA_MAX=2`** — limits glibc arena bloat in multi-threaded processes
+- **Sidekiq concurrency: 10** — balances throughput vs memory (each thread holds a DB connection)
+- **docker-compose memory limits** — 512M for web/streams, 1G for sidekiq
+
+### SongRec PPA Installation
+
+SongRec is installed from the Launchpad PPA using `gpg --dearmor` (not `add-apt-repository`, which doesn't work on slim images):
+
+```dockerfile
+wget -qO- '...' | gpg --dearmor -o /etc/apt/trusted.gpg.d/songrec.gpg
+echo 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' > /etc/apt/sources.list.d/songrec.list
+```
+
+### Important: LD_PRELOAD and Bundle Install
+
+`LD_PRELOAD` must be set **after** `bundle install` — setting it before causes gem native extension compilation to fail with "cannot be preloaded" errors. In multi-stage builds, only set it in the runtime stage.
+
 ## External Dependencies
 
 - **SongRec** - Shazam-based audio fingerprinting (must be installed locally)
