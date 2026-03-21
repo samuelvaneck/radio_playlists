@@ -19,7 +19,7 @@ RSpec.describe BarChartRace::DayChart do
         create(:air_play, song: song_c, radio_station:, broadcasted_at: 2.hours.ago)
       end
 
-      it 'returns a single frame' do
+      it 'returns a single frame for a single day' do
         expect(chart.frames.size).to eq(1)
       end
 
@@ -52,13 +52,17 @@ RSpec.describe BarChartRace::DayChart do
 
       before do
         3.times { |i| create(:air_play, song: song_a, radio_station:, broadcasted_at: 3.days.ago.midday + i.minutes) }
-        2.times { |i| create(:air_play, song: song_a, radio_station:, broadcasted_at: 1.day.ago.midday + i.minutes) }
+        2.times { |i| create(:air_play, song: song_b, radio_station:, broadcasted_at: 1.day.ago.midday + i.minutes) }
       end
 
-      it 'sums all plays within the period into a single frame' do
-        frame = chart.frames.first
+      it 'returns one frame per day with plays', :aggregate_failures do
+        frames = chart.frames
 
-        expect(frame[:entries].first[:count]).to eq(5)
+        expect(frames.size).to eq(2)
+        expect(frames.first[:entries].first[:song][:title]).to eq('Song A')
+        expect(frames.first[:entries].first[:count]).to eq(3)
+        expect(frames.last[:entries].first[:song][:title]).to eq('Song B')
+        expect(frames.last[:entries].first[:count]).to eq(2)
       end
     end
 
@@ -73,7 +77,7 @@ RSpec.describe BarChartRace::DayChart do
         end
       end
 
-      it 'limits to top 10' do
+      it 'limits to top 10 per frame' do
         expect(chart.frames.first[:entries].size).to eq(10)
       end
     end
