@@ -2,9 +2,9 @@
 
 module BarChartRace
   class DayChart
-    include DateConcern
-
     ROLLING_WINDOW_DAYS = 7
+
+    include DateConcern
 
     def initialize(radio_station:, params:)
       @radio_station = radio_station
