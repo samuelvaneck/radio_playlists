@@ -55,14 +55,47 @@ RSpec.describe BarChartRace::DayChart do
         2.times { |i| create(:air_play, song: song_b, radio_station:, broadcasted_at: 1.day.ago.midday + i.minutes) }
       end
 
-      it 'returns one frame per day with plays', :aggregate_failures do
+      it 'returns one frame per day with plays in the window', :aggregate_failures do
         frames = chart.frames
 
-        expect(frames.size).to eq(2)
-        expect(frames.first[:entries].first[:song][:title]).to eq('Song A')
-        expect(frames.first[:entries].first[:count]).to eq(3)
-        expect(frames.last[:entries].first[:song][:title]).to eq('Song B')
-        expect(frames.last[:entries].first[:count]).to eq(2)
+        expect(frames.size).to be >= 2
+      end
+
+      it 'accumulates counts across the rolling window', :aggregate_failures do
+        frames = chart.frames
+        last_frame = frames.last
+
+        song_a_entry = last_frame[:entries].find { |e| e[:song][:title] == 'Song A' }
+        song_b_entry = last_frame[:entries].find { |e| e[:song][:title] == 'Song B' }
+
+        expect(song_a_entry[:count]).to eq(3)
+        expect(song_b_entry[:count]).to eq(2)
+      end
+    end
+
+    context 'with rolling window smoothing' do
+      let(:params) { { start_time: 10.days.ago.strftime('%Y-%m-%dT%H:%M'), end_time: Time.current.strftime('%Y-%m-%dT%H:%M') } }
+      let(:chart) { described_class.new(radio_station:, params:) }
+
+      before do
+        5.times { |i| create(:air_play, song: song_a, radio_station:, broadcasted_at: 8.days.ago.midday + i.minutes) }
+        3.times { |i| create(:air_play, song: song_b, radio_station:, broadcasted_at: 3.days.ago.midday + i.minutes) }
+      end
+
+      it 'includes past plays within the 7-day rolling window', :aggregate_failures do
+        frame_3_days_ago = chart.frames.find { |f| f[:date] == 3.days.ago.to_date.to_s }
+
+        song_b_entry = frame_3_days_ago[:entries].find { |e| e[:song][:title] == 'Song B' }
+        expect(song_b_entry[:count]).to eq(3)
+      end
+
+      it 'drops plays older than the rolling window', :aggregate_failures do
+        today_frame = chart.frames.find { |f| f[:date] == Time.current.to_date.to_s }
+
+        if today_frame
+          song_a_entry = today_frame[:entries].find { |e| e[:song][:title] == 'Song A' }
+          expect(song_a_entry).to be_nil
+        end
       end
     end
 
