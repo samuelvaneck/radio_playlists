@@ -72,7 +72,7 @@ module Api
       def bar_chart_race
         return render json: { error: 'Period or start_time parameter is required' }, status: :bad_request if time_param_blank?
 
-        race = BarChartRace.new(radio_station: @radio_station, params: params)
+        race = BarChartRace.for(type: params[:type], radio_station: @radio_station, params: params)
 
         render json: { data: race.frames, meta: race.meta }.to_json
       end
