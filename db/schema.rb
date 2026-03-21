@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_18_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_21_134953) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -77,6 +77,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_18_120000) do
     t.integer "status", default: 1, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["broadcasted_at"], name: "index_air_plays_on_broadcasted_at"
+    t.index ["radio_station_id", "status", "broadcasted_at"], name: "index_air_plays_on_station_status_broadcasted"
     t.index ["radio_station_id"], name: "index_air_plays_on_radio_station_id"
     t.index ["song_id", "radio_station_id", "broadcasted_at"], name: "air_play_radio_song_time", unique: true
     t.index ["song_id"], name: "index_air_plays_on_song_id"
