@@ -2,6 +2,8 @@
 
 module BarChartRace
   class DayChart
+    ROLLING_WINDOW_DAYS = 7
+
     include DateConcern
 
     def initialize(radio_station:, params:)
@@ -32,7 +34,7 @@ module BarChartRace
     def fetch_daily_counts
       counts = AirPlay.confirmed
                  .where(radio_station: @radio_station)
-                 .where(broadcasted_at: @start_time..@end_time)
+                 .where(broadcasted_at: query_start_time..@end_time)
                  .group(:song_id, Arel.sql('DATE(broadcasted_at)'))
                  .count
 
@@ -40,6 +42,10 @@ module BarChartRace
         hash[date.to_s] ||= {}
         hash[date.to_s][song_id] = count
       end
+    end
+
+    def query_start_time
+      @start_time - (ROLLING_WINDOW_DAYS - 1).days
     end
 
     def fetch_songs(daily_counts)
@@ -51,11 +57,20 @@ module BarChartRace
       dates = (@start_time.to_date..@end_time.to_date).map(&:to_s)
 
       dates.filter_map do |date|
-        day_counts = daily_counts[date]
-        next if day_counts.blank?
+        window_counts = rolling_window_counts(date, daily_counts)
+        next if window_counts.empty?
 
-        top_songs = day_counts.sort_by { |_, count| -count }.first(TOP_N)
+        top_songs = window_counts.sort_by { |_, count| -count }.first(TOP_N)
         build_frame(date, top_songs, songs_by_id)
+      end
+    end
+
+    def rolling_window_counts(date, daily_counts)
+      window_start = (Date.parse(date) - (ROLLING_WINDOW_DAYS - 1)).to_s
+      window_dates = (Date.parse(window_start)..Date.parse(date)).map(&:to_s)
+
+      window_dates.each_with_object(Hash.new(0)) do |d, totals|
+        daily_counts[d]&.each { |song_id, count| totals[song_id] += count }
       end
     end
 
