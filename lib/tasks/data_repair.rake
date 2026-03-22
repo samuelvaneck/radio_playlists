@@ -1196,4 +1196,24 @@ namespace :data_repair do
     puts '-' * 80
     puts "To fix these songs, run: rake data_repair:fix_songs[#{mismatches.count}]"
   end
+
+  desc 'Confirm draft airplays for recognizer-only stations (no processor). Usage: rake data_repair:confirm_recognizer_drafts'
+  task confirm_recognizer_drafts: :environment do
+    stations = RadioStation.recognizer_only
+    puts "Found #{stations.count} recognizer-only stations: #{stations.pluck(:name).join(', ')}"
+    puts '=' * 80
+
+    stations.find_each do |station|
+      drafts = AirPlay.draft.where(radio_station: station)
+      count = drafts.count
+      next if count.zero?
+
+      puts "#{station.name}: confirming #{count} draft airplays..."
+      drafts.update_all(status: :confirmed) # rubocop:disable Rails/SkipsModelValidations
+      puts '  Done.'
+    end
+
+    puts '=' * 80
+    puts 'Finished confirming recognizer-only drafts.'
+  end
 end

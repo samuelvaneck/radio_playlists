@@ -47,14 +47,18 @@ module SongImporter::Concerns
     end
 
     def create_new_air_play
-      status = scraper_import ? :confirmed : :draft
+      status = auto_confirm? ? :confirmed : :draft
       air_play = AirPlay.add_air_play(@radio_station, song, broadcasted_at, scraper_import, status:)
-      if scraper_import
+      if auto_confirm?
         Broadcaster.song_confirmed(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
       else
         Broadcaster.song_draft_created(title: song.title, song_id: song.id, artists_names:, radio_station_name: @radio_station.name)
       end
       air_play
+    end
+
+    def auto_confirm?
+      scraper_import || @radio_station.processor.blank?
     end
 
     def finalize_song_import(air_play)
