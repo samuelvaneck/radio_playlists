@@ -42,7 +42,7 @@ describe AudioStream::PersistentSegment, type: :service do
         allow(segment_reader).to receive(:read_latest).and_raise(PersistentStream::SegmentReader::NoSegmentError, 'No segments')
       end
 
-      it 're-raises the error so callers can fall back' do
+      it 're-raises the error' do
         expect { described_class.new(radio_station, output_file).capture }
           .to raise_error(PersistentStream::SegmentReader::NoSegmentError, 'No segments')
       end
@@ -53,7 +53,7 @@ describe AudioStream::PersistentSegment, type: :service do
         allow(segment_reader).to receive(:read_latest).and_raise(PersistentStream::SegmentReader::StaleSegmentError, 'Stale segment')
       end
 
-      it 're-raises the error so callers can fall back' do
+      it 're-raises the error' do
         expect { described_class.new(radio_station, output_file).capture }
           .to raise_error(PersistentStream::SegmentReader::StaleSegmentError, 'Stale segment')
       end
