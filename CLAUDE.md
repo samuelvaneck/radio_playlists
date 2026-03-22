@@ -52,7 +52,8 @@ The app uses service objects extensively in `app/services/`:
 - `AcoustidRecognizer` - Chromaprint + AcoustID API fingerprinting
 - `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis, Arrow) and video OCR (Yoursafe)
 - `TrackExtractor/` - Extracts artist/song info and finds tracks via `SpotifyTrackFinder`, `DeezerTrackFinder`, `ItunesTrackFinder`
-- `Spotify/` and `Youtube/` - External API integrations
+- `Spotify/` - External API integration with two track-finding paths: search-based (`best_match`) and ID-based (`fetch_spotify_track`). Both compute JaroWinkler match scores for `valid_match?` validation (artist >= 80, title >= 70)
+- `Youtube/` - YouTube API integration
 - `Lastfm/` and `Wikipedia/` - Artist bio/info enrichment (Last.fm listeners/playcount/tags, Wikipedia nationality via Wikidata)
 - `Deezer/` and `Itunes/` - Additional enrichment sources (duration_ms backfill)
 - `MusicBrainz/` - ISRCs enrichment for songs
@@ -99,6 +100,14 @@ Radio Stream → Audio Recognition/Scraping → @played_song (artist, title, isr
 ```
 
 **Important:** All three enrichment services (Spotify, Deezer, iTunes) independently receive the recognized/scraped data from `@played_song`. Deezer and iTunes do **not** use Spotify's response — they each search using the original artist/title/ISRC from the recognizer or scraper. `SongImporter#track` prefers Spotify, falls back to iTunes, then Deezer.
+
+**Spotify Track Finding** has two paths in `Spotify::TrackFinder::Result`:
+1. **Search-based** (`best_match`) — searches Spotify API by artist+title, filters by album type, picks best match with JaroWinkler scores
+2. **ID-based** (`fetch_spotify_track`) — used when `SpotifyTrackFinder#existing_song_spotify_id` finds a known Spotify ID, or when a scraper provides a `spotify_url`. Fetches track by ID via `FindById`, then validates with match scores
+
+Both paths compute `artist_distance`/`title_distance` and require `valid_match?` (artist >= 80, title >= 70) before the track is accepted.
+
+**Post-import enrichment:** `SongExternalIdsEnrichmentJob` runs after each import to enrich songs with Deezer, iTunes, and MusicBrainz data. Note: there is no Spotify enrichment in this job — Spotify IDs are only set during the import flow.
 
 ### Chart Scoring & Popularity Boost
 
