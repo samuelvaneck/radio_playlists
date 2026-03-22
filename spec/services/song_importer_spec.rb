@@ -278,6 +278,34 @@ describe SongImporter do
     end
   end
 
+  describe '#auto_confirm?' do
+    context 'when radio station has a processor' do
+      let(:station) { create(:radio_station, processor: 'npo_api_processor') }
+
+      it 'returns false for recognizer imports' do
+        importer = described_class.new(radio_station: station)
+        importer.instance_variable_set(:@scraper_import, false)
+        expect(importer.send(:auto_confirm?)).to be false
+      end
+
+      it 'returns true for scraper imports' do
+        importer = described_class.new(radio_station: station)
+        importer.instance_variable_set(:@scraper_import, true)
+        expect(importer.send(:auto_confirm?)).to be true
+      end
+    end
+
+    context 'when radio station has no processor (recognizer-only)' do
+      let(:station) { create(:radio_station, processor: '', url: '') }
+
+      it 'returns true for recognizer imports' do
+        importer = described_class.new(radio_station: station)
+        importer.instance_variable_set(:@scraper_import, false)
+        expect(importer.send(:auto_confirm?)).to be true
+      end
+    end
+  end
+
   describe '#add_song' do
     # These tests verify the behavior of adding a song to a radio station
     # which checks if a RadioStationSong association already exists
