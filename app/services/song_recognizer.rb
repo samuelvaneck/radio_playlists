@@ -64,19 +64,17 @@ class SongRecognizer
   attr_reader :audio_stream, :result, :title, :artist_name, :broadcasted_at, :spotify_url, :isrc_code
 
   # @param radio_station [RadioStation] The radio station to capture audio from
-  # @param audio_stream [AudioStream, nil] Optional pre-captured audio stream (skips capture if provided)
+  # @param audio_stream [AudioStream::PersistentSegment] Pre-captured audio stream
   # @param skip_cleanup [Boolean] If true, don't delete the audio file after recognition (for shared use)
-  def initialize(radio_station, audio_stream: nil, skip_cleanup: false)
+  def initialize(radio_station, audio_stream:, skip_cleanup: false)
     @radio_station = radio_station
     @output_file = @radio_station.audio_file_path
-    @audio_stream = audio_stream || set_audio_stream
+    @audio_stream = audio_stream
     @broadcasted_at = Time.zone.now
-    @skip_capture = audio_stream.present?
     @skip_cleanup = skip_cleanup
   end
 
   def recognized?
-    audio_stream.capture unless @skip_capture
     response = run_song_recognizer
     handle_response(response)
   rescue RateLimitError => e
@@ -135,15 +133,6 @@ class SongRecognizer
 
   def error_response?(response)
     response.start_with?('Error:', 'error:') || response.match?(/\A\s*Error/i)
-  end
-
-  def set_audio_stream
-    extension = @radio_station.direct_stream_url.split(/\.|-/).last
-    if extension.match?(/m3u8/)
-      AudioStream::M3u8.new(@radio_station.direct_stream_url, @output_file)
-    else
-      AudioStream::Mp3.new(@radio_station.direct_stream_url, @output_file)
-    end
   end
 
   def set_spotify_url
