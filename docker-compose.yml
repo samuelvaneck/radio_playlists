@@ -3,6 +3,7 @@ version: '3'
 services:
   postgres:
     image: postgres:13
+    shm_size: 256mb
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
