@@ -46,6 +46,7 @@ module Spotify
 
       def fetch_spotify_track
         @spotify_query_result = FindById.new(id_on_spotify: @spotify_track_id).execute
+        return nil if @spotify_query_result.blank?
 
         # set the @filter_result
         dig_for_usable_tracks
@@ -53,7 +54,9 @@ module Spotify
 
         if @filter_result.present?
           reject_custom_albums
-          most_popular_track
+          track = most_popular_track
+          add_match_scores(track) if track
+          track
         else
           @search_title = @spotify_query_result['name']
           @spotify_query_result = nil
@@ -216,6 +219,17 @@ module Spotify
         return if @track.blank?
 
         @track.dig('album', 'name')
+      end
+
+      def add_match_scores(track)
+        return if track.blank?
+
+        item_artist_names = track.dig('album', 'artists')&.map { |a| a['name'] }&.join(' ') || ''
+        item_title = track['name'] || ''
+
+        track['artist_distance'] = artist_distance(item_artist_names)
+        track['title_distance'] = title_distance(item_title)
+        track['match'] = (track['popularity'] || 0) + ([track['artist_distance'], track['title_distance']].min * 2)
       end
 
       def dig_for_usable_tracks
