@@ -3,7 +3,7 @@
 class ImportSongJob
   include Sidekiq::Worker
 
-  sidekiq_options lock: :until_executed
+  sidekiq_options lock: :until_executed, lock_ttl: 60
 
   def perform(id)
     radio_station = RadioStation.find(id)
