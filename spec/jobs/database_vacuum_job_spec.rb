@@ -13,7 +13,7 @@ describe DatabaseVacuumJob do
       allow(pg_connection).to receive(:exec)
 
       described_class::TABLES.each do |table|
-        expect(pg_connection).to receive(:exec).with("VACUUM ANALYZE #{table}")
+        expect(pg_connection).to have_received(:exec).with("VACUUM ANALYZE #{table}")
       end
 
       job.perform
