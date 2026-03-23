@@ -12,11 +12,11 @@ describe DatabaseVacuumJob do
     it 'executes VACUUM ANALYZE on all configured tables' do
       allow(pg_connection).to receive(:exec)
 
+      job.perform
+
       described_class::TABLES.each do |table|
         expect(pg_connection).to have_received(:exec).with("VACUUM ANALYZE #{table}")
       end
-
-      job.perform
     end
 
     context 'when a table vacuum fails' do
