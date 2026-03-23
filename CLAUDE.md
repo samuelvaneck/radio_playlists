@@ -39,6 +39,7 @@ bundle exec rake data_repair:verify_songs[limit]              # Detect Spotify m
 bundle exec rake data_repair:fix_songs[limit]                 # Auto-fix mismatched songs
 bundle exec rake data_repair:merge_duplicate_isrcs             # Merge songs with same ISRC
 bundle exec rake data_repair:find_fuzzy_duplicates             # Find fuzzy song duplicates
+bundle exec rake data_repair:confirm_recognizer_drafts         # Confirm draft airplays for recognizer-only stations
 bundle exec rake optimization:vacuum                           # PostgreSQL VACUUM FULL ANALYZE
 ```
 
@@ -71,8 +72,20 @@ Sidekiq jobs in `app/jobs/` run on schedules defined in `config/sidekiq.yml`:
 - `ChartCreationJob` - Daily at 00:10, generates charts
 - `ChartSongEnrichmentJob` - Daily at 00:30, re-enriches charted songs with latest Last.fm/Spotify data for popularity boost
 - `YoutubeApiImportJob` - Every 15 minutes
+- `CleanupDraftAirPlaysJob` - Every hour, cleans draft airplays older than 4 hours and orphaned SongImportLogs
+- `SongImportMonitorJob` - Every hour, monitors import failure rates and alerts
+- `SongImportLogCleanupJob` - Daily at 2am, exports and deletes old import logs
+- `DatabaseVacuumJob` - Daily at 3am, runs VACUUM ANALYZE on key tables to prevent bloat
+- `AvgSongGapCalculationJob` - Daily at 5am, calculates per-station average song gaps
 - `ArtistEnrichmentBatchJob` - Weekly Sunday 3am, batch enqueues artist enrichment
 - `LastfmEnrichmentBatchJob` - Weekly Sunday 4am, batch enqueues Last.fm enrichment for songs/artists
+
+On-demand enrichment jobs (triggered by import flow, not scheduled):
+- `SongExternalIdsEnrichmentJob` - Enriches songs with Deezer, iTunes, and MusicBrainz IDs after import
+- `MusicProfileJob` - Creates Spotify audio feature profiles for songs
+- `AcoustidPopulationJob` - Downloads YouTube audio, generates fingerprints, submits to AcoustID
+
+**Important:** `ImportSongJob` uses `sidekiq-unique-jobs` with `lock: :until_executed` and `lock_ttl: 60`. The TTL prevents stuck locks after Sidekiq crashes — without it, locks persist indefinitely in Redis and silently block imports.
 
 ### Persistent Stream Manager
 
@@ -221,7 +234,7 @@ Schema definitions are configured in `spec/swagger_helper.rb`. The generated `sw
 - **Command injection prevention** - All external CLI calls (`fpcalc`, `songrec`, `ffmpeg`, `tesseract`) use array-based `Open3.capture3` instead of shell strings
 - **Stream URL privacy** - `direct_stream_url` hidden from public API serializer
 - **CORS** - Whitelisted origins via `CORS_ALLOWED_ORIGINS` env var, Netlify preview pattern, and production domain
-- **Sidekiq Web UI** - Protected with basic auth
+- **Sidekiq Web UI** - Protected with basic auth. Sidekiq 8 requires session middleware (`ActionDispatch::Cookies` + `Session::CookieStore`) added in `config/application.rb` for API-only apps
 
 ## Docker
 
@@ -260,6 +273,7 @@ echo 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' > /etc/apt
 - **FFmpeg** - Audio/video processing (must be installed locally)
 - **PostgreSQL** - Primary database
 - **Redis** - Caching (db #1) and Sidekiq (db #2)
+- **yt-dlp** - YouTube audio downloading for AcoustID fingerprint population
 - **Sentry** - Error tracking and performance monitoring (env var: `SENTRY_DSN`)
 
 ## Audio Recognition
