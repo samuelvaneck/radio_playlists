@@ -130,7 +130,7 @@ RSpec.describe BarChartRace::DayChart do
 
       before do
         3.times { |i| create(:air_play, song: song_a, radio_station:, broadcasted_at: 2.days.ago.midday + i.minutes) }
-        2.times { |i| create(:air_play, song: song_a, radio_station:, broadcasted_at: 10.days.ago.midday + i.minutes) }
+        2.times { |i| create(:air_play, song: song_a, radio_station:, broadcasted_at: 20.days.ago.midday + i.minutes) }
       end
 
       it 'only includes plays within the date range' do
