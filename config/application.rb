@@ -28,6 +28,10 @@ module RadioPlaylists
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.api_only = true
 
+    # Sidekiq 8 Web UI requires session middleware (not included in API-only apps)
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: "_radio_playlists_session"
+
     config.autoload_lib(ignore: %w[assets tasks])
 
     # Configuration for the application, engines, and railties goes here.
