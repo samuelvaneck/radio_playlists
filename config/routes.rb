@@ -46,6 +46,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get :bar_chart_race, on: :member
         get :last_played_songs, on: :collection
         get :new_played_songs, on: :collection
+        get :release_date_graph, on: :collection
       end
       resources :radio_station_classifiers, only: %i[index] do
         get :descriptions, on: :collection
