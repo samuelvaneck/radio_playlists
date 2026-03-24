@@ -83,7 +83,10 @@ RSpec.describe SongExternalIdsEnrichmentJob do
     let!(:song_missing_itunes) { create(:song, id_on_deezer: '456', id_on_itunes: nil) }
     let!(:song_missing_both) { create(:song, id_on_deezer: nil, id_on_itunes: nil) }
     let!(:song_missing_isrcs) { create(:song, id_on_deezer: '111', id_on_itunes: '222', isrcs: ['USRC12345678']) }
-    let!(:song_complete) { create(:song, id_on_deezer: '789', id_on_itunes: '012', isrcs: %w[USRC12345678 GBABC1234567], duration_ms: 210_000) }
+    let!(:song_complete) do
+      create(:song, id_on_deezer: '789', id_on_itunes: '012', isrcs: %w[USRC12345678 GBABC1234567],
+                    duration_ms: 210_000, release_date: Date.new(2023, 1, 1))
+    end
 
     it 'enqueues jobs for songs missing external IDs', :aggregate_failures do
       allow(described_class).to receive(:perform_async)
