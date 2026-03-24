@@ -88,6 +88,43 @@ class RadioStation < ActiveRecord::Base
       .order('air_plays_count DESC')
   end
 
+  def self.release_date_graph(params)
+    start_time, end_time = time_range_from_params(params, default_period: 'year')
+    radio_station_ids = Array.wrap(params[:radio_station_ids]).map(&:to_i)
+
+    grouped = release_date_counts(start_time, end_time, radio_station_ids)
+    build_release_date_series(grouped, radio_station_ids)
+  end
+
+  def self.release_date_counts(start_time, end_time, radio_station_ids)
+    counts = AirPlay.joins(:song)
+               .where(broadcasted_at: start_time..end_time)
+               .where.not(songs: { release_date: nil })
+    counts = counts.where(radio_station_id: radio_station_ids) if radio_station_ids.present?
+
+    counts.group(:radio_station_id, Arel.sql('EXTRACT(YEAR FROM songs.release_date)::integer'))
+      .count
+  end
+
+  def self.build_release_date_series(grouped, radio_station_ids)
+    stations = RadioStation.unscoped.pluck(:id, :name).to_h
+    filtered_stations = filter_stations(stations, radio_station_ids)
+
+    data = grouped.keys.map(&:last).uniq.sort.map do |year|
+      row = { year: year }
+      filtered_stations.each { |station_id, name| row[name] = grouped[[station_id, year]] || 0 }
+      row
+    end
+
+    data << { columns: filtered_stations.values }
+  end
+
+  def self.filter_stations(stations, radio_station_ids)
+    return stations if radio_station_ids.blank?
+
+    stations.select { |id, _| radio_station_ids.include?(id) }
+  end
+
   def status_data
     return {} if zero_air_play_items
 

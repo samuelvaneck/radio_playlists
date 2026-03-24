@@ -77,6 +77,12 @@ module Api
         render json: { data: race.frames, meta: race.meta }.to_json
       end
 
+      def release_date_graph
+        return render json: { error: 'Period or start_time parameter is required' }, status: :bad_request if time_param_blank?
+
+        render json: RadioStation.release_date_graph(params)
+      end
+
       private
 
       def set_radio_station

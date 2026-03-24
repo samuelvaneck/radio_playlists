@@ -289,6 +289,49 @@ describe 'RadioStations API', type: :request do
     end
   end
 
+  path '/api/v1/radio_stations/release_date_graph' do
+    get 'Get release date distribution of played songs' do
+      tags 'Radio Stations'
+      produces 'application/json'
+      description 'Returns number of unique songs played grouped by release year. ' \
+                  'Use either period OR start_time/end_time (mutually exclusive). Returns 400 if neither provided.'
+      parameter name: :period, in: :query, type: :string, required: false,
+                description: 'Granular time period: 1_day, 3_days, 1_week, 2_weeks, 4_weeks, ' \
+                             '1_month, 6_months, 1_year, all. Mutually exclusive with start_time/end_time'
+      parameter name: :start_time, in: :query, type: :string, required: false,
+                description: 'Custom start time (YYYY-MM-DDTHH:MM). Mutually exclusive with period'
+      parameter name: :end_time, in: :query, type: :string, required: false,
+                description: 'Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time'
+      parameter name: 'radio_station_ids[]', in: :query, type: :array, items: { type: :integer },
+                required: false, description: 'Filter by radio station IDs'
+
+      response '200', 'Release date graph data retrieved successfully' do
+        example 'application/json', :example, [
+          { year: 2020, 'Radio 538': 10, 'Qmusic': 5 },
+          { year: 2023, 'Radio 538': 25, 'Qmusic': 18 },
+          { columns: ['Radio 538', 'Qmusic'] }
+        ]
+
+        let(:radio_station) { create(:radio_station) }
+        let(:song) { create(:song, release_date: Date.new(2023, 6, 15)) }
+        let!(:air_play) { create(:air_play, radio_station: radio_station, song: song, broadcasted_at: 1.day.ago) }
+        let(:period) { '1_year' }
+
+        run_test!
+      end
+
+      response '400', 'Period or start_time parameter is required' do
+        example 'application/json', :example, {
+          error: 'Period or start_time parameter is required'
+        }
+
+        let(:period) { nil }
+
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/radio_stations/{id}/bar_chart_race' do
     get 'Get bar chart race data for a radio station' do
       tags 'Radio Stations'
