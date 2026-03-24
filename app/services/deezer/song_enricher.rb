@@ -8,11 +8,18 @@ module Deezer
 
     def enrich
       return if @song.blank?
-      return if @song.id_on_deezer.present? && @song.duration_ms.present?
+      return if @song.id_on_deezer.present? && @song.duration_ms.present? && @song.release_date.present?
 
       result = find_on_deezer
       return unless result&.valid_match?
 
+      attributes = build_attributes(result)
+      @song.update(attributes)
+    end
+
+    private
+
+    def build_attributes(result)
       attributes = {
         id_on_deezer: result.id,
         deezer_song_url: result.deezer_song_url,
@@ -20,11 +27,9 @@ module Deezer
         deezer_preview_url: result.deezer_preview_url
       }
       attributes[:duration_ms] = result.duration_ms if @song.duration_ms.blank? && result.duration_ms.present?
-
-      @song.update(attributes)
+      attributes[:release_date] = result.release_date if @song.release_date.blank? && result.release_date.present?
+      attributes
     end
-
-    private
 
     def find_on_deezer
       result = Deezer::TrackFinder::Result.new(

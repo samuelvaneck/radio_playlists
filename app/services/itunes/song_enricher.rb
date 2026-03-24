@@ -8,11 +8,18 @@ module Itunes
 
     def enrich
       return if @song.blank?
-      return if @song.id_on_itunes.present? && @song.duration_ms.present?
+      return if @song.id_on_itunes.present? && @song.duration_ms.present? && @song.release_date.present?
 
       result = find_on_itunes
       return unless result&.valid_match?
 
+      attributes = build_attributes(result)
+      @song.update(attributes)
+    end
+
+    private
+
+    def build_attributes(result)
       attributes = {
         id_on_itunes: result.id,
         itunes_song_url: result.itunes_song_url,
@@ -20,11 +27,9 @@ module Itunes
         itunes_preview_url: result.itunes_preview_url
       }
       attributes[:duration_ms] = result.duration_ms if @song.duration_ms.blank? && result.duration_ms.present?
-
-      @song.update(attributes)
+      attributes[:release_date] = result.release_date if @song.release_date.blank? && result.release_date.present?
+      attributes
     end
-
-    private
 
     def find_on_itunes
       result = Itunes::TrackFinder::Result.new(
