@@ -5,7 +5,7 @@ module Api
     class RadioStationsController < ApiController
       include ActionController::Live
 
-      before_action :set_radio_station, only: %i[show status data classifiers stream_proxy bar_chart_race]
+      before_action :set_radio_station, only: %i[show status data classifiers stream_proxy bar_chart_race widget]
 
       def index
         render json: RadioStationSerializer.new(RadioStation.all).serializable_hash.to_json
@@ -81,6 +81,10 @@ module Api
         return render json: { error: 'Period or start_time parameter is required' }, status: :bad_request if time_param_blank?
 
         render json: RadioStation.release_date_graph(params)
+      end
+
+      def widget
+        render json: @radio_station.widget_data
       end
 
       private
