@@ -461,6 +461,42 @@ RSpec.describe 'Songs API', type: :request do
     end
   end
 
+  path '/api/v1/songs/{id}/widget' do
+    get 'Get song widget data' do
+      tags 'Songs'
+      produces 'application/json'
+      description 'Returns widget data for a song including total plays, number of radio stations, release date, and duration.'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Song ID'
+
+      response '200', 'Widget data retrieved successfully' do
+        example 'application/json', :example, {
+          total_played: 1250,
+          radio_stations_count: 8,
+          release_date: '2026-01-09',
+          duration_ms: 212_000
+        }
+
+        let(:radio_station) { create(:radio_station) }
+        let(:song) { create(:song, release_date: '2026-01-09', duration_ms: 212_000) }
+        let!(:air_play) { create(:air_play, song: song, radio_station: radio_station) }
+        let(:id) { song.id }
+
+        run_test!
+      end
+
+      response '404', 'Song not found' do
+        example 'application/json', :example, {
+          status: 404,
+          error: 'Not Found'
+        }
+
+        let(:id) { 0 }
+
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/songs/{id}/music_profile' do
     get 'Get song music profile (Spotify audio features)' do
       tags 'Songs'

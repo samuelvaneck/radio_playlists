@@ -406,6 +406,42 @@ RSpec.describe 'Artists API', type: :request do
     end
   end
 
+  path '/api/v1/artists/{id}/widget' do
+    get 'Get artist widget data' do
+      tags 'Artists'
+      produces 'application/json'
+      description 'Returns widget data for an artist including total plays, total songs, number of radio stations, and country of origin.'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Artist ID'
+
+      response '200', 'Widget data retrieved successfully' do
+        example 'application/json', :example, {
+          total_played: 5420,
+          total_songs: 25,
+          radio_stations_count: 12,
+          country_of_origin: ['United States']
+        }
+
+        let(:artist) { create(:artist, country_of_origin: ['United States']) }
+        let!(:song) { create(:song, artists: [artist]) }
+        let!(:air_play) { create(:air_play, song: song) }
+        let(:id) { artist.id }
+
+        run_test!
+      end
+
+      response '404', 'Artist not found' do
+        example 'application/json', :example, {
+          status: 404,
+          error: 'Not Found'
+        }
+
+        let(:id) { 0 }
+
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/artists/{id}/bio' do
     get 'Get artist biography from Wikipedia' do
       tags 'Artists'

@@ -763,6 +763,42 @@ paths:
                         - britpop
                         - british
                         spotify_popularity: 80
+  "/api/v1/artists/{id}/widget":
+    get:
+      summary: Get artist widget data
+      tags:
+      - Artists
+      description: Returns widget data for an artist including total plays, total
+        songs, number of radio stations, and country of origin.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Artist ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Widget data retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    total_played: 5420
+                    total_songs: 25
+                    radio_stations_count: 12
+                    country_of_origin:
+                    - United States
+        '404':
+          description: Artist not found
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    status: 404
+                    error: Not Found
   "/api/v1/artists/{id}/bio":
     get:
       summary: Get artist biography from Wikipedia
@@ -1815,7 +1851,8 @@ paths:
       tags:
       - Radio Stations
       description: Returns widget data for a radio station including top track, top
-        artist, number of songs played, and number of new songs for the past week.
+        artist, and number of new songs for the past week, and number of songs played
+        for the past day.
       parameters:
       - name: id
         in: path
@@ -2636,6 +2673,41 @@ paths:
                           isrc:
                             type: string
                             nullable: true
+        '404':
+          description: Song not found
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    status: 404
+                    error: Not Found
+  "/api/v1/songs/{id}/widget":
+    get:
+      summary: Get song widget data
+      tags:
+      - Songs
+      description: Returns widget data for a song including total plays, number of
+        radio stations, release date, and duration.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Song ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Widget data retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    total_played: 1250
+                    radio_stations_count: 8
+                    release_date: '2026-01-09'
+                    duration_ms: 212000
         '404':
           description: Song not found
           content:
