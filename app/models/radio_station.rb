@@ -141,6 +141,23 @@ class RadioStation < ActiveRecord::Base
     AirPlay.where(radio_station: self, created_at: 1.day.ago..Time.zone.now)
   end
 
+  def widget_data
+    week_range = 1.week.ago..Time.zone.now
+    station_ids = [id].to_json
+
+    top_song = Song.most_played(radio_station_ids: station_ids, period: 'week').first
+    top_artist = Artist.most_played(radio_station_ids: station_ids, period: 'week').first
+    songs_played_count = AirPlay.confirmed.where(radio_station: self, broadcasted_at: week_range).count
+    new_songs_count = RadioStationSong.where(radio_station: self, first_broadcasted_at: week_range).count
+
+    {
+      top_song: top_song ? SongSerializer.new(top_song).serializable_hash : nil,
+      top_artist: top_artist ? ArtistSerializer.new(top_artist).serializable_hash : nil,
+      songs_played_count: songs_played_count,
+      new_songs_count: new_songs_count
+    }
+  end
+
   def stack_prof_import_song
     StackProf.run(mode: :cpu, out: 'tmp/stackprof-cpu-import-song.dump', raw: true)
   end

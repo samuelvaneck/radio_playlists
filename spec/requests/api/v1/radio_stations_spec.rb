@@ -332,6 +332,63 @@ describe 'RadioStations API', type: :request do
     end
   end
 
+  path '/api/v1/radio_stations/{id}/widget' do
+    get 'Get radio station widget data' do
+      tags 'Radio Stations'
+      produces 'application/json'
+      description 'Returns widget data for a radio station including top track, top artist, ' \
+                  'number of songs played, and number of new songs for the past week.'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
+
+      response '200', 'Widget data retrieved successfully' do
+        example 'application/json', :example, {
+          top_song: {
+            data: {
+              id: '1',
+              type: 'song',
+              attributes: {
+                id: 1,
+                title: 'Bohemian Rhapsody',
+                spotify_artwork_url: 'https://i.scdn.co/image/abc123',
+                artists: [{ data: { id: '1', type: 'artist', attributes: { id: 1, name: 'Queen' } } }],
+                counter: 42
+              }
+            }
+          },
+          top_artist: {
+            data: {
+              id: '1',
+              type: 'artist',
+              attributes: {
+                id: 1,
+                name: 'Queen',
+                counter: 85
+              }
+            }
+          },
+          songs_played_count: 1250,
+          new_songs_count: 15
+        }
+
+        let(:radio_station) { create(:radio_station) }
+        let(:id) { radio_station.id }
+
+        run_test!
+      end
+
+      response '404', 'Radio station not found' do
+        example 'application/json', :example, {
+          status: 404,
+          error: 'Not Found'
+        }
+
+        let(:id) { 0 }
+
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/radio_stations/{id}/bar_chart_race' do
     get 'Get bar chart race data for a radio station' do
       tags 'Radio Stations'
