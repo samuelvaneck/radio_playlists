@@ -3,7 +3,7 @@
 module Api
   module V1
     class ArtistsController < ApiController
-      before_action :artist, only: %i[show graph_data songs chart_positions time_analytics air_plays bio similar_artists]
+      before_action :artist, only: %i[show graph_data songs chart_positions time_analytics air_plays bio similar_artists widget]
       def index
         render json: ArtistSerializer.new(artists)
                        .serializable_hash
@@ -120,6 +120,10 @@ module Api
       def similar_artists
         results = artist.similar_artists(limit: similar_artists_limit)
         render json: ArtistSerializer.new(results).serializable_hash.to_json
+      end
+
+      def widget
+        render json: artist.widget_data
       end
 
       def bio

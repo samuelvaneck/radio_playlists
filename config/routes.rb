@@ -28,6 +28,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get :air_plays, on: :member
         get :bio, on: :member
         get :similar_artists, on: :member
+        get :widget, on: :member
       end
       resources :songs, only: %i[index show] do
         get :autocomplete, on: :collection
@@ -37,6 +38,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get :air_plays, on: :member
         get :info, on: :member
         get :music_profile, on: :member
+        get :widget, on: :member
       end
       resources :radio_stations, only: %i[index show] do
         get :data, on: :member

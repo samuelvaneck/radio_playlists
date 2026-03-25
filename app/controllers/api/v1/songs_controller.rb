@@ -3,7 +3,7 @@
 module Api
   module V1
     class SongsController < ApiController
-      before_action :song, only: %i[show graph_data chart_positions time_analytics air_plays info music_profile]
+      before_action :song, only: %i[show graph_data chart_positions time_analytics air_plays info music_profile widget]
 
       def index
         render json: SongSerializer.new(songs)
@@ -171,6 +171,10 @@ module Api
       #     "attribute_descriptions": { ... }
       #   }
       # }
+      def widget
+        render json: song.widget_data
+      end
+
       def music_profile
         hash = if song.music_profile.present?
                  MusicProfileSerializer.new(song.music_profile).serializable_hash

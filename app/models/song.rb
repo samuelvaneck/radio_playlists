@@ -266,6 +266,15 @@ class Song < ApplicationRecord
   end
 
   # Enrich song with Deezer, iTunes, and MusicBrainz data if missing
+  def widget_data
+    {
+      total_played: air_plays.confirmed.count,
+      radio_stations_count: radio_stations.count,
+      release_date: release_date,
+      duration_ms: duration_ms
+    }
+  end
+
   def enrich_with_external_services
     enrich_with_deezer if should_enrich_with_deezer?
     enrich_with_itunes if should_enrich_with_itunes?

@@ -114,6 +114,15 @@ class Artist < ApplicationRecord
       .limit(limit)
   end
 
+  def widget_data
+    {
+      total_played: air_plays.merge(AirPlay.confirmed).count,
+      total_songs: songs.count,
+      radio_stations_count: RadioStation.joins(radio_station_songs: { song: :artists_songs }).where(artists_songs: { artist_id: id }).distinct.count,
+      country_of_origin: country_of_origin
+    }
+  end
+
   def cleanup
     destroy if songs.blank?
   end
