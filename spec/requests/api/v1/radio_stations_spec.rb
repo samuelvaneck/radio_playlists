@@ -337,7 +337,7 @@ describe 'RadioStations API', type: :request do
       tags 'Radio Stations'
       produces 'application/json'
       description 'Returns widget data for a radio station including top track, top artist, ' \
-                  'number of songs played, and number of new songs for the past week.'
+                  'and number of new songs for the past week, and number of songs played for the past day.'
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
 
       response '200', 'Widget data retrieved successfully' do
