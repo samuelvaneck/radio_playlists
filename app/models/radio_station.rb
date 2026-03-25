@@ -142,12 +142,13 @@ class RadioStation < ActiveRecord::Base
   end
 
   def widget_data
+    day_range = 1.day.ago..Time.zone.now
     week_range = 1.week.ago..Time.zone.now
     station_ids = [id].to_json
 
     top_song = Song.most_played(radio_station_ids: station_ids, period: 'week').first
     top_artist = Artist.most_played(radio_station_ids: station_ids, period: 'week').first
-    songs_played_count = AirPlay.confirmed.where(radio_station: self, broadcasted_at: week_range).count
+    songs_played_count = AirPlay.confirmed.where(radio_station: self, broadcasted_at: day_range).count
     new_songs_count = RadioStationSong.where(radio_station: self, first_broadcasted_at: week_range).count
 
     {
