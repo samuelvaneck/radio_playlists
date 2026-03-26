@@ -176,7 +176,7 @@ describe RadioStation, :use_vcr, :with_valid_token do
     end
 
     context 'when broadcasted_at is blank' do
-      let(:air_play) { create(:air_play, broadcasted_at: nil) }
+      let(:air_play) { build(:air_play, broadcasted_at: nil).tap { |ap| ap.save(validate: false) } }
 
       it 'returns false' do
         expect(described_class.currently_playing?(air_play)).to be false
