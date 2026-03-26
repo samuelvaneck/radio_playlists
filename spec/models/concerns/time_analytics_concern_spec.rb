@@ -96,6 +96,18 @@ RSpec.describe TimeAnalyticsConcern do
       expect(result[:daily_distribution]['Monday']).to eq(2)
       expect(result[:daily_distribution]['Tuesday']).to eq(1)
     end
+
+    context 'when air_play has nil broadcasted_at' do
+      before do
+        create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: nil)
+      end
+
+      it 'excludes nil keys from distributions', :aggregate_failures do
+        result = song.peak_play_times_summary
+        expect(result[:hourly_distribution].keys).to all(be_an(Integer))
+        expect(result[:daily_distribution].keys).to all(be_a(String))
+      end
+    end
   end
 
   describe '#play_frequency_trend' do
