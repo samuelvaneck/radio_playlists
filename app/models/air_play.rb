@@ -47,6 +47,7 @@ class AirPlay < ApplicationRecord
     joins(:song).where('songs.search_text ILIKE ?', "%#{search_term}%") if search_term.present?
   }
 
+  validates :broadcasted_at, presence: true
   validate :today_unique_air_play_item
 
   def self.last_played(params = {})

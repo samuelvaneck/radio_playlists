@@ -99,7 +99,8 @@ RSpec.describe TimeAnalyticsConcern do
 
     context 'when air_play has nil broadcasted_at' do
       before do
-        create(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: nil)
+        air_play = build(:air_play, song: song, radio_station: radio_station_one, broadcasted_at: nil)
+        air_play.save(validate: false)
       end
 
       it 'excludes nil keys from distributions', :aggregate_failures do
