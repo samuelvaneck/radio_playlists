@@ -3,7 +3,7 @@
 module Api
   module V1
     class RadioStationClassifiersController < ApiController
-      rate_limit to: 30, within: 1.minute, by: -> { request.remote_ip },
+      rate_limit to: 30, within: 1.minute, by: -> { request.remote_ip }, name: 'classifiers',
                  with: -> { render json: { error: 'Rate limit exceeded' }, status: :too_many_requests }
 
       def index

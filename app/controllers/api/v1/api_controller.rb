@@ -5,7 +5,7 @@ module Api
     class ApiController < ActionController::API
       before_action :authenticate_client!
 
-      rate_limit to: 300, within: 1.minute, by: -> { request.remote_ip },
+      rate_limit to: 300, within: 1.minute, by: -> { request.remote_ip }, name: 'general',
                  with: -> { render json: { error: 'Rate limit exceeded' }, status: :too_many_requests }
 
       rescue_from DateConcern::ConflictingTimeParametersError, with: :render_conflicting_params_error

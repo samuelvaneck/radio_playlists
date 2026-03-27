@@ -5,7 +5,7 @@ module Api
     class RadioStationsController < ApiController
       include ActionController::Live
 
-      rate_limit to: 5, within: 1.minute, by: -> { request.remote_ip }, only: :stream_proxy,
+      rate_limit to: 5, within: 1.minute, by: -> { request.remote_ip }, only: :stream_proxy, name: 'stream-proxy',
                  with: -> { render json: { error: 'Rate limit exceeded' }, status: :too_many_requests }
 
       skip_before_action :authenticate_client!, only: %i[stream_proxy widget]
