@@ -3,6 +3,7 @@
 module Api
   module V1
     class SongsController < ApiController
+      skip_before_action :authenticate_client!, only: :widget
       before_action :song, only: %i[show graph_data chart_positions time_analytics air_plays info music_profile widget]
 
       def index

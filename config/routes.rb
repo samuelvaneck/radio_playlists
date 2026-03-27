@@ -58,7 +58,8 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get :search, on: :collection
         get :autocomplete, on: :collection
       end
-      resources :song_import_logs, only: %i[index]
+      post 'client_tokens', to: 'client_tokens#create'
+      get 'admins/song_import_logs', to: 'song_import_logs#index'
     end
   end
 

@@ -282,7 +282,8 @@ RSpec.configure do |config|
           bearer_auth: {
             type: :http,
             scheme: :bearer,
-            bearerFormat: :JWT
+            bearerFormat: :JWT,
+            description: 'Admin JWT token (from Devise) or Frontend client JWT token'
           }
         }
       }

@@ -3,11 +3,13 @@
 require 'swagger_helper'
 
 RSpec.describe 'SongImportLogs API', type: :request do
-  path '/api/v1/song_import_logs' do
+  path '/api/v1/admins/song_import_logs' do
     get 'List song import logs' do
       tags 'SongImportLogs'
       produces 'application/json'
-      description 'Returns song import logs for debugging and auditing. Logs are automatically deleted after 1 day.'
+      security [{ bearer_auth: [] }]
+      description 'Returns song import logs for debugging and auditing. Requires admin authentication. ' \
+                  'Logs are automatically deleted after 1 day.'
       parameter name: :page, in: :query, type: :integer, required: false, description: 'Page number'
       parameter name: :per_page, in: :query, type: :integer, required: false, description: 'Items per page (default 25)'
       parameter name: :radio_station_id, in: :query, type: :integer, required: false,
@@ -18,6 +20,9 @@ RSpec.describe 'SongImportLogs API', type: :request do
                 description: 'Filter by import source: recognition, scraping'
       parameter name: :song_id, in: :query, type: :integer, required: false,
                 description: 'Filter by song ID'
+
+      let(:admin) { create(:admin) }
+      let(:Authorization) { "Bearer #{jwt_token_for(admin)}" }
 
       response '200', 'Song import logs retrieved successfully' do
         let!(:song_import_log) { create(:song_import_log, :with_recognition) }

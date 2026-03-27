@@ -3,6 +3,7 @@
 module Api
   module V1
     class ArtistsController < ApiController
+      skip_before_action :authenticate_client!, only: :widget
       before_action :artist, only: %i[show graph_data songs chart_positions time_analytics air_plays bio similar_artists widget]
       def index
         render json: ArtistSerializer.new(artists)

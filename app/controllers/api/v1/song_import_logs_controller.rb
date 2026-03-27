@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class SongImportLogsController < ApiController
+    class SongImportLogsController < ApplicationController
       def index
         render json: SongImportLogSerializer.new(song_import_logs)
                        .serializable_hash
@@ -38,6 +38,12 @@ module Api
         return scope if params[:import_source].blank?
 
         scope.where(import_source: params[:import_source])
+      end
+
+      def pagination_data(items)
+        return {} if items.blank?
+
+        { total_entries: items.total_entries || 0, total_pages: items.total_pages || 0, current_page: items.current_page }
       end
     end
   end
