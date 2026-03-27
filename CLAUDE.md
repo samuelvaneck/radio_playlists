@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Radio Playlists is a Ruby on Rails 8 API-only application that monitors Dutch radio stations, recognizes/scrapes songs, enriches them with Spotify/YouTube data, and generates charts. Uses Sidekiq for background job processing.
+Radio Playlists is a Ruby on Rails 8.1 API-only application that monitors Dutch radio stations, recognizes/scrapes songs, enriches them with Spotify/YouTube data, and generates charts. Uses Sidekiq for background job processing.
 
 ## Common Commands
 
@@ -56,7 +56,8 @@ The app uses service objects extensively in `app/services/`:
 - `Spotify/` - External API integration with two track-finding paths: search-based (`best_match`) and ID-based (`fetch_spotify_track`). Both compute JaroWinkler match scores for `valid_match?` validation (artist >= 80, title >= 70)
 - `Youtube/` - YouTube API integration
 - `Lastfm/` and `Wikipedia/` - Artist bio/info enrichment (Last.fm listeners/playcount/tags, Wikipedia nationality via Wikidata)
-- `Deezer/` and `Itunes/` - Additional enrichment sources (duration_ms backfill)
+- `Deezer/` and `Itunes/` - Additional enrichment sources (duration_ms, release_date backfill)
+- `ClientTokenGenerator` - Generates short-lived JWT tokens (10-minute expiry) for frontend client authentication
 - `MusicBrainz/` - ISRCs enrichment for songs
 - `AudioStream/` - M3U8, MP3, and PersistentSegment stream handling
 - `PersistentStream/` - Long-lived ffmpeg processes for ad-free stream capture (see below)
@@ -133,9 +134,9 @@ Formula: `(weekly_airplay * 100) + (popularity_boost * 50)`. Artists default to 
 
 ### Key Models
 
-- `Song` - Core entity with Spotify/YouTube IDs, enrichment fields (`album_name`, `popularity`, `explicit`, `duration_ms`, `isrcs` array, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`)
+- `Song` - Core entity with Spotify/YouTube IDs, enrichment fields (`album_name`, `popularity`, `explicit`, `duration_ms`, `release_date`, `isrcs` array, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`)
 - `Artist` - Core entity with enrichment fields (`genres` array, `country_of_origin` array, `spotify_popularity`, `spotify_followers_count`, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`)
-- `AirPlay` - Song play events (unique per station/song/time)
+- `AirPlay` - Song play events (unique per station/song/time, `broadcasted_at` presence validated)
 - `RadioStation` - Station metadata with last 12 airplay IDs (JSONB), `is_currently_playing` flag on last_played_songs endpoint
 - `ChartPosition` - Polymorphic rankings (can be Song or Artist), with popularity boost tiebreaker
 - `MusicProfile` - Spotify audio features per song: 7 core features + extended features (`key`, `mode`, `loudness`, `time_signature`)
@@ -203,8 +204,32 @@ This tells RuboCop that the expectations are intentionally grouped, and RSpec wi
 RESTful JSON API under `/api/v1/`:
 - `songs`, `artists`, `air_plays`, `radio_stations`, `charts`
 - `GET /api/v1/artists/:id/similar_artists` — Returns artists with overlapping genres/Last.fm tags, sorted by similarity score then Spotify popularity
+- `GET /api/v1/radio_stations/release_date_graph` — Groups airplays by station and song release year for time-series visualization
+- Widget endpoints (public, no auth required):
+  - `GET /api/v1/songs/:id/widget` — total plays, station count, release date, duration
+  - `GET /api/v1/artists/:id/widget` — total plays, song count, station count, country of origin
+  - `GET /api/v1/radio_stations/:id/widget` — top song/artist (last week), songs played (last 24h), new songs (last 7 days)
 - Admin endpoints with JWT authentication (Devise)
 - Swagger docs available at `/api-docs` (rswag)
+
+### Authentication & Rate Limiting
+
+Two-tier JWT authentication:
+
+1. **Frontend client JWT** (`FRONTEND_JWT_SECRET`) — lightweight tokens for public API access
+   - Generated via `POST /api/v1/client_tokens` (requires `FRONTEND_CLIENT_ID` + `FRONTEND_CLIENT_SECRET`)
+   - `ClientTokenGenerator` creates HS256 tokens with 10-minute expiry
+   - Enforced by `before_action :authenticate_client!` in `ApiController`
+   - Skipped if `FRONTEND_JWT_SECRET` env var is not set
+2. **Admin JWT** (`DEVISE_JWT_SECRET_KEY`) — Devise-JWT with JTI revocation strategy, 60-minute expiry
+
+**Exempt from client authentication:** widget endpoints and `stream_proxy`
+
+**Rate limits** (Rails 8 built-in `rate_limit`):
+- General API: 300 req/min per IP
+- Client token creation: 10 req/min per IP
+- Radio station classifiers: 30 req/min per IP
+- Stream proxy: 5 req/min per IP
 
 ### Charts Endpoint
 
