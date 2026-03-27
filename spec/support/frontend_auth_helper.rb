@@ -4,11 +4,7 @@ module FrontendAuthHelper
   FRONTEND_JWT_SECRET = 'test-frontend-jwt-secret'
 
   def frontend_auth_headers
-    token = JWT.encode(
-      { client_id: 'test-client', exp: 1.hour.from_now.to_i, iat: Time.current.to_i },
-      FRONTEND_JWT_SECRET,
-      'HS256'
-    )
+    token = ClientTokenGenerator.new('test-client').()
     { 'Authorization' => "Bearer #{token}" }
   end
 

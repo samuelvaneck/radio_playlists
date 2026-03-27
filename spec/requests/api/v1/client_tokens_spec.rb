@@ -26,7 +26,7 @@ RSpec.describe 'Client Tokens API', type: :request do
         expect(response).to have_http_status(:ok)
         json = JSON.parse(response.body)
         expect(json['token']).to be_present
-        expect(json['expires_in']).to eq(3600)
+        expect(json['expires_in']).to eq(600)
       end
 
       it 'returns a token that can authenticate API requests', :aggregate_failures do

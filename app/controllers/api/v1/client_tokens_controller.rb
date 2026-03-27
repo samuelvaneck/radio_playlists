@@ -12,8 +12,8 @@ module Api
 
         return render json: { error: 'Invalid client credentials' }, status: :unauthorized unless valid_client_credentials?(client_id, client_secret)
 
-        token = generate_token(client_id)
-        render json: { token: token, expires_in: 1.hour.to_i }
+        token = ClientTokenGenerator.new(client_id).()
+        render json: { token: token, expires_in: ClientTokenGenerator::TOKEN_EXPIRY.to_i }
       end
 
       private
@@ -27,15 +27,6 @@ module Api
 
         ActiveSupport::SecurityUtils.secure_compare(client_id, expected_id) &&
           ActiveSupport::SecurityUtils.secure_compare(client_secret, expected_secret)
-      end
-
-      def generate_token(client_id)
-        payload = {
-          client_id: client_id,
-          exp: 1.hour.from_now.to_i,
-          iat: Time.current.to_i
-        }
-        JWT.encode(payload, ENV['FRONTEND_JWT_SECRET'], 'HS256')
       end
     end
   end
