@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Sitemap', type: :request do
   describe 'GET /sitemap.xml' do
-    let!(:radio_station) { create(:radio_station, slug: 'test-radio') }
+    let!(:radio_station) { create(:radio_station, name: 'Sitemap Test Radio', slug: 'sitemap-test-radio') }
     let!(:song) { create(:song, title: 'Test Song') }
     let!(:artist) { create(:artist, name: 'Test Artist') }
 
@@ -20,7 +20,7 @@ RSpec.describe 'Sitemap', type: :request do
     end
 
     it 'includes radio station pages' do
-      expect(response.body).to include('<loc>https://airplays.nl/radio_stations/test-radio</loc>')
+      expect(response.body).to include('<loc>https://airplays.nl/radio_stations/sitemap-test-radio</loc>')
     end
 
     it 'includes song pages' do
