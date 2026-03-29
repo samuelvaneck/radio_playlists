@@ -4,7 +4,7 @@ module MusicBrainz
   class IsrcsFinder
     ISRC_ENDPOINT = 'https://musicbrainz.org/ws/2/isrc'
     RECORDING_ENDPOINT = 'https://musicbrainz.org/ws/2/recording'
-    USER_AGENT = 'RadioPlaylists/1.0.0 (https://playlists.samuelvaneck.com)'
+    USER_AGENT = 'Airplays/1.0.0 (https://airplays.nl)'
     RATE_LIMIT_DELAY = 1.0
 
     def initialize(isrc)

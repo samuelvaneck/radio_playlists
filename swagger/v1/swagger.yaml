@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.1
 info:
-  title: Radio Playlists API
+  title: Airplays API
   version: v1
   description: API for tracking songs played on Dutch radio stations with Spotify
     and YouTube integration
@@ -2768,7 +2768,7 @@ paths:
                     status: 404
                     error: Not Found
 servers:
-- url: https://api.radioplaylists.nl
+- url: https://api.airplays.nl
   description: Production server
 - url: http://localhost:3000
   description: Development server

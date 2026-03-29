@@ -1,6 +1,6 @@
-# Radio Playlists
+# Airplays
 
-Radio Playlists is a Ruby on Rails 8.1 API-only application that monitors Dutch radio stations, recognizes and scrapes currently playing songs, enriches them with data from Spotify, YouTube, Last.fm, Deezer, and iTunes, and generates charts. Uses Sidekiq for background job processing.
+Airplays is a Ruby on Rails 8.1 API-only application that monitors Dutch radio stations, recognizes and scrapes currently playing songs, enriches them with data from Spotify, YouTube, Last.fm, Deezer, and iTunes, and generates charts. Uses Sidekiq for background job processing.
 
 ## Features
 
@@ -47,7 +47,7 @@ Radio Playlists is a Ruby on Rails 8.1 API-only application that monitors Dutch 
 1. Clone the repository:
    ```bash
    git clone https://github.com/samuelvaneck/radio_playlists.git
-   cd radio_playlists
+   cd airplays
    ```
 2. Install Ruby gems:
    ```bash
