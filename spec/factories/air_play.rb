@@ -16,7 +16,7 @@
 
 FactoryBot.define do
   factory :air_play, class: 'AirPlay' do
-    broadcasted_at { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now) }
+    broadcasted_at { Faker::Time.between(from: 12.hours.ago, to: Time.current) }
     radio_station { create(:radio_station) }
     song { create(:song) }
     status { :confirmed }
