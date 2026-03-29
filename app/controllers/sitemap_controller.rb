@@ -29,7 +29,7 @@ class SitemapController < ActionController::API
   end
 
   def radio_station_pages(xml)
-    RadioStation.select(:slug, :updated_at).find_each do |station|
+    RadioStation.select(:id, :slug, :updated_at).find_each do |station|
       xml.url do
         xml.loc "#{FRONTEND_URL}/radio_stations/#{station.slug}"
         xml.lastmod station.updated_at.strftime('%Y-%m-%d')
