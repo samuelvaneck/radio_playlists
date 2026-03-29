@@ -2,17 +2,17 @@
   version: 2
   jobs:
     build:
-      working_directory: ~/radio_playlists
+      working_directory: ~/airplays
       docker:
         - image: cimg/ruby:4.0.1-browsers
           environment:
             POSTGRES_HOST: localhost
-            POSTGRES_USER: radio_playlists
+            POSTGRES_USER: airplays
             RAILS_ENV: test
         - image: postgres:13
           environment:
-            POSTGRES_USER: radio_playlists
-            POSTGRES_DB: radio_playlists_test
+            POSTGRES_USER: airplays
+            POSTGRES_DB: airplays_test
             POSTGRES_PASSWORD: "Super-C0mpl3X"
 
       steps:
@@ -24,7 +24,7 @@
         # Restore Cached Dependencies
         - type: cache-restore
           name: Restore bundle cache
-          key: radio_playlists-{{ checksum "Gemfile.lock" }}
+          key: airplays-{{ checksum "Gemfile.lock" }}
 
         # Install system dependencies
         - run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
@@ -39,7 +39,7 @@
         # Cache Dependencies
         - type: cache-save
           name: Store bundle cache
-          key: radio_playlists-{{ checksum "Gemfile.lock" }}
+          key: airplays-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -62,6 +62,6 @@
         - run: bundle exec rubocop
 
         - store_artifacts:
-            path: ~/radio_playlists/coverage
+            path: ~/airplays/coverage
         - store_artifacts:
-            path: ~/radio_playlists/log
+            path: ~/airplays/log

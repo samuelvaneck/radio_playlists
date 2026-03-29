@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'RadioPlaylists | samuelvaneck.com <radioplaylists@samuelvaneck.com>'
+  default from: 'Airplays <info@airplays.nl>'
   layout 'mailer'
 end

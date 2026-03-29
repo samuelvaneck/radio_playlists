@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-IMAGE="ghcr.io/samuelvaneck/radio_playlists:latest"
+IMAGE="ghcr.io/samuelvaneck/airplays:latest"
 PLATFORM="linux/amd64"
 
-echo "=== Radio Playlists Docker Build & Push ==="
+echo "=== Airplays Docker Build & Push ==="
 echo ""
 
 # Check for required environment variable

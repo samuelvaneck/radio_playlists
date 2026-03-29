@@ -9,14 +9,14 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'Radio Playlists API',
+        title: 'Airplays API',
         version: 'v1',
         description: 'API for tracking songs played on Dutch radio stations with Spotify and YouTube integration'
       },
       paths: {},
       servers: [
         {
-          url: 'https://api.radioplaylists.nl',
+          url: 'https://api.airplays.nl',
           description: 'Production server'
         },
         {

@@ -18,7 +18,7 @@ require "action_view/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module RadioPlaylists
+module Airplays
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
@@ -30,7 +30,7 @@ module RadioPlaylists
 
     # Sidekiq 8 Web UI requires session middleware (not included in API-only apps)
     config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore, key: "_radio_playlists_session"
+    config.middleware.use ActionDispatch::Session::CookieStore, key: "_airplays_session"
 
     config.autoload_lib(ignore: %w[assets tasks])
 

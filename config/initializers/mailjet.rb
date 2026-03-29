@@ -2,5 +2,5 @@
 Mailjet.configure do |config|
   config.api_key = ENV['MAILJET_KEY']
   config.secret_key = ENV['MAILJET_SECRET']
-  config.default_from = 'radioplaylists@samuelvaneck.com'
+  config.default_from = 'info@airplays.nl'
 end
