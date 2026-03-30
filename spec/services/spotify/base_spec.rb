@@ -29,6 +29,18 @@ describe Spotify::Base, type: :service do
       end
     end
 
+    context 'when the response body is a String instead of a Hash' do
+      before do
+        stub_request(:get, url)
+          .with(headers: { 'Authorization' => "Bearer #{token}", 'Content-Type' => 'application/json' })
+          .to_return(status: 200, body: 'unexpected string response', headers: { 'Content-Type' => 'text/plain' })
+      end
+
+      it 'returns nil' do
+        expect(make_request).to be_nil
+      end
+    end
+
     context 'when the request fails' do
       before do
         stub_request(:get, url).to_raise(Faraday::Error)

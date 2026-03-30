@@ -22,7 +22,7 @@ module Spotify
               req.headers['Content-Type'] = 'application/json'
             end
             handle_rate_limit_response(api_response)
-            api_response.body
+            api_response.body.is_a?(Hash) ? api_response.body : nil
           end
         end
       end
