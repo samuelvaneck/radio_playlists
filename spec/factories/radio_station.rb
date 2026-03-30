@@ -156,4 +156,12 @@ FactoryBot.define do
     slug { '100-nl' }
     country_code { 'NLD' }
   end
+
+  factory :decibel, parent: :radio_station do
+    name { 'Decibel' }
+    url { '{"widget_id":"w64vw5zDm8Kvwq3CrMODUsKzaMOmWsODQCHDr0BgQsOX","radio_id":"399151"}' }
+    processor { 'mytuner_api_processor' }
+    slug { 'decibel' }
+    country_code { 'NLD' }
+  end
 end
