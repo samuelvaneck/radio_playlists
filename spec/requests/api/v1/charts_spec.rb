@@ -254,6 +254,8 @@ RSpec.describe 'Charts API', type: :request do
         let(:q) { 'Hello' }
         let!(:artist) { create(:artist, name: 'Adele') }
         let!(:song) { create(:song, title: 'Hello', artists: [artist], search_text: 'Adele Hello') }
+        let!(:chart) { create(:chart, chart_type: 'songs', date: Date.current) }
+        let!(:chart_position) { create(:chart_position, chart: chart, positianable: song, position: 1, counts: 10) }
 
         run_test! do |response|
           data = JSON.parse(response.body)
@@ -265,6 +267,7 @@ RSpec.describe 'Charts API', type: :request do
       context 'when query matches nothing' do
         response '200', 'Empty results' do
           let(:q) { 'Nonexistent' }
+          let!(:chart) { create(:chart, chart_type: 'songs', date: Date.current) }
 
           run_test! do |response|
             data = JSON.parse(response.body)

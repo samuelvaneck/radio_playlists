@@ -66,7 +66,10 @@ module Api
       end
 
       def autocomplete_songs
-        @autocomplete_songs ||= Song.search_by_text(params[:q])
+        song_ids = chart.chart_positions.where(positianable_type: 'Song').pluck(:positianable_id)
+
+        @autocomplete_songs ||= Song.where(id: song_ids)
+                                  .search_by_text(params[:q])
                                   .select(:id, :title, :spotify_artwork_url)
                                   .includes(:artists)
                                   .paginate(page: params[:page], per_page: autocomplete_limit)
