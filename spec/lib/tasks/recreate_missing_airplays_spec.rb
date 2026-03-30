@@ -30,22 +30,22 @@ describe 'data_repair:recreate_missing_airplays' do # rubocop:disable RSpec/Desc
   end
 
   context 'when radio_station_songs have no matching airplays' do
-    let!(:song1) { create(:song) }
-    let!(:song2) { create(:song) }
+    let!(:first_song) { create(:song) }
+    let!(:second_song) { create(:song) }
 
     before do
-      create(:radio_station_song, radio_station: station, song: song1, first_broadcasted_at: broadcasted_at)
-      create(:radio_station_song, radio_station: station, song: song2, first_broadcasted_at: broadcasted_at - 1.hour)
+      create(:radio_station_song, radio_station: station, song: first_song, first_broadcasted_at: broadcasted_at)
+      create(:radio_station_song, radio_station: station, song: second_song, first_broadcasted_at: broadcasted_at - 1.hour)
     end
 
     it 'creates airplays for each orphaned radio_station_song', :aggregate_failures do
       expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Test Decibel') }
         .to change(AirPlay, :count).by(2)
 
-      airplay1 = AirPlay.find_by(song: song1, radio_station: station)
-      expect(airplay1.broadcasted_at).to eq(broadcasted_at)
-      expect(airplay1).to be_confirmed
-      expect(airplay1.scraper_import).to be(true)
+      airplay = AirPlay.find_by(song: first_song, radio_station: station)
+      expect(airplay.broadcasted_at).to eq(broadcasted_at)
+      expect(airplay).to be_confirmed
+      expect(airplay.scraper_import).to be(true)
     end
   end
 
@@ -120,7 +120,7 @@ describe 'data_repair:recreate_missing_airplays' do # rubocop:disable RSpec/Desc
       create(:radio_station_song, radio_station: station, song: song_without_airplay, first_broadcasted_at: broadcasted_at - 30.minutes)
     end
 
-    it 'only creates airplays for the missing ones' do
+    it 'only creates airplays for the missing ones', :aggregate_failures do
       expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Test Decibel') }
         .to change(AirPlay, :count).by(1)
 

@@ -1236,10 +1236,10 @@ namespace :data_repair do
     puts '=' * 80
 
     orphaned = station.radio_station_songs
-                      .left_joins(:song)
-                      .where.not(song_id: station.air_plays.select(:song_id))
-                      .where.not(first_broadcasted_at: nil)
-                      .includes(:song)
+                 .left_joins(:song)
+                 .where.not(song_id: station.air_plays.select(:song_id))
+                 .where.not(first_broadcasted_at: nil)
+                 .includes(:song)
 
     count = orphaned.count
     if count.zero?
