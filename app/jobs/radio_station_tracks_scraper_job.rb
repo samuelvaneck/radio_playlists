@@ -54,6 +54,8 @@ class RadioStationTracksScraperJob
     response = connection.get(url) do |req|
       req.headers['Content-Type'] = 'application/json'
     end
+    return nil unless response.body.is_a?(Hash)
+
     response.body.with_indifferent_access
   end
 

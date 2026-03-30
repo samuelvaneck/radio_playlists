@@ -72,5 +72,17 @@ describe RadioStationTracksScraperJob, :use_vcr, type: :job do
         end.to change(artist, :instagram_url).from(nil).to('https://instagram.com/teddysphotos')
       end
     end
+
+    context 'when API returns non-JSON response' do
+      before do
+        allow(job).to receive(:response).and_call_original
+        stub_request(:get, /api\.qmusic|api\.joe/)
+          .to_return(status: 503, body: '<html>Service Unavailable</html>', headers: { 'Content-Type' => 'text/html' })
+      end
+
+      it 'skips the response' do
+        expect { perform_job }.not_to raise_error
+      end
+    end
   end
 end
