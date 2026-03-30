@@ -162,5 +162,13 @@ RadioStation.seed(
     direct_stream_url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/RADIODECIBEL.mp3',
     slug: 'decibel',
     country_code: 'NLD'
+  },
+  {
+    name: 'Simone FM',
+    url: 'https://api01.simone.nl/playlist?station=SIMONEFM&limit=1',
+    processor: 'simone_api_processor',
+    direct_stream_url: 'https://stream.simone.nl/simone',
+    slug: 'simone-fm',
+    country_code: 'NLD'
   }
 )
