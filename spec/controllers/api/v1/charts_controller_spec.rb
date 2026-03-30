@@ -98,11 +98,13 @@ describe Api::V1::ChartsController do
     subject(:get_autocomplete) { get :autocomplete, params: { q: query, format: :json } }
 
     let(:artist) { create :artist, name: 'Adele' }
+    let(:chart) { create :chart, date: Date.current, chart_type: 'songs' }
 
     context 'when query matches a song' do
       let(:query) { 'Hello' }
+      let(:song) { create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello' }
 
-      before { create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello' }
+      before { create :chart_position, chart: chart, positianable: song, position: 1, counts: 10 }
 
       it 'returns status OK/200' do
         get_autocomplete
@@ -118,10 +120,12 @@ describe Api::V1::ChartsController do
 
     context 'when query matches multiple songs' do
       let(:query) { 'Adele' }
+      let(:song_one) { create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello' }
+      let(:song_two) { create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory' }
 
       before do
-        create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello'
-        create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory'
+        create :chart_position, chart: chart, positianable: song_one, position: 1, counts: 10
+        create :chart_position, chart: chart, positianable: song_two, position: 2, counts: 5
       end
 
       it 'returns all matching songs' do
@@ -132,10 +136,12 @@ describe Api::V1::ChartsController do
 
     context 'when sorting by popularity' do
       let(:query) { 'Adele' }
+      let(:song_one) { create :song, title: 'Someone Like You', artists: [artist], search_text: 'Adele Someone Like You', popularity: 90 }
+      let(:song_two) { create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory', popularity: 50 }
 
       before do
-        create :song, title: 'Someone Like You', artists: [artist], search_text: 'Adele Someone Like You', popularity: 90
-        create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory', popularity: 50
+        create :chart_position, chart: chart, positianable: song_one, position: 1, counts: 10
+        create :chart_position, chart: chart, positianable: song_two, position: 2, counts: 5
       end
 
       it 'returns more popular songs first', :aggregate_failures do
@@ -148,6 +154,8 @@ describe Api::V1::ChartsController do
     context 'when query matches nothing' do
       let(:query) { 'Nonexistent Song' }
 
+      before { chart }
+
       it 'returns an empty data array' do
         get_autocomplete
         expect(json[:data]).to be_empty
@@ -156,10 +164,12 @@ describe Api::V1::ChartsController do
 
     context 'with limit parameter' do
       let(:query) { 'Adele' }
+      let(:song_one) { create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello' }
+      let(:song_two) { create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory' }
 
       before do
-        create :song, title: 'Hello', artists: [artist], search_text: 'Adele Hello'
-        create :song, title: 'Hometown Glory', artists: [artist], search_text: 'Adele Hometown Glory'
+        create :chart_position, chart: chart, positianable: song_one, position: 1, counts: 10
+        create :chart_position, chart: chart, positianable: song_two, position: 2, counts: 5
       end
 
       it 'respects the limit parameter' do
