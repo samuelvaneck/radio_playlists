@@ -1216,4 +1216,62 @@ namespace :data_repair do
     puts '=' * 80
     puts 'Finished confirming recognizer-only drafts.'
   end
+
+  desc 'Re-create missing airplays for radio_station_songs without airplays. Usage: rake data_repair:recreate_missing_airplays[station_name]'
+  task :recreate_missing_airplays, [:station_name] => :environment do |_t, args|
+    station_name = args[:station_name]
+    if station_name.blank?
+      puts 'Usage: rake data_repair:recreate_missing_airplays[station_name]'
+      puts 'Example: rake "data_repair:recreate_missing_airplays[Radio Decibel]"'
+      next
+    end
+
+    station = RadioStation.find_by('name ILIKE ?', "%#{station_name}%")
+    if station.blank?
+      puts "No radio station found matching '#{station_name}'"
+      next
+    end
+
+    puts "Found station: #{station.name} (ID: #{station.id})"
+    puts '=' * 80
+
+    orphaned = station.radio_station_songs
+                 .left_joins(:song)
+                 .where.not(song_id: station.air_plays.select(:song_id))
+                 .where.not(first_broadcasted_at: nil)
+                 .includes(:song)
+
+    count = orphaned.count
+    if count.zero?
+      puts 'No radio_station_songs without airplays found.'
+      next
+    end
+
+    puts "Found #{count} radio_station_songs without airplays. Creating airplays..."
+    puts '-' * 80
+
+    created = 0
+    skipped = 0
+
+    orphaned.find_each do |rss|
+      airplay = AirPlay.new(
+        radio_station_id: station.id,
+        song_id: rss.song_id,
+        broadcasted_at: rss.first_broadcasted_at,
+        scraper_import: true,
+        status: :confirmed
+      )
+
+      if airplay.save
+        created += 1
+        puts "  Created airplay for '#{rss.song&.title}' at #{rss.first_broadcasted_at}"
+      else
+        skipped += 1
+        puts "  Skipped '#{rss.song&.title}': #{airplay.errors.full_messages.join(', ')}"
+      end
+    end
+
+    puts '=' * 80
+    puts "Done. Created: #{created}, Skipped: #{skipped}"
+  end
 end
