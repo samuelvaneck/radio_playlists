@@ -51,7 +51,7 @@ The app uses service objects extensively in `app/services/`:
 - `SongImporter` - Orchestrates song import workflow, split into concerns: `AudioRecognition`, `TrackFinding`, `AirPlayCreation`, `ArtistUpdating` (in `app/services/song_importer/concerns/`)
 - `SongRecognizer` - Shazam-based audio fingerprinting via SongRec
 - `AcoustidRecognizer` - Chromaprint + AcoustID API fingerprinting
-- `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis, Arrow) and video OCR (Yoursafe)
+- `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis, Arrow, MyTuner) and video OCR (Yoursafe)
 - `TrackExtractor/` - Extracts artist/song info and finds tracks via `SpotifyTrackFinder`, `DeezerTrackFinder`, `ItunesTrackFinder`
 - `Spotify/` - External API integration with two track-finding paths: search-based (`best_match`) and ID-based (`fetch_spotify_track`). Both compute JaroWinkler match scores for `valid_match?` validation (artist >= 80, title >= 70)
 - `Youtube/` - YouTube API integration
