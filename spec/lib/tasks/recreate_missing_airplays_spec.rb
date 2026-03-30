@@ -12,7 +12,7 @@ describe 'data_repair:recreate_missing_airplays' do # rubocop:disable RSpec/Desc
     Rake::Task['data_repair:recreate_missing_airplays'].reenable
   end
 
-  let(:station) { create(:decibel) }
+  let(:station) { create(:radio_station, name: 'Test Decibel Station') }
   let(:broadcasted_at) { 2.hours.ago.change(usec: 0) }
 
   context 'when no station name is provided' do
@@ -39,7 +39,7 @@ describe 'data_repair:recreate_missing_airplays' do # rubocop:disable RSpec/Desc
     end
 
     it 'creates airplays for each orphaned radio_station_song', :aggregate_failures do
-      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Decibel') }
+      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Test Decibel') }
         .to change(AirPlay, :count).by(2)
 
       airplay1 = AirPlay.find_by(song: song1, radio_station: station)
@@ -58,12 +58,12 @@ describe 'data_repair:recreate_missing_airplays' do # rubocop:disable RSpec/Desc
     end
 
     it 'does not create any airplays' do
-      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Decibel') }
+      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Test Decibel') }
         .not_to change(AirPlay, :count)
     end
 
     it 'reports nothing to do' do
-      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Decibel') }
+      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Test Decibel') }
         .to output(/No radio_station_songs without airplays found/).to_stdout
     end
   end
@@ -76,7 +76,7 @@ describe 'data_repair:recreate_missing_airplays' do # rubocop:disable RSpec/Desc
     end
 
     it 'skips records without a timestamp' do
-      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Decibel') }
+      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Test Decibel') }
         .not_to change(AirPlay, :count)
     end
   end
@@ -92,7 +92,7 @@ describe 'data_repair:recreate_missing_airplays' do # rubocop:disable RSpec/Desc
     end
 
     it 'creates the airplay for the correct station' do
-      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Decibel') }
+      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Test Decibel') }
         .to change(AirPlay, :count).by(1)
     end
   end
@@ -105,7 +105,7 @@ describe 'data_repair:recreate_missing_airplays' do # rubocop:disable RSpec/Desc
     end
 
     it 'finds the station by partial name' do
-      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('decibel') }
+      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('test decibel') }
         .to change(AirPlay, :count).by(1)
     end
   end
@@ -121,7 +121,7 @@ describe 'data_repair:recreate_missing_airplays' do # rubocop:disable RSpec/Desc
     end
 
     it 'only creates airplays for the missing ones' do
-      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Decibel') }
+      expect { Rake::Task['data_repair:recreate_missing_airplays'].invoke('Test Decibel') }
         .to change(AirPlay, :count).by(1)
 
       expect(AirPlay.where(song: song_without_airplay, radio_station: station).count).to eq(1)
