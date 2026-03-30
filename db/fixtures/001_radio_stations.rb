@@ -157,8 +157,6 @@ RadioStation.seed(
   },
   {
     name: 'Decibel',
-    url: '{"widget_id":"w64vw5zDm8Kvwq3CrMODUsKzaMOmWsODQCHDr0BgQsOX","radio_id":"399151"}',
-    processor: 'mytuner_api_processor',
     direct_stream_url: 'https://playerservices.streamtheworld.com/api/livestream-redirect/RADIODECIBEL.mp3',
     slug: 'decibel',
     country_code: 'NLD'
