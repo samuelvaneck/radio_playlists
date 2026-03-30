@@ -30,6 +30,7 @@ class RadioStation < ActiveRecord::Base
     arrow_api_processor
     yoursafe_video_processor
     mytuner_api_processor
+    simone_api_processor
   ].freeze
 
   include DateConcern
