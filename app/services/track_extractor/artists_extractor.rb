@@ -11,6 +11,8 @@ class TrackExtractor::ArtistsExtractor < TrackExtractor
     if @track.present? && @track.artists.present?
       track_to_artist
     else
+      return nil if artist_name.blank?
+
       Artist.find_or_initialize_by(name: artist_name)
     end
   rescue StandardError => e
@@ -31,7 +33,9 @@ class TrackExtractor::ArtistsExtractor < TrackExtractor
   end
 
   def non_spotify_track_to_artist
-    @track.artists.map do |track_artist|
+    @track.artists.filter_map do |track_artist|
+      next if track_artist['name'].blank?
+
       artist = Artist.find_or_initialize_by(name: track_artist['name'])
       artist.save if artist.new_record?
       artist
