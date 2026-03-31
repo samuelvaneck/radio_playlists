@@ -25,6 +25,30 @@ class TrackScraper::MytunerApiProcessor < TrackScraper
     false
   end
 
+  def all_played_songs
+    access_token = register_widget
+    raise StandardError, 'Failed to obtain access token' if access_token.blank?
+
+    response = fetch_playlist(access_token)
+    raise StandardError, 'Failed to fetch playlist' if response.blank? || !response[:success]
+
+    @raw_response = response
+    tracks = response.dig(:data, 0)
+    return [] if tracks.blank?
+
+    tracks.map do |track|
+      PlayedSong.new(
+        artist_name: track[:artist].titleize,
+        title: TitleSanitizer.sanitize(track[:title]).titleize,
+        broadcasted_at: Time.zone.at(track[:start_time])
+      )
+    end.sort_by(&:broadcasted_at)
+  rescue StandardError => e
+    Rails.logger.warn("MytunerApiProcessor: #{e.message}")
+    ExceptionNotifier.notify(e)
+    []
+  end
+
   private
 
   def register_widget

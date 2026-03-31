@@ -8,32 +8,18 @@ class SongImporter
 
   attr_reader :radio_station, :import_logger
 
-  def initialize(radio_station:)
+  def initialize(radio_station:, played_song: nil)
     @radio_station = radio_station
     @import_logger = SongImportLogger.new(radio_station:)
+    @pre_played_song = played_song
   end
 
   def import
     safe_start_log
-    @played_song = scrape_song || recognize_song
+    @played_song = @pre_played_song || scrape_song || recognize_song
+    log_pre_played_song if @pre_played_song
 
-    if @played_song.blank?
-      Broadcaster.no_importing_song
-      @import_logger.skip_log(reason: 'No song scraped or recognized')
-      return false
-    elsif artist_name.blank?
-      Broadcaster.no_importing_artists
-      @import_logger.skip_log(reason: 'No artist name found')
-      return false
-    elsif illegal_word_in_title
-      Broadcaster.illegal_word_in_title(title:)
-      @import_logger.skip_log(reason: "Illegal word in title: #{title}")
-      return false
-    elsif artists.nil? || song.nil?
-      Broadcaster.no_artists_or_song(title:, radio_station_name: @radio_station.name)
-      @import_logger.skip_log(reason: 'No artists or song could be extracted')
-      return false
-    end
+    return false if skip_import?
 
     # Fetch and log Deezer/iTunes data for enrichment
     deezer_track
@@ -89,13 +75,39 @@ class SongImporter
     scrapper
   end
 
+  def skip_import?
+    if @played_song.blank?
+      Broadcaster.no_importing_song
+      @import_logger.skip_log(reason: 'No song scraped or recognized')
+      true
+    elsif artist_name.blank?
+      Broadcaster.no_importing_artists
+      @import_logger.skip_log(reason: 'No artist name found')
+      true
+    elsif illegal_word_in_title
+      Broadcaster.illegal_word_in_title(title:)
+      @import_logger.skip_log(reason: "Illegal word in title: #{title}")
+      true
+    elsif artists.nil? || song.nil?
+      Broadcaster.no_artists_or_song(title:, radio_station_name: @radio_station.name)
+      @import_logger.skip_log(reason: 'No artists or song could be extracted')
+      true
+    else
+      false
+    end
+  end
+
+  def log_pre_played_song
+    @import_logger.log_scraping(@pre_played_song, raw_response: {})
+  end
+
   def illegal_word_in_title
     # 2 single quotes, reklame/reclame/nieuws/pingel and 2 dots
     title.match?(/'{2,}|(reklame|reclame|nieuws|pingel)|\.{2,}/i)
   end
 
   def scraper_import
-    @scraper_import ||= @played_song.is_a?(TrackScraper)
+    @scraper_import ||= @played_song.is_a?(TrackScraper) || @played_song.is_a?(PlayedSong)
   end
 
   def artists_names

@@ -15,11 +15,12 @@
 #
 # Indexes
 #
-#  air_play_radio_song_time             (song_id,radio_station_id,broadcasted_at) UNIQUE
-#  index_air_plays_on_broadcasted_at    (broadcasted_at)
-#  index_air_plays_on_radio_station_id  (radio_station_id)
-#  index_air_plays_on_song_id           (song_id)
-#  index_air_plays_on_status            (status)
+#  air_play_radio_song_time                       (song_id,radio_station_id,broadcasted_at) UNIQUE
+#  index_air_plays_on_broadcasted_at              (broadcasted_at)
+#  index_air_plays_on_radio_station_id            (radio_station_id)
+#  index_air_plays_on_song_id                     (song_id)
+#  index_air_plays_on_station_status_broadcasted  (radio_station_id,status,broadcasted_at)
+#  index_air_plays_on_status                      (status)
 #
 # Foreign Keys
 #
