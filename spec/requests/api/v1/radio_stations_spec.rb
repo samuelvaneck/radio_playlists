@@ -389,6 +389,56 @@ describe 'RadioStations API', type: :request do
     end
   end
 
+  path '/api/v1/radio_stations/{id}/sound_profile' do
+    get 'Get radio station sound profile' do
+      tags 'Radio Stations'
+      produces 'application/json'
+      description 'Returns a dynamic sound profile for a radio station based on audio features, genres, tags, ' \
+                  'and release date distribution of played songs.'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
+      parameter name: :start_time, in: :query, type: :string, required: false,
+                description: 'Custom start time (YYYY-MM-DDTHH:MM). Defaults to 4 weeks ago'
+      parameter name: :end_time, in: :query, type: :string, required: false,
+                description: 'Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time'
+
+      response '200', 'Sound profile retrieved successfully' do
+        example 'application/json', :example, {
+          data: {
+            radio_station: { id: 1, name: 'Radio 538', slug: 'radio-538' },
+            period: { start_time: '2026-01-01T00:00:00Z', end_time: '2026-02-01T00:00:00Z' },
+            audio_features: {
+              danceability: { average: 0.7, label: 'very danceable' },
+              energy: { average: 0.65, label: 'high-energy' }
+            },
+            tempo: { average: 120.5, label: 'upbeat' },
+            top_genres: [{ name: 'pop', count: 150 }, { name: 'dance', count: 120 }],
+            top_tags: [{ name: 'electronic', count: 200 }],
+            release_decade_distribution: [{ decade: '2020s', count: 500 }],
+            release_year_range: { from: 2015, to: 2025, label: '80% of songs are from 2015-2025', total_songs_with_date: 800 },
+            description: 'Radio 538 is a high-energy, upbeat and positive station playing very danceable, upbeat music.',
+            sample_size: 1000
+          }
+        }
+
+        let(:radio_station) { create(:radio_station) }
+        let(:id) { radio_station.id }
+
+        run_test!
+      end
+
+      response '404', 'Radio station not found' do
+        example 'application/json', :example, {
+          status: 404,
+          error: 'Not Found'
+        }
+
+        let(:id) { 0 }
+
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/radio_stations/{id}/bar_chart_race' do
     get 'Get bar chart race data for a radio station' do
       tags 'Radio Stations'
