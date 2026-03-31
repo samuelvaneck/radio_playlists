@@ -1903,6 +1903,86 @@ paths:
                   value:
                     status: 404
                     error: Not Found
+  "/api/v1/radio_stations/{id}/sound_profile":
+    get:
+      summary: Get radio station sound profile
+      tags:
+      - Radio Stations
+      description: Returns a dynamic sound profile for a radio station based on audio
+        features, genres, tags, and release date distribution of played songs.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Radio station ID
+        schema:
+          type: integer
+      - name: start_time
+        in: query
+        required: false
+        description: Custom start time (YYYY-MM-DDTHH:MM). Defaults to 4 weeks ago
+        schema:
+          type: string
+      - name: end_time
+        in: query
+        required: false
+        description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sound profile retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                      radio_station:
+                        id: 1
+                        name: Radio 538
+                        slug: radio-538
+                      period:
+                        start_time: '2026-01-01T00:00:00Z'
+                        end_time: '2026-02-01T00:00:00Z'
+                      audio_features:
+                        danceability:
+                          average: 0.7
+                          label: very danceable
+                        energy:
+                          average: 0.65
+                          label: high-energy
+                      tempo:
+                        average: 120.5
+                        label: upbeat
+                      top_genres:
+                      - name: pop
+                        count: 150
+                      - name: dance
+                        count: 120
+                      top_tags:
+                      - name: electronic
+                        count: 200
+                      release_decade_distribution:
+                      - decade: 2020s
+                        count: 500
+                      release_year_range:
+                        from: 2015
+                        to: 2025
+                        label: 80% of songs are from 2015-2025
+                        total_songs_with_date: 800
+                      description: Radio 538 is a high-energy, upbeat and positive
+                        station playing very danceable, upbeat music.
+                      sample_size: 1000
+        '404':
+          description: Radio station not found
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    status: 404
+                    error: Not Found
   "/api/v1/radio_stations/{id}/bar_chart_race":
     get:
       summary: Get bar chart race data for a radio station
@@ -2004,13 +2084,15 @@ paths:
                     error: No stream URL configured for this radio station
         '403':
           description: Forbidden when hostname cannot be resolved
-  "/api/v1/song_import_logs":
+  "/api/v1/admins/song_import_logs":
     get:
       summary: List song import logs
       tags:
       - SongImportLogs
-      description: Returns song import logs for debugging and auditing. Logs are automatically
-        deleted after 1 day.
+      security:
+      - bearer_auth: []
+      description: Returns song import logs for debugging and auditing. Requires admin
+        authentication. Logs are automatically deleted after 1 day.
       parameters:
       - name: page
         in: query
@@ -3175,3 +3257,4 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+      description: Admin JWT token (from Devise) or Frontend client JWT token

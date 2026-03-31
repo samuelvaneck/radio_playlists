@@ -8,8 +8,8 @@ module Api
       rate_limit to: 5, within: 1.minute, by: -> { request.remote_ip }, only: :stream_proxy, name: 'stream-proxy',
                  with: -> { render json: { error: 'Rate limit exceeded' }, status: :too_many_requests }
 
-      skip_before_action :authenticate_client!, only: %i[stream_proxy widget]
-      before_action :set_radio_station, only: %i[show status data classifiers stream_proxy bar_chart_race widget]
+      skip_before_action :authenticate_client!, only: %i[stream_proxy widget sound_profile]
+      before_action :set_radio_station, only: %i[show status data classifiers stream_proxy bar_chart_race widget sound_profile]
 
       def index
         render json: RadioStationSerializer.new(RadioStation.all).serializable_hash.to_json
@@ -89,6 +89,13 @@ module Api
 
       def widget
         render json: @radio_station.widget_data
+      end
+
+      def sound_profile
+        render json: { data: @radio_station.sound_profile(
+          start_time: parse_time_param(:start_time),
+          end_time: parse_time_param(:end_time)
+        ) }.to_json
       end
 
       private

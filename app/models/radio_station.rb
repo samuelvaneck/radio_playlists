@@ -143,6 +143,10 @@ class RadioStation < ActiveRecord::Base
     AirPlay.where(radio_station: self, created_at: 1.day.ago..Time.zone.now)
   end
 
+  def sound_profile(start_time: nil, end_time: nil)
+    SoundProfileGenerator.new(radio_station: self, start_time: start_time, end_time: end_time).generate
+  end
+
   def widget_data
     day_range = 1.day.ago..Time.zone.now
     week_range = 1.week.ago..Time.zone.now
