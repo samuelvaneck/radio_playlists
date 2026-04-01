@@ -112,4 +112,52 @@ describe TrackScraper::MytunerApiProcessor, type: :service do
       end
     end
   end
+
+  describe '#all_played_songs' do
+    subject(:all_played_songs) { processor.all_played_songs }
+
+    before do
+      allow(processor).to receive_messages(register_widget: register_response[:access_token],
+                                           fetch_playlist: playlist_response.with_indifferent_access)
+    end
+
+    context 'when the API response is valid' do
+      it 'returns all tracks sorted by broadcasted_at ascending', :aggregate_failures do
+        expect(all_played_songs).to be_an(Array)
+        expect(all_played_songs.size).to eq(2)
+        expect(all_played_songs.first.broadcasted_at).to be < all_played_songs.last.broadcasted_at
+      end
+
+      it 'returns PlayedSong instances with correct attributes', :aggregate_failures do
+        first_song = all_played_songs.first
+
+        expect(first_song).to be_a(PlayedSong)
+        expect(first_song.artist_name).to eq('Lost Frequencies')
+        expect(first_song.title).to eq('Reality (Feat. Janieck)')
+        expect(first_song.broadcasted_at).to eq(Time.zone.at(1_774_828_916))
+      end
+    end
+
+    context 'when the registration fails' do
+      before do
+        allow(processor).to receive(:register_widget).and_return(nil)
+        allow(Rails.logger).to receive(:warn).and_call_original
+        allow(ExceptionNotifier).to receive(:notify).and_call_original
+      end
+
+      it 'returns an empty array' do
+        expect(all_played_songs).to eq([])
+      end
+    end
+
+    context 'when the playlist has no tracks' do
+      before do
+        allow(processor).to receive(:fetch_playlist).and_return({ success: true, data: [[]] }.with_indifferent_access)
+      end
+
+      it 'returns an empty array' do
+        expect(all_played_songs).to eq([])
+      end
+    end
+  end
 end

@@ -7,11 +7,13 @@ describe ImportSongsAllRadioStationsJob do
 
     let(:recognition_setter) { instance_double(Sidekiq::Worker::Setter, perform_async: nil) }
     let(:api_setter) { instance_double(Sidekiq::Worker::Setter, perform_async: nil) }
+    let(:bulk_setter) { instance_double(Sidekiq::Worker::Setter, perform_async: nil) }
     let(:job) { described_class.new }
 
     before do
       allow(ImportSongJob).to receive(:set).with(queue: 'recognition').and_return(recognition_setter)
       allow(ImportSongJob).to receive(:set).with(queue: 'api_scraping').and_return(api_setter)
+      allow(BulkImportSongsJob).to receive(:set).with(queue: 'api_scraping').and_return(bulk_setter)
       allow(job).to receive(:sleep)
     end
 
@@ -45,6 +47,30 @@ describe ImportSongsAllRadioStationsJob do
       job.perform
 
       expect(job).to have_received(:sleep).with(2).exactly(recognizer_count).times
+    end
+
+    context 'with an interval-based station' do
+      let!(:interval_station) { create(:decibel) }
+
+      it 'enqueues BulkImportSongsJob when interval has elapsed' do
+        job.perform
+
+        expect(bulk_setter).to have_received(:perform_async).with(interval_station.id)
+      end
+
+      it 'does not enqueue BulkImportSongsJob when interval has not elapsed' do
+        create(:song_import_log, radio_station: interval_station, created_at: 30.minutes.ago)
+
+        job.perform
+
+        expect(bulk_setter).not_to have_received(:perform_async).with(interval_station.id)
+      end
+
+      it 'does not enqueue ImportSongJob for interval-based stations' do
+        job.perform
+
+        expect(api_setter).not_to have_received(:perform_async).with(interval_station.id)
+      end
     end
   end
 end

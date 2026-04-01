@@ -163,6 +163,7 @@ FactoryBot.define do
     processor { 'mytuner_api_processor' }
     slug { 'decibel' }
     country_code { 'NLD' }
+    import_interval { 60 }
   end
 
   factory :simone_fm, parent: :radio_station do
