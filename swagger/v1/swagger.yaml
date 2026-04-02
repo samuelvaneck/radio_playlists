@@ -2300,6 +2300,7 @@ paths:
                         lastfm_tags:
                         - rock
                         - classic-rock
+                        hit_potential_score: 72.45
                         counter: 42
                         artists:
                         - id: 1
@@ -2400,6 +2401,7 @@ paths:
                         lastfm_tags:
                         - rock
                         - classic-rock
+                        hit_potential_score: 72.45
                         counter: 42
                         artists:
                         - id: 1
