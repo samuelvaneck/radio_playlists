@@ -128,6 +128,7 @@ class SongLifecycleDetector
       scope
         .group(Arel.sql("DATE_TRUNC('week', broadcasted_at)"))
         .count
+        .reject { |key, _| key.nil? }
     end
   end
 end
