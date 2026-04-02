@@ -9,7 +9,8 @@ module Api
                  with: -> { render json: { error: 'Rate limit exceeded' }, status: :too_many_requests }
 
       skip_before_action :authenticate_client!, only: %i[stream_proxy widget sound_profile]
-      before_action :set_radio_station, only: %i[show status data classifiers stream_proxy bar_chart_race widget sound_profile]
+      before_action :set_radio_station, only: %i[show status data classifiers stream_proxy bar_chart_race
+                                                 widget sound_profile diversity_metrics exposure_saturation]
 
       def index
         render json: RadioStationSerializer.new(RadioStation.all).serializable_hash.to_json
@@ -96,6 +97,36 @@ module Api
           start_time: parse_time_param(:start_time),
           end_time: parse_time_param(:end_time)
         ) }.to_json
+      end
+
+      def diversity_metrics
+        calculator = PlaylistDiversityCalculator.new(
+          radio_station: @radio_station,
+          start_time: parse_time_param(:start_time),
+          end_time: parse_time_param(:end_time)
+        )
+
+        render json: { data: calculator.calculate }.to_json
+      end
+
+      def exposure_saturation
+        calculator = ExposureSaturationCalculator.new(
+          radio_station: @radio_station,
+          start_time: parse_time_param(:start_time),
+          end_time: parse_time_param(:end_time)
+        )
+
+        render json: { data: calculator.calculate }.to_json
+      end
+
+      def seasonal_audio_trends
+        calculator = SeasonalAudioTrendCalculator.new(
+          radio_station_ids: params[:radio_station_ids]&.map(&:to_i),
+          start_time: parse_time_param(:start_time),
+          end_time: parse_time_param(:end_time)
+        )
+
+        render json: { data: calculator.calculate }.to_json
       end
 
       private

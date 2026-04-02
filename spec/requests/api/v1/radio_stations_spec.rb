@@ -439,6 +439,150 @@ describe 'RadioStations API', type: :request do
     end
   end
 
+  path '/api/v1/radio_stations/{id}/diversity_metrics' do
+    get 'Get playlist diversity metrics for a radio station' do
+      tags 'Radio Stations'
+      produces 'application/json'
+      description 'Calculates playlist diversity indices (Gini coefficient, Shannon entropy, HHI) ' \
+                  'measuring how concentrated or diverse a station\'s airplay distribution is. ' \
+                  'Based on Stirling (2007) diversity framework and ACM (2023) recommendation diversity research.'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
+      parameter name: :start_time, in: :query, type: :string, required: false,
+                description: 'Custom start time (YYYY-MM-DDTHH:MM). Defaults to 4 weeks ago'
+      parameter name: :end_time, in: :query, type: :string, required: false,
+                description: 'Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time'
+
+      response '200', 'Diversity metrics retrieved successfully' do
+        example 'application/json', :example, {
+          data: {
+            radio_station: { id: 1, name: 'Radio 538', slug: 'radio-538' },
+            period: { start_time: '2026-03-01T00:00:00Z', end_time: '2026-04-01T00:00:00Z' },
+            metrics: {
+              gini_coefficient: 0.72,
+              shannon_entropy: 3.45,
+              normalized_entropy: 0.68,
+              hhi: 1250.0,
+              label: 'moderately diverse'
+            },
+            sample: { unique_songs: 450, total_plays: 8500 },
+            top_songs: [
+              { song_id: 1, title: 'Popular Song', artists: ['Artist Name'], play_count: 85, share: 1.0 },
+              { song_id: 2, title: 'Another Hit', artists: ['Other Artist'], play_count: 72, share: 0.85 }
+            ]
+          }
+        }
+
+        let(:radio_station) { create(:radio_station) }
+        let(:id) { radio_station.id }
+
+        run_test!
+      end
+
+      response '404', 'Radio station not found' do
+        let(:id) { 0 }
+
+        run_test!
+      end
+    end
+  end
+
+  path '/api/v1/radio_stations/{id}/exposure_saturation' do
+    get 'Get exposure saturation analysis for a radio station' do
+      tags 'Radio Stations'
+      produces 'application/json'
+      description 'Analyzes song exposure levels based on the mere exposure effect (Zajonc 1968). ' \
+                  'Calculates where each song sits on the inverted-U preference curve — ' \
+                  'optimal exposure increases liking, but overexposure leads to listener fatigue. ' \
+                  'Based on Chmiel & Schubert (2017) research on music preference and repeated exposure.'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
+      parameter name: :start_time, in: :query, type: :string, required: false,
+                description: 'Custom start time (YYYY-MM-DDTHH:MM). Defaults to 1 week ago'
+      parameter name: :end_time, in: :query, type: :string, required: false,
+                description: 'Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time'
+
+      response '200', 'Exposure saturation data retrieved successfully' do
+        example 'application/json', :example, {
+          data: {
+            radio_station: { id: 1, name: 'Radio 538', slug: 'radio-538' },
+            period: { start_time: '2026-03-25T00:00:00Z', end_time: '2026-04-01T00:00:00Z' },
+            baseline: {
+              median_plays: 5, mean_plays: 8.2, std_deviation: 12.3,
+              total_songs: 320, total_plays: 2624
+            },
+            songs: [
+              {
+                song_id: 1, title: 'Overplayed Hit', artists: ['Artist'],
+                play_count: 45, plays_per_day: 6.43, exposure_ratio: 9.0,
+                saturation_index: 0.002, status: 'heavily_overexposed'
+              },
+              {
+                song_id: 2, title: 'Well Balanced', artists: ['Other Artist'],
+                play_count: 8, plays_per_day: 1.14, exposure_ratio: 1.6,
+                saturation_index: 0.995, status: 'optimal'
+              }
+            ],
+            overexposed_count: 5,
+            underexposed_count: 12
+          }
+        }
+
+        let(:radio_station) { create(:radio_station) }
+        let(:id) { radio_station.id }
+
+        run_test!
+      end
+
+      response '404', 'Radio station not found' do
+        let(:id) { 0 }
+
+        run_test!
+      end
+    end
+  end
+
+  path '/api/v1/radio_stations/seasonal_audio_trends' do
+    get 'Get seasonal audio feature trends' do
+      tags 'Radio Stations'
+      produces 'application/json'
+      description 'Aggregates audio features (valence, energy, danceability, tempo) by month per station. ' \
+                  'Research shows seasonal patterns: valence peaks in June/July, summer hits cluster ' \
+                  'around 118 BPM with high energy. Based on Park et al. (2019) global streaming patterns research.'
+      parameter name: 'radio_station_ids[]', in: :query, type: :array, items: { type: :integer },
+                required: false, description: 'Filter by radio station IDs. Omit for all stations'
+      parameter name: :start_time, in: :query, type: :string, required: false,
+                description: 'Custom start time (YYYY-MM-DDTHH:MM). Defaults to 1 year ago'
+      parameter name: :end_time, in: :query, type: :string, required: false,
+                description: 'Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time'
+
+      response '200', 'Seasonal audio trends retrieved successfully' do
+        example 'application/json', :example, {
+          data: {
+            period: { start_time: '2025-04-01T00:00:00Z', end_time: '2026-04-01T00:00:00Z' },
+            features: %i[valence energy danceability tempo],
+            series: [
+              {
+                month: '2025-06', radio_station_id: 1, radio_station_name: 'Radio 538',
+                valence: 0.62, energy: 0.71, danceability: 0.73, tempo: 121.5, sample_size: 450
+              },
+              {
+                month: '2025-12', radio_station_id: 1, radio_station_name: 'Radio 538',
+                valence: 0.48, energy: 0.65, danceability: 0.69, tempo: 115.2, sample_size: 420
+              }
+            ],
+            summary: {
+              peak_valence_month: '07',
+              peak_energy_month: '06',
+              peak_danceability_month: '07',
+              peak_tempo_month: '06'
+            }
+          }
+        }
+
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/radio_stations/{id}/bar_chart_race' do
     get 'Get bar chart race data for a radio station' do
       tags 'Radio Stations'

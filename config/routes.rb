@@ -50,9 +50,12 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get :widget, on: :member
         get :sound_profile, on: :member
         get :bar_chart_race, on: :member
+        get :diversity_metrics, on: :member
+        get :exposure_saturation, on: :member
         get :last_played_songs, on: :collection
         get :new_played_songs, on: :collection
         get :release_date_graph, on: :collection
+        get :seasonal_audio_trends, on: :collection
       end
       resources :radio_station_classifiers, only: %i[index] do
         get :descriptions, on: :collection

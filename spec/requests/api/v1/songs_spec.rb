@@ -286,6 +286,19 @@ RSpec.describe 'Songs API', type: :request do
             unique_days_played: 120,
             average_plays_per_day: 0.45,
             play_consistency: 35.8
+          },
+          lifecycle_phase: {
+            phase: 'peak',
+            days_to_peak: 42,
+            weeks_since_first_play: 8,
+            peak_week: '2024-11-18',
+            peak_count: 25,
+            current_weekly_average: 22.5,
+            weekly_counts: {
+              '2024-10-07': 5, '2024-10-14': 12, '2024-10-21': 18,
+              '2024-10-28': 22, '2024-11-04': 25, '2024-11-11': 24,
+              '2024-11-18': 25, '2024-11-25': 21
+            }
           }
         }
 

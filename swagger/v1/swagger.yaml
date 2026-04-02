@@ -1983,6 +1983,217 @@ paths:
                   value:
                     status: 404
                     error: Not Found
+  "/api/v1/radio_stations/{id}/diversity_metrics":
+    get:
+      summary: Get playlist diversity metrics for a radio station
+      tags:
+      - Radio Stations
+      description: Calculates playlist diversity indices (Gini coefficient, Shannon
+        entropy, HHI) measuring how concentrated or diverse a station's airplay distribution
+        is. Based on Stirling (2007) diversity framework and ACM (2023) recommendation
+        diversity research.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Radio station ID
+        schema:
+          type: integer
+      - name: start_time
+        in: query
+        required: false
+        description: Custom start time (YYYY-MM-DDTHH:MM). Defaults to 4 weeks ago
+        schema:
+          type: string
+      - name: end_time
+        in: query
+        required: false
+        description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Diversity metrics retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                      radio_station:
+                        id: 1
+                        name: Radio 538
+                        slug: radio-538
+                      period:
+                        start_time: '2026-03-01T00:00:00Z'
+                        end_time: '2026-04-01T00:00:00Z'
+                      metrics:
+                        gini_coefficient: 0.72
+                        shannon_entropy: 3.45
+                        normalized_entropy: 0.68
+                        hhi: 1250.0
+                        label: moderately diverse
+                      sample:
+                        unique_songs: 450
+                        total_plays: 8500
+                      top_songs:
+                      - song_id: 1
+                        title: Popular Song
+                        artists:
+                        - Artist Name
+                        play_count: 85
+                        share: 1.0
+                      - song_id: 2
+                        title: Another Hit
+                        artists:
+                        - Other Artist
+                        play_count: 72
+                        share: 0.85
+        '404':
+          description: Radio station not found
+  "/api/v1/radio_stations/{id}/exposure_saturation":
+    get:
+      summary: Get exposure saturation analysis for a radio station
+      tags:
+      - Radio Stations
+      description: Analyzes song exposure levels based on the mere exposure effect
+        (Zajonc 1968). Calculates where each song sits on the inverted-U preference
+        curve — optimal exposure increases liking, but overexposure leads to listener
+        fatigue. Based on Chmiel & Schubert (2017) research on music preference and
+        repeated exposure.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Radio station ID
+        schema:
+          type: integer
+      - name: start_time
+        in: query
+        required: false
+        description: Custom start time (YYYY-MM-DDTHH:MM). Defaults to 1 week ago
+        schema:
+          type: string
+      - name: end_time
+        in: query
+        required: false
+        description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Exposure saturation data retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                      radio_station:
+                        id: 1
+                        name: Radio 538
+                        slug: radio-538
+                      period:
+                        start_time: '2026-03-25T00:00:00Z'
+                        end_time: '2026-04-01T00:00:00Z'
+                      baseline:
+                        median_plays: 5
+                        mean_plays: 8.2
+                        std_deviation: 12.3
+                        total_songs: 320
+                        total_plays: 2624
+                      songs:
+                      - song_id: 1
+                        title: Overplayed Hit
+                        artists:
+                        - Artist
+                        play_count: 45
+                        plays_per_day: 6.43
+                        exposure_ratio: 9.0
+                        saturation_index: 0.002
+                        status: heavily_overexposed
+                      - song_id: 2
+                        title: Well Balanced
+                        artists:
+                        - Other Artist
+                        play_count: 8
+                        plays_per_day: 1.14
+                        exposure_ratio: 1.6
+                        saturation_index: 0.995
+                        status: optimal
+                      overexposed_count: 5
+                      underexposed_count: 12
+        '404':
+          description: Radio station not found
+  "/api/v1/radio_stations/seasonal_audio_trends":
+    get:
+      summary: Get seasonal audio feature trends
+      tags:
+      - Radio Stations
+      description: 'Aggregates audio features (valence, energy, danceability, tempo)
+        by month per station. Research shows seasonal patterns: valence peaks in June/July,
+        summer hits cluster around 118 BPM with high energy. Based on Park et al.
+        (2019) global streaming patterns research.'
+      parameters:
+      - name: radio_station_ids[]
+        in: query
+        items:
+          type: integer
+        required: false
+        description: Filter by radio station IDs. Omit for all stations
+        schema:
+          type: array
+      - name: start_time
+        in: query
+        required: false
+        description: Custom start time (YYYY-MM-DDTHH:MM). Defaults to 1 year ago
+        schema:
+          type: string
+      - name: end_time
+        in: query
+        required: false
+        description: Custom end time (YYYY-MM-DDTHH:MM). Defaults to current time
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Seasonal audio trends retrieved successfully
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                      period:
+                        start_time: '2025-04-01T00:00:00Z'
+                        end_time: '2026-04-01T00:00:00Z'
+                      features:
+                      - valence
+                      - energy
+                      - danceability
+                      - tempo
+                      series:
+                      - month: 2025-06
+                        radio_station_id: 1
+                        radio_station_name: Radio 538
+                        valence: 0.62
+                        energy: 0.71
+                        danceability: 0.73
+                        tempo: 121.5
+                        sample_size: 450
+                      - month: 2025-12
+                        radio_station_id: 1
+                        radio_station_name: Radio 538
+                        valence: 0.48
+                        energy: 0.65
+                        danceability: 0.69
+                        tempo: 115.2
+                        sample_size: 420
+                      summary:
+                        peak_valence_month: '07'
+                        peak_energy_month: '06'
+                        peak_danceability_month: '07'
+                        peak_tempo_month: '06'
   "/api/v1/radio_stations/{id}/bar_chart_race":
     get:
       summary: Get bar chart race data for a radio station
@@ -2561,6 +2772,22 @@ paths:
                       unique_days_played: 120
                       average_plays_per_day: 0.45
                       play_consistency: 35.8
+                    lifecycle_phase:
+                      phase: peak
+                      days_to_peak: 42
+                      weeks_since_first_play: 8
+                      peak_week: '2024-11-18'
+                      peak_count: 25
+                      current_weekly_average: 22.5
+                      weekly_counts:
+                        '2024-10-07': 5
+                        '2024-10-14': 12
+                        '2024-10-21': 18
+                        '2024-10-28': 22
+                        '2024-11-04': 25
+                        '2024-11-11': 24
+                        '2024-11-18': 25
+                        '2024-11-25': 21
   "/api/v1/songs/{id}/air_plays":
     get:
       summary: Get song air plays

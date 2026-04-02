@@ -272,6 +272,8 @@ bundle exec rake rswag:specs:swaggerize     # Regenerates swagger/v1/swagger.yam
 
 Schema definitions are configured in `spec/swagger_helper.rb`. The generated `swagger/v1/swagger.yaml` should be committed to version control.
 
+**Important:** Always run `bundle exec rake rswag:specs:swaggerize` and commit the updated `swagger/v1/swagger.yaml` after adding or modifying request specs in `spec/requests/api/v1/`.
+
 ### Security
 
 - **SSRF protection** - Stream proxy validates HTTPS-only URLs, blocks private IPs (loopback, private ranges, link-local), limits redirect chains to 5 levels
