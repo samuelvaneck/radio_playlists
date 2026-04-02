@@ -9,6 +9,7 @@
 #  country_code            :string
 #  direct_stream_url       :string
 #  genre                   :string
+#  import_interval         :integer
 #  last_added_air_play_ids :jsonb
 #  name                    :string
 #  processor               :string

@@ -12,6 +12,7 @@
 #  deezer_song_url        :string
 #  duration_ms            :integer
 #  explicit               :boolean          default(FALSE)
+#  hit_potential_score    :decimal(5, 2)
 #  id_on_deezer           :string
 #  id_on_itunes           :string
 #  id_on_spotify          :string
@@ -135,6 +136,7 @@ class Song < ApplicationRecord
                  songs.lastfm_listeners,
                  songs.lastfm_playcount,
                  songs.lastfm_tags,
+                 songs.hit_potential_score,
                  COUNT(air_plays.id) AS counter,
                  ROW_NUMBER() OVER (ORDER BY COUNT(air_plays.id) DESC NULLS LAST) AS position")
       .group('songs.id, songs.title')

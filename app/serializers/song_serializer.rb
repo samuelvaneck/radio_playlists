@@ -12,6 +12,7 @@
 #  deezer_song_url        :string
 #  duration_ms            :integer
 #  explicit               :boolean          default(FALSE)
+#  hit_potential_score    :decimal(5, 2)
 #  id_on_deezer           :string
 #  id_on_itunes           :string
 #  id_on_spotify          :string
@@ -71,7 +72,8 @@ class SongSerializer
              :explicit,
              :lastfm_listeners,
              :lastfm_playcount,
-             :lastfm_tags
+             :lastfm_tags,
+             :hit_potential_score
 
   attribute :counter do |object|
     object.counter if object.respond_to?(:counter)

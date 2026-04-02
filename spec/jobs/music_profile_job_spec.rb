@@ -47,6 +47,12 @@ RSpec.describe MusicProfileJob do
           key: 5, mode: 1, loudness: -5.5, time_signature: 4
         )
       end
+
+      it 'sets the hit_potential_score on the song' do
+        job.perform(song.id, radio_station.id)
+
+        expect(song.reload.hit_potential_score).to be_present
+      end
     end
 
     context 'when song already has a music profile' do
