@@ -29,8 +29,8 @@ class MusicProfileJob
     Spotify::AudioFeature.new(id_on_spotify:).audio_features
   end
 
-  def update_hit_potential_score(song, music_profile)
-    score = HitPotentialCalculator.new(music_profile).calculate
+  def update_hit_potential_score(song, _music_profile)
+    score = HitPotentialCalculator.new(song).calculate
     song.update_column(:hit_potential_score, score) if score.present? # rubocop:disable Rails/SkipsModelValidations
   end
 

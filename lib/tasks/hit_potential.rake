@@ -9,7 +9,7 @@ namespace :hit_potential do
 
     updated = 0
     songs.find_each do |song|
-      score = HitPotentialCalculator.new(song.music_profile).calculate
+      score = HitPotentialCalculator.new(song).calculate
       next if score.blank?
 
       song.update_column(:hit_potential_score, score) # rubocop:disable Rails/SkipsModelValidations
