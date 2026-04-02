@@ -99,7 +99,8 @@ module Api
         render json: {
           peak_play_times: song.peak_play_times_summary(radio_station_ids: radio_station_ids),
           play_frequency_trend: song.play_frequency_trend(weeks: weeks_param, radio_station_ids: radio_station_ids),
-          lifecycle_stats: song.lifecycle_stats(radio_station_ids: radio_station_ids)
+          lifecycle_stats: song.lifecycle_stats(radio_station_ids: radio_station_ids),
+          lifecycle_phase: SongLifecycleDetector.new(song, radio_station_ids: radio_station_ids).detect
         }
       end
 
