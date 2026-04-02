@@ -12,6 +12,7 @@
 #  deezer_song_url        :string
 #  duration_ms            :integer
 #  explicit               :boolean          default(FALSE)
+#  hit_potential_score    :decimal(5, 2)
 #  id_on_deezer           :string
 #  id_on_itunes           :string
 #  id_on_spotify          :string

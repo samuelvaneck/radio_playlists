@@ -69,6 +69,7 @@ RSpec.describe 'Songs API', type: :request do
                 lastfm_listeners: 1_200_000,
                 lastfm_playcount: 5_500_000,
                 lastfm_tags: %w[rock classic-rock],
+                hit_potential_score: 72.45,
                 counter: 42,
                 artists: [{ id: 1, name: 'Queen' }],
                 music_profile: {
@@ -167,6 +168,7 @@ RSpec.describe 'Songs API', type: :request do
               lastfm_listeners: 1_200_000,
               lastfm_playcount: 5_500_000,
               lastfm_tags: %w[rock classic-rock],
+              hit_potential_score: 72.45,
               counter: 42,
               artists: [{ id: 1, name: 'Queen' }],
               music_profile: {

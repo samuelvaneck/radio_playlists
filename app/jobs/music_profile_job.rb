@@ -14,7 +14,8 @@ class MusicProfileJob
     audio_features = fetch_audio_features(song.id_on_spotify)
     return if audio_features.blank?
 
-    create_music_profile(song, audio_features)
+    music_profile = create_music_profile(song, audio_features)
+    update_hit_potential_score(song, music_profile)
 
     # Keep genre tagging logic (moved from RadioStationClassifierJob)
     update_radio_station_tags(song.id_on_spotify, radio_station_id) if radio_station_id.present?
@@ -26,6 +27,11 @@ class MusicProfileJob
 
   def fetch_audio_features(id_on_spotify)
     Spotify::AudioFeature.new(id_on_spotify:).audio_features
+  end
+
+  def update_hit_potential_score(song, _music_profile)
+    score = HitPotentialCalculator.new(song).calculate
+    song.update_column(:hit_potential_score, score) if score.present? # rubocop:disable Rails/SkipsModelValidations
   end
 
   def create_music_profile(song, audio_features)
