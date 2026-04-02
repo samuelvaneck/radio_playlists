@@ -1,5 +1,33 @@
 # frozen_string_literal: true
 
+# Calculates a hit potential score (0-100) for a song by combining four signal categories:
+#
+# 1. Audio features (50%) — Gaussian scoring against optimal ranges for popular songs.
+#    Feature weights from Random Forest importance (Rusconi 2024). Each feature is scored
+#    by proximity to its optimal center value using exp(-0.5 * ((value - center) / spread)^2).
+#
+# 2. Artist popularity (20%) — Primary artist's Spotify popularity (0-100), follower count,
+#    and Last.fm listeners. Artist fame is one of the strongest single predictors, improving
+#    accuracy from 70% to 85% (Interiano et al. 2018).
+#
+# 3. Engagement metrics (15%) — Song-level Spotify popularity, Last.fm listeners and playcount.
+#    Spotify popularity was found to be the most decisive single predictor (Mountzouris 2025).
+#    Large values are log-normalized to prevent outlier dominance.
+#
+# 4. Release recency (15%) — Exponential decay from release date with a 5-year half-life.
+#    Recent releases consistently correlate with higher popularity (SpotiPred, Gulmatico 2022).
+#    Songs with no release date receive a neutral 0.5 score.
+#
+# Usage:
+#   score = HitPotentialCalculator.new(song).calculate  # => 0.0..100.0 or nil
+#   Returns nil if the song has no music profile (audio features required as baseline).
+#
+# References:
+#   - Rusconi (2024): https://arno.uvt.nl/show.cgi?fid=171864
+#   - Interiano et al. (2018): https://doi.org/10.1098/rsos.171274
+#   - Mountzouris (2025): https://arxiv.org/abs/2509.24856
+#   - Gulmatico & Susa (2022): https://doi.org/10.1109/HNICEM57413.2022.10109508
+#   - Seufitelli et al. (2023): https://doi.org/10.1080/09298215.2023.2282999
 class HitPotentialCalculator
   # Signal category weights based on multi-signal research:
   # - Audio features alone: ~80-89% accuracy (Rusconi 2024, arxiv:2508.11632)
