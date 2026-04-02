@@ -41,6 +41,9 @@ bundle exec rake data_repair:merge_duplicate_isrcs             # Merge songs wit
 bundle exec rake data_repair:find_fuzzy_duplicates             # Find fuzzy song duplicates
 bundle exec rake data_repair:confirm_recognizer_drafts         # Confirm draft airplays for recognizer-only stations
 bundle exec rake optimization:vacuum                           # PostgreSQL VACUUM FULL ANALYZE
+
+# Hit Potential
+bundle exec rake hit_potential:backfill                        # Backfill hit_potential_score for songs with music profiles
 ```
 
 ## Architecture
@@ -64,6 +67,7 @@ The app uses service objects extensively in `app/services/`:
 - `CombinedArtistSplitter` - Splits combined artist names (e.g., "Artist feat. Artist2") into individual Artist records
 - `DuplicateArtistMerger` - Finds and merges duplicate artists via Spotify ID or fuzzy name matching (Jaro-Winkler, threshold: 92)
 - `DuplicateSongMerger` - Finds and merges duplicate songs via Spotify ID or fuzzy title matching (Jaro-Winkler, threshold: 92)
+- `HitPotentialCalculator` - Predicts song hit potential (0-100) using multi-signal scoring: audio features (50%), artist popularity (20%), engagement metrics (15%), release recency (15%)
 
 ### Background Jobs
 
@@ -83,7 +87,7 @@ Sidekiq jobs in `app/jobs/` run on schedules defined in `config/sidekiq.yml`:
 
 On-demand enrichment jobs (triggered by import flow, not scheduled):
 - `SongExternalIdsEnrichmentJob` - Enriches songs with Deezer, iTunes, and MusicBrainz IDs after import
-- `MusicProfileJob` - Creates Spotify audio feature profiles for songs
+- `MusicProfileJob` - Creates Spotify audio feature profiles for songs, then calculates `hit_potential_score` via `HitPotentialCalculator`
 - `AcoustidPopulationJob` - Downloads YouTube audio, generates fingerprints, submits to AcoustID
 
 **Important:** `ImportSongJob` uses `sidekiq-unique-jobs` with `lock: :until_executed` and `lock_ttl: 60`. The TTL prevents stuck locks after Sidekiq crashes — without it, locks persist indefinitely in Redis and silently block imports.
@@ -132,9 +136,24 @@ Chart positions are sorted by weekly airplay count. Tiebreakers use a popularity
 
 Formula: `(weekly_airplay * 100) + (popularity_boost * 50)`. Artists default to boost of 1.0.
 
+### Hit Potential Score
+
+`HitPotentialCalculator` predicts how likely a song is to be a hit (0-100), combining four signal categories based on academic research:
+
+| Signal | Weight | Data Source | Research Basis |
+|--------|--------|-------------|----------------|
+| Audio features | 50% | `MusicProfile` (danceability, energy, loudness, etc.) | Rusconi 2024, ~80-89% accuracy |
+| Artist popularity | 20% | `Artist#spotify_popularity`, `spotify_followers_count`, `lastfm_listeners` | Interiano 2018: +15% accuracy |
+| Engagement metrics | 15% | `Song#popularity`, `lastfm_listeners`, `lastfm_playcount` | Mountzouris 2025 |
+| Release recency | 15% | `Song#release_date` (exponential decay, 5-year half-life) | SpotiPred 2022 |
+
+Audio features use Gaussian scoring against optimal ranges for popular songs (e.g., danceability center=0.64, loudness center=-6.0 dB), with per-feature weights from Random Forest feature importance. Engagement and follower counts are log-normalized.
+
+The score is calculated automatically by `MusicProfileJob` after creating a music profile, and stored as `Song#hit_potential_score`. Use `rake hit_potential:backfill` to compute scores for existing songs.
+
 ### Key Models
 
-- `Song` - Core entity with Spotify/YouTube IDs, enrichment fields (`album_name`, `popularity`, `explicit`, `duration_ms`, `release_date`, `isrcs` array, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`)
+- `Song` - Core entity with Spotify/YouTube IDs, enrichment fields (`album_name`, `popularity`, `explicit`, `duration_ms`, `release_date`, `isrcs` array, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`, `hit_potential_score`)
 - `Artist` - Core entity with enrichment fields (`genres` array, `country_of_origin` array, `spotify_popularity`, `spotify_followers_count`, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`)
 - `AirPlay` - Song play events (unique per station/song/time, `broadcasted_at` presence validated)
 - `RadioStation` - Station metadata with last 12 airplay IDs (JSONB), `is_currently_playing` flag on last_played_songs endpoint
