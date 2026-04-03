@@ -1533,12 +1533,12 @@ paths:
       - name: id
         in: path
         required: true
-        description: Radio station ID
+        description: Radio station ID or slug
         schema:
-          type: integer
+          type: string
       responses:
         '200':
-          description: Radio station retrieved successfully
+          description: Radio station retrieved successfully by slug
           content:
             application/json:
               examples:
