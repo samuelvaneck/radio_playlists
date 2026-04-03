@@ -132,7 +132,11 @@ module Api
       private
 
       def set_radio_station
-        @radio_station = RadioStation.find params[:id]
+        @radio_station = if params[:id].to_i.to_s == params[:id]
+                           RadioStation.find(params[:id])
+                         else
+                           RadioStation.find_by!(slug: params[:id])
+                         end
       end
 
       def stream_audio(url, redirect_limit = 5)

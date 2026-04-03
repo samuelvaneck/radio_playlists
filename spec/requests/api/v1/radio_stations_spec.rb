@@ -47,9 +47,9 @@ describe 'RadioStations API', type: :request do
     get 'Get a radio station' do
       tags 'Radio Stations'
       produces 'application/json'
-      parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
+      parameter name: :id, in: :path, type: :string, required: true, description: 'Radio station ID or slug'
 
-      response '200', 'Radio station retrieved successfully' do
+      response '200', 'Radio station retrieved successfully by ID' do
         example 'application/json', :example, {
           data: {
             id: '1',
@@ -70,13 +70,20 @@ describe 'RadioStations API', type: :request do
         run_test!
       end
 
+      response '200', 'Radio station retrieved successfully by slug' do
+        let(:radio_station) { create(:radio_station) }
+        let(:id) { radio_station.slug }
+
+        run_test!
+      end
+
       response '404', 'Radio station not found' do
         example 'application/json', :example, {
           status: 404,
           error: 'Not Found'
         }
 
-        let(:id) { 0 }
+        let(:id) { 'non-existent-slug' }
 
         run_test!
       end
