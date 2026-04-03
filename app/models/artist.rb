@@ -15,6 +15,7 @@
 #  lastfm_playcount        :bigint
 #  lastfm_tags             :string           default([]), is an Array
 #  name                    :string
+#  slug                    :string
 #  spotify_artist_url      :string
 #  spotify_artwork_url     :string
 #  spotify_followers_count :integer
@@ -26,6 +27,7 @@
 # Indexes
 #
 #  index_artists_on_name_trgm  (name) USING gin
+#  index_artists_on_slug       (slug) UNIQUE
 #
 
 class Artist < ApplicationRecord
@@ -50,6 +52,9 @@ class Artist < ApplicationRecord
 
   scope :matching, ->(search_term) { search_by_name(search_term).reorder(nil) if search_term.present? }
 
+  before_create :set_slug
+  after_commit :update_slug, on: [:update], if: :saved_change_to_name?
+
   validates :name, presence: true
 
   def self.most_played(params = {})
@@ -62,6 +67,7 @@ class Artist < ApplicationRecord
       .matching(params[:search_term])
       .select("artists.id,
                    artists.name,
+                   artists.slug,
                    artists.image,
                    artists.id_on_spotify,
                    artists.spotify_artist_url,
@@ -142,5 +148,29 @@ class Artist < ApplicationRecord
 
     official_website = Wikipedia::ArtistFinder.new.get_official_website(name)
     update(website_url: official_website) if official_website.present?
+  end
+
+  private
+
+  def set_slug
+    return if slug.present?
+
+    base_slug = name.parameterize
+    self.slug = unique_slug(base_slug)
+  end
+
+  def update_slug
+    base_slug = name.parameterize
+    update_column(:slug, unique_slug(base_slug)) # rubocop:disable Rails/SkipsModelValidations
+  end
+
+  def unique_slug(base_slug)
+    candidate = base_slug
+    counter = 1
+    while Artist.where(slug: candidate).where.not(id:).exists?
+      counter += 1
+      candidate = "#{base_slug}-#{counter}"
+    end
+    candidate
   end
 end

@@ -30,6 +30,7 @@
 #  release_date           :date
 #  release_date_precision :string
 #  search_text            :text
+#  slug                   :string
 #  spotify_artwork_url    :string
 #  spotify_preview_url    :string
 #  spotify_song_url       :string
@@ -44,12 +45,14 @@
 #  index_songs_on_id_on_itunes           (id_on_itunes)
 #  index_songs_on_release_date           (release_date)
 #  index_songs_on_search_text_trgm       (search_text) USING gin
+#  index_songs_on_slug                   (slug) UNIQUE
 #
 class SongSerializer
   include FastJsonapi::ObjectSerializer
 
   attributes :id,
              :title,
+             :slug,
              :search_text,
              :album_name,
              :spotify_song_url,

@@ -151,9 +151,9 @@ RSpec.describe 'Songs API', type: :request do
     get 'Get a song' do
       tags 'Songs'
       produces 'application/json'
-      parameter name: :id, in: :path, type: :integer, required: true, description: 'Song ID'
+      parameter name: :id, in: :path, type: :string, required: true, description: 'Song ID or slug'
 
-      response '200', 'Song retrieved successfully' do
+      response '200', 'Song retrieved successfully by ID' do
         example 'application/json', :example, {
           data: {
             id: '1',
@@ -161,6 +161,7 @@ RSpec.describe 'Songs API', type: :request do
             attributes: {
               id: 1,
               title: 'Bohemian Rhapsody',
+              slug: 'bohemian-rhapsody-queen',
               spotify_artwork_url: 'https://i.scdn.co/image/abc123',
               id_on_spotify: '4u7EnebtmKWzUH433cf5Qv',
               duration_ms: 354_320,
@@ -191,13 +192,20 @@ RSpec.describe 'Songs API', type: :request do
         run_test!
       end
 
+      response '200', 'Song retrieved successfully by slug' do
+        let(:song) { create(:song) }
+        let(:id) { song.slug }
+
+        run_test!
+      end
+
       response '404', 'Song not found' do
         example 'application/json', :example, {
           status: 404,
           error: 'Not Found'
         }
 
-        let(:id) { 0 }
+        let(:id) { 'non-existent-slug' }
 
         run_test!
       end

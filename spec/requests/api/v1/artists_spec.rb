@@ -107,9 +107,9 @@ RSpec.describe 'Artists API', type: :request do
     get 'Get an artist' do
       tags 'Artists'
       produces 'application/json'
-      parameter name: :id, in: :path, type: :integer, required: true, description: 'Artist ID'
+      parameter name: :id, in: :path, type: :string, required: true, description: 'Artist ID or slug'
 
-      response '200', 'Artist retrieved successfully' do
+      response '200', 'Artist retrieved successfully by ID' do
         example 'application/json', :example, {
           data: {
             id: '1',
@@ -117,6 +117,7 @@ RSpec.describe 'Artists API', type: :request do
             attributes: {
               id: 1,
               name: 'Queen',
+              slug: 'queen',
               image: 'https://i.scdn.co/image/abc123',
               id_on_spotify: '1dfeR4HaWDbWqFHLkxsg1d',
               genres: %w[rock classic-rock],
@@ -137,13 +138,20 @@ RSpec.describe 'Artists API', type: :request do
         run_test!
       end
 
+      response '200', 'Artist retrieved successfully by slug' do
+        let(:artist) { create(:artist) }
+        let(:id) { artist.slug }
+
+        run_test!
+      end
+
       response '404', 'Artist not found' do
         example 'application/json', :example, {
           status: 404,
           error: 'Not Found'
         }
 
-        let(:id) { 0 }
+        let(:id) { 'non-existent-slug' }
 
         run_test!
       end

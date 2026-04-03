@@ -15,6 +15,7 @@
 #  lastfm_playcount        :bigint
 #  lastfm_tags             :string           default([]), is an Array
 #  name                    :string
+#  slug                    :string
 #  spotify_artist_url      :string
 #  spotify_artwork_url     :string
 #  spotify_followers_count :integer
@@ -26,11 +27,12 @@
 # Indexes
 #
 #  index_artists_on_name_trgm  (name) USING gin
+#  index_artists_on_slug       (slug) UNIQUE
 #
 class ArtistSerializer
   include FastJsonapi::ObjectSerializer
 
-  attributes :id, :name, :spotify_artist_url, :spotify_artwork_url, :instagram_url, :website_url, :genres,
+  attributes :id, :name, :slug, :spotify_artist_url, :spotify_artwork_url, :instagram_url, :website_url, :genres,
              :spotify_popularity, :spotify_followers_count, :country_of_origin,
              :lastfm_listeners, :lastfm_playcount, :lastfm_tags
 

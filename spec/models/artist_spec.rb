@@ -13,6 +13,7 @@
 #  lastfm_playcount        :bigint
 #  lastfm_tags             :string           default([]), is an Array
 #  name                    :string
+#  slug                    :string
 #  spotify_artist_url      :string
 #  spotify_artwork_url     :string
 #  spotify_followers_count :integer
@@ -24,6 +25,7 @@
 # Indexes
 #
 #  index_artists_on_name_trgm  (name) USING gin
+#  index_artists_on_slug       (slug) UNIQUE
 #
 
 describe Artist do
