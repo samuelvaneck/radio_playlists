@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_02_112205) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_03_185447) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -96,6 +96,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_02_112205) do
     t.bigint "lastfm_playcount"
     t.string "lastfm_tags", default: [], array: true
     t.string "name"
+    t.string "slug"
     t.string "spotify_artist_url"
     t.string "spotify_artwork_url"
     t.integer "spotify_followers_count"
@@ -103,6 +104,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_02_112205) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "website_url"
     t.index ["name"], name: "index_artists_on_name_trgm", opclass: :gin_trgm_ops, using: :gin
+    t.index ["slug"], name: "index_artists_on_slug", unique: true
   end
 
   create_table "artists_songs", id: false, force: :cascade do |t|
@@ -251,6 +253,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_02_112205) do
     t.date "release_date"
     t.string "release_date_precision"
     t.text "search_text"
+    t.string "slug"
     t.string "spotify_artwork_url"
     t.string "spotify_preview_url"
     t.string "spotify_song_url"
@@ -261,6 +264,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_02_112205) do
     t.index ["id_on_itunes"], name: "index_songs_on_id_on_itunes"
     t.index ["release_date"], name: "index_songs_on_release_date"
     t.index ["search_text"], name: "index_songs_on_search_text_trgm", opclass: :gin_trgm_ops, using: :gin
+    t.index ["slug"], name: "index_songs_on_slug", unique: true
   end
 
   create_table "tags", force: :cascade do |t|

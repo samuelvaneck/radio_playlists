@@ -150,7 +150,11 @@ module Api
       end
 
       def artist
-        @artist ||= Artist.find params[:id]
+        @artist ||= if params[:id].to_i.to_s == params[:id]
+                      Artist.find(params[:id])
+                    else
+                      Artist.find_by!(slug: params[:id])
+                    end
       end
 
       def radio_station_ids

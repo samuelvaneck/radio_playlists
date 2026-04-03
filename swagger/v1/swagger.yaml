@@ -409,12 +409,12 @@ paths:
       - name: id
         in: path
         required: true
-        description: Artist ID
+        description: Artist ID or slug
         schema:
-          type: integer
+          type: string
       responses:
         '200':
-          description: Artist retrieved successfully
+          description: Artist retrieved successfully by slug
           content:
             application/json:
               examples:
@@ -426,6 +426,7 @@ paths:
                       attributes:
                         id: 1
                         name: Queen
+                        slug: queen
                         image: https://i.scdn.co/image/abc123
                         id_on_spotify: 1dfeR4HaWDbWqFHLkxsg1d
                         genres:
@@ -2586,12 +2587,12 @@ paths:
       - name: id
         in: path
         required: true
-        description: Song ID
+        description: Song ID or slug
         schema:
-          type: integer
+          type: string
       responses:
         '200':
-          description: Song retrieved successfully
+          description: Song retrieved successfully by slug
           content:
             application/json:
               examples:
@@ -2603,6 +2604,7 @@ paths:
                       attributes:
                         id: 1
                         title: Bohemian Rhapsody
+                        slug: bohemian-rhapsody-queen
                         spotify_artwork_url: https://i.scdn.co/image/abc123
                         id_on_spotify: 4u7EnebtmKWzUH433cf5Qv
                         duration_ms: 354320

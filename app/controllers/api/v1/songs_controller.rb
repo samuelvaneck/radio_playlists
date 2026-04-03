@@ -229,7 +229,11 @@ module Api
       end
 
       def song
-        @song ||= Song.find params[:id]
+        @song ||= if params[:id].to_i.to_s == params[:id]
+                    Song.find(params[:id])
+                  else
+                    Song.find_by!(slug: params[:id])
+                  end
       end
 
       def radio_station_ids

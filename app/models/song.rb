@@ -30,6 +30,7 @@
 #  release_date           :date
 #  release_date_precision :string
 #  search_text            :text
+#  slug                   :string
 #  spotify_artwork_url    :string
 #  spotify_preview_url    :string
 #  spotify_song_url       :string
@@ -44,6 +45,7 @@
 #  index_songs_on_id_on_itunes           (id_on_itunes)
 #  index_songs_on_release_date           (release_date)
 #  index_songs_on_search_text_trgm       (search_text) USING gin
+#  index_songs_on_slug                   (slug) UNIQUE
 #
 
 class Song < ApplicationRecord
@@ -71,10 +73,9 @@ class Song < ApplicationRecord
   has_one :music_profile, dependent: :destroy
 
   before_create :set_search_text
+  before_create :set_slug
   after_commit :update_search_text, on: [:update], if: :saved_change_to_title?
-  # after_commit :update_youtube_from_wikipedia, on: %i[create update], if: :should_update_youtube?
-  # after_commit :enrich_with_deezer, on: %i[create update], if: :should_enrich_with_deezer?
-  # after_commit :enrich_with_itunes, on: %i[create update], if: :should_enrich_with_itunes?
+  after_commit :update_slug, on: [:update], if: :saved_change_to_title?
 
   scope :matching, lambda { |search_term|
     search_by_text(search_term).reorder(nil) if search_term.present?
@@ -113,6 +114,7 @@ class Song < ApplicationRecord
       .with_music_profile(params[:music_profile])
       .select("songs.id,
                  songs.title,
+                 songs.slug,
                  songs.search_text,
                  songs.album_name,
                  songs.id_on_spotify,
@@ -314,6 +316,26 @@ class Song < ApplicationRecord
 
   def update_search_text
     update_column(:search_text, "#{artists.pluck(:name).join(' ')} #{title}")
+  end
+
+  def set_slug
+    return if slug.present?
+
+    self.slug = unique_slug("#{title} #{artists.first&.name}".parameterize)
+  end
+
+  def update_slug
+    update_column(:slug, unique_slug("#{title} #{artists.first&.name}".parameterize))
+  end
+
+  def unique_slug(base_slug)
+    candidate = base_slug
+    counter = 1
+    while Song.where(slug: candidate).where.not(id:).exists?
+      counter += 1
+      candidate = "#{base_slug}-#{counter}"
+    end
+    candidate
   end
 
   def should_update_youtube?
