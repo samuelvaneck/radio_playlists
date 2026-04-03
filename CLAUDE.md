@@ -44,6 +44,11 @@ bundle exec rake optimization:vacuum                           # PostgreSQL VACU
 
 # Hit Potential
 bundle exec rake hit_potential:backfill                        # Backfill hit_potential_score for songs with music profiles
+
+# Slugs
+bundle exec rake slug:backfill_songs                           # Backfill slugs for songs without one
+bundle exec rake slug:backfill_artists                         # Backfill slugs for artists without one
+bundle exec rake slug:backfill_all                             # Backfill slugs for both songs and artists
 ```
 
 ## Architecture
@@ -153,10 +158,10 @@ The score is calculated automatically by `MusicProfileJob` after creating a musi
 
 ### Key Models
 
-- `Song` - Core entity with Spotify/YouTube IDs, enrichment fields (`album_name`, `popularity`, `explicit`, `duration_ms`, `release_date`, `isrcs` array, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`, `hit_potential_score`)
-- `Artist` - Core entity with enrichment fields (`genres` array, `country_of_origin` array, `spotify_popularity`, `spotify_followers_count`, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`)
+- `Song` - Core entity with Spotify/YouTube IDs, enrichment fields (`album_name`, `popularity`, `explicit`, `duration_ms`, `release_date`, `isrcs` array, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`, `hit_potential_score`), `slug` for SEO-friendly URLs
+- `Artist` - Core entity with enrichment fields (`genres` array, `country_of_origin` array, `spotify_popularity`, `spotify_followers_count`, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`), `slug` for SEO-friendly URLs
 - `AirPlay` - Song play events (unique per station/song/time, `broadcasted_at` presence validated)
-- `RadioStation` - Station metadata with last 12 airplay IDs (JSONB), `is_currently_playing` flag on last_played_songs endpoint
+- `RadioStation` - Station metadata with last 12 airplay IDs (JSONB), `is_currently_playing` flag on last_played_songs endpoint, `slug` for SEO-friendly URLs
 - `ChartPosition` - Polymorphic rankings (can be Song or Artist), with popularity boost tiebreaker
 - `MusicProfile` - Spotify audio features per song: 7 core features + extended features (`key`, `mode`, `loudness`, `time_signature`)
 
@@ -224,6 +229,19 @@ RESTful JSON API under `/api/v1/`:
 - `songs`, `artists`, `air_plays`, `radio_stations`, `charts`
 - `GET /api/v1/artists/:id/similar_artists` — Returns artists with overlapping genres/Last.fm tags, sorted by similarity score then Spotify popularity
 - `GET /api/v1/radio_stations/release_date_graph` — Groups airplays by station and song release year for time-series visualization
+
+### Slug-Based Lookup
+
+Songs, artists, and radio stations support lookup by slug in addition to numeric ID for SEO-friendly URLs (e.g. `/songs/blinding-lights-the-weeknd`, `/artists/the-weeknd`, `/radio-stations/sky-radio`).
+
+**Pattern:** Controllers use `params[:id].to_i.to_s == params[:id]` to detect numeric IDs vs slugs, then route to `find` or `find_by!(slug:)` accordingly. Slugs are auto-generated on create via `before_create` callbacks and updated on title/name changes via `after_commit`. Duplicate slugs get numeric suffixes (`slug-2`, `slug-3`).
+
+**Slug format:**
+- Songs: `"#{title} #{primary_artist_name}".parameterize` (e.g. `blinding-lights-the-weeknd`)
+- Artists: `name.parameterize` (e.g. `the-weeknd`)
+- Radio stations: `name.parameterize` (e.g. `sky-radio`)
+
+**Important:** `Song.most_played` and `Artist.most_played` use explicit `.select()` lists. When adding new serialized attributes, they must also be added to these select clauses to avoid `ActiveModel::MissingAttributeError`.
 - Widget endpoints (public, no auth required):
   - `GET /api/v1/songs/:id/widget` — total plays, station count, release date, duration
   - `GET /api/v1/artists/:id/widget` — total plays, song count, station count, country of origin
