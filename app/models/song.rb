@@ -106,7 +106,7 @@ class Song < ApplicationRecord
     start_time, end_time = time_range_from_params(params, default_period: 'week')
 
     Song.joins(:air_plays)
-      .preload(:artists)
+      .preload(:artists, :music_profile)
       .merge(AirPlay.confirmed)
       .played_between(start_time, end_time)
       .played_on(params[:radio_station_ids])
