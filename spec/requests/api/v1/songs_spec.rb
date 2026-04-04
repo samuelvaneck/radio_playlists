@@ -70,6 +70,17 @@ RSpec.describe 'Songs API', type: :request do
                 lastfm_playcount: 5_500_000,
                 lastfm_tags: %w[rock classic-rock],
                 hit_potential_score: 72.45,
+                hit_potential_breakdown: {
+                  audio_features: 38.12,
+                  artist_popularity: 16.5,
+                  engagement: 10.25,
+                  release_recency: 7.58,
+                  audio_features_detail: {
+                    loudness: 9.2, danceability: 8.5, energy: 7.1,
+                    acousticness: 5.8, valence: 3.2, tempo: 2.8,
+                    instrumentalness: 0.9, speechiness: 0.4, liveness: 0.2
+                  }
+                },
                 counter: 42,
                 artists: [{ id: 1, name: 'Queen' }],
                 music_profile: {
@@ -170,6 +181,17 @@ RSpec.describe 'Songs API', type: :request do
               lastfm_playcount: 5_500_000,
               lastfm_tags: %w[rock classic-rock],
               hit_potential_score: 72.45,
+              hit_potential_breakdown: {
+                audio_features: 38.12,
+                artist_popularity: 16.5,
+                engagement: 10.25,
+                release_recency: 7.58,
+                audio_features_detail: {
+                  loudness: 9.2, danceability: 8.5, energy: 7.1,
+                  acousticness: 5.8, valence: 3.2, tempo: 2.8,
+                  instrumentalness: 0.9, speechiness: 0.4, liveness: 0.2
+                }
+              },
               counter: 42,
               artists: [{ id: 1, name: 'Queen' }],
               music_profile: {

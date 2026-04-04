@@ -90,6 +90,18 @@ class HitPotentialCalculator
     (score * 100).round(2).clamp(0.0, 100.0)
   end
 
+  def breakdown
+    return nil if @music_profile.blank?
+
+    {
+      audio_features: (audio_features_score * SIGNAL_WEIGHTS[:audio_features] * 100).round(2),
+      artist_popularity: (artist_popularity_score * SIGNAL_WEIGHTS[:artist_popularity] * 100).round(2),
+      engagement: (engagement_score * SIGNAL_WEIGHTS[:engagement] * 100).round(2),
+      release_recency: (release_recency_score * SIGNAL_WEIGHTS[:release_recency] * 100).round(2),
+      audio_features_detail: audio_features_breakdown
+    }
+  end
+
   private
 
   def audio_features_score
@@ -98,6 +110,14 @@ class HitPotentialCalculator
       next 0.0 if value.nil?
 
       gaussian_score(feature, value.to_f) * weight
+    end
+  end
+
+  def audio_features_breakdown
+    AUDIO_FEATURE_WEIGHTS.to_h do |feature, weight|
+      value = @music_profile.public_send(feature)
+      score = value.nil? ? 0.0 : gaussian_score(feature, value.to_f) * weight
+      [feature, (score * SIGNAL_WEIGHTS[:audio_features] * 100).round(2)]
     end
   end
 

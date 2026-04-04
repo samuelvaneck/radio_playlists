@@ -98,4 +98,52 @@ RSpec.describe HitPotentialCalculator do
       expect(described_class.new(song).calculate).to be_between(0.0, 100.0)
     end
   end
+
+  describe '#breakdown' do
+    context 'when song has no music profile' do
+      let(:song) { build(:song) }
+
+      it 'returns nil' do
+        expect(described_class.new(song).breakdown).to be_nil
+      end
+    end
+
+    context 'when song has a music profile' do
+      let(:artist) { build(:artist, spotify_popularity: 85, spotify_followers_count: 5_000_000, lastfm_listeners: 2_000_000) }
+      let(:song) do
+        build(:song, artists: [artist], popularity: 80, lastfm_listeners: 1_500_000,
+                     lastfm_playcount: 10_000_000, release_date: 3.months.ago.to_date)
+      end
+      let(:music_profile) do
+        build(:music_profile, song: song, danceability: 0.64, energy: 0.68, valence: 0.52,
+                              acousticness: 0.15, instrumentalness: 0.02, speechiness: 0.08,
+                              liveness: 0.17, tempo: 120.0, loudness: -6.0)
+      end
+
+      before { allow(song).to receive(:music_profile).and_return(music_profile) }
+
+      it 'returns all signal categories', :aggregate_failures do
+        result = described_class.new(song).breakdown
+        expect(result).to include(:audio_features, :artist_popularity, :engagement, :release_recency, :audio_features_detail)
+      end
+
+      it 'has category contributions that sum to the total score', :aggregate_failures do
+        calculator = described_class.new(song)
+        result = calculator.breakdown
+        category_sum = result[:audio_features] + result[:artist_popularity] + result[:engagement] + result[:release_recency]
+        expect(category_sum).to be_within(0.1).of(calculator.calculate)
+      end
+
+      it 'includes per-audio-feature detail' do
+        result = described_class.new(song).breakdown
+        expect(result[:audio_features_detail].keys).to match_array(HitPotentialCalculator::AUDIO_FEATURE_WEIGHTS.keys)
+      end
+
+      it 'has audio feature details that sum to the audio features category' do
+        result = described_class.new(song).breakdown
+        detail_sum = result[:audio_features_detail].values.sum
+        expect(detail_sum).to be_within(0.01).of(result[:audio_features])
+      end
+    end
+  end
 end

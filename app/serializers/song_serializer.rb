@@ -101,6 +101,10 @@ class SongSerializer
     params.dig(:chart_data, object.id, :last_chart_date)
   end
 
+  attribute :hit_potential_breakdown do |object|
+    HitPotentialCalculator.new(object).breakdown
+  end
+
   attribute :music_profile do |object|
     if object.music_profile.present?
       {
