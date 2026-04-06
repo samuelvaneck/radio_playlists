@@ -65,6 +65,21 @@ describe Itunes::TrackFinder::Result do
       end
     end
 
+    context 'when iTunes returns an HTML error page instead of JSON' do
+      before do
+        stub_request(:get, %r{itunes\.apple\.com/search}).to_return(
+          status: 200,
+          body: '<html><head><title>Error</title></head><body>Service Unavailable</body></html>',
+          headers: { 'Content-Type' => 'text/html' }
+        )
+        result.execute
+      end
+
+      it 'returns nil for track' do
+        expect(result.track).to be_nil
+      end
+    end
+
     context 'when the track is not found' do
       before do
         stub_request(:get, %r{itunes\.apple\.com/search}).to_return(
