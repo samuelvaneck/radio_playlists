@@ -34,7 +34,8 @@ class SoundProfileGenerator
       top_tags: top_tags,
       release_decade_distribution: release_decade_distribution,
       release_year_range: release_year_range,
-      description: generate_description,
+      description_en: generate_description(:en),
+      description_nl: generate_description(:nl),
       sample_size: sample_size
     }
   end
@@ -119,39 +120,63 @@ class SoundProfileGenerator
   end
 
   def release_year_range
-    years = release_years_sorted
-    return nil if years.empty?
+    counts = song_counts_by_year
+    return nil if counts.empty?
 
-    # Trim 10% from each side to get the middle 80%
-    trim_count = (years.size * 0.1).floor
-    trimmed = years[trim_count..-(trim_count + 1)] || years
-    trimmed = years if trimmed.empty?
+    total = counts.values.sum
+    percentiles = weighted_percentiles(counts, total)
+    decades = peak_decades(counts, total)
 
     {
-      from: trimmed.first,
-      to: trimmed.last,
-      label: "80% of songs are from #{trimmed.first}–#{trimmed.last}",
-      total_songs_with_date: years.size
+      from: percentiles[:p10],
+      to: percentiles[:p90],
+      median_year: percentiles[:p50],
+      peak_decades: decades,
+      era_description_en: era_description(decades, :en),
+      era_description_nl: era_description(decades, :nl),
+      total_songs_with_date: total
     }
   end
 
-  def generate_description
+  def generate_description(locale = :en)
+    @description_context ||= {
+      energy: label_for_feature('energy', feature_average(:energy)),
+      valence: label_for_feature('valence', feature_average(:valence)),
+      dance: label_for_feature('danceability', feature_average(:danceability)),
+      tempo_avg: feature_average(:tempo, column: :tempo),
+      genres: top_genres(limit: 3).map { |g| g[:name] },
+      year_range: release_year_range
+    }
+
+    locale == :nl ? build_description_nl : build_description_en
+  end
+
+  def build_description_en
+    ctx = @description_context
     parts = []
+    parts << "#{@radio_station.name} is a #{ctx[:energy]}, #{ctx[:valence]} station"
+    parts << "playing #{ctx[:dance]}, #{tempo_label(ctx[:tempo_avg])} music"
+    parts << "with a focus on #{ctx[:genres].join(', ')}" if ctx[:genres].any?
+    parts << ctx[:year_range][:era_description_en] if ctx[:year_range]
+    "#{parts.join(' ')}."
+  end
 
-    energy_label = label_for_feature('energy', feature_average(:energy))
-    valence_label = label_for_feature('valence', feature_average(:valence))
-    dance_label = label_for_feature('danceability', feature_average(:danceability))
-    tempo_avg = feature_average(:tempo, column: :tempo)
+  def build_description_nl
+    ctx = @description_context
+    energy_nl = { 'laid-back' => 'relaxed', 'moderate energy' => 'gematigd energiek',
+                  'high-energy' => 'energiek' }.fetch(ctx[:energy], ctx[:energy])
+    valence_nl = { 'moody and introspective' => 'sfeervol en introspectief', 'balanced mood' => 'evenwichtig',
+                   'upbeat and positive' => 'vrolijk en positief' }.fetch(ctx[:valence], ctx[:valence])
+    dance_nl = { 'less danceable' => 'minder dansbare', 'moderately danceable' => 'gematigd dansbare',
+                 'very danceable' => 'zeer dansbare' }.fetch(ctx[:dance], ctx[:dance])
+    tempo_nl = { 'slow-tempo' => 'langzame', 'mid-tempo' => 'mid-tempo', 'upbeat' => 'vlotte',
+                 'fast-paced' => 'snelle' }.fetch(tempo_label(ctx[:tempo_avg]), tempo_label(ctx[:tempo_avg]))
 
-    parts << "#{@radio_station.name} is a #{energy_label}, #{valence_label} station"
-    parts << "playing #{dance_label}, #{tempo_label(tempo_avg)} music"
-
-    top_genre_names = top_genres(limit: 3).map { |g| g[:name] }
-    parts << "with a focus on #{top_genre_names.join(', ')}" if top_genre_names.any?
-
-    year_range = release_year_range
-    parts << "mostly from #{year_range[:from]}–#{year_range[:to]}" if year_range
-
+    parts = []
+    parts << "#{@radio_station.name} is een #{energy_nl}, #{valence_nl} station"
+    parts << "met #{dance_nl}, #{tempo_nl} muziek"
+    parts << "gericht op #{ctx[:genres].join(', ')}" if ctx[:genres].any?
+    parts << ctx[:year_range][:era_description_nl] if ctx[:year_range]
     "#{parts.join(' ')}."
   end
 
@@ -159,14 +184,85 @@ class SoundProfileGenerator
     profiles_scope.count
   end
 
-  def release_years_sorted
-    @release_years_sorted ||= Song.joins(:air_plays)
-                                .where(air_plays: { radio_station_id: @radio_station.id, broadcasted_at: @start_time..@end_time })
-                                .where.not(release_date: nil)
-                                .distinct
-                                .pluck(Arel.sql('EXTRACT(YEAR FROM songs.release_date)::integer'))
-                                .compact
-                                .sort
+  def song_counts_by_year
+    @song_counts_by_year ||= Song.joins(:air_plays)
+                               .where(air_plays: { radio_station_id: @radio_station.id, broadcasted_at: @start_time..@end_time })
+                               .where.not(release_date: nil)
+                               .group(Arel.sql('EXTRACT(YEAR FROM songs.release_date)::integer'))
+                               .count
+                               .sort_by(&:first)
+                               .to_h
+  end
+
+  def weighted_percentiles(counts, total)
+    targets = { p10: 0.10, p25: 0.25, p50: 0.50, p75: 0.75, p90: 0.90 }
+    result = {}
+    cumulative = 0
+
+    counts.each do |year, count|
+      cumulative += count
+      pct = cumulative.to_f / total
+      targets.each do |key, threshold|
+        result[key] ||= year if pct >= threshold
+      end
+    end
+
+    result
+  end
+
+  def peak_decades(counts, total)
+    decade_totals = counts.each_with_object(Hash.new(0)) do |(year, count), h|
+      h[(year / 10) * 10] += count
+    end
+
+    decade_totals
+      .select { |_, count| count.to_f / total >= 0.15 }
+      .sort_by { |decade, _| -decade_totals[decade] }
+      .map(&:first)
+      .sort
+  end
+
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def era_description(decades, locale)
+    return '' if decades.empty?
+
+    decade_labels = decades.map { |d| "#{d}s" }
+    current_decade = (Time.current.year / 10) * 10
+    has_recent = decades.include?(current_decade) || decades.include?(current_decade - 10)
+    core_decades = decades.reject { |d| d >= current_decade - 10 }
+
+    if decades.size == 1
+      single_decade_text(decade_labels.first, locale)
+    elsif core_decades.any? && has_recent && core_decades != decades
+      mixed_era_text(core_decades.map { |d| "#{d}s" }, locale)
+    else
+      multi_decade_text(decade_labels, locale)
+    end
+  end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+
+  def single_decade_text(decade_label, locale)
+    if locale == :nl
+      "voornamelijk uit de jaren #{decade_label.delete_suffix('s')}"
+    else
+      "primarily from the #{decade_label}"
+    end
+  end
+
+  def mixed_era_text(core_labels, locale)
+    if locale == :nl
+      "voornamelijk uit de jaren #{core_labels.join(' en ')}, aangevuld met recente muziek"
+    else
+      "primarily from the #{core_labels.join(' and ')}, complemented by recent releases"
+    end
+  end
+
+  def multi_decade_text(decade_labels, locale)
+    if locale == :nl
+      "voornamelijk uit de jaren #{decade_labels.join(' en ')}"
+    else
+      "primarily from the #{decade_labels.join(' and ')}"
+    end
   end
 
   def profiles_scope
