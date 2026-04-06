@@ -24,6 +24,10 @@ class TrackScraper
 
   def connection
     Faraday.new(@radio_station.url) do |conn|
+      conn.options.timeout = 15
+      conn.options.open_timeout = 5
+      conn.request :retry, max: 2, interval: 0.5, backoff_factor: 2,
+                           exceptions: [Faraday::ConnectionFailed, Faraday::TimeoutError, Faraday::SSLError]
       conn.response :json
     end
   end
