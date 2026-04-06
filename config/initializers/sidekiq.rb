@@ -1,3 +1,5 @@
+require_relative '../../lib/sidekiq/memory_monitor_middleware'
+
 Sidekiq.configure_server do |config|
   config.redis = { url: ENV['REDIS_SIDEKIQ_URL'] }
 
@@ -11,6 +13,7 @@ Sidekiq.configure_server do |config|
 
   config.server_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Server
+    chain.add Sidekiq::MemoryMonitorMiddleware
   end
 
   SidekiqUniqueJobs::Server.configure(config)
