@@ -40,6 +40,8 @@ bundle exec rake data_repair:fix_songs[limit]                 # Auto-fix mismatc
 bundle exec rake data_repair:merge_duplicate_isrcs             # Merge songs with same ISRC
 bundle exec rake data_repair:find_fuzzy_duplicates             # Find fuzzy song duplicates
 bundle exec rake data_repair:confirm_recognizer_drafts         # Confirm draft airplays for recognizer-only stations
+bundle exec rake data_repair:find_mismatched_airplays[limit]   # Dry run: detect airplays linked to wrong songs
+bundle exec rake data_repair:fix_mismatched_airplays[limit]    # Fix airplays linked to wrong songs
 bundle exec rake optimization:vacuum                           # PostgreSQL VACUUM FULL ANALYZE
 
 # Hit Potential
@@ -60,7 +62,7 @@ The app uses service objects extensively in `app/services/`:
 - `SongRecognizer` - Shazam-based audio fingerprinting via SongRec
 - `AcoustidRecognizer` - Chromaprint + AcoustID API fingerprinting
 - `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis, Arrow, MyTuner, Simone) and video OCR (Yoursafe)
-- `TrackExtractor/` - Extracts artist/song info and finds tracks via `SpotifyTrackFinder`, `DeezerTrackFinder`, `ItunesTrackFinder`
+- `TrackExtractor/` - Extracts artist/song info and finds tracks via `SpotifyTrackFinder`, `DeezerTrackFinder`, `ItunesTrackFinder`. Both `SpotifyTrackFinder` and `SongExtractor` use fuzzy search fallbacks with JaroWinkler title validation (>= 70%) to prevent matching different songs by the same artist.
 - `Spotify/` - External API integration with two track-finding paths: search-based (`best_match`) and ID-based (`fetch_spotify_track`). Both compute JaroWinkler match scores for `valid_match?` validation (artist >= 80, title >= 70)
 - `Youtube/` - YouTube API integration
 - `Lastfm/` and `Wikipedia/` - Artist bio/info enrichment (Last.fm listeners/playcount/tags, Wikipedia nationality via Wikidata)
@@ -72,6 +74,7 @@ The app uses service objects extensively in `app/services/`:
 - `CombinedArtistSplitter` - Splits combined artist names (e.g., "Artist feat. Artist2") into individual Artist records
 - `DuplicateArtistMerger` - Finds and merges duplicate artists via Spotify ID or fuzzy name matching (Jaro-Winkler, threshold: 92)
 - `DuplicateSongMerger` - Finds and merges duplicate songs via Spotify ID or fuzzy title matching (Jaro-Winkler, threshold: 92)
+- `MismatchedAirplayRepair` - Detects and fixes airplays linked to wrong songs by comparing import log titles against linked song titles (Jaro-Winkler < 70% = mismatch). Reassigns airplays to correct songs found by Spotify track ID, exact match, or newly created.
 - `HitPotentialCalculator` - Predicts song hit potential (0-100) using multi-signal scoring: audio features (50%), artist popularity (20%), engagement metrics (15%), release recency (15%)
 
 ### Background Jobs
