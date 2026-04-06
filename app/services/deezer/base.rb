@@ -21,7 +21,7 @@ module Deezer
         with_exponential_backoff(max_attempts: 3, base_delay: 1) do
           response = connection.get(url)
           handle_rate_limit_response(response)
-          response.body
+          parse_response_body(response)
         end
       end
     rescue StandardError => e
@@ -31,6 +31,14 @@ module Deezer
     end
 
     private
+
+    def parse_response_body(response)
+      return response.body if response.body.is_a?(Hash)
+      return JSON.parse(response.body) if response.body.is_a?(String) && response.body.start_with?('{', '[')
+
+      Rails.logger.error("Deezer API returned non-JSON response: #{response.body.to_s[0..100]}")
+      nil
+    end
 
     def connection
       Faraday.new(url: BASE_URL) do |conn|
