@@ -421,8 +421,14 @@ describe 'RadioStations API', type: :request do
             top_genres: [{ name: 'pop', count: 150 }, { name: 'dance', count: 120 }],
             top_tags: [{ name: 'electronic', count: 200 }],
             release_decade_distribution: [{ decade: '2020s', count: 500 }],
-            release_year_range: { from: 2015, to: 2025, label: '80% of songs are from 2015-2025', total_songs_with_date: 800 },
-            description: 'Radio 538 is a high-energy, upbeat and positive station playing very danceable, upbeat music.',
+            release_year_range: {
+              from: 2015, to: 2025, median_year: 2020, peak_decades: [2010, 2020],
+              era_description_en: 'primarily from the 2010s and 2020s',
+              era_description_nl: 'voornamelijk uit de jaren 2010 en 2020',
+              total_songs_with_date: 800
+            },
+            description_en: 'Radio 538 is a high-energy, upbeat and positive station playing very danceable, upbeat music.',
+            description_nl: 'Radio 538 is een energiek, vrolijk en positief station met zeer dansbare, vlotte muziek.',
             sample_size: 1000
           }
         }

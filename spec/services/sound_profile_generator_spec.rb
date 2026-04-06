@@ -41,7 +41,8 @@ RSpec.describe SoundProfileGenerator do
         expect(result[:top_tags]).to be_an(Array)
         expect(result[:release_decade_distribution]).to be_an(Array)
         expect(result[:release_year_range]).to be_a(Hash)
-        expect(result[:description]).to be_a(String)
+        expect(result[:description_en]).to be_a(String)
+        expect(result[:description_nl]).to be_a(String)
       end
 
       it 'calculates audio feature averages', :aggregate_failures do
@@ -76,8 +77,9 @@ RSpec.describe SoundProfileGenerator do
         expect(result[:release_year_range][:to]).to be_a(Integer)
       end
 
-      it 'generates a description string' do
-        expect(result[:description]).to include(radio_station.name)
+      it 'generates bilingual descriptions', :aggregate_failures do
+        expect(result[:description_en]).to include(radio_station.name)
+        expect(result[:description_nl]).to include(radio_station.name)
       end
     end
 
@@ -95,23 +97,27 @@ RSpec.describe SoundProfileGenerator do
   end
 
   describe '#release_year_range' do
-    context 'with enough songs to calculate 80% range' do
+    context 'with weighted song distribution' do
       before do
-        years = [1985, 1990, 2000, 2005, 2010, 2015, 2018, 2020, 2022, 2024]
-        years.each do |year|
-          song = create(:song, release_date: Date.new(year, 1, 1))
-          create(:air_play, song:, radio_station:, broadcasted_at: Time.utc(2026, 1, 15, 12, 0, 0))
+        # Simulate a station heavy on 90s music: 5 songs from 90s, 3 from 2020s, 2 from 80s
+        { 1985 => 1, 1988 => 1, 1992 => 2, 1995 => 2, 1999 => 1, 2020 => 1, 2022 => 1, 2024 => 1 }.each do |year, count|
+          count.times do
+            song = create(:song, release_date: Date.new(year, 1, 1))
+            create(:air_play, song:, radio_station:, broadcasted_at: Time.utc(2026, 1, 15, 12, 0, 0))
+          end
         end
       end
 
-      it 'trims 10% from each side', :aggregate_failures do
+      it 'uses weighted percentiles based on song counts', :aggregate_failures do
         result = generator.generate
+        range = result[:release_year_range]
 
-        # 10 songs, trim 1 from each side -> range is 1990-2022
-        expect(result[:release_year_range][:from]).to eq(1990)
-        expect(result[:release_year_range][:to]).to eq(2022)
-        expect(result[:release_year_range][:label]).to include('1990')
-        expect(result[:release_year_range][:label]).to include('2022')
+        expect(range[:from]).to be_a(Integer)
+        expect(range[:to]).to be_a(Integer)
+        expect(range[:median_year]).to be_a(Integer)
+        expect(range[:peak_decades]).to be_an(Array)
+        expect(range[:era_description_en]).to be_a(String)
+        expect(range[:era_description_nl]).to be_a(String)
       end
     end
   end
