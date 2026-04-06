@@ -156,6 +156,8 @@ GEM
       logger
     faraday-net_http (3.4.2)
       net-http (~> 0.5)
+    faraday-retry (2.4.0)
+      faraday (~> 2.0)
     ffi (1.17.3-aarch64-linux-gnu)
     ffi (1.17.3-aarch64-linux-musl)
     ffi (1.17.3-arm-linux-gnu)
@@ -574,6 +576,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   faraday (~> 2.13)
+  faraday-retry (~> 2.2)
   foreman
   guard-rspec
   health_bit
