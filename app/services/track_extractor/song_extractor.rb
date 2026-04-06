@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TrackExtractor::SongExtractor < TrackExtractor
+  TITLE_SIMILARITY_THRESHOLD = 70
+
   def extract
     @song = find_or_create_song
     maybe_sanitize_title(@song)
@@ -99,7 +101,9 @@ class TrackExtractor::SongExtractor < TrackExtractor
 
       artist_ids = Array.wrap(@artists).map(&:id)
       search_query = "#{Array.wrap(@artists).map(&:name).join(' ')} #{title}"
-      Song.search_by_text(search_query).joins(:artists).where(artists: { id: artist_ids }).first
+      Song.search_by_text(search_query).joins(:artists).where(artists: { id: artist_ids }).limit(5).find do |song|
+        (JaroWinkler.similarity(title.downcase, song.title.downcase) * 100).to_i >= TITLE_SIMILARITY_THRESHOLD
+      end
     end
   end
 
