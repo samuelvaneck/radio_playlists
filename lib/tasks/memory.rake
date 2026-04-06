@@ -94,6 +94,11 @@ namespace :memory do
 
     before_gc = GC.stat(:count)
 
+    # Track per-iteration RSS and Symbol count to distinguish warmup from real leaks
+    rss_timeline = [rss_before]
+    symbol_timeline = [ObjectSpace.count_objects[:T_SYMBOL] || Symbol.all_symbols.size]
+    warmup_boundary = [5, iterations / 2].min
+
     # Run jobs — fetch a sample of radio stations if it's ImportSongJob
     iterations.times do |i|
       if job_class == ImportSongJob
@@ -108,11 +113,17 @@ namespace :memory do
         $stdout.puts "  Iteration #{i + 1}/#{iterations}"
         job_class.perform_now
       end
+
+      # Snapshot after each iteration
+      GC.start(full_mark: true, immediate_sweep: true)
+      rss_timeline << (`ps -o rss= -p #{Process.pid}`.strip.to_f / 1024.0)
+      symbol_timeline << (ObjectSpace.count_objects[:T_SYMBOL] || Symbol.all_symbols.size)
     end
 
-    # Measure after
+    # Measure after final GC
     3.times { GC.start(full_mark: true, immediate_sweep: true) }
     rss_after = `ps -o rss= -p #{Process.pid}`.strip.to_f / 1024.0
+    rss_timeline[-1] = rss_after
 
     after_counts = Hash.new(0)
     ObjectSpace.each_object { |obj| after_counts[CLASS_OF.bind_call(obj)] += 1 }
@@ -123,6 +134,38 @@ namespace :memory do
     $stdout.puts '=== Results ==='
     $stdout.puts "RSS: #{format('%.1f', rss_before)}MB -> #{format('%.1f', rss_after)}MB (#{format('%+.1f', rss_after - rss_before)}MB)"
     $stdout.puts "GC runs during profiling: #{after_gc - before_gc}"
+    $stdout.puts ''
+
+    # Per-iteration RSS timeline
+    $stdout.puts '=== RSS Timeline (MB per iteration) ==='
+    rss_timeline.each_with_index do |rss, i|
+      label = i.zero? ? 'baseline' : "iter #{i}"
+      delta = i.zero? ? '' : format(' (%+.1f)', rss - rss_timeline[i - 1])
+      marker = i == warmup_boundary ? ' <-- warmup boundary' : ''
+      $stdout.puts "  #{label}: #{format('%.1f', rss)}#{delta}#{marker}"
+    end
+    $stdout.puts ''
+
+    # Warmup vs steady-state growth rate
+    if iterations > warmup_boundary
+      warmup_growth = rss_timeline[warmup_boundary] - rss_timeline[0]
+      steady_growth = rss_timeline[-1] - rss_timeline[warmup_boundary]
+      steady_iters = iterations - warmup_boundary
+      $stdout.puts '=== Growth Analysis ==='
+      $stdout.puts "  Warmup (first #{warmup_boundary}): #{format('%+.1f', warmup_growth)}MB " \
+                   "(#{format('%.2f', warmup_growth / warmup_boundary)}MB/iter)"
+      $stdout.puts "  Steady-state (remaining #{steady_iters}): #{format('%+.1f', steady_growth)}MB " \
+                   "(#{format('%.2f', steady_growth / steady_iters)}MB/iter)"
+      $stdout.puts ''
+    end
+
+    # Symbol timeline
+    $stdout.puts '=== Symbol Timeline ==='
+    $stdout.puts "  baseline: #{symbol_timeline[0]}"
+    $stdout.puts "  after warmup (iter #{warmup_boundary}): #{symbol_timeline[warmup_boundary]} " \
+                 "(#{format('%+d', symbol_timeline[warmup_boundary] - symbol_timeline[0])})"
+    $stdout.puts "  final (iter #{iterations}): #{symbol_timeline[-1]} " \
+                 "(#{format('%+d', symbol_timeline[-1] - symbol_timeline[warmup_boundary])} since warmup)"
     $stdout.puts ''
 
     $stdout.puts '=== Object Count Changes (top 20 growing) ==='
