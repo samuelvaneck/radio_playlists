@@ -3,7 +3,7 @@
 class TrackScraper::MediaHuisApiProcessor < TrackScraper
   def last_played_song
     response = make_request
-    raise StandardError if response.blank?
+    return false if response.blank?
 
     @raw_response = response
     track = response[:tracks][0]

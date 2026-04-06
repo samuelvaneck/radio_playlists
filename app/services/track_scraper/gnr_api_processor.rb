@@ -3,7 +3,7 @@
 class TrackScraper::GnrApiProcessor < TrackScraper
   def last_played_song
     response = make_request
-    raise StandardError if response.blank?
+    return false if response.blank?
 
     @raw_response = response
     track = response.dig(:stations, :gnr)

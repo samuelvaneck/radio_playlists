@@ -3,7 +3,7 @@
 class TrackScraper::SimoneApiProcessor < TrackScraper
   def last_played_song
     response = fetch_playlist
-    raise StandardError, 'Empty response' if response.blank?
+    return false if response.blank?
 
     @raw_response = response
     track = response.first

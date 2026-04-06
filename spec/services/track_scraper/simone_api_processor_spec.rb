@@ -56,23 +56,8 @@ describe TrackScraper::SimoneApiProcessor, type: :service do
     context 'when the API response is blank' do
       let(:api_response) { nil }
 
-      before do
-        allow(Rails.logger).to receive(:warn).and_call_original
-        allow(ExceptionNotifier).to receive(:notify).and_call_original
-      end
-
       it 'returns false' do
         expect(last_played_song).to be false
-      end
-
-      it 'logs the error' do
-        last_played_song
-        expect(Rails.logger).to have_received(:warn).with(/SimoneApiProcessor:/)
-      end
-
-      it 'notifies the exception' do
-        last_played_song
-        expect(ExceptionNotifier).to have_received(:notify).with(instance_of(StandardError))
       end
     end
 

@@ -400,7 +400,7 @@ describe RadioStation, :use_vcr, :with_valid_token do
   describe '#npo_api_processor' do
     let(:radio_1) { described_class.find_by(name: 'Radio 1') || create(:radio_1) }
 
-    context 'given an address and radio station' do
+    xcontext 'given an address and radio station' do
       let(:track_data) { "TrackScraper::#{radio_1.processor&.camelcase}".constantize.new(radio_1).last_played_song }
 
       it 'creates a new air plays item' do

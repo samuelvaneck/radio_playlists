@@ -6,10 +6,10 @@ class TrackScraper::MytunerApiProcessor < TrackScraper
 
   def last_played_song
     access_token = register_widget
-    raise StandardError, 'Failed to obtain access token' if access_token.blank?
+    return false if access_token.blank?
 
     response = fetch_playlist(access_token)
-    raise StandardError, 'Failed to fetch playlist' if response.blank? || !response[:success]
+    return false if response.blank? || !response[:success]
 
     @raw_response = response
     track = most_recent_track(response)
