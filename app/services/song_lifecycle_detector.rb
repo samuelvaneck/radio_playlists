@@ -113,16 +113,20 @@ class SongLifecycleDetector
   end
 
   def counts_array
-    @counts_array ||= weekly_counts.sort_by(&:first).map(&:last)
+    @counts_array ||= sorted_weekly_counts.map(&:last)
   end
 
   def formatted_weekly_counts
-    weekly_counts.sort_by(&:first).to_h { |date, count| [date.strftime('%Y-%m-%d'), count] }
+    sorted_weekly_counts.to_h { |date, count| [date.strftime('%Y-%m-%d'), count] }
+  end
+
+  def sorted_weekly_counts
+    @sorted_weekly_counts ||= weekly_counts.sort_by(&:first)
   end
 
   def weekly_counts
     @weekly_counts ||= begin
-      scope = @song.air_plays.confirmed
+      scope = @song.air_plays.confirmed.where.not(broadcasted_at: nil)
       scope = scope.where(radio_station_id: @radio_station_ids) if @radio_station_ids.present?
 
       scope

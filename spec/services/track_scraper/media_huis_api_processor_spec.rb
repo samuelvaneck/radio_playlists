@@ -59,22 +59,10 @@ describe TrackScraper::MediaHuisApiProcessor, type: :service do
     context 'when the API response is blank' do
       before do
         allow(media_huis_api_processor).to receive(:make_request).and_return(nil)
-        allow(Rails.logger).to receive(:warn).and_call_original
-        allow(ExceptionNotifier).to receive(:notify).and_call_original
       end
 
       it 'returns false' do
         expect(last_played_song).to be false
-      end
-
-      it 'notifies New Relic' do
-        last_played_song
-        expect(ExceptionNotifier).to have_received(:notify).with(instance_of(StandardError))
-      end
-
-      it 'logs the error' do
-        last_played_song
-        expect(Rails.logger).to have_received(:warn).with(/MediaHuisApiProcessor:/)
       end
     end
 

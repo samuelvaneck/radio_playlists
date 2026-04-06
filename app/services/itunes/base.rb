@@ -22,7 +22,7 @@ module Itunes
         with_exponential_backoff(max_attempts: 3, base_delay: 1) do
           response = connection.get(url)
           handle_rate_limit_response(response)
-          response.body.is_a?(String) ? JSON.parse(response.body) : response.body
+          parse_response_body(response)
         end
       end
     rescue StandardError => e
@@ -32,6 +32,15 @@ module Itunes
     end
 
     private
+
+    def parse_response_body(response)
+      return response.body unless response.body.is_a?(String)
+
+      JSON.parse(response.body)
+    rescue JSON::ParserError
+      Rails.logger.error("iTunes API returned non-JSON response: #{response.body[0..100]}")
+      nil
+    end
 
     def connection
       Faraday.new(url: BASE_URL) do |conn|

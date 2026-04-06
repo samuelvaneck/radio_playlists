@@ -38,7 +38,7 @@ class TrackScraper::TalpaApiProcessor < TrackScraper
   def last_played_song
     api_header = { 'x-api-key': ENV['TALPA_API_KEY'] }
     response = make_request(api_header)
-    raise StandardError if response.blank?
+    return false if response.blank?
     raise StandardError, response[:errors] if response[:errors].present?
 
     @raw_response = response
