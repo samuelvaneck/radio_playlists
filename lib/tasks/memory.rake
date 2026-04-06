@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+CLASS_OF = Kernel.instance_method(:class)
+
 namespace :memory do
   desc 'Dump ObjectSpace heap to a JSON file for analysis (use with heapy gem or jq)'
   task heap_dump: :environment do
@@ -55,7 +57,7 @@ namespace :memory do
 
     $stdout.puts '=== Top 30 Object Classes by Count ==='
     counts = Hash.new(0)
-    ObjectSpace.each_object { |obj| counts[obj.class] += 1 }
+    ObjectSpace.each_object { |obj| counts[CLASS_OF.bind_call(obj)] += 1 }
     counts.sort_by { |_, c| -c }.first(30).each do |klass, count|
       $stdout.puts "  #{klass}: #{count}"
     end
@@ -64,7 +66,7 @@ namespace :memory do
     $stdout.puts '=== Top 20 Object Classes by Memory ==='
     sizes = Hash.new(0)
     ObjectSpace.each_object do |obj|
-      sizes[obj.class] += ObjectSpace.memsize_of(obj)
+      sizes[CLASS_OF.bind_call(obj)] += ObjectSpace.memsize_of(obj)
     rescue StandardError
       next
     end
@@ -88,7 +90,7 @@ namespace :memory do
     rss_before = `ps -o rss= -p #{Process.pid}`.strip.to_f / 1024.0
 
     before_counts = Hash.new(0)
-    ObjectSpace.each_object { |obj| before_counts[obj.class] += 1 }
+    ObjectSpace.each_object { |obj| before_counts[CLASS_OF.bind_call(obj)] += 1 }
 
     before_gc = GC.stat(:count)
 
@@ -109,7 +111,7 @@ namespace :memory do
     rss_after = `ps -o rss= -p #{Process.pid}`.strip.to_f / 1024.0
 
     after_counts = Hash.new(0)
-    ObjectSpace.each_object { |obj| after_counts[obj.class] += 1 }
+    ObjectSpace.each_object { |obj| after_counts[CLASS_OF.bind_call(obj)] += 1 }
 
     after_gc = GC.stat(:count)
 

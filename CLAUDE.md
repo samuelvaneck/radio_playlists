@@ -51,6 +51,11 @@ bundle exec rake hit_potential:backfill                        # Backfill hit_po
 bundle exec rake slug:backfill_songs                           # Backfill slugs for songs without one
 bundle exec rake slug:backfill_artists                         # Backfill slugs for artists without one
 bundle exec rake slug:backfill_all                             # Backfill slugs for both songs and artists
+
+# Memory Diagnostics
+bundle exec rake memory:stats                                  # Show RSS, GC stats, top object classes
+bundle exec rake memory:heap_dump                              # Dump ObjectSpace heap to JSON for analysis
+bundle exec rake memory:profile_job[JobClass,N]                # Compare object counts before/after N job runs
 ```
 
 ## Architecture
@@ -100,6 +105,25 @@ On-demand enrichment jobs (triggered by import flow, not scheduled):
 - `AcoustidPopulationJob` - Downloads YouTube audio, generates fingerprints, submits to AcoustID
 
 **Important:** `ImportSongJob` uses `sidekiq-unique-jobs` with `lock: :until_executed` and `lock_ttl: 60`. The TTL prevents stuck locks after Sidekiq crashes — without it, locks persist indefinitely in Redis and silently block imports.
+
+### Sidekiq Memory Monitor
+
+`Sidekiq::MemoryMonitorMiddleware` (`lib/sidekiq/memory_monitor_middleware.rb`) tracks per-job RSS growth to detect memory leaks. Registered in `config/initializers/sidekiq.rb`.
+
+**What it does:**
+1. Measures RSS before/after every job — logs warnings for jobs that grow memory by >= threshold
+2. Every N jobs, logs periodic stats: cumulative RSS growth since boot, GC stats, top object classes, and per-job growth rankings
+3. Tracks cumulative growth per job class over the Sidekiq process lifetime
+
+**Environment variables:**
+- `SIDEKIQ_MEMORY_MONITOR` — enable/disable (default: `'true'`, set `'false'` to disable)
+- `MEMORY_GROWTH_THRESHOLD_MB` — RSS growth per job to trigger a warning log (default: `5` MB)
+- `MEMORY_STATS_INTERVAL` — periodic stats frequency in jobs (default: `100`)
+
+**Diagnostic rake tasks** (`lib/tasks/memory.rake`):
+- `rake memory:stats` — snapshot of RSS, GC stats, top 30 object classes by count, top 20 by memory
+- `rake memory:heap_dump` — dumps ObjectSpace to `tmp/heap_dump_*.json` for analysis with `heapy` or `jq`
+- `rake memory:profile_job[JobClass,N]` — runs a job N times and compares object counts before/after to find leaks (e.g. `rake memory:profile_job[ImportSongJob,10]`)
 
 ### Persistent Stream Manager
 
