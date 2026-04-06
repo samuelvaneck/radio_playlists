@@ -102,7 +102,7 @@ module Sidekiq
                  "(#{stats[:runs]} runs, avg #{format('%.2f', avg)}MB, max #{format('%.1f', stats[:max_growth])}MB)"
       end
 
-      Rails.logger.info(lines.join("\n"))
+      Rails.logger.warn(lines.join("\n"))
     end
 
     def gc_summary
