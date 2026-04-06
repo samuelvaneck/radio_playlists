@@ -61,7 +61,7 @@ The app uses service objects extensively in `app/services/`:
 - `SongImporter` - Orchestrates song import workflow, split into concerns: `AudioRecognition`, `TrackFinding`, `AirPlayCreation`, `ArtistUpdating` (in `app/services/song_importer/concerns/`)
 - `SongRecognizer` - Shazam-based audio fingerprinting via SongRec
 - `AcoustidRecognizer` - Chromaprint + AcoustID API fingerprinting
-- `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis, Arrow, MyTuner, Simone) and video OCR (Yoursafe)
+- `TrackScraper/` - Polymorphic processors for radio station APIs (Talpa, QMusic, SLAM!, KINK, NPO, GNR, MediaHuis, Arrow, MyTuner, Simone) and video OCR (Yoursafe). Uses `faraday-retry` gem for transient error retries
 - `TrackExtractor/` - Extracts artist/song info and finds tracks via `SpotifyTrackFinder`, `DeezerTrackFinder`, `ItunesTrackFinder`. Both `SpotifyTrackFinder` and `SongExtractor` use fuzzy search fallbacks with JaroWinkler title validation (>= 70%) to prevent matching different songs by the same artist.
 - `Spotify/` - External API integration with two track-finding paths: search-based (`best_match`) and ID-based (`fetch_spotify_track`). Both compute JaroWinkler match scores for `valid_match?` validation (artist >= 80, title >= 70)
 - `Youtube/` - YouTube API integration
@@ -76,6 +76,7 @@ The app uses service objects extensively in `app/services/`:
 - `DuplicateSongMerger` - Finds and merges duplicate songs via Spotify ID or fuzzy title matching (Jaro-Winkler, threshold: 92)
 - `MismatchedAirplayRepair` - Detects and fixes airplays linked to wrong songs by comparing import log titles against linked song titles (Jaro-Winkler < 70% = mismatch). Reassigns airplays to correct songs found by Spotify track ID, exact match, or newly created.
 - `HitPotentialCalculator` - Predicts song hit potential (0-100) using multi-signal scoring: audio features (50%), artist popularity (20%), engagement metrics (15%), release recency (15%)
+- `SoundProfileGenerator` - Generates per-station sound profiles with audio feature averages, top genres/tags, release decade distribution, and bilingual descriptions (EN/NL). Uses song-count-weighted percentiles and peak decade detection (≥15% threshold) for accurate era descriptions instead of naive min/max year ranges
 
 ### Background Jobs
 
@@ -245,6 +246,8 @@ Songs, artists, and radio stations support lookup by slug in addition to numeric
 - Radio stations: `name.parameterize` (e.g. `sky-radio`)
 
 **Important:** `Song.most_played` and `Artist.most_played` use explicit `.select()` lists. When adding new serialized attributes, they must also be added to these select clauses to avoid `ActiveModel::MissingAttributeError`.
+- Sound profile endpoint (public, no auth required):
+  - `GET /api/v1/radio_stations/:id/sound_profile` — audio feature averages, top genres/tags, release decade distribution, bilingual descriptions (`description_en`/`description_nl`), era analysis with weighted percentiles (`release_year_range.era_description_en`/`era_description_nl`, `peak_decades`, `median_year`)
 - Widget endpoints (public, no auth required):
   - `GET /api/v1/songs/:id/widget` — total plays, station count, release date, duration
   - `GET /api/v1/artists/:id/widget` — total plays, song count, station count, country of origin
