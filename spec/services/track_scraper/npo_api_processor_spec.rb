@@ -12,12 +12,12 @@ describe TrackScraper::NpoApiProcessor, type: :service do
     end
     let(:response) do
       {
-        data: [
+        'data' => [
           {
-            artist: 'Test Artist',
-            title: 'Test Title',
-            startdatetime: '2023-10-01T12:00:00+02:00',
-            spotify_url: 'https://open.spotify.com/track/test'
+            'artist' => 'Test Artist',
+            'title' => 'Test Title',
+            'startdatetime' => '2023-10-01T12:00:00+02:00',
+            'spotify_url' => 'https://open.spotify.com/track/test'
           }
         ]
       }

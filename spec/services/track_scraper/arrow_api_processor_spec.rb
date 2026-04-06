@@ -12,13 +12,13 @@ describe TrackScraper::ArrowApiProcessor, type: :service do
     end
     let(:response) do
       {
-        current: {
-          artist: 'BLACK SABBATH',
-          title: 'FAIRIES WEAR BOOTS',
-          startTime: 1_772_788_567_023,
-          length: 368_369,
-          type: 'Standard',
-          category: 'ARROW - TOP 500 [ACTIEF]'
+        'current' => {
+          'artist' => 'BLACK SABBATH',
+          'title' => 'FAIRIES WEAR BOOTS',
+          'startTime' => 1_772_788_567_023,
+          'length' => 368_369,
+          'type' => 'Standard',
+          'category' => 'ARROW - TOP 500 [ACTIEF]'
         }
       }
     end
@@ -53,13 +53,13 @@ describe TrackScraper::ArrowApiProcessor, type: :service do
     context 'when the current track is a commercial' do
       let(:api_response) do
         {
-          current: {
-            artist: '',
-            title: 'ARROW C R - COMMERCIALS',
-            startTime: 1_772_788_355_684,
-            length: 207_606,
-            type: '',
-            category: 'Start commercials'
+          'current' => {
+            'artist' => '',
+            'title' => 'ARROW C R - COMMERCIALS',
+            'startTime' => 1_772_788_355_684,
+            'length' => 207_606,
+            'type' => '',
+            'category' => 'Start commercials'
           }
         }
       end
@@ -72,13 +72,13 @@ describe TrackScraper::ArrowApiProcessor, type: :service do
     context 'when the current track has no artist' do
       let(:api_response) do
         {
-          current: {
-            artist: '',
-            title: 'UNKNOWN TRACK',
-            startTime: 1_772_788_355_684,
-            length: 207_606,
-            type: 'Standard',
-            category: 'ARROW - TOP 500 [ACTIEF]'
+          'current' => {
+            'artist' => '',
+            'title' => 'UNKNOWN TRACK',
+            'startTime' => 1_772_788_355_684,
+            'length' => 207_606,
+            'type' => 'Standard',
+            'category' => 'ARROW - TOP 500 [ACTIEF]'
           }
         }
       end

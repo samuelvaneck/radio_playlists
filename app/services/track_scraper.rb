@@ -34,7 +34,7 @@ class TrackScraper
 
   def handle_response(response)
     if response.success? && response.body.present?
-      response.body.with_indifferent_access
+      response.body
     else
       Rails.logger.error("Error fetching data from #{@radio_station.name}: #{response.status}") unless response.success?
       nil

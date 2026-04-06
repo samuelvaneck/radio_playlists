@@ -6,13 +6,13 @@ class TrackScraper::NpoApiProcessor < TrackScraper
     return false if response.blank?
 
     @raw_response = response
-    track = response.dig(:data, 0)
+    track = response.dig('data', 0)
     return false if track.blank?
 
-    @artist_name = CGI.unescapeHTML(track[:artist]).titleize
-    @title = TitleSanitizer.sanitize(CGI.unescapeHTML(track[:title])).titleize
-    @broadcasted_at = Time.find_zone('Amsterdam').parse(track[:startdatetime]) || Time.zone.now
-    @spotify_url = track[:spotify_url]
+    @artist_name = CGI.unescapeHTML(track['artist']).titleize
+    @title = TitleSanitizer.sanitize(CGI.unescapeHTML(track['title'])).titleize
+    @broadcasted_at = Time.find_zone('Amsterdam').parse(track['startdatetime']) || Time.zone.now
+    @spotify_url = track['spotify_url']
     true
   rescue StandardError => e
     Rails.logger.warn("NpoApiProcessor: #{e.message}")

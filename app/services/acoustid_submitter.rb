@@ -127,16 +127,16 @@ class AcoustidSubmitter
   end
 
   def handle_response(response)
-    @result = response.with_indifferent_access
+    @result = response
 
-    if @result[:status] != 'ok'
-      error_message = @result[:error]&.dig(:message) || @result[:error] || 'Unknown error'
+    if @result['status'] != 'ok'
+      error_message = @result['error']&.dig('message') || @result['error'] || 'Unknown error'
       raise ApiError, "AcoustID submission failed: #{error_message}"
     end
 
-    submissions = @result[:submissions]
+    submissions = @result['submissions']
     if submissions.present?
-      @submission_id = submissions.first[:id]
+      @submission_id = submissions.first['id']
       Rails.logger.info "AcoustidSubmitter: Submission accepted (ID: #{@submission_id})"
     else
       Rails.logger.info 'AcoustidSubmitter: Submission accepted (no ID returned)'

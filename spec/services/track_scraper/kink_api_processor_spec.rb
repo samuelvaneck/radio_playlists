@@ -12,10 +12,10 @@ describe TrackScraper::KinkApiProcessor, type: :service do
     end
     let(:response) do
       {
-        extended: {
-          kink: {
-            artist: 'test artist',
-            title: 'test title'
+        'extended' => {
+          'kink' => {
+            'artist' => 'test artist',
+            'title' => 'test title'
           }
         }
       }

@@ -10,36 +10,36 @@ describe TrackScraper::MytunerApiProcessor, type: :service do
     RadioStation.find_by(name: 'Decibel').presence || create(:decibel)
   end
   let(:register_response) do
-    { success: true, access_token: 'test_token_123' }
+    { 'success' => true, 'access_token' => 'test_token_123' }
   end
   let(:playlist_response) do
     {
-      success: true,
-      data: [
+      'success' => true,
+      'data' => [
         [
           {
-            start_time: 1_774_828_916,
-            title: 'Reality (feat. Janieck)',
-            artist: 'Lost Frequencies',
-            artwork_url: 'https://example.com/artwork.jpg'
+            'start_time' => 1_774_828_916,
+            'title' => 'Reality (feat. Janieck)',
+            'artist' => 'Lost Frequencies',
+            'artwork_url' => 'https://example.com/artwork.jpg'
           },
           {
-            start_time: 1_774_829_092,
-            title: 'No Diggity',
-            artist: 'Blackstreet',
-            artwork_url: 'https://example.com/artwork2.jpg'
+            'start_time' => 1_774_829_092,
+            'title' => 'No Diggity',
+            'artist' => 'Blackstreet',
+            'artwork_url' => 'https://example.com/artwork2.jpg'
           }
         ]
       ],
-      count: 2,
-      distinct: 2
+      'count' => 2,
+      'distinct' => 2
     }
   end
 
   describe '#last_played_song' do
     before do
-      allow(processor).to receive_messages(register_widget: register_response[:access_token],
-                                           fetch_playlist: playlist_response.with_indifferent_access)
+      allow(processor).to receive_messages(register_widget: register_response['access_token'],
+                                           fetch_playlist: playlist_response)
     end
 
     context 'when the API response is valid' do
@@ -90,7 +90,7 @@ describe TrackScraper::MytunerApiProcessor, type: :service do
 
     context 'when the playlist has no tracks' do
       before do
-        allow(processor).to receive(:fetch_playlist).and_return({ success: true, data: [[]] }.with_indifferent_access)
+        allow(processor).to receive(:fetch_playlist).and_return({ 'success' => true, 'data' => [[]] })
       end
 
       it 'returns false' do

@@ -9,7 +9,7 @@ describe RadioStationTracksScraperJob, :use_vcr, type: :job do
   let(:artist) { create(:artist, name: 'Ed Sheeran') }
   let!(:song) { create(:song, title: 'Sapphire', artists: [artist], id_on_youtube: nil) }
   let(:response_data) do
-    JSON.parse(file_fixture('qmusic_api_response.json').read).with_indifferent_access
+    JSON.parse(file_fixture('qmusic_api_response.json').read)
   end
 
   before do
@@ -47,7 +47,7 @@ describe RadioStationTracksScraperJob, :use_vcr, type: :job do
               'videos' => []
             }
           ]
-        }.with_indifferent_access
+        }
       end
 
       it 'does not update the song' do

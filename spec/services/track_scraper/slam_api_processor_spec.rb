@@ -12,10 +12,10 @@ describe TrackScraper::SlamApiProcessor, type: :service do
     end
     let(:response) do
       {
-        data: {
-          song: {
-            artist: 'test artist',
-            title: 'test title'
+        'data' => {
+          'song' => {
+            'artist' => 'test artist',
+            'title' => 'test title'
           }
         }
       }

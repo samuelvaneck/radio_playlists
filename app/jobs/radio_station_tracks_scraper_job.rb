@@ -56,7 +56,7 @@ class RadioStationTracksScraperJob
     end
     return nil unless response.body.is_a?(Hash)
 
-    response.body.with_indifferent_access
+    response.body
   end
 
   def connection
@@ -67,31 +67,31 @@ class RadioStationTracksScraperJob
   end
 
   def artist_name
-    @response&.dig(:played_tracks, 0, :artist, :name)&.titleize
+    @response&.dig('played_tracks', 0, 'artist', 'name')&.titleize
   end
 
   def song_title
-    @response&.dig(:played_tracks, 0, :title)&.titleize
+    @response&.dig('played_tracks', 0, 'title')&.titleize
   end
 
   def artist_website_url
-    @response&.dig(:played_tracks, 0, :artist, :website_url)
+    @response&.dig('played_tracks', 0, 'artist', 'website_url')
   end
 
   def artist_instagram_url
-    @response&.dig(:played_tracks, 0, :artist, :instagram_url)
+    @response&.dig('played_tracks', 0, 'artist', 'instagram_url')
   end
 
   def id_on_spotify
-    spotify_url = @response&.dig(:played_tracks, 0, :spotify_url)
+    spotify_url = @response&.dig('played_tracks', 0, 'spotify_url')
     return nil if spotify_url.blank?
 
     spotify_url.split('/').last
   end
 
   def id_on_youtube
-    youtube_video = @response&.dig(:played_tracks, 0, :videos)
-                      &.find { |video| video[:type] == 'youtube' }
+    youtube_video = @response&.dig('played_tracks', 0, 'videos')
+                      &.find { |video| video['type'] == 'youtube' }
     return nil if youtube_video.blank?
 
     youtube_video['id']

@@ -23,7 +23,7 @@ namespace :memory do
     $stdout.puts "  cat #{filename} | ruby -rjson -e '"
     $stdout.puts '    counts = Hash.new(0)'
     $stdout.puts '    ARGF.each_line { |l| j = JSON.parse(l); counts[j["type"]] += 1 }'
-    $stdout.puts '    counts.sort_by { |_,v| -v }.each { |k,v| puts "#{k}: #{v}" }'
+    $stdout.puts %(    counts.sort_by { |_,v| -v }.each { |k,v| puts "#{k}: #{v}" })
     $stdout.puts "  '"
     $stdout.puts ''
     $stdout.puts "  Or install heapy: gem install heapy && heapy read #{filename}"
@@ -98,6 +98,10 @@ namespace :memory do
     iterations.times do |i|
       if job_class == ImportSongJob
         station = RadioStation.order('RANDOM()').first
+        if station.nil?
+          $stdout.puts '  No radio stations found in database. Run `rails db:seed` first.'
+          next
+        end
         $stdout.puts "  Iteration #{i + 1}/#{iterations}: #{station.name}"
         job_class.new.perform(station.id)
       else

@@ -6,16 +6,16 @@ class TrackScraper::QmusicApiProcessor < TrackScraper
     return false if response.blank?
 
     @raw_response = response
-    track = response[:played_tracks][0]
+    track = response['played_tracks'][0]
     return false if track.blank?
 
-    @broadcasted_at = Time.find_zone('Amsterdam')&.parse(track[:played_at]) || Time.zone.now
-    @artist_name = track.dig(:artist, :name).titleize
-    @title = TitleSanitizer.sanitize(track[:title]).titleize
-    @spotify_url = track[:spotify_url]
-    @youtube_id = track.dig(:videos, 0, :id)
-    @website_url = track.dig(:artist, :website_url)
-    @instagram_url = track.dig(:artist, :instagram_url)
+    @broadcasted_at = Time.find_zone('Amsterdam')&.parse(track['played_at']) || Time.zone.now
+    @artist_name = track.dig('artist', 'name').titleize
+    @title = TitleSanitizer.sanitize(track['title']).titleize
+    @spotify_url = track['spotify_url']
+    @youtube_id = track.dig('videos', 0, 'id')
+    @website_url = track.dig('artist', 'website_url')
+    @instagram_url = track.dig('artist', 'instagram_url')
     true
   rescue StandardError => e
     Rails.logger.warn("QmusicApiProcessor: #{e.message}")
