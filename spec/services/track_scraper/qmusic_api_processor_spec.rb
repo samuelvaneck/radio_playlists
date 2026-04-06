@@ -11,7 +11,7 @@ describe TrackScraper::QmusicApiProcessor, type: :service do
       RadioStation.find_by(name: 'Qmusic') || create(:qmusic)
     end
     let(:response) do
-      JSON.parse(file_fixture('qmusic_api_response.json').read).with_indifferent_access
+      JSON.parse(file_fixture('qmusic_api_response.json').read)
     end
 
     before do

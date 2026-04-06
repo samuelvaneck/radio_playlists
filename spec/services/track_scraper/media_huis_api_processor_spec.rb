@@ -11,15 +11,15 @@ describe TrackScraper::MediaHuisApiProcessor, type: :service do
   end
   let(:response) do
     {
-      tracks: [
+      'tracks' => [
         {
-          createdAt: '2025-04-23T18:05:19.9933333Z',
-          stationKey: 'veronica',
-          artist: 'Killing Joke',
-          title: 'Love Like Blood',
-          duration: 262,
-          albumArt: '',
-          spotifyLink: 'https://open.spotify.com/track/example'
+          'createdAt' => '2025-04-23T18:05:19.9933333Z',
+          'stationKey' => 'veronica',
+          'artist' => 'Killing Joke',
+          'title' => 'Love Like Blood',
+          'duration' => 262,
+          'albumArt' => '',
+          'spotifyLink' => 'https://open.spotify.com/track/example'
         }
       ]
     }
@@ -68,7 +68,7 @@ describe TrackScraper::MediaHuisApiProcessor, type: :service do
 
     context 'when the track is blank' do
       before do
-        allow(media_huis_api_processor).to receive(:make_request).and_return({ tracks: [] })
+        allow(media_huis_api_processor).to receive(:make_request).and_return({ 'tracks' => [] })
       end
 
       it 'returns false' do

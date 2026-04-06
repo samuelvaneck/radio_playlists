@@ -13,10 +13,10 @@ describe TrackScraper::GnrApiProcessor, type: :service do
     end
     let(:response) do
       {
-        stations: {
-          gnr: {
-            artist: 'Test Artist',
-            title: 'Test Title'
+        'stations' => {
+          'gnr' => {
+            'artist' => 'Test Artist',
+            'title' => 'Test Title'
           }
         }
       }

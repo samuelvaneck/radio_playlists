@@ -12,17 +12,17 @@ describe TrackScraper::TalpaApiProcessor, type: :service do
     end
     let(:response) do
       {
-        data: {
-          station: {
-            getPlayouts: {
-              playouts: [
+        'data' => {
+          'station' => {
+            'getPlayouts' => {
+              'playouts' => [
                 {
-                  track: {
-                    artistName: 'test artist',
-                    title: 'test title',
-                    isrc: 'TEST12345678'
+                  'track' => {
+                    'artistName' => 'test artist',
+                    'title' => 'test title',
+                    'isrc' => 'TEST12345678'
                   },
-                  broadcastDate: '2023-10-01T12:00:00+02:00'
+                  'broadcastDate' => '2023-10-01T12:00:00+02:00'
                 }
               ]
             }
@@ -67,7 +67,7 @@ describe TrackScraper::TalpaApiProcessor, type: :service do
     end
 
     context 'when the API response contains errors' do
-      let(:api_response) { { errors: ['Some error occurred'] } }
+      let(:api_response) { { 'errors' => ['Some error occurred'] } }
 
       before do
         allow(Rails.logger).to receive(:warn).and_call_original
