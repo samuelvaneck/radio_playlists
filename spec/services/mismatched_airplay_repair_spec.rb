@@ -64,7 +64,7 @@ describe MismatchedAirplayRepair do
 
     context 'when correct song already exists', :aggregate_failures do
       let!(:correct_song) { create(:song, title: 'Laat Het Licht Aan', id_on_spotify: 'laat123', artists: [artist]) }
-      let!(:import_log) do
+      let(:import_log) do
         create(:song_import_log,
                radio_station: radio_station,
                song: wrong_song,
@@ -77,6 +77,8 @@ describe MismatchedAirplayRepair do
                spotify_track_id: 'laat123',
                import_source: :scraping)
       end
+
+      before { import_log }
 
       it 'reassigns to the existing song by spotify track id' do
         repair = described_class.new(dry_run: false)
@@ -93,7 +95,7 @@ describe MismatchedAirplayRepair do
     end
 
     context 'when title matches correctly' do
-      let!(:import_log) do
+      before do
         create(:song_import_log,
                radio_station: radio_station,
                song: wrong_song,
@@ -116,7 +118,7 @@ describe MismatchedAirplayRepair do
     end
 
     context 'when import log has no spotify data but has scraped data', :aggregate_failures do
-      let!(:import_log) do
+      before do
         create(:song_import_log,
                radio_station: radio_station,
                song: wrong_song,
@@ -139,7 +141,7 @@ describe MismatchedAirplayRepair do
     end
 
     context 'when import log has failed status' do
-      let!(:import_log) do
+      before do
         create(:song_import_log,
                radio_station: radio_station,
                song: wrong_song,

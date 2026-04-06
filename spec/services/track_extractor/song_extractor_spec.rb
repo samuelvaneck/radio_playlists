@@ -655,7 +655,7 @@ describe TrackExtractor::SongExtractor do
         create(:song, title: 'Ik Zing (feat. Snelle)', id_on_spotify: 'ikzing123', artists: [artist])
       end
 
-      it 'does not match the wrong song with a dissimilar title' do
+      it 'does not match the wrong song with a dissimilar title', :aggregate_failures do
         expect(song.title).to eq('Laat Het Licht Aan')
         expect(song.id).not_to eq(Song.find_by(title: 'Ik Zing (feat. Snelle)')&.id)
       end
@@ -699,7 +699,7 @@ describe TrackExtractor::SongExtractor do
         create(:song, title: 'Laat Het Licht Aan', id_on_spotify: 'laat123', artists: [artist])
       end
 
-      it 'creates a new song instead of matching a dissimilar title' do
+      it 'creates a new song instead of matching a dissimilar title', :aggregate_failures do
         expect(song.title).to eq('Sluit Me In Je Armen')
         expect(song).not_to eq(Song.find_by(title: 'Laat Het Licht Aan'))
       end
