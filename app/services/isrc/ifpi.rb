@@ -77,14 +77,14 @@ class Isrc::Ifpi < Isrc
 
   def handle_response(response)
     if response.code == '200'
-      data = JSON.parse(response.body).with_indifferent_access
-      return false if data[:displayDocs].blank?
+      data = JSON.parse(response.body)
+      return false if data['displayDocs'].blank?
 
-      track = data.dig(:displayDocs, 0)
-      @title = track[:trackTitle]
-      @title += " (#{track[:recordingVersion]})" if track[:recordingVersion].present?
-      @artist_names = track[:artistName]
-      @isrc_code = track[:id]
+      track = data.dig('displayDocs', 0)
+      @title = track['trackTitle']
+      @title += " (#{track['recordingVersion']})" if track['recordingVersion'].present?
+      @artist_names = track['artistName']
+      @isrc_code = track['id']
       true
     else
       Rails.logger.error(response.try(:body))

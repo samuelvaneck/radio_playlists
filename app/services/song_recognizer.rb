@@ -105,13 +105,13 @@ class SongRecognizer
   def handle_response(response)
     validate_response!(response)
 
-    @result = JSON.parse(response)&.with_indifferent_access
-    return false if @result[:matches].blank?
+    @result = JSON.parse(response)
+    return false if @result['matches'].blank?
 
     @spotify_url = set_spotify_url
-    @isrc_code = @result.dig(:track, :isrc)
-    @title = @result.dig(:track, :title)
-    @artist_name = @result.dig(:track, :subtitle)
+    @isrc_code = @result.dig('track', 'isrc')
+    @title = @result.dig('track', 'title')
+    @artist_name = @result.dig('track', 'subtitle')
     true
   rescue JSON::ParserError
     raise RecognitionError, "Invalid JSON response: #{response.truncate(200)}"
@@ -136,7 +136,7 @@ class SongRecognizer
   end
 
   def set_spotify_url
-    spotify_provider = @result.dig(:track, :hub, :providers).select { |p| p[:type] == 'SPOTIFY' }
-    spotify_provider.dig(0, :actions, 0, :uri)
+    spotify_provider = @result.dig('track', 'hub', 'providers').select { |p| p['type'] == 'SPOTIFY' }
+    spotify_provider.dig(0, 'actions', 0, 'uri')
   end
 end

@@ -39,15 +39,15 @@ class TrackScraper::TalpaApiProcessor < TrackScraper
     api_header = { 'x-api-key': ENV['TALPA_API_KEY'] }
     response = make_request(api_header)
     return false if response.blank?
-    raise StandardError, response[:errors] if response[:errors].present?
+    raise StandardError, response['errors'] if response['errors'].present?
 
     @raw_response = response
-    track = response.dig(:data, :station, :getPlayouts, :playouts, 0, :track)
+    track = response.dig('data', 'station', 'getPlayouts', 'playouts', 0, 'track')
     return false if track.blank?
 
-    @artist_name = track[:artistName].titleize
-    @title = TitleSanitizer.sanitize(track[:title]).titleize
-    @isrc_code = track[:isrc]
+    @artist_name = track['artistName'].titleize
+    @title = TitleSanitizer.sanitize(track['title']).titleize
+    @isrc_code = track['isrc']
     @broadcasted_at = Time.zone.now
     true
   rescue StandardError => e

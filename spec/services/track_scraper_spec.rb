@@ -18,7 +18,7 @@ describe TrackScraper, type: :service do
       end
 
       it 'returns the parsed response body' do
-        expect(make_request).to eq(response_body.with_indifferent_access)
+        expect(make_request).to eq(response_body)
       end
     end
 

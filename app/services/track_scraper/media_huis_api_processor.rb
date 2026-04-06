@@ -6,13 +6,13 @@ class TrackScraper::MediaHuisApiProcessor < TrackScraper
     return false if response.blank?
 
     @raw_response = response
-    track = response[:tracks][0]
+    track = response['tracks'][0]
     return false if track.blank?
 
-    @artist_name = track[:artist].titleize
-    @title = TitleSanitizer.sanitize(track[:title]).titleize
-    @broadcasted_at = Time.zone.parse(track[:createdAt]) || Time.zone.now
-    @spotify_url = track[:spotifyLink]
+    @artist_name = track['artist'].titleize
+    @title = TitleSanitizer.sanitize(track['title']).titleize
+    @broadcasted_at = Time.zone.parse(track['createdAt']) || Time.zone.now
+    @spotify_url = track['spotifyLink']
     true
   rescue StandardError => e
     Rails.logger.warn("MediaHuisApiProcessor: #{e.message}")

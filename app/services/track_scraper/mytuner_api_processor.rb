@@ -9,15 +9,15 @@ class TrackScraper::MytunerApiProcessor < TrackScraper
     return false if access_token.blank?
 
     response = fetch_playlist(access_token)
-    return false if response.blank? || !response[:success]
+    return false if response.blank? || !response['success']
 
     @raw_response = response
     track = most_recent_track(response)
     return false if track.blank?
 
-    @artist_name = track[:artist].titleize
-    @title = TitleSanitizer.sanitize(track[:title]).titleize
-    @broadcasted_at = Time.zone.at(track[:start_time])
+    @artist_name = track['artist'].titleize
+    @title = TitleSanitizer.sanitize(track['title']).titleize
+    @broadcasted_at = Time.zone.at(track['start_time'])
     true
   rescue StandardError => e
     Rails.logger.warn("MytunerApiProcessor: #{e.message}")
@@ -33,7 +33,7 @@ class TrackScraper::MytunerApiProcessor < TrackScraper
     end
     return nil unless response.success?
 
-    response.body.with_indifferent_access[:access_token]
+    response.body['access_token']
   end
 
   def fetch_playlist(access_token)
@@ -42,11 +42,11 @@ class TrackScraper::MytunerApiProcessor < TrackScraper
     end
     return nil unless response.success?
 
-    response.body.with_indifferent_access
+    response.body
   end
 
   def most_recent_track(response)
-    tracks = response.dig(:data, 0)
+    tracks = response.dig('data', 0)
     return nil if tracks.blank?
 
     tracks.last
@@ -60,14 +60,14 @@ class TrackScraper::MytunerApiProcessor < TrackScraper
   end
 
   def widget_id
-    config[:widget_id]
+    config['widget_id']
   end
 
   def radio_id
-    config[:radio_id]
+    config['radio_id']
   end
 
   def config
-    @config ||= JSON.parse(@radio_station.url).with_indifferent_access
+    @config ||= JSON.parse(@radio_station.url)
   end
 end

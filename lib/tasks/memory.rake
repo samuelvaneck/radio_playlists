@@ -98,6 +98,10 @@ namespace :memory do
     iterations.times do |i|
       if job_class == ImportSongJob
         station = RadioStation.order('RANDOM()').first
+        if station.nil?
+          $stdout.puts "  No radio stations found in database. Run `rails db:seed` first."
+          next
+        end
         $stdout.puts "  Iteration #{i + 1}/#{iterations}: #{station.name}"
         job_class.new.perform(station.id)
       else

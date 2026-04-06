@@ -105,33 +105,33 @@ class AcoustidRecognizer
   end
 
   def handle_response(response)
-    @result = response.with_indifferent_access
+    @result = response
 
-    if @result[:status] != 'ok'
-      Rails.logger.warn "AcoustID returned status: #{@result[:status]} - #{@result[:error]}"
+    if @result['status'] != 'ok'
+      Rails.logger.warn "AcoustID returned status: #{@result['status']} - #{@result['error']}"
       return false
     end
 
-    best_result = @result[:results]&.first
+    best_result = @result['results']&.first
     return false unless best_result
 
-    @score = best_result[:score].to_f
+    @score = best_result['score'].to_f
     return false if @score < MINIMUM_SCORE
 
-    recording = best_result[:recordings]&.first
+    recording = best_result['recordings']&.first
     return false unless recording
 
-    @recording_id = recording[:id]
-    @title = recording[:title]
+    @recording_id = recording['id']
+    @title = recording['title']
     @artist_name = extract_artist_name(recording)
 
     @title.present? && @artist_name.present?
   end
 
   def extract_artist_name(recording)
-    artists = recording[:artists]
+    artists = recording['artists']
     return nil if artists.blank?
 
-    artists.map { |a| a[:name] }.join(', ')
+    artists.map { |a| a['name'] }.join(', ')
   end
 end
