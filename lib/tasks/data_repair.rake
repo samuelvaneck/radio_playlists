@@ -1274,4 +1274,34 @@ namespace :data_repair do
     puts '=' * 80
     puts "Done. Created: #{created}, Skipped: #{skipped}"
   end
+
+  desc 'Dry run: Show airplays linked to wrong songs via fuzzy mismatch. Usage: rake data_repair:find_mismatched_airplays[1000]'
+  task :find_mismatched_airplays, [:limit] => :environment do |_t, args|
+    limit = (args[:limit] || 1000).to_i
+    puts "Scanning up to #{limit} import logs for mismatched airplays (dry run)..."
+    puts '=' * 80
+
+    repair = MismatchedAirplayRepair.new(dry_run: true, limit: limit)
+    results = repair.run
+
+    puts '=' * 80
+    puts "Checked: #{results[:checked]}, Mismatched: #{results[:mismatched]}"
+    puts "Errors: #{results[:errors].count}" if results[:errors].any?
+    results[:errors].each { |e| puts "  Log ##{e[:log_id]}: #{e[:error]}" }
+  end
+
+  desc 'Fix airplays linked to wrong songs via fuzzy mismatch. Usage: rake data_repair:fix_mismatched_airplays[1000]'
+  task :fix_mismatched_airplays, [:limit] => :environment do |_t, args|
+    limit = (args[:limit] || 1000).to_i
+    puts "Fixing up to #{limit} mismatched airplays..."
+    puts '=' * 80
+
+    repair = MismatchedAirplayRepair.new(dry_run: false, limit: limit)
+    results = repair.run
+
+    puts '=' * 80
+    puts "Checked: #{results[:checked]}, Mismatched: #{results[:mismatched]}, Fixed: #{results[:fixed]}"
+    puts "Errors: #{results[:errors].count}" if results[:errors].any?
+    results[:errors].each { |e| puts "  Log ##{e[:log_id]}: #{e[:error]}" }
+  end
 end

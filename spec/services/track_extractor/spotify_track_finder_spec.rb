@@ -556,6 +556,29 @@ describe TrackExtractor::SpotifyTrackFinder do
       end
     end
 
+    context 'when fuzzy match finds a different song by the same artist' do
+      let(:artist) { create(:artist, name: 'Snelle') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Laat Het Licht Aan',
+          artist_name: 'Snelle',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before do
+        create(:song, title: 'Ik Zing (feat. Snelle)', id_on_spotify: 'ikzing123', artists: [artist])
+      end
+
+      it 'does not match the wrong song with a dissimilar title' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Snelle', title: 'Laat Het Licht Aan')
+      end
+    end
+
     context 'when title and artist are both slightly different' do
       let(:artist) { create(:artist, name: 'Avicii') }
       let(:played_song) do
@@ -574,6 +597,122 @@ describe TrackExtractor::SpotifyTrackFinder do
         expect(Spotify::TrackFinder::Result)
           .to have_received(:new)
                 .with(artists: 'Avicii', title: "Wake Me Up\u2014Official", spotify_track_id: 'wakeup123')
+      end
+    end
+
+    context 'when same artist has multiple songs and only one title matches' do
+      let(:artist) { create(:artist, name: 'Snelle') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Laat Het Licht Aan',
+          artist_name: 'Snelle',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before do
+        create(:song, title: 'Ik Zing (feat. Snelle)', id_on_spotify: 'ikzing123', artists: [artist])
+        create(:song, title: 'Laat Het Licht Aan', id_on_spotify: 'laat123', artists: [artist])
+      end
+
+      it 'finds the correct song with matching title' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Snelle', title: 'Laat Het Licht Aan', spotify_track_id: 'laat123')
+      end
+    end
+
+    context 'when titles are similar but not identical by the same artist' do
+      let(:artist) { create(:artist, name: 'Snelle') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Laat Het Licht Aan',
+          artist_name: 'Snelle',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before do
+        create(:song, title: 'Laat Het Licht Uit', id_on_spotify: 'lichtuit123', artists: [artist])
+      end
+
+      it 'matches the similar title above threshold' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Snelle', title: 'Laat Het Licht Aan', spotify_track_id: 'lichtuit123')
+      end
+    end
+
+    context 'when two completely different titles by the same artist exist' do
+      let(:artist) { create(:artist, name: 'Snelle') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Sluit Me In Je Armen',
+          artist_name: 'Snelle',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before do
+        create(:song, title: 'Laat Het Licht Aan', id_on_spotify: 'laat123', artists: [artist])
+      end
+
+      it 'does not match a completely different title' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Snelle', title: 'Sluit Me In Je Armen')
+      end
+    end
+
+    context 'when played title is a substring of existing song title with feat info' do
+      let(:artist) { create(:artist, name: 'Zoë Livay') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Ik Zing',
+          artist_name: 'Zoë Livay',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before do
+        create(:song, title: 'Ik Zing (feat. Snelle)', id_on_spotify: 'ikzing123', artists: [artist])
+      end
+
+      it 'matches because the title similarity is above threshold' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Zoë Livay', title: 'Ik Zing', spotify_track_id: 'ikzing123')
+      end
+    end
+
+    context 'when short titles by the same artist could falsely match' do
+      let(:artist) { create(:artist, name: 'Sam Smith') }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Stay',
+          artist_name: 'Sam Smith',
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      before do
+        create(:song, title: 'Stay With Me', id_on_spotify: 'staywithme123', artists: [artist])
+      end
+
+      it 'matches because short title is a prefix and similarity is above threshold' do
+        finder.find
+        expect(Spotify::TrackFinder::Result)
+          .to have_received(:new)
+                .with(artists: 'Sam Smith', title: 'Stay', spotify_track_id: 'staywithme123')
       end
     end
   end

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class TrackExtractor::SpotifyTrackFinder < TrackExtractor
+  TITLE_SIMILARITY_THRESHOLD = 70
+
   def find
     return if played_song.blank?
 
@@ -48,6 +50,9 @@ class TrackExtractor::SpotifyTrackFinder < TrackExtractor
 
   # When exact artist match fails, try to find song using fuzzy text search
   # and verify that at least one of the recognized artist names partially matches
+  # AND the title is sufficiently similar (JaroWinkler >= 70%) to prevent matching
+  # different songs by the same artist (e.g., "Laat Het Licht Aan" matching "Ik Zing"
+  # because both have artist Snelle).
   def find_by_title_with_fuzzy_artist
     return if title.blank? || artist_name.blank?
 
@@ -59,11 +64,21 @@ class TrackExtractor::SpotifyTrackFinder < TrackExtractor
     recognized_artist_names = split_artist_names.map(&:downcase)
 
     fuzzy_matches.find do |song|
-      song.artists.any? do |artist|
-        artist_name_downcase = artist.name.downcase
-        recognized_artist_names.any? do |recognized_name|
-          artist_name_downcase.include?(recognized_name) || recognized_name.include?(artist_name_downcase)
-        end
+      title_similar?(song.title) && artist_name_overlaps?(song, recognized_artist_names)
+    end
+  end
+
+  def title_similar?(other_title)
+    return false if other_title.blank?
+
+    (JaroWinkler.similarity(title.downcase, other_title.downcase) * 100).to_i >= TITLE_SIMILARITY_THRESHOLD
+  end
+
+  def artist_name_overlaps?(song, recognized_artist_names)
+    song.artists.any? do |artist|
+      artist_name_downcase = artist.name.downcase
+      recognized_artist_names.any? do |recognized_name|
+        artist_name_downcase.include?(recognized_name) || recognized_name.include?(artist_name_downcase)
       end
     end
   end
