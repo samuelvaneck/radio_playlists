@@ -23,7 +23,7 @@ namespace :memory do
     $stdout.puts "  cat #{filename} | ruby -rjson -e '"
     $stdout.puts '    counts = Hash.new(0)'
     $stdout.puts '    ARGF.each_line { |l| j = JSON.parse(l); counts[j["type"]] += 1 }'
-    $stdout.puts %(    counts.sort_by { |_,v| -v }.each { |k,v| puts "#{k}: #{v}" })
+    $stdout.puts '    counts.sort_by { |_,v| -v }.each { |k,v| puts "#{k}: #{v}" }'
     $stdout.puts "  '"
     $stdout.puts ''
     $stdout.puts "  Or install heapy: gem install heapy && heapy read #{filename}"
