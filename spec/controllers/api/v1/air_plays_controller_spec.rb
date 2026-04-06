@@ -3,10 +3,10 @@
 describe Api::V1::AirPlaysController do
   let(:radio_station_one) { create :radio_station }
   let(:radio_station_two) { create :radio_station }
-  let(:artist_one) { create :artist }
-  let(:song_one) { create :song, artists: [artist_one] }
-  let(:artist_two) { create :artist }
-  let(:song_two) { create :song, artists: [artist_two] }
+  let(:artist_one) { create :artist, name: 'Stromae' }
+  let(:song_one) { create :song, title: 'Papaoutai', artists: [artist_one] }
+  let(:artist_two) { create :artist, name: 'Kraftwerk' }
+  let(:song_two) { create :song, title: 'Autobahn', artists: [artist_two] }
   let(:air_play) { create :air_play, radio_station: radio_station_one, song: song_one }
   let(:air_plays) { create_list :air_play, 5, radio_station: radio_station_two, song: song_two }
   let(:json) { JSON.parse(response.body).with_indifferent_access }
