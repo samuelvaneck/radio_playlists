@@ -113,8 +113,9 @@ module Sidekiq
     end
 
     def top_object_classes
+      class_of = Kernel.instance_method(:class)
       counts = Hash.new(0)
-      ObjectSpace.each_object { |obj| counts[obj.class] += 1 }
+      ObjectSpace.each_object { |obj| counts[class_of.bind_call(obj)] += 1 }
       counts
         .sort_by { |_, c| -c }
         .first(TOP_CLASSES_COUNT)
