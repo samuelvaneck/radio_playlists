@@ -22,6 +22,18 @@ describe TrackScraper, type: :service do
       end
     end
 
+    context 'when the request succeeds but body is nil' do
+      let(:response) { instance_double(Faraday::Response, success?: true, body: nil) }
+
+      before do
+        allow(Faraday).to receive(:new).and_return(instance_double(Faraday::Connection, get: response))
+      end
+
+      it 'returns nil instead of raising NoMethodError' do
+        expect(make_request).to be_nil
+      end
+    end
+
     context 'when the request fails' do
       let(:response) { instance_double(Faraday::Response, success?: false, status: 500) }
 
@@ -30,11 +42,11 @@ describe TrackScraper, type: :service do
         allow(Rails.logger).to receive(:error)
       end
 
-      it 'returns an empty array' do
-        expect(make_request).to eq([])
+      it 'returns nil' do
+        expect(make_request).to be_nil
       end
 
-      it 'logs an error and returns an empty array' do
+      it 'logs an error' do
         make_request
         expect(Rails.logger).to have_received(:error).with('Error fetching data from Test Station: 500')
       end
