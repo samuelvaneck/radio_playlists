@@ -55,10 +55,15 @@ describe PersistentStream::Process, type: :service do
       expect(spawn_args).to include('-f', 'segment', '-segment_time', '10')
     end
 
-    it 'does not include segment_list options in the ffmpeg command', :aggregate_failures do
+    it 'includes segment_list options in the ffmpeg command' do
       process_instance.start
-      expect(spawn_args).not_to include('-segment_list')
-      expect(spawn_args).not_to include('-segment_list_type')
+      expect(spawn_args).to include('-segment_list')
+    end
+
+    it 'includes video disable and nostdin flags', :aggregate_failures do
+      process_instance.start
+      expect(spawn_args).to include('-vn')
+      expect(spawn_args).to include('-nostdin')
     end
 
     context 'when stream is MP3' do
@@ -71,9 +76,12 @@ describe PersistentStream::Process, type: :service do
     context 'when stream is M3U8' do
       let(:radio_station) { create(:radio_station, name: 'HLS FM', direct_stream_url: 'https://stream.example.com/test.m3u8') }
 
-      it 'uses libmp3lame codec' do
+      it 'uses libmp3lame codec with low bitrate for recognition', :aggregate_failures do
         process_instance.start
         expect(spawn_args).to include('-codec:a', 'libmp3lame')
+        expect(spawn_args).to include('-b:a', '64k')
+        expect(spawn_args).to include('-ar', '16000')
+        expect(spawn_args).to include('-ac', '1')
       end
     end
   end

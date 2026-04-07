@@ -2,7 +2,7 @@
 
 class PersistentStream::Manager
   HEALTH_CHECK_INTERVAL = 30
-  SEGMENT_TRACK_INTERVAL = 5
+  SEGMENT_TRACK_INTERVAL = 10
   STALE_THRESHOLD = 30
 
   attr_reader :processes
@@ -87,6 +87,18 @@ class PersistentStream::Manager
   end
 
   def find_latest_completed_segment(directory)
+    segment_list = directory.join('segments.csv')
+    if segment_list.exist?
+      lines = segment_list.readlines(chomp: true).reject(&:empty?)
+      return nil if lines.size < 2
+
+      # Second-to-last entry is the latest fully written segment
+      segment_name = lines[-2]
+      segment_path = directory.join(segment_name)
+      return Pathname.new(segment_path) if segment_path.exist?
+    end
+
+    # Fallback to glob for backwards compatibility during restart
     segments = Dir.glob(directory.join('segment*.mp3')).sort_by { |f| File.mtime(f) }
     return nil if segments.size < 2
 
