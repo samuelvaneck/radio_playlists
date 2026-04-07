@@ -103,15 +103,19 @@ class PersistentStream::Process
   end
 
   def wait_for_exit
-    deadline = ::Process.clock_gettime(::Process::CLOCK_MONOTONIC) + KILL_TIMEOUT
-    loop do
-      ::Process.kill(0, @pid)
-      break if ::Process.clock_gettime(::Process::CLOCK_MONOTONIC) >= deadline
-
-      sleep 0.1
+    Timeout.timeout(KILL_TIMEOUT) do
+      sleep 0.5 until process_exited?
     end
+  rescue Timeout::Error
     ::Process.kill('KILL', @pid)
   rescue Errno::ESRCH
     # Process exited
+  end
+
+  def process_exited?
+    ::Process.kill(0, @pid)
+    false
+  rescue Errno::ESRCH
+    true
   end
 end
