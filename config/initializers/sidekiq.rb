@@ -17,6 +17,13 @@ Sidekiq.configure_server do |config|
   end
 
   SidekiqUniqueJobs::Server.configure(config)
+
+  SidekiqUniqueJobs.configure do |unique_config|
+    unique_config.reaper = :ruby
+    unique_config.reaper_count = 1000
+    unique_config.reaper_interval = 600
+    unique_config.reaper_timeout = 30
+  end
 end
 
 Sidekiq.configure_client do |config|

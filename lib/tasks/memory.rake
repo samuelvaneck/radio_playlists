@@ -111,7 +111,11 @@ namespace :memory do
         job_class.new.perform(station.id)
       else
         $stdout.puts "  Iteration #{i + 1}/#{iterations}"
-        job_class.perform_now
+        if job_class < ActiveJob::Base
+          job_class.perform_now
+        else
+          job_class.new.perform
+        end
       end
 
       # Snapshot after each iteration

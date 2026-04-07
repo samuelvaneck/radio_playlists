@@ -42,7 +42,7 @@ module Spotify
     end
 
     def connection
-      Faraday.new(BASE_URL) do |builder|
+      @connection ||= Faraday.new(BASE_URL) do |builder|
         builder.options.timeout = 10
         builder.options.open_timeout = 5
         builder.response :json
