@@ -64,8 +64,19 @@ class TrackExtractor::SongExtractor < TrackExtractor
       spotify_artwork_url: (spotify_artwork_url if song.spotify_artwork_url.blank?),
       duration_ms: (duration_ms if song.duration_ms.blank?)
     }.compact
-    updates[:isrcs] = song.isrcs | [isrc] if isrc.present? && !song.isrcs.include?(isrc)
+    updates[:isrcs] = song.isrcs | [isrc] if should_add_isrc?(song)
     updates
+  end
+
+  def should_add_isrc?(song)
+    return false if isrc.blank? || song.isrcs.include?(isrc)
+
+    # Don't add an ISRC from a different Spotify track to an existing song.
+    # This prevents cross-contamination when two different songs share an artist
+    # (e.g., "Ik Zing" by Zoë Livay feat. Snelle vs "Laat Het Licht Aan" by Snelle).
+    return true if song.id_on_spotify.blank? || id_on_spotify.blank?
+
+    song.id_on_spotify == id_on_spotify
   end
 
   # Methode for checking if there are songs with the same title.

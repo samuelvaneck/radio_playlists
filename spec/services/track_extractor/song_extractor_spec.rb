@@ -785,6 +785,144 @@ describe TrackExtractor::SongExtractor do
       it 'does not create a new song' do
         expect { song }.not_to change(Song, :count)
       end
+
+      it 'does not add the ISRC again since it already exists on the song' do
+        extractor.extract
+        existing_song_with_different_spotify_id.reload
+        expect(existing_song_with_different_spotify_id.isrcs).to eq(['NLA200200321'])
+      end
+    end
+
+    context 'when song found by ISRC has a different Spotify ID and track brings a new ISRC' do
+      subject(:extractor) { described_class.new(played_song:, track:, artists: [snelle]) }
+
+      let(:snelle) { create(:artist, name: 'Snelle') }
+      let(:track) do
+        OpenStruct.new(
+          track: { 'id' => 'laat_het_licht_aan_spotify' },
+          title: 'Laat Het Licht Aan',
+          id: 'laat_het_licht_aan_spotify',
+          isrc: 'NLS242600073',
+          spotify_song_url: 'https://open.spotify.com/track/laat_het_licht_aan_spotify',
+          spotify_artwork_url: 'https://i.scdn.co/image/laat',
+          spotify_preview_url: nil,
+          release_date: '2026-03-19',
+          release_date_precision: 'day'
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Laat Het Licht Aan',
+          artist_name: 'Snelle',
+          spotify_url: 'https://open.spotify.com/track/laat_het_licht_aan_spotify',
+          isrc_code: nil
+        )
+      end
+      let!(:ik_zing_song) do
+        create(:song,
+               title: 'Ik Zing (feat. Snelle)',
+               id_on_spotify: 'ik_zing_spotify',
+               isrcs: %w[NLA802500027 NLS242600073],
+               artists: [zoe, snelle])
+      end
+      let(:zoe) { create(:artist, name: 'Zoë Livay') }
+
+      it 'does not add the track ISRC to a song with a different Spotify ID' do
+        extractor.extract
+        ik_zing_song.reload
+        expect(ik_zing_song.isrcs).to eq(%w[NLA802500027 NLS242600073])
+      end
+
+      it 'does not overwrite the existing Spotify ID' do
+        extractor.extract
+        ik_zing_song.reload
+        expect(ik_zing_song.id_on_spotify).to eq('ik_zing_spotify')
+      end
+    end
+
+    context 'when should_add_isrc? prevents cross-contamination for new ISRCs' do
+      subject(:extractor) { described_class.new(played_song:, track:, artists: [artist]) }
+
+      let(:track) do
+        OpenStruct.new(
+          track: { 'id' => 'different_spotify_id' },
+          title: 'Different Song',
+          id: 'different_spotify_id',
+          isrc: 'NEW_ISRC_123',
+          spotify_song_url: 'https://open.spotify.com/track/different_spotify_id',
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Different Song',
+          artist_name: artist.name,
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:existing_song) do
+        create(:song,
+               title: 'Existing Song',
+               id_on_spotify: 'existing_spotify_id',
+               isrcs: ['EXISTING_ISRC'],
+               artists: [artist])
+      end
+
+      it 'does not add ISRC from a track with a different Spotify ID', :aggregate_failures do
+        # Simulate the case where find_by_track matched via ISRC (wrong match)
+        # The song already has an ISRC, and the track has a different Spotify ID
+        # build_spotify_updates should refuse to add the new ISRC
+        song_result = extractor.extract
+        # The extractor won't find existing_song (different IDs), so it creates a new one
+        expect(song_result).not_to eq(existing_song)
+        existing_song.reload
+        expect(existing_song.isrcs).to eq(['EXISTING_ISRC'])
+      end
+    end
+
+    context 'when song has no Spotify ID and track adds an ISRC' do
+      subject(:extractor) { described_class.new(played_song:, track:, artists: [artist]) }
+
+      let(:track) do
+        OpenStruct.new(
+          track: { 'id' => 'new_spotify_id' },
+          title: 'Test Song',
+          id: 'new_spotify_id',
+          isrc: 'NEW_ISRC',
+          spotify_song_url: 'https://open.spotify.com/track/new_spotify_id',
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Test Song',
+          artist_name: artist.name,
+          spotify_url: nil,
+          isrc_code: 'EXISTING_ISRC'
+        )
+      end
+
+      let!(:existing_song) do
+        create(:song,
+               title: 'Test Song',
+               id_on_spotify: nil,
+               isrcs: ['EXISTING_ISRC'],
+               artists: [artist])
+      end
+
+      it 'adds the ISRC when the song has no Spotify ID yet' do
+        extractor.extract
+        existing_song.reload
+        expect(existing_song.isrcs).to contain_exactly('EXISTING_ISRC', 'NEW_ISRC')
+      end
     end
   end
 end
