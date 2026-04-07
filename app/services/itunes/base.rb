@@ -43,7 +43,7 @@ module Itunes
     end
 
     def connection
-      Faraday.new(url: BASE_URL) do |conn|
+      @connection ||= Faraday.new(url: BASE_URL) do |conn|
         conn.options.timeout = 15
         conn.options.open_timeout = 5
         conn.response :json

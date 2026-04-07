@@ -29,7 +29,7 @@ class TrackScraper::SimoneApiProcessor < TrackScraper
   end
 
   def connection
-    Faraday.new(@radio_station.url) do |conn|
+    @connection ||= Faraday.new(@radio_station.url) do |conn|
       conn.response :json
     end
   end

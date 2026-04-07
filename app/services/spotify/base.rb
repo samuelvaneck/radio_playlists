@@ -14,7 +14,7 @@ module Spotify
     end
 
     def make_request(url)
-      response = Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
+      Rails.cache.fetch(url.to_s, expires_in: 12.hours) do
         with_circuit_breaker do
           with_exponential_backoff(max_attempts: 3, base_delay: 1) do
             api_response = connection.get(url) do |req|
@@ -26,7 +26,6 @@ module Spotify
           end
         end
       end
-      response&.deep_dup
     rescue StandardError => e
       ExceptionNotifier.notify(e)
       Rails.logger.error(e.message)
@@ -35,12 +34,13 @@ module Spotify
 
     def make_request_with_match(url)
       tracks = make_request(url)
+      return nil if tracks.blank?
+
       items = Spotify::TrackFinder::Filter::ResultsDigger.new(tracks:).execute
 
-      if tracks&.dig('tracks', 'items').present?
-        tracks['tracks']['items'] = add_match(items)
-        tracks
-      elsif tracks&.dig('album', 'album_type').present?
+      if tracks.dig('tracks', 'items').present?
+        tracks.merge('tracks' => tracks['tracks'].merge('items' => add_match(items)))
+      elsif tracks.dig('album', 'album_type').present?
         tracks
       end
     end
@@ -48,7 +48,7 @@ module Spotify
     private
 
     def connection
-      Faraday.new(url: 'https://api.spotify.com') do |conn|
+      @connection ||= Faraday.new(url: 'https://api.spotify.com') do |conn|
         conn.options.timeout = 10
         conn.options.open_timeout = 5
         conn.response :json
@@ -68,7 +68,7 @@ module Spotify
     end
 
     def add_match(items)
-      items.map do |item|
+      items.filter_map do |item|
         next if item.blank?
 
         item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }.join(' ')
@@ -77,12 +77,13 @@ module Spotify
         artist_dist = artist_distance(item_artist_names)
         title_dist = title_distance(item_title)
 
-        item['artist_distance'] = artist_dist
-        item['title_distance'] = title_dist
         # Use minimum of both distances to ensure both artist AND title match well
         # This prevents different songs by the same artist from getting high scores
-        item['match'] = item['popularity'] + ([artist_dist, title_dist].min * 2)
-        item
+        item.merge(
+          'artist_distance' => artist_dist,
+          'title_distance' => title_dist,
+          'match' => item['popularity'] + ([artist_dist, title_dist].min * 2)
+        )
       end
     end
   end
