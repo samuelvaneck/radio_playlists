@@ -99,7 +99,25 @@ describe PersistentStream::Manager, type: :service do
       FileUtils.rm_rf(segment_dir)
     end
 
-    context 'when process is alive with multiple segments' do
+    context 'when process is alive with segment list file' do
+      before do
+        process = manager.processes[station_with_stream.id]
+        allow(process).to receive(:alive?).and_return(true)
+
+        File.write(segment_dir.join('segment000.mp3'), 'oldest')
+        File.write(segment_dir.join('segment001.mp3'), 'second newest')
+        File.write(segment_dir.join('segment002.mp3'), 'newest - still writing')
+        File.write(segment_dir.join('segments.csv'), "segment000.mp3\nsegment001.mp3\nsegment002.mp3\n")
+      end
+
+      it 'reads from segment list and caches second-to-last entry' do
+        manager.send(:track_segments)
+        cached_path = Rails.cache.read(cache_key)
+        expect(cached_path).to eq(segment_dir.join('segment001.mp3').to_s)
+      end
+    end
+
+    context 'when process is alive without segment list (fallback to glob)' do
       before do
         process = manager.processes[station_with_stream.id]
         allow(process).to receive(:alive?).and_return(true)
@@ -111,7 +129,7 @@ describe PersistentStream::Manager, type: :service do
         File.write(segment_dir.join('segment002.mp3'), 'newest - still writing')
       end
 
-      it 'writes the second-newest segment path to Rails.cache' do
+      it 'falls back to Dir.glob and caches second-newest segment' do
         manager.send(:track_segments)
         cached_path = Rails.cache.read(cache_key)
         expect(cached_path).to eq(segment_dir.join('segment001.mp3').to_s)
@@ -124,6 +142,7 @@ describe PersistentStream::Manager, type: :service do
         allow(process).to receive(:alive?).and_return(true)
 
         File.write(segment_dir.join('segment000.mp3'), 'only segment')
+        File.write(segment_dir.join('segments.csv'), "segment000.mp3\n")
       end
 
       it 'does not write to cache' do

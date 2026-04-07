@@ -3,6 +3,7 @@
 class PersistentStream::Process
   SEGMENT_TIME = 10
   SEGMENT_WRAP = 3
+  SEGMENT_LIST_SIZE = 3
   KILL_TIMEOUT = 5
 
   attr_reader :radio_station, :pid
@@ -52,9 +53,10 @@ class PersistentStream::Process
   private
 
   def ffmpeg_command
-    cmd = ['ffmpeg', '-y']
+    cmd = ['ffmpeg', '-y', '-nostdin', '-loglevel', 'warning']
     cmd += reconnect_options
     cmd += ['-i', radio_station.direct_stream_url]
+    cmd += ['-vn']
     cmd += codec_options
     cmd += segment_options
     cmd << segment_pattern.to_s
@@ -67,7 +69,7 @@ class PersistentStream::Process
 
   def codec_options
     if m3u8_stream?
-      ['-codec:a', 'libmp3lame']
+      ['-codec:a', 'libmp3lame', '-b:a', '64k', '-ar', '16000', '-ac', '1']
     else
       ['-c', 'copy']
     end
@@ -78,6 +80,8 @@ class PersistentStream::Process
       '-f', 'segment',
       '-segment_time', SEGMENT_TIME.to_s,
       '-segment_wrap', SEGMENT_WRAP.to_s,
+      '-segment_list', segment_list_path.to_s,
+      '-segment_list_size', SEGMENT_LIST_SIZE.to_s,
       '-reset_timestamps', '1'
     ]
   end
@@ -90,20 +94,28 @@ class PersistentStream::Process
     radio_station.direct_stream_url.match?(/m3u8/i)
   end
 
+  def segment_list_path
+    segment_directory.join('segments.csv')
+  end
+
   def log_file_path
     segment_directory.join('ffmpeg.log')
   end
 
   def wait_for_exit
-    deadline = ::Process.clock_gettime(::Process::CLOCK_MONOTONIC) + KILL_TIMEOUT
-    loop do
-      ::Process.kill(0, @pid)
-      break if ::Process.clock_gettime(::Process::CLOCK_MONOTONIC) >= deadline
-
-      sleep 0.1
+    Timeout.timeout(KILL_TIMEOUT) do
+      sleep 0.5 until process_exited?
     end
+  rescue Timeout::Error
     ::Process.kill('KILL', @pid)
   rescue Errno::ESRCH
     # Process exited
+  end
+
+  def process_exited?
+    ::Process.kill(0, @pid)
+    false
+  rescue Errno::ESRCH
+    true
   end
 end
