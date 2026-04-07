@@ -42,6 +42,8 @@ bundle exec rake data_repair:find_fuzzy_duplicates             # Find fuzzy song
 bundle exec rake data_repair:confirm_recognizer_drafts         # Confirm draft airplays for recognizer-only stations
 bundle exec rake data_repair:find_mismatched_airplays[limit]   # Dry run: detect airplays linked to wrong songs
 bundle exec rake data_repair:fix_mismatched_airplays[limit]    # Fix airplays linked to wrong songs
+bundle exec rake data_repair:find_contaminated_isrcs[limit]    # Dry run: find songs with cross-contaminated ISRCs
+bundle exec rake data_repair:fix_contaminated_isrcs[limit]     # Fix songs with cross-contaminated ISRCs
 bundle exec rake optimization:vacuum                           # PostgreSQL VACUUM FULL ANALYZE
 
 # Hit Potential

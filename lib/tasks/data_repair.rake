@@ -1304,4 +1304,36 @@ namespace :data_repair do
     puts "Errors: #{results[:errors].count}" if results[:errors].any?
     results[:errors].each { |e| puts "  Log ##{e[:log_id]}: #{e[:error]}" }
   end
+
+  desc 'Find songs with cross-contaminated ISRCs (ISRCs belonging to different Spotify tracks). ' \
+       'Usage: rake data_repair:find_contaminated_isrcs[500]'
+  task :find_contaminated_isrcs, [:limit] => :environment do |_t, args|
+    limit = (args[:limit] || 500).to_i
+    puts "Scanning up to #{limit} songs for ISRC cross-contamination (dry run)..."
+    puts '=' * 80
+
+    repair = IsrcCrossContaminationRepair.new(dry_run: true, limit:)
+    results = repair.run
+
+    puts "\n#{'=' * 80}"
+    puts "Checked: #{results[:checked]}, Contaminated: #{results[:contaminated]}"
+    puts "Errors: #{results[:errors].count}" if results[:errors].any?
+    results[:errors].each { |e| puts "  Song ##{e[:song_id]}: #{e[:error]}" }
+  end
+
+  desc 'Fix songs with cross-contaminated ISRCs by removing foreign ISRCs. ' \
+       'Usage: rake data_repair:fix_contaminated_isrcs[500]'
+  task :fix_contaminated_isrcs, [:limit] => :environment do |_t, args|
+    limit = (args[:limit] || 500).to_i
+    puts "Fixing up to #{limit} songs with ISRC cross-contamination..."
+    puts '=' * 80
+
+    repair = IsrcCrossContaminationRepair.new(dry_run: false, limit:)
+    results = repair.run
+
+    puts "\n#{'=' * 80}"
+    puts "Checked: #{results[:checked]}, Contaminated: #{results[:contaminated]}, Fixed: #{results[:fixed]}"
+    puts "Errors: #{results[:errors].count}" if results[:errors].any?
+    results[:errors].each { |e| puts "  Song ##{e[:song_id]}: #{e[:error]}" }
+  end
 end
