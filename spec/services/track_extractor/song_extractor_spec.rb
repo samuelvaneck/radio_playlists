@@ -793,7 +793,7 @@ describe TrackExtractor::SongExtractor do
       end
     end
 
-    context 'when song found by ISRC has a different Spotify ID and track brings a new ISRC' do
+    context 'when ISRC matches a song with a completely different title (cross-contamination)' do
       subject(:extractor) { described_class.new(played_song:, track:, artists: [snelle]) }
 
       let(:snelle) { create(:artist, name: 'Snelle') }
@@ -827,15 +827,19 @@ describe TrackExtractor::SongExtractor do
       end
       let(:zoe) { create(:artist, name: 'Zoë Livay') }
 
-      it 'does not add the track ISRC to a song with a different Spotify ID' do
-        extractor.extract
-        ik_zing_song.reload
-        expect(ik_zing_song.isrcs).to eq(%w[NLA802500027 NLS242600073])
+      it 'skips the contaminated ISRC match and creates the correct song', :aggregate_failures do
+        song = extractor.extract
+
+        expect(song).not_to eq(ik_zing_song)
+        expect(song.title).to eq('Laat Het Licht Aan')
+        expect(song.id_on_spotify).to eq('laat_het_licht_aan_spotify')
       end
 
-      it 'does not overwrite the existing Spotify ID' do
+      it 'does not modify the contaminated song', :aggregate_failures do
         extractor.extract
         ik_zing_song.reload
+
+        expect(ik_zing_song.isrcs).to eq(%w[NLA802500027 NLS242600073])
         expect(ik_zing_song.id_on_spotify).to eq('ik_zing_spotify')
       end
     end
@@ -882,6 +886,78 @@ describe TrackExtractor::SongExtractor do
         expect(song_result).not_to eq(existing_song)
         existing_song.reload
         expect(existing_song.isrcs).to eq(['EXISTING_ISRC'])
+      end
+    end
+
+    context 'when ISRC matches a song with subtitle differences in title' do
+      let(:track) do
+        OpenStruct.new(
+          track: { 'id' => 'spotify_good' },
+          title: "I'm Good - From The Movie \"GOAT\"",
+          id: 'spotify_good',
+          isrc: 'USRC12345',
+          spotify_song_url: 'https://open.spotify.com/track/spotify_good',
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: "I'm Good - From The Movie \"GOAT\"",
+          artist_name: artist.name,
+          spotify_url: nil,
+          isrc_code: 'USRC12345'
+        )
+      end
+
+      let!(:existing_song) do
+        create(:song,
+               title: "I'm Good",
+               id_on_spotify: 'spotify_good',
+               isrcs: ['USRC12345'],
+               artists: [artist])
+      end
+
+      it 'matches the existing song despite subtitle differences' do
+        expect(song).to eq(existing_song)
+      end
+    end
+
+    context 'when ISRC matches a song with featured artist differences in title' do
+      let(:track) do
+        OpenStruct.new(
+          track: { 'id' => 'spotify_pgd' },
+          title: 'PGD (feat. Kyle Richh & ZEDDY WILL)',
+          id: 'spotify_pgd',
+          isrc: 'USRC67890',
+          spotify_song_url: 'https://open.spotify.com/track/spotify_pgd',
+          spotify_artwork_url: nil,
+          spotify_preview_url: nil,
+          release_date: nil,
+          release_date_precision: nil
+        )
+      end
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'PGD (feat. Kyle Richh & ZEDDY WILL)',
+          artist_name: artist.name,
+          spotify_url: nil,
+          isrc_code: 'USRC67890'
+        )
+      end
+
+      let!(:existing_song) do
+        create(:song,
+               title: 'Pgd',
+               id_on_spotify: 'spotify_pgd',
+               isrcs: ['USRC67890'],
+               artists: [artist])
+      end
+
+      it 'matches the existing song despite featured artist differences' do
+        expect(song).to eq(existing_song)
       end
     end
 

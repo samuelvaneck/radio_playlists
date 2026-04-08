@@ -122,11 +122,40 @@ class TrackExtractor::SongExtractor < TrackExtractor
   # which platform version is found. This prevents duplicate songs when the scraper
   # and recognizer find different platform versions of the same recording
   # (e.g., "Frank Boeijen" vs "Frank Boeijen Groep" versions with same ISRC).
+  # Title similarity is verified on ISRC matches to guard against cross-contaminated
+  # ISRCs where a foreign ISRC was incorrectly added to an unrelated song.
   def find_by_track
-    @find_by_track ||= (isrc.present? && Song.where('? = ANY(isrcs)', isrc).first) ||
+    @find_by_track ||= find_by_isrc ||
                        (id_on_spotify.present? && Song.find_by(id_on_spotify:)) ||
                        (id_on_deezer.present? && Song.find_by(id_on_deezer:)) ||
                        (id_on_itunes.present? && Song.find_by(id_on_itunes:))
+  end
+
+  def find_by_isrc
+    return nil if isrc.blank?
+
+    song = Song.where('? = ANY(isrcs)', isrc).first
+    return nil if song.blank?
+    return song if isrc_title_match?(song)
+
+    nil
+  end
+
+  def isrc_title_match?(song)
+    return true if title.blank? || song.title.blank?
+
+    normalized_import = normalize_title_for_comparison(title)
+    normalized_song = normalize_title_for_comparison(song.title)
+    (JaroWinkler.similarity(normalized_import.downcase, normalized_song.downcase) * 100).to_i >= TITLE_SIMILARITY_THRESHOLD
+  end
+
+  def normalize_title_for_comparison(raw_title)
+    normalized = raw_title.dup
+    # Strip featured artist parentheticals: (feat. ...), (ft. ...), (featuring ...)
+    normalized.gsub!(/\s*\((?:feat|ft|featuring)\.?\s+[^)]+\)/i, '')
+    # Strip subtitle suffixes after " - " (Spotify format for remasters, movie credits, etc.)
+    normalized.sub!(/\s+-\s+.+$/, '')
+    normalized.strip
   end
 
   def title
