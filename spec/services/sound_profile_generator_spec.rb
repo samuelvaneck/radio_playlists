@@ -120,5 +120,25 @@ RSpec.describe SoundProfileGenerator do
         expect(range[:era_description_nl]).to be_a(String)
       end
     end
+
+    context 'when current decade dominates release years' do
+      before do
+        # 8 songs from 2020s (80%), 2 from 2010s (20%) - current decade dominates
+        { 2023 => 2, 2024 => 3, 2025 => 3, 2015 => 1, 2018 => 1 }.each do |year, count|
+          count.times do
+            song = create(:song, release_date: Date.new(year, 1, 1))
+            create(:air_play, song:, radio_station:, broadcasted_at: Time.utc(2026, 1, 15, 12, 0, 0))
+          end
+        end
+      end
+
+      it 'describes era as recent years', :aggregate_failures do
+        result = generator.generate
+        range = result[:release_year_range]
+
+        expect(range[:era_description_en]).to eq('predominantly from recent years')
+        expect(range[:era_description_nl]).to eq('voornamelijk uit de afgelopen jaren')
+      end
+    end
   end
 end
