@@ -125,7 +125,7 @@ class SoundProfileGenerator
 
     total = counts.values.sum
     percentiles = weighted_percentiles(counts, total)
-    decades = peak_decades(counts, total)
+    decades = peak_decades(total)
 
     {
       from: percentiles[:p10],
@@ -210,43 +210,55 @@ class SoundProfileGenerator
     result
   end
 
-  def peak_decades(counts, total)
-    decade_totals = counts.each_with_object(Hash.new(0)) do |(year, count), h|
+  def decade_totals
+    @decade_totals ||= song_counts_by_year.each_with_object(Hash.new(0)) do |(year, count), h|
       h[(year / 10) * 10] += count
     end
+  end
 
+  def peak_decades(total)
     decade_totals
       .select { |_, count| count.to_f / total >= 0.15 }
-      .sort_by { |decade, _| -decade_totals[decade] }
+      .sort_by { |_, count| -count }
       .map(&:first)
       .sort
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def era_description(decades, locale)
     return '' if decades.empty?
 
     decade_labels = decades.map { |d| "#{d}s" }
     current_decade = (Time.current.year / 10) * 10
-    has_recent = decades.include?(current_decade) || decades.include?(current_decade - 10)
-    core_decades = decades.reject { |d| d >= current_decade - 10 }
 
     if decades.size == 1
       single_decade_text(decade_labels.first, locale)
-    elsif core_decades.any? && has_recent && core_decades != decades
-      mixed_era_text(core_decades.map { |d| "#{d}s" }, locale)
+    elsif dominant_recent_decade?(decades, current_decade)
+      recent_dominant_text(locale)
+    elsif mixed_era?(decades, current_decade)
+      core_labels = decades.select { |d| d < current_decade - 10 }.map { |d| "#{d}s" }
+      mixed_era_text(core_labels, locale)
     else
       multi_decade_text(decade_labels, locale)
     end
   end
-  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+
+  def dominant_recent_decade?(decades, current_decade)
+    total = song_counts_by_year.values.sum
+    return false unless total.positive?
+
+    dominant = decades.max_by { |d| decade_totals[d] || 0 }
+    dominant_share = (decade_totals[dominant] || 0).to_f / total
+    dominant_share >= 0.60 && dominant >= current_decade
+  end
+
+  def mixed_era?(decades, current_decade)
+    has_recent = decades.any? { |d| d >= current_decade - 10 }
+    core_decades = decades.reject { |d| d >= current_decade - 10 }
+    core_decades.any? && has_recent && core_decades != decades
+  end
 
   def single_decade_text(decade_label, locale)
-    if locale == :nl
-      "voornamelijk uit de jaren #{decade_label.delete_suffix('s')}"
-    else
-      "primarily from the #{decade_label}"
-    end
+    locale == :nl ? "voornamelijk uit de jaren #{decade_label.delete_suffix('s')}" : "primarily from the #{decade_label}"
   end
 
   def mixed_era_text(core_labels, locale)
@@ -258,11 +270,11 @@ class SoundProfileGenerator
   end
 
   def multi_decade_text(decade_labels, locale)
-    if locale == :nl
-      "voornamelijk uit de jaren #{decade_labels.join(' en ')}"
-    else
-      "primarily from the #{decade_labels.join(' and ')}"
-    end
+    locale == :nl ? "voornamelijk uit de jaren #{decade_labels.join(' en ')}" : "primarily from the #{decade_labels.join(' and ')}"
+  end
+
+  def recent_dominant_text(locale)
+    locale == :nl ? 'voornamelijk uit de afgelopen jaren' : 'predominantly from recent years'
   end
 
   def profiles_scope
