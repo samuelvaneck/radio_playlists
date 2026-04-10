@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <linearGradient id="aGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DB2777"/>
+      <stop offset="100%" stop-color="#F472B6"/>
+    </linearGradient>
+    <linearGradient id="waveGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#F9A8D4"/>
+      <stop offset="100%" stop-color="#DB2777"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Stylized 'A' with pointed apex -->
+  <g transform="translate(120, 125)">
+    <!-- A as a single path: left leg up to apex, down right leg -->
+    <path d="M-42 72 L0 -68 L42 72" fill="none" stroke="url(#aGrad)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Crossbar of A -->
+    <line x1="-24" y1="16" x2="24" y2="16" stroke="url(#aGrad)" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Signal waves from apex -->
+    <path d="M16 -76 Q24 -84, 16 -92" fill="none" stroke="url(#waveGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <path d="M24 -68 Q36 -80, 24 -92" fill="none" stroke="url(#waveGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+    <path d="M32 -60 Q48 -76, 32 -92" fill="none" stroke="url(#waveGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/>
+
+    <path d="M-16 -76 Q-24 -84, -16 -92" fill="none" stroke="url(#waveGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <path d="M-24 -68 Q-36 -80, -24 -92" fill="none" stroke="url(#waveGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+    <path d="M-32 -60 Q-48 -76, -32 -92" fill="none" stroke="url(#waveGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/>
+  </g>
+
+  <!-- AIRPLAYS text -->
+  <text x="120" y="228" font-family="'Avenir Next', 'Helvetica Neue', sans-serif" font-size="18" font-weight="600" fill="#E8E8F0" text-anchor="middle" letter-spacing="4">AIRPLAYS</text>
+</svg>
