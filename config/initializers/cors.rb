@@ -32,4 +32,23 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
              methods: [:get, :post, :put, :patch, :delete, :options, :head],
              expose: %w[Authorization]
   end
+
+  allow do
+    origins 'https://admin.airplays.nl'
+
+    resource '*',
+             headers: :any,
+             methods: [:get, :post, :put, :patch, :delete, :options, :head],
+             expose: %w[Authorization]
+  end
+
+  allow do
+    origins(%r{\Ahttps://deploy-preview-\d+--playlists-admin\.netlify\.app\z},
+            %r{\Ahttps://[a-z0-9-]+--playlists-admin\.netlify\.app\z})
+
+    resource '*',
+             headers: :any,
+             methods: [:get, :post, :put, :patch, :delete, :options, :head],
+             expose: %w[Authorization]
+  end
 end
