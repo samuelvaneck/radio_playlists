@@ -592,7 +592,7 @@ RSpec.describe 'Artists API', type: :request do
         let(:artist) { create(:artist, name: 'Coldplay') }
         let(:id) { artist.id }
 
-        before do
+        before do # rubocop:disable RSpec/ScatteredSetup
           allow_any_instance_of(Wikipedia::ArtistFinder).to receive(:get_info).and_return({ # rubocop:disable RSpec/AnyInstance
                                                                                             'summary' => 'British rock band',
                                                                                             'description' => 'British rock band',
@@ -601,6 +601,48 @@ RSpec.describe 'Artists API', type: :request do
         end
 
         run_test!
+      end
+    end
+  end
+
+  path '/api/v1/artists/natural_language_search' do
+    get 'Natural language search for artists' do
+      tags 'Artists'
+      produces 'application/json'
+      description 'Translates a natural language query into structured filters using an LLM and returns matching artists.'
+      parameter name: :q, in: :query, type: :string, required: true,
+                description: 'Natural language query (e.g. "Dutch pop artists played on NPO Radio 2")'
+
+      response '200', 'Search results retrieved successfully' do
+        let(:radio_station) { create(:radio_station, name: 'Test Station NLS Artists') }
+        let(:artist) { create(:artist, name: 'Test Artist NLS Artists', country_of_origin: ['NL'], genres: ['pop']) }
+        let(:song) { create(:song, title: 'Test Song NLS Artists', artists: [artist]) }
+        let(:q) { 'Dutch pop artists' }
+        let(:translator) do
+          instance_double(Llm::QueryTranslator,
+                          translate: { search_type: 'artists', country: 'NL', genre: 'pop', period: 'month' })
+        end
+
+        before do # rubocop:disable RSpec/ScatteredSetup
+          create(:air_play, song: song, radio_station: radio_station, broadcasted_at: 2.days.ago, status: :confirmed)
+          allow(Llm::QueryTranslator).to receive(:new).and_return(translator)
+        end
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data).to have_key('data')
+          expect(data).to have_key('filters')
+          expect(data).to have_key('query')
+        end
+      end
+
+      response '400', 'Missing query parameter' do
+        let(:q) { '' }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['error']).to eq('Query parameter q is required')
+        end
       end
     end
   end

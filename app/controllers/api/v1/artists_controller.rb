@@ -50,6 +50,28 @@ module Api
         render json: ArtistSerializer.new(results).serializable_hash.to_json
       end
 
+      # GET /api/v1/artists/natural_language_search
+      #
+      # Natural language search for artists. Translates a free-text query into structured filters
+      # using an LLM, then executes the search.
+      #
+      # Parameters:
+      #   - q (required): Natural language query (e.g. "Dutch pop artists played on NPO Radio 2")
+      #
+      # Response: Same format as index (ArtistSerializer data)
+      def natural_language_search
+        return render json: { error: 'Query parameter q is required' }, status: :bad_request if params[:q].blank?
+
+        service = NaturalLanguageSearch.new(params[:q])
+        results = service.search
+
+        render json: {
+          data: ArtistSerializer.new(results).serializable_hash[:data],
+          filters: service.filters,
+          query: params[:q]
+        }
+      end
+
       # GET /api/v1/artists/search_suggestions
       #
       # Returns autocomplete suggestions for a specific search field.

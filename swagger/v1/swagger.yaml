@@ -941,6 +941,26 @@ paths:
                         source: https://upload.wikimedia.org/coldplay.jpg
                         width: 320
                         height: 240
+  "/api/v1/artists/natural_language_search":
+    get:
+      summary: Natural language search for artists
+      tags:
+      - Artists
+      description: Translates a natural language query into structured filters using
+        an LLM and returns matching artists.
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: Natural language query (e.g. "Dutch pop artists played on NPO
+          Radio 2")
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Search results retrieved successfully
+        '400':
+          description: Missing query parameter
   "/api/v1/charts":
     get:
       summary: List chart positions
@@ -3340,6 +3360,26 @@ paths:
                   value:
                     status: 404
                     error: Not Found
+  "/api/v1/songs/natural_language_search":
+    get:
+      summary: Natural language search for songs
+      tags:
+      - Songs
+      description: Translates a natural language query into structured filters using
+        an LLM and returns matching songs.
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: Natural language query (e.g. "upbeat Dutch songs played on Radio
+          538 last week")
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Search results retrieved successfully
+        '400':
+          description: Missing query parameter
 servers:
 - url: https://api.airplays.nl
   description: Production server

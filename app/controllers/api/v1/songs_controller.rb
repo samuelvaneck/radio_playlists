@@ -55,6 +55,28 @@ module Api
         render json: AutocompleteSongSerializer.new(results).serializable_hash.to_json
       end
 
+      # GET /api/v1/songs/natural_language_search
+      #
+      # Natural language search for songs. Translates a free-text query into structured filters
+      # using an LLM, then executes the search using existing faceted search scopes.
+      #
+      # Parameters:
+      #   - q (required): Natural language query (e.g. "upbeat Dutch songs played on Radio 538 last week")
+      #
+      # Response: Same format as index (SongSerializer with pagination-style data)
+      def natural_language_search
+        return render json: { error: 'Query parameter q is required' }, status: :bad_request if params[:q].blank?
+
+        service = NaturalLanguageSearch.new(params[:q])
+        results = service.search
+
+        render json: {
+          data: SongSerializer.new(results).serializable_hash[:data],
+          filters: service.filters,
+          query: params[:q]
+        }
+      end
+
       # GET /api/v1/songs/search_suggestions
       #
       # Returns autocomplete suggestions for a specific search field.

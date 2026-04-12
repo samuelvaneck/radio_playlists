@@ -80,6 +80,10 @@ GEM
     annotaterb (4.22.0)
       activerecord (>= 6.0.0)
       activesupport (>= 6.0.0)
+    anthropic (0.4.1)
+      event_stream_parser (>= 0.3.0, < 2.0.0)
+      faraday (>= 1)
+      faraday-multipart (>= 1)
     ast (2.4.3)
     base64 (0.3.0)
     bcrypt (3.1.22)
@@ -143,6 +147,7 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
+    event_stream_parser (1.0.0)
     factory_bot (6.5.5)
       activesupport (>= 6.1.0)
     factory_bot_rails (6.5.1)
@@ -154,6 +159,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
+    faraday-multipart (1.2.0)
+      multipart-post (~> 2.0)
     faraday-net_http (3.4.2)
       net-http (~> 0.5)
     faraday-retry (2.4.0)
@@ -248,6 +255,7 @@ GEM
       drb (~> 2.0)
       prism (~> 1.5)
     msgpack (1.8.0)
+    multipart-post (2.4.1)
     mustermann (3.0.4)
       ruby2_keywords (~> 0.0.1)
     nenv (0.3.0)
@@ -561,6 +569,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotaterb
+  anthropic (~> 0.3)
   bootsnap
   brakeman
   bullet

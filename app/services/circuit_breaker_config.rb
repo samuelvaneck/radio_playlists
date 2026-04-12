@@ -44,6 +44,12 @@ class CircuitBreakerConfig
       volume_threshold: 5,
       error_threshold: 50,
       time_window: 60
+    },
+    claude: {
+      sleep_window: 60,
+      volume_threshold: 5,
+      error_threshold: 50,
+      time_window: 60
     }
   }.freeze
 
