@@ -54,6 +54,7 @@ class Song < ApplicationRecord
   include DateConcern
   include ChartConcern
   include TimeAnalyticsConcern
+  include SongSearchConcern
 
   pg_search_scope :search_by_text,
                   against: :search_text,

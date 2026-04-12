@@ -66,6 +66,77 @@ describe Artist do
     end
   end
 
+  describe '.faceted_search' do
+    let!(:coldplay) { create(:artist, name: 'Coldplay', genres: %w[rock pop], country_of_origin: ['United Kingdom'], spotify_popularity: 90) }
+    let!(:drake) { create(:artist, name: 'Drake', genres: %w[hip-hop rap], country_of_origin: ['Canada'], spotify_popularity: 95) }
+
+    it 'filters by name', :aggregate_failures do
+      results = Artist.faceted_search(name: 'Coldplay')
+      expect(results).to include(coldplay)
+      expect(results).not_to include(drake)
+    end
+
+    it 'filters by genre', :aggregate_failures do
+      results = Artist.faceted_search(genre: 'rock')
+      expect(results).to include(coldplay)
+      expect(results).not_to include(drake)
+    end
+
+    it 'filters by country', :aggregate_failures do
+      results = Artist.faceted_search(country: 'Canada')
+      expect(results).to include(drake)
+      expect(results).not_to include(coldplay)
+    end
+
+    it 'combines multiple filters' do
+      results = Artist.faceted_search(genre: 'rock', country: 'United Kingdom')
+      expect(results).to contain_exactly(coldplay)
+    end
+
+    it 'returns all artists when no filters given' do
+      results = Artist.faceted_search
+      expect(results).to include(coldplay, drake)
+    end
+
+    it 'respects limit' do
+      results = Artist.faceted_search(limit: 1)
+      expect(results.length).to eq(1)
+    end
+
+    context 'with blank filter values' do
+      it 'ignores blank genre' do
+        results = Artist.faceted_search(genre: '')
+        expect(results).to include(coldplay, drake)
+      end
+    end
+  end
+
+  describe '.suggest' do
+    let(:coldplay) do
+      create(:artist, name: 'Coldplay', genres: %w[rock pop],
+                      country_of_origin: ['United Kingdom'], spotify_popularity: 90)
+    end
+
+    it 'suggests artist names matching query' do
+      coldplay
+      expect(Artist.suggest(field: 'name', query: 'Cold')).to include('Coldplay')
+    end
+
+    it 'suggests genres matching query' do
+      coldplay
+      expect(Artist.suggest(field: 'genre', query: 'ro')).to include('rock')
+    end
+
+    it 'suggests countries matching query' do
+      coldplay
+      expect(Artist.suggest(field: 'country', query: 'United')).to include('United Kingdom')
+    end
+
+    it 'returns available field names for unknown field' do
+      expect(Artist.suggest(field: nil)).to eq(%w[name genre country])
+    end
+  end
+
   describe '.search_by_name' do
     let!(:coldplay) { create(:artist, name: 'Coldplay', spotify_popularity: 90) }
 

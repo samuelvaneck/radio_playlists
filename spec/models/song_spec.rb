@@ -250,6 +250,104 @@ describe Song do
     end
   end
 
+  describe '.faceted_search' do
+    let(:drake) { create(:artist, name: 'Drake') }
+    let(:adele) { create(:artist, name: 'Adele') }
+    let!(:hotline) do
+      create(:song, title: 'Hotline Bling', artists: [drake],
+                    album_name: 'Views', release_date: Date.new(2016, 4, 29), popularity: 90)
+    end
+    let!(:rolling) do
+      create(:song, title: 'Rolling in the Deep', artists: [adele],
+                    album_name: '21', release_date: Date.new(2011, 1, 24), popularity: 85)
+    end
+
+    it 'filters by artist name', :aggregate_failures do
+      results = Song.faceted_search(artist: 'Drake')
+      expect(results).to include(hotline)
+      expect(results).not_to include(rolling)
+    end
+
+    it 'filters by title', :aggregate_failures do
+      results = Song.faceted_search(title: 'Rolling')
+      expect(results).to include(rolling)
+      expect(results).not_to include(hotline)
+    end
+
+    it 'filters by album', :aggregate_failures do
+      results = Song.faceted_search(album: 'Views')
+      expect(results).to include(hotline)
+      expect(results).not_to include(rolling)
+    end
+
+    it 'filters by year_from', :aggregate_failures do
+      results = Song.faceted_search(year_from: '2015')
+      expect(results).to include(hotline)
+      expect(results).not_to include(rolling)
+    end
+
+    it 'filters by year_to', :aggregate_failures do
+      results = Song.faceted_search(year_to: '2012')
+      expect(results).to include(rolling)
+      expect(results).not_to include(hotline)
+    end
+
+    it 'combines multiple filters' do
+      results = Song.faceted_search(artist: 'Adele', year_from: '2010', year_to: '2012')
+      expect(results).to contain_exactly(rolling)
+    end
+
+    it 'returns all songs when no filters given' do
+      results = Song.faceted_search
+      expect(results).to include(hotline, rolling)
+    end
+
+    it 'respects limit' do
+      results = Song.faceted_search(limit: 1)
+      expect(results.length).to eq(1)
+    end
+
+    context 'with blank filter values' do
+      it 'ignores blank artist' do
+        results = Song.faceted_search(artist: '')
+        expect(results).to include(hotline, rolling)
+      end
+
+      it 'ignores nil year_from' do
+        results = Song.faceted_search(year_from: nil)
+        expect(results).to include(hotline, rolling)
+      end
+    end
+  end
+
+  describe '.suggest' do
+    let(:drake) { create(:artist, name: 'Drake', spotify_popularity: 95) }
+    let!(:hotline) do
+      create(:song, title: 'Hotline Bling', artists: [drake],
+                    album_name: 'Views', release_date: Date.new(2016, 4, 29), popularity: 90)
+    end
+
+    it 'suggests artist names matching query' do
+      expect(Song.suggest(field: 'artist', query: 'Dra')).to include('Drake')
+    end
+
+    it 'suggests song titles matching query' do
+      expect(Song.suggest(field: 'title', query: 'Hot')).to include('Hotline Bling')
+    end
+
+    it 'suggests album names matching query' do
+      expect(Song.suggest(field: 'album', query: 'Vie')).to include('Views')
+    end
+
+    it 'suggests release years' do
+      expect(Song.suggest(field: 'year')).to include(2016)
+    end
+
+    it 'returns available field names for unknown field' do
+      expect(Song.suggest(field: nil)).to eq(%w[artist title album year_from year_to])
+    end
+  end
+
   describe '#cleanup' do
     context 'if the song has no air plays' do
       let!(:song_no_air_play) { create :song }

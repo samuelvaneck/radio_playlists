@@ -51,14 +51,7 @@ module Api
       #   - year_to (optional): Filter songs released in or before this year
       #   - limit (optional, default: 10): Maximum number of results (max: 20)
       def search
-        results = Song.includes(:artists).order(popularity: :desc)
-        results = results.search_by_text(params[:q]) if params[:q].present?
-        results = filter_by_artist(results)
-        results = filter_by_title(results)
-        results = filter_by_album(results)
-        results = filter_by_year(results)
-        results = results.limit(search_limit)
-
+        results = Song.faceted_search(search_filter_params)
         render json: AutocompleteSongSerializer.new(results).serializable_hash.to_json
       end
 
@@ -71,14 +64,7 @@ module Api
       #   - q (optional): Partial input to filter suggestions
       #   - limit (optional, default: 5): Maximum suggestions (max: 10)
       def search_suggestions
-        suggestions = case params[:field]
-                      when 'artist' then artist_suggestions
-                      when 'title' then title_suggestions
-                      when 'album' then album_suggestions
-                      when 'year' then year_suggestions
-                      else available_fields_response
-                      end
-
+        suggestions = Song.suggest(field: params[:field], query: params[:q], limit: suggestion_limit)
         render json: { suggestions: suggestions, field: params[:field] }
       end
 
@@ -302,91 +288,20 @@ module Api
         [params.fetch(:limit, 10).to_i, 20].min
       end
 
-      def search_limit
-        [params.fetch(:limit, 10).to_i, 20].min
+      def search_filter_params
+        {
+          q: params[:q],
+          artist: params[:artist],
+          title: params[:title],
+          album: params[:album],
+          year_from: params[:year_from],
+          year_to: params[:year_to],
+          limit: [params.fetch(:limit, 10).to_i, 20].min
+        }
       end
 
       def suggestion_limit
         [params.fetch(:limit, 5).to_i, 10].min
-      end
-
-      def filter_by_artist(scope)
-        return scope if params[:artist].blank?
-
-        name_col = Artist.arel_table[:name]
-        scope.joins(:artists).where(
-          trigram_match(name_col, params[:artist]).or(name_col.matches("%#{Song.sanitize_sql_like(params[:artist])}%"))
-        )
-      end
-
-      def filter_by_title(scope)
-        return scope if params[:title].blank?
-
-        title_col = Song.arel_table[:title]
-        scope.where(
-          trigram_match(title_col, params[:title]).or(title_col.matches("%#{Song.sanitize_sql_like(params[:title])}%"))
-        )
-      end
-
-      def filter_by_album(scope)
-        return scope if params[:album].blank?
-
-        scope.where(Song.arel_table[:album_name].matches("%#{Song.sanitize_sql_like(params[:album])}%"))
-      end
-
-      def filter_by_year(scope)
-        scope = scope.where(release_date: Date.new(params[:year_from].to_i)..) if params[:year_from].present?
-        scope = scope.where(release_date: ..Date.new(params[:year_to].to_i).end_of_year) if params[:year_to].present?
-        scope
-      end
-
-      def artist_suggestions
-        query = params[:q]
-        scope = Artist.order(spotify_popularity: :desc)
-        if query.present?
-          name_col = Artist.arel_table[:name]
-          scope = scope.where(
-            trigram_match(name_col, query).or(name_col.matches("%#{Artist.sanitize_sql_like(query)}%"))
-          )
-        end
-        scope.limit(suggestion_limit).pluck(:name).uniq
-      end
-
-      def title_suggestions
-        query = params[:q]
-        scope = Song.order(popularity: :desc)
-        if query.present?
-          title_col = Song.arel_table[:title]
-          scope = scope.where(
-            trigram_match(title_col, query).or(title_col.matches("%#{Song.sanitize_sql_like(query)}%"))
-          )
-        end
-        scope.limit(suggestion_limit).pluck(:title).uniq
-      end
-
-      def album_suggestions
-        query = params[:q]
-        scope = Song.where.not(album_name: [nil, ''])
-        scope = scope.where(Song.arel_table[:album_name].matches("%#{Song.sanitize_sql_like(query)}%")) if query.present?
-        scope.distinct.order(:album_name).limit(suggestion_limit).pluck(:album_name)
-      end
-
-      def year_suggestions
-        year_col = Arel.sql('EXTRACT(YEAR FROM release_date)::integer')
-        Song.where.not(release_date: nil)
-          .select(year_col.as('year'))
-          .distinct
-          .order(year: :desc)
-          .limit(suggestion_limit)
-          .map(&:year)
-      end
-
-      def trigram_match(column, value)
-        Arel::Nodes::InfixOperation.new('%', column, Arel::Nodes.build_quoted(value))
-      end
-
-      def available_fields_response
-        %w[artist title album year_from year_to]
       end
     end
   end
