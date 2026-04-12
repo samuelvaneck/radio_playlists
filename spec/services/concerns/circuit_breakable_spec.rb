@@ -41,11 +41,19 @@ RSpec.describe CircuitBreakable do
       end
     end
 
-    context 'when block raises exception' do
+    context 'when block raises a server error' do
       it 'propagates the exception wrapped in ServiceFailureError' do
         expect do
-          instance.call_external { raise Faraday::Error, 'test error' }
+          instance.call_external { raise Faraday::ServerError, 'test error' }
         end.to raise_error(Circuitbox::ServiceFailureError)
+      end
+    end
+
+    context 'when block raises a rate limit error' do
+      it 'does not trip the circuit breaker' do
+        expect do
+          instance.call_external { raise Faraday::TooManyRequestsError }
+        end.to raise_error(Faraday::TooManyRequestsError)
       end
     end
   end
@@ -68,6 +76,18 @@ RSpec.describe CircuitBreakable do
       expect do
         instance.call_with_backoff { raise Faraday::Error, 'persistent error' }
       end.to raise_error(Faraday::Error)
+    end
+
+    it 'retries 429 errors with Retry-After delay', :aggregate_failures do
+      error = Faraday::TooManyRequestsError.new(nil, { status: 429, headers: { 'retry-after' => '1' } })
+      attempts = 0
+      result = instance.call_with_backoff do
+        attempts += 1
+        raise error if attempts < 2
+
+        'success'
+      end
+      expect(result).to eq('success')
     end
   end
 
