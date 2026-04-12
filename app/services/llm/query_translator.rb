@@ -48,7 +48,7 @@ module Llm
         - "genre": music genre (e.g. "pop", "rock", "hip hop", "dance", "electronic", "r&b", "jazz", "classical", "reggae", "metal")
         - "country": artist country of origin as ISO country code (e.g. "NL" for Dutch/Netherlands, "US" for American, "UK" or "GB" for British, "DE" for German, "BE" for Belgian)
         - "radio_station": radio station name (known stations: #{cached_radio_station_names.join(', ')})
-        - "period": time period for when songs were played. Use one of: "day", "week", "month", "year", "all". Or use granular format like "3_days", "2_weeks", "6_months".
+        - "period": time period for when songs were played. Use one of: "hour", "day", "week", "month", "year", "all". Or use granular format like "2_hours", "3_days", "2_weeks", "6_months".
         - "year_from": songs released in or after this year (integer)
         - "year_to": songs released in or before this year (integer)
         - "mood": one of: #{MOOD_MAPPINGS.keys.join(', ')}

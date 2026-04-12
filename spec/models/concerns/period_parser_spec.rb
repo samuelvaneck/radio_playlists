@@ -5,6 +5,11 @@ require 'rails_helper'
 RSpec.describe PeriodParser do
   describe '.parse_duration' do
     context 'with granular periods' do
+      it 'parses hour periods', :aggregate_failures do
+        expect(described_class.parse_duration('1_hour')).to eq(1.hour)
+        expect(described_class.parse_duration('2_hours')).to eq(2.hours)
+      end
+
       it 'parses day periods', :aggregate_failures do
         expect(described_class.parse_duration('1_day')).to eq(1.day)
         expect(described_class.parse_duration('3_days')).to eq(3.days)
@@ -31,6 +36,7 @@ RSpec.describe PeriodParser do
 
     context 'with legacy periods' do
       it 'normalizes legacy period names', :aggregate_failures do
+        expect(described_class.parse_duration('hour')).to eq(1.hour)
         expect(described_class.parse_duration('week')).to eq(1.week)
         expect(described_class.parse_duration('month')).to eq(1.month)
         expect(described_class.parse_duration('year')).to eq(1.year)
@@ -53,6 +59,12 @@ RSpec.describe PeriodParser do
   end
 
   describe '.aggregation_for' do
+    it 'returns minute-level aggregation for hour periods', :aggregate_failures do
+      result = described_class.aggregation_for('2_hours')
+      expect(result[:strftime]).to eq('%Y-%m-%dT%H:%M')
+      expect(result[:time_step]).to eq(10.minutes)
+    end
+
     it 'returns hourly aggregation for day periods', :aggregate_failures do
       result = described_class.aggregation_for('3_days')
       expect(result[:strftime]).to eq('%Y-%m-%dT%H:00')
@@ -84,6 +96,7 @@ RSpec.describe PeriodParser do
     end
 
     it 'handles legacy period names', :aggregate_failures do
+      expect(described_class.aggregation_for('hour')[:time_step]).to eq(10.minutes)
       expect(described_class.aggregation_for('week')[:time_step]).to eq(1.day)
       expect(described_class.aggregation_for('month')[:time_step]).to eq(1.day)
       expect(described_class.aggregation_for('year')[:time_step]).to eq(1.month)

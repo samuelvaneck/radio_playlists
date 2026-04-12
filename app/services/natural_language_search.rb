@@ -40,7 +40,7 @@ class NaturalLanguageSearch
 
   def build_song_params
     params = {}
-    params[:period] = filters[:period] if filters[:period].present?
+    params[:period] = filters[:period].presence || 'all'
     params[:radio_station_ids] = resolve_radio_station_ids if filters[:radio_station].present?
     params[:search_term] = filters[:text_search] if filters[:text_search].present?
     params[:music_profile] = build_music_profile_params
@@ -49,7 +49,7 @@ class NaturalLanguageSearch
 
   def build_artist_params
     params = {}
-    params[:period] = filters[:period] if filters[:period].present?
+    params[:period] = filters[:period].presence || 'all'
     params[:radio_station_ids] = resolve_radio_station_ids if filters[:radio_station].present?
     params[:search_term] = filters[:text_search] || filters[:artist]
     params
