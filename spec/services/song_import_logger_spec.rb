@@ -156,6 +156,24 @@ describe SongImportLogger do
       logger.log_spotify(spotify_track)
       expect(logger.log.spotify_raw_response).to eq({ 'id' => 'spotify123', 'name' => 'Spotify Song' })
     end
+
+    context 'when artists array contains nil elements' do
+      let(:spotify_track) do
+        instance_double(
+          Spotify::TrackFinder::Result,
+          artists: [{ 'name' => 'Artist One' }, nil, { 'name' => 'Artist Two' }],
+          title: 'Test Song',
+          id: 'spotify123',
+          isrc: 'USTEST1234567',
+          track: { 'id' => 'spotify123', 'name' => 'Test Song' }
+        )
+      end
+
+      it 'skips nil artists and joins the rest' do
+        logger.log_spotify(spotify_track)
+        expect(logger.log.spotify_artist).to eq('Artist One, Artist Two')
+      end
+    end
   end
 
   describe '#log_deezer' do

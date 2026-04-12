@@ -62,10 +62,12 @@ module ArtistSearchConcern
     end
 
     def suggest_names(query, limit)
-      scope = order(spotify_popularity: :desc)
       if query.present?
         name_col = arel_table[:name]
-        scope = scope.where(trigram_or_ilike(name_col, query))
+        scope = where(trigram_or_ilike(name_col, query))
+                  .order(*SongSearchConcern.relevance_order('artists.name', query), spotify_popularity: :desc)
+      else
+        scope = order(spotify_popularity: :desc)
       end
       scope.limit(limit).pluck(:name).uniq
     end

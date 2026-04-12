@@ -127,7 +127,7 @@ class SongImportLogger
   def extract_spotify_artist(spotify_track)
     return nil unless spotify_track.artists
 
-    spotify_track.artists.map { |a| a['name'] }.join(', ')
+    spotify_track.artists.filter_map { |a| a&.dig('name') }.join(', ')
   end
 
   def extract_deezer_artist(deezer_track)

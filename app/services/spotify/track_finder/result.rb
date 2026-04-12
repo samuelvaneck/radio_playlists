@@ -46,7 +46,7 @@ module Spotify
 
       def fetch_spotify_track
         @spotify_query_result = FindById.new(id_on_spotify: @spotify_track_id).execute
-        return nil if @spotify_query_result.blank?
+        return nil if @spotify_query_result.blank? || @spotify_query_result['error'].present?
 
         # set the @filter_result
         dig_for_usable_tracks
@@ -126,7 +126,7 @@ module Spotify
                     @track['album']['artists']
                   end
 
-        artists.map do |artist|
+        artists.filter_map do |artist|
           Spotify::ArtistFinder.new({ id_on_spotify: artist['id'] }).info
         end
       end
@@ -253,6 +253,8 @@ module Spotify
       end
 
       def title_has_featuring_artists?
+        return false if @search_title.blank?
+
         @search_title.match?(Regexp.new(FEATURING_REGEX))
       end
     end

@@ -11,6 +11,18 @@ module SongSearchConcern
     trigram.or(col.matches("%#{ActiveRecord::Base.sanitize_sql_like(value)}%"))
   end
 
+  def self.relevance_order(column, query)
+    sanitized = ActiveRecord::Base.sanitize_sql_like(query)
+    [
+      Arel.sql(ActiveRecord::Base.sanitize_sql_array([
+                                                       "CASE WHEN LOWER(#{column}) = LOWER(?) THEN 0 " \
+                                                       "WHEN LOWER(#{column}) LIKE LOWER(?) THEN 1 ELSE 2 END",
+                                                       query, "#{sanitized}%"
+                                                     ])),
+      Arel.sql(ActiveRecord::Base.sanitize_sql_array(["similarity(#{column}, ?) DESC", query]))
+    ]
+  end
+
   included do
     scope :filter_by_artist, lambda { |artist_name|
       return all if artist_name.blank?
@@ -43,6 +55,14 @@ module SongSearchConcern
         .select('songs.*, COUNT(air_plays.id) AS air_plays_count')
         .group('songs.id')
         .order(Arel.sql('air_plays_count DESC'))
+    }
+    scope :distinct_years, lambda { |limit|
+      year_col = Arel.sql('EXTRACT(YEAR FROM release_date)::integer')
+      where.not(release_date: nil)
+        .select(year_col.as('year'))
+        .distinct
+        .order(year: :desc)
+        .limit(limit)
     }
   end
 
@@ -79,14 +99,22 @@ module SongSearchConcern
     end
 
     def suggest_artists(query, limit)
-      scope = Artist.order(spotify_popularity: :desc)
-      scope = scope.where(SongSearchConcern.trigram_or_ilike(Artist, :name, query)) if query.present?
+      scope = if query.present?
+                Artist.where(SongSearchConcern.trigram_or_ilike(Artist, :name, query))
+                  .order(*SongSearchConcern.relevance_order('artists.name', query), spotify_popularity: :desc)
+              else
+                Artist.order(spotify_popularity: :desc)
+              end
       scope.limit(limit).pluck(:name).uniq
     end
 
     def suggest_titles(query, limit)
-      scope = order(popularity: :desc)
-      scope = scope.where(SongSearchConcern.trigram_or_ilike(self, :title, query)) if query.present?
+      scope = if query.present?
+                where(SongSearchConcern.trigram_or_ilike(self, :title, query))
+                  .order(*SongSearchConcern.relevance_order('songs.title', query), popularity: :desc)
+              else
+                order(popularity: :desc)
+              end
       scope.limit(limit).pluck(:title).uniq
     end
 
@@ -97,13 +125,7 @@ module SongSearchConcern
     end
 
     def suggest_years(limit)
-      year_col = Arel.sql('EXTRACT(YEAR FROM release_date)::integer')
-      where.not(release_date: nil)
-        .select(year_col.as('year'))
-        .distinct
-        .order(year: :desc)
-        .limit(limit)
-        .map(&:year)
+      distinct_years(limit).map(&:year)
     end
   end
 end
