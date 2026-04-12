@@ -47,7 +47,7 @@ module CircuitBreakable
       volume_threshold: config[:volume_threshold],
       error_threshold: config[:error_threshold],
       time_window: config[:time_window],
-      exceptions: [Faraday::Error, Faraday::TimeoutError, Faraday::ConnectionFailed, RateLimitError]
+      exceptions: [Faraday::ServerError, Faraday::TimeoutError, Faraday::ConnectionFailed, RateLimitError]
     }
   end
 
@@ -75,6 +75,12 @@ module CircuitBreakable
     begin
       attempts += 1
       yield
+    rescue Faraday::TooManyRequestsError => e
+      raise e unless attempts < max_attempts
+
+      delay = retry_after_from(e) || base_delay * (2**attempts)
+      sleep(delay)
+      retry
     rescue Faraday::Error, Faraday::TimeoutError, Faraday::ConnectionFailed, RateLimitError => e
       raise e unless attempts < max_attempts
 
@@ -82,6 +88,10 @@ module CircuitBreakable
       sleep(delay)
       retry
     end
+  end
+
+  def retry_after_from(error)
+    error.response&.dig(:headers, 'retry-after')&.to_i
   end
 
   def handle_rate_limit_response(response)

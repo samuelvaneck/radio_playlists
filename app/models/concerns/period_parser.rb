@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 module PeriodParser
-  VALID_UNITS = %w[day days week weeks month months year years].freeze
-  LEGACY_PERIODS = { 'day' => '1_day', 'week' => '1_week', 'month' => '1_month', 'year' => '1_year' }.freeze
+  VALID_UNITS = %w[hour hours day days week weeks month months year years].freeze
+  LEGACY_PERIODS = { 'hour' => '1_hour', 'day' => '1_day', 'week' => '1_week', 'month' => '1_month', 'year' => '1_year' }.freeze
 
   AGGREGATION_CONFIG = {
+    hours: { strftime: '%Y-%m-%dT%H:%M', time_step: 10.minutes },
     days: { strftime: '%Y-%m-%dT%H:00', time_step: 1.hour },
     weeks: { strftime: '%Y-%m-%d', time_step: 1.day },
     months: { strftime: '%Y-%m-%d', time_step: 1.day },
