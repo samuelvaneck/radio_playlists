@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe NaturalLanguageSearch, type: :service do
-  let(:query) { 'upbeat Dutch songs played on Radio 538 last week' }
+  let(:query) { 'upbeat Dutch songs played last week' }
   let(:service) { described_class.new(query) }
-  let(:radio_station) { create(:radio_station, name: 'Radio 538') }
+  let(:radio_station) { create(:radio_station) }
   let(:dutch_artist) { create(:artist, name: 'Davina Michelle', country_of_origin: ['NL'], genres: ['pop']) }
   let(:song) { create(:song, title: 'Duurt Te Lang', artists: [dutch_artist], popularity: 80) }
   let(:translator) { instance_double(Llm::QueryTranslator) }
@@ -23,7 +23,7 @@ RSpec.describe NaturalLanguageSearch, type: :service do
       before do
         allow(translator).to receive(:translate).and_return(
           country: 'NL',
-          radio_station: 'Radio 538',
+          radio_station: radio_station.name,
           period: 'week',
           mood: 'upbeat'
         )
@@ -70,7 +70,7 @@ RSpec.describe NaturalLanguageSearch, type: :service do
     context 'when filtering by radio station name' do
       before do
         allow(translator).to receive(:translate).and_return(
-          radio_station: 'Radio 538',
+          radio_station: radio_station.name,
           period: 'week'
         )
       end

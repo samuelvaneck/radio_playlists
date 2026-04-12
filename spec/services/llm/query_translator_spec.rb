@@ -3,11 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Llm::QueryTranslator, type: :service do
-  let(:query) { 'upbeat songs from Dutch artists played on Radio 538 last week' }
+  let(:query) { 'upbeat songs from Dutch artists played on Test FM last week' }
   let(:translator) { described_class.new(query) }
+  let(:radio_station) { create(:radio_station) }
 
   before do
-    create(:radio_station, name: 'Radio 538')
+    radio_station
   end
 
   describe '#translate' do
@@ -18,7 +19,7 @@ RSpec.describe Llm::QueryTranslator, type: :service do
         {
           mood: 'upbeat',
           country: 'NL',
-          radio_station: 'Radio 538',
+          radio_station: radio_station.name,
           period: 'week'
         }.to_json
       end
@@ -30,7 +31,7 @@ RSpec.describe Llm::QueryTranslator, type: :service do
       it 'returns parsed filters', :aggregate_failures do
         expect(translate[:mood]).to eq('upbeat')
         expect(translate[:country]).to eq('NL')
-        expect(translate[:radio_station]).to eq('Radio 538')
+        expect(translate[:radio_station]).to eq(radio_station.name)
         expect(translate[:period]).to eq('week')
       end
     end
