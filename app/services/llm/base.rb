@@ -23,7 +23,7 @@ module Llm
           with_exponential_backoff(max_attempts: 3, base_delay: 1) do
             response = client.chat(
               parameters: {
-                model: 'gpt-4o-mini',
+                model: 'gpt-4.1-mini',
                 messages: [
                   { role: 'system', content: system_prompt },
                   { role: 'user', content: user_message }
