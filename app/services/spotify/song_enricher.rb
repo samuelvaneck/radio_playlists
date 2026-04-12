@@ -80,7 +80,9 @@ module Spotify
     def update_artists(result)
       return if result.artists.blank?
 
-      artists = result.artists.map do |artist_data|
+      artists = result.artists.filter_map do |artist_data|
+        next if artist_data.nil?
+
         Artist.find_or_create_by(id_on_spotify: artist_data['id']) do |artist|
           artist.name = artist_data['name']
           artist.image = artist_data.dig('images', 0, 'url')

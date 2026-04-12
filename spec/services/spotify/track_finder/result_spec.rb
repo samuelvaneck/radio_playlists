@@ -240,6 +240,30 @@ describe Spotify::TrackFinder::Result, :use_vcr do
       end
     end
 
+    context 'when FindById returns a Spotify error response' do
+      let(:spotify_track_response) { { 'error' => { 'status' => 404, 'message' => 'Not found' } } }
+
+      it 'returns an invalid match' do
+        expect(finder.valid_match?).to be false
+      end
+    end
+
+    context 'when search title is blank' do
+      let(:title) { '' }
+
+      it 'does not raise an error' do
+        expect { finder.execute }.not_to raise_error
+      end
+    end
+
+    context 'when ArtistFinder returns nil for an artist' do
+      let(:artist_finder_instance) { instance_double(Spotify::ArtistFinder, info: nil) }
+
+      it 'filters out nil artists' do
+        expect(finder.artists).to eq([])
+      end
+    end
+
     context 'when track has no album artists' do
       let(:spotify_track_response) do
         {
