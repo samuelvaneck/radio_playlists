@@ -23,16 +23,24 @@ module ArtistSearchConcern
 
       where(Arel::Nodes::InfixOperation.new('@>', arel_table[:country_of_origin], Arel::Nodes.build_quoted("{#{country}}")))
     }
+    scope :sorted_by_air_plays, lambda {
+      joins(:air_plays)
+        .merge(AirPlay.confirmed)
+        .select('artists.*, COUNT(DISTINCT air_plays.id) AS air_plays_count')
+        .group('artists.id')
+        .order(Arel.sql('air_plays_count DESC'))
+    }
   end
 
   class_methods do
     def faceted_search(filters = {})
-      scope = order(spotify_popularity: :desc)
+      scope = all
       scope = scope.search_by_name(filters[:q]) if filters[:q].present?
-      scope.filter_by_name(filters[:name])
-        .filter_by_genre(filters[:genre])
-        .filter_by_country(filters[:country])
-        .limit(filters.fetch(:limit, 10))
+      scope = scope.filter_by_name(filters[:name])
+                .filter_by_genre(filters[:genre])
+                .filter_by_country(filters[:country])
+                .limit(filters.fetch(:limit, 10))
+      apply_faceted_sort(scope, filters[:sort_by])
     end
 
     def suggest(field:, query: nil, limit: 5)
@@ -45,6 +53,13 @@ module ArtistSearchConcern
     end
 
     private
+
+    def apply_faceted_sort(scope, sort_by)
+      case sort_by
+      when 'most_played' then scope.sorted_by_air_plays
+      else scope.order(spotify_popularity: :desc)
+      end
+    end
 
     def suggest_names(query, limit)
       scope = order(spotify_popularity: :desc)

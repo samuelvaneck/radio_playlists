@@ -177,6 +177,10 @@ RSpec.describe 'Songs API', type: :request do
                 description: 'Filter songs released in or before this year'
       parameter name: :limit, in: :query, type: :integer, required: false,
                 description: 'Maximum number of results (default: 10, max: 20)'
+      parameter name: :sort_by, in: :query, type: :string, required: false,
+                description: 'Sort order: popularity (default), most_played, newest'
+      parameter name: :page, in: :query, type: :integer, required: false,
+                description: 'Page number for pagination (24 items per page)'
 
       response '200', 'Search results retrieved successfully' do
         example 'application/json', :with_artist_filter, {
@@ -615,7 +619,7 @@ RSpec.describe 'Songs API', type: :request do
         let(:song) { create(:song, title: 'Rolling in the Deep', artists: [artist]) }
         let(:id) { song.id }
 
-        before do
+        before do # rubocop:disable RSpec/ScatteredSetup
           allow_any_instance_of(Wikipedia::SongFinder).to receive(:get_info).and_return( # rubocop:disable RSpec/AnyInstance
             'summary' => '2010 single by Adele',
             'description' => 'Song by Adele',
@@ -769,6 +773,50 @@ RSpec.describe 'Songs API', type: :request do
         let(:id) { 0 }
 
         run_test!
+      end
+    end
+  end
+
+  path '/api/v1/songs/natural_language_search' do
+    get 'Natural language search for songs' do
+      tags 'Songs'
+      produces 'application/json'
+      description 'Translates a natural language query into structured filters using an LLM and returns matching songs.'
+      parameter name: :q, in: :query, type: :string, required: true,
+                description: 'Natural language query (e.g. "upbeat Dutch songs played on Radio 538 last week")'
+      parameter name: :page, in: :query, type: :integer, required: false,
+                description: 'Page number for pagination (24 items per page)'
+
+      response '200', 'Search results retrieved successfully' do
+        let(:radio_station) { create(:radio_station, name: 'Test Station NLS') }
+        let(:artist) { create(:artist, name: 'Test Artist NLS', country_of_origin: ['NL']) }
+        let(:song) { create(:song, title: 'Test Song NLS', artists: [artist], popularity: 50) }
+        let(:q) { 'Dutch songs from last week' }
+        let(:translator) { instance_double(Llm::QueryTranslator, translate: { country: 'NL', period: 'week' }) }
+
+        before do # rubocop:disable RSpec/ScatteredSetup
+          create(:air_play, song: song, radio_station: radio_station, broadcasted_at: 2.days.ago, status: :confirmed)
+          allow(Llm::QueryTranslator).to receive(:new).and_return(translator)
+        end
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data).to have_key('data')
+          expect(data).to have_key('filters')
+          expect(data).to have_key('query')
+          expect(data).to have_key('total_entries')
+          expect(data).to have_key('total_pages')
+          expect(data).to have_key('current_page')
+        end
+      end
+
+      response '400', 'Missing query parameter' do
+        let(:q) { '' }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['error']).to eq('Query parameter q is required')
+        end
       end
     end
   end

@@ -5,6 +5,12 @@ module SongSearchConcern
 
   SEARCH_FIELDS = %w[artist title album year_from year_to].freeze
 
+  def self.trigram_or_ilike(table, column, value)
+    col = table.arel_table[column]
+    trigram = Arel::Nodes::InfixOperation.new('%', col, Arel::Nodes.build_quoted(value))
+    trigram.or(col.matches("%#{ActiveRecord::Base.sanitize_sql_like(value)}%"))
+  end
+
   included do
     scope :filter_by_artist, lambda { |artist_name|
       return all if artist_name.blank?
@@ -31,17 +37,25 @@ module SongSearchConcern
       scope = scope.where(release_date: ..Date.new(year_to.to_i).end_of_year) if year_to.present?
       scope
     }
+    scope :sorted_by_air_plays, lambda {
+      joins(:air_plays)
+        .merge(AirPlay.confirmed)
+        .select('songs.*, COUNT(air_plays.id) AS air_plays_count')
+        .group('songs.id')
+        .order(Arel.sql('air_plays_count DESC'))
+    }
   end
 
   class_methods do
     def faceted_search(filters = {})
-      scope = includes(:artists).order(popularity: :desc)
+      scope = includes(:artists)
       scope = scope.search_by_text(filters[:q]) if filters[:q].present?
-      scope.filter_by_artist(filters[:artist])
-        .filter_by_title(filters[:title])
-        .filter_by_album(filters[:album])
-        .filter_by_year_range(year_from: filters[:year_from], year_to: filters[:year_to])
-        .limit(filters.fetch(:limit, 10))
+      scope = scope.filter_by_artist(filters[:artist])
+                .filter_by_title(filters[:title])
+                .filter_by_album(filters[:album])
+                .filter_by_year_range(year_from: filters[:year_from], year_to: filters[:year_to])
+                .limit(filters.fetch(:limit, 10))
+      apply_faceted_sort(scope, filters[:sort_by])
     end
 
     def suggest(field:, query: nil, limit: 5)
@@ -56,21 +70,23 @@ module SongSearchConcern
 
     private
 
+    def apply_faceted_sort(scope, sort_by)
+      case sort_by
+      when 'most_played' then scope.sorted_by_air_plays
+      when 'newest' then scope.order(Arel.sql('songs.release_date DESC NULLS LAST'))
+      else scope.order(popularity: :desc)
+      end
+    end
+
     def suggest_artists(query, limit)
       scope = Artist.order(spotify_popularity: :desc)
-      if query.present?
-        name_col = Artist.arel_table[:name]
-        scope = scope.where(trigram_or_ilike(name_col, query))
-      end
+      scope = scope.where(SongSearchConcern.trigram_or_ilike(Artist, :name, query)) if query.present?
       scope.limit(limit).pluck(:name).uniq
     end
 
     def suggest_titles(query, limit)
       scope = order(popularity: :desc)
-      if query.present?
-        title_col = arel_table[:title]
-        scope = scope.where(trigram_or_ilike(title_col, query))
-      end
+      scope = scope.where(SongSearchConcern.trigram_or_ilike(self, :title, query)) if query.present?
       scope.limit(limit).pluck(:title).uniq
     end
 
@@ -88,11 +104,6 @@ module SongSearchConcern
         .order(year: :desc)
         .limit(limit)
         .map(&:year)
-    end
-
-    def trigram_or_ilike(column, value)
-      trigram = Arel::Nodes::InfixOperation.new('%', column, Arel::Nodes.build_quoted(value))
-      trigram.or(column.matches("%#{sanitize_sql_like(value)}%"))
     end
   end
 end

@@ -24,6 +24,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
       resources :artists, only: %i[index show] do
         get :autocomplete, on: :collection
         get :search, on: :collection
+        get :natural_language_search, on: :collection
         get :search_suggestions, on: :collection
         get :graph_data, on: :member
         get :songs, on: :member
@@ -37,6 +38,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
       resources :songs, only: %i[index show] do
         get :autocomplete, on: :collection
         get :search, on: :collection
+        get :natural_language_search, on: :collection
         get :search_suggestions, on: :collection
         get :graph_data, on: :member
         get :chart_positions, on: :member

@@ -46,8 +46,35 @@ module Api
       #   - country (optional): Filter by country of origin
       #   - limit (optional, default: 10): Maximum number of results (max: 20)
       def search
-        results = Artist.faceted_search(search_filter_params)
-        render json: ArtistSerializer.new(results).serializable_hash.to_json
+        results = Artist.faceted_search(search_filter_params).paginate(page: params[:page], per_page: 24)
+
+        render json: ArtistSerializer.new(results)
+                       .serializable_hash
+                       .merge(pagination_data(results))
+                       .to_json
+      end
+
+      # GET /api/v1/artists/natural_language_search
+      #
+      # Natural language search for artists. Translates a free-text query into structured filters
+      # using an LLM, then executes the search.
+      #
+      # Parameters:
+      #   - q (required): Natural language query (e.g. "Dutch pop artists played on NPO Radio 2")
+      #   - page (optional): Page number for pagination (default: 1, 24 items per page)
+      #
+      # Response: Same format as index (ArtistSerializer with pagination data)
+      def natural_language_search
+        return render json: { error: 'Query parameter q is required' }, status: :bad_request if params[:q].blank?
+
+        service = NaturalLanguageSearch.new(params[:q])
+        results = service.search.paginate(page: params[:page], per_page: 24)
+
+        render json: ArtistSerializer.new(results)
+                       .serializable_hash
+                       .merge(pagination_data(results))
+                       .merge(filters: service.filters, query: params[:q])
+                       .to_json
       end
 
       # GET /api/v1/artists/search_suggestions
@@ -217,6 +244,7 @@ module Api
           name: params[:name],
           genre: params[:genre],
           country: params[:country],
+          sort_by: params[:sort_by],
           limit: [params.fetch(:limit, 10).to_i, 20].min
         }
       end
