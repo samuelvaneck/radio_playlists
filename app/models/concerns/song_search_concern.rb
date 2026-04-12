@@ -68,7 +68,7 @@ module SongSearchConcern
 
   class_methods do
     def faceted_search(filters = {})
-      scope = includes(:artists)
+      scope = preload(:artists)
       scope = scope.search_by_text(filters[:q]) if filters[:q].present?
       scope = scope.filter_by_artist(filters[:artist])
                 .filter_by_title(filters[:title])
