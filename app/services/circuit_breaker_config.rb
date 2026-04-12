@@ -45,7 +45,7 @@ class CircuitBreakerConfig
       error_threshold: 50,
       time_window: 60
     },
-    claude: {
+    openai: {
       sleep_window: 60,
       volume_threshold: 5,
       error_threshold: 50,

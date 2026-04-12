@@ -4,13 +4,14 @@ module Llm
   class Base
     include CircuitBreakable
 
-    circuit_breaker_for :claude
+    circuit_breaker_for :openai
 
     private
 
     def client
-      @client ||= Anthropic::Client.new(
-        api_key: ENV.fetch('ANTHROPIC_API_KEY')
+      @client ||= OpenAI::Client.new(
+        access_token: ENV.fetch('OPENAI_API_KEY'),
+        request_timeout: 10
       )
     end
 
@@ -20,11 +21,16 @@ module Llm
       Rails.cache.fetch(cache_key, expires_in: 1.hour) do
         with_circuit_breaker do
           with_exponential_backoff(max_attempts: 3, base_delay: 1) do
-            response = client.messages(
-              model: 'claude-haiku-4-5-20251001',
-              max_tokens: max_tokens,
-              system: system_prompt,
-              messages: [{ role: 'user', content: user_message }]
+            response = client.chat(
+              parameters: {
+                model: 'gpt-4o-mini',
+                messages: [
+                  { role: 'system', content: system_prompt },
+                  { role: 'user', content: user_message }
+                ],
+                max_tokens: max_tokens,
+                temperature: 0
+              }
             )
             extract_text(response)
           end
@@ -37,7 +43,7 @@ module Llm
     end
 
     def extract_text(response)
-      response.dig('content', 0, 'text')
+      response.dig('choices', 0, 'message', 'content')
     end
   end
 end
