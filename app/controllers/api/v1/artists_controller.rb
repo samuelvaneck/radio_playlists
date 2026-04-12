@@ -244,6 +244,7 @@ module Api
           name: params[:name],
           genre: params[:genre],
           country: params[:country],
+          sort_by: params[:sort_by],
           limit: [params.fetch(:limit, 10).to_i, 20].min
         }
       end

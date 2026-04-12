@@ -323,6 +323,7 @@ module Api
           album: params[:album],
           year_from: params[:year_from],
           year_to: params[:year_to],
+          sort_by: params[:sort_by],
           limit: [params.fetch(:limit, 10).to_i, 20].min
         }
       end

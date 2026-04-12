@@ -177,6 +177,8 @@ RSpec.describe 'Songs API', type: :request do
                 description: 'Filter songs released in or before this year'
       parameter name: :limit, in: :query, type: :integer, required: false,
                 description: 'Maximum number of results (default: 10, max: 20)'
+      parameter name: :sort_by, in: :query, type: :string, required: false,
+                description: 'Sort order: popularity (default), most_played, newest'
       parameter name: :page, in: :query, type: :integer, required: false,
                 description: 'Page number for pagination (24 items per page)'
 

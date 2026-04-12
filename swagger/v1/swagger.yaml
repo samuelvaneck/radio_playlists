@@ -438,6 +438,12 @@ paths:
         description: 'Maximum number of results (default: 10, max: 20)'
         schema:
           type: integer
+      - name: sort_by
+        in: query
+        required: false
+        description: 'Sort order: popularity (default), most_played'
+        schema:
+          type: string
       - name: page
         in: query
         required: false
@@ -2784,6 +2790,12 @@ paths:
         description: 'Maximum number of results (default: 10, max: 20)'
         schema:
           type: integer
+      - name: sort_by
+        in: query
+        required: false
+        description: 'Sort order: popularity (default), most_played, newest'
+        schema:
+          type: string
       - name: page
         in: query
         required: false
