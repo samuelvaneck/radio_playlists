@@ -35,6 +35,34 @@ module Api
         render json: ArtistSerializer.new(results).serializable_hash.to_json
       end
 
+      # GET /api/v1/artists/search
+      #
+      # Faceted search for artists. All filters are optional and combinable.
+      #
+      # Parameters:
+      #   - q (optional): Free text search on artist name
+      #   - name (optional): Filter by artist name (fuzzy match)
+      #   - genre (optional): Filter by genre (array overlap)
+      #   - country (optional): Filter by country of origin
+      #   - limit (optional, default: 10): Maximum number of results (max: 20)
+      def search
+        results = Artist.faceted_search(search_filter_params)
+        render json: ArtistSerializer.new(results).serializable_hash.to_json
+      end
+
+      # GET /api/v1/artists/search_suggestions
+      #
+      # Returns autocomplete suggestions for a specific search field.
+      #
+      # Parameters:
+      #   - field (required): Field to suggest values for (name, genre, country)
+      #   - q (optional): Partial input to filter suggestions
+      #   - limit (optional, default: 5): Maximum suggestions (max: 10)
+      def search_suggestions
+        suggestions = Artist.suggest(field: params[:field], query: params[:q], limit: suggestion_limit)
+        render json: { suggestions: suggestions, field: params[:field] }
+      end
+
       def graph_data
         render json: artist.graph_data(params[:period])
       end
@@ -181,6 +209,20 @@ module Api
 
       def autocomplete_limit
         [params.fetch(:limit, 10).to_i, 20].min
+      end
+
+      def search_filter_params
+        {
+          q: params[:q],
+          name: params[:name],
+          genre: params[:genre],
+          country: params[:country],
+          limit: [params.fetch(:limit, 10).to_i, 20].min
+        }
+      end
+
+      def suggestion_limit
+        [params.fetch(:limit, 5).to_i, 10].min
       end
     end
   end

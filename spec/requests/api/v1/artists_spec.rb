@@ -103,6 +103,121 @@ RSpec.describe 'Artists API', type: :request do
     end
   end
 
+  path '/api/v1/artists/search' do
+    get 'Faceted search for artists' do
+      tags 'Artists'
+      produces 'application/json'
+      description 'Search artists with structured filters. All filters are optional and combinable.'
+      parameter name: :q, in: :query, type: :string, required: false,
+                description: 'Free text search on artist name'
+      parameter name: :name, in: :query, type: :string, required: false,
+                description: 'Filter by artist name (fuzzy match)'
+      parameter name: :genre, in: :query, type: :string, required: false,
+                description: 'Filter by genre'
+      parameter name: :country, in: :query, type: :string, required: false,
+                description: 'Filter by country of origin'
+      parameter name: :limit, in: :query, type: :integer, required: false,
+                description: 'Maximum number of results (default: 10, max: 20)'
+
+      response '200', 'Search results retrieved successfully' do
+        example 'application/json', :with_genre_filter, {
+          data: [
+            {
+              id: '1',
+              type: 'artist',
+              attributes: {
+                id: 1,
+                name: 'Coldplay',
+                genres: %w[rock pop],
+                country_of_origin: ['United Kingdom']
+              }
+            }
+          ]
+        }
+
+        let!(:rock_artist) { create(:artist, name: 'Coldplay', genres: %w[rock pop], spotify_popularity: 90) }
+        let!(:hiphop_artist) { create(:artist, name: 'Drake', genres: %w[hip-hop rap], spotify_popularity: 95) }
+        let(:genre) { 'rock' }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          names = data['data'].map { |d| d['attributes']['name'] }
+          expect(names).to include('Coldplay')
+          expect(names).not_to include('Drake')
+        end
+      end
+
+      context 'with country filter' do
+        response '200', 'Filtered by country' do
+          let!(:dutch_artist) { create(:artist, name: 'Davina Michelle', country_of_origin: ['Netherlands']) }
+          let!(:american_artist) { create(:artist, name: 'Taylor Swift', country_of_origin: ['United States']) }
+          let(:country) { 'Netherlands' }
+
+          run_test! do |response|
+            data = JSON.parse(response.body)
+            names = data['data'].map { |d| d['attributes']['name'] }
+            expect(names).to include('Davina Michelle')
+            expect(names).not_to include('Taylor Swift')
+          end
+        end
+      end
+
+      context 'without any filters' do
+        response '200', 'Returns artists ordered by popularity' do
+          let!(:artist) { create(:artist, spotify_popularity: 80) }
+
+          run_test! do |response|
+            data = JSON.parse(response.body)
+            expect(data['data']).to be_an(Array)
+          end
+        end
+      end
+    end
+  end
+
+  path '/api/v1/artists/search_suggestions' do
+    get 'Get search suggestions for a field' do
+      tags 'Artists'
+      produces 'application/json'
+      description 'Returns autocomplete suggestions for a specific artist search field'
+      parameter name: :field, in: :query, type: :string, required: false,
+                description: 'Field to suggest values for: name, genre, country'
+      parameter name: :q, in: :query, type: :string, required: false,
+                description: 'Partial input to filter suggestions'
+      parameter name: :limit, in: :query, type: :integer, required: false,
+                description: 'Maximum suggestions (default: 5, max: 10)'
+
+      response '200', 'Genre suggestions' do
+        example 'application/json', :genre_suggestions, {
+          suggestions: %w[rock pop hip-hop],
+          field: 'genre'
+        }
+
+        let!(:artist) { create(:artist, genres: %w[rock pop]) }
+        let(:field) { 'genre' }
+        let(:q) { 'ro' }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['suggestions']).to include('rock')
+          expect(data['field']).to eq('genre')
+        end
+      end
+
+      response '200', 'Available fields when no field specified' do
+        example 'application/json', :available_fields, {
+          suggestions: %w[name genre country],
+          field: nil
+        }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['suggestions']).to eq(%w[name genre country])
+        end
+      end
+    end
+  end
+
   path '/api/v1/artists/{id}' do
     get 'Get an artist' do
       tags 'Artists'

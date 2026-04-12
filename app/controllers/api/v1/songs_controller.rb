@@ -38,6 +38,36 @@ module Api
         render json: AutocompleteSongSerializer.new(results).serializable_hash.to_json
       end
 
+      # GET /api/v1/songs/search
+      #
+      # Faceted search for songs. All filters are optional and combinable.
+      #
+      # Parameters:
+      #   - q (optional): Free text search across title and artist
+      #   - artist (optional): Filter by artist name (fuzzy match)
+      #   - title (optional): Filter by song title (fuzzy match)
+      #   - album (optional): Filter by album name (fuzzy match)
+      #   - year_from (optional): Filter songs released in or after this year
+      #   - year_to (optional): Filter songs released in or before this year
+      #   - limit (optional, default: 10): Maximum number of results (max: 20)
+      def search
+        results = Song.faceted_search(search_filter_params)
+        render json: AutocompleteSongSerializer.new(results).serializable_hash.to_json
+      end
+
+      # GET /api/v1/songs/search_suggestions
+      #
+      # Returns autocomplete suggestions for a specific search field.
+      #
+      # Parameters:
+      #   - field (required): Field to suggest values for (artist, title, album, year)
+      #   - q (optional): Partial input to filter suggestions
+      #   - limit (optional, default: 5): Maximum suggestions (max: 10)
+      def search_suggestions
+        suggestions = Song.suggest(field: params[:field], query: params[:q], limit: suggestion_limit)
+        render json: { suggestions: suggestions, field: params[:field] }
+      end
+
       def graph_data
         render json: song.graph_data(params[:period])
       end
@@ -256,6 +286,22 @@ module Api
 
       def autocomplete_limit
         [params.fetch(:limit, 10).to_i, 20].min
+      end
+
+      def search_filter_params
+        {
+          q: params[:q],
+          artist: params[:artist],
+          title: params[:title],
+          album: params[:album],
+          year_from: params[:year_from],
+          year_to: params[:year_to],
+          limit: [params.fetch(:limit, 10).to_i, 20].min
+        }
+      end
+
+      def suggestion_limit
+        [params.fetch(:limit, 5).to_i, 10].min
       end
     end
   end
