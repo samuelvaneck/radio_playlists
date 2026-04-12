@@ -29,15 +29,13 @@ class NaturalLanguageSearch
     params = build_song_params
     songs = Song.most_played(params)
     songs = apply_song_facets(songs)
-    songs = apply_sorting(songs)
-    songs.limit(result_limit)
+    apply_sorting(songs)
   end
 
   def search_artists
     params = build_artist_params
     artists = Artist.most_played(params)
-    artists = apply_artist_facets(artists)
-    artists.limit(result_limit)
+    apply_artist_facets(artists)
   end
 
   def build_song_params
@@ -133,10 +131,6 @@ class NaturalLanguageSearch
     return nil if station.blank?
 
     [station]
-  end
-
-  def result_limit
-    filters.fetch(:limit, 20)
   end
 
   def empty_result

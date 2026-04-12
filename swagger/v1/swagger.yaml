@@ -438,6 +438,12 @@ paths:
         description: 'Maximum number of results (default: 10, max: 20)'
         schema:
           type: integer
+      - name: page
+        in: query
+        required: false
+        description: Page number for pagination (24 items per page)
+        schema:
+          type: integer
       responses:
         '200':
           description: Returns artists ordered by popularity
@@ -956,6 +962,12 @@ paths:
           Radio 2")
         schema:
           type: string
+      - name: page
+        in: query
+        required: false
+        description: Page number for pagination (24 items per page)
+        schema:
+          type: integer
       responses:
         '200':
           description: Search results retrieved successfully
@@ -2772,6 +2784,12 @@ paths:
         description: 'Maximum number of results (default: 10, max: 20)'
         schema:
           type: integer
+      - name: page
+        in: query
+        required: false
+        description: Page number for pagination (24 items per page)
+        schema:
+          type: integer
       responses:
         '200':
           description: Returns songs ordered by popularity
@@ -3375,6 +3393,12 @@ paths:
           538 last week")
         schema:
           type: string
+      - name: page
+        in: query
+        required: false
+        description: Page number for pagination (24 items per page)
+        schema:
+          type: integer
       responses:
         '200':
           description: Search results retrieved successfully

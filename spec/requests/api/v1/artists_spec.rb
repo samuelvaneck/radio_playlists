@@ -118,6 +118,8 @@ RSpec.describe 'Artists API', type: :request do
                 description: 'Filter by country of origin'
       parameter name: :limit, in: :query, type: :integer, required: false,
                 description: 'Maximum number of results (default: 10, max: 20)'
+      parameter name: :page, in: :query, type: :integer, required: false,
+                description: 'Page number for pagination (24 items per page)'
 
       response '200', 'Search results retrieved successfully' do
         example 'application/json', :with_genre_filter, {
@@ -612,6 +614,8 @@ RSpec.describe 'Artists API', type: :request do
       description 'Translates a natural language query into structured filters using an LLM and returns matching artists.'
       parameter name: :q, in: :query, type: :string, required: true,
                 description: 'Natural language query (e.g. "Dutch pop artists played on NPO Radio 2")'
+      parameter name: :page, in: :query, type: :integer, required: false,
+                description: 'Page number for pagination (24 items per page)'
 
       response '200', 'Search results retrieved successfully' do
         let(:radio_station) { create(:radio_station, name: 'Test Station NLS Artists') }
@@ -633,6 +637,9 @@ RSpec.describe 'Artists API', type: :request do
           expect(data).to have_key('data')
           expect(data).to have_key('filters')
           expect(data).to have_key('query')
+          expect(data).to have_key('total_entries')
+          expect(data).to have_key('total_pages')
+          expect(data).to have_key('current_page')
         end
       end
 
