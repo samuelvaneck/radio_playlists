@@ -35,6 +35,46 @@ module Api
         render json: ArtistSerializer.new(results).serializable_hash.to_json
       end
 
+      # GET /api/v1/artists/search
+      #
+      # Faceted search for artists. All filters are optional and combinable.
+      #
+      # Parameters:
+      #   - q (optional): Free text search on artist name
+      #   - name (optional): Filter by artist name (fuzzy match)
+      #   - genre (optional): Filter by genre (array overlap)
+      #   - country (optional): Filter by country of origin
+      #   - limit (optional, default: 10): Maximum number of results (max: 20)
+      def search
+        results = Artist.order(spotify_popularity: :desc)
+        results = results.search_by_name(params[:q]) if params[:q].present?
+        results = filter_by_name(results)
+        results = filter_by_genre(results)
+        results = filter_by_country(results)
+        results = results.limit(search_limit)
+
+        render json: ArtistSerializer.new(results).serializable_hash.to_json
+      end
+
+      # GET /api/v1/artists/search_suggestions
+      #
+      # Returns autocomplete suggestions for a specific search field.
+      #
+      # Parameters:
+      #   - field (required): Field to suggest values for (name, genre, country)
+      #   - q (optional): Partial input to filter suggestions
+      #   - limit (optional, default: 5): Maximum suggestions (max: 10)
+      def search_suggestions
+        suggestions = case params[:field]
+                      when 'name' then name_suggestions
+                      when 'genre' then genre_suggestions
+                      when 'country' then country_suggestions
+                      else available_fields_response
+                      end
+
+        render json: { suggestions: suggestions, field: params[:field] }
+      end
+
       def graph_data
         render json: artist.graph_data(params[:period])
       end
@@ -181,6 +221,75 @@ module Api
 
       def autocomplete_limit
         [params.fetch(:limit, 10).to_i, 20].min
+      end
+
+      def search_limit
+        [params.fetch(:limit, 10).to_i, 20].min
+      end
+
+      def suggestion_limit
+        [params.fetch(:limit, 5).to_i, 10].min
+      end
+
+      def filter_by_name(scope)
+        return scope if params[:name].blank?
+
+        name_col = Artist.arel_table[:name]
+        scope.where(
+          trigram_match(name_col, params[:name]).or(name_col.matches("%#{Artist.sanitize_sql_like(params[:name])}%"))
+        )
+      end
+
+      def filter_by_genre(scope)
+        return scope if params[:genre].blank?
+
+        scope.where(array_contains(Artist.arel_table[:genres], params[:genre]))
+      end
+
+      def filter_by_country(scope)
+        return scope if params[:country].blank?
+
+        scope.where(array_contains(Artist.arel_table[:country_of_origin], params[:country]))
+      end
+
+      def name_suggestions
+        query = params[:q]
+        scope = Artist.order(spotify_popularity: :desc)
+        if query.present?
+          name_col = Artist.arel_table[:name]
+          scope = scope.where(
+            trigram_match(name_col, query).or(name_col.matches("%#{Artist.sanitize_sql_like(query)}%"))
+          )
+        end
+        scope.limit(suggestion_limit).pluck(:name).uniq
+      end
+
+      def genre_suggestions
+        query = params[:q]
+        scope = Artist.where.not(genres: [])
+        genres = scope.pluck(:genres).flatten.tally.sort_by { |_genre, count| -count }.map(&:first)
+        genres = genres.select { |g| g.downcase.include?(query.downcase) } if query.present?
+        genres.first(suggestion_limit)
+      end
+
+      def country_suggestions
+        query = params[:q]
+        scope = Artist.where.not(country_of_origin: [])
+        countries = scope.pluck(:country_of_origin).flatten.tally.sort_by { |_c, count| -count }.map(&:first)
+        countries = countries.select { |c| c.downcase.include?(query.downcase) } if query.present?
+        countries.first(suggestion_limit)
+      end
+
+      def trigram_match(column, value)
+        Arel::Nodes::InfixOperation.new('%', column, Arel::Nodes.build_quoted(value))
+      end
+
+      def array_contains(column, value)
+        Arel::Nodes::InfixOperation.new('@>', column, Arel::Nodes.build_quoted("{#{value}}"))
+      end
+
+      def available_fields_response
+        %w[name genre country]
       end
     end
   end

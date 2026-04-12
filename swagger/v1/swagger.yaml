@@ -400,6 +400,108 @@ paths:
                 empty_results:
                   value:
                     data: []
+  "/api/v1/artists/search":
+    get:
+      summary: Faceted search for artists
+      tags:
+      - Artists
+      description: Search artists with structured filters. All filters are optional
+        and combinable.
+      parameters:
+      - name: q
+        in: query
+        required: false
+        description: Free text search on artist name
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Filter by artist name (fuzzy match)
+        schema:
+          type: string
+      - name: genre
+        in: query
+        required: false
+        description: Filter by genre
+        schema:
+          type: string
+      - name: country
+        in: query
+        required: false
+        description: Filter by country of origin
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: 'Maximum number of results (default: 10, max: 20)'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Returns artists ordered by popularity
+          content:
+            application/json:
+              examples:
+                with_genre_filter:
+                  value:
+                    data:
+                    - id: '1'
+                      type: artist
+                      attributes:
+                        id: 1
+                        name: Coldplay
+                        genres:
+                        - rock
+                        - pop
+                        country_of_origin:
+                        - United Kingdom
+  "/api/v1/artists/search_suggestions":
+    get:
+      summary: Get search suggestions for a field
+      tags:
+      - Artists
+      description: Returns autocomplete suggestions for a specific artist search field
+      parameters:
+      - name: field
+        in: query
+        required: false
+        description: 'Field to suggest values for: name, genre, country'
+        schema:
+          type: string
+      - name: q
+        in: query
+        required: false
+        description: Partial input to filter suggestions
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: 'Maximum suggestions (default: 5, max: 10)'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Available fields when no field specified
+          content:
+            application/json:
+              examples:
+                genre_suggestions:
+                  value:
+                    suggestions:
+                    - rock
+                    - pop
+                    - hip-hop
+                    field: genre
+                available_fields:
+                  value:
+                    suggestions:
+                    - name
+                    - genre
+                    - country
+                    field:
   "/api/v1/artists/{id}":
     get:
       summary: Get an artist
@@ -2600,6 +2702,127 @@ paths:
                 empty_results:
                   value:
                     data: []
+  "/api/v1/songs/search":
+    get:
+      summary: Faceted search for songs
+      tags:
+      - Songs
+      description: Search songs with structured filters. All filters are optional
+        and combinable.
+      parameters:
+      - name: q
+        in: query
+        required: false
+        description: Free text search across title and artist
+        schema:
+          type: string
+      - name: artist
+        in: query
+        required: false
+        description: Filter by artist name (fuzzy match)
+        schema:
+          type: string
+      - name: title
+        in: query
+        required: false
+        description: Filter by song title (fuzzy match)
+        schema:
+          type: string
+      - name: album
+        in: query
+        required: false
+        description: Filter by album name
+        schema:
+          type: string
+      - name: year_from
+        in: query
+        required: false
+        description: Filter songs released in or after this year
+        schema:
+          type: integer
+      - name: year_to
+        in: query
+        required: false
+        description: Filter songs released in or before this year
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        required: false
+        description: 'Maximum number of results (default: 10, max: 20)'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Returns songs ordered by popularity
+          content:
+            application/json:
+              examples:
+                with_artist_filter:
+                  value:
+                    data:
+                    - id: '1'
+                      type: song
+                      attributes:
+                        id: 1
+                        title: Hotline Bling
+                        spotify_artwork_url: https://i.scdn.co/image/abc123
+                        artists:
+                        - id: 1
+                          name: Drake
+  "/api/v1/songs/search_suggestions":
+    get:
+      summary: Get search suggestions for a field
+      tags:
+      - Songs
+      description: Returns autocomplete suggestions for a specific song search field
+      parameters:
+      - name: field
+        in: query
+        required: false
+        description: 'Field to suggest values for: artist, title, album, year'
+        schema:
+          type: string
+      - name: q
+        in: query
+        required: false
+        description: Partial input to filter suggestions
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: 'Maximum suggestions (default: 5, max: 10)'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Available fields when no field specified
+          content:
+            application/json:
+              examples:
+                artist_suggestions:
+                  value:
+                    suggestions:
+                    - Drake
+                    - Dua Lipa
+                    field: artist
+                year_suggestions:
+                  value:
+                    suggestions:
+                    - 2024
+                    - 2023
+                    - 2022
+                    field: year
+                available_fields:
+                  value:
+                    suggestions:
+                    - artist
+                    - title
+                    - album
+                    - year_from
+                    - year_to
+                    field:
   "/api/v1/songs/{id}":
     get:
       summary: Get a song

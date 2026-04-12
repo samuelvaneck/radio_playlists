@@ -9,8 +9,8 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   devise_for :admins
-  namespace :api, defaults: { format: :json } do
-    namespace :v1 do
+  namespace :api, defaults: { format: :json } do # rubocop:disable Metrics/BlockLength
+    namespace :v1 do # rubocop:disable Metrics/BlockLength
       devise_for :admins, controllers: { sessions: 'api/v1/admins/auth_token' }
       get 'admins/current', to: 'admins/current_admin#show'
       get 'admins/songs', to: 'admins/songs#index'
@@ -23,6 +23,8 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
       get '/playlists', to: redirect('/api/v1/air_plays')
       resources :artists, only: %i[index show] do
         get :autocomplete, on: :collection
+        get :search, on: :collection
+        get :search_suggestions, on: :collection
         get :graph_data, on: :member
         get :songs, on: :member
         get :chart_positions, on: :member
@@ -34,6 +36,8 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
       end
       resources :songs, only: %i[index show] do
         get :autocomplete, on: :collection
+        get :search, on: :collection
+        get :search_suggestions, on: :collection
         get :graph_data, on: :member
         get :chart_positions, on: :member
         get :time_analytics, on: :member

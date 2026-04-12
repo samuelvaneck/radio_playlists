@@ -158,6 +158,144 @@ RSpec.describe 'Songs API', type: :request do
     end
   end
 
+  path '/api/v1/songs/search' do
+    get 'Faceted search for songs' do
+      tags 'Songs'
+      produces 'application/json'
+      description 'Search songs with structured filters. All filters are optional and combinable.'
+      parameter name: :q, in: :query, type: :string, required: false,
+                description: 'Free text search across title and artist'
+      parameter name: :artist, in: :query, type: :string, required: false,
+                description: 'Filter by artist name (fuzzy match)'
+      parameter name: :title, in: :query, type: :string, required: false,
+                description: 'Filter by song title (fuzzy match)'
+      parameter name: :album, in: :query, type: :string, required: false,
+                description: 'Filter by album name'
+      parameter name: :year_from, in: :query, type: :integer, required: false,
+                description: 'Filter songs released in or after this year'
+      parameter name: :year_to, in: :query, type: :integer, required: false,
+                description: 'Filter songs released in or before this year'
+      parameter name: :limit, in: :query, type: :integer, required: false,
+                description: 'Maximum number of results (default: 10, max: 20)'
+
+      response '200', 'Search results retrieved successfully' do
+        example 'application/json', :with_artist_filter, {
+          data: [
+            {
+              id: '1',
+              type: 'song',
+              attributes: {
+                id: 1,
+                title: 'Hotline Bling',
+                spotify_artwork_url: 'https://i.scdn.co/image/abc123',
+                artists: [{ id: 1, name: 'Drake' }]
+              }
+            }
+          ]
+        }
+
+        let!(:drake) { create(:artist, name: 'Drake') }
+        let!(:song) { create(:song, title: 'Hotline Bling', artists: [drake], album_name: 'Views', release_date: Date.new(2016, 4, 29)) }
+        let(:artist) { 'Drake' }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['data']).to be_an(Array)
+        end
+      end
+
+      context 'with combined filters' do
+        response '200', 'Filtered results' do
+          let!(:target_artist) { create(:artist, name: 'Adele') }
+          let!(:target_song) do
+            create(:song, title: 'Rolling in the Deep', artists: [target_artist],
+                          album_name: '21', release_date: Date.new(2011, 1, 24))
+          end
+          let!(:other_song) { create(:song, title: 'Other Song', release_date: Date.new(2022, 1, 1)) }
+          let(:artist) { 'Adele' }
+          let(:year_from) { 2010 }
+          let(:year_to) { 2012 }
+
+          run_test! do |response|
+            data = JSON.parse(response.body)
+            titles = data['data'].map { |d| d['attributes']['title'] }
+            expect(titles).to include('Rolling in the Deep')
+            expect(titles).not_to include('Other Song')
+          end
+        end
+      end
+
+      context 'without any filters' do
+        response '200', 'Returns songs ordered by popularity' do
+          let!(:song) { create(:song, title: 'Some Song', popularity: 80) }
+
+          run_test! do |response|
+            data = JSON.parse(response.body)
+            expect(data['data']).to be_an(Array)
+          end
+        end
+      end
+    end
+  end
+
+  path '/api/v1/songs/search_suggestions' do
+    get 'Get search suggestions for a field' do
+      tags 'Songs'
+      produces 'application/json'
+      description 'Returns autocomplete suggestions for a specific song search field'
+      parameter name: :field, in: :query, type: :string, required: false,
+                description: 'Field to suggest values for: artist, title, album, year'
+      parameter name: :q, in: :query, type: :string, required: false,
+                description: 'Partial input to filter suggestions'
+      parameter name: :limit, in: :query, type: :integer, required: false,
+                description: 'Maximum suggestions (default: 5, max: 10)'
+
+      response '200', 'Artist suggestions' do
+        example 'application/json', :artist_suggestions, {
+          suggestions: ['Drake', 'Dua Lipa'],
+          field: 'artist'
+        }
+
+        let!(:artist) { create(:artist, name: 'Drake', spotify_popularity: 90) }
+        let(:field) { 'artist' }
+        let(:q) { 'Dra' }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['suggestions']).to include('Drake')
+          expect(data['field']).to eq('artist')
+        end
+      end
+
+      response '200', 'Year suggestions' do
+        example 'application/json', :year_suggestions, {
+          suggestions: [2024, 2023, 2022],
+          field: 'year'
+        }
+
+        let!(:song) { create(:song, release_date: Date.new(2023, 6, 1)) }
+        let(:field) { 'year' }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['suggestions']).to include(2023)
+        end
+      end
+
+      response '200', 'Available fields when no field specified' do
+        example 'application/json', :available_fields, {
+          suggestions: %w[artist title album year_from year_to],
+          field: nil
+        }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['suggestions']).to eq(%w[artist title album year_from year_to])
+        end
+      end
+    end
+  end
+
   path '/api/v1/songs/{id}' do
     get 'Get a song' do
       tags 'Songs'
