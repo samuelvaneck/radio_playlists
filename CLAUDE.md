@@ -84,6 +84,9 @@ The app uses service objects extensively in `app/services/`:
 - `MismatchedAirplayRepair` - Detects and fixes airplays linked to wrong songs by comparing import log titles against linked song titles (Jaro-Winkler < 70% = mismatch). Reassigns airplays to correct songs found by Spotify track ID, exact match, or newly created.
 - `HitPotentialCalculator` - Predicts song hit potential (0-100) using multi-signal scoring: audio features (50%), artist popularity (20%), engagement metrics (15%), release recency (15%)
 - `SoundProfileGenerator` - Generates per-station sound profiles with audio feature averages, top genres/tags, release decade distribution, and bilingual descriptions (EN/NL). Uses song-count-weighted percentiles and peak decade detection (≥15% threshold) for accurate era descriptions instead of naive min/max year ranges
+- `NaturalLanguageSearch` - Translates free-text queries (e.g., "upbeat Dutch songs on Radio 538 last week") into structured filters via `Llm::QueryTranslator`, then applies faceted search. Supports mood-based filtering using Spotify audio feature ranges
+- `Llm::Base` - OpenAI GPT-4.1-mini integration with 1-hour response caching, circuit breaker, and exponential backoff
+- `Llm::QueryTranslator` - System prompt that instructs GPT to output JSON filter objects. Supports text search, facets (genre, country, radio_station), temporal filters, mood mappings (upbeat, chill, danceable, etc. → audio feature ranges), and sorting. Handles both English and Dutch queries
 
 ### Background Jobs
 
@@ -204,6 +207,8 @@ Located in `app/models/concerns/`:
 - `TimeAnalyticsConcern` - Temporal analysis
 - `LifecycleConcern` - Model lifecycle callbacks
 - `PeriodParser` - Parses granular time ranges (`1_day`, `7_days`, `4_weeks`, `1_year`, etc.) into durations and aggregation patterns for charts and analytics
+- `SongSearchConcern` - Faceted search and suggestions for songs. Filters: artist (trigram + ILIKE on Artist), title, album, year range. Suggestions use 3-tier relevance ordering: exact match → prefix match → trigram similarity, then popularity tiebreaker. Shared helper `SongSearchConcern.relevance_order` generates the ORDER BY SQL
+- `ArtistSearchConcern` - Faceted search and suggestions for artists. Filters: name (trigram + ILIKE), genre (array containment `@>`), country (array containment). Same relevance ordering for suggestions via `SongSearchConcern.relevance_order`
 
 ## Code Style
 
@@ -259,6 +264,20 @@ RESTful JSON API under `/api/v1/`:
 - `songs`, `artists`, `air_plays`, `radio_stations`, `charts`
 - `GET /api/v1/artists/:id/similar_artists` — Returns artists with overlapping genres/Last.fm tags, sorted by similarity score then Spotify popularity
 - `GET /api/v1/radio_stations/release_date_graph` — Groups airplays by station and song release year for time-series visualization
+
+### Search & Suggestions
+
+**Faceted search** — filter and sort with structured parameters:
+- `GET /api/v1/songs/search` — params: `q`, `artist`, `title`, `album`, `year_from`, `year_to`, `sort_by` (`most_played`/`newest`/`popularity`), `limit` (max 20), `page` (24 per page)
+- `GET /api/v1/artists/search` — params: `q`, `name`, `genre`, `country`, `sort_by` (`most_played`/default popularity), `limit` (max 20), `page`
+
+**Natural language search** — LLM translates free-text queries to structured filters:
+- `GET /api/v1/songs/natural_language_search` — params: `q` (required), `page`. Response includes `filters` (decoded) and `query` alongside results
+- `GET /api/v1/artists/natural_language_search` — params: `q` (required), `page`
+
+**Suggestions** — autocomplete for specific fields, relevance-ordered:
+- `GET /api/v1/songs/search_suggestions` — params: `field` (`artist`/`title`/`album`/`year`), `q`, `limit` (max 10)
+- `GET /api/v1/artists/search_suggestions` — params: `field` (`name`/`genre`/`country`), `q`, `limit` (max 10)
 
 ### Slug-Based Lookup
 
@@ -371,6 +390,7 @@ echo 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' > /etc/apt
 - **Redis** - Caching (db #1) and Sidekiq (db #2)
 - **yt-dlp** - YouTube audio downloading for AcoustID fingerprint population
 - **Sentry** - Error tracking and performance monitoring (env var: `SENTRY_DSN`)
+- **OpenAI** - GPT-4.1-mini for natural language search query translation (env var: `OPENAI_API_KEY`)
 
 ## Audio Recognition
 
