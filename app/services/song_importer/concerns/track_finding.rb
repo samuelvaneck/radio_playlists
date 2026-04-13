@@ -4,6 +4,12 @@ module SongImporter::Concerns
   module TrackFinding
     extend ActiveSupport::Concern
 
+    # Patterns in scraped names that LLM cleanup can realistically fix
+    TITLEIZE_ARTIFACTS = /\b(?:Dj|Mc)\b/
+    NOISE_SUFFIXES = /\((?:Official|Radio|Live|Lyric|Video|Audio|Remix|Edit|feat)\b/i
+    CHART_PREFIX = /\A\s*#?\d+[.)\s:-]+\S/
+    STATION_TAGS = /\b(?:538|Qmusic|NPO|SLAM|Sky\s?Radio|3FM|Radio\s*\d)\b/i
+
     private
 
     def track
@@ -117,6 +123,7 @@ module SongImporter::Concerns
     # Feature 1: Clean up artist/title via LLM and retry Spotify as last resort
     def llm_cleaned_track
       return nil unless llm_import_enabled?
+      return nil unless worth_llm_cleanup?
 
       service = Llm::TrackNameCleaner.new(artist_name: artist_name, title: title)
       cleaned = service.clean
@@ -130,6 +137,23 @@ module SongImporter::Concerns
 
       @import_logger.log_spotify(cleaned_result)
       cleaned_result
+    end
+
+    # Skip LLM cleanup when Spotify already found a match — the search terms
+    # were adequate and cleanup can't bridge match-threshold gaps. Only proceed
+    # when Spotify returned nothing or the names have concrete fixable patterns.
+    def worth_llm_cleanup?
+      return true if no_spotify_results?(@spotify_track)
+
+      cleanup_patterns?(artist_name, title)
+    end
+
+    def cleanup_patterns?(artist, title)
+      text = "#{artist} #{title}"
+      TITLEIZE_ARTIFACTS.match?(text) ||
+        NOISE_SUFFIXES.match?(title) ||
+        CHART_PREFIX.match?(title) ||
+        STATION_TAGS.match?(title)
     end
   end
 end
