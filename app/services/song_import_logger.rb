@@ -90,6 +90,15 @@ class SongImportLogger
     )
   end
 
+  def log_llm(action:, raw_response:)
+    return unless @log
+
+    @log.update(
+      llm_action: action,
+      llm_raw_response: raw_response || {}
+    )
+  end
+
   def complete_log(song:, air_play:)
     return unless @log
 

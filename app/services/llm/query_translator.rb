@@ -85,13 +85,6 @@ module Llm
       {}
     end
 
-    def extract_json(text)
-      match = text.match(/```(?:json)?\s*(\{.*?\})\s*```/m)
-      return match[1] if match
-
-      text.strip
-    end
-
     def normalize_filters(parsed)
       filters = extract_string_filters(parsed)
       filters[:search_type] = parsed['search_type'] if SEARCH_TYPES.include?(parsed['search_type'])

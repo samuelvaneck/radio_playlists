@@ -18,6 +18,8 @@
 #  itunes_artist           :string
 #  itunes_raw_response     :jsonb
 #  itunes_title            :string
+#  llm_action              :string
+#  llm_raw_response        :jsonb
 #  recognized_artist       :string
 #  recognized_isrc         :string
 #  recognized_raw_response :jsonb

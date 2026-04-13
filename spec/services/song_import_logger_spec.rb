@@ -295,6 +295,25 @@ describe SongImportLogger do
     end
   end
 
+  describe '#log_llm' do
+    before { logger.start_log }
+
+    it 'updates llm_action' do
+      logger.log_llm(action: 'borderline_match_validation', raw_response: { request: 'test', response: 'yes' })
+      expect(logger.log.llm_action).to eq('borderline_match_validation')
+    end
+
+    it 'stores the raw LLM response' do
+      logger.log_llm(action: 'track_name_cleanup', raw_response: { request: 'Artist: Dj Tiesto', response: '{"artist":"Tiësto"}' })
+      expect(logger.log.llm_raw_response).to eq({ 'request' => 'Artist: Dj Tiesto', 'response' => '{"artist":"Tiësto"}' })
+    end
+
+    it 'does nothing if log is nil' do
+      new_logger = described_class.new(radio_station:)
+      expect { new_logger.log_llm(action: 'test', raw_response: {}) }.not_to raise_error
+    end
+  end
+
   describe '#complete_log' do
     let(:song) { create(:song) }
     let(:air_play) { create(:air_play, song:) }

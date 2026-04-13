@@ -45,5 +45,12 @@ module Llm
     def extract_text(response)
       response.dig('choices', 0, 'message', 'content')
     end
+
+    def extract_json(text)
+      match = text.match(/```(?:json)?\s*([{\[].*?[}\]])\s*```/m)
+      return match[1] if match
+
+      text.strip
+    end
   end
 end
