@@ -87,6 +87,9 @@ The app uses service objects extensively in `app/services/`:
 - `NaturalLanguageSearch` - Translates free-text queries (e.g., "upbeat Dutch songs on Radio 538 last week") into structured filters via `Llm::QueryTranslator`, then applies faceted search. Supports mood-based filtering using Spotify audio feature ranges
 - `Llm::Base` - OpenAI GPT-4.1-mini integration with 1-hour response caching, circuit breaker, and exponential backoff
 - `Llm::QueryTranslator` - System prompt that instructs GPT to output JSON filter objects. Supports text search, facets (genre, country, radio_station), temporal filters, mood mappings (upbeat, chill, danceable, etc. → audio feature ranges), and sorting. Handles both English and Dutch queries
+- `Llm::TrackNameCleaner` - Cleans scraped artist/title for Spotify search (fixes titleize artifacts like "Dj"→"DJ", missing diacritics, radio station tags, chart prefixes). Only called when Spotify returned no results or names match known dirty patterns — skipped when Spotify already found results (search terms were adequate)
+- `Llm::AlternativeSearchQueries` - Generates 2-3 alternative Spotify search queries when original search returned zero results
+- `Llm::BorderlineMatchValidator` - Validates borderline Spotify matches (title similarity 60-69%, artist already passes) by asking GPT if scraped and matched songs are the same
 
 ### Background Jobs
 
@@ -155,7 +158,12 @@ Radio Stream → Audio Recognition/Scraping → @played_song (artist, title, isr
     → AirPlay creation → Chart Generation
 ```
 
-**Important:** All three enrichment services (Spotify, Deezer, iTunes) independently receive the recognized/scraped data from `@played_song`. Deezer and iTunes do **not** use Spotify's response — they each search using the original artist/title/ISRC from the recognizer or scraper. `SongImporter#track` prefers Spotify, falls back to iTunes, then Deezer.
+**Important:** All three enrichment services (Spotify, Deezer, iTunes) independently receive the recognized/scraped data from `@played_song`. Deezer and iTunes do **not** use Spotify's response — they each search using the original artist/title/ISRC from the recognizer or scraper. `SongImporter#track` prefers Spotify, falls back to iTunes, then Deezer. If all fail, `SongExtractor#find_or_create_by_title` creates the song from scraped data alone (no external service validation).
+
+**LLM-enhanced track finding** (`TrackFinding` concern, gated by `LLM_IMPORT_ENABLED` env var):
+1. **Alternative search queries** — when Spotify returns zero results, `Llm::AlternativeSearchQueries` generates 2-3 variant queries (fix diacritics, remove noise)
+2. **Borderline match validation** — when Spotify match has title similarity 60-69% but artist passes (>= 80%), `Llm::BorderlineMatchValidator` asks GPT if they're the same song
+3. **Track name cleanup** — last resort fallback. Only fires when Spotify returned no results OR scraped names contain fixable patterns (titleize artifacts, noise suffixes, chart prefixes, station tags). Cleans names via `Llm::TrackNameCleaner` and retries Spotify
 
 **Spotify Track Finding** has two paths in `Spotify::TrackFinder::Result`:
 1. **Search-based** (`best_match`) — searches Spotify API by artist+title, filters by album type, picks best match with JaroWinkler scores
@@ -405,6 +413,8 @@ Both recognizers run on each import for comparison. Results are stored in `SongI
 **Comparison fields in SongImportLog:**
 - `recognized_*` - SongRec results (artist, title, isrcs, spotify_url, raw_response)
 - `acoustid_*` - AcoustID results (artist, title, recording_id, score, raw_response)
+- `llm_action` - Which LLM feature was used (`track_name_cleanup`, `alternative_search_queries`, `borderline_match_validation`). Single field — only the last LLM action per import is stored
+- `llm_raw_response` - Request/response pair from the LLM call
 
 **Limitation:** AcoustID only recognizes songs in MusicBrainz database (limited Dutch radio coverage).
 
