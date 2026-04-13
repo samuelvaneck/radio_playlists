@@ -10,9 +10,14 @@ module SongImporter::Concerns
       @track ||= spotify_track_if_valid || itunes_track_if_valid || deezer_track_if_valid || llm_cleaned_track
     end
 
+    def llm_import_enabled?
+      ENV.fetch('LLM_IMPORT_ENABLED', 'true') == 'true'
+    end
+
     def spotify_track_if_valid
       result = spotify_track
       return result if result&.valid_match?
+      return nil unless llm_import_enabled?
 
       # Try alternative search queries when Spotify returned no results at all
       if no_spotify_results?(result)
@@ -111,6 +116,8 @@ module SongImporter::Concerns
 
     # Feature 1: Clean up artist/title via LLM and retry Spotify as last resort
     def llm_cleaned_track
+      return nil unless llm_import_enabled?
+
       service = Llm::TrackNameCleaner.new(artist_name: artist_name, title: title)
       cleaned = service.clean
       @import_logger.log_llm(action: 'track_name_cleanup', raw_response: service.raw_response)

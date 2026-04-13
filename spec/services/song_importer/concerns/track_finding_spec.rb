@@ -44,6 +44,27 @@ RSpec.describe SongImporter::Concerns::TrackFinding do
       )
     end
 
+    describe '#llm_import_enabled?' do
+      context 'when LLM_IMPORT_ENABLED is set to false' do
+        before do
+          allow(ENV).to receive(:fetch).and_call_original
+          allow(ENV).to receive(:fetch).with('LLM_IMPORT_ENABLED', 'true').and_return('false')
+          allow(Llm::AlternativeSearchQueries).to receive(:new)
+          allow(Llm::TrackNameCleaner).to receive(:new)
+
+          stub_request(:get, %r{api\.spotify\.com/v1/search})
+            .to_return(status: 200, body: spotify_empty_response.to_json,
+                       headers: { 'Content-Type' => 'application/json' })
+        end
+
+        it 'skips all LLM features and returns nil', :aggregate_failures do
+          song_importer.send(:track)
+          expect(Llm::AlternativeSearchQueries).not_to have_received(:new)
+          expect(Llm::TrackNameCleaner).not_to have_received(:new)
+        end
+      end
+    end
+
     describe '#spotify_track_with_alternative_queries (Feature 5)' do
       let(:valid_spotify_response) do
         {
