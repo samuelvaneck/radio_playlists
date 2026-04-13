@@ -236,6 +236,84 @@ RSpec.describe SongImporter::Concerns::TrackFinding do
         end
       end
     end
+
+    describe '#worth_llm_cleanup?' do
+      context 'when Spotify found results with reasonable similarity' do
+        let(:title) { 'Slapeloze Nachten' }
+        let(:artist_name) { 'Opposites' }
+        let(:spotify_result_double) do
+          instance_double(
+            Spotify::TrackFinder::Result,
+            valid_match?: false,
+            track: { 'id' => 'test' },
+            matched_title_distance: 100,
+            matched_artist_distance: 78,
+            artists: [{ 'name' => 'The Opposites' }],
+            title: 'Slapeloze Nachten',
+            spotify_query_result: { 'tracks' => { 'items' => [{ 'id' => 'test' }] } }
+          )
+        end
+        let(:spotify_finder_double) do
+          instance_double(TrackExtractor::SpotifyTrackFinder, find: spotify_result_double)
+        end
+        let(:cleaner_double) { instance_double(Llm::TrackNameCleaner, clean: nil, raw_response: {}) }
+
+        before do
+          allow(TrackExtractor::SpotifyTrackFinder).to receive(:new).and_return(spotify_finder_double)
+          allow(Llm::TrackNameCleaner).to receive(:new).and_return(cleaner_double)
+          stub_request(:get, /api\.deezer\.com/).to_return(
+            status: 200, body: { 'data' => [] }.to_json, headers: { 'Content-Type' => 'application/json' }
+          )
+          stub_request(:get, /itunes\.apple\.com/).to_return(
+            status: 200, body: { 'resultCount' => 0, 'results' => [] }.to_json,
+            headers: { 'Content-Type' => 'application/json' }
+          )
+        end
+
+        it 'skips LLM cleanup' do
+          song_importer.send(:track)
+          expect(Llm::TrackNameCleaner).not_to have_received(:new)
+        end
+      end
+
+      context 'when Spotify found results but names have cleanup patterns' do
+        let(:title) { 'Red Lights (Radio 538 Versie)' }
+        let(:artist_name) { 'Dj Tiesto' }
+        let(:spotify_result_double) do
+          instance_double(
+            Spotify::TrackFinder::Result,
+            valid_match?: false,
+            track: { 'id' => 'test' },
+            matched_title_distance: 55,
+            matched_artist_distance: 75,
+            artists: [{ 'name' => 'Tiësto' }],
+            title: 'Red Lights',
+            spotify_query_result: { 'tracks' => { 'items' => [{ 'id' => 'test' }] } }
+          )
+        end
+        let(:spotify_finder_double) do
+          instance_double(TrackExtractor::SpotifyTrackFinder, find: spotify_result_double)
+        end
+        let(:cleaner_double) { instance_double(Llm::TrackNameCleaner, clean: nil, raw_response: {}) }
+
+        before do
+          allow(TrackExtractor::SpotifyTrackFinder).to receive(:new).and_return(spotify_finder_double)
+          allow(Llm::TrackNameCleaner).to receive(:new).and_return(cleaner_double)
+          stub_request(:get, /api\.deezer\.com/).to_return(
+            status: 200, body: { 'data' => [] }.to_json, headers: { 'Content-Type' => 'application/json' }
+          )
+          stub_request(:get, /itunes\.apple\.com/).to_return(
+            status: 200, body: { 'resultCount' => 0, 'results' => [] }.to_json,
+            headers: { 'Content-Type' => 'application/json' }
+          )
+        end
+
+        it 'proceeds with LLM cleanup' do
+          song_importer.send(:track)
+          expect(Llm::TrackNameCleaner).to have_received(:new)
+        end
+      end
+    end
   end
 
   private
