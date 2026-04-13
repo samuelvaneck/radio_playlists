@@ -18,6 +18,8 @@
 #  itunes_artist           :string
 #  itunes_raw_response     :jsonb
 #  itunes_title            :string
+#  llm_action              :string
+#  llm_raw_response        :jsonb
 #  recognized_artist       :string
 #  recognized_isrc         :string
 #  recognized_raw_response :jsonb
@@ -70,6 +72,7 @@ class SongImportLog < ApplicationRecord
     spotify_artist spotify_title spotify_track_id spotify_isrc
     deezer_artist deezer_title deezer_track_id
     itunes_artist itunes_title itunes_track_id
+    llm_action
     status failure_reason broadcasted_at created_at updated_at
   ].freeze
 

@@ -7,7 +7,8 @@ describe SongImporter do
   let(:import_logger) do
     instance_double(SongImportLogger, start_log: nil, log_scraping: nil, skip_log: nil,
                                       complete_log: nil, log_recognition: nil, log_acoustid: nil,
-                                      fail_log: nil, log_spotify: nil, log_deezer: nil, log_itunes: nil)
+                                      fail_log: nil, log_spotify: nil, log_deezer: nil, log_itunes: nil,
+                                      log_llm: nil)
   end
 
   before do
@@ -584,17 +585,23 @@ describe SongImporter do
     end
 
     describe 'when all track finders return invalid matches' do
-      let(:invalid_spotify) { instance_double(Spotify::TrackFinder::Result, valid_match?: false) }
+      let(:invalid_spotify) do
+        instance_double(Spotify::TrackFinder::Result, valid_match?: false, track: { 'id' => 'x' },
+                                                      matched_title_distance: 50, matched_artist_distance: 50,
+                                                      spotify_query_result: { 'tracks' => { 'items' => [{}] } })
+      end
       let(:invalid_itunes) { instance_double(Itunes::TrackFinder::Result, valid_match?: false) }
       let(:invalid_deezer) { instance_double(Deezer::TrackFinder::Result, valid_match?: false) }
       let(:spotify_finder) { instance_double(TrackExtractor::SpotifyTrackFinder, find: invalid_spotify) }
       let(:itunes_finder) { instance_double(TrackExtractor::ItunesTrackFinder, find: invalid_itunes) }
       let(:deezer_finder) { instance_double(TrackExtractor::DeezerTrackFinder, find: invalid_deezer) }
+      let(:cleaner_double) { instance_double(Llm::TrackNameCleaner, clean: nil, raw_response: {}) }
 
       before do
         allow(TrackExtractor::SpotifyTrackFinder).to receive(:new).and_return(spotify_finder)
         allow(TrackExtractor::ItunesTrackFinder).to receive(:new).and_return(itunes_finder)
         allow(TrackExtractor::DeezerTrackFinder).to receive(:new).and_return(deezer_finder)
+        allow(Llm::TrackNameCleaner).to receive(:new).and_return(cleaner_double)
       end
 
       it 'returns nil when no track has a valid match' do
@@ -618,7 +625,11 @@ describe SongImporter do
     end
 
     describe 'when Spotify invalid, iTunes invalid, Deezer valid' do
-      let(:invalid_spotify) { instance_double(Spotify::TrackFinder::Result, valid_match?: false) }
+      let(:invalid_spotify) do
+        instance_double(Spotify::TrackFinder::Result, valid_match?: false, track: { 'id' => 'x' },
+                                                      matched_title_distance: 50, matched_artist_distance: 50,
+                                                      spotify_query_result: { 'tracks' => { 'items' => [{}] } })
+      end
       let(:invalid_itunes) { instance_double(Itunes::TrackFinder::Result, valid_match?: false) }
       let(:valid_deezer) { instance_double(Deezer::TrackFinder::Result, valid_match?: true) }
       let(:spotify_finder) { instance_double(TrackExtractor::SpotifyTrackFinder, find: invalid_spotify) }

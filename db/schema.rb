@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_03_185447) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_13_081110) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -198,6 +198,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_03_185447) do
     t.jsonb "itunes_raw_response", default: {}
     t.string "itunes_title"
     t.string "itunes_track_id"
+    t.string "llm_action"
+    t.jsonb "llm_raw_response", default: {}
     t.bigint "radio_station_id", null: false
     t.string "recognized_artist"
     t.string "recognized_isrc"
