@@ -72,8 +72,8 @@ module SongImporter::Concerns
     end
 
     # Feature 5: Generate alternative search queries via LLM when Spotify returned no results
-    def spotify_track_with_alternative_queries
-      service = Llm::AlternativeSearchQueries.new(artist_name: artist_name, title: title)
+    def spotify_track_with_alternative_queries(search_artist: artist_name, search_title: title)
+      service = Llm::AlternativeSearchQueries.new(artist_name: search_artist, title: search_title)
       alternatives = service.generate
       @import_logger.log_llm(action: 'alternative_search_queries', raw_response: service.raw_response)
       return nil if alternatives.blank?
@@ -133,10 +133,16 @@ module SongImporter::Concerns
       Rails.logger.info("[LLM] Track name cleaned: '#{artist_name}' → '#{cleaned['artist']}', '#{title}' → '#{cleaned['title']}'")
       cleaned_result = Spotify::TrackFinder::Result.new(artists: cleaned['artist'], title: cleaned['title'])
       cleaned_result.execute
-      return nil unless cleaned_result.valid_match?
 
-      @import_logger.log_spotify(cleaned_result)
-      cleaned_result
+      if cleaned_result.valid_match?
+        @import_logger.log_spotify(cleaned_result)
+        return cleaned_result
+      end
+
+      # Second round: try alternative queries with cleaned names
+      return nil unless no_spotify_results?(cleaned_result)
+
+      spotify_track_with_alternative_queries(search_artist: cleaned['artist'], search_title: cleaned['title'])
     end
 
     # Skip LLM cleanup when Spotify already found a match — the search terms
