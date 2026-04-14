@@ -29,13 +29,15 @@ class NaturalLanguageSearch
     params = build_song_params
     songs = Song.most_played(params)
     songs = apply_song_facets(songs)
-    apply_sorting(songs)
+    songs = apply_sorting(songs)
+    apply_limit(songs)
   end
 
   def search_artists
     params = build_artist_params
     artists = Artist.most_played(params)
-    apply_artist_facets(artists)
+    artists = apply_artist_facets(artists)
+    apply_limit(artists)
   end
 
   def build_song_params
@@ -109,6 +111,12 @@ class NaturalLanguageSearch
     else
       scope
     end
+  end
+
+  def apply_limit(scope)
+    return scope if filters[:limit].blank?
+
+    scope.limit(filters[:limit])
   end
 
   def build_music_profile_params

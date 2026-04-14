@@ -73,9 +73,7 @@ module Api
         return render json: { error: 'Query parameter q is required' }, status: :bad_request if params[:q].blank?
 
         service = NaturalLanguageSearch.new(params[:q])
-        scope = service.search
-        per_page = service.filters[:limit] || 24
-        results = scope.paginate(page: params[:page], per_page: per_page)
+        results = service.search.paginate(page: params[:page], per_page: 24)
 
         render json: SongSerializer.new(results)
                        .serializable_hash
