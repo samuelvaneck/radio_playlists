@@ -84,9 +84,9 @@ The app uses service objects extensively in `app/services/`:
 - `MismatchedAirplayRepair` - Detects and fixes airplays linked to wrong songs by comparing import log titles against linked song titles (Jaro-Winkler < 70% = mismatch). Reassigns airplays to correct songs found by Spotify track ID, exact match, or newly created.
 - `HitPotentialCalculator` - Predicts song hit potential (0-100) using multi-signal scoring: audio features (50%), artist popularity (20%), engagement metrics (15%), release recency (15%)
 - `SoundProfileGenerator` - Generates per-station sound profiles with audio feature averages, top genres/tags, release decade distribution, and bilingual descriptions (EN/NL). Uses song-count-weighted percentiles and peak decade detection (≥15% threshold) for accurate era descriptions instead of naive min/max year ranges
-- `NaturalLanguageSearch` - Translates free-text queries (e.g., "upbeat Dutch songs on Radio 538 last week") into structured filters via `Llm::QueryTranslator`, then applies faceted search. Supports mood-based filtering using Spotify audio feature ranges
+- `NaturalLanguageSearch` - Translates free-text queries (e.g., "upbeat Dutch songs on Radio 538 last week") into structured filters via `Llm::QueryTranslator`, then applies faceted search. Supports mood-based filtering using Spotify audio feature ranges, result limiting ("top 3 songs", "most popular song" → `.limit()`), and lyrics-based song identification
 - `Llm::Base` - OpenAI GPT-4.1-mini integration with 1-hour response caching, circuit breaker, and exponential backoff
-- `Llm::QueryTranslator` - System prompt that instructs GPT to output JSON filter objects. Supports text search, facets (genre, country, radio_station), temporal filters, mood mappings (upbeat, chill, danceable, etc. → audio feature ranges), and sorting. Handles both English and Dutch queries
+- `Llm::QueryTranslator` - System prompt that instructs GPT to output JSON filter objects. Supports text search, facets (genre, country, radio_station), temporal filters, mood mappings (upbeat, chill, danceable, etc. → audio feature ranges), sorting, result limit (clamped 1-50), and lyrics-based song identification (GPT identifies artist+title from quoted lyrics; falls back to text_search if unrecognized). Handles both English and Dutch queries
 - `Llm::TrackNameCleaner` - Cleans scraped artist/title for Spotify search (fixes titleize artifacts like "Dj"→"DJ", missing diacritics, radio station tags, chart prefixes). Only called when Spotify returned no results or names match known dirty patterns — skipped when Spotify already found results (search terms were adequate)
 - `Llm::AlternativeSearchQueries` - Generates 2-3 alternative Spotify search queries when original search returned zero results
 - `Llm::BorderlineMatchValidator` - Validates borderline Spotify matches (title similarity 60-69%, artist already passes) by asking GPT if scraped and matched songs are the same
@@ -280,8 +280,8 @@ RESTful JSON API under `/api/v1/`:
 - `GET /api/v1/artists/search` — params: `q`, `name`, `genre`, `country`, `sort_by` (`most_played`/default popularity), `limit` (max 20), `page`
 
 **Natural language search** — LLM translates free-text queries to structured filters:
-- `GET /api/v1/songs/natural_language_search` — params: `q` (required), `page`. Response includes `filters` (decoded) and `query` alongside results
-- `GET /api/v1/artists/natural_language_search` — params: `q` (required), `page`
+- `GET /api/v1/songs/natural_language_search` — params: `q` (required), `page`. Response includes `filters` (decoded) and `query` alongside results. Supports limit queries ("top 3 songs on Sky Radio last month") and lyrics search ("I heard a song with the lyrics hello from the other side")
+- `GET /api/v1/artists/natural_language_search` — params: `q` (required), `page`. Same limit support as songs
 
 **Suggestions** — autocomplete for specific fields, relevance-ordered:
 - `GET /api/v1/songs/search_suggestions` — params: `field` (`artist`/`title`/`album`/`year`), `q`, `limit` (max 10)
