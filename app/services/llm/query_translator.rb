@@ -18,7 +18,7 @@ module Llm
 
     SORT_OPTIONS = %w[most_played newest popularity].freeze
     SEARCH_TYPES = %w[songs artists].freeze
-    STRING_FILTERS = %w[text_search artist title album genre radio_station period].freeze
+    STRING_FILTERS = %w[text_search artist title album genre radio_station period lyrics].freeze
 
     def initialize(query)
       super()
@@ -53,7 +53,8 @@ module Llm
         - "year_to": songs released in or before this year (integer)
         - "mood": one of: #{MOOD_MAPPINGS.keys.join(', ')}
         - "sort_by": one of: most_played, newest, popularity (default: most_played)
-        - "limit": max results (integer, default: 20, max: 50)
+        - "limit": max results to return (integer, default: 20, max: 50). Use when the user asks for "top N", "most popular", "number 1", etc. For example, "top 3" → limit: 3, "the most popular song" → limit: 1.
+        - "lyrics": the lyrics or text snippet the user is searching by (string, for display purposes only)
 
         Rules:
         - Return ONLY valid JSON, no explanation or markdown.
@@ -63,6 +64,7 @@ module Llm
         - "Recent" or "new" means period "month" unless more specific.
         - "Hits" or "popular" implies sort_by "popularity".
         - Understand both English and Dutch queries.
+        - When the user mentions lyrics, song text, or quotes part of a song, try to identify the song. If you recognize the lyrics, set "artist" and "title" to the correct song. Always set "lyrics" to the quoted/mentioned lyrics so the user can see what was matched. If you cannot identify the song, set "text_search" to the most distinctive words from the lyrics and still set "lyrics".
       PROMPT
     end
 
