@@ -83,23 +83,11 @@ class NaturalLanguageSearch
   end
 
   def apply_genre_filter(scope)
-    scope.joins(:artists).where(
-      Arel::Nodes::InfixOperation.new(
-        '&&',
-        Artist.arel_table[:genres],
-        Arel::Nodes.build_quoted("{#{ActiveRecord::Base.sanitize_sql_like(filters[:genre])}}")
-      )
-    )
+    scope.joins(:artists).where('artists.genres @> ARRAY[?]::varchar[]', filters[:genre])
   end
 
   def apply_country_filter(scope)
-    scope.joins(:artists).where(
-      Arel::Nodes::InfixOperation.new(
-        '@>',
-        Artist.arel_table[:country_of_origin],
-        Arel::Nodes.build_quoted("{#{ActiveRecord::Base.sanitize_sql_like(filters[:country])}}")
-      )
-    )
+    scope.joins(:artists).where('artists.country_of_origin @> ARRAY[?]::varchar[]', filters[:country])
   end
 
   def apply_sorting(scope)

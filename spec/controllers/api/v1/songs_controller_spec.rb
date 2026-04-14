@@ -58,6 +58,47 @@ describe Api::V1::SongsController do
     end
   end
 
+  describe 'error handling' do
+    context 'when the record is not found' do
+      it 'returns a generic not found error', :aggregate_failures do
+        get :show, params: { id: 0, format: :json }
+        body = JSON.parse(response.body)
+        expect(response).to have_http_status(:not_found)
+        expect(body['error']).to eq('Not found')
+      end
+    end
+
+    context 'when a statement is invalid' do
+      before do
+        allow(Song).to receive(:find).and_raise(ActiveRecord::StatementInvalid, 'PG::Error: column "secret" does not exist')
+      end
+
+      it 'returns a generic bad request error without database details', :aggregate_failures do
+        get :show, params: { id: 1, format: :json }
+        body = JSON.parse(response.body)
+        expect(response).to have_http_status(:bad_request)
+        expect(body['error']).to eq('Bad request')
+        expect(response.body).not_to include('PG::Error')
+        expect(response.body).not_to include('column')
+      end
+    end
+
+    context 'when an unexpected error occurs' do
+      before do
+        allow(Song).to receive(:find).and_raise(RuntimeError, 'songs table has columns id, title, secret_key')
+      end
+
+      it 'returns a generic internal server error without leaking details', :aggregate_failures do
+        get :show, params: { id: 1, format: :json }
+        body = JSON.parse(response.body)
+        expect(response).to have_http_status(:internal_server_error)
+        expect(body['error']).to eq('Internal server error')
+        expect(response.body).not_to include('songs table')
+        expect(response.body).not_to include('secret_key')
+      end
+    end
+  end
+
   describe 'GET #time_analytics' do
     subject(:get_time_analytics) { get :time_analytics, params: { id: song.id, format: :json } }
 

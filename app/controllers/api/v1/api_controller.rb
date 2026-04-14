@@ -8,9 +8,26 @@ module Api
       rate_limit to: 300, within: 1.minute, by: -> { request.remote_ip }, name: 'general',
                  with: -> { render json: { error: 'Rate limit exceeded' }, status: :too_many_requests }
 
+      rescue_from StandardError, with: :render_internal_error
       rescue_from DateConcern::ConflictingTimeParametersError, with: :render_conflicting_params_error
+      rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+      rescue_from ActiveRecord::StatementInvalid, ActionController::BadRequest, with: :render_bad_request
 
       private
+
+      def render_not_found
+        render json: { error: 'Not found' }, status: :not_found
+      end
+
+      def render_bad_request
+        render json: { error: 'Bad request' }, status: :bad_request
+      end
+
+      def render_internal_error(exception)
+        Rails.logger.error("[API Error] #{exception.class}: #{exception.message}")
+        ExceptionNotifier.notify(exception) if defined?(ExceptionNotifier)
+        render json: { error: 'Internal server error' }, status: :internal_server_error
+      end
 
       def authenticate_client!
         secret = ENV['FRONTEND_JWT_SECRET']

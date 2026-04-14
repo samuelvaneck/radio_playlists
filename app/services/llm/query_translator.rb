@@ -19,6 +19,8 @@ module Llm
     SORT_OPTIONS = %w[most_played newest popularity].freeze
     SEARCH_TYPES = %w[songs artists].freeze
     STRING_FILTERS = %w[text_search artist title album genre radio_station period lyrics].freeze
+    MAX_STRING_LENGTH = 200
+    COUNTRY_CODE_PATTERN = /\A[A-Z]{2,3}\z/
 
     def initialize(query)
       super()
@@ -90,7 +92,7 @@ module Llm
     def normalize_filters(parsed)
       filters = extract_string_filters(parsed)
       filters[:search_type] = parsed['search_type'] if SEARCH_TYPES.include?(parsed['search_type'])
-      filters[:country] = parsed['country'].upcase if parsed['country'].present?
+      filters[:country] = parsed['country'].upcase if parsed['country'].present? && parsed['country'].upcase.match?(COUNTRY_CODE_PATTERN)
       filters.merge!(extract_numeric_filters(parsed))
       filters.merge!(extract_enum_filters(parsed))
       filters
@@ -98,8 +100,17 @@ module Llm
 
     def extract_string_filters(parsed)
       STRING_FILTERS.each_with_object({}) do |key, hash|
-        hash[key.to_sym] = parsed[key] if parsed[key].present?
+        hash[key.to_sym] = sanitize_string(parsed[key]) if parsed[key].present?
       end
+    end
+
+    def sanitize_string(value)
+      return nil unless value.is_a?(String)
+
+      value
+        .gsub(/[[:cntrl:]]/, '')
+        .strip
+        .truncate(MAX_STRING_LENGTH, omission: '')
     end
 
     def extract_numeric_filters(parsed)

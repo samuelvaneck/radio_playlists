@@ -107,6 +107,70 @@ RSpec.describe Llm::QueryTranslator, type: :service do
       end
     end
 
+    context 'when sanitizing string filters' do
+      let(:llm_response) do
+        {
+          artist: "Artist\x00Name\x01With\x1FControl",
+          title: 'a' * 300
+        }.to_json
+      end
+
+      before do
+        allow(translator).to receive(:chat).and_return(llm_response)
+      end
+
+      it 'strips control characters from strings' do
+        expect(translate[:artist]).to eq('ArtistNameWithControl')
+      end
+
+      it 'truncates strings exceeding max length' do
+        expect(translate[:title].length).to eq(described_class::MAX_STRING_LENGTH)
+      end
+    end
+
+    context 'when the LLM returns non-string filter values' do
+      let(:llm_response) do
+        { artist: 12_345, title: ['array'] }.to_json
+      end
+
+      before do
+        allow(translator).to receive(:chat).and_return(llm_response)
+      end
+
+      it 'rejects non-string values', :aggregate_failures do
+        expect(translate[:artist]).to be_nil
+        expect(translate[:title]).to be_nil
+      end
+    end
+
+    context 'when the LLM returns an invalid country code' do
+      let(:llm_response) do
+        { country: 'Netherlands' }.to_json
+      end
+
+      before do
+        allow(translator).to receive(:chat).and_return(llm_response)
+      end
+
+      it 'rejects country values that are not ISO codes' do
+        expect(translate[:country]).to be_nil
+      end
+    end
+
+    context 'when the LLM returns a 3-letter country code' do
+      let(:llm_response) do
+        { country: 'nld' }.to_json
+      end
+
+      before do
+        allow(translator).to receive(:chat).and_return(llm_response)
+      end
+
+      it 'accepts 3-letter ISO codes' do
+        expect(translate[:country]).to eq('NLD')
+      end
+    end
+
     context 'when the query contains lyrics' do
       let(:llm_response) do
         {

@@ -16,12 +16,12 @@ module ArtistSearchConcern
     scope :filter_by_genre, lambda { |genre|
       return all if genre.blank?
 
-      where(Arel::Nodes::InfixOperation.new('@>', arel_table[:genres], Arel::Nodes.build_quoted("{#{genre}}")))
+      where('genres @> ARRAY[?]::varchar[]', genre)
     }
     scope :filter_by_country, lambda { |country|
       return all if country.blank?
 
-      where(Arel::Nodes::InfixOperation.new('@>', arel_table[:country_of_origin], Arel::Nodes.build_quoted("{#{country}}")))
+      where('country_of_origin @> ARRAY[?]::varchar[]', country)
     }
     scope :sorted_by_air_plays, lambda {
       joins(:air_plays)
