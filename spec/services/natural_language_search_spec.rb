@@ -151,6 +151,66 @@ RSpec.describe NaturalLanguageSearch, type: :service do
       end
     end
 
+    context 'when filtering songs by genre via artist' do
+      let(:pop_artist) { create(:artist, name: 'Pop Star', genres: ['pop']) }
+      let(:rock_artist) { create(:artist, name: 'Rock Star', genres: ['rock']) }
+      let(:pop_song) { create(:song, title: 'Pop Hit', artists: [pop_artist]) }
+      let(:rock_song) { create(:song, title: 'Rock Hit', artists: [rock_artist]) }
+
+      before do
+        create(:air_play, song: pop_song, radio_station: radio_station, broadcasted_at: 1.day.ago, status: :confirmed)
+        create(:air_play, song: rock_song, radio_station: radio_station, broadcasted_at: 1.day.ago, status: :confirmed)
+        allow(translator).to receive(:translate).and_return(genre: 'pop', period: 'all')
+      end
+
+      it 'returns only songs by artists with matching genre', :aggregate_failures do
+        result_ids = search.map(&:id)
+        expect(result_ids).to include(pop_song.id)
+        expect(result_ids).not_to include(rock_song.id)
+      end
+    end
+
+    context 'when filtering songs by country via artist' do
+      let(:nl_artist) { create(:artist, name: 'Dutch Singer', country_of_origin: ['NL']) }
+      let(:us_artist) { create(:artist, name: 'American Singer', country_of_origin: ['US']) }
+      let(:nl_song) { create(:song, title: 'Dutch Song', artists: [nl_artist]) }
+      let(:us_song) { create(:song, title: 'American Song', artists: [us_artist]) }
+
+      before do
+        create(:air_play, song: nl_song, radio_station: radio_station, broadcasted_at: 1.day.ago, status: :confirmed)
+        create(:air_play, song: us_song, radio_station: radio_station, broadcasted_at: 1.day.ago, status: :confirmed)
+        allow(translator).to receive(:translate).and_return(country: 'NL', period: 'all')
+      end
+
+      it 'returns only songs by artists from the matching country', :aggregate_failures do
+        result_ids = search.map(&:id)
+        expect(result_ids).to include(nl_song.id)
+        expect(result_ids).not_to include(us_song.id)
+      end
+    end
+
+    context 'when filtering artists by genre' do
+      let(:artist_service) { described_class.new('pop artists') }
+      let(:pop_artist) { create(:artist, name: 'Pop Star', genres: ['pop']) }
+      let(:rock_artist) { create(:artist, name: 'Rock Star', genres: ['rock']) }
+
+      before do
+        pop_song = create(:song, title: 'Pop Hit', artists: [pop_artist])
+        rock_song = create(:song, title: 'Rock Hit', artists: [rock_artist])
+        create(:air_play, song: pop_song, radio_station: radio_station, broadcasted_at: 1.day.ago, status: :confirmed)
+        create(:air_play, song: rock_song, radio_station: radio_station, broadcasted_at: 1.day.ago, status: :confirmed)
+        allow(translator).to receive(:translate).and_return(
+          search_type: 'artists', genre: 'pop', period: 'all'
+        )
+      end
+
+      it 'returns only artists with matching genre', :aggregate_failures do
+        result_ids = artist_service.search.map(&:id)
+        expect(result_ids).to include(pop_artist.id)
+        expect(result_ids).not_to include(rock_artist.id)
+      end
+    end
+
     context 'when the query specifies a limit' do
       let(:songs) { create_list(:song, 5) }
 
