@@ -106,6 +106,47 @@ RSpec.describe Llm::QueryTranslator, type: :service do
         expect(translate[:search_type]).to eq('artists')
       end
     end
+
+    context 'when the query contains lyrics' do
+      let(:llm_response) do
+        {
+          artist: 'Adele',
+          title: 'Hello',
+          lyrics: 'Hello from the other side',
+          period: 'all'
+        }.to_json
+      end
+
+      before do
+        allow(translator).to receive(:chat).and_return(llm_response)
+      end
+
+      it 'returns artist, title, and lyrics filters', :aggregate_failures do
+        expect(translate[:artist]).to eq('Adele')
+        expect(translate[:title]).to eq('Hello')
+        expect(translate[:lyrics]).to eq('Hello from the other side')
+      end
+    end
+
+    context 'when the query asks for a limited number of results' do
+      let(:llm_response) do
+        {
+          radio_station: radio_station.name,
+          period: 'month',
+          sort_by: 'most_played',
+          limit: 3
+        }.to_json
+      end
+
+      before do
+        allow(translator).to receive(:chat).and_return(llm_response)
+      end
+
+      it 'returns the limit filter', :aggregate_failures do
+        expect(translate[:limit]).to eq(3)
+        expect(translate[:sort_by]).to eq('most_played')
+      end
+    end
   end
 
   describe 'MOOD_MAPPINGS' do

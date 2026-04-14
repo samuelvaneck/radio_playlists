@@ -122,6 +122,53 @@ RSpec.describe NaturalLanguageSearch, type: :service do
         expect(popular_idx).to be < unpopular_idx
       end
     end
+
+    context 'when filtering by lyrics' do
+      let(:lyrics_query) { 'I heard a song with the lyrics hello from the other side' }
+      let(:lyrics_service) { described_class.new(lyrics_query) }
+      let(:adele) { create(:artist, name: 'Adele') }
+      let(:hello_song) { create(:song, title: 'Hello', artists: [adele]) }
+
+      before do
+        create(:air_play, song: hello_song, radio_station: radio_station, broadcasted_at: 1.day.ago,
+                          status: :confirmed)
+        allow(translator).to receive(:translate).and_return(
+          artist: 'Adele',
+          title: 'Hello',
+          lyrics: 'hello from the other side',
+          period: 'all'
+        )
+      end
+
+      it 'returns songs matching the identified artist and title' do
+        results = lyrics_service.search
+        expect(results.map(&:id)).to include(hello_song.id)
+      end
+
+      it 'exposes lyrics in filters' do
+        lyrics_service.search
+        expect(lyrics_service.filters[:lyrics]).to eq('hello from the other side')
+      end
+    end
+
+    context 'when the query specifies a limit' do
+      let(:songs) { create_list(:song, 5) }
+
+      before do
+        songs.each do |s|
+          create(:air_play, song: s, radio_station: radio_station, broadcasted_at: 1.day.ago, status: :confirmed)
+        end
+        allow(translator).to receive(:translate).and_return(
+          period: 'week',
+          limit: 3
+        )
+      end
+
+      it 'exposes the limit in filters for the controller to use' do
+        service.search
+        expect(service.filters[:limit]).to eq(3)
+      end
+    end
   end
 
   describe '#filters' do
