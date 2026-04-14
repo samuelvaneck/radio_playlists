@@ -235,6 +235,55 @@ RSpec.describe SongImporter::Concerns::TrackFinding do
           expect(song_importer.send(:track)).to be_nil
         end
       end
+
+      context 'when cleaned direct search fails but alternative queries with cleaned names succeed' do
+        let(:title) { '785 Fundament' }
+        let(:artist_name) { 'Opwekking Band met Marcel Zimmer' }
+
+        before do
+          allow(cleaner_double).to receive(:clean).and_return(
+            { 'artist' => 'Opwekking Band met Marcel Zimmer', 'title' => 'Fundament' }
+          )
+
+          # First call: alternative queries for original names (returns nothing)
+          # Second call: alternative queries for cleaned names (returns simplified artist)
+          alt_queries_cleaned = instance_double(Llm::AlternativeSearchQueries, raw_response: {})
+          allow(alt_queries_cleaned).to receive(:generate).and_return(
+            [{ 'artist' => 'Opwekking', 'title' => 'Fundament' }]
+          )
+          allow(Llm::AlternativeSearchQueries).to receive(:new)
+                                                    .with(artist_name: artist_name, title: title).and_return(alt_queries_double)
+          allow(Llm::AlternativeSearchQueries).to receive(:new)
+                                                    .with(artist_name: 'Opwekking Band met Marcel Zimmer', title: 'Fundament')
+                                                    .and_return(alt_queries_cleaned)
+
+          # All searches with the full artist name return empty
+          stub_request(:get, %r{api\.spotify\.com/v1/search\?q=.*opwekking%20band})
+            .to_return(status: 200, body: spotify_empty_response.to_json,
+                       headers: { 'Content-Type' => 'application/json' })
+
+          # Simplified "Opwekking" search returns a result
+          opwekking_response = {
+            'tracks' => {
+              'items' => [
+                build_spotify_track_item(id: 'spotify_opw', name: 'Fundament', artist_name: 'Opwekking')
+              ]
+            }
+          }
+          stub_request(:get, %r{api\.spotify\.com/v1/search\?q=.*artist.opwekking&type=track})
+            .to_return(status: 200, body: opwekking_response.to_json,
+                       headers: { 'Content-Type' => 'application/json' })
+
+          stub_request(:get, %r{api\.spotify\.com/v1/artists/})
+            .to_return(status: 200,
+                       body: { 'id' => 'opw1', 'name' => 'Opwekking', 'images' => [] }.to_json,
+                       headers: { 'Content-Type' => 'application/json' })
+        end
+
+        it 'finds the track via second-round alternative queries' do
+          expect(song_importer.send(:track)).to be_present
+        end
+      end
     end
 
     describe '#worth_llm_cleanup?' do

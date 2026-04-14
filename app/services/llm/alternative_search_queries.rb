@@ -29,11 +29,15 @@ module Llm
         Generate 2-3 alternative search queries that might find the song.
 
         Consider:
+        - Simplifying complex artist names: try just the primary band/group name without collaborators
+          (e.g., "Opwekking Band met Marcel Zimmer" → "Opwekking", "André Rieu & Johann Strauss Orchestra" → "André Rieu")
         - Removing featured artists from the title or artist field
         - Fixing common .titleize capitalization errors (e.g., "Dj" → "DJ", "Mc" → "MC")
         - Restoring special characters (e.g., "Tiesto" → "Tiësto", "Beyonce" → "Beyoncé")
         - Trying the international/English title if it looks like a Dutch translation
         - Removing parenthetical suffixes like "(Radio Edit)", "(Official Audio)", "(Live)"
+        - Handling track/catalog numbers: move to parentheses or remove
+          (e.g., "785 Fundament" → "Fundament" or "Fundament (785)")
         - Removing radio station tags or prefixes from the title
         - Simplifying punctuation
 
