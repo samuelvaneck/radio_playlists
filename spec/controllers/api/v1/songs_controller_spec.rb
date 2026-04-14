@@ -82,6 +82,21 @@ describe Api::V1::SongsController do
         expect(response.body).not_to include('column')
       end
     end
+
+    context 'when an unexpected error occurs' do
+      before do
+        allow(Song).to receive(:find).and_raise(RuntimeError, 'songs table has columns id, title, secret_key')
+      end
+
+      it 'returns a generic internal server error without leaking details', :aggregate_failures do
+        get :show, params: { id: 1, format: :json }
+        body = JSON.parse(response.body)
+        expect(response).to have_http_status(:internal_server_error)
+        expect(body['error']).to eq('Internal server error')
+        expect(response.body).not_to include('songs table')
+        expect(response.body).not_to include('secret_key')
+      end
+    end
   end
 
   describe 'GET #time_analytics' do
