@@ -277,7 +277,7 @@ describe SongImporter do
   end
 
   describe '#radio_program?' do
-    let(:station) { create(:radio_station, name: 'SLAM!', url: 'https://example.com/api', processor: 'slam_api_processor') }
+    let(:station) { create(:radio_station, name: 'Test FM Xylophone', url: 'https://example.com/api', processor: 'slam_api_processor') }
     let(:importer) { described_class.new(radio_station: station) }
     let(:scraper) do
       instance_double(
@@ -302,7 +302,7 @@ describe SongImporter do
     end
 
     context 'when artist matches station name and LLM confirms program' do
-      let(:artist_name) { 'SLAM!' }
+      let(:artist_name) { 'Test FM Xylophone' }
       let(:title) { 'Housuh In De Pauzuh' }
 
       before do
@@ -317,7 +317,7 @@ describe SongImporter do
     end
 
     context 'when artist matches station name but LLM says it is a song' do
-      let(:artist_name) { 'SLAM!' }
+      let(:artist_name) { 'Test FM Xylophone' }
       let(:title) { 'Some Actual Song' }
 
       before do
@@ -348,7 +348,7 @@ describe SongImporter do
     end
 
     context 'when track finding returns a Spotify match' do
-      let(:artist_name) { 'SLAM!' }
+      let(:artist_name) { 'Test FM Xylophone' }
       let(:title) { 'Some Song' }
       let(:valid_track) { instance_double(Spotify::TrackFinder::Result, valid_match?: true) }
 
@@ -372,11 +372,11 @@ describe SongImporter do
     end
 
     {
-      'exact match' => { station: 'SLAM!', artist: 'SLAM!', expected: true },
-      'case insensitive' => { station: 'SLAM!', artist: 'Slam!', expected: true },
-      'station in artist' => { station: 'Radio 538', artist: '538', expected: true },
-      'artist in station' => { station: 'Groot Nieuws Radio', artist: 'GNR', expected: false },
-      'no resemblance' => { station: 'SLAM!', artist: 'Tiësto', expected: false }
+      'exact match' => { station: 'Test FM Zulu', artist: 'Test FM Zulu', expected: true },
+      'case insensitive' => { station: 'Test FM Zulu', artist: 'test fm zulu', expected: true },
+      'station in artist' => { station: 'Test Radio 999', artist: '999', expected: true },
+      'artist in station' => { station: 'Test Groot Nieuws FM', artist: 'GNF', expected: false },
+      'no resemblance' => { station: 'Test FM Zulu', artist: 'Tiësto', expected: false }
     }.each do |label, params|
       context "with #{label}" do
         let(:radio_station) { create(:radio_station, name: params[:station]) }
