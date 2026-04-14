@@ -226,6 +226,169 @@ describe SongImporter do
     end
   end
 
+  describe '#recently_imported?' do
+    let(:station) { create(:radio_station, url: 'https://example.com/api', processor: 'slam_api_processor') }
+    let(:importer) { described_class.new(radio_station: station) }
+    let(:broadcasted_at) { Time.zone.parse('2026-04-14 13:32:25') }
+    let(:scraper) do
+      instance_double(
+        TrackScraper::SlamApiProcessor,
+        last_played_song: true,
+        title: 'Housuh In De Pauzuh',
+        artist_name: 'SLAM!',
+        spotify_url: nil,
+        isrc_code: nil,
+        broadcasted_at: broadcasted_at,
+        raw_response: {}
+      )
+    end
+
+    before do
+      allow(TrackScraper::SlamApiProcessor).to receive(:new).and_return(scraper)
+      allow(scraper).to receive(:is_a?).with(TrackScraper).and_return(true)
+      allow(import_logger).to receive(:log).and_return(build(:song_import_log, id: 999_999))
+    end
+
+    context 'when a recent import log with same data exists' do
+      before do
+        create(:song_import_log, radio_station: station, scraped_artist: 'SLAM!',
+                                 scraped_title: 'Housuh In De Pauzuh', broadcasted_at: broadcasted_at,
+                                 created_at: 10.minutes.ago)
+      end
+
+      it 'skips the import', :aggregate_failures do
+        result = importer.import
+        expect(result).to be false
+        expect(import_logger).to have_received(:skip_log).with(reason: /Duplicate/)
+      end
+    end
+
+    context 'when no recent import log with same data exists' do
+      before do
+        allow(Broadcaster).to receive(:no_artists_or_song)
+        allow(importer).to receive_messages(track: nil, artists: nil)
+      end
+
+      it 'does not skip for duplicate reasons' do
+        importer.import
+        expect(import_logger).not_to have_received(:skip_log).with(reason: /Duplicate/)
+      end
+    end
+  end
+
+  describe '#radio_program?' do
+    let(:station) { create(:radio_station, name: 'Test FM Xylophone', url: 'https://example.com/api', processor: 'slam_api_processor') }
+    let(:importer) { described_class.new(radio_station: station) }
+    let(:scraper) do
+      instance_double(
+        TrackScraper::SlamApiProcessor,
+        last_played_song: true,
+        title: title,
+        artist_name: artist_name,
+        spotify_url: nil,
+        isrc_code: nil,
+        broadcasted_at: Time.current,
+        raw_response: {}
+      )
+    end
+    let(:detector_double) { instance_double(Llm::ProgramDetector, raw_response: {}) }
+
+    before do
+      allow(TrackScraper::SlamApiProcessor).to receive(:new).and_return(scraper)
+      allow(scraper).to receive(:is_a?).with(TrackScraper).and_return(true)
+      allow(import_logger).to receive(:log).and_return(build(:song_import_log, id: 999_999))
+      allow(importer).to receive(:track).and_return(nil)
+      allow(Llm::ProgramDetector).to receive(:new).and_return(detector_double)
+    end
+
+    context 'when artist matches station name and LLM confirms program' do
+      let(:artist_name) { 'Test FM Xylophone' }
+      let(:title) { 'Housuh In De Pauzuh' }
+
+      before do
+        allow(detector_double).to receive(:program?).and_return(true)
+      end
+
+      it 'skips the import', :aggregate_failures do
+        result = importer.import
+        expect(result).to be false
+        expect(import_logger).to have_received(:skip_log).with(reason: /radio program/)
+      end
+    end
+
+    context 'when artist matches station name but LLM says it is a song' do
+      let(:artist_name) { 'Test FM Xylophone' }
+      let(:title) { 'Some Actual Song' }
+
+      before do
+        allow(detector_double).to receive(:program?).and_return(false)
+        allow(Broadcaster).to receive(:no_artists_or_song)
+        allow(importer).to receive(:artists).and_return(nil)
+      end
+
+      it 'does not skip for program detection' do
+        importer.import
+        expect(import_logger).not_to have_received(:skip_log).with(reason: /radio program/)
+      end
+    end
+
+    context 'when artist does not resemble station name' do
+      let(:artist_name) { 'Tiësto' }
+      let(:title) { 'Red Lights' }
+
+      before do
+        allow(Broadcaster).to receive(:no_artists_or_song)
+        allow(importer).to receive(:artists).and_return(nil)
+      end
+
+      it 'does not call the LLM program detector' do
+        importer.import
+        expect(Llm::ProgramDetector).not_to have_received(:new)
+      end
+    end
+
+    context 'when track finding returns a Spotify match' do
+      let(:artist_name) { 'Test FM Xylophone' }
+      let(:title) { 'Some Song' }
+      let(:valid_track) { instance_double(Spotify::TrackFinder::Result, valid_match?: true) }
+
+      before do
+        allow(Broadcaster).to receive(:no_artists_or_song)
+        allow(importer).to receive_messages(track: valid_track, artists: nil)
+      end
+
+      it 'does not check for radio program' do
+        importer.import
+        expect(Llm::ProgramDetector).not_to have_received(:new)
+      end
+    end
+  end
+
+  describe '#artist_resembles_station?' do
+    let(:importer) { described_class.new(radio_station:) }
+
+    before do
+      allow(importer).to receive(:artist_name).and_return(artist_name)
+    end
+
+    {
+      'exact match' => { station: 'Test FM Zulu', artist: 'Test FM Zulu', expected: true },
+      'case insensitive' => { station: 'Test FM Zulu', artist: 'test fm zulu', expected: true },
+      'station in artist' => { station: 'Test Radio 999', artist: '999', expected: true },
+      'artist in station' => { station: 'Test Groot Nieuws FM', artist: 'GNF', expected: false },
+      'no resemblance' => { station: 'Test FM Zulu', artist: 'Tiësto', expected: false }
+    }.each do |label, params|
+      context "with #{label}" do
+        let(:radio_station) { create(:radio_station, name: params[:station]) }
+        let(:artist_name) { params[:artist] }
+
+        it "returns #{params[:expected]}" do
+          expect(importer.send(:artist_resembles_station?)).to eq(params[:expected])
+        end
+      end
+    end
+  end
+
   describe '#illegal_word_in_title' do
     let(:importer) { described_class.new(radio_station:) }
 

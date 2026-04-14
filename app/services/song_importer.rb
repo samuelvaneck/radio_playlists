@@ -16,24 +16,7 @@ class SongImporter
   def import
     safe_start_log
     @played_song = scrape_song || recognize_song
-
-    if @played_song.blank?
-      Broadcaster.no_importing_song
-      @import_logger.skip_log(reason: 'No song scraped or recognized')
-      return false
-    elsif artist_name.blank?
-      Broadcaster.no_importing_artists
-      @import_logger.skip_log(reason: 'No artist name found')
-      return false
-    elsif illegal_word_in_title
-      Broadcaster.illegal_word_in_title(title:)
-      @import_logger.skip_log(reason: "Illegal word in title: #{title}")
-      return false
-    elsif artists.nil? || song.nil?
-      Broadcaster.no_artists_or_song(title:, radio_station_name: @radio_station.name)
-      @import_logger.skip_log(reason: 'No artists or song could be extracted')
-      return false
-    end
+    return false if skip_import?
 
     # Fetch and log Deezer/iTunes data for enrichment
     deezer_track
@@ -89,9 +72,70 @@ class SongImporter
     scrapper
   end
 
+  def skip_import?
+    if @played_song.blank?
+      Broadcaster.no_importing_song
+      @import_logger.skip_log(reason: 'No song scraped or recognized')
+      return true
+    elsif artist_name.blank?
+      Broadcaster.no_importing_artists
+      @import_logger.skip_log(reason: 'No artist name found')
+      return true
+    elsif illegal_word_in_title
+      Broadcaster.illegal_word_in_title(title:)
+      @import_logger.skip_log(reason: "Illegal word in title: #{title}")
+      return true
+    elsif recently_imported?
+      @import_logger.skip_log(reason: 'Duplicate: same scraped data recently imported')
+      return true
+    elsif radio_program?
+      @import_logger.skip_log(reason: "Detected as radio program: #{title}")
+      return true
+    elsif artists.nil? || song.nil?
+      Broadcaster.no_artists_or_song(title:, radio_station_name: @radio_station.name)
+      @import_logger.skip_log(reason: 'No artists or song could be extracted')
+      return true
+    end
+
+    false
+  end
+
   def illegal_word_in_title
     # 2 single quotes, reklame/reclame/nieuws/pingel and 2 dots
     title.match?(/'{2,}|(reklame|reclame|nieuws|pingel)|\.{2,}/i)
+  end
+
+  def recently_imported?
+    return false unless scraper_import
+
+    SongImportLog.where(radio_station: @radio_station, broadcasted_at: broadcasted_at)
+      .where(scraped_artist: artist_name, scraped_title: title)
+      .where.not(id: @import_logger.log&.id)
+      .where(created_at: 1.hour.ago..)
+      .exists?
+  end
+
+  def radio_program?
+    return false unless scraper_import
+    return false unless artist_resembles_station?
+    return false if track.present?
+
+    detector = Llm::ProgramDetector.new(
+      artist_name: artist_name,
+      title: title,
+      radio_station_name: @radio_station.name
+    )
+    is_program = detector.program?
+    @import_logger.log_llm(action: 'program_detection', raw_response: detector.raw_response)
+    is_program
+  end
+
+  def artist_resembles_station?
+    normalize = ->(s) { s.downcase.gsub(/[^a-z0-9]/, '') }
+    station = normalize.(@radio_station.name)
+    artist = normalize.(artist_name)
+
+    station == artist || station.include?(artist) || artist.include?(station)
   end
 
   def scraper_import
