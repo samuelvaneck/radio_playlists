@@ -87,19 +87,28 @@ class DuplicateSongMerger
   end
 
   def build_artist_groups(seen_ids)
-    groups = Hash.new { |h, k| h[k] = [] }
+    # Phase 1: Build artist_key => [song_id] mapping using lightweight SQL (no AR objects loaded)
+    rows = ActiveRecord::Base.connection.select_all(<<~SQL.squish)
+      SELECT song_id, string_agg(artist_id::text, ',' ORDER BY artist_id) AS artist_key
+      FROM artists_songs
+      GROUP BY song_id
+    SQL
 
-    Song.includes(:artists).find_each do |song|
-      next if seen_ids.include?(song.id)
+    id_groups = Hash.new { |h, k| h[k] = [] }
+    rows.each do |row|
+      song_id = row['song_id'].to_i
+      next if seen_ids.include?(song_id)
 
-      artist_key = song.artists.map(&:id).sort.join(',')
-      next if artist_key.blank?
-
-      groups[artist_key] << song
+      id_groups[row['artist_key']] << song_id
     end
+    rows = nil # rubocop:disable Lint/UselessAssignment
 
-    # Only keep groups with potential duplicates
-    groups.select { |_key, songs| songs.size > 1 }
+    # Phase 2: Only load Song objects for groups with potential duplicates
+    id_groups.each_with_object({}) do |(artist_key, song_ids), groups|
+      next if song_ids.size < 2
+
+      groups[artist_key] = Song.includes(:artists).where(id: song_ids).to_a
+    end
   end
 
   def build_title_groups(songs)
