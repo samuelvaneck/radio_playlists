@@ -56,7 +56,7 @@ class DuplicateSongMerger
                               .pluck(:id_on_spotify)
 
     duplicate_spotify_ids.each do |spotify_id|
-      songs = Song.includes(:artists, :air_plays).where(id_on_spotify: spotify_id).to_a
+      songs = Song.includes(:artists).where(id_on_spotify: spotify_id).to_a
       next unless same_artists?(songs)
 
       keeper, duplicates = select_keeper_and_duplicates(songs)
@@ -89,7 +89,7 @@ class DuplicateSongMerger
   def build_artist_groups(seen_ids)
     groups = Hash.new { |h, k| h[k] = [] }
 
-    Song.includes(:artists, :air_plays).find_each do |song|
+    Song.includes(:artists).find_each do |song|
       next if seen_ids.include?(song.id)
 
       artist_key = song.artists.map(&:id).sort.join(',')
@@ -152,7 +152,7 @@ class DuplicateSongMerger
 
   def select_keeper_and_duplicates(songs)
     sorted = songs.sort_by do |s|
-      [s.id_on_spotify.present? ? 0 : 1, -s.air_plays.size, s.id]
+      [s.id_on_spotify.present? ? 0 : 1, -s.air_plays.count, s.id]
     end
     [sorted.first, sorted[1..]]
   end
