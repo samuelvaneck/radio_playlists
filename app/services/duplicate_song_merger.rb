@@ -13,6 +13,7 @@ class DuplicateSongMerger
     @groups = []
     find_spotify_id_duplicates
     find_fuzzy_title_duplicates
+    find_slug_duplicates
     @groups
   end
 
@@ -84,6 +85,44 @@ class DuplicateSongMerger
         @groups << { keeper:, duplicates:, reason: 'fuzzy title match' }
       end
     end
+  end
+
+  def find_slug_duplicates
+    seen_ids = @groups.flat_map { |g| [g[:keeper].id] + g[:duplicates].map(&:id) }.to_set
+    base_groups = build_slug_groups(seen_ids)
+    return if base_groups.empty?
+
+    base_groups.each_value do |ids|
+      next if ids.size < 2
+
+      songs = Song.includes(:artists).where(id: ids.to_a).to_a
+      filtered = filter_conflicting_spotify_ids(songs)
+      next if filtered.size < 2
+
+      keeper, duplicates = select_keeper_and_duplicates(filtered)
+      @groups << { keeper:, duplicates:, reason: 'slug duplicate' }
+      seen_ids.merge(filtered.map(&:id))
+    end
+  end
+
+  def build_slug_groups(seen_ids)
+    base_groups = Hash.new { |h, k| h[k] = Set.new }
+
+    # Find songs with numbered slug suffixes (the -2, -3, etc. added by unique_slug)
+    Song.where("slug ~ '-\\d+$'").pluck(:id, :slug).each do |id, slug|
+      next if seen_ids.include?(id)
+
+      base_groups[slug.sub(/-\d+$/, '')] << id
+    end
+
+    # Add original songs (the ones with the unsuffixed base slug)
+    Song.where(slug: base_groups.keys).pluck(:id, :slug).each do |id, slug|
+      next if seen_ids.include?(id)
+
+      base_groups[slug] << id
+    end
+
+    base_groups
   end
 
   def build_artist_groups(seen_ids)
