@@ -224,7 +224,7 @@ module Spotify
       def add_match_scores(track)
         return if track.blank?
 
-        item_artist_names = track.dig('album', 'artists')&.map { |a| a['name'] }&.join(' ') || ''
+        item_artist_names = track.dig('album', 'artists')&.map { |a| a['name'] } || []
         item_title = track['name'] || ''
 
         track['artist_distance'] = artist_distance(item_artist_names)

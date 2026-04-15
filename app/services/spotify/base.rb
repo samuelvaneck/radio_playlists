@@ -59,8 +59,20 @@ module Spotify
       Spotify::Token.new.token
     end
 
-    def artist_distance(item_artist_names)
-      (JaroWinkler.similarity(item_artist_names.downcase, args[:artists].to_s.downcase) * 100).to_i
+    def artist_distance(spotify_artist_names)
+      scraped_names = split_artist_string(args[:artists].to_s).sort_by(&:downcase)
+      spotify_names = spotify_artist_names.sort_by(&:downcase)
+
+      (JaroWinkler.similarity(spotify_names.join(' ').downcase, scraped_names.join(' ').downcase) * 100).to_i
+    end
+
+    def split_artist_string(artist_string)
+      regex = Regexp.new(Song::MULTIPLE_ARTIST_REGEX, Regexp::IGNORECASE)
+      if artist_string.match?(regex)
+        artist_string.split(regex).map(&:strip).reject(&:blank?)
+      else
+        [artist_string]
+      end
     end
 
     def title_distance(item_title)
@@ -71,7 +83,7 @@ module Spotify
       items.filter_map do |item|
         next if item.blank?
 
-        item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }.join(' ')
+        item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }
         item_title = item['name']
 
         artist_dist = artist_distance(item_artist_names)
