@@ -197,7 +197,7 @@ class DuplicateSongMerger
       if existing
         air_play.destroy
       else
-        air_play.update!(song_id: target.id)
+        air_play.update_columns(song_id: target.id) # rubocop:disable Rails/SkipsModelValidations
       end
     end
   end
