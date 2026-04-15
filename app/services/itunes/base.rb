@@ -51,7 +51,19 @@ module Itunes
     end
 
     def artist_distance(item_artist_name)
-      (JaroWinkler.similarity(item_artist_name.to_s.downcase, args[:artists].to_s.downcase) * 100).to_i
+      scraped_names = split_artist_string(args[:artists].to_s).sort_by(&:downcase)
+      api_names = split_artist_string(item_artist_name.to_s).sort_by(&:downcase)
+
+      (JaroWinkler.similarity(api_names.join(' ').downcase, scraped_names.join(' ').downcase) * 100).to_i
+    end
+
+    def split_artist_string(artist_string)
+      regex = Regexp.new(Song::MULTIPLE_ARTIST_REGEX, Regexp::IGNORECASE)
+      if artist_string.match?(regex)
+        artist_string.split(regex).map(&:strip).reject(&:blank?)
+      else
+        [artist_string]
+      end
     end
 
     def title_distance(item_title)
