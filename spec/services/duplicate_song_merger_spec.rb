@@ -90,6 +90,59 @@ describe DuplicateSongMerger do
         expect(merger.find_duplicates).to be_empty
       end
     end
+
+    context 'when songs have numbered slug suffixes (slug duplicates)' do
+      let(:other_artist) { create(:artist, name: 'Snelle') }
+      let!(:song_a) do
+        create(:song, title: 'Ik Zing', id_on_spotify: 'spotify_1', artists: [artist], slug: 'ik-zing-taylor-swift')
+      end
+      let!(:song_b) do
+        create(:song, title: 'Ik Zing', id_on_spotify: nil, artists: [artist, other_artist],
+                      slug: 'ik-zing-taylor-swift-2')
+      end
+
+      before { create(:air_play, song: song_a) }
+
+      it 'groups them as slug duplicates', :aggregate_failures do
+        groups = merger.find_duplicates
+
+        slug_group = groups.find { |g| g[:reason] == 'slug duplicate' }
+        expect(slug_group).to be_present
+        expect(slug_group[:keeper]).to eq(song_a)
+        expect(slug_group[:duplicates]).to eq([song_b])
+      end
+    end
+
+    context 'when slug duplicates have conflicting Spotify IDs' do
+      before do
+        create(:song, title: 'Ik Zing', id_on_spotify: 'spotify_1', artists: [artist], slug: 'ik-zing-taylor-swift')
+        create(:song, title: 'Ik Zing', id_on_spotify: 'spotify_2', artists: [artist],
+                      slug: 'ik-zing-taylor-swift-2')
+      end
+
+      it 'does not group them' do
+        groups = merger.find_duplicates
+        slug_group = groups.find { |g| g[:reason] == 'slug duplicate' }
+
+        expect(slug_group).to be_nil
+      end
+    end
+
+    context 'when slug duplicates are already caught by another strategy' do
+      before do
+        create(:song, title: 'Love Story', id_on_spotify: 'spotify_1', artists: [artist],
+                      slug: 'love-story-taylor-swift')
+        create(:song, title: 'Love Story', id_on_spotify: 'spotify_1', artists: [artist],
+                      slug: 'love-story-taylor-swift-2')
+      end
+
+      it 'does not create a duplicate group for slugs', :aggregate_failures do
+        groups = merger.find_duplicates
+
+        expect(groups.size).to eq(1)
+        expect(groups.first[:reason]).to include('Spotify ID')
+      end
+    end
   end
 
   describe '#merge_all' do
