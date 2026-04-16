@@ -164,17 +164,15 @@ describe Spotify::TrackFinder::Result, :use_vcr do
       end
     end
 
-    context 'when artist name has a small prefix difference' do
+    context 'when artist name has a leading "The" prefix difference' do
       let(:artists) { 'Doobie Brothers' }
+      let(:title) { 'China Grove' }
       let(:response_artist) { 'The Doobie Brothers' }
       let(:response_title) { 'China Grove' }
 
-      it 'computes non-zero artist distance' do
-        expect(finder.matched_artist_distance).to be > 0
-      end
-
-      it 'falls below threshold for "The" prefix' do
-        expect(finder.matched_artist_distance).to be < Spotify::Base::ARTIST_SIMILARITY_THRESHOLD
+      it 'matches above threshold after stripping leading "The"', :aggregate_failures do
+        expect(finder.valid_match?).to be true
+        expect(finder.matched_artist_distance).to eq(100)
       end
     end
 
