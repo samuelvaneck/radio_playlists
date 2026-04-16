@@ -60,8 +60,8 @@ module Spotify
     end
 
     def artist_distance(spotify_artist_names)
-      scraped_names = split_artist_string(args[:artists].to_s).sort_by(&:downcase)
-      spotify_names = spotify_artist_names.sort_by(&:downcase)
+      scraped_names = split_artist_string(args[:artists].to_s).map { |name| without_leading_the(name) }.sort_by(&:downcase)
+      spotify_names = spotify_artist_names.map { |name| without_leading_the(name) }.sort_by(&:downcase)
 
       (JaroWinkler.similarity(spotify_names.join(' ').downcase, scraped_names.join(' ').downcase) * 100).to_i
     end
@@ -73,6 +73,10 @@ module Spotify
       else
         [artist_string]
       end
+    end
+
+    def without_leading_the(name)
+      name.sub(/\Athe\s+/i, '')
     end
 
     def title_distance(item_title)
