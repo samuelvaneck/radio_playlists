@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class SongImporter
+  CLEARED_IVARS = %i[
+    @played_song @artists @song @track @spotify_track @deezer_track @itunes_track @scraper_import
+  ].freeze
+
   include SongImporter::Concerns::AudioRecognition
   include SongImporter::Concerns::TrackFinding
   include SongImporter::Concerns::AirPlayCreation
@@ -34,25 +38,7 @@ class SongImporter
 
   private
 
-  def title
-    @title ||= @played_song.title
-  end
-
-  def artist_name
-    @artist_name ||= @played_song.artist_name
-  end
-
-  def spotify_url
-    @spotify_url ||= @played_song.spotify_url
-  end
-
-  def isrc_code
-    @isrc_code ||= @played_song.isrc_code
-  end
-
-  def broadcasted_at
-    @broadcasted_at ||= @played_song.broadcasted_at
-  end
+  delegate :title, :artist_name, :spotify_url, :isrc_code, :broadcasted_at, to: :@played_song, allow_nil: true
 
   def artists
     @artists ||= TrackExtractor::ArtistsExtractor.new(played_song: @played_song, track:).extract
@@ -146,15 +132,6 @@ class SongImporter
     Array.wrap(artists).map(&:name).join(', ')
   end
 
-  def artists_ids_to_s
-    Array.wrap(artists).map(&:id).join(' ')
-  end
-
-  ### check if any song played last hour matches the song we are importing
-  def any_song_matches?
-    @matching = SongImporter::Matcher.new(radio_station: @radio_station, song: @song).matches_any_played_last_hour?
-  end
-
   def safe_start_log
     @import_logger.start_log
   rescue StandardError => e
@@ -162,20 +139,8 @@ class SongImporter
   end
 
   def clear_instance_variables
-    @played_song = nil
-    @title = nil
-    @artist_name = nil
-    @spotify_url = nil
-    @isrc_code = nil
-    @broadcasted_at = nil
-    @artists = nil
-    @song = nil
-    @track = nil
-    @spotify_track = nil
-    @deezer_track = nil
-    @itunes_track = nil
-    @scraper_import = nil
-    @importer = nil
-    @matching = nil
+    CLEARED_IVARS.each do |ivar|
+      remove_instance_variable(ivar) if instance_variable_defined?(ivar)
+    end
   end
 end

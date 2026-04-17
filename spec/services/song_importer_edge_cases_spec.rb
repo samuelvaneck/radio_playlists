@@ -428,8 +428,7 @@ describe SongImporter do
     before do
       importer.instance_variable_set(:@song, song)
       importer.instance_variable_set(:@artists, [artist])
-      importer.instance_variable_set(:@played_song, instance_double(SongRecognizer, is_a?: false))
-      importer.instance_variable_set(:@broadcasted_at, Time.current)
+      importer.instance_variable_set(:@played_song, instance_double(SongRecognizer, is_a?: false, broadcasted_at: Time.current))
     end
 
     describe 'when song was already imported recently' do
@@ -457,7 +456,7 @@ describe SongImporter do
       end
 
       before do
-        importer.instance_variable_set(:@broadcasted_at, broadcasted_at)
+        allow(importer.instance_variable_get(:@played_song)).to receive(:broadcasted_at).and_return(broadcasted_at)
         allow(SongImporter::RecognizerImporter).to receive(:new).and_return(
           instance_double(SongImporter::RecognizerImporter, may_import_song?: true)
         )
@@ -496,9 +495,8 @@ describe SongImporter do
         allow(SongImportLogger).to receive(:new).and_return(import_logger)
         rec_importer.instance_variable_set(:@song, song)
         rec_importer.instance_variable_set(:@artists, [artist])
-        rec_importer.instance_variable_set(:@played_song, instance_double(SongRecognizer, is_a?: false))
+        rec_importer.instance_variable_set(:@played_song, instance_double(SongRecognizer, is_a?: false, broadcasted_at: Time.current))
         rec_importer.instance_variable_set(:@scraper_import, false)
-        rec_importer.instance_variable_set(:@broadcasted_at, Time.current)
         allow(SongImporter::RecognizerImporter).to receive(:new).and_return(
           instance_double(SongImporter::RecognizerImporter, may_import_song?: true)
         )
