@@ -17,6 +17,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
       patch 'admins/songs/:id', to: 'admins/songs#update'
       get 'admins/artists', to: 'admins/artists#index'
       patch 'admins/artists/:id', to: 'admins/artists#update'
+      get 'admins/radio_stations', to: 'admins/radio_stations#index'
 
       resources :air_plays, only: %i[index]
       # Redirect old playlists routes to air_plays
