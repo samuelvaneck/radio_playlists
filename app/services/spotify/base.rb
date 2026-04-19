@@ -87,11 +87,8 @@ module Spotify
       items.filter_map do |item|
         next if item.blank?
 
-        item_artist_names = item.dig('album', 'artists').map { |artist| artist['name'] }
-        item_title = item['name']
-
-        artist_dist = artist_distance(item_artist_names)
-        title_dist = title_distance(item_title)
+        artist_dist = best_artist_distance(item)
+        title_dist = title_distance(item['name'])
 
         # Use minimum of both distances to ensure both artist AND title match well
         # This prevents different songs by the same artist from getting high scores
@@ -101,6 +98,29 @@ module Spotify
           'match' => item['popularity'] + ([artist_dist, title_dist].min * 2)
         )
       end
+    end
+
+    # Album artists only list the primary credit, so scraped strings like
+    # "Artist A & Artist B" score poorly when the featured artist isn't on the
+    # album credit. Fall back to track-level artists (which include all
+    # collaborators) when the album score is below threshold.
+    def best_artist_distance(item)
+      album_names = album_artist_names(item)
+      album_dist = artist_distance(album_names)
+      return album_dist if album_dist >= ARTIST_SIMILARITY_THRESHOLD
+
+      track_names = track_artist_names(item)
+      return album_dist if track_names.blank? || track_names.sort == album_names.sort
+
+      [album_dist, artist_distance(track_names)].max
+    end
+
+    def album_artist_names(item)
+      item.dig('album', 'artists')&.map { |a| a['name'] } || []
+    end
+
+    def track_artist_names(item)
+      item['artists']&.map { |a| a['name'] } || []
     end
   end
 end
