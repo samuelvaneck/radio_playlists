@@ -140,6 +140,89 @@ describe MismatchedAirplayRepair do
       end
     end
 
+    context 'when spotify_track_id points to a different canonical song' do
+      let(:canonical_song) do
+        create(:song, title: 'True Love (feat. Lily Allen)', id_on_spotify: 'truelove123', artists: [artist])
+      end
+      let(:lookalike_song) { create(:song, title: 'True Love', id_on_spotify: nil, artists: [artist]) }
+      let(:air_play) { create(:air_play, song: lookalike_song, radio_station: radio_station) }
+      let!(:import_log) do
+        create(:song_import_log,
+               radio_station: radio_station,
+               song: lookalike_song,
+               air_play: air_play,
+               status: :success,
+               scraped_artist: 'Pink & Lily Allen',
+               scraped_title: 'True Love',
+               spotify_artist: 'P!nk',
+               spotify_title: 'True Love (feat. Lily Allen)',
+               spotify_track_id: 'truelove123',
+               import_source: :scraping)
+      end
+
+      before { canonical_song }
+
+      it 'detects the spotify-id mismatch', :aggregate_failures do
+        results = described_class.new(dry_run: true).run
+
+        expect(results[:mismatched]).to eq(1)
+        expect(results[:fixed]).to eq(0)
+      end
+
+      it 'reassigns the airplay to the canonical song', :aggregate_failures do
+        described_class.new(dry_run: false).run
+
+        expect(air_play.reload.song).to eq(canonical_song)
+        expect(import_log.reload.song).to eq(canonical_song)
+      end
+    end
+
+    context 'when spotify_track_id matches the linked song' do
+      let(:wrong_song) do
+        create(:song, title: 'True Love (feat. Lily Allen)', id_on_spotify: 'truelove123', artists: [artist])
+      end
+
+      before do
+        create(:song_import_log,
+               radio_station: radio_station,
+               song: wrong_song,
+               air_play: air_play,
+               status: :success,
+               scraped_artist: 'Pink & Lily Allen',
+               scraped_title: 'True Love',
+               spotify_title: 'True Love (feat. Lily Allen)',
+               spotify_track_id: 'truelove123',
+               import_source: :scraping)
+      end
+
+      it 'does not flag it as mismatched' do
+        results = described_class.new(dry_run: true).run
+
+        expect(results[:mismatched]).to eq(0)
+      end
+    end
+
+    context 'when spotify_track_id has no canonical song' do
+      before do
+        create(:song_import_log,
+               radio_station: radio_station,
+               song: wrong_song,
+               air_play: air_play,
+               status: :success,
+               scraped_artist: 'Zoë Livay & Snelle',
+               scraped_title: 'Ik Zing',
+               spotify_title: 'Ik Zing (feat. Snelle)',
+               spotify_track_id: 'ikzing123',
+               import_source: :scraping)
+      end
+
+      it 'does not flag it as mismatched' do
+        results = described_class.new(dry_run: true).run
+
+        expect(results[:mismatched]).to eq(0)
+      end
+    end
+
     context 'when import log has failed status' do
       before do
         create(:song_import_log,
