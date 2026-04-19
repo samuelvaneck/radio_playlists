@@ -13,6 +13,7 @@ class DuplicateSongMerger
     @groups = []
     find_spotify_id_duplicates
     find_fuzzy_title_duplicates
+    find_slug_duplicates
     @groups
   end
 
@@ -56,7 +57,7 @@ class DuplicateSongMerger
                               .pluck(:id_on_spotify)
 
     duplicate_spotify_ids.each do |spotify_id|
-      songs = Song.includes(:artists, :air_plays).where(id_on_spotify: spotify_id).to_a
+      songs = Song.includes(:artists).where(id_on_spotify: spotify_id).to_a
       next unless same_artists?(songs)
 
       keeper, duplicates = select_keeper_and_duplicates(songs)
@@ -86,20 +87,67 @@ class DuplicateSongMerger
     end
   end
 
-  def build_artist_groups(seen_ids)
-    groups = Hash.new { |h, k| h[k] = [] }
+  def find_slug_duplicates
+    seen_ids = @groups.flat_map { |g| [g[:keeper].id] + g[:duplicates].map(&:id) }.to_set
+    base_groups = build_slug_groups(seen_ids)
+    return if base_groups.empty?
 
-    Song.includes(:artists, :air_plays).find_each do |song|
-      next if seen_ids.include?(song.id)
+    base_groups.each_value do |ids|
+      next if ids.size < 2
 
-      artist_key = song.artists.map(&:id).sort.join(',')
-      next if artist_key.blank?
+      songs = Song.includes(:artists).where(id: ids.to_a).to_a
+      filtered = filter_conflicting_spotify_ids(songs)
+      next if filtered.size < 2
 
-      groups[artist_key] << song
+      keeper, duplicates = select_keeper_and_duplicates(filtered)
+      @groups << { keeper:, duplicates:, reason: 'slug duplicate' }
+      seen_ids.merge(filtered.map(&:id))
+    end
+  end
+
+  def build_slug_groups(seen_ids)
+    base_groups = Hash.new { |h, k| h[k] = Set.new }
+
+    # Find songs with numbered slug suffixes (the -2, -3, etc. added by unique_slug)
+    Song.where("slug ~ '-\\d+$'").pluck(:id, :slug).each do |id, slug|
+      next if seen_ids.include?(id)
+
+      base_groups[slug.sub(/-\d+$/, '')] << id
     end
 
-    # Only keep groups with potential duplicates
-    groups.select { |_key, songs| songs.size > 1 }
+    # Add original songs (the ones with the unsuffixed base slug)
+    Song.where(slug: base_groups.keys).pluck(:id, :slug).each do |id, slug|
+      next if seen_ids.include?(id)
+
+      base_groups[slug] << id
+    end
+
+    base_groups
+  end
+
+  def build_artist_groups(seen_ids)
+    # Phase 1: Build artist_key => [song_id] mapping using lightweight SQL (no AR objects loaded)
+    rows = ActiveRecord::Base.connection.select_all(<<~SQL.squish)
+      SELECT song_id, string_agg(artist_id::text, ',' ORDER BY artist_id) AS artist_key
+      FROM artists_songs
+      GROUP BY song_id
+    SQL
+
+    id_groups = Hash.new { |h, k| h[k] = [] }
+    rows.each do |row|
+      song_id = row['song_id'].to_i
+      next if seen_ids.include?(song_id)
+
+      id_groups[row['artist_key']] << song_id
+    end
+    rows = nil # rubocop:disable Lint/UselessAssignment
+
+    # Phase 2: Only load Song objects for groups with potential duplicates
+    id_groups.each_with_object({}) do |(artist_key, song_ids), groups|
+      next if song_ids.size < 2
+
+      groups[artist_key] = Song.includes(:artists).where(id: song_ids).to_a
+    end
   end
 
   def build_title_groups(songs)
@@ -152,7 +200,7 @@ class DuplicateSongMerger
 
   def select_keeper_and_duplicates(songs)
     sorted = songs.sort_by do |s|
-      [s.id_on_spotify.present? ? 0 : 1, -s.air_plays.size, s.id]
+      [s.id_on_spotify.present? ? 0 : 1, -s.air_plays.count, s.id]
     end
     [sorted.first, sorted[1..]]
   end
@@ -188,7 +236,7 @@ class DuplicateSongMerger
       if existing
         air_play.destroy
       else
-        air_play.update!(song_id: target.id)
+        air_play.update_columns(song_id: target.id) # rubocop:disable Rails/SkipsModelValidations
       end
     end
   end

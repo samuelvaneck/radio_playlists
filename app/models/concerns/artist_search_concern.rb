@@ -9,9 +9,7 @@ module ArtistSearchConcern
     scope :filter_by_name, lambda { |name|
       return all if name.blank?
 
-      name_col = arel_table[:name]
-      trigram = Arel::Nodes::InfixOperation.new('%', name_col, Arel::Nodes.build_quoted(name))
-      where(trigram.or(name_col.matches("%#{sanitize_sql_like(name)}%")))
+      where(SongSearchConcern.trigram_or_ilike(self, :name, name))
     }
     scope :filter_by_genre, lambda { |genre|
       return all if genre.blank?
@@ -62,13 +60,12 @@ module ArtistSearchConcern
     end
 
     def suggest_names(query, limit)
-      if query.present?
-        name_col = arel_table[:name]
-        scope = where(trigram_or_ilike(name_col, query))
+      scope = if query.present?
+                where(SongSearchConcern.trigram_or_ilike(self, :name, query))
                   .order(*SongSearchConcern.relevance_order('artists.name', query), spotify_popularity: :desc)
-      else
-        scope = order(spotify_popularity: :desc)
-      end
+              else
+                order(spotify_popularity: :desc)
+              end
       scope.limit(limit).pluck(:name).uniq
     end
 
@@ -84,11 +81,6 @@ module ArtistSearchConcern
       countries = scope.pluck(:country_of_origin).flatten.tally.sort_by { |_c, count| -count }.map(&:first)
       countries = countries.select { |c| c.downcase.include?(query.downcase) } if query.present?
       countries.first(limit)
-    end
-
-    def trigram_or_ilike(column, value)
-      trigram = Arel::Nodes::InfixOperation.new('%', column, Arel::Nodes.build_quoted(value))
-      trigram.or(column.matches("%#{sanitize_sql_like(value)}%"))
     end
   end
 end

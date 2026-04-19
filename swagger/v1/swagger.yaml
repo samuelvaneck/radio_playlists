@@ -121,6 +121,18 @@ paths:
           description: Current admin retrieved successfully
         '401':
           description: Not authenticated
+  "/api/v1/admins/radio_stations":
+    get:
+      summary: List radio stations for admin
+      tags:
+      - Admin Radio Stations
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Radio stations retrieved successfully
+        '401':
+          description: Not authenticated
   "/api/v1/admins/songs":
     get:
       summary: List songs for admin

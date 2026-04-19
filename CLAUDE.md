@@ -81,15 +81,16 @@ The app uses service objects extensively in `app/services/`:
 - `CombinedArtistSplitter` - Splits combined artist names (e.g., "Artist feat. Artist2") into individual Artist records
 - `DuplicateArtistMerger` - Finds and merges duplicate artists via Spotify ID or fuzzy name matching (Jaro-Winkler, threshold: 92)
 - `DuplicateSongMerger` - Finds and merges duplicate songs via Spotify ID or fuzzy title matching (Jaro-Winkler, threshold: 92)
-- `MismatchedAirplayRepair` - Detects and fixes airplays linked to wrong songs by comparing import log titles against linked song titles (Jaro-Winkler < 70% = mismatch). Reassigns airplays to correct songs found by Spotify track ID, exact match, or newly created.
+- `MismatchedAirplayRepair` - Detects and fixes airplays linked to wrong songs via two detectors: (1) title mismatch — import log title vs linked song title (Jaro-Winkler < 70%); (2) spotify_track_id mismatch — the log's Spotify ID points to a different canonical song than the one linked. Reassigns airplays to the canonical song (found by Spotify track ID, exact match, or newly created).
 - `HitPotentialCalculator` - Predicts song hit potential (0-100) using multi-signal scoring: audio features (50%), artist popularity (20%), engagement metrics (15%), release recency (15%)
 - `SoundProfileGenerator` - Generates per-station sound profiles with audio feature averages, top genres/tags, release decade distribution, and bilingual descriptions (EN/NL). Uses song-count-weighted percentiles and peak decade detection (≥15% threshold) for accurate era descriptions instead of naive min/max year ranges
 - `NaturalLanguageSearch` - Translates free-text queries (e.g., "upbeat Dutch songs on Radio 538 last week") into structured filters via `Llm::QueryTranslator`, then applies faceted search. Supports mood-based filtering using Spotify audio feature ranges, result limiting ("top 3 songs", "most popular song" → `.limit()`), and lyrics-based song identification
 - `Llm::Base` - OpenAI GPT-4.1-mini integration with 1-hour response caching, circuit breaker, and exponential backoff
 - `Llm::QueryTranslator` - System prompt that instructs GPT to output JSON filter objects. Supports text search, facets (genre, country, radio_station), temporal filters, mood mappings (upbeat, chill, danceable, etc. → audio feature ranges), sorting, result limit (clamped 1-50), and lyrics-based song identification (GPT identifies artist+title from quoted lyrics; falls back to text_search if unrecognized). Handles both English and Dutch queries
 - `Llm::TrackNameCleaner` - Cleans scraped artist/title for Spotify search (fixes titleize artifacts like "Dj"→"DJ", missing diacritics, radio station tags, chart prefixes). Only called when Spotify returned no results or names match known dirty patterns — skipped when Spotify already found results (search terms were adequate)
-- `Llm::AlternativeSearchQueries` - Generates 2-3 alternative Spotify search queries when original search returned zero results
+- `Llm::AlternativeSearchQueries` - Generates 2-3 alternative Spotify search queries when original search returned zero results. Includes artist name simplification (e.g., "Opwekking Band met Marcel Zimmer" → "Opwekking") and track/catalog number handling (e.g., "785 Fundament" → "Fundament")
 - `Llm::BorderlineMatchValidator` - Validates borderline Spotify matches (title similarity 60-69%, artist already passes) by asking GPT if scraped and matched songs are the same
+- `Llm::ProgramDetector` - Detects radio programs/shows (e.g., SLAM! "Housuh In De Pauzuh") vs actual songs. Only called when artist name resembles station name AND no Spotify match was found. Response cached 1 hour
 
 ### Background Jobs
 
@@ -151,6 +152,10 @@ Run via `Procfile.dev` (`streams` entry) or `docker-compose.yml` (`persistent_st
 
 ```
 Radio Stream → Audio Recognition/Scraping → @played_song (artist, title, isrc)
+    → skip_import? checks:
+        1. blank/illegal title? → skip
+        2. recently_imported? (same scraped data in last hour) → skip
+        3. radio_program? (artist ≈ station name, no Spotify match, LLM confirms) → skip
     ├→ SpotifyTrackFinder  (artist, title, isrc from @played_song)
     ├→ DeezerTrackFinder   (artist, title, isrc from @played_song)
     └→ ItunesTrackFinder   (artist, title from @played_song)
@@ -158,12 +163,17 @@ Radio Stream → Audio Recognition/Scraping → @played_song (artist, title, isr
     → AirPlay creation → Chart Generation
 ```
 
+**Import skip checks** (`SongImporter#skip_import?`):
+- `recently_imported?` — cheap DB `exists?` query (before track finding). Blocks repeated import attempts when the scraper returns the same artist/title/broadcasted_at within 1 hour. Only for scraper imports
+- `radio_program?` — detects radio shows/segments (e.g., SLAM! "Housuh In De Pauzuh") via heuristic + LLM. Only fires when: scraper import, artist name resembles station name (`artist_resembles_station?`), AND `track` is nil (no Spotify match). Uses `Llm::ProgramDetector` (cached 1 hour)
+
 **Important:** All three enrichment services (Spotify, Deezer, iTunes) independently receive the recognized/scraped data from `@played_song`. Deezer and iTunes do **not** use Spotify's response — they each search using the original artist/title/ISRC from the recognizer or scraper. `SongImporter#track` prefers Spotify, falls back to iTunes, then Deezer. If all fail, `SongExtractor#find_or_create_by_title` creates the song from scraped data alone (no external service validation).
 
 **LLM-enhanced track finding** (`TrackFinding` concern, gated by `LLM_IMPORT_ENABLED` env var):
-1. **Alternative search queries** — when Spotify returns zero results, `Llm::AlternativeSearchQueries` generates 2-3 variant queries (fix diacritics, remove noise)
+1. **Alternative search queries** — when Spotify returns zero results, `Llm::AlternativeSearchQueries` generates 2-3 variant queries (simplify artist names, fix diacritics, handle track numbers, remove noise)
 2. **Borderline match validation** — when Spotify match has title similarity 60-69% but artist passes (>= 80%), `Llm::BorderlineMatchValidator` asks GPT if they're the same song
 3. **Track name cleanup** — last resort fallback. Only fires when Spotify returned no results OR scraped names contain fixable patterns (titleize artifacts, noise suffixes, chart prefixes, station tags). Cleans names via `Llm::TrackNameCleaner` and retries Spotify
+4. **Second-round alternative queries** — when track name cleanup fixes the title but the direct search still fails, runs `AlternativeSearchQueries` again with the cleaned names to simplify the artist (e.g., "Opwekking Band met Marcel Zimmer" → "Opwekking")
 
 **Spotify Track Finding** has two paths in `Spotify::TrackFinder::Result`:
 1. **Search-based** (`best_match`) — searches Spotify API by artist+title, filters by album type, picks best match with JaroWinkler scores

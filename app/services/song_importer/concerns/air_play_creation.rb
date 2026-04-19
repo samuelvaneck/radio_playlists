@@ -7,15 +7,15 @@ module SongImporter::Concerns
     private
 
     def create_air_play
-      @importer = if scraper_import
-                    SongImporter::ScraperImporter.new(radio_station: @radio_station, artists:, song:)
-                  else
-                    SongImporter::RecognizerImporter.new(radio_station: @radio_station, artists:, song:)
-                  end
-      if @importer.may_import_song?
+      importer = if scraper_import
+                   SongImporter::ScraperImporter.new(radio_station: @radio_station, artists:, song:)
+                 else
+                   SongImporter::RecognizerImporter.new(radio_station: @radio_station, artists:, song:)
+                 end
+      if importer.may_import_song?
         add_song
       else
-        @importer.broadcast_error_message
+        importer.broadcast_error_message
         @import_logger.skip_log(reason: 'Song already imported recently or matches last played song')
       end
     end

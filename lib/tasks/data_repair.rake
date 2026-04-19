@@ -1275,7 +1275,8 @@ namespace :data_repair do
     puts "Done. Created: #{created}, Skipped: #{skipped}"
   end
 
-  desc 'Dry run: Show airplays linked to wrong songs via fuzzy mismatch. Usage: rake data_repair:find_mismatched_airplays[1000]'
+  desc 'Dry run: Show airplays linked to wrong songs via title or spotify_track_id mismatch. ' \
+       'Usage: rake data_repair:find_mismatched_airplays[1000]'
   task :find_mismatched_airplays, [:limit] => :environment do |_t, args|
     limit = (args[:limit] || 1000).to_i
     puts "Scanning up to #{limit} import logs for mismatched airplays (dry run)..."
@@ -1290,7 +1291,8 @@ namespace :data_repair do
     results[:errors].each { |e| puts "  Log ##{e[:log_id]}: #{e[:error]}" }
   end
 
-  desc 'Fix airplays linked to wrong songs via fuzzy mismatch. Usage: rake data_repair:fix_mismatched_airplays[1000]'
+  desc 'Fix airplays linked to wrong songs via title or spotify_track_id mismatch. ' \
+       'Usage: rake data_repair:fix_mismatched_airplays[1000]'
   task :fix_mismatched_airplays, [:limit] => :environment do |_t, args|
     limit = (args[:limit] || 1000).to_i
     puts "Fixing up to #{limit} mismatched airplays..."

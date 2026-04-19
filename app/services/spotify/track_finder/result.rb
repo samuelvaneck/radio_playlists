@@ -224,11 +224,8 @@ module Spotify
       def add_match_scores(track)
         return if track.blank?
 
-        item_artist_names = track.dig('album', 'artists')&.map { |a| a['name'] }&.join(' ') || ''
-        item_title = track['name'] || ''
-
-        track['artist_distance'] = artist_distance(item_artist_names)
-        track['title_distance'] = title_distance(item_title)
+        track['artist_distance'] = best_artist_distance(track)
+        track['title_distance'] = title_distance(track['name'] || '')
         track['match'] = (track['popularity'] || 0) + ([track['artist_distance'], track['title_distance']].min * 2)
       end
 

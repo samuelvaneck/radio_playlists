@@ -164,17 +164,15 @@ describe Spotify::TrackFinder::Result, :use_vcr do
       end
     end
 
-    context 'when artist name has a small prefix difference' do
+    context 'when artist name has a leading "The" prefix difference' do
       let(:artists) { 'Doobie Brothers' }
+      let(:title) { 'China Grove' }
       let(:response_artist) { 'The Doobie Brothers' }
       let(:response_title) { 'China Grove' }
 
-      it 'computes non-zero artist distance' do
-        expect(finder.matched_artist_distance).to be > 0
-      end
-
-      it 'falls below threshold for "The" prefix' do
-        expect(finder.matched_artist_distance).to be < Spotify::Base::ARTIST_SIMILARITY_THRESHOLD
+      it 'matches above threshold after stripping leading "The"', :aggregate_failures do
+        expect(finder.valid_match?).to be true
+        expect(finder.matched_artist_distance).to eq(100)
       end
     end
 
@@ -280,8 +278,38 @@ describe Spotify::TrackFinder::Result, :use_vcr do
         }
       end
 
-      it 'computes artist distance as zero' do
-        expect(finder.matched_artist_distance).to eq(0)
+      it 'falls back to track artists and matches' do
+        expect(finder.matched_artist_distance).to eq(100)
+      end
+    end
+
+    context 'when album artist lists only the primary but track has collaborators' do
+      let(:artists) { 'Jonna Fraser & Lil Kleine' }
+      let(:title) { 'Fashionweek' }
+      let(:spotify_track_response) do
+        {
+          'album' => { 'album_type' => 'album',
+                       'artists' => [{ 'name' => 'Lil Kleine', 'id' => 'lk',
+                                       'external_urls' => { 'spotify' => 'https://open.spotify.com/artist/lk' } }],
+                       'images' => [], 'name' => 'F*CK KLEINE', 'release_date' => '2026-02-27',
+                       'release_date_precision' => 'day' },
+          'artists' => [
+            { 'name' => 'Lil Kleine', 'id' => 'lk',
+              'external_urls' => { 'spotify' => 'https://open.spotify.com/artist/lk' } },
+            { 'name' => 'Jonna Fraser', 'id' => 'jf',
+              'external_urls' => { 'spotify' => 'https://open.spotify.com/artist/jf' } }
+          ],
+          'name' => 'Fashionweek', 'id' => 'test_track_id', 'popularity' => 69,
+          'duration_ms' => 149_615, 'explicit' => true,
+          'external_ids' => { 'isrc' => 'QM4TX2653122' },
+          'external_urls' => { 'spotify' => 'https://open.spotify.com/track/test_track_id' },
+          'preview_url' => nil
+        }
+      end
+
+      it 'falls back to track artists when album artists miss a collaborator', :aggregate_failures do
+        expect(finder.valid_match?).to be true
+        expect(finder.matched_artist_distance).to be >= Spotify::Base::ARTIST_SIMILARITY_THRESHOLD
       end
     end
   end

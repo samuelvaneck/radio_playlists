@@ -83,19 +83,35 @@ describe Spotify::Base, type: :service do
   describe '#artist_distance' do
     context 'when artist names match exactly' do
       it 'returns 100' do
-        expect(spotify_base.send(:artist_distance, 'Artist Name')).to eq(100)
+        expect(spotify_base.send(:artist_distance, ['Artist Name'])).to eq(100)
       end
     end
 
     context 'when artist names are similar' do
       it 'returns a high score' do
-        expect(spotify_base.send(:artist_distance, 'Artist Names')).to be > 80
+        expect(spotify_base.send(:artist_distance, ['Artist Names'])).to be > 80
       end
     end
 
     context 'when artist names are different' do
       it 'returns a low score' do
-        expect(spotify_base.send(:artist_distance, 'Completely Different')).to be < 60
+        expect(spotify_base.send(:artist_distance, ['Completely Different'])).to be < 60
+      end
+    end
+
+    context 'when multiple artists are in different order' do
+      let(:args) { { artists: 'Snelle & Zoé Livay', title: 'Song Title' } }
+
+      it 'returns a high score' do
+        expect(spotify_base.send(:artist_distance, ['Zoë Livay', 'Snelle'])).to be > 80
+      end
+    end
+
+    context 'when scraped has feat. separator and Spotify has different order' do
+      let(:args) { { artists: 'Artist A feat. Artist B', title: 'Song Title' } }
+
+      it 'returns a high score' do
+        expect(spotify_base.send(:artist_distance, ['Artist B', 'Artist A'])).to be > 80
       end
     end
   end

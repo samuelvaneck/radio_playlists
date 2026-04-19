@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
-# Finds and fixes airplays that were linked to the wrong song due to overly
-# permissive fuzzy matching. Detects mismatches by comparing the scraped/recognized
-# title from import logs against the linked song's title using JaroWinkler similarity.
+# Finds and fixes airplays that were linked to the wrong song. Two detectors:
+#
+#  - Title mismatch: the scraped/recognized title in the import log differs
+#    from the linked song's title by more than the JaroWinkler threshold.
+#  - Spotify ID mismatch: the import log carries a spotify_track_id that
+#    points to a different canonical song record than the one the airplay is
+#    linked to (e.g., when artist-distance validation rejected a valid Spotify
+#    match and SongExtractor fell back to an existing look-alike).
 #
 # When a mismatch is found, the airplay is reassigned to the correct song
 # (found or created based on the import log's Spotify data).
@@ -40,22 +45,43 @@ class MismatchedAirplayRepair
     song = log.song
     return if song.blank?
 
-    import_title = import_title_for(log)
-    return if import_title.blank?
-
-    title_score = jaro_winkler_score(import_title, song.title)
-    return if title_score >= TITLE_SIMILARITY_THRESHOLD
+    reason = detect_mismatch(log, song)
+    return if reason.blank?
 
     @results[:mismatched] += 1
     correct_song = find_or_create_correct_song(log)
 
-    log_mismatch(log, song, import_title, title_score, correct_song)
+    log_mismatch(log, song, reason, correct_song)
 
-    return if @dry_run || correct_song.blank?
+    return if @dry_run || correct_song.blank? || correct_song.id == song.id
 
     fix_airplay(log, correct_song)
   rescue StandardError => e
     @results[:errors] << { log_id: log.id, error: e.message }
+  end
+
+  def detect_mismatch(log, song)
+    detect_title_mismatch(log, song) || detect_spotify_id_mismatch(log, song)
+  end
+
+  def detect_title_mismatch(log, song)
+    import_title = import_title_for(log)
+    return nil if import_title.blank?
+
+    score = jaro_winkler_score(import_title, song.title)
+    return nil if score >= TITLE_SIMILARITY_THRESHOLD
+
+    { kind: :title, import_title: import_title, title_score: score }
+  end
+
+  def detect_spotify_id_mismatch(log, song)
+    return nil if log.spotify_track_id.blank?
+    return nil if song.id_on_spotify == log.spotify_track_id
+
+    canonical = Song.find_by(id_on_spotify: log.spotify_track_id)
+    return nil if canonical.blank? || canonical.id == song.id
+
+    { kind: :spotify_id, spotify_track_id: log.spotify_track_id, canonical_id: canonical.id }
   end
 
   def import_title_for(log)
@@ -147,17 +173,33 @@ class MismatchedAirplayRepair
     "https://open.spotify.com/track/#{track_id}" if track_id.present?
   end
 
-  def log_mismatch(log, wrong_song, import_title, title_score, correct_song)
+  def log_mismatch(log, wrong_song, reason, correct_song)
     $stdout.puts "  Log ##{log.id} | Station #{log.radio_station_id} | #{log.broadcasted_at&.strftime('%Y-%m-%d %H:%M')}"
-    $stdout.puts "    Import:  #{import_artist_for(log)} - #{import_title}"
-    $stdout.puts "    Linked:  #{wrong_song.artists.map(&:name).join(', ')} - #{wrong_song.title} (song ##{wrong_song.id})"
-    $stdout.puts "    Score:   #{title_score}% (threshold: #{TITLE_SIMILARITY_THRESHOLD}%)"
-    if correct_song.present?
+    $stdout.puts "    Import:  #{import_artist_for(log)} - #{import_title_for(log)}"
+    $stdout.puts "    Linked:  #{wrong_song.artists.map(&:name).join(', ')} - " \
+                 "#{wrong_song.title} (song ##{wrong_song.id}, spotify: #{wrong_song.id_on_spotify || 'nil'})"
+    log_reason(reason)
+    log_fix(correct_song, wrong_song)
+    $stdout.puts
+  end
+
+  def log_reason(reason)
+    case reason[:kind]
+    when :title
+      $stdout.puts "    Reason:  title mismatch #{reason[:title_score]}% (threshold: #{TITLE_SIMILARITY_THRESHOLD}%)"
+    when :spotify_id
+      $stdout.puts "    Reason:  spotify_track_id #{reason[:spotify_track_id]} points to song ##{reason[:canonical_id]}"
+    end
+  end
+
+  def log_fix(correct_song, wrong_song)
+    if correct_song.blank?
+      $stdout.puts '    Fix:     no matching song found, skipping'
+    elsif correct_song.id == wrong_song.id
+      $stdout.puts '    Fix:     already linked to correct song, skipping'
+    else
       status = @dry_run ? 'would reassign' : 'reassigned'
       $stdout.puts "    Fix:     #{status} to #{correct_song.title} (song ##{correct_song.id})"
-    else
-      $stdout.puts '    Fix:     no matching song found, skipping'
     end
-    $stdout.puts
   end
 end
