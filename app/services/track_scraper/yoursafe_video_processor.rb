@@ -2,6 +2,7 @@
 
 class TrackScraper::YoursafeVideoProcessor < TrackScraper
   ARTIST_TITLE_SEPARATOR = ' - '
+  OCR_LANGUAGES = 'eng+nld+deu+fra+spa+ita+por+rus+tur'
 
   def last_played_song
     frame_file = extract_video_frame
@@ -43,7 +44,7 @@ class TrackScraper::YoursafeVideoProcessor < TrackScraper
   end
 
   def ocr_frame(frame_file)
-    image = RTesseract.new(frame_file, lang: 'eng')
+    image = RTesseract.new(frame_file, lang: OCR_LANGUAGES)
     image.to_s.strip
   end
 

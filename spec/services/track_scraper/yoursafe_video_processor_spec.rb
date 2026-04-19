@@ -26,7 +26,7 @@ describe TrackScraper::YoursafeVideoProcessor, type: :service do
       before do
         allow(File).to receive(:exist?).with(frame_file).and_return(true)
         rtesseract_instance = instance_double(RTesseract, to_s: ocr_text)
-        allow(RTesseract).to receive(:new).with(frame_file, lang: 'eng').and_return(rtesseract_instance)
+        allow(RTesseract).to receive(:new).with(frame_file, lang: described_class::OCR_LANGUAGES).and_return(rtesseract_instance)
       end
 
       it 'sets the artist name' do
@@ -61,7 +61,7 @@ describe TrackScraper::YoursafeVideoProcessor, type: :service do
       before do
         allow(File).to receive(:exist?).with(frame_file).and_return(true)
         rtesseract_instance = instance_double(RTesseract, to_s: ocr_text)
-        allow(RTesseract).to receive(:new).with(frame_file, lang: 'eng').and_return(rtesseract_instance)
+        allow(RTesseract).to receive(:new).with(frame_file, lang: described_class::OCR_LANGUAGES).and_return(rtesseract_instance)
       end
 
       it 'sets the full artist string' do
@@ -89,7 +89,7 @@ describe TrackScraper::YoursafeVideoProcessor, type: :service do
       before do
         allow(File).to receive(:exist?).with(frame_file).and_return(true)
         rtesseract_instance = instance_double(RTesseract, to_s: '')
-        allow(RTesseract).to receive(:new).with(frame_file, lang: 'eng').and_return(rtesseract_instance)
+        allow(RTesseract).to receive(:new).with(frame_file, lang: described_class::OCR_LANGUAGES).and_return(rtesseract_instance)
       end
 
       it 'returns false' do
@@ -104,7 +104,7 @@ describe TrackScraper::YoursafeVideoProcessor, type: :service do
       before do
         allow(File).to receive(:exist?).with(frame_file).and_return(true)
         rtesseract_instance = instance_double(RTesseract, to_s: ocr_text)
-        allow(RTesseract).to receive(:new).with(frame_file, lang: 'eng').and_return(rtesseract_instance)
+        allow(RTesseract).to receive(:new).with(frame_file, lang: described_class::OCR_LANGUAGES).and_return(rtesseract_instance)
       end
 
       it 'returns false' do
@@ -117,7 +117,7 @@ describe TrackScraper::YoursafeVideoProcessor, type: :service do
 
       before do
         allow(File).to receive(:exist?).with(frame_file).and_return(true)
-        allow(RTesseract).to receive(:new).with(frame_file, lang: 'eng').and_raise(StandardError, 'OCR failed')
+        allow(RTesseract).to receive(:new).with(frame_file, lang: described_class::OCR_LANGUAGES).and_raise(StandardError, 'OCR failed')
         allow(Rails.logger).to receive(:warn).and_call_original
         allow(ExceptionNotifier).to receive(:notify).and_call_original
       end
