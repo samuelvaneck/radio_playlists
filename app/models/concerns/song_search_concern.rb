@@ -5,10 +5,18 @@ module SongSearchConcern
 
   SEARCH_FIELDS = %w[artist title album year_from year_to].freeze
 
+  # Minimum pg_trgm similarity for a fuzzy match. The default `%` operator uses
+  # pg_trgm.similarity_limit (0.3) which is too permissive for search; 0.5
+  # roughly lets 1–2 character typos through while rejecting weakly-related
+  # strings. Tightening the fuzzy arm only — the ILIKE arm still handles
+  # substring queries like "love" → "True Love".
+  SIMILARITY_THRESHOLD = 0.5
+
   def self.trigram_or_ilike(table, column, value)
     col = table.arel_table[column]
-    trigram = Arel::Nodes::InfixOperation.new('%', col, Arel::Nodes.build_quoted(value))
-    trigram.or(col.matches("%#{ActiveRecord::Base.sanitize_sql_like(value)}%"))
+    similarity = Arel::Nodes::NamedFunction.new('similarity', [col, Arel::Nodes.build_quoted(value)])
+    similarity_match = Arel::Nodes::GreaterThan.new(similarity, Arel::Nodes.build_quoted(SIMILARITY_THRESHOLD))
+    similarity_match.or(col.matches("%#{ActiveRecord::Base.sanitize_sql_like(value)}%"))
   end
 
   def self.relevance_order(column, query)
@@ -27,16 +35,12 @@ module SongSearchConcern
     scope :filter_by_artist, lambda { |artist_name|
       return all if artist_name.blank?
 
-      name_col = Artist.arel_table[:name]
-      trigram = Arel::Nodes::InfixOperation.new('%', name_col, Arel::Nodes.build_quoted(artist_name))
-      joins(:artists).where(trigram.or(name_col.matches("%#{sanitize_sql_like(artist_name)}%")))
+      joins(:artists).where(SongSearchConcern.trigram_or_ilike(Artist, :name, artist_name))
     }
     scope :filter_by_title, lambda { |title|
       return all if title.blank?
 
-      title_col = arel_table[:title]
-      trigram = Arel::Nodes::InfixOperation.new('%', title_col, Arel::Nodes.build_quoted(title))
-      where(trigram.or(title_col.matches("%#{sanitize_sql_like(title)}%")))
+      where(SongSearchConcern.trigram_or_ilike(self, :title, title))
     }
     scope :filter_by_album, lambda { |album|
       return all if album.blank?
