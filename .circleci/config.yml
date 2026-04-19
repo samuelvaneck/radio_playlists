@@ -30,7 +30,7 @@
         - run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
 
         # install bundler
-        - run: gem install bundler:2.4.10
+        - run: gem install bundler:4.0.10
 
         # Bundle install dependencies
         - run: bundle config set path 'vendor/bundle'
