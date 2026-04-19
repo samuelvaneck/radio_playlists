@@ -44,6 +44,8 @@ bundle exec rake data_repair:find_mismatched_airplays[limit]   # Dry run: detect
 bundle exec rake data_repair:fix_mismatched_airplays[limit]    # Fix airplays linked to wrong songs
 bundle exec rake data_repair:find_contaminated_isrcs[limit]    # Dry run: find songs with cross-contaminated ISRCs
 bundle exec rake data_repair:fix_contaminated_isrcs[limit]     # Fix songs with cross-contaminated ISRCs
+bundle exec rake data_repair:rollback_import_log[log_id]       # Dry run: preview rollback of a single SongImportLog
+bundle exec rake data_repair:rollback_import_log[log_id,apply] # Apply: destroy airplay, destroy song if orphaned, mark log failed
 bundle exec rake optimization:vacuum                           # PostgreSQL VACUUM FULL ANALYZE
 
 # Hit Potential
@@ -82,6 +84,7 @@ The app uses service objects extensively in `app/services/`:
 - `DuplicateArtistMerger` - Finds and merges duplicate artists via Spotify ID or fuzzy name matching (Jaro-Winkler, threshold: 92)
 - `DuplicateSongMerger` - Finds and merges duplicate songs via Spotify ID or fuzzy title matching (Jaro-Winkler, threshold: 92)
 - `MismatchedAirplayRepair` - Detects and fixes airplays linked to wrong songs via two detectors: (1) title mismatch — import log title vs linked song title (Jaro-Winkler < 70%); (2) spotify_track_id mismatch — the log's Spotify ID points to a different canonical song than the one linked. Reassigns airplays to the canonical song (found by Spotify track ID, exact match, or newly created).
+- `SongImportLogRollback` - Rolls back a single `SongImportLog`: destroys the linked airplay, destroys the linked song if no other airplays reference it, marks the log `failed` with a rollback reason. Guards against orphaning charts (skips song deletion if chart positions exist) and preserves songs played on other stations.
 - `HitPotentialCalculator` - Predicts song hit potential (0-100) using multi-signal scoring: audio features (50%), artist popularity (20%), engagement metrics (15%), release recency (15%)
 - `SoundProfileGenerator` - Generates per-station sound profiles with audio feature averages, top genres/tags, release decade distribution, and bilingual descriptions (EN/NL). Uses song-count-weighted percentiles and peak decade detection (≥15% threshold) for accurate era descriptions instead of naive min/max year ranges
 - `NaturalLanguageSearch` - Translates free-text queries (e.g., "upbeat Dutch songs on Radio 538 last week") into structured filters via `Llm::QueryTranslator`, then applies faceted search. Supports mood-based filtering using Spotify audio feature ranges, result limiting ("top 3 songs", "most popular song" → `.limit()`), and lyrics-based song identification

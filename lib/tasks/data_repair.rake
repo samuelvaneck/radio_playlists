@@ -1338,4 +1338,28 @@ namespace :data_repair do
     puts "Errors: #{results[:errors].count}" if results[:errors].any?
     results[:errors].each { |e| puts "  Song ##{e[:song_id]}: #{e[:error]}" }
   end
+
+  desc 'Roll back a single SongImportLog: destroy airplay, destroy song if orphaned, mark log failed. ' \
+       'Dry run by default. Usage: rake data_repair:rollback_import_log[2765957] or [2765957,apply]'
+  task :rollback_import_log, %i[log_id mode] => :environment do |_t, args|
+    log_id = args[:log_id].to_i
+    if log_id.zero?
+      puts 'Usage: rake data_repair:rollback_import_log[LOG_ID] or rake data_repair:rollback_import_log[LOG_ID,apply]'
+      next
+    end
+
+    dry_run = args[:mode] != 'apply'
+    puts "Rolling back SongImportLog ##{log_id} (#{dry_run ? 'DRY RUN' : 'APPLY'})"
+    puts '=' * 80
+
+    results = SongImportLogRollback.new(log_id, dry_run:).run
+
+    puts "AirPlay destroyed: #{results[:air_play_destroyed]}"
+    puts "Song destroyed:    #{results[:song_destroyed]}"
+    puts "Song kept reason:  #{results[:song_kept_reason]}" if results[:song_kept_reason]
+    if results[:errors].any?
+      puts "Errors: #{results[:errors].count}"
+      results[:errors].each { |e| puts "  #{e}" }
+    end
+  end
 end
