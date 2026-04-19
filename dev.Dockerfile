@@ -1,4 +1,4 @@
-FROM ruby:4.0.1-slim-bookworm
+FROM ruby:4.0.2-slim-bookworm
 
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \

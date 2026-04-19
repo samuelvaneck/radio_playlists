@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '4.0.1'
+ruby '4.0.2'
 
 gem 'bootsnap', require: false
 gem 'charlock_holmes', '~> 0.7.7'

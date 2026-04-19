@@ -373,7 +373,7 @@ Schema definitions are configured in `spec/swagger_helper.rb`. The generated `sw
 
 ### Production Image (Multi-Stage Build)
 
-The `Dockerfile` uses a two-stage build with `ruby:4.0.1-slim-bookworm`:
+The `Dockerfile` uses a two-stage build with `ruby:4.0.2-slim-bookworm`:
 
 1. **Builder stage** — installs build deps (`build-essential`, `libpq-dev`, `libyaml-dev`, `libicu-dev`, `zlib1g-dev`, `pkg-config`), SongRec from PPA, and runs `bundle install`
 2. **Runtime stage** — installs only runtime deps (`libpq5`, `libyaml-0-2`, `libicu72`, `ffmpeg`, `libchromaprint-tools`, `tesseract-ocr`, `libjemalloc2`, `songrec`), copies built app and gems from builder

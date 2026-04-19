@@ -1,7 +1,7 @@
 # ============================================
 # Stage 1: Build dependencies
 # ============================================
-FROM ruby:4.0.1-slim-bookworm AS builder
+FROM ruby:4.0.2-slim-bookworm AS builder
 
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
@@ -44,7 +44,7 @@ RUN rm -rf tmp spec .rspec .rubocop.yml .claude coverage
 # ============================================
 # Stage 2: Runtime image
 # ============================================
-FROM ruby:4.0.1-slim-bookworm
+FROM ruby:4.0.2-slim-bookworm
 
 # Install jemalloc and runtime dependencies only
 RUN apt-get update -qq && \
