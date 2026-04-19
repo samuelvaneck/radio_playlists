@@ -15,29 +15,17 @@ module Api
       def song_import_logs
         @song_import_logs ||= SongImportLog.includes(:radio_station, :song, :air_play)
                                 .by_radio_station(params[:radio_station_id])
-                                .then { |scope| filter_by_song(scope) }
-                                .then { |scope| filter_by_status(scope) }
-                                .then { |scope| filter_by_import_source(scope) }
+                                .by_song(params[:song_id])
+                                .by_status(params[:status])
+                                .by_import_source(params[:import_source])
+                                .by_llm_action(params[:llm_action])
+                                .created_from(params[:created_at_from])
+                                .created_until(params[:created_at_to])
+                                .broadcasted_from(params[:broadcasted_at_from])
+                                .broadcasted_until(params[:broadcasted_at_to])
+                                .linked(params[:linked])
                                 .order(created_at: :desc)
                                 .paginate(page: params[:page], per_page: params[:per_page] || 25)
-      end
-
-      def filter_by_song(scope)
-        return scope if params[:song_id].blank?
-
-        scope.where(song_id: params[:song_id])
-      end
-
-      def filter_by_status(scope)
-        return scope if params[:status].blank?
-
-        scope.where(status: params[:status])
-      end
-
-      def filter_by_import_source(scope)
-        return scope if params[:import_source].blank?
-
-        scope.where(import_source: params[:import_source])
       end
 
       def pagination_data(items)

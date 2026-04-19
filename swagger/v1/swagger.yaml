@@ -2501,9 +2501,49 @@ paths:
         description: Filter by song ID
         schema:
           type: integer
+      - name: llm_action
+        in: query
+        required: false
+        description: 'Filter by LLM action: track_name_cleanup, alternative_search_queries,
+          borderline_match_validation'
+        schema:
+          type: string
+      - name: created_at_from
+        in: query
+        required: false
+        description: Filter logs created at or after this timestamp (ISO8601 or YYYY-MM-DD)
+        schema:
+          type: string
+      - name: created_at_to
+        in: query
+        required: false
+        description: Filter logs created at or before this timestamp (ISO8601 or YYYY-MM-DD)
+        schema:
+          type: string
+      - name: broadcasted_at_from
+        in: query
+        required: false
+        description: Filter logs broadcasted at or after this timestamp (ISO8601 or
+          YYYY-MM-DD)
+        schema:
+          type: string
+      - name: broadcasted_at_to
+        in: query
+        required: false
+        description: Filter logs broadcasted at or before this timestamp (ISO8601
+          or YYYY-MM-DD)
+        schema:
+          type: string
+      - name: linked
+        in: query
+        required: false
+        description: Filter by whether the log is linked to a song (true = has song_id,
+          false = null)
+        schema:
+          type: boolean
       responses:
         '200':
-          description: Filtered by radio station
+          description: Filtered by linked=false (unlinked logs)
   "/api/v1/songs":
     get:
       summary: List songs

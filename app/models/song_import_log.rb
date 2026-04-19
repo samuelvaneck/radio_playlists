@@ -88,6 +88,19 @@ class SongImportLog < ApplicationRecord
   scope :older_than, ->(time) { where(created_at: ...time) }
   scope :recent, -> { where(created_at: 24.hours.ago..) }
   scope :by_radio_station, ->(radio_station_id) { where(radio_station_id:) if radio_station_id.present? }
+  scope :by_song, ->(song_id) { where(song_id:) if song_id.present? }
+  scope :by_status, ->(status) { where(status:) if status.present? }
+  scope :by_import_source, ->(import_source) { where(import_source:) if import_source.present? }
+  scope :by_llm_action, ->(llm_action) { where(llm_action:) if llm_action.present? }
+  scope :created_from, ->(time) { where(created_at: time..) if time.present? }
+  scope :created_until, ->(time) { where(created_at: ..time) if time.present? }
+  scope :broadcasted_from, ->(time) { where(broadcasted_at: time..) if time.present? }
+  scope :broadcasted_until, ->(time) { where(broadcasted_at: ..time) if time.present? }
+  scope :linked, lambda { |value|
+    next if value.nil? || value.to_s.empty?
+
+    ActiveModel::Type::Boolean.new.cast(value) ? where.not(song_id: nil) : where(song_id: nil)
+  }
 
   def self.to_csv(logs)
     require 'csv'
