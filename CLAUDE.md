@@ -376,7 +376,7 @@ Schema definitions are configured in `spec/swagger_helper.rb`. The generated `sw
 The `Dockerfile` uses a two-stage build with `ruby:4.0.2-slim-bookworm`:
 
 1. **Builder stage** — installs build deps (`build-essential`, `libpq-dev`, `libyaml-dev`, `libicu-dev`, `zlib1g-dev`, `pkg-config`), SongRec from PPA, and runs `bundle install`
-2. **Runtime stage** — installs only runtime deps (`libpq5`, `libyaml-0-2`, `libicu72`, `ffmpeg`, `libchromaprint-tools`, `tesseract-ocr`, `libjemalloc2`, `songrec`), copies built app and gems from builder
+2. **Runtime stage** — installs only runtime deps (`libpq5`, `libyaml-0-2`, `libicu72`, `ffmpeg`, `libchromaprint-tools`, `tesseract-ocr` + language packs, `libjemalloc2`, `songrec`), copies built app and gems from builder
 
 ### Memory Optimization
 
@@ -460,7 +460,7 @@ Yoursafe Radio streams via Amazon IVS HLS with a video overlay displaying "JE LU
 3. Parser finds the last line containing ` - ` separator (skipping header lines like "JE LUISTERT NAAR")
 4. Splits into artist name and title
 
-**Dependencies:** `tesseract-ocr` + `tesseract-ocr-eng` system packages, `rtesseract` gem.
+**Dependencies:** `tesseract-ocr` + language packs (`eng`, `nld`, `deu`, `fra`, `spa`, `ita`, `por`, `rus`, `tur`) system packages, `rtesseract` gem. The full language set is configured in `YoursafeVideoProcessor::OCR_LANGUAGES` so Tesseract can read Cyrillic and other non-Latin scripts that appear on the overlay (e.g., Russian tracks).
 
 ### Planned: Populate AcoustID Database
 

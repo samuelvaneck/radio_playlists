@@ -27,7 +27,7 @@
           key: airplays-{{ checksum "Gemfile.lock" }}
 
         # Install system dependencies
-        - run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
+        - run: sudo apt-get update -qq && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng tesseract-ocr-nld tesseract-ocr-deu tesseract-ocr-fra tesseract-ocr-spa tesseract-ocr-ita tesseract-ocr-por tesseract-ocr-rus tesseract-ocr-tur
 
         # install bundler
         - run: gem install bundler:4.0.10

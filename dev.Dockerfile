@@ -13,6 +13,13 @@ RUN apt-get update -qq && \
       tesseract-ocr \
       tesseract-ocr-eng \
       tesseract-ocr-nld \
+      tesseract-ocr-deu \
+      tesseract-ocr-fra \
+      tesseract-ocr-spa \
+      tesseract-ocr-ita \
+      tesseract-ocr-por \
+      tesseract-ocr-rus \
+      tesseract-ocr-tur \
       libjemalloc2 \
       curl \
       wget \
