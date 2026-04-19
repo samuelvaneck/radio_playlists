@@ -131,6 +131,172 @@ describe SongImportLog do
         expect(described_class.by_radio_station(nil)).to include(old_log, recent_log, station_log)
       end
     end
+
+    describe '.by_song' do
+      let(:song) { create(:song) }
+      let!(:linked_log) { create(:song_import_log, song:) }
+
+      it 'filters by song_id', :aggregate_failures do
+        result = described_class.by_song(song.id)
+        expect(result).to include(linked_log)
+        expect(result).not_to include(old_log, recent_log)
+      end
+
+      it 'returns all logs when blank' do
+        expect(described_class.by_song(nil)).to include(old_log, recent_log, linked_log)
+      end
+    end
+
+    describe '.by_status' do
+      let!(:success_log) { create(:song_import_log, status: :success) }
+
+      it 'filters by status', :aggregate_failures do
+        result = described_class.by_status('success')
+        expect(result).to include(success_log)
+        expect(result).not_to include(old_log, recent_log)
+      end
+
+      it 'returns all logs when blank' do
+        expect(described_class.by_status(nil)).to include(old_log, recent_log, success_log)
+      end
+    end
+
+    describe '.by_import_source' do
+      let!(:recognition_log) { create(:song_import_log, :with_recognition) }
+      let!(:scraping_log) { create(:song_import_log, :with_scraping) }
+
+      it 'filters by import_source', :aggregate_failures do
+        result = described_class.by_import_source('recognition')
+        expect(result).to include(recognition_log)
+        expect(result).not_to include(scraping_log)
+      end
+
+      it 'returns all logs when blank' do
+        expect(described_class.by_import_source(nil)).to include(recognition_log, scraping_log)
+      end
+    end
+
+    describe '.by_llm_action' do
+      let!(:cleanup_log) { create(:song_import_log, llm_action: 'track_name_cleanup') }
+
+      it 'filters by llm_action', :aggregate_failures do
+        result = described_class.by_llm_action('track_name_cleanup')
+        expect(result).to include(cleanup_log)
+        expect(result).not_to include(old_log, recent_log)
+      end
+
+      it 'returns all logs when blank' do
+        expect(described_class.by_llm_action(nil)).to include(old_log, recent_log, cleanup_log)
+      end
+    end
+
+    describe '.created_from' do
+      it 'includes logs created at or after the given time', :aggregate_failures do
+        result = described_class.created_from(1.day.ago)
+        expect(result).to include(recent_log)
+        expect(result).not_to include(old_log)
+      end
+
+      it 'accepts ISO8601 string input', :aggregate_failures do
+        result = described_class.created_from(1.day.ago.iso8601)
+        expect(result).to include(recent_log)
+        expect(result).not_to include(old_log)
+      end
+
+      it 'is inclusive on the lower bound' do
+        boundary_time = 1.day.ago
+        boundary = create(:song_import_log, created_at: boundary_time)
+        expect(described_class.created_from(boundary_time)).to include(boundary)
+      end
+
+      it 'returns all logs when blank' do
+        expect(described_class.created_from(nil)).to include(old_log, recent_log)
+      end
+    end
+
+    describe '.created_until' do
+      it 'includes logs created at or before the given time', :aggregate_failures do
+        result = described_class.created_until(1.day.ago)
+        expect(result).to include(old_log)
+        expect(result).not_to include(recent_log)
+      end
+
+      it 'is inclusive on the upper bound' do
+        boundary_time = 1.day.ago
+        boundary = create(:song_import_log, created_at: boundary_time)
+        expect(described_class.created_until(boundary_time)).to include(boundary)
+      end
+
+      it 'returns all logs when blank' do
+        expect(described_class.created_until(nil)).to include(old_log, recent_log)
+      end
+    end
+
+    describe '.broadcasted_from and .broadcasted_until' do
+      let!(:old_broadcast) { create(:song_import_log, broadcasted_at: 3.days.ago) }
+      let!(:recent_broadcast) { create(:song_import_log, broadcasted_at: 1.hour.ago) }
+
+      it 'broadcasted_from filters by lower bound', :aggregate_failures do
+        result = described_class.broadcasted_from(2.days.ago)
+        expect(result).to include(recent_broadcast)
+        expect(result).not_to include(old_broadcast)
+      end
+
+      it 'broadcasted_until filters by upper bound', :aggregate_failures do
+        result = described_class.broadcasted_until(2.days.ago)
+        expect(result).to include(old_broadcast)
+        expect(result).not_to include(recent_broadcast)
+      end
+
+      it 'combined they produce a range', :aggregate_failures do
+        result = described_class.broadcasted_from(2.days.ago).broadcasted_until(30.minutes.ago)
+        expect(result).to include(recent_broadcast)
+        expect(result).not_to include(old_broadcast)
+      end
+
+      it 'both return all logs when blank' do
+        scope = described_class.broadcasted_from(nil).broadcasted_until(nil)
+        expect(scope).to include(old_broadcast, recent_broadcast)
+      end
+    end
+
+    describe '.linked' do
+      let(:song) { create(:song) }
+      let!(:linked_log) { create(:song_import_log, song:) }
+      let!(:unlinked_log) { create(:song_import_log, song: nil) }
+
+      context 'when true' do
+        it 'includes only logs with a song', :aggregate_failures do
+          result = described_class.linked(true)
+          expect(result).to include(linked_log)
+          expect(result).not_to include(unlinked_log)
+        end
+
+        it 'coerces string "true"', :aggregate_failures do
+          result = described_class.linked('true')
+          expect(result).to include(linked_log)
+          expect(result).not_to include(unlinked_log)
+        end
+      end
+
+      context 'when false' do
+        it 'includes only logs without a song', :aggregate_failures do
+          result = described_class.linked(false)
+          expect(result).to include(unlinked_log)
+          expect(result).not_to include(linked_log)
+        end
+
+        it 'coerces string "false"', :aggregate_failures do
+          result = described_class.linked('false')
+          expect(result).to include(unlinked_log)
+          expect(result).not_to include(linked_log)
+        end
+      end
+
+      it 'returns all logs when blank' do
+        expect(described_class.linked(nil)).to include(linked_log, unlinked_log)
+      end
+    end
   end
 
   describe '.to_csv' do

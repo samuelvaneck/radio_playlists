@@ -20,6 +20,18 @@ RSpec.describe 'SongImportLogs API', type: :request do
                 description: 'Filter by import source: recognition, scraping'
       parameter name: :song_id, in: :query, type: :integer, required: false,
                 description: 'Filter by song ID'
+      parameter name: :llm_action, in: :query, type: :string, required: false,
+                description: 'Filter by LLM action: track_name_cleanup, alternative_search_queries, borderline_match_validation'
+      parameter name: :created_at_from, in: :query, type: :string, required: false,
+                description: 'Filter logs created at or after this timestamp (ISO8601 or YYYY-MM-DD)'
+      parameter name: :created_at_to, in: :query, type: :string, required: false,
+                description: 'Filter logs created at or before this timestamp (ISO8601 or YYYY-MM-DD)'
+      parameter name: :broadcasted_at_from, in: :query, type: :string, required: false,
+                description: 'Filter logs broadcasted at or after this timestamp (ISO8601 or YYYY-MM-DD)'
+      parameter name: :broadcasted_at_to, in: :query, type: :string, required: false,
+                description: 'Filter logs broadcasted at or before this timestamp (ISO8601 or YYYY-MM-DD)'
+      parameter name: :linked, in: :query, type: :boolean, required: false,
+                description: 'Filter by whether the log is linked to a song (true = has song_id, false = null)'
 
       let(:admin) { create(:admin) }
       let(:Authorization) { "Bearer #{jwt_token_for(admin)}" }
@@ -65,6 +77,54 @@ RSpec.describe 'SongImportLogs API', type: :request do
           json = JSON.parse(response.body)
           expect(json['data'].length).to eq(1)
           expect(json['data'].first['attributes']['radio_station']['id']).to eq(radio_station.id)
+        end
+      end
+
+      response '200', 'Filtered by created_at range' do
+        let!(:old_log) { create(:song_import_log, :with_recognition, created_at: 3.days.ago) }
+        let!(:recent_log) { create(:song_import_log, :with_recognition, created_at: 1.hour.ago) }
+        let(:created_at_from) { 2.days.ago.iso8601 }
+
+        run_test! do |response|
+          json = JSON.parse(response.body)
+          ids = json['data'].map { |d| d['id'].to_i }
+          expect(ids).to contain_exactly(recent_log.id)
+        end
+      end
+
+      response '200', 'Filtered by broadcasted_at range' do
+        let!(:old_log) { create(:song_import_log, :with_recognition, broadcasted_at: 3.days.ago) }
+        let!(:recent_log) { create(:song_import_log, :with_recognition, broadcasted_at: 1.hour.ago) }
+        let(:broadcasted_at_to) { 2.days.ago.iso8601 }
+
+        run_test! do |response|
+          json = JSON.parse(response.body)
+          ids = json['data'].map { |d| d['id'].to_i }
+          expect(ids).to contain_exactly(old_log.id)
+        end
+      end
+
+      response '200', 'Filtered by llm_action' do
+        let!(:log1) { create(:song_import_log, :with_recognition, llm_action: 'track_name_cleanup') }
+        let!(:log2) { create(:song_import_log, :with_recognition, llm_action: 'borderline_match_validation') }
+        let(:llm_action) { 'track_name_cleanup' }
+
+        run_test! do |response|
+          json = JSON.parse(response.body)
+          ids = json['data'].map { |d| d['id'].to_i }
+          expect(ids).to contain_exactly(log1.id)
+        end
+      end
+
+      response '200', 'Filtered by linked=false (unlinked logs)' do
+        let!(:log1) { create(:song_import_log, :with_recognition, :success) }
+        let!(:log2) { create(:song_import_log, :failed) }
+        let(:linked) { false }
+
+        run_test! do |response|
+          json = JSON.parse(response.body)
+          ids = json['data'].map { |d| d['id'].to_i }
+          expect(ids).to contain_exactly(log2.id)
         end
       end
     end
