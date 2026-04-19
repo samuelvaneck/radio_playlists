@@ -16,7 +16,7 @@ Airplays is a Ruby on Rails 8.1 API-only application that monitors Dutch radio s
 
 ## Technologies Used
 
-- **Backend**: Ruby 4.0.1, Rails 8.1
+- **Backend**: Ruby 4.0.2, Rails 8.1
 - **Database**: PostgreSQL
 - **Background Jobs**: Sidekiq with Redis
 - **Caching**: Redis
@@ -34,7 +34,7 @@ Airplays is a Ruby on Rails 8.1 API-only application that monitors Dutch radio s
 
 ### Prerequisites
 
-- Ruby 4.0.1 (version specified in `.ruby-version`)
+- Ruby 4.0.2 (version specified in `.ruby-version`)
 - PostgreSQL
 - Redis
 - SongRec ([installation guide](https://github.com/marin-m/SongRec))
