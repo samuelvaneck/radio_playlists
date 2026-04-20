@@ -55,6 +55,7 @@ class Song < ApplicationRecord
   include ChartConcern
   include TimeAnalyticsConcern
   include SongSearchConcern
+  include Sluggable
 
   pg_search_scope :search_by_text,
                   against: :search_text,
@@ -319,24 +320,8 @@ class Song < ApplicationRecord
     update_column(:search_text, "#{artists.pluck(:name).join(' ')} #{title}")
   end
 
-  def set_slug
-    return if slug.present?
-
-    self.slug = unique_slug("#{title} #{artists.first&.name}".parameterize)
-  end
-
-  def update_slug
-    update_column(:slug, unique_slug("#{title} #{artists.first&.name}".parameterize))
-  end
-
-  def unique_slug(base_slug)
-    candidate = base_slug
-    counter = 1
-    while Song.where(slug: candidate).where.not(id:).exists?
-      counter += 1
-      candidate = "#{base_slug}-#{counter}"
-    end
-    candidate
+  def slug_source
+    "#{title} #{artists.first&.name}"
   end
 
   def should_update_youtube?
