@@ -11,7 +11,7 @@ class Api::V1::Admins::SongsController < ApplicationController
 
   def update
     song = Song.find(params[:id])
-    if song.update(song_params)
+    if song.update(song_update_attributes)
       render json: SongSerializer.new(song).serializable_hash, status: :ok
     else
       render json: { errors: song.errors.full_messages }, status: :unprocessable_entity
@@ -19,6 +19,12 @@ class Api::V1::Admins::SongsController < ApplicationController
   end
 
   private
+
+  def song_update_attributes
+    attributes = song_params
+    attributes[:id_on_youtube] = Youtube::IdExtractor.extract(attributes[:id_on_youtube]) if attributes.key?(:id_on_youtube)
+    attributes
+  end
 
   def song_params
     params.require(:song).permit(:id_on_youtube)

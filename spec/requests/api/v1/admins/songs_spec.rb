@@ -54,6 +54,14 @@ RSpec.describe 'Admin Songs API', type: :request do
         let(:song) { { song: { id_on_youtube: 'dQw4w9WgXcQ' } } }
 
         run_test!
+
+        it 'extracts the id from a youtu.be share link' do
+          patch "/api/v1/admins/songs/#{existing_song.id}",
+                params: { song: { id_on_youtube: 'https://youtu.be/ko70cExuzZM?si=Dx7Sn9TW6LBXIv00' } },
+                headers: { 'Authorization' => "Bearer #{jwt_token_for(admin)}" },
+                as: :json
+          expect(existing_song.reload.id_on_youtube).to eq('ko70cExuzZM')
+        end
       end
 
       response '401', 'Not authenticated' do
