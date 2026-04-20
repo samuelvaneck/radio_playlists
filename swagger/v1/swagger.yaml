@@ -3469,7 +3469,7 @@ paths:
         '400':
           description: Missing query parameter
 servers:
-- url: https://api.airplays.nl
+- url: https://backend.airplays.nl
   description: Production server
 - url: http://localhost:3000
   description: Development server
