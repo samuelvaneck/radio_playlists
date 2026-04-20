@@ -5,6 +5,11 @@ class SongImporter
     @played_song @artists @song @track @spotify_track @deezer_track @itunes_track @scraper_import
   ].freeze
 
+  AD_MARKERS = /(reklame|reclame|nieuws|pingel)/i
+  # Punctuation patterns that appear in legit titles (e.g. "...Baby One More Time") but also in noisy scraped data.
+  # Only reject when Spotify can't match the track either.
+  AMBIGUOUS_PUNCTUATION = /'{2,}|\.{2,}/
+
   include SongImporter::Concerns::AudioRecognition
   include SongImporter::Concerns::TrackFinding
   include SongImporter::Concerns::AirPlayCreation
@@ -87,8 +92,9 @@ class SongImporter
   end
 
   def illegal_word_in_title
-    # 2 single quotes, reklame/reclame/nieuws/pingel and 2 dots
-    title.match?(/'{2,}|(reklame|reclame|nieuws|pingel)|\.{2,}/i)
+    return true if title.match?(AD_MARKERS)
+
+    title.match?(AMBIGUOUS_PUNCTUATION) && track.blank?
   end
 
   def recently_imported?

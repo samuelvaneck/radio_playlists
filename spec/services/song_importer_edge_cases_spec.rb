@@ -396,27 +396,76 @@ describe SongImporter do
       allow(importer).to receive(:title).and_return(title_text)
     end
 
-    {
-      'title with reklame' => true,
-      'REKLAME block' => true,
-      'Reclame' => true,
-      'nieuws update' => true,
-      'NIEUWS' => true,
-      'pingel sound' => true,
-      "title with ''" => true,
-      "title with '''" => true,
-      'title with ..' => true,
-      'title with ...' => true,
-      'Normal Song Title' => false,
-      "It's a normal title" => false,
-      '3.14 is pi' => false,
-      "Song with 'quotes'" => false
-    }.each do |title_text, expected|
-      context "with title '#{title_text}'" do
-        let(:title_text) { title_text }
+    context 'with ad-marker titles' do
+      {
+        'title with reklame' => true,
+        'REKLAME block' => true,
+        'Reclame' => true,
+        'nieuws update' => true,
+        'NIEUWS' => true,
+        'pingel sound' => true
+      }.each do |title_text, expected|
+        context "with title '#{title_text}'" do
+          let(:title_text) { title_text }
 
-        it "returns #{expected}" do
-          expect(importer.send(:illegal_word_in_title)).to eq(expected)
+          it "returns #{expected} without consulting Spotify" do
+            expect(importer.send(:illegal_word_in_title)).to eq(expected)
+          end
+        end
+      end
+    end
+
+    context 'with ambiguous punctuation and no Spotify match' do
+      before { allow(importer).to receive(:track).and_return(nil) }
+
+      {
+        "title with ''" => true,
+        "title with '''" => true,
+        'title with ..' => true,
+        'title with ...' => true
+      }.each do |title_text, expected|
+        context "with title '#{title_text}'" do
+          let(:title_text) { title_text }
+
+          it "returns #{expected}" do
+            expect(importer.send(:illegal_word_in_title)).to eq(expected)
+          end
+        end
+      end
+    end
+
+    context 'with ambiguous punctuation but Spotify matched the track' do
+      before { allow(importer).to receive(:track).and_return(Object.new) }
+
+      [
+        "title with ''",
+        "title with '''",
+        'title with ..',
+        '...Baby One More Time'
+      ].each do |title_text|
+        context "with title '#{title_text}'" do
+          let(:title_text) { title_text }
+
+          it 'returns false' do
+            expect(importer.send(:illegal_word_in_title)).to be false
+          end
+        end
+      end
+    end
+
+    context 'with a clean title' do
+      {
+        'Normal Song Title' => false,
+        "It's a normal title" => false,
+        '3.14 is pi' => false,
+        "Song with 'quotes'" => false
+      }.each do |title_text, expected|
+        context "with title '#{title_text}'" do
+          let(:title_text) { title_text }
+
+          it "returns #{expected} without consulting Spotify" do
+            expect(importer.send(:illegal_word_in_title)).to eq(expected)
+          end
         end
       end
     end
