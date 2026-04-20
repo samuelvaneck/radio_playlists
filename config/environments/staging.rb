@@ -93,6 +93,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.hosts = ['staging.backend.samuelvaneck.com']
+  config.hosts = ['staging.backend.samuelvaneck.com', 'staging.backend.airplays.nl']
   config.host_authorization = { exclude: ->(request) { request.path =~ /health/ } }
 end

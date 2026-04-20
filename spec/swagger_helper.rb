@@ -16,7 +16,7 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://api.airplays.nl',
+          url: 'https://backend.airplays.nl',
           description: 'Production server'
         },
         {
