@@ -55,6 +55,7 @@ bundle exec rake hit_potential:backfill                        # Backfill hit_po
 bundle exec rake slug:backfill_songs                           # Backfill slugs for songs without one
 bundle exec rake slug:backfill_artists                         # Backfill slugs for artists without one
 bundle exec rake slug:backfill_all                             # Backfill slugs for both songs and artists
+bundle exec rake slug:repair_empty                             # Regenerate slugs built from empty parameterize output (non-Latin titles)
 
 # Memory Diagnostics
 bundle exec rake memory:stats                                  # Show RSS, GC stats, top object classes

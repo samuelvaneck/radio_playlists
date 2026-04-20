@@ -37,6 +37,7 @@ class Artist < ApplicationRecord
   include ChartConcern
   include TimeAnalyticsConcern
   include ArtistSearchConcern
+  include Sluggable
 
   pg_search_scope :search_by_name,
                   against: :name,
@@ -153,25 +154,7 @@ class Artist < ApplicationRecord
 
   private
 
-  def set_slug
-    return if slug.present?
-
-    base_slug = name.parameterize
-    self.slug = unique_slug(base_slug)
-  end
-
-  def update_slug
-    base_slug = name.parameterize
-    update_column(:slug, unique_slug(base_slug)) # rubocop:disable Rails/SkipsModelValidations
-  end
-
-  def unique_slug(base_slug)
-    candidate = base_slug
-    counter = 1
-    while Artist.where(slug: candidate).where.not(id:).exists?
-      counter += 1
-      candidate = "#{base_slug}-#{counter}"
-    end
-    candidate
+  def slug_source
+    name
   end
 end
