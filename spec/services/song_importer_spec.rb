@@ -74,6 +74,34 @@ describe SongImporter do
         expect(Broadcaster).to have_received(:no_importing_song)
       end
     end
+
+    context 'when scraper returns nil and no persistent segment is available' do
+      let(:import_logger) do
+        instance_double(SongImportLogger, start_log: nil, log_scraping: nil, skip_log: nil,
+                                          complete_log: nil, log_recognition: nil, log_acoustid: nil,
+                                          fail_log: nil, log_spotify: nil, log_deezer: nil, log_itunes: nil)
+      end
+
+      before do
+        allow(SongImportLogger).to receive(:new).and_return(import_logger)
+        allow(TrackScraper::NpoApiProcessor).to receive(:new).and_return(
+          instance_double(TrackScraper::NpoApiProcessor, last_played_song: nil)
+        )
+        allow(AudioStream::PersistentSegment).to receive(:new).and_return(
+          instance_double(AudioStream::PersistentSegment, delete_file: nil).tap do |stream|
+            allow(stream).to receive(:capture)
+              .and_raise(PersistentStream::SegmentReader::NoSegmentError, 'no segment')
+          end
+        )
+        allow(Broadcaster).to receive(:no_importing_song)
+      end
+
+      it 'marks the log as skipped instead of failed', :aggregate_failures do
+        importer.import
+        expect(import_logger).to have_received(:skip_log).with(reason: 'No song scraped or recognized')
+        expect(import_logger).not_to have_received(:fail_log)
+      end
+    end
   end
 
   describe '#should_update_artists?' do
