@@ -20,6 +20,9 @@ module SongImporter::Concerns
       @import_logger.log_acoustid(acoustid)
 
       songrec_result ? songrec : nil
+    rescue PersistentStream::SegmentReader::NoSegmentError,
+           PersistentStream::SegmentReader::StaleSegmentError
+      nil
     ensure
       audio_stream&.delete_file
     end
