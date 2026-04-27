@@ -21,6 +21,7 @@ class SongExternalIdsEnrichmentJob
   def perform(song_id)
     song = Song.find_by(id: song_id)
     return if song.blank?
+    return unless song.needs_external_ids_enrichment?
 
     song.enrich_with_external_services
   end

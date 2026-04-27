@@ -287,6 +287,10 @@ class Song < ApplicationRecord
     enrich_with_music_brainz if should_enrich_with_music_brainz?
   end
 
+  def needs_external_ids_enrichment?
+    should_enrich_with_deezer? || should_enrich_with_itunes? || should_enrich_with_music_brainz?
+  end
+
   private
 
   def update_air_plays_obsolete_songs(songs, most_played_song)
