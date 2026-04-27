@@ -7,12 +7,18 @@ class ArtistEnrichmentJob
   WIKIPEDIA_RATE_LIMIT_PER_HOUR = 500
   WIKIPEDIA_REQUESTS_PER_JOB = 2
   THROTTLE_INTERVAL = (3600.0 / (WIKIPEDIA_RATE_LIMIT_PER_HOUR / WIKIPEDIA_REQUESTS_PER_JOB)).ceil
+  RECHECK_AFTER = 90.days
 
   include Sidekiq::Job
   sidekiq_options queue: 'low'
 
   def self.enqueue_all
-    Artist.where(country_of_origin: []).find_each.with_index do |artist, index|
+    stale_threshold = RECHECK_AFTER.ago
+    scope = Artist
+              .where(country_of_origin: [])
+              .where('country_of_origin_checked_at IS NULL OR country_of_origin_checked_at < ?', stale_threshold)
+
+    scope.find_each.with_index do |artist, index|
       perform_in((index * THROTTLE_INTERVAL).seconds, artist.id)
     end
   end
@@ -20,9 +26,12 @@ class ArtistEnrichmentJob
   def perform(artist_id)
     artist = Artist.find_by(id: artist_id)
     return if artist.blank?
+    return if artist.country_of_origin.present?
+    return if artist.country_of_origin_checked_at.present? && artist.country_of_origin_checked_at > RECHECK_AFTER.ago
 
     enrich_country_of_origin(artist)
     enrich_spotify_metrics(artist)
+    artist.update(country_of_origin_checked_at: Time.current)
   end
 
   private
