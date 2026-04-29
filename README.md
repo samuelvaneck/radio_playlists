@@ -46,7 +46,7 @@ Airplays is a Ruby on Rails 8.1 API-only application that monitors Dutch radio s
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/samuelvaneck/radio_playlists.git
+   git clone https://github.com/samuelvaneck/airplays.git
    cd airplays
    ```
 2. Install Ruby gems:
