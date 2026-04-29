@@ -1,0 +1,17 @@
+{
+  "ignored_warnings": [
+    {
+      "fingerprint": "21795f8c69a6eed323950d5322ecf972fa8e66b6aa38bd8810bb374791713cff",
+      "note": "False positive: interpolated values come from `sanitized_sql_array`, which returns Rails-sanitized SQL fragments. Inputs (`genres`, `lastfm_tags`) are validated array attributes on Artist."
+    },
+    {
+      "fingerprint": "6042218481a64580afe6976f652913474ac85cdfa778354777014e099048aa7b",
+      "note": "Intentional: `direct_stream_url` only validates the `https://` prefix. `\\z` anchor is not appropriate — we don't want to require the URL to be exactly `https://`."
+    },
+    {
+      "fingerprint": "c2a0c7101fbb88c416cd13e26458718b5d72f546f1a86cae2a23a6514be600e7",
+      "note": "Safe: ffmpeg is invoked via `Open3.capture3` with array args (no shell interpolation). `direct_stream_url` is validated to start with `https://`. See CLAUDE.md security section."
+    }
+  ],
+  "updated": "2026-04-29"
+}

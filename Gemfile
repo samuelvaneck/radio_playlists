@@ -72,7 +72,9 @@ end
 
 group :test do
   gem 'brakeman'
+  gem 'bundler-audit'
   gem 'database_cleaner'
+  gem 'rspec_junit_formatter'
   gem 'shoulda-matchers'
   # Sinatra is used to mock requests
   gem 'sinatra'

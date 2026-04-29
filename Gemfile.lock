@@ -93,6 +93,9 @@ GEM
     bullet (8.1.1)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
+    bundler-audit (0.9.3)
+      bundler (>= 1.2.0)
+      thor (~> 1.0)
     byebug (13.0.0)
       reline (>= 0.6.0)
     charlock_holmes (0.7.9)
@@ -418,6 +421,8 @@ GEM
       rspec-mocks (>= 3.13.0, < 5.0.0)
       rspec-support (>= 3.13.0, < 5.0.0)
     rspec-support (3.13.7)
+    rspec_junit_formatter (0.6.0)
+      rspec-core (>= 2, < 4, != 2.12.0)
     rswag-api (2.17.0)
       activesupport (>= 5.2, < 8.2)
       railties (>= 5.2, < 8.2)
@@ -574,6 +579,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   bullet
+  bundler-audit
   charlock_holmes (~> 0.7.7)
   circuitbox (~> 2.0)
   concurrent-ruby
@@ -613,6 +619,7 @@ DEPENDENCIES
   rails-controller-testing
   redis
   rspec-rails
+  rspec_junit_formatter
   rswag-api
   rswag-specs
   rswag-ui

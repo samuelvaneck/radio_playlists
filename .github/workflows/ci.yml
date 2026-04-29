@@ -80,7 +80,16 @@ jobs:
         run: bundle exec rails db:seed
 
       - name: Run RSpec
-        run: bundle exec rspec
+        run: bundle exec rspec --format progress --format RspecJunitFormatter --out tmp/rspec_results.xml
+
+      - name: Publish RSpec test report
+        if: always()
+        uses: mikepenz/action-junit-report@v5
+        with:
+          report_paths: tmp/rspec_results.xml
+          check_name: RSpec results
+          require_tests: true
+          fail_on_failure: true
 
       - name: Upload coverage artifacts
         if: always()
@@ -98,6 +107,73 @@ jobs:
           path: log
           if-no-files-found: ignore
 
+  swagger:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:18.3
+        env:
+          POSTGRES_USER: airplays
+          POSTGRES_DB: airplays_test
+          POSTGRES_PASSWORD: "Super-C0mpl3X"
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      POSTGRES_HOST: localhost
+      POSTGRES_USER: airplays
+      POSTGRES_PASSWORD: "Super-C0mpl3X"
+      RAILS_ENV: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup environment
+        run: cp .env.ci .env
+
+      - name: Prepare test database
+        run: bundle exec rails db:test:prepare
+
+      - name: Regenerate Swagger
+        run: bundle exec rake rswag:specs:swaggerize
+
+      - name: Verify Swagger is up to date
+        run: |
+          if ! git diff --exit-code -- swagger/; then
+            echo "::error::swagger/v1/swagger.yaml is out of date. Run 'bundle exec rake rswag:specs:swaggerize' locally and commit the result."
+            exit 1
+          fi
+
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run Brakeman
+        run: bundle exec brakeman --quiet --no-progress --no-summary -i config/brakeman.ignore --exit-on-warn --exit-on-error
+
+      - name: Run bundler-audit
+        run: bundle exec bundle-audit check --update
+
   rubocop:
     runs-on: ubuntu-latest
 
@@ -114,7 +190,7 @@ jobs:
         run: bundle exec rubocop
 
   build-and-push:
-    needs: [actionlint, test, rubocop]
+    needs: [actionlint, test, rubocop, security, swagger]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
