@@ -1,0 +1,85 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:18.3
+        env:
+          POSTGRES_USER: airplays
+          POSTGRES_DB: airplays_test
+          POSTGRES_PASSWORD: "Super-C0mpl3X"
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      POSTGRES_HOST: localhost
+      POSTGRES_USER: airplays
+      POSTGRES_PASSWORD: "Super-C0mpl3X"
+      RAILS_ENV: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y \
+            tesseract-ocr \
+            tesseract-ocr-eng \
+            tesseract-ocr-nld \
+            tesseract-ocr-deu \
+            tesseract-ocr-fra \
+            tesseract-ocr-spa \
+            tesseract-ocr-ita \
+            tesseract-ocr-por \
+            tesseract-ocr-rus \
+            tesseract-ocr-tur
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup environment
+        run: cp .env.ci .env
+
+      - name: Prepare test database
+        run: bundle exec rails db:test:prepare
+
+      - name: Seed database
+        run: bundle exec rails db:seed
+
+      - name: Run RSpec
+        run: bundle exec rspec
+
+      - name: Run RuboCop
+        run: bundle exec rubocop
+
+      - name: Upload coverage artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage
+          if-no-files-found: ignore
+
+      - name: Upload log artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: log
+          if-no-files-found: ignore
