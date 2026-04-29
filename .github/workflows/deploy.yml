@@ -11,12 +11,30 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     concurrency:
       group: deploy-prod
       cancel-in-progress: false
     env:
       DEPLOY_TAG: ${{ inputs.tag }}
     steps:
+      - name: Log in to GHCR
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify image tag exists in GHCR
+        run: |
+          if ! docker manifest inspect "ghcr.io/samuelvaneck/airplays:${DEPLOY_TAG}" > /dev/null 2>&1; then
+            echo "::error::Image ghcr.io/samuelvaneck/airplays:${DEPLOY_TAG} not found in registry. Aborting deploy."
+            exit 1
+          fi
+          echo "Image tag '${DEPLOY_TAG}' found."
+
       - name: Configure SSH
         env:
           SSH_KEY:     ${{ secrets.DEPLOY_SSH_KEY }}

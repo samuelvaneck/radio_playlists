@@ -16,7 +16,8 @@ bundle exec rspec spec/path/to/file_spec.rb:42 # Run specific test line
 
 # Code Quality
 bundle exec rubocop                         # Lint (auto-fixes enabled)
-bundle exec brakeman                        # Security scan
+bundle exec brakeman -i config/brakeman.ignore  # Security scan (suppresses triaged findings)
+bundle exec bundle-audit check --update     # Check Gemfile.lock for known CVEs
 
 # API Documentation
 bundle exec rake rswag:specs:swaggerize     # Regenerate swagger/v1/swagger.yaml
@@ -363,7 +364,7 @@ bundle exec rake rswag:specs:swaggerize     # Regenerates swagger/v1/swagger.yam
 
 Schema definitions are configured in `spec/swagger_helper.rb`. The generated `swagger/v1/swagger.yaml` should be committed to version control.
 
-**Important:** Always run `bundle exec rake rswag:specs:swaggerize` and commit the updated `swagger/v1/swagger.yaml` after adding or modifying request specs in `spec/requests/api/v1/`.
+**Important:** Always run `bundle exec rake rswag:specs:swaggerize` and commit the updated `swagger/v1/swagger.yaml` after adding or modifying request specs in `spec/requests/api/v1/`. The CI `swagger` job regenerates the file and fails if the working tree is dirty, so a missed swaggerize run will block the PR.
 
 ### Security
 
@@ -401,6 +402,39 @@ echo 'deb http://ppa.launchpad.net/marin-m/songrec/ubuntu jammy main' > /etc/apt
 ### Important: LD_PRELOAD and Bundle Install
 
 `LD_PRELOAD` must be set **after** `bundle install` — setting it before causes gem native extension compilation to fail with "cannot be preloaded" errors. In multi-stage builds, only set it in the runtime stage.
+
+## CI/CD
+
+GitHub Actions workflows live in `.github/workflows/`.
+
+### `ci.yml`
+
+Runs on every PR and on `push` to `main`. Concurrency is keyed on `workflow+ref` and cancels in-progress runs on PR branches but never on `main` (so post-merge build/deploy isn't aborted by a follow-up commit).
+
+Jobs:
+- **`actionlint`** — lints workflow YAML via `reviewdog/action-actionlint`. Catches expression errors and deprecated inputs before they break a real run.
+- **`test`** — RSpec with `RspecJunitFormatter`; `mikepenz/action-junit-report` surfaces failing examples inline on the PR diff. Coverage and `log/` are uploaded as artifacts on success/failure respectively.
+- **`rubocop`** — style/lint gate.
+- **`security`** — Brakeman + bundler-audit. Brakeman is gated by `config/brakeman.ignore` (each suppression has a justification note); new findings fail the job. bundler-audit checks `Gemfile.lock` against the ruby-advisory-db.
+- **`swagger`** — regenerates `swagger/v1/swagger.yaml` via `rake rswag:specs:swaggerize` and fails if the working tree is dirty. Enforces the rule that swagger be committed alongside spec changes.
+- **`build-and-push`** — Docker buildx build, push to `ghcr.io/samuelvaneck/airplays`. `needs: [actionlint, test, rubocop, security, swagger]` and gated to `push` on `main`, so the image only ships when every other job is green.
+
+### `rubocop-analysis.yml`
+
+Uploads RuboCop findings as SARIF for GitHub code scanning. Runs alongside `ci.yml` but doesn't gate the build (`code-scanning-rubocop` formatter is informational).
+
+### `deploy.yml`
+
+Manual `workflow_dispatch` only. Logs in to GHCR and runs `docker manifest inspect ghcr.io/samuelvaneck/airplays:$TAG` before SSHing — a typo'd or non-existent tag fails fast at the manifest step instead of redeploying the previous release.
+
+### `dependabot.yml`
+
+Weekly grouped updates for the `github-actions` ecosystem. Keeps action versions current without per-action PR noise.
+
+### Adding/changing CI
+
+- Workflow YAML changes will trigger the `actionlint` job — run `actionlint .github/workflows/*.yml` locally if available, or rely on the CI gate.
+- New action versions: prefer Node 24 majors (e.g. `actions/checkout@v6`, `docker/build-push-action@v7`). Older Node 20 majors emit a deprecation warning on the runner and will stop working in late 2026.
 
 ## External Dependencies
 
