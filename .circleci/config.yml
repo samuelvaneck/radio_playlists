@@ -4,7 +4,7 @@
     build:
       working_directory: ~/airplays
       docker:
-        - image: cimg/ruby:4.0.2-browsers
+        - image: cimg/ruby:4.0.3-browsers
           environment:
             POSTGRES_HOST: localhost
             POSTGRES_USER: airplays
