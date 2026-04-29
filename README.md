@@ -25,7 +25,8 @@ Airplays is a Ruby on Rails 8.1 API-only application that monitors Dutch radio s
 - **OCR**: Tesseract (via rtesseract gem)
 - **Song Enrichment**: Spotify, Deezer, iTunes, Last.fm, YouTube, MusicBrainz APIs
 - **Testing**: RSpec, VCR, WebMock
-- **Code Quality**: RuboCop, Brakeman
+- **Code Quality**: RuboCop, Brakeman, bundler-audit
+- **CI/CD**: GitHub Actions (test, rubocop, security, swagger drift, build, deploy)
 - **API Documentation**: rswag (Swagger/OpenAPI)
 - **Monitoring**: Sentry
 - **Containerization**: Docker with multi-stage builds
@@ -84,11 +85,27 @@ bundle exec rspec spec/path/to/file_spec.rb # Run single test file
 
 # Code Quality
 bundle exec rubocop                         # Lint
-bundle exec brakeman                        # Security scan
+bundle exec brakeman -i config/brakeman.ignore  # Security scan (suppresses triaged findings)
+bundle exec bundle-audit check --update     # Check Gemfile for known CVEs
 
 # API Documentation
 bundle exec rake rswag:specs:swaggerize     # Regenerate Swagger docs
 ```
+
+## CI/CD
+
+GitHub Actions pipelines (`.github/workflows/`):
+
+- **`ci.yml`** — runs on every push to `main` and every PR. Jobs:
+  - `actionlint` — lints workflow YAML
+  - `test` — RSpec with JUnit reporting (failures surface inline on PRs)
+  - `rubocop` — style/lint
+  - `security` — Brakeman (gated by `config/brakeman.ignore`) + bundler-audit (CVE check)
+  - `swagger` — regenerates `swagger/v1/swagger.yaml` and fails if it's out of date
+  - `build-and-push` — builds and pushes the Docker image to GHCR. Only runs on `main` after every other job passes.
+- **`rubocop-analysis.yml`** — uploads RuboCop findings as SARIF for GitHub code scanning.
+- **`deploy.yml`** — manual `workflow_dispatch` deploy. Verifies the image tag exists in GHCR via `docker manifest inspect` before SSHing to production.
+- **`dependabot.yml`** — keeps action versions up to date weekly.
 
 ## API Documentation
 
