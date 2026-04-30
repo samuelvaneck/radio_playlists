@@ -1,24 +1,23 @@
 # frozen_string_literal: true
 
 class TrackScraper::SimoneApiProcessor < TrackScraper
-  # Cap drain to the last hour so we don't backfill stale history when the API
-  # window stretches further back. Within that window prefer the *newest*
-  # unlogged track so the last-imported airplay reflects what's currently on
-  # air — keeps the radio station "now playing" widget correct. Older unlogged
-  # tracks still drain on subsequent ticks (in reverse chronological order).
-  TRACK_LOOKBACK = 1.hour
+  # Window we treat as "the same song still playing" — longer than any
+  # reasonable Simone track. While a song is in this window, we reuse its
+  # broadcasted_at so SongImporter#recently_imported? dedupes naturally.
+  SAME_SONG_WINDOW = 10.minutes
 
   def last_played_song
-    response = fetch_playlist
-    return false if response.blank?
-
-    @raw_response = response
-    track = pick_track(response)
+    track = fetch_now_playing
     return false if track.blank?
 
-    @artist_name = track['artist'].titleize
-    @title = TitleSanitizer.sanitize(track['title']).titleize
-    @broadcasted_at = Time.zone.parse(track['timestamp'])
+    artist = track['artist'].to_s.titleize
+    title = TitleSanitizer.sanitize(track['title'].to_s).titleize
+    return false if artist.blank? || title.blank?
+
+    @raw_response = track
+    @artist_name = artist
+    @title = title
+    @broadcasted_at = broadcasted_at_for(artist, title)
     true
   rescue StandardError => e
     Rails.logger.warn("SimoneApiProcessor: #{e.message}")
@@ -28,32 +27,25 @@ class TrackScraper::SimoneApiProcessor < TrackScraper
 
   private
 
-  def pick_track(response)
-    cutoff = TRACK_LOOKBACK.ago
-    recent = response.select { |t| Time.zone.parse(t['timestamp']) >= cutoff }
-    return nil if recent.empty?
+  # The /playlist/nowplaying endpoint has no timestamp. If the most recent log
+  # for this station is the same song within SAME_SONG_WINDOW, reuse its
+  # broadcasted_at — SongImporter#recently_imported? then matches and skips
+  # the duplicate scrape. New song → fresh Time.zone.now.
+  def broadcasted_at_for(artist, title)
+    last = SongImportLog
+             .where(radio_station: @radio_station, created_at: SAME_SONG_WINDOW.ago..)
+             .where.not(broadcasted_at: nil)
+             .order(created_at: :desc)
+             .first
 
-    newest_first = recent.sort_by { |t| Time.zone.parse(t['timestamp']) }.reverse
-    keys = recent_log_keys
-    newest_first.find { |t| keys.exclude?(log_key_for(t)) } || newest_first.first
+    if last && last.scraped_artist == artist && last.scraped_title == title
+      last.broadcasted_at
+    else
+      Time.zone.now
+    end
   end
 
-  def log_key_for(track)
-    [
-      track['artist'].titleize,
-      TitleSanitizer.sanitize(track['title']).titleize,
-      Time.zone.parse(track['timestamp'])
-    ]
-  end
-
-  def recent_log_keys
-    SongImportLog
-      .where(radio_station: @radio_station, created_at: 1.hour.ago..)
-      .pluck(:scraped_artist, :scraped_title, :broadcasted_at)
-      .to_set
-  end
-
-  def fetch_playlist
+  def fetch_now_playing
     response = connection.get(@radio_station.url)
     return nil unless response.success?
 
