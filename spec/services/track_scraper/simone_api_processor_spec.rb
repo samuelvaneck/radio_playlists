@@ -9,39 +9,15 @@ describe TrackScraper::SimoneApiProcessor, type: :service do
   let(:radio_station) do
     RadioStation.find_by(name: 'Simone FM').presence || create(:simone_fm)
   end
-  let(:now) { Time.zone.now }
-  let(:newest_track) do
-    {
-      'station' => 'SIMONEFM',
-      'artist' => 'Red Hot Chili Peppers',
-      'title' => 'Scar tissue',
-      'timestamp' => (now - 4.minutes).iso8601(3)
-    }
-  end
-  let(:older_track) do
-    {
-      'station' => 'SIMONEFM',
-      'artist' => 'Foo Fighters',
-      'title' => 'Everlong',
-      'timestamp' => (now - 8.minutes).iso8601(3)
-    }
-  end
-  let(:oldest_track) do
-    {
-      'station' => 'SIMONEFM',
-      'artist' => 'Pearl Jam',
-      'title' => 'Black',
-      'timestamp' => (now - 12.minutes).iso8601(3)
-    }
-  end
+  let(:now_playing) { { 'artist' => 'Sandra', 'title' => "(I'll never be) Maria Magdalena" } }
 
   describe '#last_played_song' do
     before do
-      allow(processor).to receive(:fetch_playlist).and_return(api_response)
+      allow(processor).to receive(:fetch_now_playing).and_return(api_response)
     end
 
     context 'when the API response is valid' do
-      let(:api_response) { [newest_track] }
+      let(:api_response) { now_playing }
 
       it 'returns true' do
         expect(last_played_song).to be true
@@ -49,22 +25,22 @@ describe TrackScraper::SimoneApiProcessor, type: :service do
 
       it 'sets the artist name' do
         last_played_song
-        expect(processor.artist_name).to eq('Red Hot Chili Peppers')
+        expect(processor.artist_name).to eq('Sandra')
       end
 
       it 'sets the title' do
         last_played_song
-        expect(processor.title).to eq('Scar Tissue')
+        expect(processor.title).to eq("(I'll Never Be) Maria Magdalena")
       end
 
-      it 'sets the broadcasted_at timestamp' do
+      it 'sets broadcasted_at to now when no recent log exists' do
         last_played_song
-        expect(processor.broadcasted_at).to eq(Time.zone.parse(newest_track['timestamp']))
+        expect(processor.broadcasted_at).to be_within(1.second).of(Time.zone.now)
       end
 
       it 'sets the raw response' do
         last_played_song
-        expect(processor.raw_response).to be_present
+        expect(processor.raw_response).to eq(now_playing)
       end
     end
 
@@ -76,97 +52,81 @@ describe TrackScraper::SimoneApiProcessor, type: :service do
       end
     end
 
-    context 'when the track is blank' do
-      let(:api_response) { [] }
+    context 'when the artist is missing' do
+      let(:api_response) { { 'artist' => nil, 'title' => 'Foo' } }
 
       it 'returns false' do
         expect(last_played_song).to be false
       end
     end
 
-    context 'with multiple tracks and no prior import logs' do
-      let(:api_response) { [newest_track, older_track, oldest_track] }
+    context 'when the title is missing' do
+      let(:api_response) { { 'artist' => 'Sandra', 'title' => '' } }
 
-      it 'picks the newest track so now-playing stays fresh', :aggregate_failures do
-        last_played_song
-        expect(processor.artist_name).to eq('Red Hot Chili Peppers')
-        expect(processor.title).to eq('Scar Tissue')
+      it 'returns false' do
+        expect(last_played_song).to be false
       end
     end
 
-    context 'with multiple tracks where the newest was already imported' do
-      let(:api_response) { [newest_track, older_track, oldest_track] }
+    context 'when the same song is already in a recent log' do
+      let(:api_response) { now_playing }
+      let(:earlier_broadcasted_at) { 3.minutes.ago }
 
       before do
         SongImportLog.create!(
           radio_station: radio_station,
           status: :success,
           import_source: :scraping,
-          scraped_artist: 'Red Hot Chili Peppers',
-          scraped_title: 'Scar Tissue',
-          broadcasted_at: Time.zone.parse(newest_track['timestamp'])
+          scraped_artist: 'Sandra',
+          scraped_title: "(I'll Never Be) Maria Magdalena",
+          broadcasted_at: earlier_broadcasted_at
         )
       end
 
-      it 'drains the next-newest unlogged track', :aggregate_failures do
+      it 'reuses the prior log broadcasted_at so SongImporter dedupes' do
         last_played_song
-        expect(processor.artist_name).to eq('Foo Fighters')
-        expect(processor.title).to eq('Everlong')
+        expect(processor.broadcasted_at).to be_within(1.second).of(earlier_broadcasted_at)
       end
     end
 
-    context 'when every track is already in the import log' do
-      let(:api_response) { [newest_track, older_track] }
+    context 'when the most recent log is a different song' do
+      let(:api_response) { now_playing }
 
       before do
-        [newest_track, older_track].each do |track|
-          SongImportLog.create!(
-            radio_station: radio_station,
-            status: :success,
-            import_source: :scraping,
-            scraped_artist: track['artist'].titleize,
-            scraped_title: TitleSanitizer.sanitize(track['title']).titleize,
-            broadcasted_at: Time.zone.parse(track['timestamp'])
-          )
-        end
+        SongImportLog.create!(
+          radio_station: radio_station,
+          status: :success,
+          import_source: :scraping,
+          scraped_artist: 'Pearl Jam',
+          scraped_title: 'Black',
+          broadcasted_at: 4.minutes.ago
+        )
       end
 
-      it 'falls back to the newest track for SongImporter dedupe' do
+      it 'mints a fresh broadcasted_at' do
         last_played_song
-        expect(processor.broadcasted_at).to eq(Time.zone.parse(newest_track['timestamp']))
+        expect(processor.broadcasted_at).to be_within(1.second).of(Time.zone.now)
       end
     end
 
-    context 'when older entries fall outside the 1h lookback' do
-      let(:stale_track) do
-        {
-          'station' => 'SIMONEFM',
-          'artist' => 'Soundgarden',
-          'title' => 'Black hole sun',
-          'timestamp' => (now - 2.hours).iso8601(3)
-        }
-      end
-      let(:api_response) { [newest_track, stale_track] }
+    context 'when the same song last played outside the same-song window' do
+      let(:api_response) { now_playing }
 
-      it 'ignores tracks older than the cutoff' do
+      before do
+        SongImportLog.create!(
+          radio_station: radio_station,
+          status: :success,
+          import_source: :scraping,
+          scraped_artist: 'Sandra',
+          scraped_title: "(I'll Never Be) Maria Magdalena",
+          broadcasted_at: 30.minutes.ago,
+          created_at: 30.minutes.ago
+        )
+      end
+
+      it 'mints a fresh broadcasted_at for the new airplay' do
         last_played_song
-        expect(processor.broadcasted_at).to eq(Time.zone.parse(newest_track['timestamp']))
-      end
-    end
-
-    context 'when every entry is outside the 1h lookback' do
-      let(:stale_track) do
-        {
-          'station' => 'SIMONEFM',
-          'artist' => 'Soundgarden',
-          'title' => 'Black hole sun',
-          'timestamp' => (now - 2.hours).iso8601(3)
-        }
-      end
-      let(:api_response) { [stale_track] }
-
-      it 'returns false' do
-        expect(last_played_song).to be false
+        expect(processor.broadcasted_at).to be_within(1.second).of(Time.zone.now)
       end
     end
   end

@@ -163,7 +163,7 @@ RadioStation.seed(
   },
   {
     name: 'Simone FM',
-    url: 'https://api01.simone.nl/playlist?station=SIMONEFM',
+    url: 'https://api01.simone.nl/playlist/nowplaying?station=SIMONEFM',
     processor: 'simone_api_processor',
     direct_stream_url: 'https://stream.simone.nl/simone',
     slug: 'simone-fm',
