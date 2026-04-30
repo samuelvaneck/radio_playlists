@@ -167,7 +167,7 @@ FactoryBot.define do
 
   factory :simone_fm, parent: :radio_station do
     name { 'Simone FM' }
-    url { 'https://api01.simone.nl/playlist?station=SIMONEFM&limit=1' }
+    url { 'https://api01.simone.nl/playlist?station=SIMONEFM' }
     processor { 'simone_api_processor' }
     direct_stream_url { 'https://stream.simone.nl/simone' }
     slug { 'simone-fm' }
