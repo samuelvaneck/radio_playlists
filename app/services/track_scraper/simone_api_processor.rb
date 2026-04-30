@@ -6,7 +6,7 @@ class TrackScraper::SimoneApiProcessor < TrackScraper
     return false if response.blank?
 
     @raw_response = response
-    track = response.first
+    track = pick_track(response)
     return false if track.blank?
 
     @artist_name = track['artist'].titleize
@@ -20,6 +20,31 @@ class TrackScraper::SimoneApiProcessor < TrackScraper
   end
 
   private
+
+  # The Simone API returns the most-recent ~16 tracks. Pick the oldest one we
+  # haven't logged yet so a backlog (long DJ shows, missed scrapes) drains over
+  # successive ticks. Falls back to the newest track when every entry is already
+  # in SongImportLog — SongImporter#recently_imported? dedupes that case.
+  def pick_track(response)
+    sorted = response.sort_by { |t| Time.zone.parse(t['timestamp']) }
+    keys = recent_log_keys
+    sorted.find { |t| keys.exclude?(log_key_for(t)) } || sorted.last
+  end
+
+  def log_key_for(track)
+    [
+      track['artist'].titleize,
+      TitleSanitizer.sanitize(track['title']).titleize,
+      Time.zone.parse(track['timestamp'])
+    ]
+  end
+
+  def recent_log_keys
+    SongImportLog
+      .where(radio_station: @radio_station, created_at: 1.hour.ago..)
+      .pluck(:scraped_artist, :scraped_title, :broadcasted_at)
+      .to_set
+  end
 
   def fetch_playlist
     response = connection.get(@radio_station.url)
