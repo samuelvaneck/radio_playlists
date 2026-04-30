@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class TrackScraper::SimoneApiProcessor < TrackScraper
+  # Cap drain to the last hour so we don't backfill stale history when the API
+  # window stretches further back. Within that window prefer the *newest*
+  # unlogged track so the last-imported airplay reflects what's currently on
+  # air — keeps the radio station "now playing" widget correct. Older unlogged
+  # tracks still drain on subsequent ticks (in reverse chronological order).
+  TRACK_LOOKBACK = 1.hour
+
   def last_played_song
     response = fetch_playlist
     return false if response.blank?
@@ -21,14 +28,14 @@ class TrackScraper::SimoneApiProcessor < TrackScraper
 
   private
 
-  # The Simone API returns the most-recent ~16 tracks. Pick the oldest one we
-  # haven't logged yet so a backlog (long DJ shows, missed scrapes) drains over
-  # successive ticks. Falls back to the newest track when every entry is already
-  # in SongImportLog — SongImporter#recently_imported? dedupes that case.
   def pick_track(response)
-    sorted = response.sort_by { |t| Time.zone.parse(t['timestamp']) }
+    cutoff = TRACK_LOOKBACK.ago
+    recent = response.select { |t| Time.zone.parse(t['timestamp']) >= cutoff }
+    return nil if recent.empty?
+
+    newest_first = recent.sort_by { |t| Time.zone.parse(t['timestamp']) }.reverse
     keys = recent_log_keys
-    sorted.find { |t| keys.exclude?(log_key_for(t)) } || sorted.last
+    newest_first.find { |t| keys.exclude?(log_key_for(t)) } || newest_first.first
   end
 
   def log_key_for(track)
