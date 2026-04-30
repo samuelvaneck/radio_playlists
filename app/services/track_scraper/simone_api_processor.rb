@@ -62,6 +62,8 @@ class TrackScraper::SimoneApiProcessor < TrackScraper
 
   def connection
     @connection ||= Faraday.new(@radio_station.url) do |conn|
+      conn.options.timeout = 10
+      conn.options.open_timeout = 5
       conn.response :json
     end
   end
