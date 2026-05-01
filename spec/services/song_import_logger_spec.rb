@@ -174,6 +174,31 @@ describe SongImportLogger do
         expect(logger.log.spotify_artist).to eq('Artist One, Artist Two')
       end
     end
+
+    context 'when track response includes available_markets noise' do
+      let(:spotify_track) do
+        instance_double(
+          Spotify::TrackFinder::Result,
+          artists: [{ 'name' => 'Spotify Artist' }],
+          title: 'Spotify Song',
+          id: 'spotify123',
+          isrc: 'USSPOTIFY1234',
+          track: {
+            'id' => 'spotify123',
+            'name' => 'Spotify Song',
+            'available_markets' => %w[US NL DE FR],
+            'album' => { 'id' => 'album1', 'available_markets' => %w[US NL] }
+          }
+        )
+      end
+
+      it 'strips available_markets from track and album', :aggregate_failures do
+        logger.log_spotify(spotify_track)
+        expect(logger.log.spotify_raw_response).not_to have_key('available_markets')
+        expect(logger.log.spotify_raw_response['album']).not_to have_key('available_markets')
+        expect(logger.log.spotify_raw_response['album']['id']).to eq('album1')
+      end
+    end
   end
 
   describe '#log_deezer' do

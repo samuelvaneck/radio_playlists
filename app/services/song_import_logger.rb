@@ -64,7 +64,7 @@ class SongImportLogger
       spotify_title: spotify_track.title,
       spotify_track_id: spotify_track.id,
       spotify_isrc: spotify_track.isrc,
-      spotify_raw_response: spotify_track.track || {}
+      spotify_raw_response: slim_spotify_response(spotify_track.track)
     )
   end
 
@@ -137,6 +137,17 @@ class SongImportLogger
     return nil unless spotify_track.artists
 
     spotify_track.artists.filter_map { |a| a&.dig('name') }.join(', ')
+  end
+
+  # Spotify track responses include an `available_markets` array (~1 KB of
+  # country codes) on both the track and album. Nothing in the app reads it,
+  # so drop it before storing the raw response to keep SongImportLog rows lean.
+  def slim_spotify_response(track_hash)
+    return {} if track_hash.blank?
+
+    trimmed = track_hash.except('available_markets')
+    trimmed['album'] = trimmed['album'].except('available_markets') if trimmed['album'].is_a?(Hash)
+    trimmed
   end
 
   def extract_deezer_artist(deezer_track)

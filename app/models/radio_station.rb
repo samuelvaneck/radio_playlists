@@ -44,7 +44,7 @@ class RadioStation < ActiveRecord::Base
   has_many :tags, dependent: :destroy, as: :taggable
 
   validates :name, presence: true
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, if: :will_save_change_to_name?
   validates :processor, inclusion: { in: VALID_PROCESSORS }, allow_blank: true
   validates :direct_stream_url, format: { with: %r{\Ahttps://}i, message: 'must start with https://' }, allow_blank: true
 
