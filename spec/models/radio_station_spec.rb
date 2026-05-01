@@ -122,6 +122,30 @@ describe RadioStation, :use_vcr, :with_valid_token do
     end
   end
 
+  describe '#update_last_added_air_play_ids' do
+    let(:air_play) { create(:air_play, radio_station:) }
+
+    it 'appends the air play id to the list' do
+      radio_station.update_last_added_air_play_ids(air_play.id)
+      expect(radio_station.reload.last_added_air_play_ids).to eq([air_play.id])
+    end
+
+    it 'caps the list at 12 entries' do
+      radio_station.update!(last_added_air_play_ids: (1..12).to_a)
+      radio_station.update_last_added_air_play_ids(air_play.id)
+      expect(radio_station.reload.last_added_air_play_ids).to eq((2..12).to_a + [air_play.id])
+    end
+
+    it 'does not run the name uniqueness query when name is unchanged' do
+      ids = [radio_station.id, air_play.id]
+      queries = []
+      ActiveSupport::Notifications.subscribed(->(*a) { queries << a.last[:sql] }, 'sql.active_record') do
+        described_class.find(ids[0]).update_last_added_air_play_ids(ids[1])
+      end
+      expect(queries.compact).to all(satisfy { |sql| !sql.match?(/SELECT 1.*FROM "radio_stations".*"name"/m) })
+    end
+  end
+
   describe '.last_played_songs' do
     let(:song) { create(:song, duration_ms: 210_000) }
 
