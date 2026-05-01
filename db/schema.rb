@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_27_183525) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_01_093422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -85,10 +85,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_27_183525) do
   end
 
   create_table "artists", force: :cascade do |t|
+    t.string "aka_names", default: [], array: true
+    t.datetime "aka_names_checked_at"
     t.string "country_of_origin", default: [], array: true
     t.datetime "country_of_origin_checked_at"
     t.datetime "created_at", precision: nil, null: false
     t.string "genres", default: [], array: true
+    t.string "id_on_musicbrainz"
     t.string "id_on_spotify"
     t.string "image"
     t.string "instagram_url"
@@ -104,6 +107,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_27_183525) do
     t.integer "spotify_popularity"
     t.datetime "updated_at", precision: nil, null: false
     t.string "website_url"
+    t.index ["aka_names"], name: "index_artists_on_aka_names", using: :gin
+    t.index ["id_on_musicbrainz"], name: "index_artists_on_id_on_musicbrainz", unique: true
     t.index ["name"], name: "index_artists_on_name_trgm", opclass: :gin_trgm_ops, using: :gin
     t.index ["slug"], name: "index_artists_on_slug", unique: true
   end

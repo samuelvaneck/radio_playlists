@@ -34,6 +34,24 @@ namespace :enrichment do
     puts 'Done.'
   end
 
+  desc 'Backfill aka_names from MusicBrainz (synchronous, respects 1 req/sec rate limit)'
+  task backfill_artist_aka_names: :environment do
+    scope = Artist.where(aka_names_checked_at: nil).where.not(name: [nil, ''])
+    total = scope.count
+    puts "Backfilling aka_names for #{total} artists..."
+
+    processed = 0
+    failed = 0
+    scope.find_each do |artist|
+      success = MusicBrainz::ArtistAliasFetcher.new(artist).()
+      success ? (processed += 1) : (failed += 1)
+      done = processed + failed
+      print "\rProcessed #{done}/#{total} (failed: #{failed})..." if (done % 10).zero?
+    end
+
+    puts "\nDone! Backfilled #{processed} artists, #{failed} did not match a MusicBrainz record."
+  end
+
   desc 'Backfill Last.fm data for artists and songs'
   task backfill_lastfm: :environment do
     puts 'Enqueueing artists and songs for Last.fm backfill...'

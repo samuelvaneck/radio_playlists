@@ -5,9 +5,12 @@
 # Table name: artists
 #
 #  id                           :bigint           not null, primary key
+#  aka_names                    :string           default([]), is an Array
+#  aka_names_checked_at         :datetime
 #  country_of_origin            :string           default([]), is an Array
 #  country_of_origin_checked_at :datetime
 #  genres                       :string           default([]), is an Array
+#  id_on_musicbrainz            :string
 #  id_on_spotify                :string
 #  image                        :string
 #  instagram_url                :string
@@ -27,8 +30,10 @@
 #
 # Indexes
 #
-#  index_artists_on_name_trgm  (name) USING gin
-#  index_artists_on_slug       (slug) UNIQUE
+#  index_artists_on_aka_names          (aka_names) USING gin
+#  index_artists_on_id_on_musicbrainz  (id_on_musicbrainz) UNIQUE
+#  index_artists_on_name_trgm          (name) USING gin
+#  index_artists_on_slug               (slug) UNIQUE
 #
 
 class Artist < ApplicationRecord
