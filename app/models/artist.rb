@@ -158,6 +158,10 @@ class Artist < ApplicationRecord
     update(website_url: official_website) if official_website.present?
   end
 
+  def fetch_aka_names
+    MusicBrainz::ArtistAliasFetcher.new(self).()
+  end
+
   private
 
   def slug_source
