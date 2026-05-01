@@ -39,6 +39,9 @@ class AcoustidRecognizer
 
   ACOUSTID_API_URL = 'https://api.acoustid.org/v2/lookup'
   MINIMUM_SCORE = 0.5
+  FPCALC_TIMEOUT_SECONDS = 15
+  HTTP_OPEN_TIMEOUT_SECONDS = 5
+  HTTP_READ_TIMEOUT_SECONDS = 10
 
   attr_reader :result, :title, :artist_name, :recording_id, :score
 
@@ -70,10 +73,7 @@ class AcoustidRecognizer
   private
 
   def generate_fingerprint
-    output, error, status = Open3.capture3('fpcalc', '-json', @audio_file_path.to_s)
-
-    raise FingerprintError, "fpcalc failed: #{error.presence || 'unknown error'}" unless status.success?
-
+    output = run_fpcalc
     result = JSON.parse(output)
     {
       fingerprint: result['fingerprint'],
@@ -81,6 +81,26 @@ class AcoustidRecognizer
     }
   rescue JSON::ParserError => e
     raise FingerprintError, "Invalid fpcalc output: #{e.message}"
+  end
+
+  # popen3 + wall-clock kill so a stalled fpcalc can't keep the Sidekiq worker
+  # thread occupied past ImportSongJob's 60s lock TTL. fpcalc can hang on
+  # malformed/truncated mp3 segments produced by upstream HLS stalls.
+  def run_fpcalc
+    Open3.popen3('fpcalc', '-json', @audio_file_path.to_s) do |stdin, stdout, stderr, wait_thr|
+      stdin.close
+      if wait_thr.join(FPCALC_TIMEOUT_SECONDS)
+        output = stdout.read
+        error = stderr.read
+        raise FingerprintError, "fpcalc failed: #{error.presence || 'unknown error'}" unless wait_thr.value.success?
+
+        output
+      else
+        ::Process.kill('KILL', wait_thr.pid)
+        wait_thr.join
+        raise FingerprintError, "fpcalc timed out after #{FPCALC_TIMEOUT_SECONDS}s"
+      end
+    end
   end
 
   def lookup_fingerprint(fingerprint_data)
@@ -93,7 +113,7 @@ class AcoustidRecognizer
     }
     uri.query = URI.encode_www_form(params)
 
-    response = Net::HTTP.get_response(uri)
+    response = http_client(uri).get(uri.request_uri)
 
     raise ApiError, "AcoustID API returned #{response.code}: #{response.body.truncate(200)}" unless response.is_a?(Net::HTTPSuccess)
 
@@ -102,6 +122,14 @@ class AcoustidRecognizer
     raise ApiError, "Invalid API response: #{e.message}"
   rescue StandardError => e
     raise ApiError, "API request failed: #{e.message}"
+  end
+
+  def http_client(uri)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = (uri.scheme == 'https')
+    http.open_timeout = HTTP_OPEN_TIMEOUT_SECONDS
+    http.read_timeout = HTTP_READ_TIMEOUT_SECONDS
+    http
   end
 
   def handle_response(response)
