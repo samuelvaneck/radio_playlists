@@ -61,6 +61,8 @@ class SongRecognizer
     /retry after/i
   ].freeze
 
+  SONGREC_TIMEOUT_SECONDS = 15
+
   attr_reader :audio_stream, :result, :title, :artist_name, :broadcasted_at, :spotify_url, :isrc_code
 
   # @param radio_station [RadioStation] The radio station to capture audio from
@@ -92,13 +94,24 @@ class SongRecognizer
 
   private
 
+  # Wraps the songrec invocation in popen3 with a wall-clock kill so a hanging
+  # Shazam request can't keep the Sidekiq worker thread occupied past
+  # ImportSongJob's 60s lock TTL. Without this, a stalled songrec process
+  # piles duplicate jobs onto the queue once the lock expires.
   def run_song_recognizer
     raise RecognitionError, "Audio file not found: #{@output_file}" unless File.exist?(@output_file)
 
-    Open3.popen3('songrec', 'audio-file-to-recognized-song', @output_file.to_s) do |_stdin, stdout, stderr, _wait_thr|
-      output = stdout.read
-      error = stderr.read
-      output.presence || error
+    Open3.popen3('songrec', 'audio-file-to-recognized-song', @output_file.to_s) do |stdin, stdout, stderr, wait_thr|
+      stdin.close
+      if wait_thr.join(SONGREC_TIMEOUT_SECONDS)
+        output = stdout.read
+        error = stderr.read
+        output.presence || error
+      else
+        ::Process.kill('KILL', wait_thr.pid)
+        wait_thr.join
+        raise RecognitionError, "songrec timed out after #{SONGREC_TIMEOUT_SECONDS}s"
+      end
     end
   end
 
