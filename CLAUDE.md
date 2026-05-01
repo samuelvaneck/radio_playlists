@@ -52,6 +52,9 @@ bundle exec rake optimization:vacuum                           # PostgreSQL VACU
 # Hit Potential
 bundle exec rake hit_potential:backfill                        # Backfill hit_potential_score for songs with music profiles
 
+# Enrichment
+bundle exec rake enrichment:backfill_artist_aka_names          # Fetch alternative artist names from MusicBrainz
+
 # Slugs
 bundle exec rake slug:backfill_songs                           # Backfill slugs for songs without one
 bundle exec rake slug:backfill_artists                         # Backfill slugs for artists without one
@@ -79,7 +82,7 @@ The app uses service objects extensively in `app/services/`:
 - `Lastfm/` and `Wikipedia/` - Artist bio/info enrichment (Last.fm listeners/playcount/tags, Wikipedia nationality via Wikidata)
 - `Deezer/` and `Itunes/` - Additional enrichment sources (duration_ms, release_date backfill)
 - `ClientTokenGenerator` - Generates short-lived JWT tokens (10-minute expiry) for frontend client authentication
-- `MusicBrainz/` - ISRCs enrichment for songs
+- `MusicBrainz/` - ISRCs enrichment for songs and `ArtistAliasFetcher` for populating `Artist#aka_names` (legal names, stylization variants like P!nk/Pink, former names via `artist rename` relations)
 - `AudioStream/` - M3U8, MP3, and PersistentSegment stream handling
 - `PersistentStream/` - Long-lived ffmpeg processes for ad-free stream capture (see below)
 - `CombinedArtistSplitter` - Splits combined artist names (e.g., "Artist feat. Artist2") into individual Artist records
@@ -215,7 +218,7 @@ The score is calculated automatically by `MusicProfileJob` after creating a musi
 ### Key Models
 
 - `Song` - Core entity with Spotify/YouTube IDs, enrichment fields (`album_name`, `popularity`, `explicit`, `duration_ms`, `release_date`, `isrcs` array, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`, `hit_potential_score`), `slug` for SEO-friendly URLs
-- `Artist` - Core entity with enrichment fields (`genres` array, `country_of_origin` array, `spotify_popularity`, `spotify_followers_count`, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`), `slug` for SEO-friendly URLs
+- `Artist` - Core entity with enrichment fields (`genres` array, `country_of_origin` array, `spotify_popularity`, `spotify_followers_count`, `lastfm_listeners`, `lastfm_playcount`, `lastfm_tags`, `aka_names` array, `id_on_musicbrainz`), `slug` for SEO-friendly URLs
 - `AirPlay` - Song play events (unique per station/song/time, `broadcasted_at` presence validated)
 - `RadioStation` - Station metadata with last 12 airplay IDs (JSONB), `is_currently_playing` flag on last_played_songs endpoint, `slug` for SEO-friendly URLs
 - `ChartPosition` - Polymorphic rankings (can be Song or Artist), with popularity boost tiebreaker
