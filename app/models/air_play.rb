@@ -59,7 +59,7 @@ class AirPlay < ApplicationRecord
       .played_on(params[:radio_station_ids])
       .matching(params[:search_term])
       .group(:id, 'songs.id', 'radio_stations.id')
-      .order(created_at: :desc)
+      .order(broadcasted_at: :desc)
   end
 
   def deduplicate
