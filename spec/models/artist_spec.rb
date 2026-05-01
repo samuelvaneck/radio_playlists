@@ -540,4 +540,17 @@ describe Artist do
       end
     end
   end
+
+  describe '#fetch_aka_names' do
+    let(:artist) { create(:artist, name: 'P!nk') }
+    let(:fetcher) { instance_double(MusicBrainz::ArtistAliasFetcher, call: true) }
+
+    before { allow(MusicBrainz::ArtistAliasFetcher).to receive(:new).with(artist).and_return(fetcher) }
+
+    it 'delegates to MusicBrainz::ArtistAliasFetcher', :aggregate_failures do
+      artist.fetch_aka_names
+      expect(MusicBrainz::ArtistAliasFetcher).to have_received(:new).with(artist)
+      expect(fetcher).to have_received(:call)
+    end
+  end
 end
