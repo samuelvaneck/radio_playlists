@@ -1,5 +1,8 @@
 inherit_from: .rubocop_todo.yml
 
+require:
+  - ./lib/rubocop/cop/airplays/rails_in_sidekiq_namespace
+
 ################################################################################
 # Rubocop default cops setting see: https://docs.rubocop.org/rubocop/index.html
 #################################################################################
@@ -186,3 +189,12 @@ RSpec/MultipleMemoizedHelpers:
 ################################################################################
 Performance:
   Enabled: true
+
+################################################################################
+# Custom cops (lib/rubocop/cop/airplays/)
+################################################################################
+Airplays/RailsInSidekiqNamespace:
+  Enabled: true
+  Include:
+    - 'app/**/*.rb'
+    - 'lib/**/*.rb'

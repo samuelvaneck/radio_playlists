@@ -73,7 +73,7 @@ module Sidekiq
     end
 
     def log_job_growth(job_class, rss_before, rss_after, growth, gc_freed)
-      Rails.logger.warn(
+      ::Rails.logger.warn(
         "[MemoryMonitor] Job #{job_class} grew #{format('%.1f', growth)}MB " \
         "(#{format('%.1f', rss_before)} -> #{format('%.1f', rss_after)}MB RSS, " \
         "GC freed: #{gc_freed} objects)"
@@ -102,7 +102,7 @@ module Sidekiq
                  "(#{stats[:runs]} runs, avg #{format('%.2f', avg)}MB, max #{format('%.1f', stats[:max_growth])}MB)"
       end
 
-      Rails.logger.warn(lines.join("\n"))
+      ::Rails.logger.warn(lines.join("\n"))
     end
 
     def gc_summary
