@@ -121,7 +121,7 @@ On-demand enrichment jobs (triggered by import flow, not scheduled):
 - `MusicProfileJob` - Creates Spotify audio feature profiles for songs, then calculates `hit_potential_score` via `HitPotentialCalculator`
 - `AcoustidPopulationJob` - Downloads YouTube audio, generates fingerprints, submits to AcoustID
 
-**Important:** `ImportSongJob` uses `sidekiq-unique-jobs` with `lock: :until_executed` and `lock_ttl: 60`. The TTL prevents stuck locks after Sidekiq crashes — without it, locks persist indefinitely in Redis and silently block imports.
+**Important:** `ImportSongJob` uses `sidekiq-unique-jobs` with `lock: :until_executed` and `lock_ttl: 90`, plus a 60-second `Timeout.timeout` wrapper around `SongImporter#import`. The wall-clock timeout caps each job at one minute (covering edge-case hangs not handled by inner subprocess/HTTP timeouts), and `lock_ttl` is set higher than the timeout so the unique lock spans the full execution — otherwise the per-minute scheduler would enqueue duplicates while a slow job is still running, and they would pile up across worker threads.
 
 ### Sidekiq Memory Monitor
 
