@@ -60,31 +60,36 @@ RSpec.describe SongExternalIdsEnrichmentJob do
 
     context 'when song already has all external ids' do
       let(:song) do
-        create(:song, title: 'Test Song', id_on_deezer: '123456', id_on_itunes: '789012',
+        create(:song, title: 'Test Song', id_on_deezer: '123456', id_on_itunes: '789012', id_on_tidal: 'tdl-001',
                       isrcs: %w[USRC12345678 GBABC1234567], duration_ms: 210_000)
       end
 
       it 'does not call enrichment services', :aggregate_failures do
         allow(Deezer::SongEnricher).to receive(:new)
         allow(Itunes::SongEnricher).to receive(:new)
+        allow(Tidal::SongEnricher).to receive(:new)
         allow(MusicBrainz::SongEnricher).to receive(:new)
 
         job.perform(song.id)
 
         expect(Deezer::SongEnricher).not_to have_received(:new)
         expect(Itunes::SongEnricher).not_to have_received(:new)
+        expect(Tidal::SongEnricher).not_to have_received(:new)
         expect(MusicBrainz::SongEnricher).not_to have_received(:new)
       end
     end
   end
 
   describe '.enqueue_all' do
-    let!(:song_missing_deezer) { create(:song, id_on_deezer: nil, id_on_itunes: '123') }
-    let!(:song_missing_itunes) { create(:song, id_on_deezer: '456', id_on_itunes: nil) }
-    let!(:song_missing_both) { create(:song, id_on_deezer: nil, id_on_itunes: nil) }
-    let!(:song_missing_isrcs) { create(:song, id_on_deezer: '111', id_on_itunes: '222', isrcs: ['USRC12345678']) }
+    let!(:song_missing_deezer) { create(:song, id_on_deezer: nil, id_on_itunes: '123', id_on_tidal: 'tdl-1') }
+    let!(:song_missing_itunes) { create(:song, id_on_deezer: '456', id_on_itunes: nil, id_on_tidal: 'tdl-2') }
+    let!(:song_missing_both) { create(:song, id_on_deezer: nil, id_on_itunes: nil, id_on_tidal: 'tdl-3') }
+    let!(:song_missing_isrcs) do
+      create(:song, id_on_deezer: '111', id_on_itunes: '222', id_on_tidal: 'tdl-4', isrcs: ['USRC12345678'])
+    end
+    let!(:song_missing_tidal) { create(:song, id_on_deezer: '789', id_on_itunes: '012', id_on_tidal: nil) }
     let!(:song_complete) do
-      create(:song, id_on_deezer: '789', id_on_itunes: '012', isrcs: %w[USRC12345678 GBABC1234567],
+      create(:song, id_on_deezer: '789', id_on_itunes: '012', id_on_tidal: 'tdl-5', isrcs: %w[USRC12345678 GBABC1234567],
                     duration_ms: 210_000, release_date: Date.new(2023, 1, 1))
     end
 
@@ -97,6 +102,7 @@ RSpec.describe SongExternalIdsEnrichmentJob do
       expect(described_class).to have_received(:perform_async).with(song_missing_itunes.id)
       expect(described_class).to have_received(:perform_async).with(song_missing_both.id)
       expect(described_class).to have_received(:perform_async).with(song_missing_isrcs.id)
+      expect(described_class).to have_received(:perform_async).with(song_missing_tidal.id)
       expect(described_class).not_to have_received(:perform_async).with(song_complete.id)
     end
   end
