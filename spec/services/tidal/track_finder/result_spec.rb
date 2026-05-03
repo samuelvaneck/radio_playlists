@@ -13,58 +13,46 @@ describe Tidal::TrackFinder::Result do
     allow(Tidal::Token).to receive(:new).and_return(instance_double(Tidal::Token, token: 'fake_token'))
   end
 
+  def search_response(tracks:, artists:)
+    {
+      'data' => {
+        'id' => 'shape of you',
+        'type' => 'searchResults',
+        'attributes' => { 'trackingId' => 'abc' },
+        'relationships' => { 'tracks' => { 'data' => tracks.map { |t| { 'id' => t['id'], 'type' => 'tracks' } } } }
+      },
+      'included' => tracks + artists
+    }
+  end
+
+  def stub_search(body)
+    stub_request(:get, %r{openapi\.tidal\.com/v2/searchresults}).to_return(
+      status: 200,
+      body: body.to_json,
+      headers: { 'Content-Type' => 'application/vnd.api+json' }
+    )
+  end
+
   describe '#execute' do
-    let(:tidal_track_response) do
+    let(:ed_sheeran) { { 'id' => '100', 'type' => 'artists', 'attributes' => { 'name' => 'Ed Sheeran' } } }
+    let(:track_resource) do
       {
-        'data' => [
-          {
-            'id' => '12345',
-            'type' => 'tracks',
-            'attributes' => {
-              'title' => 'Shape of You',
-              'isrc' => 'GBAHS1600786',
-              'duration' => 'PT3M53S',
-              'explicit' => false,
-              'popularity' => 0.5
-            },
-            'relationships' => {
-              'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
-              'albums' => { 'data' => [{ 'id' => '200', 'type' => 'albums' }] }
-            }
-          }
-        ],
-        'included' => [
-          { 'id' => '100', 'type' => 'artists', 'attributes' => { 'name' => 'Ed Sheeran' } },
-          {
-            'id' => '200', 'type' => 'albums',
-            'attributes' => {
-              'title' => 'Divide',
-              'imageLinks' => [
-                { 'href' => 'https://resources.tidal.com/images/small.jpg', 'meta' => { 'width' => 160, 'height' => 160 } },
-                { 'href' => 'https://resources.tidal.com/images/large.jpg', 'meta' => { 'width' => 640, 'height' => 640 } }
-              ]
-            },
-            'relationships' => {
-              'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] }
-            }
-          }
-        ]
+        'id' => '12345', 'type' => 'tracks',
+        'attributes' => {
+          'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S',
+          'explicit' => false, 'popularity' => 0.5
+        },
+        'relationships' => { 'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] } }
       }
     end
 
-    context 'when the track is found by ISRC' do
-      let(:isrc) { 'GBAHS1600786' }
-
+    context 'when the search returns a single matching track' do
       before do
-        stub_request(:get, %r{openapi\.tidal\.com/v2/tracks\?.*filter}).to_return(
-          status: 200,
-          body: tidal_track_response.to_json,
-          headers: { 'Content-Type' => 'application/vnd.api+json' }
-        )
+        stub_search(search_response(tracks: [track_resource], artists: [ed_sheeran]))
         result.execute
       end
 
-      it 'returns the correct title' do
+      it 'returns the title' do
         expect(result.title).to eq('Shape of You')
       end
 
@@ -74,10 +62,6 @@ describe Tidal::TrackFinder::Result do
 
       it 'returns the song URL' do
         expect(result.tidal_song_url).to eq('https://tidal.com/browse/track/12345')
-      end
-
-      it 'returns the largest artwork URL' do
-        expect(result.tidal_artwork_url).to eq('https://resources.tidal.com/images/large.jpg')
       end
 
       it 'returns the ISRC' do
@@ -91,191 +75,102 @@ describe Tidal::TrackFinder::Result do
       it 'returns the artist name' do
         expect(result.artists.first['name']).to eq('Ed Sheeran')
       end
+
+      it 'returns nil artwork (album not included in this iteration)' do
+        expect(result.tidal_artwork_url).to be_nil
+      end
     end
 
-    context 'when the track is found by query search' do
-      let(:search_response) do
-        {
-          'data' => {
-            'id' => 'shape of you',
-            'type' => 'searchResults',
-            'attributes' => { 'trackingId' => 'abc' },
-            'relationships' => { 'tracks' => { 'data' => [{ 'id' => '12345', 'type' => 'tracks' }] } }
-          },
-          'included' => tidal_track_response['data'] + tidal_track_response['included']
-        }
+    context 'when the search returns several tracks' do
+      let(:low_pop_track) do
+        track_resource.merge('id' => 'low', 'attributes' => track_resource['attributes'].merge('popularity' => 0.1))
+      end
+      let(:high_pop_track) do
+        track_resource.merge('id' => 'high', 'attributes' => track_resource['attributes'].merge('popularity' => 0.95))
       end
 
       before do
-        stub_request(:get, %r{openapi\.tidal\.com/v2/searchresults}).to_return(
-          status: 200,
-          body: search_response.to_json,
-          headers: { 'Content-Type' => 'application/vnd.api+json' }
-        )
+        stub_search(search_response(tracks: [low_pop_track, high_pop_track], artists: [ed_sheeran]))
         result.execute
       end
 
-      it 'returns the correct title' do
-        expect(result.title).to eq('Shape of You')
-      end
-
-      it 'returns the Tidal id' do
-        expect(result.id).to eq('12345')
+      it 'picks the most popular track' do
+        expect(result.id).to eq('high')
       end
     end
 
-    context 'when the ISRC returns multiple albums' do
+    context 'when an ISRC is supplied and search returns multiple ISRCs' do
       let(:isrc) { 'GBAHS1600786' }
-      let(:multi_album_response) do
-        {
-          'data' => [
-            {
-              'id' => 'compilation_track', 'type' => 'tracks',
-              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.9 },
-              'relationships' => {
-                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
-                'albums' => { 'data' => [{ 'id' => 'compilation_album', 'type' => 'albums' }] }
-              }
-            },
-            {
-              'id' => 'original_track', 'type' => 'tracks',
-              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.4 },
-              'relationships' => {
-                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
-                'albums' => { 'data' => [{ 'id' => 'original_album', 'type' => 'albums' }] }
-              }
-            }
-          ],
-          'included' => [
-            { 'id' => '100', 'type' => 'artists', 'attributes' => { 'name' => 'Ed Sheeran' } },
-            { 'id' => '999', 'type' => 'artists', 'attributes' => { 'name' => 'Various Artists' } },
-            {
-              'id' => 'compilation_album', 'type' => 'albums', 'attributes' => { 'title' => 'Summer Hits' },
-              'relationships' => { 'artists' => { 'data' => [{ 'id' => '999', 'type' => 'artists' }] } }
-            },
-            {
-              'id' => 'original_album', 'type' => 'albums', 'attributes' => { 'title' => 'Divide' },
-              'relationships' => { 'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] } }
-            }
-          ]
-        }
+      let(:matching_track) do
+        track_resource.merge('id' => 'matches', 'attributes' => track_resource['attributes'].merge('popularity' => 0.2))
+      end
+      let(:wrong_isrc_track) do
+        track_resource.merge(
+          'id' => 'mismatch',
+          'attributes' => track_resource['attributes'].merge('isrc' => 'OTHER000000', 'popularity' => 0.99)
+        )
       end
 
       before do
-        stub_request(:get, %r{openapi\.tidal\.com/v2/tracks\?.*filter}).to_return(
-          status: 200,
-          body: multi_album_response.to_json,
-          headers: { 'Content-Type' => 'application/vnd.api+json' }
-        )
+        stub_search(search_response(tracks: [wrong_isrc_track, matching_track], artists: [ed_sheeran]))
         result.execute
       end
 
-      it 'picks the track on the original-artist album, even when the compilation is more popular' do
-        expect(result.id).to eq('original_track')
+      it 'narrows to tracks with the matching ISRC even when a wrong-ISRC track is more popular' do
+        expect(result.id).to eq('matches')
       end
     end
 
-    context 'when multiple original-artist albums exist' do
-      let(:isrc) { 'GBAHS1600786' }
-      let(:multi_original_response) do
-        {
-          'data' => [
-            {
-              'id' => 'single_track', 'type' => 'tracks',
-              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.4 },
-              'relationships' => {
-                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
-                'albums' => { 'data' => [{ 'id' => 'single_album', 'type' => 'albums' }] }
-              }
-            },
-            {
-              'id' => 'greatest_hits_track', 'type' => 'tracks',
-              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.95 },
-              'relationships' => {
-                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
-                'albums' => { 'data' => [{ 'id' => 'greatest_hits_album', 'type' => 'albums' }] }
-              }
-            }
-          ],
-          'included' => [
-            { 'id' => '100', 'type' => 'artists', 'attributes' => { 'name' => 'Ed Sheeran' } },
-            {
-              'id' => 'single_album', 'type' => 'albums', 'attributes' => { 'title' => 'Shape of You' },
-              'relationships' => { 'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] } }
-            },
-            {
-              'id' => 'greatest_hits_album', 'type' => 'albums', 'attributes' => { 'title' => 'Greatest Hits' },
-              'relationships' => { 'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] } }
-            }
-          ]
-        }
+    context 'when an ISRC is supplied but no result has that ISRC' do
+      let(:isrc) { 'NONEXISTENT' }
+      let(:other_track) do
+        track_resource.merge('id' => 'other', 'attributes' => track_resource['attributes'].merge('isrc' => 'OTHER000000'))
       end
 
       before do
-        stub_request(:get, %r{openapi\.tidal\.com/v2/tracks\?.*filter}).to_return(
-          status: 200,
-          body: multi_original_response.to_json,
-          headers: { 'Content-Type' => 'application/vnd.api+json' }
-        )
+        stub_search(search_response(tracks: [other_track], artists: [ed_sheeran]))
         result.execute
       end
 
-      it 'picks the most popular original-artist track' do
-        expect(result.id).to eq('greatest_hits_track')
+      it 'falls back to the full pool and validates via artist/title distance' do
+        expect(result.id).to eq('other')
       end
     end
 
-    context 'when no album lists an artist that matches the track artist' do
-      let(:isrc) { 'GBAHS1600786' }
-      let(:no_overlap_response) do
-        {
-          'data' => [
-            {
-              'id' => 'low_pop', 'type' => 'tracks',
-              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.2 },
-              'relationships' => {
-                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
-                'albums' => { 'data' => [{ 'id' => 'a1', 'type' => 'albums' }] }
-              }
-            },
-            {
-              'id' => 'high_pop', 'type' => 'tracks',
-              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.8 },
-              'relationships' => {
-                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
-                'albums' => { 'data' => [{ 'id' => 'a2', 'type' => 'albums' }] }
-              }
-            }
-          ],
-          'included' => [
-            { 'id' => '100', 'type' => 'artists', 'attributes' => { 'name' => 'Ed Sheeran' } },
-            { 'id' => 'a1', 'type' => 'albums', 'attributes' => { 'title' => 'Mix A' } },
-            { 'id' => 'a2', 'type' => 'albums', 'attributes' => { 'title' => 'Mix B' } }
-          ]
-        }
+    context 'when the title does not pass the threshold' do
+      let(:wrong_title_track) do
+        track_resource.merge('attributes' => track_resource['attributes'].merge('title' => 'Completely Different Song'))
       end
 
       before do
-        stub_request(:get, %r{openapi\.tidal\.com/v2/tracks\?.*filter}).to_return(
-          status: 200,
-          body: no_overlap_response.to_json,
-          headers: { 'Content-Type' => 'application/vnd.api+json' }
-        )
+        stub_search(search_response(tracks: [wrong_title_track], artists: [ed_sheeran]))
         result.execute
       end
 
-      it 'falls back to picking the most popular track' do
-        expect(result.id).to eq('high_pop')
+      it 'rejects the match' do
+        expect(result.track).to be_nil
       end
     end
 
-    context 'when the track is not found' do
+    context 'when the artist does not pass the threshold' do
+      let(:wrong_artist) { { 'id' => '999', 'type' => 'artists', 'attributes' => { 'name' => 'Some Other Artist' } } }
+      let(:wrong_artist_track) do
+        track_resource.merge('relationships' => { 'artists' => { 'data' => [{ 'id' => '999', 'type' => 'artists' }] } })
+      end
+
       before do
-        stub_request(:get, /openapi\.tidal\.com/).to_return(
-          status: 200,
-          body: { 'data' => [], 'included' => [] }.to_json,
-          headers: { 'Content-Type' => 'application/vnd.api+json' }
-        )
+        stub_search(search_response(tracks: [wrong_artist_track], artists: [wrong_artist]))
+        result.execute
+      end
+
+      it 'rejects the match' do
+        expect(result.track).to be_nil
+      end
+    end
+
+    context 'when search returns nothing' do
+      before do
+        stub_search('data' => { 'id' => 'q', 'type' => 'searchResults', 'attributes' => {} }, 'included' => [])
         result.execute
       end
 
