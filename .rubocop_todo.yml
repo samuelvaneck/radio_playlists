@@ -342,7 +342,6 @@ Style/LambdaCall:
 Style/PercentLiteralDelimiters:
   Exclude:
     - 'Guardfile'
-    - 'config/spring.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
