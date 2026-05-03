@@ -16,6 +16,7 @@
 #  id_on_deezer           :string
 #  id_on_itunes           :string
 #  id_on_spotify          :string
+#  id_on_tidal            :string
 #  id_on_youtube          :string
 #  isrc                   :string
 #  isrcs                  :string           default([]), is an Array
@@ -34,6 +35,9 @@
 #  spotify_artwork_url    :string
 #  spotify_preview_url    :string
 #  spotify_song_url       :string
+#  tidal_artwork_url      :string
+#  tidal_preview_url      :string
+#  tidal_song_url         :string
 #  title                  :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -43,6 +47,7 @@
 #  index_songs_on_acoustid_submitted_at  (acoustid_submitted_at)
 #  index_songs_on_id_on_deezer           (id_on_deezer)
 #  index_songs_on_id_on_itunes           (id_on_itunes)
+#  index_songs_on_id_on_tidal            (id_on_tidal)
 #  index_songs_on_release_date           (release_date)
 #  index_songs_on_search_text_trgm       (search_text) USING gin
 #  index_songs_on_slug                   (slug) UNIQUE

@@ -27,6 +27,12 @@ class CircuitBreakerConfig
       error_threshold: 50,
       time_window: 60
     },
+    tidal: {
+      sleep_window: 60,
+      volume_threshold: 5,
+      error_threshold: 50,
+      time_window: 60
+    },
     youtube: {
       sleep_window: 120,
       volume_threshold: 3,

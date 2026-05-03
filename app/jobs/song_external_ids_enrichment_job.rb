@@ -10,6 +10,7 @@ class SongExternalIdsEnrichmentJob
     scope = Song
               .where(id_on_deezer: nil)
               .or(Song.where(id_on_itunes: nil))
+              .or(Song.where(id_on_tidal: nil))
               .or(Song.where(duration_ms: nil))
               .or(Song.where(release_date: nil))
               .or(Song.where('array_length(isrcs, 1) = 1'))
@@ -17,7 +18,7 @@ class SongExternalIdsEnrichmentJob
     scope.find_each { |song| perform_async(song.id) }
   end
 
-  # Enrich a single song with Deezer and iTunes IDs
+  # Enrich a single song with Deezer, iTunes, Tidal IDs
   def perform(song_id)
     song = Song.find_by(id: song_id)
     return if song.blank?

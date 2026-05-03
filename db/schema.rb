@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_01_093422) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_03_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -247,6 +247,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_01_093422) do
     t.string "id_on_deezer"
     t.string "id_on_itunes"
     t.string "id_on_spotify"
+    t.string "id_on_tidal"
     t.string "id_on_youtube"
     t.string "isrc"
     t.string "isrcs", default: [], array: true
@@ -265,11 +266,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_01_093422) do
     t.string "spotify_artwork_url"
     t.string "spotify_preview_url"
     t.string "spotify_song_url"
+    t.string "tidal_artwork_url"
+    t.string "tidal_preview_url"
+    t.string "tidal_song_url"
     t.string "title"
     t.datetime "updated_at", precision: nil, null: false
     t.index ["acoustid_submitted_at"], name: "index_songs_on_acoustid_submitted_at"
     t.index ["id_on_deezer"], name: "index_songs_on_id_on_deezer"
     t.index ["id_on_itunes"], name: "index_songs_on_id_on_itunes"
+    t.index ["id_on_tidal"], name: "index_songs_on_id_on_tidal"
     t.index ["release_date"], name: "index_songs_on_release_date"
     t.index ["search_text"], name: "index_songs_on_search_text_trgm", opclass: :gin_trgm_ops, using: :gin
     t.index ["slug"], name: "index_songs_on_slug", unique: true
