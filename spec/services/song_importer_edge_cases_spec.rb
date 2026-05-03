@@ -512,6 +512,7 @@ describe SongImporter do
         allow(Broadcaster).to receive(:song_confirmed)
         allow(MusicProfileJob).to receive(:perform_async)
         allow(SongExternalIdsEnrichmentJob).to receive(:perform_async)
+        allow(ArtistExternalIdsEnrichmentJob).to receive(:perform_async)
       end
 
       it 'confirms the existing draft air play' do
@@ -529,6 +530,7 @@ describe SongImporter do
         allow(Broadcaster).to receive(:song_confirmed)
         allow(MusicProfileJob).to receive(:perform_async)
         allow(SongExternalIdsEnrichmentJob).to receive(:perform_async)
+        allow(ArtistExternalIdsEnrichmentJob).to receive(:perform_async)
       end
 
       it 'creates a confirmed air play' do
@@ -552,6 +554,7 @@ describe SongImporter do
         allow(Broadcaster).to receive(:song_draft_created)
         allow(MusicProfileJob).to receive(:perform_async)
         allow(SongExternalIdsEnrichmentJob).to receive(:perform_async)
+        allow(ArtistExternalIdsEnrichmentJob).to receive(:perform_async)
       end
 
       it 'creates a draft air play' do
@@ -569,6 +572,7 @@ describe SongImporter do
       importer.instance_variable_set(:@artists, [artist])
       allow(MusicProfileJob).to receive(:perform_async)
       allow(SongExternalIdsEnrichmentJob).to receive(:perform_async)
+      allow(ArtistExternalIdsEnrichmentJob).to receive(:perform_async)
     end
 
     it 'enqueues MusicProfileJob and SongExternalIdsEnrichmentJob', :aggregate_failures do
