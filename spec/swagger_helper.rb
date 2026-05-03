@@ -76,6 +76,13 @@ RSpec.configure do |config|
                   lastfm_listeners: { type: :integer, nullable: true },
                   lastfm_playcount: { type: :integer, nullable: true },
                   lastfm_tags: { type: :array, items: { type: :string }, nullable: true },
+                  id_on_tidal: { type: :string, nullable: true },
+                  tidal_artist_url: { type: :string, nullable: true },
+                  id_on_deezer: { type: :string, nullable: true },
+                  deezer_artist_url: { type: :string, nullable: true },
+                  deezer_artwork_url: { type: :string, nullable: true },
+                  id_on_itunes: { type: :string, nullable: true },
+                  itunes_artist_url: { type: :string, nullable: true },
                   counter: { type: :integer, nullable: true }
                 }
               }

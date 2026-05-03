@@ -9,11 +9,17 @@
 #  aka_names_checked_at         :datetime
 #  country_of_origin            :string           default([]), is an Array
 #  country_of_origin_checked_at :datetime
+#  deezer_artist_url            :string
+#  deezer_artwork_url           :string
 #  genres                       :string           default([]), is an Array
+#  id_on_deezer                 :string
+#  id_on_itunes                 :string
 #  id_on_musicbrainz            :string
 #  id_on_spotify                :string
+#  id_on_tidal                  :string
 #  image                        :string
 #  instagram_url                :string
+#  itunes_artist_url            :string
 #  lastfm_enriched_at           :datetime
 #  lastfm_listeners             :bigint
 #  lastfm_playcount             :bigint
@@ -24,6 +30,7 @@
 #  spotify_artwork_url          :string
 #  spotify_followers_count      :integer
 #  spotify_popularity           :integer
+#  tidal_artist_url             :string
 #  website_url                  :string
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
@@ -31,7 +38,10 @@
 # Indexes
 #
 #  index_artists_on_aka_names          (aka_names) USING gin
+#  index_artists_on_id_on_deezer       (id_on_deezer)
+#  index_artists_on_id_on_itunes       (id_on_itunes)
 #  index_artists_on_id_on_musicbrainz  (id_on_musicbrainz) UNIQUE
+#  index_artists_on_id_on_tidal        (id_on_tidal)
 #  index_artists_on_name_trgm          (name) USING gin
 #  index_artists_on_slug               (slug) UNIQUE
 #
@@ -65,6 +75,16 @@ class Artist < ApplicationRecord
 
   validates :name, presence: true
 
+  MOST_PLAYED_COLUMNS = %w[
+    id name slug image
+    id_on_spotify spotify_artist_url spotify_artwork_url spotify_popularity spotify_followers_count
+    id_on_tidal tidal_artist_url
+    id_on_deezer deezer_artist_url deezer_artwork_url
+    id_on_itunes itunes_artist_url
+    instagram_url website_url genres country_of_origin
+    lastfm_listeners lastfm_playcount lastfm_tags
+  ].map { |c| "artists.#{c}" }.freeze
+
   def self.most_played(params = {})
     start_time, end_time = time_range_from_params(params, default_period: 'week')
 
@@ -73,23 +93,7 @@ class Artist < ApplicationRecord
       .played_between(start_time, end_time)
       .played_on(params[:radio_station_ids])
       .matching(params[:search_term])
-      .select("artists.id,
-                   artists.name,
-                   artists.slug,
-                   artists.image,
-                   artists.id_on_spotify,
-                   artists.spotify_artist_url,
-                   artists.spotify_artwork_url,
-                   artists.instagram_url,
-                   artists.website_url,
-                   artists.genres,
-                   artists.spotify_popularity,
-                   artists.spotify_followers_count,
-                   artists.country_of_origin,
-                   artists.lastfm_listeners,
-                   artists.lastfm_playcount,
-                   artists.lastfm_tags,
-                   COUNT(DISTINCT air_plays.id) AS counter")
+      .select(*MOST_PLAYED_COLUMNS, 'COUNT(DISTINCT air_plays.id) AS counter')
       .group(:id)
       .order('COUNTER DESC')
   end
@@ -162,7 +166,41 @@ class Artist < ApplicationRecord
     MusicBrainz::ArtistAliasFetcher.new(self).()
   end
 
+  def enrich_with_tidal
+    Tidal::ArtistEnricher.new(self).enrich
+  end
+
+  def enrich_with_deezer
+    Deezer::ArtistEnricher.new(self).enrich
+  end
+
+  def enrich_with_itunes
+    Itunes::ArtistEnricher.new(self).enrich
+  end
+
+  def enrich_with_external_services
+    enrich_with_tidal if should_enrich_with_tidal?
+    enrich_with_deezer if should_enrich_with_deezer?
+    enrich_with_itunes if should_enrich_with_itunes?
+  end
+
+  def needs_external_ids_enrichment?
+    should_enrich_with_tidal? || should_enrich_with_deezer? || should_enrich_with_itunes?
+  end
+
   private
+
+  def should_enrich_with_tidal?
+    id_on_tidal.blank? && name.present?
+  end
+
+  def should_enrich_with_deezer?
+    id_on_deezer.blank? && name.present?
+  end
+
+  def should_enrich_with_itunes?
+    id_on_itunes.blank? && name.present?
+  end
 
   def slug_source
     name

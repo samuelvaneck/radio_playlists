@@ -52,6 +52,17 @@ namespace :enrichment do
     puts "\nDone! Backfilled #{processed} artists, #{failed} did not match a MusicBrainz record."
   end
 
+  desc 'Backfill Tidal/Deezer/iTunes IDs for artists missing one or more'
+  task backfill_artist_external_ids: :environment do
+    scope = Artist.where(id_on_tidal: nil).or(Artist.where(id_on_deezer: nil)).or(Artist.where(id_on_itunes: nil))
+    total = scope.count
+    puts "Enqueueing #{total} artists for external IDs backfill..."
+
+    scope.find_each { |artist| ArtistExternalIdsEnrichmentJob.perform_async(artist.id) }
+
+    puts 'Done.'
+  end
+
   desc 'Backfill Last.fm data for artists and songs'
   task backfill_lastfm: :environment do
     puts 'Enqueueing artists and songs for Last.fm backfill...'

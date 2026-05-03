@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_03_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_03_200000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -90,11 +90,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_03_120000) do
     t.string "country_of_origin", default: [], array: true
     t.datetime "country_of_origin_checked_at"
     t.datetime "created_at", precision: nil, null: false
+    t.string "deezer_artist_url"
+    t.string "deezer_artwork_url"
     t.string "genres", default: [], array: true
+    t.string "id_on_deezer"
+    t.string "id_on_itunes"
     t.string "id_on_musicbrainz"
     t.string "id_on_spotify"
+    t.string "id_on_tidal"
     t.string "image"
     t.string "instagram_url"
+    t.string "itunes_artist_url"
     t.datetime "lastfm_enriched_at"
     t.bigint "lastfm_listeners"
     t.bigint "lastfm_playcount"
@@ -105,10 +111,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_03_120000) do
     t.string "spotify_artwork_url"
     t.integer "spotify_followers_count"
     t.integer "spotify_popularity"
+    t.string "tidal_artist_url"
     t.datetime "updated_at", precision: nil, null: false
     t.string "website_url"
     t.index ["aka_names"], name: "index_artists_on_aka_names", using: :gin
+    t.index ["id_on_deezer"], name: "index_artists_on_id_on_deezer"
+    t.index ["id_on_itunes"], name: "index_artists_on_id_on_itunes"
     t.index ["id_on_musicbrainz"], name: "index_artists_on_id_on_musicbrainz", unique: true
+    t.index ["id_on_tidal"], name: "index_artists_on_id_on_tidal"
     t.index ["name"], name: "index_artists_on_name_trgm", opclass: :gin_trgm_ops, using: :gin
     t.index ["slug"], name: "index_artists_on_slug", unique: true
   end
