@@ -59,29 +59,30 @@ module Tidal
 
         return nil if response.blank? || response['data'].blank?
 
-        included = Array(response['included'])
-        candidates = response['data'].filter_map { |t| add_match_score(t, included) }
-        return nil if candidates.blank?
+        index = build_included_index(response['included'])
+        winner = pick_isrc_winner(response['data'], index)
+        return nil if winner.blank?
 
-        prefer_original_album(candidates)
+        attach_resources(winner, index)
       end
 
       # Tidal returns one track resource per album the recording appears on (singles,
       # compilations, deluxe editions). Prefer entries where the album credits the
       # same artist as the track itself — that rules out "Various Artists" comps.
       # Tiebreak by Tidal's track popularity so we land on the most-played version.
-      def prefer_original_album(candidates)
-        primary = candidates.select { |t| album_artist_matches_track_artist?(t) }
-        pool = primary.presence || candidates
-        pool.max_by { |t| t.dig('attributes', 'popularity').to_f }
+      # Cheap album-artist filter runs first so we only pay for resource lookup +
+      # JaroWinkler on the final winner, not on all 20 candidates.
+      def pick_isrc_winner(tracks, index)
+        primary = tracks.select { |t| album_artist_matches_track_artist?(t, index) }
+        (primary.presence || tracks).max_by { |t| t.dig('attributes', 'popularity').to_f }
       end
 
-      def album_artist_matches_track_artist?(track)
-        track_artist_ids = Array(track.dig('relationships', 'artists', 'data')).pluck('id')
-        album_artist_ids = Array(track['album_artist_ids'])
-        return false if track_artist_ids.blank? || album_artist_ids.blank?
+      def album_artist_matches_track_artist?(track, index)
+        track_artist_ids = track_artist_ids_for(track)
+        return false if track_artist_ids.blank?
 
-        track_artist_ids.intersect?(album_artist_ids)
+        album_artist_ids = album_artist_ids_via_index(track, index)
+        album_artist_ids.present? && track_artist_ids.intersect?(album_artist_ids)
       end
 
       def search_by_query
@@ -95,7 +96,8 @@ module Tidal
         track_resources = included.select { |r| r['type'] == 'tracks' }
         return nil if track_resources.blank?
 
-        scored = track_resources.filter_map { |t| add_match_score(t, included) }
+        index = build_included_index(included)
+        scored = track_resources.filter_map { |t| attach_resources(t, index) }
         valid = scored.select do |t|
           t['artist_distance'].to_i >= ARTIST_SIMILARITY_THRESHOLD &&
             t['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD
@@ -103,36 +105,45 @@ module Tidal
         valid.max_by { |t| [t['artist_distance'], t['title_distance']].min }
       end
 
-      def add_match_score(track, included)
+      # Attach related artist/album resources and compute JaroWinkler distances.
+      # Mutates `track` once — only ever called on the winning candidate, so we
+      # don't pay JW twice for tracks we'll throw away.
+      def attach_resources(track, index)
         return nil if track.blank?
 
-        track['artist_resources'] = artist_resources_for(track, included)
-        track['album_resource'] = album_resource_for(track, included)
-        track['album_artist_ids'] = album_artist_ids_for(track['album_resource'])
-
+        track['artist_resources'] = artist_resources_via_index(track, index)
+        track['album_resource'] = album_resource_via_index(track, index)
         track['artist_distance'] = artist_distance(combined_artist_name(track))
         track['title_distance'] = title_distance(track.dig('attributes', 'title'))
         track
       end
 
-      def album_artist_ids_for(album_resource)
-        return [] if album_resource.blank?
+      # Build a `{ [type, id] => resource }` lookup so member-resolution stays O(1)
+      # instead of scanning `included` (~20 entries) per candidate (~20 candidates).
+      def build_included_index(included)
+        return {} if included.blank?
 
-        Array(album_resource.dig('relationships', 'artists', 'data')).pluck('id')
+        Array(included).index_by { |r| [r['type'], r['id']] }
       end
 
-      def artist_resources_for(track, included)
-        ids = Array(track.dig('relationships', 'artists', 'data')).pluck('id')
-        return [] if ids.blank?
-
-        included.select { |r| r['type'] == 'artists' && ids.include?(r['id']) }
+      def track_artist_ids_for(track)
+        Array(track.dig('relationships', 'artists', 'data')).pluck('id')
       end
 
-      def album_resource_for(track, included)
+      def album_artist_ids_via_index(track, index)
+        album = album_resource_via_index(track, index)
+        Array(album&.dig('relationships', 'artists', 'data')).pluck('id')
+      end
+
+      def artist_resources_via_index(track, index)
+        track_artist_ids_for(track).filter_map { |id| index[['artists', id]] }
+      end
+
+      def album_resource_via_index(track, index)
         album_id = track.dig('relationships', 'albums', 'data')&.first&.dig('id')
         return nil if album_id.blank?
 
-        included.find { |r| r['type'] == 'albums' && r['id'] == album_id }
+        index[['albums', album_id]]
       end
 
       def combined_artist_name(track)
