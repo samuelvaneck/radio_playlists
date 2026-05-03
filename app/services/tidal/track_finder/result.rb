@@ -33,38 +33,39 @@ module Tidal
       def valid_match?
         return false if @track.blank?
 
-        @track['artist_distance'].to_i >= ARTIST_SIMILARITY_THRESHOLD &&
-          @track['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD
+        @track['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD
       end
 
       private
 
-      # Tidal's `/v2/searchresults` endpoint surfaces the most-played track per
-      # recording (the version users actually listen to), which gives us higher
-      # popularity scores and better matches than `/v2/tracks?filter[isrc]`.
-      # `filter` here only takes INCLUDE/EXCLUDE values (controls which result
-      # blocks come back), not arbitrary field filters — so when an ISRC is
-      # available we narrow client-side after the search returns.
+      # Tidal's `/v2/searchResults` endpoint (camelCase, case-sensitive) surfaces
+      # the most-played version of each recording with higher popularity scores
+      # than `/v2/tracks?filter[isrc]`. The endpoint's `filter` query parameter
+      # only accepts INCLUDE/EXCLUDE values (controlling which result-block
+      # kinds come back) — not arbitrary field filters — so ISRC narrowing
+      # happens client-side. `include=tracks` is the only useful include here:
+      # tracks expose their artists via a `relationships.artists.links`
+      # sub-resource, not inline data, so we can't compute artist_distance from
+      # this response. We rely on Tidal's search ranking to pre-filter to
+      # relevant artists, then validate via title distance and ISRC.
       def find_best_match
         query = ERB::Util.url_encode("#{@search_artists} #{@search_title}")
-        url = "/v2/searchresults/#{query}?countryCode=#{@country}&include=tracks,artists"
+        url = "/v2/searchResults/#{query}?countryCode=#{@country}&include=tracks"
         response = make_request(url)
 
         return nil if response.blank?
 
-        included = Array(response['included'])
-        track_resources = included.select { |r| r['type'] == 'tracks' }
+        track_resources = Array(response['included']).select { |r| r['type'] == 'tracks' }
         return nil if track_resources.blank?
 
-        index = build_included_index(included)
         pool = isrc_filtered(track_resources)
-        pick_best_search_track(pool, index)
+        pick_best_search_track(pool)
       end
 
-      # When a song already has an ISRC (Spotify enrichment populated it), narrow
-      # the search results to entries with that exact ISRC. Falls back to the
-      # full pool if the search didn't surface a matching ISRC — better to
-      # validate via artist/title distance than to return nothing.
+      # When a song already has an ISRC (Spotify enrichment populated it),
+      # narrow the search results to entries with that exact ISRC. Falls back
+      # to the full pool when nothing matches — title distance still gates the
+      # final selection.
       def isrc_filtered(tracks)
         return tracks if @isrc_code.blank?
 
@@ -72,51 +73,29 @@ module Tidal
         matched.presence || tracks
       end
 
-      # Score every candidate (artist + title), keep ones over the thresholds,
-      # then pick the highest popularity. Popularity is the deciding signal here
-      # because /searchresults already pre-filters to relevant matches.
-      def pick_best_search_track(tracks, index)
-        scored = tracks.filter_map { |t| attach_resources(t, index) }
-        valid = scored.select do |t|
-          t['artist_distance'].to_i >= ARTIST_SIMILARITY_THRESHOLD &&
-            t['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD
-        end
+      # Score by title, keep ones over the threshold, pick the highest
+      # popularity. Popularity alone would land on the wrong song when the
+      # artist has multiple hits — searching "Bruno Mars I Just Might"
+      # surfaces "Just the Way You Are" with higher popularity than the actual
+      # match — so the title gate is required.
+      def pick_best_search_track(tracks)
+        scored = tracks.filter_map { |t| attach_title_score(t) }
+        valid = scored.select { |t| t['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD }
         valid.max_by { |t| t.dig('attributes', 'popularity').to_f }
       end
 
-      # Attach artist resources and compute JaroWinkler distances. Mutates
-      # `track` so the winner can carry its scores into the setter chain.
-      def attach_resources(track, index)
+      def attach_title_score(track)
         return nil if track.blank?
 
-        track['artist_resources'] = artist_resources_via_index(track, index)
-        track['artist_distance'] = artist_distance(combined_artist_name(track))
         track['title_distance'] = title_distance(track.dig('attributes', 'title'))
         track
       end
 
-      # Build a `{ [type, id] => resource }` lookup so member-resolution stays
-      # O(1) instead of scanning `included` per candidate.
-      def build_included_index(included)
-        return {} if included.blank?
-
-        Array(included).index_by { |r| [r['type'], r['id']] }
-      end
-
-      def artist_resources_via_index(track, index)
-        ids = Array(track.dig('relationships', 'artists', 'data')).pluck('id')
-        ids.filter_map { |id| index[['artists', id]] }
-      end
-
-      def combined_artist_name(track)
-        names = Array(track['artist_resources']).filter_map { |a| a.dig('attributes', 'name') }
-        names.join(' & ')
-      end
-
+      # /searchResults doesn't return track-artist data inline. Leaving artists
+      # empty until we either deep-include or fetch the winner's artists via a
+      # follow-up call.
       def set_artists
-        Array(@track&.dig('artist_resources')).map do |resource|
-          { 'name' => resource.dig('attributes', 'name'), 'id' => resource['id'] }
-        end
+        []
       end
 
       def set_title
