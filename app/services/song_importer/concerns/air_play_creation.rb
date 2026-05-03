@@ -68,6 +68,13 @@ module SongImporter::Concerns
       @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song:)
       MusicProfileJob.perform_async(song.id, @radio_station.id)
       SongExternalIdsEnrichmentJob.perform_async(song.id)
+      enqueue_artist_external_ids_enrichment
+    end
+
+    def enqueue_artist_external_ids_enrichment
+      song.artists.each do |artist|
+        ArtistExternalIdsEnrichmentJob.perform_async(artist.id) if artist.needs_external_ids_enrichment?
+      end
     end
   end
 end
