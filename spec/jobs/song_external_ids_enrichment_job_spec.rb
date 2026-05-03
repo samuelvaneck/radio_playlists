@@ -64,14 +64,15 @@ RSpec.describe SongExternalIdsEnrichmentJob do
                       isrcs: %w[USRC12345678 GBABC1234567], duration_ms: 210_000)
       end
 
-      it 'does not call enrichment services', :aggregate_failures do
+      before do
         allow(Deezer::SongEnricher).to receive(:new)
         allow(Itunes::SongEnricher).to receive(:new)
         allow(Tidal::SongEnricher).to receive(:new)
         allow(MusicBrainz::SongEnricher).to receive(:new)
-
         job.perform(song.id)
+      end
 
+      it 'does not call enrichment services', :aggregate_failures do
         expect(Deezer::SongEnricher).not_to have_received(:new)
         expect(Itunes::SongEnricher).not_to have_received(:new)
         expect(Tidal::SongEnricher).not_to have_received(:new)
