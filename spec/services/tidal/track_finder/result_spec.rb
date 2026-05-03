@@ -24,7 +24,8 @@ describe Tidal::TrackFinder::Result do
               'title' => 'Shape of You',
               'isrc' => 'GBAHS1600786',
               'duration' => 'PT3M53S',
-              'explicit' => false
+              'explicit' => false,
+              'popularity' => 0.5
             },
             'relationships' => {
               'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
@@ -42,6 +43,9 @@ describe Tidal::TrackFinder::Result do
                 { 'href' => 'https://resources.tidal.com/images/small.jpg', 'meta' => { 'width' => 160, 'height' => 160 } },
                 { 'href' => 'https://resources.tidal.com/images/large.jpg', 'meta' => { 'width' => 640, 'height' => 640 } }
               ]
+            },
+            'relationships' => {
+              'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] }
             }
           }
         ]
@@ -117,6 +121,151 @@ describe Tidal::TrackFinder::Result do
 
       it 'returns the Tidal id' do
         expect(result.id).to eq('12345')
+      end
+    end
+
+    context 'when the ISRC returns multiple albums' do
+      let(:isrc) { 'GBAHS1600786' }
+      let(:multi_album_response) do
+        {
+          'data' => [
+            {
+              'id' => 'compilation_track', 'type' => 'tracks',
+              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.9 },
+              'relationships' => {
+                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
+                'albums' => { 'data' => [{ 'id' => 'compilation_album', 'type' => 'albums' }] }
+              }
+            },
+            {
+              'id' => 'original_track', 'type' => 'tracks',
+              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.4 },
+              'relationships' => {
+                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
+                'albums' => { 'data' => [{ 'id' => 'original_album', 'type' => 'albums' }] }
+              }
+            }
+          ],
+          'included' => [
+            { 'id' => '100', 'type' => 'artists', 'attributes' => { 'name' => 'Ed Sheeran' } },
+            { 'id' => '999', 'type' => 'artists', 'attributes' => { 'name' => 'Various Artists' } },
+            {
+              'id' => 'compilation_album', 'type' => 'albums', 'attributes' => { 'title' => 'Summer Hits' },
+              'relationships' => { 'artists' => { 'data' => [{ 'id' => '999', 'type' => 'artists' }] } }
+            },
+            {
+              'id' => 'original_album', 'type' => 'albums', 'attributes' => { 'title' => 'Divide' },
+              'relationships' => { 'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] } }
+            }
+          ]
+        }
+      end
+
+      before do
+        stub_request(:get, %r{openapi\.tidal\.com/v2/tracks\?.*filter}).to_return(
+          status: 200,
+          body: multi_album_response.to_json,
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
+        )
+        result.execute
+      end
+
+      it 'picks the track on the original-artist album, even when the compilation is more popular' do
+        expect(result.id).to eq('original_track')
+      end
+    end
+
+    context 'when multiple original-artist albums exist' do
+      let(:isrc) { 'GBAHS1600786' }
+      let(:multi_original_response) do
+        {
+          'data' => [
+            {
+              'id' => 'single_track', 'type' => 'tracks',
+              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.4 },
+              'relationships' => {
+                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
+                'albums' => { 'data' => [{ 'id' => 'single_album', 'type' => 'albums' }] }
+              }
+            },
+            {
+              'id' => 'greatest_hits_track', 'type' => 'tracks',
+              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.95 },
+              'relationships' => {
+                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
+                'albums' => { 'data' => [{ 'id' => 'greatest_hits_album', 'type' => 'albums' }] }
+              }
+            }
+          ],
+          'included' => [
+            { 'id' => '100', 'type' => 'artists', 'attributes' => { 'name' => 'Ed Sheeran' } },
+            {
+              'id' => 'single_album', 'type' => 'albums', 'attributes' => { 'title' => 'Shape of You' },
+              'relationships' => { 'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] } }
+            },
+            {
+              'id' => 'greatest_hits_album', 'type' => 'albums', 'attributes' => { 'title' => 'Greatest Hits' },
+              'relationships' => { 'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] } }
+            }
+          ]
+        }
+      end
+
+      before do
+        stub_request(:get, %r{openapi\.tidal\.com/v2/tracks\?.*filter}).to_return(
+          status: 200,
+          body: multi_original_response.to_json,
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
+        )
+        result.execute
+      end
+
+      it 'picks the most popular original-artist track' do
+        expect(result.id).to eq('greatest_hits_track')
+      end
+    end
+
+    context 'when no album lists an artist that matches the track artist' do
+      let(:isrc) { 'GBAHS1600786' }
+      let(:no_overlap_response) do
+        {
+          'data' => [
+            {
+              'id' => 'low_pop', 'type' => 'tracks',
+              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.2 },
+              'relationships' => {
+                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
+                'albums' => { 'data' => [{ 'id' => 'a1', 'type' => 'albums' }] }
+              }
+            },
+            {
+              'id' => 'high_pop', 'type' => 'tracks',
+              'attributes' => { 'title' => 'Shape of You', 'isrc' => 'GBAHS1600786', 'duration' => 'PT3M53S', 'popularity' => 0.8 },
+              'relationships' => {
+                'artists' => { 'data' => [{ 'id' => '100', 'type' => 'artists' }] },
+                'albums' => { 'data' => [{ 'id' => 'a2', 'type' => 'albums' }] }
+              }
+            }
+          ],
+          'included' => [
+            { 'id' => '100', 'type' => 'artists', 'attributes' => { 'name' => 'Ed Sheeran' } },
+            { 'id' => 'a1', 'type' => 'albums', 'attributes' => { 'title' => 'Mix A' } },
+            { 'id' => 'a2', 'type' => 'albums', 'attributes' => { 'title' => 'Mix B' } }
+          ]
+        }
+      end
+
+      before do
+        stub_request(:get, %r{openapi\.tidal\.com/v2/tracks\?.*filter}).to_return(
+          status: 200,
+          body: no_overlap_response.to_json,
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
+        )
+        result.execute
+      end
+
+      it 'falls back to picking the most popular track' do
+        expect(result.id).to eq('high_pop')
       end
     end
 

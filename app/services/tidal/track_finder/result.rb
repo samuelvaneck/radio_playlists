@@ -53,14 +53,35 @@ module Tidal
       end
 
       def search_by_isrc
-        url = "/v2/tracks?countryCode=#{@country}&filter%5Bisrc%5D=#{ERB::Util.url_encode(@isrc_code)}&include=artists,albums"
+        url = "/v2/tracks?countryCode=#{@country}&filter%5Bisrc%5D=#{ERB::Util.url_encode(@isrc_code)}" \
+              '&include=artists,albums,albums.artists'
         response = make_request(url)
 
         return nil if response.blank? || response['data'].blank?
 
         included = Array(response['included'])
-        track = Array(response['data']).first
-        add_match_score(track, included)
+        candidates = response['data'].filter_map { |t| add_match_score(t, included) }
+        return nil if candidates.blank?
+
+        prefer_original_album(candidates)
+      end
+
+      # Tidal returns one track resource per album the recording appears on (singles,
+      # compilations, deluxe editions). Prefer entries where the album credits the
+      # same artist as the track itself — that rules out "Various Artists" comps.
+      # Tiebreak by Tidal's track popularity so we land on the most-played version.
+      def prefer_original_album(candidates)
+        primary = candidates.select { |t| album_artist_matches_track_artist?(t) }
+        pool = primary.presence || candidates
+        pool.max_by { |t| t.dig('attributes', 'popularity').to_f }
+      end
+
+      def album_artist_matches_track_artist?(track)
+        track_artist_ids = Array(track.dig('relationships', 'artists', 'data')).pluck('id')
+        album_artist_ids = Array(track['album_artist_ids'])
+        return false if track_artist_ids.blank? || album_artist_ids.blank?
+
+        track_artist_ids.intersect?(album_artist_ids)
       end
 
       def search_by_query
@@ -87,10 +108,17 @@ module Tidal
 
         track['artist_resources'] = artist_resources_for(track, included)
         track['album_resource'] = album_resource_for(track, included)
+        track['album_artist_ids'] = album_artist_ids_for(track['album_resource'])
 
         track['artist_distance'] = artist_distance(combined_artist_name(track))
         track['title_distance'] = title_distance(track.dig('attributes', 'title'))
         track
+      end
+
+      def album_artist_ids_for(album_resource)
+        return [] if album_resource.blank?
+
+        Array(album_resource.dig('relationships', 'artists', 'data')).pluck('id')
       end
 
       def artist_resources_for(track, included)
