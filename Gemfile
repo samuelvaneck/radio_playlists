@@ -89,5 +89,4 @@ group :development do
   gem 'bullet'
   gem 'foreman'
   gem 'letter_opener'
-  gem 'spring'
 end
