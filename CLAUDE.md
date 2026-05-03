@@ -450,6 +450,7 @@ Weekly grouped updates for the `github-actions` ecosystem. Keeps action versions
 - **yt-dlp** - YouTube audio downloading for AcoustID fingerprint population
 - **Sentry** - Error tracking and performance monitoring (env var: `SENTRY_DSN`)
 - **OpenAI** - GPT-4.1-mini for natural language search query translation (env var: `OPENAI_API_KEY`)
+- **Tidal Open API** - Catalog enrichment for songs (env vars: `TIDAL_CLIENT_ID`, `TIDAL_CLIENT_SECRET`). Auth at `auth.tidal.com/v1/oauth2/token`, data at `openapi.tidal.com/v2/...`. API reference: https://tidal-music.github.io/tidal-api-reference/. Paths are case-sensitive (e.g. `/v2/searchResults`, not `/v2/searchresults`).
 
 ## Audio Recognition
 
