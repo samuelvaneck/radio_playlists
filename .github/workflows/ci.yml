@@ -84,7 +84,7 @@ jobs:
 
       - name: Publish RSpec test report
         if: always()
-        uses: mikepenz/action-junit-report@v5
+        uses: mikepenz/action-junit-report@v6
         with:
           report_paths: tmp/rspec_results.xml
           check_name: RSpec results
