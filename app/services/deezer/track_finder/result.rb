@@ -64,22 +64,33 @@ module Deezer
         add_match_score(response)
       end
 
+      # Try the strict `artist:"…" track:"…"` field-filter query first; on a
+      # miss, retry with a plain-text query. Field filters suppress fuzzy
+      # spacing variants (e.g., scraped "Zo Maar" vs canonical "Zomaar"); the
+      # plain query lets Deezer's tokenizer recover the canonical track.
       def search_by_query
-        query = ERB::Util.url_encode("artist:\"#{@search_artists}\" track:\"#{@search_title}\"")
-        url = "/search?q=#{query}&limit=25"
-        response = make_request(url)
+        best_valid_track(field_filter_search_url) || best_valid_track(plain_text_search_url)
+      end
 
+      def field_filter_search_url
+        query = ERB::Util.url_encode("artist:\"#{@search_artists}\" track:\"#{@search_title}\"")
+        "/search?q=#{query}&limit=25"
+      end
+
+      def plain_text_search_url
+        query = ERB::Util.url_encode("#{@search_artists} #{@search_title}")
+        "/search?q=#{query}&limit=25"
+      end
+
+      def best_valid_track(url)
+        response = make_request(url)
         return nil if response.blank? || response['data'].blank?
 
-        tracks = response['data']
-        tracks_with_scores = tracks.map { |track| add_match_score(track) }.compact
-
-        # Select best match where both artist and title meet their thresholds
+        tracks_with_scores = response['data'].map { |track| add_match_score(track) }.compact
         valid_tracks = tracks_with_scores.select do |t|
           t['artist_distance'].to_i >= ARTIST_SIMILARITY_THRESHOLD &&
             t['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD
         end
-        # Use minimum of artist and title distance to rank matches
         valid_tracks.max_by { |t| [t['artist_distance'], t['title_distance']].min }
       end
 

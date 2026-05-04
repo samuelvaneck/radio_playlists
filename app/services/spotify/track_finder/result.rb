@@ -65,7 +65,19 @@ module Spotify
       end
 
       def spotify_query_result
-        @spotify_query_result ||= make_request_with_match(search_url)
+        @spotify_query_result ||= make_request_with_match(search_url) || plain_text_search_result
+      end
+
+      # Retry without the `artist:` field filter when the strict query returns
+      # no items. The downstream filter pipeline (SameArtistsFilter +
+      # JaroWinkler thresholds in `valid_match?`) still rejects irrelevant
+      # candidates, so the plain query only widens recall, not false positives.
+      # Skipped when the caller supplied a literal Spotify search URL — in that
+      # case we honor the caller's exact query.
+      def plain_text_search_result
+        return nil if @spotify_search_url.present?
+
+        make_request_with_match(plain_search_url)
       end
 
       # Returns a hash with the best matching score for each type
@@ -110,9 +122,15 @@ module Spotify
       private
 
       def search_url
-        SearchUrl.new(title: @search_title,
-                      artists: @search_artists,
-                      spotify_url: @spotify_search_url).generate
+        new_search_url.generate
+      end
+
+      def plain_search_url
+        new_search_url.generate(plain: true)
+      end
+
+      def new_search_url
+        SearchUrl.new(title: @search_title, artists: @search_artists, spotify_url: @spotify_search_url)
       end
 
       # setter methods

@@ -48,5 +48,40 @@ describe Spotify::TrackFinder::SearchUrl do
         expect(uri.to_s).to include('artist%3Aartist1%20artist2')
       end
     end
+
+    context 'when plain mode is requested' do
+      let(:search_url) do
+        described_class.new(
+          title: 'Ik Bel Je Zo Maar Even Op',
+          artists: 'Gordon',
+          spotify_url: nil
+        )
+      end
+
+      it 'omits the artist: field filter' do
+        uri = search_url.generate(plain: true)
+        expect(uri.to_s).not_to include('artist%3A')
+      end
+
+      it 'concatenates artist and title in the query' do
+        uri = search_url.generate(plain: true)
+        expect(uri.to_s).to eq('https://api.spotify.com/v1/search?q=gordon%20Ik%20Bel%20Je%20Zo%20Maar%20Even%20Op&type=track')
+      end
+    end
+
+    context 'when plain mode is requested and a spotify_url is given' do
+      let(:search_url) do
+        described_class.new(
+          title: 'Test Song',
+          artists: 'Test Artist',
+          spotify_url: 'spotify:search:test+query'
+        )
+      end
+
+      it 'still honors the explicit spotify_url' do
+        uri = search_url.generate(plain: true)
+        expect(uri.to_s).to eq('https://api.spotify.com/v1/search?q=test+query&type=track')
+      end
+    end
   end
 end
