@@ -3490,7 +3490,13 @@ components:
               type: integer
             title:
               type: string
+            slug:
+              type: string
+              nullable: true
             search_text:
+              type: string
+              nullable: true
+            album_name:
               type: string
               nullable: true
             spotify_song_url:
@@ -3516,11 +3522,50 @@ components:
               type: array
               items:
                 "$ref": "#/components/schemas/ArtistCompact"
+            id_on_deezer:
+              type: string
+              nullable: true
+            deezer_song_url:
+              type: string
+              nullable: true
+            deezer_artwork_url:
+              type: string
+              nullable: true
+            deezer_preview_url:
+              type: string
+              nullable: true
+            id_on_itunes:
+              type: string
+              nullable: true
+            itunes_song_url:
+              type: string
+              nullable: true
+            itunes_artwork_url:
+              type: string
+              nullable: true
+            itunes_preview_url:
+              type: string
+              nullable: true
+            id_on_tidal:
+              type: string
+              nullable: true
+            tidal_song_url:
+              type: string
+              nullable: true
+            tidal_artwork_url:
+              type: string
+              nullable: true
+            tidal_preview_url:
+              type: string
+              nullable: true
             duration_ms:
               type: integer
               nullable: true
-            album_name:
-              type: string
+            popularity:
+              type: integer
+              nullable: true
+            explicit:
+              type: boolean
               nullable: true
             lastfm_listeners:
               type: integer
@@ -3532,6 +3577,10 @@ components:
               type: array
               items:
                 type: string
+              nullable: true
+            hit_potential_score:
+              type: number
+              format: float
               nullable: true
             counter:
               type: integer
