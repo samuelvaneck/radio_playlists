@@ -123,6 +123,39 @@ describe Deezer::TrackFinder::Result do
         expect(result.id).to be_nil
       end
     end
+
+    context 'when the field-filter query returns no data' do
+      let(:artists) { 'Gordon' }
+      let(:title) { 'Ik Bel Je Zo Maar Even Op' }
+      let(:plain_text_response) do
+        {
+          'data' => [
+            {
+              'id' => 25_574_031,
+              'title' => 'Ik Bel Je Zomaar Even Op',
+              'link' => 'https://www.deezer.com/track/25574031',
+              'preview' => 'https://cdns-preview.deezer.com/preview.mp3',
+              'isrc' => 'NLA240303682',
+              'artist' => { 'id' => 1, 'name' => 'Gordon' },
+              'album' => { 'id' => 1, 'cover_big' => 'https://example.com/cover.jpg', 'release_date' => '1993-01-01' }
+            }
+          ]
+        }
+      end
+
+      before do
+        stub_request(:get, /api\.deezer\.com.*q=artist:/)
+          .to_return(status: 200, body: { 'data' => [] }.to_json, headers: { 'Content-Type' => 'application/json' })
+        stub_request(:get, /api\.deezer\.com.*q=Gordon/)
+          .to_return(status: 200, body: plain_text_response.to_json, headers: { 'Content-Type' => 'application/json' })
+        result.execute
+      end
+
+      it 'falls back to a plain-text query and recovers the canonical track', :aggregate_failures do
+        expect(result.title).to eq('Ik Bel Je Zomaar Even Op')
+        expect(result.isrc).to eq('NLA240303682')
+      end
+    end
   end
 
   describe '#valid_match?' do

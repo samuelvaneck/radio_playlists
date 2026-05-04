@@ -92,6 +92,36 @@ describe Spotify::TrackFinder::Result, :use_vcr do
       end
     end
 
+    context 'when the field-filter query returns zero items' do
+      let(:artists) { 'Gordon' }
+      let(:title) { 'Ik Bel Je Zo Maar Even Op' }
+      let(:empty_response) { { 'tracks' => { 'items' => [] } } }
+
+      before do
+        allow(finder).to receive(:make_request).and_return(empty_response)
+        finder.execute
+      end
+
+      it 'retries with a plain-text query (no artist: field filter)', :aggregate_failures do
+        expect(finder).to have_received(:make_request).with(satisfy { |u| u.to_s.include?('artist%3A') }).at_least(:once)
+        expect(finder).to have_received(:make_request).with(satisfy { |u| u.to_s.exclude?('artist%3A') }).at_least(:once)
+      end
+    end
+
+    context 'when a literal Spotify search URL is given and returns zero items' do
+      let(:spotify_search_url) { 'spotify:search:gordon+ik+bel+je+zo+maar+even+op' }
+      let(:empty_response) { { 'tracks' => { 'items' => [] } } }
+
+      before do
+        allow(finder).to receive(:make_request).and_return(empty_response)
+        finder.execute
+      end
+
+      it 'never builds an artist: field-filter URL (caller controls the URL)' do
+        expect(finder).not_to have_received(:make_request).with(satisfy { |u| u.to_s.include?('artist%3A') })
+      end
+    end
+
     context 'when given a Spotify search URL' do
       let(:spotify_search_url) { 'spotify:search:ed+sheeran+celestial' }
 
