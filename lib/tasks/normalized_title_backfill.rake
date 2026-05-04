@@ -9,7 +9,7 @@ namespace :normalized_title do
 
     processed = 0
     scope.find_each(batch_size: 1000) do |song|
-      song.update_column(:normalized_title, Song.normalize_title(song.title)) # rubocop:disable Rails/SkipsModelValidations
+      song.update_column(:normalized_title, TitleNormalizable.normalize(song.title)) # rubocop:disable Rails/SkipsModelValidations
       processed += 1
       print "\rProcessed #{processed}/#{total}..." if (processed % 1000).zero?
     end

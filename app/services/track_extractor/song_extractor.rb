@@ -112,7 +112,7 @@ class TrackExtractor::SongExtractor < TrackExtractor
   # falling through to the more expensive trigram fuzzy search.
   def song_by_artists_and_normalized_title
     @song_by_artists_and_normalized_title ||= begin
-      key = Song.normalize_title(title)
+      key = TitleNormalizable.normalize(title)
       key.present? ? Song.joins(:artists).where(artists: @artists).where(normalized_title: key) : Song.none
     end
   end

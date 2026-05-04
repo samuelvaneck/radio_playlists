@@ -11,17 +11,21 @@ module TitleNormalizable
     before_save :set_normalized_title, if: :will_save_change_to_title?
   end
 
-  class_methods do
-    def normalize_title(raw_title)
-      return nil if raw_title.blank?
+  def self.normalize(raw_title)
+    return nil if raw_title.blank?
 
-      raw_title.unicode_normalize(:nfkd).gsub(/\p{Mn}/, '').downcase.gsub(/[^a-z0-9]/, '').presence
-    end
+    raw_title.unicode_normalize(:nfkd).gsub(/\p{Mn}/, '')
+      .downcase.gsub(/[^a-z0-9]/, '')
+      .presence
   end
 
   private
 
   def set_normalized_title
-    self.normalized_title = self.class.normalize_title(title)
+    self.normalized_title = normalize_title
+  end
+
+  def normalize_title
+    TitleNormalizable.normalize(title)
   end
 end

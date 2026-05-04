@@ -459,39 +459,39 @@ describe Song do
     end
   end
 
-  describe '.normalize_title' do
+  describe TitleNormalizable, '.normalize' do
     it 'returns nil for blank input' do
-      expect(Song.normalize_title('')).to be_nil
+      expect(TitleNormalizable.normalize('')).to be_nil
     end
 
     it 'returns nil for nil input' do
-      expect(Song.normalize_title(nil)).to be_nil
+      expect(TitleNormalizable.normalize(nil)).to be_nil
     end
 
     it 'collapses spacing variants to the same key' do
-      expect(Song.normalize_title('Ik Bel Je Zo Maar Even Op'))
-        .to eq(Song.normalize_title('Ik Bel Je Zomaar Even Op'))
+      expect(TitleNormalizable.normalize('Ik Bel Je Zo Maar Even Op'))
+        .to eq(TitleNormalizable.normalize('Ik Bel Je Zomaar Even Op'))
     end
 
     it 'is case-insensitive' do
-      expect(Song.normalize_title('Hello World')).to eq(Song.normalize_title('HELLO world'))
+      expect(TitleNormalizable.normalize('Hello World')).to eq(TitleNormalizable.normalize('HELLO world'))
     end
 
     it 'strips diacritics' do
-      expect(Song.normalize_title('Beyoncé')).to eq(Song.normalize_title('Beyonce'))
+      expect(TitleNormalizable.normalize('Beyoncé')).to eq(TitleNormalizable.normalize('Beyonce'))
     end
 
     it 'strips punctuation so smart-quote variants collapse', :aggregate_failures do
-      expect(Song.normalize_title("Don't Stop Me Now")).to eq('dontstopmenow')
-      expect(Song.normalize_title('Don’t Stop Me Now')).to eq('dontstopmenow')
+      expect(TitleNormalizable.normalize("Don't Stop Me Now")).to eq('dontstopmenow')
+      expect(TitleNormalizable.normalize('Don’t Stop Me Now')).to eq('dontstopmenow')
     end
 
     it 'preserves digits' do
-      expect(Song.normalize_title('99 Luftballons')).to eq('99luftballons')
+      expect(TitleNormalizable.normalize('99 Luftballons')).to eq('99luftballons')
     end
 
     it 'returns nil when the input contains only punctuation/whitespace' do
-      expect(Song.normalize_title('  --!!  ')).to be_nil
+      expect(TitleNormalizable.normalize('  --!!  ')).to be_nil
     end
   end
 
