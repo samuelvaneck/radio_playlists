@@ -423,6 +423,33 @@ describe TrackExtractor::SongExtractor do
       end
     end
 
+    context 'when an existing song matches only after title normalization' do
+      let(:track) { nil }
+      let(:played_song) do
+        OpenStruct.new(
+          title: 'Ik Bel Je Zo Maar Even Op',
+          artist_name: artist.name,
+          spotify_url: nil,
+          isrc_code: nil
+        )
+      end
+
+      let!(:existing_song) do
+        create(:song,
+               title: 'Ik Bel Je Zomaar Even Op',
+               id_on_spotify: nil,
+               artists: [artist])
+      end
+
+      it 'finds the existing song instead of creating a duplicate' do
+        expect(song).to eq(existing_song)
+      end
+
+      it 'does not create a new song' do
+        expect { song }.not_to change(Song, :count)
+      end
+    end
+
     context 'when exact title match takes precedence over fuzzy match' do
       let(:track) do
         OpenStruct.new(

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_03_200000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_04_200000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -268,6 +268,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_03_200000) do
     t.bigint "lastfm_listeners"
     t.bigint "lastfm_playcount"
     t.string "lastfm_tags", default: [], array: true
+    t.string "normalized_title"
     t.integer "popularity"
     t.date "release_date"
     t.string "release_date_precision"
@@ -285,6 +286,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_03_200000) do
     t.index ["id_on_deezer"], name: "index_songs_on_id_on_deezer"
     t.index ["id_on_itunes"], name: "index_songs_on_id_on_itunes"
     t.index ["id_on_tidal"], name: "index_songs_on_id_on_tidal"
+    t.index ["normalized_title"], name: "index_songs_on_normalized_title"
     t.index ["release_date"], name: "index_songs_on_release_date"
     t.index ["search_text"], name: "index_songs_on_search_text_trgm", opclass: :gin_trgm_ops, using: :gin
     t.index ["slug"], name: "index_songs_on_slug", unique: true

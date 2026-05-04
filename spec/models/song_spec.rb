@@ -27,6 +27,7 @@
 #  lastfm_listeners       :bigint
 #  lastfm_playcount       :bigint
 #  lastfm_tags            :string           default([]), is an Array
+#  normalized_title       :string
 #  popularity             :integer
 #  release_date           :date
 #  release_date_precision :string
@@ -48,6 +49,7 @@
 #  index_songs_on_id_on_deezer           (id_on_deezer)
 #  index_songs_on_id_on_itunes           (id_on_itunes)
 #  index_songs_on_id_on_tidal            (id_on_tidal)
+#  index_songs_on_normalized_title       (normalized_title)
 #  index_songs_on_release_date           (release_date)
 #  index_songs_on_search_text_trgm       (search_text) USING gin
 #  index_songs_on_slug                   (slug) UNIQUE
@@ -454,6 +456,62 @@ describe Song do
 
     it 'updates search_text before song creation' do
       expect(song.reload.search_text).to eq('Ed Sheeran Shape of You')
+    end
+  end
+
+  describe TitleNormalizable, '.normalize' do
+    it 'returns nil for blank input' do
+      expect(TitleNormalizable.normalize('')).to be_nil
+    end
+
+    it 'returns nil for nil input' do
+      expect(TitleNormalizable.normalize(nil)).to be_nil
+    end
+
+    it 'collapses spacing variants to the same key' do
+      expect(TitleNormalizable.normalize('Ik Bel Je Zo Maar Even Op'))
+        .to eq(TitleNormalizable.normalize('Ik Bel Je Zomaar Even Op'))
+    end
+
+    it 'is case-insensitive' do
+      expect(TitleNormalizable.normalize('Hello World')).to eq(TitleNormalizable.normalize('HELLO world'))
+    end
+
+    it 'strips diacritics' do
+      expect(TitleNormalizable.normalize('Beyoncé')).to eq(TitleNormalizable.normalize('Beyonce'))
+    end
+
+    it 'strips punctuation so smart-quote variants collapse', :aggregate_failures do
+      expect(TitleNormalizable.normalize("Don't Stop Me Now")).to eq('dontstopmenow')
+      expect(TitleNormalizable.normalize('Don’t Stop Me Now')).to eq('dontstopmenow')
+    end
+
+    it 'preserves digits' do
+      expect(TitleNormalizable.normalize('99 Luftballons')).to eq('99luftballons')
+    end
+
+    it 'returns nil when the input contains only punctuation/whitespace' do
+      expect(TitleNormalizable.normalize('  --!!  ')).to be_nil
+    end
+  end
+
+  describe '#set_normalized_title callback' do
+    let(:artist) { create(:artist, name: 'Gordon') }
+
+    it 'populates normalized_title on create' do
+      song = create(:song, title: 'Ik Bel Je Zomaar Even Op', artists: [artist])
+      expect(song.reload.normalized_title).to eq('ikbeljezomaarevenop')
+    end
+
+    it 'recomputes normalized_title when the title changes' do
+      song = create(:song, title: 'Ik Bel Je Zomaar Even Op', artists: [artist])
+      song.update!(title: 'Ik Bel Je Zo Maar Even Op')
+      expect(song.reload.normalized_title).to eq('ikbeljezomaarevenop')
+    end
+
+    it 'leaves normalized_title untouched when an unrelated attribute changes' do
+      song = create(:song, title: 'Hello World', artists: [artist])
+      expect { song.update!(popularity: 50) }.not_to(change { song.reload.normalized_title })
     end
   end
 

@@ -85,6 +85,8 @@ class TrackExtractor::SongExtractor < TrackExtractor
   def find_or_create_by_title
     result = if song_by_artists_and_title.present?
                song_by_artists_and_title
+             elsif song_by_artists_and_normalized_title.present?
+               song_by_artists_and_normalized_title
              elsif find_by_fuzzy_search.present?
                find_by_fuzzy_search
              elsif @artists.blank?
@@ -102,6 +104,17 @@ class TrackExtractor::SongExtractor < TrackExtractor
     @song_by_artists_and_title ||= Song.joins(:artists)
                                      .where(artists: @artists)
                                      .where('lower(title) LIKE ?', title.downcase)
+  end
+
+  # Indexed equality lookup against `normalized_title` (whitespace-, case-, and
+  # diacritic-insensitive). Catches scrape variants the exact match misses,
+  # e.g., "Ik Bel Je Zo Maar Even Op" vs "Ik Bel Je Zomaar Even Op", before
+  # falling through to the more expensive trigram fuzzy search.
+  def song_by_artists_and_normalized_title
+    @song_by_artists_and_normalized_title ||= begin
+      key = TitleNormalizable.normalize(title)
+      key.present? ? Song.joins(:artists).where(artists: @artists).where(normalized_title: key) : Song.none
+    end
   end
 
   def find_by_fuzzy_search

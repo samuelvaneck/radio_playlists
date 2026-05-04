@@ -27,6 +27,7 @@
 #  lastfm_listeners       :bigint
 #  lastfm_playcount       :bigint
 #  lastfm_tags            :string           default([]), is an Array
+#  normalized_title       :string
 #  popularity             :integer
 #  release_date           :date
 #  release_date_precision :string
@@ -48,6 +49,7 @@
 #  index_songs_on_id_on_deezer           (id_on_deezer)
 #  index_songs_on_id_on_itunes           (id_on_itunes)
 #  index_songs_on_id_on_tidal            (id_on_tidal)
+#  index_songs_on_normalized_title       (normalized_title)
 #  index_songs_on_release_date           (release_date)
 #  index_songs_on_search_text_trgm       (search_text) USING gin
 #  index_songs_on_slug                   (slug) UNIQUE
