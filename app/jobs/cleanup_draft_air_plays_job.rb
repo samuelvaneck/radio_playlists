@@ -2,7 +2,7 @@
 
 class CleanupDraftAirPlaysJob
   include Sidekiq::Worker
-  sidekiq_options queue: 'low'
+  sidekiq_options queue: 'compute'
 
   def perform
     draft_air_play_ids = AirPlay.draft.where('created_at < ?', 4.hours.ago).pluck(:id)

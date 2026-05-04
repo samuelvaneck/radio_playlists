@@ -5,7 +5,7 @@ class SongImportLogCleanupJob
   CSV_RETENTION_DAYS = 7
 
   include Sidekiq::Worker
-  sidekiq_options queue: 'low'
+  sidekiq_options queue: 'compute'
 
   def perform
     cleanup_database_logs

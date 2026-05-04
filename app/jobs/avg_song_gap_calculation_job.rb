@@ -2,7 +2,7 @@
 
 class AvgSongGapCalculationJob
   include Sidekiq::Job
-  sidekiq_options queue: 'low'
+  sidekiq_options queue: 'compute'
 
   def perform
     RadioStation.find_each(&:calculate_avg_song_gap_per_hour)

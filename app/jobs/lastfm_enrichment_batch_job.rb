@@ -2,7 +2,7 @@
 
 class LastfmEnrichmentBatchJob
   include Sidekiq::Job
-  sidekiq_options queue: 'low'
+  sidekiq_options queue: 'enrichment'
 
   def perform
     LastfmEnrichmentJob.enqueue_all

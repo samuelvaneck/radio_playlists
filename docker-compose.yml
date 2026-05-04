@@ -1,5 +1,23 @@
 version: '3'
 
+x-sidekiq-base: &sidekiq_base
+  depends_on:
+    - postgres
+    - redis
+  build:
+    context: .
+    dockerfile: dev.Dockerfile
+  environment:
+    - RAILS_ENV=development
+    - POSTGRES_HOST=postgres
+    - POSTGRES_USER=postgres
+    - RAILS_LOG_TO_STDOUT=true
+    - REDIS_SIDEKIQ_URL=redis://redis:6379/2
+    - REDIS_CACHE_URL=redis://redis:6379/1
+    - ACOUSTID_API_KEY=${ACOUSTID_API_KEY}
+  volumes:
+    - .:/app
+
 services:
   postgres:
     image: postgres:13
@@ -16,29 +34,29 @@ services:
     volumes:
       - ./tmp/redis:/var/lib/redis/data
 
-  sidekiq:
-    depends_on:
-      - postgres
-      - redis
-    build:
-      context: .
-      dockerfile: dev.Dockerfile
-    command: bundle exec sidekiq -C config/sidekiq.yml
-    environment:
-      - RAILS_ENV=development
-      - POSTGRES_HOST=postgres
-      - POSTGRES_USER=postgres
-      - RAILS_LOG_TO_STDOUT=true
-      - RAILS_MAX_THREADS=10
-      - REDIS_SIDEKIQ_URL=redis://redis:6379/2
-      - REDIS_CACHE_URL=redis://redis:6379/1
-      - ACOUSTID_API_KEY=${ACOUSTID_API_KEY}
-    volumes:
-      - .:/app
+  sidekiq_realtime:
+    <<: *sidekiq_base
+    command: bundle exec sidekiq -c 5 -q realtime
     deploy:
       resources:
         limits:
-          memory: 1G
+          memory: 512M
+
+  sidekiq_compute:
+    <<: *sidekiq_base
+    command: bundle exec sidekiq -c 2 -q compute
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+  sidekiq_enrichment:
+    <<: *sidekiq_base
+    command: bundle exec sidekiq -c 3 -q enrichment
+    deploy:
+      resources:
+        limits:
+          memory: 512M
 
   radio_web:
     build:

@@ -2,7 +2,7 @@
 
 class SongImportMonitorJob
   include Sidekiq::Worker
-  sidekiq_options queue: 'low'
+  sidekiq_options queue: 'compute'
 
   def perform
     monitor = SongImportMonitor.new(time_window: 1.hour)

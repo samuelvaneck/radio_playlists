@@ -4,7 +4,7 @@ class ChartSongEnrichmentJob
   THROTTLE_INTERVAL = 2 # seconds between enqueued jobs
 
   include Sidekiq::Job
-  sidekiq_options queue: 'low'
+  sidekiq_options queue: 'enrichment'
 
   def perform
     chart = Chart.latest_song_chart

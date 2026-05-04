@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SendStatusEmail < ApplicationJob
-  queue_as :default
+  queue_as :enrichment
 
   def perform
     results = {}

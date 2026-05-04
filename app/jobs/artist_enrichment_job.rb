@@ -10,7 +10,7 @@ class ArtistEnrichmentJob
   RECHECK_AFTER = 90.days
 
   include Sidekiq::Job
-  sidekiq_options queue: 'low'
+  sidekiq_options queue: 'enrichment'
 
   def self.enqueue_all
     stale_threshold = RECHECK_AFTER.ago

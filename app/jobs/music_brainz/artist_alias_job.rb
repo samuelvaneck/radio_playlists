@@ -3,7 +3,7 @@
 module MusicBrainz
   class ArtistAliasJob
     include Sidekiq::Job
-    sidekiq_options queue: 'low'
+    sidekiq_options queue: 'enrichment'
 
     def perform(artist_id)
       artist = Artist.find_by(id: artist_id)

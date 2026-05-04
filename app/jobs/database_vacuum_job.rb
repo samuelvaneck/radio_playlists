@@ -4,7 +4,7 @@ class DatabaseVacuumJob
   TABLES = %w[air_plays chart_positions songs song_import_logs radio_station_songs artists artists_songs].freeze
 
   include Sidekiq::Worker
-  sidekiq_options queue: 'low'
+  sidekiq_options queue: 'compute'
 
   def perform
     TABLES.each do |table|

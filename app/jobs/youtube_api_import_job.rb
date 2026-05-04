@@ -3,6 +3,8 @@
 class YoutubeApiImportJob
   include Sidekiq::Worker
 
+  sidekiq_options queue: 'realtime'
+
   def perform
     song = first_song_without_youtube_id
     return nil if song.blank?

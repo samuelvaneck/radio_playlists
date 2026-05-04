@@ -2,7 +2,7 @@
 
 class ArtistEnrichmentBatchJob
   include Sidekiq::Job
-  sidekiq_options queue: 'low'
+  sidekiq_options queue: 'enrichment'
 
   def perform
     ArtistEnrichmentJob.enqueue_all
