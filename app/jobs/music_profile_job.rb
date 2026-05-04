@@ -2,7 +2,7 @@
 
 class MusicProfileJob
   include Sidekiq::Job
-  sidekiq_options queue: 'low'
+  sidekiq_options queue: 'enrichment'
 
   def perform(song_id, radio_station_id = nil)
     song = Song.find_by(id: song_id)

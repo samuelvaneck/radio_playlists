@@ -3,7 +3,7 @@
 class ArtistExternalIdsEnrichmentJob
   include Sidekiq::Job
 
-  sidekiq_options queue: :low, retry: 3
+  sidekiq_options queue: :enrichment, retry: 3
 
   def self.enqueue_all
     scope = Artist

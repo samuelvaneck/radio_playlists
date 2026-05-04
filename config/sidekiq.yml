@@ -1,65 +1,63 @@
 ---
   :queues:
-    - critical
-    - recognition
-    - api_scraping
-    - default
-    - low
+    - realtime
+    - compute
+    - enrichment
   :concurrency: 10
   :max_retries: 3
   :scheduler:
     :schedule:
       ImportSongsAllRadioStationsJob:
         cron: '* * * * *' # every minute
-        queue: default
+        queue: realtime
         enabled: true
       SendStatusEmail:
         cron: '0 2 * * *' # at 2am
-        queue: default
+        queue: enrichment
         enabled: false
       ChartCreationJob:
         cron: '10 0 * * *' # at 0:10 am
-        queue: low
+        queue: compute
         enabled: true
       ChartSongEnrichmentJob:
         cron: '30 0 * * *' # at 0:30 am (after chart creation)
-        queue: low
+        queue: enrichment
         enabled: true
       RadioStationTracksScraperJob:
         cron: '*/3 * * * *' # every 3 minutes
-        queue: default
+        queue: realtime
         enabled: true
       YoutubeApiImportJob:
         cron: '*/15 * * * *' # every 15 minutes
-        queue: default
+        queue: realtime
         enabled: true
       CleanupDraftAirPlaysJob:
         cron: '0 * * * *' # every hour
-        queue: low
+        queue: compute
         enabled: true
       SongImportLogCleanupJob:
         cron: '0 2 * * *' # at 2am daily
-        queue: low
+        queue: compute
         enabled: true
       SongImportMonitorJob:
         cron: '0 * * * *' # every hour
-        queue: low
+        queue: compute
         enabled: true
       ArtistEnrichmentBatchJob:
         cron: '0 3 * * 0' # weekly Sunday 3am
-        queue: low
+        queue: enrichment
         enabled: true
       LastfmEnrichmentBatchJob:
         cron: '0 4 * * 0' # weekly Sunday 4am
-        queue: low
+        queue: enrichment
         enabled: true
       AvgSongGapCalculationJob:
         cron: '0 5 * * *' # daily at 5am
-        queue: low
+        queue: compute
         enabled: true
       DatabaseVacuumJob:
         cron: '0 3 * * *' # daily at 3am
-        queue: low
+        queue: compute
         enabled: true
   :sidekiq_default_hooks: true
   :sidekiq_pid: File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid')

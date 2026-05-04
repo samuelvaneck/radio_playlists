@@ -5,38 +5,23 @@ describe ImportSongsAllRadioStationsJob do
     let!(:recognizer_station) { create(:radio_station, processor: nil) }
     let!(:api_station) { create(:radio_station, processor: 'talpa_api_processor') }
 
-    let(:recognition_setter) { instance_double(Sidekiq::Worker::Setter, perform_async: nil) }
-    let(:api_setter) { instance_double(Sidekiq::Worker::Setter, perform_async: nil) }
     let(:job) { described_class.new }
 
     before do
-      allow(ImportSongJob).to receive(:set).with(queue: 'recognition').and_return(recognition_setter)
-      allow(ImportSongJob).to receive(:set).with(queue: 'api_scraping').and_return(api_setter)
+      allow(ImportSongJob).to receive(:perform_async)
       allow(job).to receive(:sleep)
     end
 
-    it 'enqueues recognizer-only stations on the recognition queue' do
+    it 'enqueues recognizer-only stations' do
       job.perform
 
-      expect(recognition_setter).to have_received(:perform_async).with(recognizer_station.id)
+      expect(ImportSongJob).to have_received(:perform_async).with(recognizer_station.id)
     end
 
-    it 'enqueues api stations on the api_scraping queue' do
+    it 'enqueues api stations' do
       job.perform
 
-      expect(api_setter).to have_received(:perform_async).with(api_station.id)
-    end
-
-    it 'does not enqueue api stations on the recognition queue' do
-      job.perform
-
-      expect(recognition_setter).not_to have_received(:perform_async).with(api_station.id)
-    end
-
-    it 'does not enqueue recognizer stations on the api_scraping queue' do
-      job.perform
-
-      expect(api_setter).not_to have_received(:perform_async).with(recognizer_station.id)
+      expect(ImportSongJob).to have_received(:perform_async).with(api_station.id)
     end
 
     it 'sleeps between recognizer-only stations but not between api stations' do

@@ -3,6 +3,8 @@
 class RadioStationTracksScraperJob
   include Sidekiq::Worker
 
+  sidekiq_options queue: 'realtime'
+
   def perform
     radio_station_url.each do |url|
       @response = response(url)

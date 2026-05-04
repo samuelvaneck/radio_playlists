@@ -3,7 +3,7 @@
 class SongExternalIdsEnrichmentJob
   include Sidekiq::Job
 
-  sidekiq_options queue: :default, retry: 3
+  sidekiq_options queue: :enrichment, retry: 3
 
   # Enqueue jobs for all songs missing external IDs
   def self.enqueue_all

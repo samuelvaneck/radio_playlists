@@ -9,7 +9,7 @@ class ImportSongJob
   # the full execution. If the job ran longer than lock_ttl, the lock would
   # auto-expire and the per-minute scheduler would enqueue a duplicate while
   # the original is still running, causing pile-up across all worker threads.
-  sidekiq_options lock: :until_executed, lock_ttl: 90
+  sidekiq_options queue: 'realtime', lock: :until_executed, lock_ttl: 90
 
   def perform(id)
     radio_station = RadioStation.find(id)

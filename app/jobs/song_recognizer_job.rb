@@ -1,5 +1,5 @@
 class SongRecognizerJob < ApplicationJob
-  queue_as :default
+  queue_as :realtime
 
   def perform
     RadioStation.all.find_each(&:enqueue_recognize_song)

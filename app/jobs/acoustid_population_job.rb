@@ -16,7 +16,7 @@
 class AcoustidPopulationJob
   include Sidekiq::Job
 
-  sidekiq_options queue: 'low', retry: 3
+  sidekiq_options queue: 'enrichment', retry: 3
 
   # Enqueue jobs for all songs with YouTube IDs that haven't been submitted yet
   def self.enqueue_all(limit: nil)

@@ -4,7 +4,7 @@ class LastfmEnrichmentJob
   THROTTLE_INTERVAL = 2 # seconds between jobs
 
   include Sidekiq::Job
-  sidekiq_options queue: 'low'
+  sidekiq_options queue: 'enrichment'
 
   def self.enqueue_all
     stale_threshold = 30.days.ago
