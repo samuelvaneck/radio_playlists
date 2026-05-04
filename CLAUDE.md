@@ -102,21 +102,30 @@ The app uses service objects extensively in `app/services/`:
 
 ### Background Jobs
 
-Sidekiq jobs in `app/jobs/` run on schedules defined in `config/sidekiq.yml`:
-- `ImportSongsAllRadioStationsJob` - Every minute, imports songs from all stations
-- `ChartCreationJob` - Daily at 00:10, generates charts
-- `ChartSongEnrichmentJob` - Daily at 00:30, re-enriches charted songs with latest Last.fm/Spotify data for popularity boost
-- `YoutubeApiImportJob` - Every 15 minutes
-- `CleanupDraftAirPlaysJob` - Every hour, cleans draft airplays older than 4 hours and orphaned SongImportLogs
-- `SongImportMonitorJob` - Every hour, monitors import failure rates and alerts
-- `SongImportLogCleanupJob` - Daily at 2am, exports and deletes old import logs
-- `DatabaseVacuumJob` - Daily at 3am, runs VACUUM ANALYZE on key tables to prevent bloat
-- `AvgSongGapCalculationJob` - Daily at 5am, calculates per-station average song gaps
-- `ArtistEnrichmentBatchJob` - Weekly Sunday 3am, batch enqueues artist enrichment
-- `LastfmEnrichmentBatchJob` - Weekly Sunday 4am, batch enqueues Last.fm enrichment for songs/artists
+Three queues, each served by a dedicated Sidekiq worker in production so a flood of one workload can never starve another:
 
-On-demand enrichment jobs (triggered by import flow, not scheduled):
+| Queue | Workload | Worker concurrency (prod) |
+|---|---|---|
+| `realtime` | API scraping, audio recognition, per-station imports — keeps up with stations playing | 10 (I/O-bound, GIL released on socket waits) |
+| `compute` | Chart generation, VACUUM, log/draft cleanup, monitoring — CPU/DB-heavy, scheduled at off-peak | 3 (heavy SQL aggregation; more threads only multiply DB load) |
+| `enrichment` | Spotify/Deezer/iTunes/Tidal external IDs, Last.fm, MusicBrainz, music profile, AcoustID — slow per-record fan-out | 5 (HTTP fan-out balanced against DB pool) |
+
+Sidekiq jobs in `app/jobs/` run on schedules defined in `config/sidekiq.yml`:
+- `ImportSongsAllRadioStationsJob` (`realtime`) - Every minute, imports songs from all stations
+- `ChartCreationJob` (`compute`) - Daily at 00:10, generates charts
+- `ChartSongEnrichmentJob` (`enrichment`) - Daily at 00:30, re-enriches charted songs with latest Last.fm/Spotify data for popularity boost
+- `YoutubeApiImportJob` (`realtime`) - Every 15 minutes
+- `CleanupDraftAirPlaysJob` (`compute`) - Every hour, cleans draft airplays older than 4 hours and orphaned SongImportLogs
+- `SongImportMonitorJob` (`compute`) - Every hour, monitors import failure rates and alerts
+- `SongImportLogCleanupJob` (`compute`) - Daily at 2am, exports and deletes old import logs
+- `DatabaseVacuumJob` (`compute`) - Daily at 3am, runs VACUUM ANALYZE on key tables to prevent bloat
+- `AvgSongGapCalculationJob` (`compute`) - Daily at 5am, calculates per-station average song gaps
+- `ArtistEnrichmentBatchJob` (`enrichment`) - Weekly Sunday 3am, batch enqueues artist enrichment
+- `LastfmEnrichmentBatchJob` (`enrichment`) - Weekly Sunday 4am, batch enqueues Last.fm enrichment for songs/artists
+
+On-demand enrichment jobs (triggered by import flow, not scheduled — all on the `enrichment` queue):
 - `SongExternalIdsEnrichmentJob` - Enriches songs with Deezer, iTunes, and MusicBrainz IDs after import
+- `ArtistExternalIdsEnrichmentJob` - Enriches artists with Tidal, Deezer, and iTunes IDs after import
 - `MusicProfileJob` - Creates Spotify audio feature profiles for songs, then calculates `hit_potential_score` via `HitPotentialCalculator`
 - `AcoustidPopulationJob` - Downloads YouTube audio, generates fingerprints, submits to AcoustID
 
@@ -389,8 +398,8 @@ The `Dockerfile` uses a two-stage build with `ruby:4.0.2-slim-bookworm`:
 
 - **jemalloc** enabled via `LD_PRELOAD="libjemalloc.so.2"` — reduces Ruby memory fragmentation by 20-40%. Uses bare library name (not full path) to work on both x86_64 and aarch64.
 - **`MALLOC_ARENA_MAX=2`** — limits glibc arena bloat in multi-threaded processes
-- **Sidekiq concurrency: 10** — balances throughput vs memory (each thread holds a DB connection)
-- **docker-compose memory limits** — 512M for web/streams, 1G for sidekiq
+- **Sidekiq concurrency** — tuned per queue (10 / 3 / 5 for `realtime` / `compute` / `enrichment`); each thread holds a DB connection so total threads must fit Postgres `max_connections`
+- **docker-compose memory limits** — 2G for web, 768M for `sidekiq_realtime`, 1G for `sidekiq_compute`, 768M for `sidekiq_enrichment`, 1G for `persistent_streams`
 
 ### SongRec PPA Installation
 
