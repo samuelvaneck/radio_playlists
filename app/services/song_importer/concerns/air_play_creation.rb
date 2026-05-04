@@ -66,6 +66,7 @@ module SongImporter::Concerns
       @radio_station.update_last_added_air_play_ids(air_play.id)
       song.update_artists(artists) if should_update_artists?
       @radio_station.songs << song unless RadioStationSong.exists?(radio_station: @radio_station, song:)
+      persist_scraper_fields
       MusicProfileJob.perform_async(song.id, @radio_station.id)
       SongExternalIdsEnrichmentJob.perform_async(song.id)
       enqueue_artist_external_ids_enrichment
@@ -75,6 +76,26 @@ module SongImporter::Concerns
       song.artists.each do |artist|
         ArtistExternalIdsEnrichmentJob.perform_async(artist.id) if artist.needs_external_ids_enrichment?
       end
+    end
+
+    # Some processors (e.g. QmusicApiProcessor) extract YouTube IDs and artist
+    # social URLs that the Spotify/Deezer/iTunes lookups don't provide. Persist
+    # them when present and the existing values are blank.
+    def persist_scraper_fields
+      return unless @played_song.respond_to?(:youtube_id)
+
+      song.update(id_on_youtube: @played_song.youtube_id) if song.id_on_youtube.blank? && @played_song.youtube_id.present?
+      update_artist_social_urls
+    end
+
+    def update_artist_social_urls
+      matched_artist = song.artists.find_by(name: artist_name)
+      return if matched_artist.blank?
+
+      updates = {}
+      updates[:website_url]   = @played_song.website_url   if matched_artist.website_url.blank?   && @played_song.website_url.present?
+      updates[:instagram_url] = @played_song.instagram_url if matched_artist.instagram_url.blank? && @played_song.instagram_url.present?
+      matched_artist.update(updates) if updates.any?
     end
   end
 end

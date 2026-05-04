@@ -104,7 +104,6 @@ The app uses service objects extensively in `app/services/`:
 
 Sidekiq jobs in `app/jobs/` run on schedules defined in `config/sidekiq.yml`:
 - `ImportSongsAllRadioStationsJob` - Every minute, imports songs from all stations
-- `RadioStationTracksScraperJob` - Every 3 minutes, scrapes station playlists
 - `ChartCreationJob` - Daily at 00:10, generates charts
 - `ChartSongEnrichmentJob` - Daily at 00:30, re-enriches charted songs with latest Last.fm/Spotify data for popularity boost
 - `YoutubeApiImportJob` - Every 15 minutes
