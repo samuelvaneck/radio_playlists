@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://auth.tidal.com/v1/oauth2/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Authorization:
+      - Basic <TIDAL_BASIC_TOKEN>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '377'
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 05 May 2026 19:28:19 GMT
+      Server:
+      - envoy
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      X-Envoy-Upstream-Service-Time:
+      - '8'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 b9be498b57d2aee7c2096da28228e858.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - AMS58-P2
+      X-Amz-Cf-Id:
+      - 8UL-agf-DHJfWepIa5h2b2w7__5Ibia6CMSHabDoTbUedqYcRnCrDw==
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"<TIDAL_ACCESS_TOKEN>","expires_in":14400,"scope":"","token_type":"Bearer"}'
+  recorded_at: Tue, 05 May 2026 19:28:19 GMT
+- request:
+    method: get
+    uri: https://openapi.tidal.com/v2/searchResults/qzxqzxqzxnonexistentartistxxx%20noresult?countryCode=NL&include=tracks,tracks.artists
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Authorization:
+      - Bearer <TIDAL_BEARER_TOKEN>
+      Accept:
+      - application/vnd.api+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 05 May 2026 19:28:19 GMT
+      X-Envoy-Upstream-Service-Time:
+      - '39'
+      Server:
+      - envoy
+      Cache-Control:
+      - no-store
+      Tidal-Access-Tier:
+      - THIRD_PARTY
+      Tidal-Security-Scheme:
+      - CLIENT_CREDENTIALS
+      Vary:
+      - accept-encoding
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 9500c58b11c15528d15f2ca9add5bc00.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - AMS1-P1
+      X-Amz-Cf-Id:
+      - oquAC0Al2JqAgjnPhi5CivjK47kq4EJ_oJMUoRewJLKBlvEq3aXxzg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"id":"qzxqzxqzxnonexistentartistxxx%20noresult","type":"searchResults","attributes":{"trackingId":"3a84576e-82f2-41b2-8556-35e59eb0a880"},"relationships":{"albums":{"links":{"self":"/searchResults/qzxqzxqzxnonexistentartistxxx%20noresult/relationships/albums?countryCode=NL"}},"artists":{"links":{"self":"/searchResults/qzxqzxqzxnonexistentartistxxx%20noresult/relationships/artists?countryCode=NL"}},"playlists":{"links":{"self":"/searchResults/qzxqzxqzxnonexistentartistxxx%20noresult/relationships/playlists?countryCode=NL"}},"videos":{"links":{"self":"/searchResults/qzxqzxqzxnonexistentartistxxx%20noresult/relationships/videos?countryCode=NL"}},"topHits":{"links":{"self":"/searchResults/qzxqzxqzxnonexistentartistxxx%20noresult/relationships/topHits?countryCode=NL"}},"tracks":{"data":[],"links":{"self":"/searchResults/qzxqzxqzxnonexistentartistxxx%20noresult/relationships/tracks?countryCode=NL"}}}},"links":{"self":"/searchResults/qzxqzxqzxnonexistentartistxxx%20noresult?include=tracks.artists&countryCode=NL"},"included":[]}'
+  recorded_at: Tue, 05 May 2026 19:28:19 GMT
+recorded_with: VCR 6.4.0
