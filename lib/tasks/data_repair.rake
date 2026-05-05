@@ -1339,6 +1339,41 @@ namespace :data_repair do
     results[:errors].each { |e| puts "  Song ##{e[:song_id]}: #{e[:error]}" }
   end
 
+  desc 'Dry run: Show SongImportLogs stuck in pending status that can be recovered. ' \
+       'Usage: rake data_repair:find_stuck_pending_logs[500]'
+  task :find_stuck_pending_logs, [:limit] => :environment do |_t, args|
+    limit = (args[:limit] || 500).to_i
+    puts "Scanning up to #{limit} pending import logs (dry run)..."
+    puts '=' * 80
+
+    recovery = StuckPendingLogRecovery.new(dry_run: true, limit: limit)
+    results = recovery.run
+
+    puts '=' * 80
+    puts "Checked: #{results[:checked]}, Skipped: #{results[:skipped]}"
+    puts "Would attach existing air_play: #{results[:reused_air_play]}, " \
+         "Would create air_play: #{results[:created_air_play]}"
+    puts "Errors: #{results[:errors].count}" if results[:errors].any?
+    results[:errors].each { |e| puts "  Log ##{e[:log_id]}: #{e[:error]}" }
+  end
+
+  desc 'Recover SongImportLogs stuck in pending status by linking or creating airplays. ' \
+       'Usage: rake data_repair:fix_stuck_pending_logs[500]'
+  task :fix_stuck_pending_logs, [:limit] => :environment do |_t, args|
+    limit = (args[:limit] || 500).to_i
+    puts "Recovering up to #{limit} pending import logs..."
+    puts '=' * 80
+
+    recovery = StuckPendingLogRecovery.new(dry_run: false, limit: limit)
+    results = recovery.run
+
+    puts '=' * 80
+    puts "Checked: #{results[:checked]}, Recovered: #{results[:recovered]}, Skipped: #{results[:skipped]}"
+    puts "Reused air_play: #{results[:reused_air_play]}, Created air_play: #{results[:created_air_play]}"
+    puts "Errors: #{results[:errors].count}" if results[:errors].any?
+    results[:errors].each { |e| puts "  Log ##{e[:log_id]}: #{e[:error]}" }
+  end
+
   desc 'Roll back a single SongImportLog: destroy airplay, destroy song if orphaned, mark log failed. ' \
        'Dry run by default. Usage: rake data_repair:rollback_import_log[2765957] or [2765957,apply]'
   task :rollback_import_log, %i[log_id mode] => :environment do |_t, args|

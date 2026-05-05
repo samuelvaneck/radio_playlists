@@ -26,7 +26,8 @@ describe SongImporter do
       allow(SongImportLogger).to receive(:new).and_return(
         instance_double(SongImportLogger, start_log: nil, log_scraping: nil, skip_log: nil,
                                           complete_log: nil, log_recognition: nil, log_acoustid: nil,
-                                          fail_log: nil, log_spotify: nil, log_deezer: nil, log_itunes: nil)
+                                          fail_log: nil, fail_log_if_pending: nil,
+                                          log_spotify: nil, log_deezer: nil, log_itunes: nil)
       )
     end
 
@@ -79,7 +80,8 @@ describe SongImporter do
       let(:import_logger) do
         instance_double(SongImportLogger, start_log: nil, log_scraping: nil, skip_log: nil,
                                           complete_log: nil, log_recognition: nil, log_acoustid: nil,
-                                          fail_log: nil, log_spotify: nil, log_deezer: nil, log_itunes: nil)
+                                          fail_log: nil, fail_log_if_pending: nil,
+                                          log_spotify: nil, log_deezer: nil, log_itunes: nil)
       end
 
       before do
@@ -100,6 +102,51 @@ describe SongImporter do
         importer.import
         expect(import_logger).to have_received(:skip_log).with(reason: 'No song scraped or recognized')
         expect(import_logger).not_to have_received(:fail_log)
+      end
+    end
+
+    context 'when the import flow raises and the error notifier itself fails' do
+      let(:import_logger) do
+        instance_double(SongImportLogger, start_log: nil, log_scraping: nil, skip_log: nil,
+                                          complete_log: nil, log_recognition: nil, log_acoustid: nil,
+                                          fail_log: nil, fail_log_if_pending: nil,
+                                          log_spotify: nil, log_deezer: nil, log_itunes: nil)
+      end
+
+      before do
+        allow(SongImportLogger).to receive(:new).and_return(import_logger)
+        allow(TrackScraper::NpoApiProcessor).to receive(:new).and_return(scraper)
+        allow(importer).to receive_messages(artists: [artist], song: song, deezer_track: nil, itunes_track: nil)
+        allow(importer).to receive(:create_air_play).and_raise(StandardError, 'boom')
+        allow(ExceptionNotifier).to receive(:notify).and_raise(StandardError, 'sentry down')
+        allow(Rails.logger).to receive(:error)
+      end
+
+      it 'still marks the log as failed before notification side-effects', :aggregate_failures do
+        expect { importer.import }.not_to raise_error
+        expect(import_logger).to have_received(:fail_log).with(reason: 'boom')
+      end
+    end
+
+    context 'when the import flow is interrupted and the log is still pending' do
+      let(:import_logger) do
+        instance_double(SongImportLogger, start_log: nil, log_scraping: nil, skip_log: nil,
+                                          complete_log: nil, log_recognition: nil, log_acoustid: nil,
+                                          fail_log: nil, fail_log_if_pending: nil,
+                                          log_spotify: nil, log_deezer: nil, log_itunes: nil)
+      end
+
+      before do
+        allow(SongImportLogger).to receive(:new).and_return(import_logger)
+        allow(TrackScraper::NpoApiProcessor).to receive(:new).and_return(scraper)
+        allow(importer).to receive_messages(artists: [artist], song: song, deezer_track: nil, itunes_track: nil,
+                                            create_air_play: true)
+      end
+
+      it 'runs the pending-log safety net in the ensure block' do
+        importer.import
+        expect(import_logger).to have_received(:fail_log_if_pending)
+                                   .with(reason: 'Import interrupted before completion')
       end
     end
   end
