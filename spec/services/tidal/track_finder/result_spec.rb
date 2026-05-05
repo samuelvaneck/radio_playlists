@@ -13,14 +13,15 @@ describe Tidal::TrackFinder::Result do
     allow(Tidal::Token).to receive(:new).and_return(instance_double(Tidal::Token, token: 'fake_token'))
   end
 
-  def search_response(tracks)
+  def search_response(tracks, artists: [{ 'id' => '3658521', 'name' => 'Bruno Mars' }])
+    artist_resources = artists.map { |a| { 'id' => a['id'], 'type' => 'artists', 'attributes' => { 'name' => a['name'] } } }
     {
       'data' => {
         'id' => 'q', 'type' => 'searchResults',
         'attributes' => { 'trackingId' => 'abc' },
         'relationships' => { 'tracks' => { 'data' => tracks.map { |t| { 'id' => t['id'], 'type' => 'tracks' } } } }
       },
-      'included' => tracks
+      'included' => tracks + artist_resources
     }
   end
 
@@ -32,12 +33,18 @@ describe Tidal::TrackFinder::Result do
     )
   end
 
-  def track_resource(id:, title:, isrc:, popularity:)
+  def track_resource(id:, title:, isrc:, popularity:, artist_ids: %w[3658521])
     {
       'id' => id, 'type' => 'tracks',
       'attributes' => {
         'title' => title, 'isrc' => isrc, 'duration' => 'PT3M33S',
         'explicit' => false, 'popularity' => popularity
+      },
+      'relationships' => {
+        'artists' => {
+          'data' => artist_ids.map { |aid| { 'id' => aid, 'type' => 'artists' } },
+          'links' => { 'self' => "/tracks/#{id}/relationships/artists?countryCode=NL" }
+        }
       }
     }
   end
@@ -80,8 +87,8 @@ describe Tidal::TrackFinder::Result do
         expect(result.duration_ms).to eq(213_000)
       end
 
-      it 'leaves artists empty (endpoint does not return inline artist data)' do
-        expect(result.artists).to eq([])
+      it 'returns the artists resolved from the included compound document' do
+        expect(result.artists).to eq(['Bruno Mars'])
       end
 
       it 'leaves artwork empty (endpoint does not expose cover art inline)' do
@@ -160,12 +167,29 @@ describe Tidal::TrackFinder::Result do
         expect(result.id).to be_nil
       end
     end
+
+    context 'when search returns a title-matching track by a different artist', :use_vcr do
+      subject(:result) { described_class.new(artists: 'Gordon', title: 'Ik Bel Je Zomaar Even Op') }
+
+      before do
+        allow(Tidal::Token).to receive(:new).and_call_original
+        result.execute
+      end
+
+      it 'rejects the wrong-artist track and exposes no Tidal id' do
+        expect(result.id).to be_nil
+      end
+
+      it 'is not a valid match' do
+        expect(result.valid_match?).to be false
+      end
+    end
   end
 
   describe '#valid_match?' do
-    context 'when title_distance is above the threshold' do
+    context 'when both title and artist distances are above the threshold' do
       before do
-        result.instance_variable_set(:@track, { 'title_distance' => 85 })
+        result.instance_variable_set(:@track, { 'title_distance' => 85, 'artist_distance' => 90 })
       end
 
       it 'returns true' do
@@ -175,7 +199,17 @@ describe Tidal::TrackFinder::Result do
 
     context 'when title_distance is below the threshold' do
       before do
-        result.instance_variable_set(:@track, { 'title_distance' => 50 })
+        result.instance_variable_set(:@track, { 'title_distance' => 50, 'artist_distance' => 90 })
+      end
+
+      it 'returns false' do
+        expect(result.valid_match?).to be false
+      end
+    end
+
+    context 'when artist_distance is below the threshold' do
+      before do
+        result.instance_variable_set(:@track, { 'title_distance' => 95, 'artist_distance' => 40 })
       end
 
       it 'returns false' do

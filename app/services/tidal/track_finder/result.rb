@@ -33,7 +33,8 @@ module Tidal
       def valid_match?
         return false if @track.blank?
 
-        @track['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD
+        @track['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD &&
+          @track['artist_distance'].to_i >= ARTIST_SIMILARITY_THRESHOLD
       end
 
       private
@@ -43,14 +44,17 @@ module Tidal
       # than `/v2/tracks?filter[isrc]`. The endpoint's `filter` query parameter
       # only accepts INCLUDE/EXCLUDE values (controlling which result-block
       # kinds come back) — not arbitrary field filters — so ISRC narrowing
-      # happens client-side. `include=tracks` is the only useful include here:
-      # tracks expose their artists via a `relationships.artists.links`
-      # sub-resource, not inline data, so we can't compute artist_distance from
-      # this response. We rely on Tidal's search ranking to pre-filter to
-      # relevant artists, then validate via title distance and ISRC.
+      # happens client-side. We use `include=tracks,tracks.artists` so each
+      # track's `relationships.artists.data` is populated with artist ids, and
+      # the matching artist resources are inlined under `included`. Without
+      # the nested include the relationship only carries a `links` self-href,
+      # giving us no way to validate the artist — Tidal will happily return
+      # same-titled tracks by unrelated artists when the queried artist isn't
+      # in their catalogue (e.g. Gordon → Avi/Jesse Prins for "Ik Bel Je
+      # Zomaar Even Op").
       def find_best_match
         query = ERB::Util.url_encode("#{@search_artists} #{@search_title}")
-        url = "/v2/searchResults/#{query}?countryCode=#{@country}&include=tracks"
+        url = "/v2/searchResults/#{query}?countryCode=#{@country}&include=tracks,tracks.artists"
         response = make_request(url)
 
         return nil if response.blank?
@@ -58,6 +62,7 @@ module Tidal
         track_resources = Array(response['included']).select { |r| r['type'] == 'tracks' }
         return nil if track_resources.blank?
 
+        @artists_by_id = Array(response['included']).select { |r| r['type'] == 'artists' }.index_by { |r| r['id'] }
         pool = isrc_filtered(track_resources)
         pick_best_search_track(pool)
       end
@@ -73,29 +78,39 @@ module Tidal
         matched.presence || tracks
       end
 
-      # Score by title, keep ones over the threshold, pick the highest
-      # popularity. Popularity alone would land on the wrong song when the
-      # artist has multiple hits — searching "Bruno Mars I Just Might"
+      # Score by title and artist, keep ones over both thresholds, pick the
+      # highest popularity. Popularity alone would land on the wrong song when
+      # the artist has multiple hits — searching "Bruno Mars I Just Might"
       # surfaces "Just the Way You Are" with higher popularity than the actual
-      # match — so the title gate is required.
+      # match — so the title gate is required. The artist gate then rejects
+      # same-titled tracks by unrelated artists.
       def pick_best_search_track(tracks)
-        scored = tracks.filter_map { |t| attach_title_score(t) }
-        valid = scored.select { |t| t['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD }
+        scored = tracks.filter_map { |t| attach_match_scores(t) }
+        valid = scored.select { |t| above_thresholds?(t) }
         valid.max_by { |t| t.dig('attributes', 'popularity').to_f }
       end
 
-      def attach_title_score(track)
+      def attach_match_scores(track)
         return nil if track.blank?
 
         track['title_distance'] = title_distance(track.dig('attributes', 'title'))
+        track['artist_distance'] = artist_distance(track_artist_names(track))
         track
       end
 
-      # /searchResults doesn't return track-artist data inline. Leaving artists
-      # empty until we either deep-include or fetch the winner's artists via a
-      # follow-up call.
+      def above_thresholds?(track)
+        track['title_distance'].to_i >= TITLE_SIMILARITY_THRESHOLD &&
+          track['artist_distance'].to_i >= ARTIST_SIMILARITY_THRESHOLD
+      end
+
+      def track_artist_names(track)
+        ids = Array(track.dig('relationships', 'artists', 'data')).map { |a| a['id'] }
+        ids.filter_map { |id| @artists_by_id&.dig(id, 'attributes', 'name') }.join(' ')
+      end
+
       def set_artists
-        []
+        ids = Array(@track&.dig('relationships', 'artists', 'data')).map { |a| a['id'] }
+        ids.filter_map { |id| @artists_by_id&.dig(id, 'attributes', 'name') }
       end
 
       def set_title

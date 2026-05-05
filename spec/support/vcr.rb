@@ -6,19 +6,43 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
   config.filter_sensitive_data('<SPOTIFY_ACCESS_TOKEN>') do |interaction|
-    # Replace access_token in JSON response bodies
+    next unless interaction.request.uri.include?('spotify')
+
     interaction.response.body[/"access_token":"([^"]+)"/, 1]
   end
 
   config.filter_sensitive_data('<SPOTIFY_BEARER_TOKEN>') do |interaction|
-    # Replace Bearer tokens in Authorization headers
+    next unless interaction.request.uri.include?('spotify')
+
     interaction.request.headers['Authorization']&.first&.match(/Bearer (.+)/)&.captures&.first
   end
 
   config.filter_sensitive_data('<SPOTIFY_BASIC_TOKEN>') do |interaction|
-    # Replace Bearer tokens in Authorization headers
+    next unless interaction.request.uri.include?('spotify')
+
     interaction.request.headers['Authorization']&.first&.match(/Basic (.+)/)&.captures&.first
   end
+
+  config.filter_sensitive_data('<TIDAL_ACCESS_TOKEN>') do |interaction|
+    next unless interaction.request.uri.include?('tidal')
+
+    interaction.response.body[/"access_token":"([^"]+)"/, 1]
+  end
+
+  config.filter_sensitive_data('<TIDAL_BEARER_TOKEN>') do |interaction|
+    next unless interaction.request.uri.include?('tidal')
+
+    interaction.request.headers['Authorization']&.first&.match(/Bearer (.+)/)&.captures&.first
+  end
+
+  config.filter_sensitive_data('<TIDAL_BASIC_TOKEN>') do |interaction|
+    next unless interaction.request.uri.include?('tidal')
+
+    interaction.request.headers['Authorization']&.first&.match(/Basic (.+)/)&.captures&.first
+  end
+
+  config.filter_sensitive_data('<TIDAL_CLIENT_ID>') { ENV.fetch('TIDAL_CLIENT_ID', nil) }
+  config.filter_sensitive_data('<TIDAL_CLIENT_SECRET>') { ENV.fetch('TIDAL_CLIENT_SECRET', nil) }
 end
 
 RSpec.configure do |config|
