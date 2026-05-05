@@ -127,6 +127,21 @@ class SongImportLogger
     )
   end
 
+  # Safety net for the SongImporter ensure block: if the import was interrupted
+  # before it could call complete_log/fail_log/skip_log (process kill, double
+  # timeout, exception inside the rescue handler), the row would otherwise stay
+  # `pending` forever. Flip it to `failed` so we don't lose track of the import.
+  def fail_log_if_pending(reason:)
+    return unless @log
+
+    @log.reload
+    return unless @log.pending?
+
+    @log.update(status: :failed, failure_reason: sanitize_reason(reason))
+  rescue ActiveRecord::RecordNotFound
+    nil
+  end
+
   private
 
   def sanitize_reason(reason)

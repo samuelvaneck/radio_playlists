@@ -7,7 +7,8 @@ describe SongImporter do
   let(:import_logger) do
     instance_double(SongImportLogger, start_log: nil, log_scraping: nil, skip_log: nil,
                                       complete_log: nil, log_recognition: nil, log_acoustid: nil,
-                                      fail_log: nil, log_spotify: nil, log_deezer: nil, log_itunes: nil,
+                                      fail_log: nil, fail_log_if_pending: nil,
+                                      log_spotify: nil, log_deezer: nil, log_itunes: nil,
                                       log_llm: nil)
   end
 

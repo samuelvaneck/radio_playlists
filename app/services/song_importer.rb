@@ -33,11 +33,11 @@ class SongImporter
 
     create_air_play
   rescue StandardError => e
-    ExceptionNotifier.notify(e)
-    Broadcaster.error_during_import(error_message: e.message, radio_station_name: @radio_station.name)
     @import_logger.fail_log(reason: e.message)
+    notify_import_error(e)
     nil
   ensure
+    safely_resolve_pending_log
     clear_instance_variables
   end
 
@@ -142,6 +142,21 @@ class SongImporter
     @import_logger.start_log
   rescue StandardError => e
     Rails.logger.error("Failed to create song import log: #{e.message}")
+  end
+
+  # Side-effects that must not block fail_log: if Sentry is rate-limiting or
+  # ActionCable is wedged, we still want the log row marked failed.
+  def notify_import_error(error)
+    ExceptionNotifier.notify(error)
+    Broadcaster.error_during_import(error_message: error.message, radio_station_name: @radio_station.name)
+  rescue StandardError => e
+    Rails.logger.error("Failed to notify import error: #{e.message}")
+  end
+
+  def safely_resolve_pending_log
+    @import_logger.fail_log_if_pending(reason: 'Import interrupted before completion')
+  rescue StandardError => e
+    Rails.logger.error("Failed to resolve song import log status: #{e.message}")
   end
 
   def clear_instance_variables

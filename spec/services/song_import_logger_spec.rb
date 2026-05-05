@@ -388,4 +388,38 @@ describe SongImportLogger do
       expect(logger.log.failure_reason).to eq('No artist found')
     end
   end
+
+  describe '#fail_log_if_pending' do
+    before { logger.start_log }
+
+    context 'when log is still pending' do
+      it 'flips status to failed', :aggregate_failures do
+        logger.fail_log_if_pending(reason: 'Import interrupted before completion')
+        expect(logger.log.status).to eq('failed')
+        expect(logger.log.failure_reason).to eq('Import interrupted before completion')
+      end
+    end
+
+    context 'when log has already reached a terminal status' do
+      before { logger.complete_log(song: create(:song), air_play: create(:air_play)) }
+
+      it 'does not overwrite the existing status' do
+        logger.fail_log_if_pending(reason: 'Import interrupted before completion')
+        expect(logger.log.reload.status).to eq('success')
+      end
+    end
+
+    context 'when the log row has been deleted' do
+      before { logger.log.destroy }
+
+      it 'swallows the missing-record error' do
+        expect { logger.fail_log_if_pending(reason: 'Import interrupted before completion') }.not_to raise_error
+      end
+    end
+
+    it 'does nothing when no log was started' do
+      new_logger = described_class.new(radio_station:)
+      expect { new_logger.fail_log_if_pending(reason: 'whatever') }.not_to raise_error
+    end
+  end
 end
