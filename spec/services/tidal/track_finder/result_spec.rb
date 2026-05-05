@@ -9,63 +9,11 @@ describe Tidal::TrackFinder::Result do
   let(:title) { 'I Just Might' }
   let(:isrc) { nil }
 
-  before do
-    allow(Tidal::Token).to receive(:new).and_return(instance_double(Tidal::Token, token: 'fake_token'))
-  end
-
-  def search_response(tracks, artists: [{ 'id' => '3658521', 'name' => 'Bruno Mars' }])
-    artist_resources = artists.map { |a| { 'id' => a['id'], 'type' => 'artists', 'attributes' => { 'name' => a['name'] } } }
-    {
-      'data' => {
-        'id' => 'q', 'type' => 'searchResults',
-        'attributes' => { 'trackingId' => 'abc' },
-        'relationships' => { 'tracks' => { 'data' => tracks.map { |t| { 'id' => t['id'], 'type' => 'tracks' } } } }
-      },
-      'included' => tracks + artist_resources
-    }
-  end
-
-  def stub_search(body)
-    stub_request(:get, %r{openapi\.tidal\.com/v2/searchResults}).to_return(
-      status: 200,
-      body: body.to_json,
-      headers: { 'Content-Type' => 'application/vnd.api+json' }
-    )
-  end
-
-  def track_resource(id:, title:, isrc:, popularity:, artist_ids: %w[3658521])
-    {
-      'id' => id, 'type' => 'tracks',
-      'attributes' => {
-        'title' => title, 'isrc' => isrc, 'duration' => 'PT3M33S',
-        'explicit' => false, 'popularity' => popularity
-      },
-      'relationships' => {
-        'artists' => {
-          'data' => artist_ids.map { |aid| { 'id' => aid, 'type' => 'artists' } },
-          'links' => { 'self' => "/tracks/#{id}/relationships/artists?countryCode=NL" }
-        }
-      }
-    }
-  end
-
-  describe '#execute' do
+  describe '#execute', :use_vcr do
     context 'when search returns the matching ISRC' do
       let(:isrc) { 'USAT22509144' }
 
-      let(:tracks) do
-        [
-          track_resource(id: '5274607', title: 'Just the Way You Are', isrc: 'USAT21001269', popularity: 0.85),
-          track_resource(id: '67237704', title: "That's What I Like", isrc: 'USAT21602948', popularity: 0.82),
-          track_resource(id: '488282494', title: 'I Just Might', isrc: 'USAT22509144', popularity: 0.72),
-          track_resource(id: '498194649', title: 'I Just Might (Austin Millz Remix)', isrc: 'USAT22600280', popularity: 0.41)
-        ]
-      end
-
-      before do
-        stub_search(search_response(tracks))
-        result.execute
-      end
+      before { result.execute }
 
       it 'picks the track whose ISRC matches, ignoring more popular Bruno Mars hits' do
         expect(result.id).to eq('488282494')
@@ -97,38 +45,17 @@ describe Tidal::TrackFinder::Result do
     end
 
     context 'when no ISRC is provided' do
-      let(:tracks) do
-        [
-          track_resource(id: '5274607', title: 'Just the Way You Are', isrc: 'USAT21001269', popularity: 0.85),
-          track_resource(id: '488282494', title: 'I Just Might', isrc: 'USAT22509144', popularity: 0.72),
-          track_resource(id: '492008674', title: 'I Just Might (Originally Performed by Bruno Mars) [Instrumental]',
-                         isrc: 'QZPJ32532049', popularity: 0.11)
-        ]
-      end
+      before { result.execute }
 
-      before do
-        stub_search(search_response(tracks))
-        result.execute
-      end
-
-      it 'rejects "Just the Way You Are" via title distance even though it is more popular' do
+      it 'rejects more popular Bruno Mars songs via title distance' do
         expect(result.id).to eq('488282494')
       end
     end
 
     context 'when ISRC is provided but no candidate matches it' do
       let(:isrc) { 'NONEXISTENT' }
-      let(:tracks) do
-        [
-          track_resource(id: '488282494', title: 'I Just Might', isrc: 'USAT22509144', popularity: 0.72),
-          track_resource(id: '5274607', title: 'Just the Way You Are', isrc: 'USAT21001269', popularity: 0.85)
-        ]
-      end
 
-      before do
-        stub_search(search_response(tracks))
-        result.execute
-      end
+      before { result.execute }
 
       it 'falls back to the full pool and lets title distance pick the right track' do
         expect(result.id).to eq('488282494')
@@ -136,17 +63,9 @@ describe Tidal::TrackFinder::Result do
     end
 
     context 'when no candidate passes the title threshold' do
-      let(:tracks) do
-        [
-          track_resource(id: 'wrong-1', title: 'Completely Different Song', isrc: 'X', popularity: 0.9),
-          track_resource(id: 'wrong-2', title: 'Another Mismatch', isrc: 'Y', popularity: 0.8)
-        ]
-      end
+      let(:title) { 'asdfqwerzxcv1234' }
 
-      before do
-        stub_search(search_response(tracks))
-        result.execute
-      end
+      before { result.execute }
 
       it 'returns nil for track' do
         expect(result.track).to be_nil
@@ -154,10 +73,10 @@ describe Tidal::TrackFinder::Result do
     end
 
     context 'when search returns no tracks' do
-      before do
-        stub_search('data' => { 'id' => 'q', 'type' => 'searchResults', 'attributes' => {} }, 'included' => [])
-        result.execute
-      end
+      let(:artists) { 'qzxqzxqzxnonexistentartistxxx' }
+      let(:title) { 'noresult' }
+
+      before { result.execute }
 
       it 'returns nil for track' do
         expect(result.track).to be_nil
@@ -168,13 +87,10 @@ describe Tidal::TrackFinder::Result do
       end
     end
 
-    context 'when search returns a title-matching track by a different artist', :use_vcr do
+    context 'when search returns a title-matching track by a different artist' do
       subject(:result) { described_class.new(artists: 'Gordon', title: 'Ik Bel Je Zomaar Even Op') }
 
-      before do
-        allow(Tidal::Token).to receive(:new).and_call_original
-        result.execute
-      end
+      before { result.execute }
 
       it 'rejects the wrong-artist track and exposes no Tidal id' do
         expect(result.id).to be_nil
