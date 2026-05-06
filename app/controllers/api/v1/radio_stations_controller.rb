@@ -8,7 +8,7 @@ module Api
       rate_limit to: 5, within: 1.minute, by: -> { request.remote_ip }, only: :stream_proxy, name: 'stream-proxy',
                  with: -> { render json: { error: 'Rate limit exceeded' }, status: :too_many_requests }
 
-      skip_before_action :authenticate_client!, only: %i[stream_proxy widget sound_profile sentiment_trend]
+      skip_before_action :authenticate_client!, only: %i[stream_proxy widget sound_profile]
       before_action :set_radio_station, only: %i[show status data classifiers stream_proxy bar_chart_race
                                                  widget sound_profile sentiment_trend diversity_metrics exposure_saturation]
 
