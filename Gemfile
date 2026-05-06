@@ -5,6 +5,7 @@ ruby '4.0.2'
 gem 'babosa', '~> 2.0'
 gem 'bootsnap', require: false
 gem 'charlock_holmes', '~> 0.7.7'
+gem 'countries', '~> 7.1'
 gem 'csv', '~> 3.3', '>= 3.3.2'
 gem 'devise'
 gem 'devise-jwt'

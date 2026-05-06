@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 class ArtistEnrichmentJob
-  # Wikipedia allows 500 requests/hour without a token.
-  # Each job makes ~2 Wikipedia API calls (summary + full content),
-  # so max 250 jobs/hour → 3600 / 250 ≈ 15 seconds between jobs.
-  WIKIPEDIA_RATE_LIMIT_PER_HOUR = 500
-  WIKIPEDIA_REQUESTS_PER_JOB = 2
-  THROTTLE_INTERVAL = (3600.0 / (WIKIPEDIA_RATE_LIMIT_PER_HOUR / WIKIPEDIA_REQUESTS_PER_JOB)).ceil
+  # MusicBrainz asks clients to keep below 1 req/sec; the country finder
+  # makes up to 2 sequential calls per artist (search + lookup), each with
+  # a 1-second sleep, so a 3-second spacing between jobs leaves headroom.
+  THROTTLE_INTERVAL = 3
   RECHECK_AFTER = 90.days
 
   include Sidekiq::Job
@@ -15,7 +13,7 @@ class ArtistEnrichmentJob
   def self.enqueue_all
     stale_threshold = RECHECK_AFTER.ago
     scope = Artist
-              .where(country_of_origin: [])
+              .where(country_code: nil)
               .where('country_of_origin_checked_at IS NULL OR country_of_origin_checked_at < ?', stale_threshold)
 
     scope.find_each.with_index do |artist, index|
@@ -26,7 +24,7 @@ class ArtistEnrichmentJob
   def perform(artist_id)
     artist = Artist.find_by(id: artist_id)
     return if artist.blank?
-    return if artist.country_of_origin.present?
+    return if artist.country_code.present?
     return if artist.country_of_origin_checked_at.present? && artist.country_of_origin_checked_at > RECHECK_AFTER.ago
 
     enrich_country_of_origin(artist)
@@ -37,14 +35,15 @@ class ArtistEnrichmentJob
   private
 
   def enrich_country_of_origin(artist)
-    return if artist.country_of_origin.present?
+    return if artist.country_code.present?
 
-    info = Wikipedia::ArtistFinder.new.get_info(artist.name)
-    return if info.blank?
+    iso_code = MusicBrainz::ArtistCountryFinder.new(artist).()
+    return if iso_code.blank?
 
-    nationality = info.dig('general_info', 'nationality')
-    artist.update(country_of_origin: nationality) if nationality.present?
-    artist.cache_wikipedia_url(info['url'])
+    country = ISO3166::Country.new(iso_code)
+    return if country.nil?
+
+    artist.update(country_code: iso_code, country_of_origin: [country.common_name || country.iso_short_name])
   end
 
   def enrich_spotify_metrics(artist)
