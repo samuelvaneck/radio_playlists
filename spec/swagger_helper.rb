@@ -89,6 +89,7 @@ RSpec.configure do |config|
                   spotify_popularity: { type: :integer, nullable: true },
                   spotify_followers_count: { type: :integer, nullable: true },
                   country_of_origin: { type: :array, items: { type: :string }, nullable: true },
+                  country_code: { type: :string, nullable: true },
                   lastfm_listeners: { type: :integer, nullable: true },
                   lastfm_playcount: { type: :integer, nullable: true },
                   lastfm_tags: { type: :array, items: { type: :string }, nullable: true },

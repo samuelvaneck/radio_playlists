@@ -50,7 +50,7 @@ class ArtistSerializer
   include FastJsonapi::ObjectSerializer
 
   attributes :id, :name, :slug, :spotify_artist_url, :spotify_artwork_url, :instagram_url, :website_url, :genres,
-             :spotify_popularity, :spotify_followers_count, :country_of_origin,
+             :spotify_popularity, :spotify_followers_count, :country_of_origin, :country_code,
              :lastfm_listeners, :lastfm_playcount, :lastfm_tags,
              :id_on_tidal, :tidal_artist_url,
              :id_on_deezer, :deezer_artist_url, :deezer_artwork_url,

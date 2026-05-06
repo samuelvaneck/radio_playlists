@@ -27,9 +27,9 @@ namespace :enrichment do
     puts 'Done.'
   end
 
-  desc 'Backfill artist nationality from Wikidata'
-  task backfill_artist_nationality: :environment do
-    puts 'Enqueueing artists for nationality backfill...'
+  desc 'Backfill artist country (ISO code + name) from MusicBrainz'
+  task backfill_artist_country: :environment do
+    puts 'Enqueueing artists for country backfill...'
     ArtistEnrichmentJob.enqueue_all
     puts 'Done.'
   end
@@ -75,7 +75,7 @@ namespace :enrichment do
     %w[
       enrichment:backfill_album_names
       enrichment:backfill_artist_spotify_metrics
-      enrichment:backfill_artist_nationality
+      enrichment:backfill_artist_country
       enrichment:backfill_lastfm
     ].each do |task|
       puts "Running #{task}..."

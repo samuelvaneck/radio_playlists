@@ -4,30 +4,27 @@ require 'rails_helper'
 
 RSpec.describe ArtistEnrichmentJob do
   describe '#perform' do
-    let(:artist) { create(:artist, id_on_spotify: 'spotify_123', country_of_origin: []) }
+    let(:artist) { create(:artist, id_on_spotify: 'spotify_123', country_code: nil) }
     let(:job) { described_class.new }
-
-    let(:wikipedia_info) do
-      {
-        'url' => 'https://en.wikipedia.org/wiki/Adele',
-        'general_info' => {
-          'nationality' => ['United Kingdom']
-        }
-      }
-    end
 
     let(:spotify_artist_response) do
       { 'popularity' => 85, 'followers' => { 'total' => 500_000 } }
     end
 
     before do
-      allow_any_instance_of(Wikipedia::ArtistFinder).to receive(:get_info).and_return(wikipedia_info) # rubocop:disable RSpec/AnyInstance
+      country_finder = instance_double(MusicBrainz::ArtistCountryFinder, call: 'GB')
+      allow(MusicBrainz::ArtistCountryFinder).to receive(:new).and_return(country_finder)
       artist_finder = instance_double(Spotify::ArtistFinder, info: spotify_artist_response)
       allow(Spotify::ArtistFinder).to receive(:new).and_return(artist_finder)
     end
 
-    context 'when artist has empty country_of_origin and Spotify ID' do
-      it 'stores country_of_origin from Wikipedia' do
+    context 'when artist has no country_code and a Spotify ID' do
+      it 'stores country_code from MusicBrainz' do
+        job.perform(artist.id)
+        expect(artist.reload.country_code).to eq('GB')
+      end
+
+      it 'stores country_of_origin derived from the ISO code' do
         job.perform(artist.id)
         expect(artist.reload.country_of_origin).to eq(['United Kingdom'])
       end
@@ -41,19 +38,19 @@ RSpec.describe ArtistEnrichmentJob do
         job.perform(artist.id)
         expect(artist.reload.spotify_followers_count).to eq(500_000)
       end
-
-      it 'stores wikipedia_url' do
-        job.perform(artist.id)
-        expect(artist.reload.wikipedia_url).to eq('https://en.wikipedia.org/wiki/Adele')
-      end
     end
 
-    context 'when artist already has country_of_origin' do
-      let(:artist) { create(:artist, id_on_spotify: 'spotify_123', country_of_origin: ['Netherlands']) }
+    context 'when artist already has country_code' do
+      let(:artist) { create(:artist, id_on_spotify: 'spotify_123', country_code: 'NL', country_of_origin: ['Netherlands']) }
 
-      it 'does not overwrite country_of_origin' do
+      it 'does not overwrite country_code' do
         job.perform(artist.id)
-        expect(artist.reload.country_of_origin).to eq(['Netherlands'])
+        expect(artist.reload.country_code).to eq('NL')
+      end
+
+      it 'does not call MusicBrainz' do
+        job.perform(artist.id)
+        expect(MusicBrainz::ArtistCountryFinder).not_to have_received(:new)
       end
 
       it 'does not call Spotify' do
@@ -62,9 +59,15 @@ RSpec.describe ArtistEnrichmentJob do
       end
     end
 
-    context 'when Wikipedia returns no data' do
+    context 'when MusicBrainz returns no country' do
       before do
-        allow_any_instance_of(Wikipedia::ArtistFinder).to receive(:get_info).and_return(nil) # rubocop:disable RSpec/AnyInstance
+        country_finder = instance_double(MusicBrainz::ArtistCountryFinder, call: nil)
+        allow(MusicBrainz::ArtistCountryFinder).to receive(:new).and_return(country_finder)
+      end
+
+      it 'does not update country_code' do
+        job.perform(artist.id)
+        expect(artist.reload.country_code).to be_nil
       end
 
       it 'does not update country_of_origin' do
@@ -78,13 +81,27 @@ RSpec.describe ArtistEnrichmentJob do
 
         job.perform(artist.id)
 
-        expect(artist.reload.country_of_origin).to eq([])
+        expect(artist.reload.country_code).to be_nil
         expect(artist.country_of_origin_checked_at).to be_within(1.second).of(freeze_time)
       end
     end
 
+    context 'when MusicBrainz returns an unknown ISO code' do
+      before do
+        country_finder = instance_double(MusicBrainz::ArtistCountryFinder, call: 'ZZ')
+        allow(MusicBrainz::ArtistCountryFinder).to receive(:new).and_return(country_finder)
+      end
+
+      it 'does not update country_code or country_of_origin', :aggregate_failures do
+        job.perform(artist.id)
+        artist.reload
+        expect(artist.country_code).to be_nil
+        expect(artist.country_of_origin).to eq([])
+      end
+    end
+
     context 'when artist has no Spotify ID' do
-      let(:artist) { create(:artist, id_on_spotify: nil, country_of_origin: []) }
+      let(:artist) { create(:artist, id_on_spotify: nil, country_code: nil) }
 
       it 'does not update Spotify metrics' do
         job.perform(artist.id)
@@ -98,56 +115,52 @@ RSpec.describe ArtistEnrichmentJob do
       end
     end
 
-    context 'when artist was checked recently and Wikipedia had no nationality' do
+    context 'when artist was checked recently and MusicBrainz had no country' do
       let(:artist) do
-        create(:artist, id_on_spotify: 'spotify_123', country_of_origin: [], country_of_origin_checked_at: 2.days.ago)
+        create(:artist, id_on_spotify: 'spotify_123', country_code: nil, country_of_origin_checked_at: 2.days.ago)
       end
 
-      it 'does not call Wikipedia again' do
-        wikipedia_finder = instance_double(Wikipedia::ArtistFinder)
-        allow(Wikipedia::ArtistFinder).to receive(:new).and_return(wikipedia_finder)
-
+      it 'does not call MusicBrainz again' do
         job.perform(artist.id)
-
-        expect(Wikipedia::ArtistFinder).not_to have_received(:new)
+        expect(MusicBrainz::ArtistCountryFinder).not_to have_received(:new)
       end
     end
 
-    context 'when artist was checked long ago and country is still empty' do
+    context 'when artist was checked long ago and country is still missing' do
       let(:artist) do
-        create(:artist, id_on_spotify: 'spotify_123', country_of_origin: [],
+        create(:artist, id_on_spotify: 'spotify_123', country_code: nil,
                         country_of_origin_checked_at: (described_class::RECHECK_AFTER + 1.day).ago)
       end
 
-      it 'rechecks Wikipedia' do
+      it 'rechecks MusicBrainz' do
         job.perform(artist.id)
-        expect(artist.reload.country_of_origin).to eq(['United Kingdom'])
+        expect(artist.reload.country_code).to eq('GB')
       end
     end
   end
 
   describe '.enqueue_all' do
-    let!(:artist_without_country) { create(:artist, country_of_origin: []) }
-    let!(:artist_with_country) { create(:artist, country_of_origin: ['Netherlands']) }
+    let!(:artist_without_country) { create(:artist, country_code: nil) }
+    let!(:artist_with_country) { create(:artist, country_code: 'NL', country_of_origin: ['Netherlands']) }
     let!(:artist_recently_checked) do
-      create(:artist, country_of_origin: [], country_of_origin_checked_at: 1.day.ago)
+      create(:artist, country_code: nil, country_of_origin_checked_at: 1.day.ago)
     end
     let!(:artist_stale_check) do
-      create(:artist, country_of_origin: [], country_of_origin_checked_at: (described_class::RECHECK_AFTER + 1.day).ago)
+      create(:artist, country_code: nil, country_of_origin_checked_at: (described_class::RECHECK_AFTER + 1.day).ago)
     end
 
     before do
       allow(described_class).to receive(:perform_in)
     end
 
-    it 'enqueues jobs for artists without country_of_origin' do
+    it 'enqueues jobs for artists without country_code' do
       described_class.enqueue_all
       expect(described_class).to have_received(:perform_in).with(
         anything, artist_without_country.id
       )
     end
 
-    it 'does not enqueue jobs for artists with country_of_origin' do
+    it 'does not enqueue jobs for artists with country_code' do
       described_class.enqueue_all
       expect(described_class).not_to have_received(:perform_in).with(anything, artist_with_country.id)
     end

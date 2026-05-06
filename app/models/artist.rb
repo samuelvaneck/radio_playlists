@@ -82,7 +82,7 @@ class Artist < ApplicationRecord
     id_on_tidal tidal_artist_url
     id_on_deezer deezer_artist_url deezer_artwork_url
     id_on_itunes itunes_artist_url
-    instagram_url website_url genres country_of_origin
+    instagram_url website_url genres country_of_origin country_code
     lastfm_listeners lastfm_playcount lastfm_tags
   ].map { |c| "artists.#{c}" }.freeze
 
