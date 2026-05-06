@@ -203,6 +203,7 @@ module Api
       def info
         artist_name = song.artists.first&.name
         info_data = Wikipedia::SongFinder.new(language: language_param).get_info(song.title, artist_name)
+        song.cache_wikipedia_url(info_data['url']) if info_data.is_a?(Hash)
         render json: { info: info_data }
       end
 

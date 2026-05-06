@@ -32,6 +32,7 @@
 #  spotify_popularity           :integer
 #  tidal_artist_url             :string
 #  website_url                  :string
+#  wikipedia_url                :string
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
 #
@@ -160,6 +161,12 @@ class Artist < ApplicationRecord
 
     official_website = Wikipedia::ArtistFinder.new.get_official_website(name)
     update(website_url: official_website) if official_website.present?
+  end
+
+  def cache_wikipedia_url(url)
+    return if url.blank? || wikipedia_url == url
+
+    update(wikipedia_url: url)
   end
 
   def fetch_aka_names

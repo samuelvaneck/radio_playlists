@@ -184,6 +184,7 @@ module Api
 
       def bio
         bio_data = Wikipedia::ArtistFinder.new(language: language_param).get_info(artist.name)
+        artist.cache_wikipedia_url(bio_data['url']) if bio_data.is_a?(Hash)
         render json: { bio: bio_data }
       end
 

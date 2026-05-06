@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_06_070134) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_06_080343) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -114,6 +114,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_070134) do
     t.string "tidal_artist_url"
     t.datetime "updated_at", precision: nil, null: false
     t.string "website_url"
+    t.string "wikipedia_url"
     t.index ["aka_names"], name: "index_artists_on_aka_names", using: :gin
     t.index ["id_on_deezer"], name: "index_artists_on_id_on_deezer"
     t.index ["id_on_itunes"], name: "index_artists_on_id_on_itunes"
@@ -299,6 +300,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_070134) do
     t.string "tidal_song_url"
     t.string "title"
     t.datetime "updated_at", precision: nil, null: false
+    t.string "wikipedia_url"
     t.index ["acoustid_submitted_at"], name: "index_songs_on_acoustid_submitted_at"
     t.index ["id_on_deezer"], name: "index_songs_on_id_on_deezer"
     t.index ["id_on_itunes"], name: "index_songs_on_id_on_itunes"

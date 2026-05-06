@@ -604,7 +604,9 @@ RSpec.describe 'Artists API', type: :request do
                                                                                           })
         end
 
-        run_test!
+        run_test! do
+          expect(artist.reload.wikipedia_url).to eq('https://en.wikipedia.org/wiki/Coldplay')
+        end
       end
     end
   end
