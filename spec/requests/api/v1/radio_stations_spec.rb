@@ -452,6 +452,47 @@ describe 'RadioStations API', type: :request do
     end
   end
 
+  path '/api/v1/radio_stations/{id}/sentiment_trend' do
+    get 'Get lyrics sentiment trend for a radio station' do
+      tags 'Radio Stations'
+      produces 'application/json'
+      description 'Returns time-bucketed average lyrics sentiment for a radio station\'s airplays. ' \
+                  'Sentiment ranges from -1 (very negative) to +1 (very positive). ' \
+                  'Songs without analyzed lyrics are excluded.'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
+      parameter name: :period, in: :query, type: :string, required: false,
+                description: 'Time range (e.g. 7_days, 4_weeks, 1_year, all). Defaults to 4_weeks. ' \
+                             'Bucket granularity is hour for days, day for weeks/months, month for years, year for all.'
+
+      response '200', 'Sentiment trend retrieved successfully' do
+        example 'application/json', :example, {
+          data: [
+            { period_start: '2026-04-08T00:00:00Z', average_sentiment: 0.32, play_count: 412 },
+            { period_start: '2026-04-15T00:00:00Z', average_sentiment: 0.18, play_count: 398 },
+            { period_start: '2026-04-22T00:00:00Z', average_sentiment: -0.05, play_count: 425 },
+            { period_start: '2026-04-29T00:00:00Z', average_sentiment: 0.21, play_count: 411 }
+          ]
+        }
+
+        let(:radio_station) { create(:radio_station) }
+        let(:id) { radio_station.id }
+
+        run_test!
+      end
+
+      response '404', 'Radio station not found' do
+        example 'application/json', :example, {
+          status: 404,
+          error: 'Not Found'
+        }
+
+        let(:id) { 0 }
+
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/radio_stations/{id}/diversity_metrics' do
     get 'Get playlist diversity metrics for a radio station' do
       tags 'Radio Stations'

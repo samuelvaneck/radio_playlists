@@ -97,6 +97,24 @@ RSpec.describe HitPotentialCalculator do
 
       expect(described_class.new(song).calculate).to be_between(0.0, 100.0)
     end
+
+    context 'when comparing songs with different lyrics sentiment' do
+      let(:positive_song) { build(:song) }
+      let(:negative_song) { build(:song) }
+      let(:positive_lyric) { build(:lyric, sentiment: 0.9) }
+      let(:negative_lyric) { build(:lyric, sentiment: -0.9) }
+
+      before do
+        allow(positive_song).to receive_messages(music_profile: build(:music_profile, song: positive_song),
+                                                 lyric: positive_lyric)
+        allow(negative_song).to receive_messages(music_profile: build(:music_profile, song: negative_song),
+                                                 lyric: negative_lyric)
+      end
+
+      it 'scores the positive-sentiment song higher' do
+        expect(described_class.new(positive_song).calculate).to be > described_class.new(negative_song).calculate
+      end
+    end
   end
 
   describe '#breakdown' do
@@ -124,13 +142,15 @@ RSpec.describe HitPotentialCalculator do
 
       it 'returns all signal categories', :aggregate_failures do
         result = described_class.new(song).breakdown
-        expect(result).to include(:audio_features, :artist_popularity, :engagement, :release_recency, :audio_features_detail)
+        expect(result).to include(:audio_features, :artist_popularity, :engagement, :release_recency,
+                                  :lyrics_sentiment, :audio_features_detail)
       end
 
       it 'has category contributions that sum to the total score', :aggregate_failures do
         calculator = described_class.new(song)
         result = calculator.breakdown
-        category_sum = result[:audio_features] + result[:artist_popularity] + result[:engagement] + result[:release_recency]
+        category_sum = result[:audio_features] + result[:artist_popularity] + result[:engagement] +
+                       result[:release_recency] + result[:lyrics_sentiment]
         expect(category_sum).to be_within(0.1).of(calculator.calculate)
       end
 

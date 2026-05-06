@@ -56,6 +56,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get :stream_proxy, on: :member
         get :widget, on: :member
         get :sound_profile, on: :member
+        get :sentiment_trend, on: :member
         get :bar_chart_race, on: :member
         get :diversity_metrics, on: :member
         get :exposure_saturation, on: :member

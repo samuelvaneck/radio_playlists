@@ -10,7 +10,7 @@ module Api
 
       skip_before_action :authenticate_client!, only: %i[stream_proxy widget sound_profile]
       before_action :set_radio_station, only: %i[show status data classifiers stream_proxy bar_chart_race
-                                                 widget sound_profile diversity_metrics exposure_saturation]
+                                                 widget sound_profile sentiment_trend diversity_metrics exposure_saturation]
 
       def index
         render json: RadioStationSerializer.new(RadioStation.all).serializable_hash.to_json
@@ -97,6 +97,10 @@ module Api
           start_time: parse_time_param(:start_time),
           end_time: parse_time_param(:end_time)
         ) }.to_json
+      end
+
+      def sentiment_trend
+        render json: { data: @radio_station.sentiment_trend(period: params[:period]) }.to_json
       end
 
       def diversity_metrics

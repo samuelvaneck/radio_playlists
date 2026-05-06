@@ -148,6 +148,10 @@ class RadioStation < ActiveRecord::Base
     SoundProfileGenerator.new(radio_station: self, start_time: start_time, end_time: end_time).generate
   end
 
+  def sentiment_trend(period: '4_weeks')
+    LyricsSentimentTrendCalculator.new(radio_station: self, period: period).calculate
+  end
+
   def widget_data
     day_range = 1.day.ago..Time.zone.now
     week_range = 1.week.ago..Time.zone.now
