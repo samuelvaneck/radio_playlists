@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_04_200000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_06_070134) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -149,6 +149,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_04_200000) do
     t.date "date"
     t.datetime "updated_at", null: false
     t.index ["date"], name: "index_charts_on_date"
+  end
+
+  create_table "lyrics", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "enriched_at"
+    t.string "language", limit: 8
+    t.decimal "sentiment", precision: 3, scale: 2
+    t.bigint "song_id", null: false
+    t.string "source", default: "lrclib", null: false
+    t.string "source_id"
+    t.string "source_url"
+    t.string "themes", default: [], array: true
+    t.datetime "updated_at", null: false
+    t.index ["enriched_at"], name: "index_lyrics_on_enriched_at"
+    t.index ["sentiment"], name: "index_lyrics_on_sentiment"
+    t.index ["song_id"], name: "index_lyrics_on_song_id", unique: true
+    t.index ["themes"], name: "index_lyrics_on_themes", using: :gin
   end
 
   create_table "music_profiles", force: :cascade do |t|
@@ -308,6 +325,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_04_200000) do
   add_foreign_key "air_plays", "radio_stations"
   add_foreign_key "air_plays", "songs"
   add_foreign_key "chart_positions", "charts"
+  add_foreign_key "lyrics", "songs"
   add_foreign_key "music_profiles", "songs"
   add_foreign_key "radio_station_songs", "radio_stations"
   add_foreign_key "radio_station_songs", "songs"

@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://lrclib.net/api/get?artist_name=NonexistentArtistXYZ123&track_name=NonexistentTrackXYZ123
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Airplays/1.0 (https://github.com/samuelvaneck/airplays)
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - nginx/1.26.3
+      Date:
+      - Wed, 06 May 2026 07:10:40 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '84'
+      Connection:
+      - keep-alive
+      Vary:
+      - origin, access-control-request-method, access-control-request-headers
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: '{"message":"Failed to find specified track","name":"TrackNotFound","statusCode":404}'
+  recorded_at: Wed, 06 May 2026 07:10:40 GMT
+recorded_with: VCR 6.4.0

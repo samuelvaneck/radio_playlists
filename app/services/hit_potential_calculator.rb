@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# Calculates a hit potential score (0-100) for a song by combining four signal categories:
+# Calculates a hit potential score (0-100) for a song by combining five signal categories:
 #
-# 1. Audio features (50%) — Gaussian scoring against optimal ranges for popular songs.
+# 1. Audio features (45%) — Gaussian scoring against optimal ranges for popular songs.
 #    Feature weights from Random Forest importance (Rusconi 2024). Each feature is scored
 #    by proximity to its optimal center value using exp(-0.5 * ((value - center) / spread)^2).
 #
@@ -14,9 +14,13 @@
 #    Spotify popularity was found to be the most decisive single predictor (Mountzouris 2025).
 #    Large values are log-normalized to prevent outlier dominance.
 #
-# 4. Release recency (15%) — Exponential decay from release date with a 5-year half-life.
+# 4. Release recency (10%) — Exponential decay from release date with a 5-year half-life.
 #    Recent releases consistently correlate with higher popularity (SpotiPred, Gulmatico 2022).
 #    Songs with no release date receive a neutral 0.5 score.
+#
+# 5. Lyrics sentiment (10%) — Linear mapping of lyrics sentiment (-1..1) to a 0..1 score.
+#    Lyrics embedding features add predictive power for popularity beyond audio features alone
+#    (Lyrics for Success, ACL 2024). Songs without analyzed lyrics receive a neutral 0.5 score.
 #
 # Usage:
 #   score = HitPotentialCalculator.new(song).calculate  # => 0.0..100.0 or nil
@@ -35,10 +39,11 @@ class HitPotentialCalculator
   # - Adding engagement metrics: +10-60% (multi-signal studies)
   # - Release recency correlates with popularity (SpotiPred 2022)
   SIGNAL_WEIGHTS = {
-    audio_features: 0.50,
+    audio_features: 0.45,
     artist_popularity: 0.20,
     engagement: 0.15,
-    release_recency: 0.15
+    release_recency: 0.10,
+    lyrics_sentiment: 0.10
   }.freeze
 
   # Audio feature weights based on Random Forest feature importance from Rusconi (2024).
@@ -85,7 +90,8 @@ class HitPotentialCalculator
     score = audio_features_score * SIGNAL_WEIGHTS[:audio_features] +
             artist_popularity_score * SIGNAL_WEIGHTS[:artist_popularity] +
             engagement_score * SIGNAL_WEIGHTS[:engagement] +
-            release_recency_score * SIGNAL_WEIGHTS[:release_recency]
+            release_recency_score * SIGNAL_WEIGHTS[:release_recency] +
+            lyrics_sentiment_score * SIGNAL_WEIGHTS[:lyrics_sentiment]
 
     (score * 100).round(2).clamp(0.0, 100.0)
   end
@@ -98,6 +104,7 @@ class HitPotentialCalculator
       artist_popularity: (artist_popularity_score * SIGNAL_WEIGHTS[:artist_popularity] * 100).round(2),
       engagement: (engagement_score * SIGNAL_WEIGHTS[:engagement] * 100).round(2),
       release_recency: (release_recency_score * SIGNAL_WEIGHTS[:release_recency] * 100).round(2),
+      lyrics_sentiment: (lyrics_sentiment_score * SIGNAL_WEIGHTS[:lyrics_sentiment] * 100).round(2),
       audio_features_detail: audio_features_breakdown
     }
   end
@@ -160,6 +167,16 @@ class HitPotentialCalculator
 
     decay_years = 5.0
     Math.exp(-days_old / (decay_years * 365.0))
+  end
+
+  # Lyrics sentiment signal (Lyrics for Success, ACL 2024: lyrics embeddings add predictive
+  # power beyond audio features). Linear mapping of -1..1 to 0..1; neutral 0.5 when missing
+  # so songs without analyzed lyrics aren't penalized.
+  def lyrics_sentiment_score
+    sentiment = @song.lyric&.sentiment
+    return 0.5 if sentiment.nil?
+
+    ((sentiment.to_f + 1.0) / 2.0).clamp(0.0, 1.0)
   end
 
   def log_normalize(value, max_exponent)

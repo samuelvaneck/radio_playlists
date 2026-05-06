@@ -64,6 +64,7 @@ class Song < ApplicationRecord
   include SongSearchConcern
   include Sluggable
   include TitleNormalizable
+  include ExternalEnrichmentConcern
 
   pg_search_scope :search_by_text,
                   against: :search_text,
@@ -81,6 +82,7 @@ class Song < ApplicationRecord
   has_many :chart_positions, as: :positianable
   has_many :song_import_logs, dependent: :nullify
   has_one :music_profile, dependent: :destroy
+  has_one :lyric, dependent: :destroy
 
   before_create :set_search_text
   before_create :set_slug
@@ -297,17 +299,6 @@ class Song < ApplicationRecord
     }
   end
 
-  def enrich_with_external_services
-    enrich_with_deezer if should_enrich_with_deezer?
-    enrich_with_itunes if should_enrich_with_itunes?
-    enrich_with_tidal if should_enrich_with_tidal?
-    enrich_with_music_brainz if should_enrich_with_music_brainz?
-  end
-
-  def needs_external_ids_enrichment?
-    should_enrich_with_deezer? || should_enrich_with_itunes? || should_enrich_with_tidal? || should_enrich_with_music_brainz?
-  end
-
   private
 
   def update_air_plays_obsolete_songs(songs, most_played_song)
@@ -347,21 +338,5 @@ class Song < ApplicationRecord
 
   def should_update_youtube?
     id_on_youtube.blank? && (id_on_spotify.present? || isrcs.present? || title.present?)
-  end
-
-  def should_enrich_with_deezer?
-    (id_on_deezer.blank? || duration_ms.blank?) && (isrcs.present? || title.present?)
-  end
-
-  def should_enrich_with_itunes?
-    (id_on_itunes.blank? || duration_ms.blank?) && title.present?
-  end
-
-  def should_enrich_with_tidal?
-    id_on_tidal.blank? && title.present?
-  end
-
-  def should_enrich_with_music_brainz?
-    isrcs.size == 1
   end
 end

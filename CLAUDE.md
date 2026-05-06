@@ -54,6 +54,9 @@ bundle exec rake optimization:vacuum                           # PostgreSQL VACU
 # Hit Potential
 bundle exec rake hit_potential:backfill                        # Backfill hit_potential_score for songs with music profiles
 
+# Lyrics Sentiment
+bundle exec rake lyrics:backfill                               # Enqueue lyrics sentiment enrichment for recently-played songs (requires LYRICS_ENRICHMENT_ENABLED=true)
+
 # Enrichment
 bundle exec rake enrichment:backfill_artist_aka_names          # Fetch alternative artist names from MusicBrainz
 
@@ -93,7 +96,10 @@ The app uses service objects extensively in `app/services/`:
 - `MismatchedAirplayRepair` - Detects and fixes airplays linked to wrong songs via two detectors: (1) title mismatch — import log title vs linked song title (Jaro-Winkler < 70%); (2) spotify_track_id mismatch — the log's Spotify ID points to a different canonical song than the one linked. Reassigns airplays to the canonical song (found by Spotify track ID, exact match, or newly created).
 - `SongImportLogRollback` - Rolls back a single `SongImportLog`: destroys the linked airplay, destroys the linked song if no other airplays reference it, marks the log `failed` with a rollback reason. Guards against orphaning charts (skips song deletion if chart positions exist) and preserves songs played on other stations.
 - `StuckPendingLogRecovery` - Recovers `SongImportLog` rows stuck in `pending` status (jobs killed mid-flight before reaching a terminal status). For each stuck log with a `spotify_track_id`: resolves the canonical Song (by Spotify ID, then exact artist+title, then create), reuses an existing AirPlay at `(radio_station, song, broadcasted_at)` if one was created before the interruption, otherwise creates one, and marks the log `success`. Skips logs without `spotify_track_id` and logs younger than `min_age` (default 10 minutes).
-- `HitPotentialCalculator` - Predicts song hit potential (0-100) using multi-signal scoring: audio features (50%), artist popularity (20%), engagement metrics (15%), release recency (15%)
+- `HitPotentialCalculator` - Predicts song hit potential (0-100) using multi-signal scoring: audio features (45%), artist popularity (20%), engagement metrics (15%), release recency (10%), lyrics sentiment (10%). Songs without analyzed lyrics receive a neutral 0.5 lyrics score
+- `Lyrics/` - LRCLIB lyrics fetching (`LrclibFinder`). Free, public-domain-leaning corpus, no auth. Stores only sentiment + metadata + LRCLIB URL on the `Lyric` model — full lyrics text is refetched on demand to avoid licensing concerns.
+- `Llm::LyricsSentimentAnalyzer` - Analyzes lyrics with GPT-4.1-mini and returns `{sentiment: -1..1, themes: [...], language, confidence}`. Multilingual (Dutch + English + others)
+- `LyricsSentimentTrendCalculator` - Time-bucketed average lyrics sentiment for a station's airplays. Granularity follows the period: hour for days, day for weeks/months, month for years, year for "all"
 - `SoundProfileGenerator` - Generates per-station sound profiles with audio feature averages, top genres/tags, release decade distribution, and bilingual descriptions (EN/NL). Uses song-count-weighted percentiles and peak decade detection (≥15% threshold) for accurate era descriptions instead of naive min/max year ranges
 - `NaturalLanguageSearch` - Translates free-text queries (e.g., "upbeat Dutch songs on Radio 538 last week") into structured filters via `Llm::QueryTranslator`, then applies faceted search. Supports mood-based filtering using Spotify audio feature ranges, result limiting ("top 3 songs", "most popular song" → `.limit()`), and lyrics-based song identification
 - `Llm::Base` - OpenAI GPT-4.1-mini integration with 1-hour response caching, circuit breaker, and exponential backoff
@@ -125,6 +131,7 @@ Sidekiq jobs in `app/jobs/` run on schedules defined in `config/sidekiq.yml`:
 - `AvgSongGapCalculationJob` (`compute`) - Daily at 5am, calculates per-station average song gaps
 - `ArtistEnrichmentBatchJob` (`enrichment`) - Weekly Sunday 3am, batch enqueues artist enrichment
 - `LastfmEnrichmentBatchJob` (`enrichment`) - Weekly Sunday 4am, batch enqueues Last.fm enrichment for songs/artists
+- `LyricsEnrichmentBatchJob` (`enrichment`) - Weekly Sunday 5am, batch enqueues lyrics-sentiment enrichment for recently-played songs (gated by `LYRICS_ENRICHMENT_ENABLED`)
 
 On-demand enrichment jobs (triggered by import flow, not scheduled — all on the `enrichment` queue):
 - `SongExternalIdsEnrichmentJob` - Enriches songs with Deezer, iTunes, and MusicBrainz IDs after import
@@ -213,14 +220,15 @@ Formula: `(weekly_airplay * 100) + (popularity_boost * 50)`. Artists default to 
 
 ### Hit Potential Score
 
-`HitPotentialCalculator` predicts how likely a song is to be a hit (0-100), combining four signal categories based on academic research:
+`HitPotentialCalculator` predicts how likely a song is to be a hit (0-100), combining five signal categories based on academic research:
 
 | Signal | Weight | Data Source | Research Basis |
 |--------|--------|-------------|----------------|
-| Audio features | 50% | `MusicProfile` (danceability, energy, loudness, etc.) | Rusconi 2024, ~80-89% accuracy |
+| Audio features | 45% | `MusicProfile` (danceability, energy, loudness, etc.) | Rusconi 2024, ~80-89% accuracy |
 | Artist popularity | 20% | `Artist#spotify_popularity`, `spotify_followers_count`, `lastfm_listeners` | Interiano 2018: +15% accuracy |
 | Engagement metrics | 15% | `Song#popularity`, `lastfm_listeners`, `lastfm_playcount` | Mountzouris 2025 |
-| Release recency | 15% | `Song#release_date` (exponential decay, 5-year half-life) | SpotiPred 2022 |
+| Release recency | 10% | `Song#release_date` (exponential decay, 5-year half-life) | SpotiPred 2022 |
+| Lyrics sentiment | 10% | `Lyric#sentiment` (linear -1..1 → 0..1; neutral 0.5 when missing) | Lyrics for Success, ACL 2024 |
 
 Audio features use Gaussian scoring against optimal ranges for popular songs (e.g., danceability center=0.64, loudness center=-6.0 dB), with per-feature weights from Random Forest feature importance. Engagement and follower counts are log-normalized.
 
@@ -330,6 +338,8 @@ Songs, artists, and radio stations support lookup by slug in addition to numeric
 **Important:** `Song.most_played` and `Artist.most_played` use explicit `.select()` lists. When adding new serialized attributes, they must also be added to these select clauses to avoid `ActiveModel::MissingAttributeError`.
 - Sound profile endpoint (public, no auth required):
   - `GET /api/v1/radio_stations/:id/sound_profile` — audio feature averages, top genres/tags, release decade distribution, bilingual descriptions (`description_en`/`description_nl`), era analysis with weighted percentiles (`release_year_range.era_description_en`/`era_description_nl`, `peak_decades`, `median_year`)
+- Sentiment trend endpoint (public, no auth required):
+  - `GET /api/v1/radio_stations/:id/sentiment_trend?period=4_weeks` — time-bucketed average lyrics sentiment per station. Granularity follows the period (hour for days, day for weeks/months, month for years, year for "all"). Songs without analyzed lyrics are excluded from the average
 - Widget endpoints (public, no auth required):
   - `GET /api/v1/songs/:id/widget` — total plays, station count, release date, duration
   - `GET /api/v1/artists/:id/widget` — total plays, song count, station count, country of origin
