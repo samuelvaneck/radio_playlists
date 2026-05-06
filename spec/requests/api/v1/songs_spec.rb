@@ -650,6 +650,78 @@ RSpec.describe 'Songs API', type: :request do
     end
   end
 
+  path '/api/v1/songs/{id}/lyrics' do
+    get 'Get song lyrics metadata and on-demand text' do
+      tags 'Songs'
+      produces 'application/json'
+      description 'Returns the stored lyric metadata for a song. Full lyrics text is fetched on-demand from LRCLIB ' \
+                  '(not stored locally for licensing reasons). Returns data: null when no Lyric record exists.'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Song ID or slug'
+
+      response '200', 'Lyrics metadata retrieved successfully' do
+        example 'application/json', :example, {
+          data: {
+            sentiment: 0.42,
+            themes: %w[love nostalgia],
+            language: 'en',
+            source: 'lrclib',
+            source_url: 'https://lrclib.net/api/get/12345',
+            enriched_at: '2026-04-20T14:33:11Z',
+            lyrics: "Verse 1\nVerse 2\n..."
+          }
+        }
+
+        schema type: :object,
+               properties: {
+                 data: {
+                   type: :object,
+                   nullable: true,
+                   properties: {
+                     sentiment: { type: :number, format: :float, nullable: true },
+                     themes: { type: :array, items: { type: :string } },
+                     language: { type: :string, nullable: true },
+                     source: { type: :string },
+                     source_url: { type: :string, nullable: true },
+                     enriched_at: { type: :string, format: 'date-time', nullable: true },
+                     lyrics: { type: :string, nullable: true }
+                   }
+                 }
+               }
+
+        let(:song) { create(:song) }
+        let!(:lyric) do
+          create(:lyric, song: song, sentiment: 0.42, themes: %w[love nostalgia], language: 'en',
+                         source: 'lrclib', source_id: '12345',
+                         source_url: 'https://lrclib.net/api/get/12345',
+                         enriched_at: Time.zone.parse('2026-04-20T14:33:11Z'))
+        end
+        let(:id) { song.id }
+
+        before do # rubocop:disable RSpec/ScatteredSetup
+          allow_any_instance_of(Lyrics::LrclibFinder).to receive(:fetch_by_id) # rubocop:disable RSpec/AnyInstance
+                                                           .with('12345').and_return(plain_lyrics: "Verse 1\nVerse 2\n...")
+        end
+
+        run_test!
+      end
+
+      response '200', 'Returns null data when no lyric record exists' do
+        let(:song) { create(:song) }
+        let(:id) { song.id }
+
+        run_test! do |response|
+          body = JSON.parse(response.body)
+          expect(body['data']).to be_nil
+        end
+      end
+
+      response '404', 'Song not found' do
+        let(:id) { 0 }
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/songs/{id}/widget' do
     get 'Get song widget data' do
       tags 'Songs'

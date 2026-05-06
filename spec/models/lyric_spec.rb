@@ -80,4 +80,30 @@ RSpec.describe Lyric do
       expect(ids).not_to include(fresh_lyric.id)
     end
   end
+
+  describe '#plain_lyrics' do
+    it 'returns nil when source_id is blank' do
+      lyric = build(:lyric, source_id: nil)
+      expect(lyric.plain_lyrics).to be_nil
+    end
+
+    context 'when source_id is present' do
+      let(:lyric) { create(:lyric, source: 'lrclib', source_id: '12345') }
+
+      before do
+        allow_any_instance_of(Lyrics::LrclibFinder).to receive(:fetch_by_id) # rubocop:disable RSpec/AnyInstance
+                                                         .with('12345').and_return(plain_lyrics: 'Verse 1')
+      end
+
+      it 'fetches plain lyrics from LRCLIB' do
+        expect(lyric.plain_lyrics).to eq('Verse 1')
+      end
+
+      it 'returns nil when LRCLIB returns nothing' do
+        allow_any_instance_of(Lyrics::LrclibFinder).to receive(:fetch_by_id) # rubocop:disable RSpec/AnyInstance
+                                                         .and_return(nil)
+        expect(lyric.plain_lyrics).to be_nil
+      end
+    end
+  end
 end

@@ -46,6 +46,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get :time_analytics, on: :member
         get :air_plays, on: :member
         get :info, on: :member
+        get :lyrics, on: :member
         get :music_profile, on: :member
         get :widget, on: :member
       end
