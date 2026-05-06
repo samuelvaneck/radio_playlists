@@ -9,6 +9,7 @@ RSpec.describe ArtistEnrichmentJob do
 
     let(:wikipedia_info) do
       {
+        'url' => 'https://en.wikipedia.org/wiki/Adele',
         'general_info' => {
           'nationality' => ['United Kingdom']
         }
@@ -39,6 +40,11 @@ RSpec.describe ArtistEnrichmentJob do
       it 'stores spotify_followers_count' do
         job.perform(artist.id)
         expect(artist.reload.spotify_followers_count).to eq(500_000)
+      end
+
+      it 'stores wikipedia_url' do
+        job.perform(artist.id)
+        expect(artist.reload.wikipedia_url).to eq('https://en.wikipedia.org/wiki/Adele')
       end
     end
 

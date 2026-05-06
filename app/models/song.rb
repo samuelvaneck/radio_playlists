@@ -40,6 +40,7 @@
 #  tidal_preview_url      :string
 #  tidal_song_url         :string
 #  title                  :string
+#  wikipedia_url          :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -218,6 +219,12 @@ class Song < ApplicationRecord
     return if id_on_spotify.blank?
 
     @spotify_track ||= Spotify::TrackFinder::FindById.new(id_on_spotify: id_on_spotify).execute
+  end
+
+  def cache_wikipedia_url(url)
+    return if url.blank? || wikipedia_url == url
+
+    update(wikipedia_url: url)
   end
 
   def update_youtube_from_wikipedia

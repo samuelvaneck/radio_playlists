@@ -30,6 +30,7 @@
 #  spotify_popularity           :integer
 #  tidal_artist_url             :string
 #  website_url                  :string
+#  wikipedia_url                :string
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
 #

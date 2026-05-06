@@ -44,6 +44,7 @@ class ArtistEnrichmentJob
 
     nationality = info.dig('general_info', 'nationality')
     artist.update(country_of_origin: nationality) if nationality.present?
+    artist.cache_wikipedia_url(info['url'])
   end
 
   def enrich_spotify_metrics(artist)

@@ -632,7 +632,9 @@ RSpec.describe 'Songs API', type: :request do
           )
         end
 
-        run_test!
+        run_test! do
+          expect(song.reload.wikipedia_url).to eq('https://en.wikipedia.org/wiki/Rolling_in_the_Deep')
+        end
       end
 
       response '404', 'Song not found' do
