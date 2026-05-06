@@ -40,4 +40,12 @@ class Lyric < ApplicationRecord
   def stale?
     enriched_at.nil? || enriched_at < STALE_AFTER.ago
   end
+
+  def plain_lyrics
+    return nil if source_id.blank?
+
+    Rails.cache.fetch("lyrics:plain:#{source}:#{source_id}", expires_in: 24.hours) do
+      Lyrics::LrclibFinder.new.fetch_by_id(source_id)&.dig(:plain_lyrics)
+    end
+  end
 end

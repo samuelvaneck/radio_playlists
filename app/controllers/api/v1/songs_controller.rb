@@ -4,7 +4,7 @@ module Api
   module V1
     class SongsController < ApiController
       skip_before_action :authenticate_client!, only: :widget
-      before_action :song, only: %i[show graph_data chart_positions time_analytics air_plays info music_profile widget]
+      before_action :song, only: %i[show graph_data chart_positions time_analytics air_plays info lyrics music_profile widget]
 
       def index
         render json: SongSerializer.new(songs)
@@ -207,6 +207,30 @@ module Api
         render json: { info: info_data }
       end
 
+      # GET /api/v1/songs/:id/lyrics
+      #
+      # Returns the stored lyric metadata for a song. Full lyrics text is fetched
+      # on-demand from LRCLIB (not stored locally for licensing reasons).
+      #
+      # Response when the song has been analyzed:
+      # {
+      #   "data": {
+      #     "sentiment": 0.42,
+      #     "themes": ["love", "nostalgia"],
+      #     "language": "en",
+      #     "source": "lrclib",
+      #     "source_url": "https://lrclib.net/api/get/12345",
+      #     "enriched_at": "2026-04-20T14:33:11Z",
+      #     "lyrics": "..."
+      #   }
+      # }
+      #
+      # Response when no Lyric record exists yet, or the song is instrumental
+      # (LRCLIB has no plain lyrics): the same shape with `data: null`.
+      def lyrics
+        render json: { data: lyric_data }.to_json
+      end
+
       # GET /api/v1/songs/:id/music_profile
       #
       # Returns the Spotify audio features for a song with attribute descriptions.
@@ -246,6 +270,21 @@ module Api
       end
 
       private
+
+      def lyric_data
+        lyric = song.lyric
+        return nil if lyric.blank?
+
+        {
+          sentiment: lyric.sentiment&.to_f,
+          themes: lyric.themes,
+          language: lyric.language,
+          source: lyric.source,
+          source_url: lyric.source_url,
+          enriched_at: lyric.enriched_at,
+          lyrics: lyric.plain_lyrics
+        }
+      end
 
       def song_air_plays
         start_time, end_time = AirPlay.time_range_from_params(params, default_period: 'day')
