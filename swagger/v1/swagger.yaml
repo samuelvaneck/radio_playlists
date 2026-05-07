@@ -3412,11 +3412,11 @@ paths:
                     error: Not Found
   "/api/v1/songs/{id}/lyrics":
     get:
-      summary: Get song lyrics metadata and on-demand text
+      summary: Get song lyrics metadata
       tags:
       - Songs
-      description: 'Returns the stored lyric metadata for a song. Full lyrics text
-        is fetched on-demand from LRCLIB (not stored locally for licensing reasons).
+      description: 'Returns stored lyric metadata for a song (sentiment, themes, language).
+        DB-only and fast; the full lyrics text is served by GET /api/v1/songs/{id}/lyrics/text.
         Returns data: null when no Lyric record exists.'
       parameters:
       - name: id
@@ -3442,10 +3442,6 @@ paths:
                       source: lrclib
                       source_url: https://lrclib.net/api/get/12345
                       enriched_at: '2026-04-20T14:33:11Z'
-                      lyrics: |-
-                        Verse 1
-                        Verse 2
-                        ...
               schema:
                 type: object
                 properties:
@@ -3473,7 +3469,51 @@ paths:
                         type: string
                         format: date-time
                         nullable: true
+        '404':
+          description: Song not found
+  "/api/v1/songs/{id}/lyrics/text":
+    get:
+      summary: Get song lyrics plain text
+      tags:
+      - Songs
+      description: 'Returns the plain lyrics text fetched on-demand from LRCLIB (not
+        stored locally for licensing reasons). Cached for 24 hours. Returns data:
+        null when no Lyric record exists or the song is instrumental (LRCLIB has no
+        plain lyrics).'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Song ID or slug
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Returns null data when LRCLIB has no plain lyrics (instrumental)
+          content:
+            application/json:
+              examples:
+                example:
+                  value:
+                    data:
+                      lyrics: |-
+                        Verse 1
+                        Verse 2
+                        ...
+                      source: lrclib
+                      source_url: https://lrclib.net/api/get/12345
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    nullable: true
+                    properties:
                       lyrics:
+                        type: string
+                      source:
+                        type: string
+                      source_url:
                         type: string
                         nullable: true
         '404':

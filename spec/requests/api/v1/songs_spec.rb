@@ -651,11 +651,12 @@ RSpec.describe 'Songs API', type: :request do
   end
 
   path '/api/v1/songs/{id}/lyrics' do
-    get 'Get song lyrics metadata and on-demand text' do
+    get 'Get song lyrics metadata' do
       tags 'Songs'
       produces 'application/json'
-      description 'Returns the stored lyric metadata for a song. Full lyrics text is fetched on-demand from LRCLIB ' \
-                  '(not stored locally for licensing reasons). Returns data: null when no Lyric record exists.'
+      description 'Returns stored lyric metadata for a song (sentiment, themes, language). DB-only and fast; ' \
+                  'the full lyrics text is served by GET /api/v1/songs/{id}/lyrics/text. ' \
+                  'Returns data: null when no Lyric record exists.'
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Song ID or slug'
 
       response '200', 'Lyrics metadata retrieved successfully' do
@@ -666,8 +667,7 @@ RSpec.describe 'Songs API', type: :request do
             language: 'en',
             source: 'lrclib',
             source_url: 'https://lrclib.net/api/get/12345',
-            enriched_at: '2026-04-20T14:33:11Z',
-            lyrics: "Verse 1\nVerse 2\n..."
+            enriched_at: '2026-04-20T14:33:11Z'
           }
         }
 
@@ -682,8 +682,7 @@ RSpec.describe 'Songs API', type: :request do
                      language: { type: :string, nullable: true },
                      source: { type: :string },
                      source_url: { type: :string, nullable: true },
-                     enriched_at: { type: :string, format: 'date-time', nullable: true },
-                     lyrics: { type: :string, nullable: true }
+                     enriched_at: { type: :string, format: 'date-time', nullable: true }
                    }
                  }
                }
@@ -694,6 +693,64 @@ RSpec.describe 'Songs API', type: :request do
                          source: 'lrclib', source_id: '12345',
                          source_url: 'https://lrclib.net/api/get/12345',
                          enriched_at: Time.zone.parse('2026-04-20T14:33:11Z'))
+        end
+        let(:id) { song.id }
+
+        run_test!
+      end
+
+      response '200', 'Returns null data when no lyric record exists' do
+        let(:song) { create(:song) }
+        let(:id) { song.id }
+
+        run_test! do |response|
+          body = JSON.parse(response.body)
+          expect(body['data']).to be_nil
+        end
+      end
+
+      response '404', 'Song not found' do
+        let(:id) { 0 }
+        run_test!
+      end
+    end
+  end
+
+  path '/api/v1/songs/{id}/lyrics/text' do
+    get 'Get song lyrics plain text' do
+      tags 'Songs'
+      produces 'application/json'
+      description 'Returns the plain lyrics text fetched on-demand from LRCLIB (not stored locally for licensing ' \
+                  'reasons). Cached for 24 hours. Returns data: null when no Lyric record exists or the song is ' \
+                  'instrumental (LRCLIB has no plain lyrics).'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Song ID or slug'
+
+      response '200', 'Lyrics text retrieved successfully' do
+        example 'application/json', :example, {
+          data: {
+            lyrics: "Verse 1\nVerse 2\n...",
+            source: 'lrclib',
+            source_url: 'https://lrclib.net/api/get/12345'
+          }
+        }
+
+        schema type: :object,
+               properties: {
+                 data: {
+                   type: :object,
+                   nullable: true,
+                   properties: {
+                     lyrics: { type: :string },
+                     source: { type: :string },
+                     source_url: { type: :string, nullable: true }
+                   }
+                 }
+               }
+
+        let(:song) { create(:song) }
+        let!(:lyric) do
+          create(:lyric, song: song, source: 'lrclib', source_id: '12345',
+                         source_url: 'https://lrclib.net/api/get/12345')
         end
         let(:id) { song.id }
 
@@ -708,6 +765,24 @@ RSpec.describe 'Songs API', type: :request do
       response '200', 'Returns null data when no lyric record exists' do
         let(:song) { create(:song) }
         let(:id) { song.id }
+
+        run_test! do |response|
+          body = JSON.parse(response.body)
+          expect(body['data']).to be_nil
+        end
+      end
+
+      response '200', 'Returns null data when LRCLIB has no plain lyrics (instrumental)' do
+        let(:song) { create(:song) }
+        let!(:lyric) do
+          create(:lyric, song: song, source: 'lrclib', source_id: '99999')
+        end
+        let(:id) { song.id }
+
+        before do # rubocop:disable RSpec/ScatteredSetup
+          allow_any_instance_of(Lyrics::LrclibFinder).to receive(:fetch_by_id) # rubocop:disable RSpec/AnyInstance
+                                                           .with('99999').and_return(nil)
+        end
 
         run_test! do |response|
           body = JSON.parse(response.body)
