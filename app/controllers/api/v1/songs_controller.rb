@@ -4,7 +4,7 @@ module Api
   module V1
     class SongsController < ApiController
       skip_before_action :authenticate_client!, only: :widget
-      before_action :song, only: %i[show graph_data chart_positions time_analytics air_plays info lyrics music_profile widget]
+      before_action :song, only: %i[show graph_data chart_positions time_analytics air_plays info lyrics lyrics_text music_profile widget]
 
       def index
         render json: SongSerializer.new(songs)
@@ -209,8 +209,10 @@ module Api
 
       # GET /api/v1/songs/:id/lyrics
       #
-      # Returns the stored lyric metadata for a song. Full lyrics text is fetched
-      # on-demand from LRCLIB (not stored locally for licensing reasons).
+      # Returns the stored lyric metadata for a song (sentiment, themes, language).
+      # This endpoint is DB-only and fast. The full lyrics text is served by a
+      # separate endpoint (`GET /api/v1/songs/:id/lyrics/text`) so clients can
+      # render statistics without waiting on the external LRCLIB fetch.
       #
       # Response when the song has been analyzed:
       # {
@@ -220,15 +222,33 @@ module Api
       #     "language": "en",
       #     "source": "lrclib",
       #     "source_url": "https://lrclib.net/api/get/12345",
-      #     "enriched_at": "2026-04-20T14:33:11Z",
-      #     "lyrics": "..."
+      #     "enriched_at": "2026-04-20T14:33:11Z"
       #   }
       # }
       #
-      # Response when no Lyric record exists yet, or the song is instrumental
-      # (LRCLIB has no plain lyrics): the same shape with `data: null`.
+      # Response when no Lyric record exists yet: the same shape with `data: null`.
       def lyrics
-        render json: { data: lyric_data }.to_json
+        render json: { data: lyric_stats }.to_json
+      end
+
+      # GET /api/v1/songs/:id/lyrics/text
+      #
+      # Returns the plain lyrics text fetched on-demand from LRCLIB
+      # (not stored locally for licensing reasons). Cached for 24 hours.
+      #
+      # Response:
+      # {
+      #   "data": {
+      #     "lyrics": "...",
+      #     "source": "lrclib",
+      #     "source_url": "https://lrclib.net/api/get/12345"
+      #   }
+      # }
+      #
+      # Response when no Lyric record exists, or the song is instrumental
+      # (LRCLIB has no plain lyrics): the same shape with `data: null`.
+      def lyrics_text
+        render json: { data: lyric_text }.to_json
       end
 
       # GET /api/v1/songs/:id/music_profile
@@ -271,7 +291,7 @@ module Api
 
       private
 
-      def lyric_data
+      def lyric_stats
         lyric = song.lyric
         return nil if lyric.blank?
 
@@ -281,8 +301,21 @@ module Api
           language: lyric.language,
           source: lyric.source,
           source_url: lyric.source_url,
-          enriched_at: lyric.enriched_at,
-          lyrics: lyric.plain_lyrics
+          enriched_at: lyric.enriched_at
+        }
+      end
+
+      def lyric_text
+        lyric = song.lyric
+        return nil if lyric.blank?
+
+        plain = lyric.plain_lyrics
+        return nil if plain.blank?
+
+        {
+          lyrics: plain,
+          source: lyric.source,
+          source_url: lyric.source_url
         }
       end
 
