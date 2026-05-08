@@ -2151,9 +2151,11 @@ paths:
       description: Returns time-bucketed average lyrics sentiment plus the top 10
         lyric themes for a radio station's airplays. Sentiment ranges from -1 (very
         negative) to +1 (very positive). Songs without analyzed lyrics are excluded
-        from the trend; songs without themes are excluded from top_themes. `share`
-        is the fraction of plays-with-themes that contain the theme; because plays
-        can have multiple themes, shares can sum to more than 1.0.
+        from the trend; songs without themes are excluded from top_themes. Each theme
+        row carries `theme_en` (canonical English tag) and `theme_nl` (Dutch label,
+        derived from a static map). `share` is the fraction of plays-with-themes that
+        contain the theme; because plays can have multiple themes, shares can sum
+        to more than 1.0.
       parameters:
       - name: id
         in: path
@@ -2192,19 +2194,24 @@ paths:
                         average_sentiment: 0.21
                         play_count: 411
                       top_themes:
-                      - theme: love
+                      - theme_en: love
+                        theme_nl: liefde
                         play_count: 845
                         share: 0.512
-                      - theme: heartbreak
+                      - theme_en: heartbreak
+                        theme_nl: liefdesverdriet
                         play_count: 612
                         share: 0.371
-                      - theme: hope
+                      - theme_en: hope
+                        theme_nl: hoop
                         play_count: 420
                         share: 0.255
-                      - theme: party
+                      - theme_en: party
+                        theme_nl: feest
                         play_count: 318
                         share: 0.193
-                      - theme: nostalgia
+                      - theme_en: nostalgia
+                        theme_nl: nostalgie
                         play_count: 240
                         share: 0.146
         '404':
@@ -3437,7 +3444,9 @@ paths:
       - Songs
       description: 'Returns stored lyric metadata for a song (sentiment, themes, language).
         DB-only and fast; the full lyrics text is served by GET /api/v1/songs/{id}/lyrics/text.
-        Returns data: null when no Lyric record exists.'
+        Returns data: null when no Lyric record exists. `themes` is the canonical
+        English array emitted by the LLM; `themes_nl` is the same set translated to
+        Dutch via a static map for the frontend language toggle.'
       parameters:
       - name: id
         in: path
@@ -3458,6 +3467,9 @@ paths:
                       themes:
                       - love
                       - nostalgia
+                      themes_nl:
+                      - liefde
+                      - nostalgie
                       language: en
                       source: lrclib
                       source_url: https://lrclib.net/api/get/12345
@@ -3474,6 +3486,10 @@ paths:
                         format: float
                         nullable: true
                       themes:
+                        type: array
+                        items:
+                          type: string
+                      themes_nl:
                         type: array
                         items:
                           type: string

@@ -219,12 +219,18 @@ module Api
       #   "data": {
       #     "sentiment": 0.42,
       #     "themes": ["love", "nostalgia"],
+      #     "themes_nl": ["liefde", "nostalgie"],
       #     "language": "en",
       #     "source": "lrclib",
       #     "source_url": "https://lrclib.net/api/get/12345",
       #     "enriched_at": "2026-04-20T14:33:11Z"
       #   }
       # }
+      #
+      # `themes` carries the canonical English tags emitted by the LLM and is also
+      # the value indexed in PostgreSQL (`Lyric#themes`). `themes_nl` is derived at
+      # read time via `Lyrics::ThemeTranslator` and is intended for the frontend's
+      # NL/EN language toggle.
       #
       # Response when no Lyric record exists yet: the same shape with `data: null`.
       def lyrics
@@ -298,6 +304,7 @@ module Api
         {
           sentiment: lyric.sentiment&.to_f,
           themes: lyric.themes,
+          themes_nl: Lyrics::ThemeTranslator.translate_all(lyric.themes),
           language: lyric.language,
           source: lyric.source,
           source_url: lyric.source_url,

@@ -656,7 +656,9 @@ RSpec.describe 'Songs API', type: :request do
       produces 'application/json'
       description 'Returns stored lyric metadata for a song (sentiment, themes, language). DB-only and fast; ' \
                   'the full lyrics text is served by GET /api/v1/songs/{id}/lyrics/text. ' \
-                  'Returns data: null when no Lyric record exists.'
+                  'Returns data: null when no Lyric record exists. ' \
+                  '`themes` is the canonical English array emitted by the LLM; `themes_nl` is the same set ' \
+                  'translated to Dutch via a static map for the frontend language toggle.'
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Song ID or slug'
 
       response '200', 'Lyrics metadata retrieved successfully' do
@@ -664,6 +666,7 @@ RSpec.describe 'Songs API', type: :request do
           data: {
             sentiment: 0.42,
             themes: %w[love nostalgia],
+            themes_nl: %w[liefde nostalgie],
             language: 'en',
             source: 'lrclib',
             source_url: 'https://lrclib.net/api/get/12345',
@@ -679,6 +682,7 @@ RSpec.describe 'Songs API', type: :request do
                    properties: {
                      sentiment: { type: :number, format: :float, nullable: true },
                      themes: { type: :array, items: { type: :string } },
+                     themes_nl: { type: :array, items: { type: :string } },
                      language: { type: :string, nullable: true },
                      source: { type: :string },
                      source_url: { type: :string, nullable: true },
