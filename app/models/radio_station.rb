@@ -149,7 +149,10 @@ class RadioStation < ActiveRecord::Base
   end
 
   def sentiment_trend(period: '4_weeks')
-    LyricsSentimentTrendCalculator.new(radio_station: self, period: period).calculate
+    {
+      trend: LyricsSentimentTrendCalculator.new(radio_station: self, period: period).calculate,
+      top_themes: LyricsThemeBreakdownCalculator.new(radio_station: self, period: period).calculate
+    }
   end
 
   def widget_data
