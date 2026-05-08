@@ -47,6 +47,10 @@ Metrics/BlockLength:
   Exclude:
     - db/schema.rb
     - lib/tasks/**/*
+Metrics/ModuleLength:
+  Exclude:
+    # Static lookup table (EN→NL lyric theme labels). Kept inline by design.
+    - app/services/lyrics/theme_translator.rb
 # Metrics/AbcSize:
   # turn this back on later
   # Severity: refactor

@@ -30,13 +30,20 @@ RSpec.describe LyricsThemeBreakdownCalculator do
 
       it 'ranks themes by play count descending', :aggregate_failures do
         result = calculator.calculate
-        expect(result.map { |t| t[:theme] }).to eq(%w[love heartbreak hope])
+        expect(result.map { |t| t[:theme_en] }).to eq(%w[love heartbreak hope])
         expect(result.map { |t| t[:play_count] }).to eq([3, 1, 1])
+      end
+
+      it 'returns Dutch labels alongside the English canonical theme', :aggregate_failures do
+        result = calculator.calculate
+        love_row = result.find { |t| t[:theme_en] == 'love' }
+        expect(love_row[:theme_nl]).to eq('liefde')
+        expect(result.find { |t| t[:theme_en] == 'heartbreak' }[:theme_nl]).to eq('liefdesverdriet')
       end
 
       it 'computes share against plays-with-themes (excludes plays with empty themes)' do
         result = calculator.calculate
-        love_share = result.find { |t| t[:theme] == 'love' }[:share]
+        love_share = result.find { |t| t[:theme_en] == 'love' }[:share]
         expect(love_share).to be_within(0.001).of(0.75)
       end
     end

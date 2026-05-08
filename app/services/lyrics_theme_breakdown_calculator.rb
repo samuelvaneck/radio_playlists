@@ -26,12 +26,21 @@ class LyricsThemeBreakdownCalculator
     return [] if total.zero?
 
     counts
-      .map { |theme, count| { theme: theme, play_count: count, share: (count.to_f / total).round(3) } }
-      .sort_by { |t| [-t[:play_count], t[:theme]] }
+      .map { |theme, count| build_row(theme, count, total) }
+      .sort_by { |t| [-t[:play_count], t[:theme_en]] }
       .first(TOP_LIMIT)
   end
 
   private
+
+  def build_row(theme, count, total)
+    {
+      theme_en: theme,
+      theme_nl: Lyrics::ThemeTranslator.translate(theme),
+      play_count: count,
+      share: (count.to_f / total).round(3)
+    }
+  end
 
   def airplays_in_range
     AirPlay

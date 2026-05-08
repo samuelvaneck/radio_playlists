@@ -459,6 +459,7 @@ describe 'RadioStations API', type: :request do
       description 'Returns time-bucketed average lyrics sentiment plus the top 10 lyric themes for a radio station\'s airplays. ' \
                   'Sentiment ranges from -1 (very negative) to +1 (very positive). ' \
                   'Songs without analyzed lyrics are excluded from the trend; songs without themes are excluded from top_themes. ' \
+                  'Each theme row carries `theme_en` (canonical English tag) and `theme_nl` (Dutch label, derived from a static map). ' \
                   '`share` is the fraction of plays-with-themes that contain the theme; because plays can have multiple themes, ' \
                   'shares can sum to more than 1.0.'
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
@@ -476,11 +477,11 @@ describe 'RadioStations API', type: :request do
               { period_start: '2026-04-29T00:00:00Z', average_sentiment: 0.21, play_count: 411 }
             ],
             top_themes: [
-              { theme: 'love', play_count: 845, share: 0.512 },
-              { theme: 'heartbreak', play_count: 612, share: 0.371 },
-              { theme: 'hope', play_count: 420, share: 0.255 },
-              { theme: 'party', play_count: 318, share: 0.193 },
-              { theme: 'nostalgia', play_count: 240, share: 0.146 }
+              { theme_en: 'love', theme_nl: 'liefde', play_count: 845, share: 0.512 },
+              { theme_en: 'heartbreak', theme_nl: 'liefdesverdriet', play_count: 612, share: 0.371 },
+              { theme_en: 'hope', theme_nl: 'hoop', play_count: 420, share: 0.255 },
+              { theme_en: 'party', theme_nl: 'feest', play_count: 318, share: 0.193 },
+              { theme_en: 'nostalgia', theme_nl: 'nostalgie', play_count: 240, share: 0.146 }
             ]
           }
         }
