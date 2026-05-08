@@ -32,7 +32,7 @@ RESTful JSON API under `/api/v1/`:
 - Sound profile endpoint:
   - `GET /api/v1/radio_stations/:id/sound_profile` — audio feature averages, top genres/tags, release decade distribution, bilingual descriptions (`description_en`/`description_nl`), era analysis with weighted percentiles (`release_year_range.era_description_en`/`era_description_nl`, `peak_decades`, `median_year`)
 - Sentiment trend endpoint:
-  - `GET /api/v1/radio_stations/:id/sentiment_trend?period=4_weeks` — time-bucketed average lyrics sentiment per station. Granularity follows the period (hour for days, day for weeks/months, month for years, year for "all"). Songs without analyzed lyrics are excluded from the average
+  - `GET /api/v1/radio_stations/:id/sentiment_trend?period=4_weeks` — returns `{ data: { trend, top_themes } }`. `trend` is time-bucketed average lyrics sentiment (granularity follows the period: hour for days, day for weeks/months, month for years, year for "all"); songs without analyzed lyrics are excluded from the average. `top_themes` is the top 10 lyric themes for the period, each with `play_count` (plays whose lyrics include the theme) and `share` (fraction of plays-with-themes that contain it; can sum to > 1.0 since plays carry multiple themes)
 - Widget endpoints:
   - `GET /api/v1/songs/:id/widget` — total plays, station count, release date, duration
   - `GET /api/v1/artists/:id/widget` — total plays, song count, station count, country of origin

@@ -453,12 +453,14 @@ describe 'RadioStations API', type: :request do
   end
 
   path '/api/v1/radio_stations/{id}/sentiment_trend' do
-    get 'Get lyrics sentiment trend for a radio station' do
+    get 'Get lyrics sentiment trend and top themes for a radio station' do
       tags 'Radio Stations'
       produces 'application/json'
-      description 'Returns time-bucketed average lyrics sentiment for a radio station\'s airplays. ' \
+      description 'Returns time-bucketed average lyrics sentiment plus the top 10 lyric themes for a radio station\'s airplays. ' \
                   'Sentiment ranges from -1 (very negative) to +1 (very positive). ' \
-                  'Songs without analyzed lyrics are excluded.'
+                  'Songs without analyzed lyrics are excluded from the trend; songs without themes are excluded from top_themes. ' \
+                  '`share` is the fraction of plays-with-themes that contain the theme; because plays can have multiple themes, ' \
+                  'shares can sum to more than 1.0.'
       parameter name: :id, in: :path, type: :integer, required: true, description: 'Radio station ID'
       parameter name: :period, in: :query, type: :string, required: false,
                 description: 'Time range (e.g. 7_days, 4_weeks, 1_year, all). Defaults to 4_weeks. ' \
@@ -466,12 +468,21 @@ describe 'RadioStations API', type: :request do
 
       response '200', 'Sentiment trend retrieved successfully' do
         example 'application/json', :example, {
-          data: [
-            { period_start: '2026-04-08T00:00:00Z', average_sentiment: 0.32, play_count: 412 },
-            { period_start: '2026-04-15T00:00:00Z', average_sentiment: 0.18, play_count: 398 },
-            { period_start: '2026-04-22T00:00:00Z', average_sentiment: -0.05, play_count: 425 },
-            { period_start: '2026-04-29T00:00:00Z', average_sentiment: 0.21, play_count: 411 }
-          ]
+          data: {
+            trend: [
+              { period_start: '2026-04-08T00:00:00Z', average_sentiment: 0.32, play_count: 412 },
+              { period_start: '2026-04-15T00:00:00Z', average_sentiment: 0.18, play_count: 398 },
+              { period_start: '2026-04-22T00:00:00Z', average_sentiment: -0.05, play_count: 425 },
+              { period_start: '2026-04-29T00:00:00Z', average_sentiment: 0.21, play_count: 411 }
+            ],
+            top_themes: [
+              { theme: 'love', play_count: 845, share: 0.512 },
+              { theme: 'heartbreak', play_count: 612, share: 0.371 },
+              { theme: 'hope', play_count: 420, share: 0.255 },
+              { theme: 'party', play_count: 318, share: 0.193 },
+              { theme: 'nostalgia', play_count: 240, share: 0.146 }
+            ]
+          }
         }
 
         let(:radio_station) { create(:radio_station) }
