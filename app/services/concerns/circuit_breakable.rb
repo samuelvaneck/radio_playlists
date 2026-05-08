@@ -57,12 +57,8 @@ module CircuitBreakable
     handle_circuit_failure(e)
   end
 
-  def handle_circuit_failure(error)
+  def handle_circuit_failure(_error)
     log_circuit_state(:open)
-    ExceptionNotifier.notify(
-      error,
-      { service: circuit_breaker_service_name, circuit_state: 'open' }
-    )
     nil
   end
 

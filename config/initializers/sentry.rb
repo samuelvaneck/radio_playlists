@@ -4,6 +4,12 @@ if Rails.env.production? || Rails.env.staging?
     config.breadcrumbs_logger = [:active_support_logger, :http_logger]
     config.max_breadcrumbs = 20
 
+    config.excluded_exceptions += %w[
+      Circuitbox::Error
+      Circuitbox::OpenCircuitError
+      Circuitbox::ServiceFailureError
+    ]
+
     config.before_breadcrumb = lambda do |breadcrumb, _hint|
       return nil if breadcrumb.category == 'sql.active_record' && Sidekiq.server?
 
