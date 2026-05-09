@@ -206,6 +206,21 @@ RSpec.describe Llm::QueryTranslator, type: :service do
       end
     end
 
+    context 'when the query asks for songs in a specific lyric language' do
+      let(:llm_response) do
+        { lyric_language: 'nl', theme: 'love' }.to_json
+      end
+
+      before do
+        allow(translator).to receive(:chat).and_return(llm_response)
+      end
+
+      it 'returns the lyric_language filter alongside other facets', :aggregate_failures do
+        expect(translate[:lyric_language]).to eq('nl')
+        expect(translate[:theme]).to eq('love')
+      end
+    end
+
     context 'when the query asks for a limited number of results' do
       let(:llm_response) do
         {

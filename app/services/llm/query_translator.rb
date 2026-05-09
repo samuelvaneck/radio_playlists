@@ -18,7 +18,7 @@ module Llm
 
     SORT_OPTIONS = %w[most_played newest popularity].freeze
     SEARCH_TYPES = %w[songs artists].freeze
-    STRING_FILTERS = %w[text_search artist title album genre radio_station period lyrics theme].freeze
+    STRING_FILTERS = %w[text_search artist title album genre radio_station period lyrics theme lyric_language].freeze
     MAX_STRING_LENGTH = 200
     COUNTRY_CODE_PATTERN = /\A[A-Z]{2,3}\z/
 
@@ -58,6 +58,7 @@ module Llm
         - "limit": max results to return (integer, default: 20, max: 50). Use when the user asks for "top N", "most popular", "number 1", etc. For example, "top 3" → limit: 3, "the most popular song" → limit: 1.
         - "lyrics": the lyrics or text snippet the user is searching by (string, for display purposes only)
         - "theme": a single lyric theme tag the user is searching by. Use this when the user asks for songs *about* a topic (e.g. "songs about freedom", "nummers over liefde"). Pick exactly one English lower-case tag from this controlled vocabulary: #{lyric_themes_vocabulary}. Map synonyms to the closest tag (e.g. "broken heart" → "heartbreak", "vrijheid" → "freedom", "verdriet" → "loss", "verliefd" → "love"). Skip the field if no tag fits.
+        - "lyric_language": ISO 639-1 lower-case code for the language the *lyrics* are written in (e.g. "en", "nl", "es", "fr", "de"). Use this when the user asks for songs *in* a language or *with* lyrics in a language ("songs in Dutch", "Nederlandstalige nummers", "Spanish lyrics", "Engelstalig"). Distinguish from "country": "Dutch songs" / "songs by Dutch artists" → country: "NL"; "songs in Dutch" / "Dutch lyrics" → lyric_language: "nl". When both are clearly implied, set both.
 
         Rules:
         - Return ONLY valid JSON, no explanation or markdown.
@@ -76,6 +77,10 @@ module Llm
         - "songs about drugs by Dutch artists" -> {"theme": "drugs", "country": "NL"}
         - "party songs about dancing" -> {"theme": "dance", "mood": "party"}
         - "top 5 songs about hope this month" -> {"theme": "hope", "period": "month", "sort_by": "most_played", "limit": 5}
+        - "songs in Dutch" -> {"lyric_language": "nl"}
+        - "Nederlandstalige liefdesnummers" -> {"lyric_language": "nl", "theme": "love"}
+        - "Spanish lyrics about heartbreak" -> {"lyric_language": "es", "theme": "heartbreak"}
+        - "Dutch songs by American artists" -> {"lyric_language": "nl", "country": "US"}
       PROMPT
     end
 

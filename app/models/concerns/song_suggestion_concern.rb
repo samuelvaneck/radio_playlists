@@ -11,6 +11,7 @@ module SongSuggestionConcern
       when 'album' then suggest_albums(query, limit)
       when 'year' then suggest_years(limit)
       when 'theme' then suggest_themes(query, limit)
+      when 'lyric_language' then suggest_lyric_languages(query, limit)
       else SongSearchConcern::SEARCH_FIELDS
       end
     end
@@ -51,6 +52,12 @@ module SongSuggestionConcern
       themes = Lyrics::ThemeTranslator::EN_TO_NL.keys
       themes = themes.select { |t| t.start_with?(query.downcase.strip) } if query.present?
       themes.first(limit)
+    end
+
+    def suggest_lyric_languages(query, limit)
+      scope = Lyric.where.not(language: [nil, ''])
+      scope = scope.where('language ILIKE ?', "#{ActiveRecord::Base.sanitize_sql_like(query.to_s.downcase.strip)}%") if query.present?
+      scope.distinct.order(:language).limit(limit).pluck(:language)
     end
   end
 end
