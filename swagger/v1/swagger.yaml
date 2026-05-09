@@ -2904,6 +2904,13 @@ paths:
         description: Filter by album name
         schema:
           type: string
+      - name: theme
+        in: query
+        required: false
+        description: Filter by lyric theme (e.g. love, freedom, drugs). Use /search_suggestions?field=theme
+          for the canonical vocabulary.
+        schema:
+          type: string
       - name: year_from
         in: query
         required: false
@@ -2936,7 +2943,7 @@ paths:
           type: integer
       responses:
         '200':
-          description: Returns songs ordered by popularity
+          description: Filters by lyric theme
           content:
             application/json:
               examples:
@@ -2952,6 +2959,49 @@ paths:
                         artists:
                         - id: 1
                           name: Drake
+  "/api/v1/songs/natural_language_examples":
+    get:
+      summary: Example natural language search queries
+      tags:
+      - Songs
+      description: 'Returns example bilingual (EN/NL) natural language queries the
+        frontend can show as suggestions next to the search bar (e.g. "Try: songs
+        about freedom").'
+      responses:
+        '200':
+          description: Examples returned
+          content:
+            application/json:
+              examples:
+                examples:
+                  value:
+                    examples:
+                    - en: songs about freedom
+                      nl: nummers over vrijheid
+                      category: theme
+                    - en: love songs from the 90s
+                      nl: liefdesnummers uit de jaren 90
+                      category: theme
+              schema:
+                type: object
+                properties:
+                  examples:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        en:
+                          type: string
+                        nl:
+                          type: string
+                        category:
+                          type: string
+                      required:
+                      - en
+                      - nl
+                      - category
+                required:
+                - examples
   "/api/v1/songs/search_suggestions":
     get:
       summary: Get search suggestions for a field
@@ -3004,6 +3054,7 @@ paths:
                     - album
                     - year_from
                     - year_to
+                    - theme
                     field:
   "/api/v1/songs/{id}":
     get:

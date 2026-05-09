@@ -305,6 +305,25 @@ describe Song do
       expect(results).to contain_exactly(rolling)
     end
 
+    context 'with a theme filter' do
+      before do
+        create(:lyric, song: hotline, themes: %w[party dance])
+        create(:lyric, song: rolling, themes: %w[heartbreak loss])
+      end
+
+      it 'filters by lyric theme', :aggregate_failures do
+        results = Song.faceted_search(theme: 'heartbreak')
+        expect(results).to include(rolling)
+        expect(results).not_to include(hotline)
+      end
+
+      it 'normalizes the theme value', :aggregate_failures do
+        results = Song.faceted_search(theme: ' Heartbreak ')
+        expect(results).to include(rolling)
+        expect(results).not_to include(hotline)
+      end
+    end
+
     it 'returns all songs when no filters given' do
       results = Song.faceted_search
       expect(results).to include(hotline, rolling)
@@ -351,8 +370,16 @@ describe Song do
       expect(Song.suggest(field: 'year')).to include(2016)
     end
 
+    it 'suggests lyric themes from the canonical vocabulary' do
+      expect(Song.suggest(field: 'theme', limit: 10)).to include('love', 'freedom')
+    end
+
+    it 'filters theme suggestions by query prefix' do
+      expect(Song.suggest(field: 'theme', query: 'free')).to include('freedom')
+    end
+
     it 'returns available field names for unknown field' do
-      expect(Song.suggest(field: nil)).to eq(%w[artist title album year_from year_to])
+      expect(Song.suggest(field: nil)).to eq(%w[artist title album year_from year_to theme])
     end
   end
 

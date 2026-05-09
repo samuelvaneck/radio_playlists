@@ -211,6 +211,25 @@ RSpec.describe NaturalLanguageSearch, type: :service do
       end
     end
 
+    context 'when filtering songs by lyric theme' do
+      let(:freedom_song) { create(:song, title: 'Free Bird') }
+      let(:love_song) { create(:song, title: 'Love Story') }
+
+      before do
+        create(:lyric, song: freedom_song, themes: %w[freedom rebellion])
+        create(:lyric, song: love_song, themes: %w[love romance])
+        create(:air_play, song: freedom_song, radio_station: radio_station, broadcasted_at: 1.day.ago, status: :confirmed)
+        create(:air_play, song: love_song, radio_station: radio_station, broadcasted_at: 1.day.ago, status: :confirmed)
+        allow(translator).to receive(:translate).and_return(theme: 'freedom', period: 'all')
+      end
+
+      it 'returns only songs whose lyrics include the theme', :aggregate_failures do
+        result_ids = search.map(&:id)
+        expect(result_ids).to include(freedom_song.id)
+        expect(result_ids).not_to include(love_song.id)
+      end
+    end
+
     context 'when the query specifies a limit' do
       let(:songs) { create_list(:song, 5) }
 

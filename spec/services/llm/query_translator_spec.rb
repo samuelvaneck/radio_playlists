@@ -192,6 +192,20 @@ RSpec.describe Llm::QueryTranslator, type: :service do
       end
     end
 
+    context 'when the query asks for songs about a theme' do
+      let(:llm_response) do
+        { theme: 'freedom', period: 'all' }.to_json
+      end
+
+      before do
+        allow(translator).to receive(:chat).and_return(llm_response)
+      end
+
+      it 'returns the theme filter' do
+        expect(translate[:theme]).to eq('freedom')
+      end
+    end
+
     context 'when the query asks for a limited number of results' do
       let(:llm_response) do
         {

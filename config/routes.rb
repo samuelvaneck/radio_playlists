@@ -40,6 +40,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get :autocomplete, on: :collection
         get :search, on: :collection
         get :natural_language_search, on: :collection
+        get :natural_language_examples, on: :collection
         get :search_suggestions, on: :collection
         get :graph_data, on: :member
         get :chart_positions, on: :member
