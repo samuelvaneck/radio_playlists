@@ -21,7 +21,9 @@ module Llm
         category: 'mood' },
       { en: 'sad acoustic songs', nl: 'droevige akoestische nummers', category: 'mood' },
       { en: 'top 3 most played songs this month', nl: 'top 3 meest gedraaide nummers deze maand', category: 'chart' },
-      { en: 'British rock songs from the 80s', nl: 'Britse rocknummers uit de jaren 80', category: 'genre' }
+      { en: 'British rock songs from the 80s', nl: 'Britse rocknummers uit de jaren 80', category: 'genre' },
+      { en: 'songs with Dutch lyrics', nl: 'Nederlandstalige nummers', category: 'language' },
+      { en: 'Spanish lyrics about heartbreak', nl: 'Spaanstalige nummers over liefdesverdriet', category: 'language' }
     ].freeze
 
     def self.list

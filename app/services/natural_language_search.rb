@@ -62,6 +62,7 @@ class NaturalLanguageSearch
     scope = apply_genre_filter(scope) if filters[:genre].present?
     scope = apply_country_filter(scope) if filters[:country].present?
     scope = scope.filter_by_theme(filters[:theme]) if filters[:theme].present?
+    scope = scope.filter_by_lyric_language(filters[:lyric_language]) if filters[:lyric_language].present?
     scope
   end
 

@@ -49,6 +49,9 @@ module Api
       #   - album (optional): Filter by album name (fuzzy match)
       #   - theme (optional): Filter by lyric theme (e.g. "love", "freedom", "drugs"). See
       #     `GET /search_suggestions?field=theme` for the canonical theme vocabulary
+      #   - lyric_language (optional): Filter by the language the lyrics are written in,
+      #     ISO 639-1 code (e.g. "en", "nl", "es"). See `GET /search_suggestions?field=lyric_language`
+      #     for languages with analyzed songs.
       #   - year_from (optional): Filter songs released in or after this year
       #   - year_to (optional): Filter songs released in or before this year
       #   - limit (optional, default: 10): Maximum number of results (max: 20)
@@ -105,9 +108,10 @@ module Api
       # Returns autocomplete suggestions for a specific search field.
       #
       # Parameters:
-      #   - field (required): Field to suggest values for (artist, title, album, year, theme).
-      #     The `theme` field returns canonical English lyric themes (love, freedom, drugs, etc.)
-      #     suitable for the `/search?theme=` facet.
+      #   - field (required): Field to suggest values for (artist, title, album, year, theme,
+      #     lyric_language). The `theme` field returns canonical English lyric themes (love,
+      #     freedom, drugs, etc.); `lyric_language` returns ISO 639-1 codes for languages with
+      #     at least one analyzed song.
       #   - q (optional): Partial input to filter suggestions
       #   - limit (optional, default: 5): Maximum suggestions (max: 10)
       def search_suggestions
@@ -422,6 +426,7 @@ module Api
           title: params[:title],
           album: params[:album],
           theme: params[:theme],
+          lyric_language: params[:lyric_language],
           year_from: params[:year_from],
           year_to: params[:year_to],
           sort_by: params[:sort_by],

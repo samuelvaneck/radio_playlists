@@ -174,6 +174,9 @@ RSpec.describe 'Songs API', type: :request do
       parameter name: :theme, in: :query, type: :string, required: false,
                 description: 'Filter by lyric theme (e.g. love, freedom, drugs). Use ' \
                              '/search_suggestions?field=theme for the canonical vocabulary.'
+      parameter name: :lyric_language, in: :query, type: :string, required: false,
+                description: 'Filter by the language the lyrics are written in (ISO 639-1, e.g. nl, en, es). ' \
+                             'Use /search_suggestions?field=lyric_language for analyzed languages.'
       parameter name: :year_from, in: :query, type: :integer, required: false,
                 description: 'Filter songs released in or after this year'
       parameter name: :year_to, in: :query, type: :integer, required: false,
@@ -259,6 +262,26 @@ RSpec.describe 'Songs API', type: :request do
             titles = data['data'].map { |d| d['attributes']['title'] }
             expect(titles).to include('Free Bird')
             expect(titles).not_to include('Love Story')
+          end
+        end
+      end
+
+      context 'with a lyric_language filter' do
+        response '200', 'Filters by lyric language' do
+          let!(:dutch_song) { create(:song, title: 'Duurt Te Lang') }
+          let!(:english_song) { create(:song, title: 'Rolling in the Deep') }
+          let(:lyric_language) { 'nl' }
+
+          before do
+            create(:lyric, song: dutch_song, language: 'nl')
+            create(:lyric, song: english_song, language: 'en')
+          end
+
+          run_test! do |response|
+            data = JSON.parse(response.body)
+            titles = data['data'].map { |d| d['attributes']['title'] }
+            expect(titles).to include('Duurt Te Lang')
+            expect(titles).not_to include('Rolling in the Deep')
           end
         end
       end
@@ -350,13 +373,13 @@ RSpec.describe 'Songs API', type: :request do
 
       response '200', 'Available fields when no field specified' do
         example 'application/json', :available_fields, {
-          suggestions: %w[artist title album year_from year_to theme],
+          suggestions: %w[artist title album year_from year_to theme lyric_language],
           field: nil
         }
 
         run_test! do |response|
           data = JSON.parse(response.body)
-          expect(data['suggestions']).to eq(%w[artist title album year_from year_to theme])
+          expect(data['suggestions']).to eq(%w[artist title album year_from year_to theme lyric_language])
         end
       end
     end

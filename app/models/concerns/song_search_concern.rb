@@ -3,7 +3,7 @@
 module SongSearchConcern
   extend ActiveSupport::Concern
 
-  SEARCH_FIELDS = %w[artist title album year_from year_to theme].freeze
+  SEARCH_FIELDS = %w[artist title album year_from year_to theme lyric_language].freeze
 
   # Minimum pg_trgm similarity for a fuzzy match. The default `%` operator uses
   # pg_trgm.similarity_limit (0.3) which is too permissive for search; 0.5
@@ -53,6 +53,11 @@ module SongSearchConcern
       normalized = theme.to_s.downcase.strip
       joins(:lyric).where('lyrics.themes @> ARRAY[?]::varchar[]', normalized)
     }
+    scope :filter_by_lyric_language, lambda { |code|
+      return all if code.blank?
+
+      joins(:lyric).where(lyrics: { language: code.to_s.downcase.strip })
+    }
     scope :filter_by_year_range, lambda { |year_from: nil, year_to: nil|
       scope = all
       scope = scope.where(release_date: Date.new(year_from.to_i)..) if year_from.present?
@@ -84,6 +89,7 @@ module SongSearchConcern
                 .filter_by_title(filters[:title])
                 .filter_by_album(filters[:album])
                 .filter_by_theme(filters[:theme])
+                .filter_by_lyric_language(filters[:lyric_language])
                 .filter_by_year_range(year_from: filters[:year_from], year_to: filters[:year_to])
                 .limit(filters.fetch(:limit, 10))
       apply_faceted_sort(scope, filters[:sort_by])

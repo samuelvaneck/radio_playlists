@@ -324,6 +324,25 @@ describe Song do
       end
     end
 
+    context 'with a lyric_language filter' do
+      before do
+        create(:lyric, song: hotline, language: 'en')
+        create(:lyric, song: rolling, language: 'nl')
+      end
+
+      it 'filters by the language of the lyrics', :aggregate_failures do
+        results = Song.faceted_search(lyric_language: 'nl')
+        expect(results).to include(rolling)
+        expect(results).not_to include(hotline)
+      end
+
+      it 'normalizes the language code', :aggregate_failures do
+        results = Song.faceted_search(lyric_language: ' NL ')
+        expect(results).to include(rolling)
+        expect(results).not_to include(hotline)
+      end
+    end
+
     it 'returns all songs when no filters given' do
       results = Song.faceted_search
       expect(results).to include(hotline, rolling)
@@ -378,8 +397,14 @@ describe Song do
       expect(Song.suggest(field: 'theme', query: 'free')).to include('freedom')
     end
 
+    it 'suggests lyric languages present in the database' do
+      create(:lyric, song: hotline, language: 'en')
+      create(:lyric, song: create(:song, title: 'Duurt Te Lang'), language: 'nl')
+      expect(Song.suggest(field: 'lyric_language')).to contain_exactly('en', 'nl')
+    end
+
     it 'returns available field names for unknown field' do
-      expect(Song.suggest(field: nil)).to eq(%w[artist title album year_from year_to theme])
+      expect(Song.suggest(field: nil)).to eq(%w[artist title album year_from year_to theme lyric_language])
     end
   end
 

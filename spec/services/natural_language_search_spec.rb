@@ -211,6 +211,25 @@ RSpec.describe NaturalLanguageSearch, type: :service do
       end
     end
 
+    context 'when filtering songs by lyric language' do
+      let(:dutch_song) { create(:song, title: 'Duurt Te Lang') }
+      let(:english_song) { create(:song, title: 'Rolling in the Deep') }
+
+      before do
+        create(:lyric, song: dutch_song, language: 'nl')
+        create(:lyric, song: english_song, language: 'en')
+        create(:air_play, song: dutch_song, radio_station: radio_station, broadcasted_at: 1.day.ago, status: :confirmed)
+        create(:air_play, song: english_song, radio_station: radio_station, broadcasted_at: 1.day.ago, status: :confirmed)
+        allow(translator).to receive(:translate).and_return(lyric_language: 'nl', period: 'all')
+      end
+
+      it 'returns only songs whose lyrics are in the requested language', :aggregate_failures do
+        result_ids = search.map(&:id)
+        expect(result_ids).to include(dutch_song.id)
+        expect(result_ids).not_to include(english_song.id)
+      end
+    end
+
     context 'when filtering songs by lyric theme' do
       let(:freedom_song) { create(:song, title: 'Free Bird') }
       let(:love_song) { create(:song, title: 'Love Story') }

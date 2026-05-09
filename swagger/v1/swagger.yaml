@@ -2911,6 +2911,14 @@ paths:
           for the canonical vocabulary.
         schema:
           type: string
+      - name: lyric_language
+        in: query
+        required: false
+        description: Filter by the language the lyrics are written in (ISO 639-1,
+          e.g. nl, en, es). Use /search_suggestions?field=lyric_language for analyzed
+          languages.
+        schema:
+          type: string
       - name: year_from
         in: query
         required: false
@@ -2943,7 +2951,7 @@ paths:
           type: integer
       responses:
         '200':
-          description: Filters by lyric theme
+          description: Filters by lyric language
           content:
             application/json:
               examples:
@@ -3055,6 +3063,7 @@ paths:
                     - year_from
                     - year_to
                     - theme
+                    - lyric_language
                     field:
   "/api/v1/songs/{id}":
     get:
