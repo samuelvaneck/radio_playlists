@@ -171,6 +171,9 @@ RSpec.describe 'Songs API', type: :request do
                 description: 'Filter by song title (fuzzy match)'
       parameter name: :album, in: :query, type: :string, required: false,
                 description: 'Filter by album name'
+      parameter name: :theme, in: :query, type: :string, required: false,
+                description: 'Filter by lyric theme (e.g. love, freedom, drugs). Use ' \
+                             '/search_suggestions?field=theme for the canonical vocabulary.'
       parameter name: :year_from, in: :query, type: :integer, required: false,
                 description: 'Filter songs released in or after this year'
       parameter name: :year_to, in: :query, type: :integer, required: false,
@@ -239,6 +242,65 @@ RSpec.describe 'Songs API', type: :request do
           end
         end
       end
+
+      context 'with a theme filter' do
+        response '200', 'Filters by lyric theme' do
+          let!(:freedom_song) { create(:song, title: 'Free Bird') }
+          let!(:love_song) { create(:song, title: 'Love Story') }
+          let(:theme) { 'freedom' }
+
+          before do
+            create(:lyric, song: freedom_song, themes: %w[freedom rebellion])
+            create(:lyric, song: love_song, themes: %w[love romance])
+          end
+
+          run_test! do |response|
+            data = JSON.parse(response.body)
+            titles = data['data'].map { |d| d['attributes']['title'] }
+            expect(titles).to include('Free Bird')
+            expect(titles).not_to include('Love Story')
+          end
+        end
+      end
+    end
+  end
+
+  path '/api/v1/songs/natural_language_examples' do
+    get 'Example natural language search queries' do
+      tags 'Songs'
+      produces 'application/json'
+      description 'Returns example bilingual (EN/NL) natural language queries the frontend can ' \
+                  'show as suggestions next to the search bar (e.g. "Try: songs about freedom").'
+
+      response '200', 'Examples returned' do
+        example 'application/json', :examples, {
+          examples: [
+            { en: 'songs about freedom', nl: 'nummers over vrijheid', category: 'theme' },
+            { en: 'love songs from the 90s', nl: 'liefdesnummers uit de jaren 90', category: 'theme' }
+          ]
+        }
+
+        schema type: :object, properties: {
+          examples: {
+            type: :array,
+            items: {
+              type: :object,
+              properties: {
+                en: { type: :string },
+                nl: { type: :string },
+                category: { type: :string }
+              },
+              required: %w[en nl category]
+            }
+          }
+        }, required: ['examples']
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['examples']).to be_an(Array)
+          expect(data['examples']).not_to be_empty
+        end
+      end
     end
   end
 
@@ -288,13 +350,13 @@ RSpec.describe 'Songs API', type: :request do
 
       response '200', 'Available fields when no field specified' do
         example 'application/json', :available_fields, {
-          suggestions: %w[artist title album year_from year_to],
+          suggestions: %w[artist title album year_from year_to theme],
           field: nil
         }
 
         run_test! do |response|
           data = JSON.parse(response.body)
-          expect(data['suggestions']).to eq(%w[artist title album year_from year_to])
+          expect(data['suggestions']).to eq(%w[artist title album year_from year_to theme])
         end
       end
     end

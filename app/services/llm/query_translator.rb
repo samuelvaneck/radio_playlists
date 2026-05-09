@@ -18,7 +18,7 @@ module Llm
 
     SORT_OPTIONS = %w[most_played newest popularity].freeze
     SEARCH_TYPES = %w[songs artists].freeze
-    STRING_FILTERS = %w[text_search artist title album genre radio_station period lyrics].freeze
+    STRING_FILTERS = %w[text_search artist title album genre radio_station period lyrics theme].freeze
     MAX_STRING_LENGTH = 200
     COUNTRY_CODE_PATTERN = /\A[A-Z]{2,3}\z/
 
@@ -57,6 +57,7 @@ module Llm
         - "sort_by": one of: most_played, newest, popularity (default: most_played)
         - "limit": max results to return (integer, default: 20, max: 50). Use when the user asks for "top N", "most popular", "number 1", etc. For example, "top 3" → limit: 3, "the most popular song" → limit: 1.
         - "lyrics": the lyrics or text snippet the user is searching by (string, for display purposes only)
+        - "theme": a single lyric theme tag the user is searching by. Use this when the user asks for songs *about* a topic (e.g. "songs about freedom", "nummers over liefde"). Pick exactly one English lower-case tag from this controlled vocabulary: #{lyric_themes_vocabulary}. Map synonyms to the closest tag (e.g. "broken heart" → "heartbreak", "vrijheid" → "freedom", "verdriet" → "loss", "verliefd" → "love"). Skip the field if no tag fits.
 
         Rules:
         - Return ONLY valid JSON, no explanation or markdown.
@@ -67,6 +68,14 @@ module Llm
         - "Hits" or "popular" implies sort_by "popularity".
         - Understand both English and Dutch queries.
         - When the user mentions lyrics, song text, or quotes part of a song, try to identify the song. If you recognize the lyrics, set "artist" and "title" to the correct song. Always set "lyrics" to the quoted/mentioned lyrics so the user can see what was matched. If you cannot identify the song, set "text_search" to the most distinctive words from the lyrics and still set "lyrics".
+
+        Example translations:
+        - "songs about freedom" -> {"theme": "freedom"}
+        - "nummers over liefde" -> {"theme": "love"}
+        - "heartbreak songs from the 90s" -> {"theme": "heartbreak", "year_from": 1990, "year_to": 1999}
+        - "songs about drugs by Dutch artists" -> {"theme": "drugs", "country": "NL"}
+        - "party songs about dancing" -> {"theme": "dance", "mood": "party"}
+        - "top 5 songs about hope this month" -> {"theme": "hope", "period": "month", "sort_by": "most_played", "limit": 5}
       PROMPT
     end
 
@@ -74,6 +83,10 @@ module Llm
       Rails.cache.fetch('llm:radio_station_names', expires_in: 1.hour) do
         RadioStation.pluck(:name)
       end
+    end
+
+    def lyric_themes_vocabulary
+      Lyrics::ThemeTranslator::EN_TO_NL.keys.join(', ')
     end
 
     def parse_response(response)

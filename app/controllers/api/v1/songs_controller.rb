@@ -47,6 +47,8 @@ module Api
       #   - artist (optional): Filter by artist name (fuzzy match)
       #   - title (optional): Filter by song title (fuzzy match)
       #   - album (optional): Filter by album name (fuzzy match)
+      #   - theme (optional): Filter by lyric theme (e.g. "love", "freedom", "drugs"). See
+      #     `GET /search_suggestions?field=theme` for the canonical theme vocabulary
       #   - year_from (optional): Filter songs released in or after this year
       #   - year_to (optional): Filter songs released in or before this year
       #   - limit (optional, default: 10): Maximum number of results (max: 20)
@@ -82,12 +84,30 @@ module Api
                        .to_json
       end
 
+      # GET /api/v1/songs/natural_language_examples
+      #
+      # Returns example natural language queries the frontend can show as suggestions
+      # (e.g. "Try: songs about freedom"). Each example is bilingual.
+      #
+      # Response:
+      # {
+      #   "examples": [
+      #     { "en": "songs about freedom", "nl": "nummers over vrijheid", "category": "theme" },
+      #     ...
+      #   ]
+      # }
+      def natural_language_examples
+        render json: { examples: Llm::SearchExamples.list }
+      end
+
       # GET /api/v1/songs/search_suggestions
       #
       # Returns autocomplete suggestions for a specific search field.
       #
       # Parameters:
-      #   - field (required): Field to suggest values for (artist, title, album, year)
+      #   - field (required): Field to suggest values for (artist, title, album, year, theme).
+      #     The `theme` field returns canonical English lyric themes (love, freedom, drugs, etc.)
+      #     suitable for the `/search?theme=` facet.
       #   - q (optional): Partial input to filter suggestions
       #   - limit (optional, default: 5): Maximum suggestions (max: 10)
       def search_suggestions
@@ -401,6 +421,7 @@ module Api
           artist: params[:artist],
           title: params[:title],
           album: params[:album],
+          theme: params[:theme],
           year_from: params[:year_from],
           year_to: params[:year_to],
           sort_by: params[:sort_by],

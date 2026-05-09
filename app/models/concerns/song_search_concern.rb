@@ -3,7 +3,7 @@
 module SongSearchConcern
   extend ActiveSupport::Concern
 
-  SEARCH_FIELDS = %w[artist title album year_from year_to].freeze
+  SEARCH_FIELDS = %w[artist title album year_from year_to theme].freeze
 
   # Minimum pg_trgm similarity for a fuzzy match. The default `%` operator uses
   # pg_trgm.similarity_limit (0.3) which is too permissive for search; 0.5
@@ -47,6 +47,12 @@ module SongSearchConcern
 
       where(arel_table[:album_name].matches("%#{sanitize_sql_like(album)}%"))
     }
+    scope :filter_by_theme, lambda { |theme|
+      return all if theme.blank?
+
+      normalized = theme.to_s.downcase.strip
+      joins(:lyric).where('lyrics.themes @> ARRAY[?]::varchar[]', normalized)
+    }
     scope :filter_by_year_range, lambda { |year_from: nil, year_to: nil|
       scope = all
       scope = scope.where(release_date: Date.new(year_from.to_i)..) if year_from.present?
@@ -77,19 +83,10 @@ module SongSearchConcern
       scope = scope.filter_by_artist(filters[:artist])
                 .filter_by_title(filters[:title])
                 .filter_by_album(filters[:album])
+                .filter_by_theme(filters[:theme])
                 .filter_by_year_range(year_from: filters[:year_from], year_to: filters[:year_to])
                 .limit(filters.fetch(:limit, 10))
       apply_faceted_sort(scope, filters[:sort_by])
-    end
-
-    def suggest(field:, query: nil, limit: 5)
-      case field
-      when 'artist' then suggest_artists(query, limit)
-      when 'title' then suggest_titles(query, limit)
-      when 'album' then suggest_albums(query, limit)
-      when 'year' then suggest_years(limit)
-      else SEARCH_FIELDS
-      end
     end
 
     private
@@ -100,36 +97,6 @@ module SongSearchConcern
       when 'newest' then scope.order(Arel.sql('songs.release_date DESC NULLS LAST'))
       else scope.order(popularity: :desc)
       end
-    end
-
-    def suggest_artists(query, limit)
-      scope = if query.present?
-                Artist.where(SongSearchConcern.trigram_or_ilike(Artist, :name, query))
-                  .order(*SongSearchConcern.relevance_order('artists.name', query), spotify_popularity: :desc)
-              else
-                Artist.order(spotify_popularity: :desc)
-              end
-      scope.limit(limit).pluck(:name).uniq
-    end
-
-    def suggest_titles(query, limit)
-      scope = if query.present?
-                where(SongSearchConcern.trigram_or_ilike(self, :title, query))
-                  .order(*SongSearchConcern.relevance_order('songs.title', query), popularity: :desc)
-              else
-                order(popularity: :desc)
-              end
-      scope.limit(limit).pluck(:title).uniq
-    end
-
-    def suggest_albums(query, limit)
-      scope = where.not(album_name: [nil, ''])
-      scope = scope.where(arel_table[:album_name].matches("%#{sanitize_sql_like(query)}%")) if query.present?
-      scope.distinct.order(:album_name).limit(limit).pluck(:album_name)
-    end
-
-    def suggest_years(limit)
-      distinct_years(limit).map(&:year)
     end
   end
 end

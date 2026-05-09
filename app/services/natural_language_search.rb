@@ -61,6 +61,7 @@ class NaturalLanguageSearch
     scope = apply_song_text_facets(scope)
     scope = apply_genre_filter(scope) if filters[:genre].present?
     scope = apply_country_filter(scope) if filters[:country].present?
+    scope = scope.filter_by_theme(filters[:theme]) if filters[:theme].present?
     scope
   end
 

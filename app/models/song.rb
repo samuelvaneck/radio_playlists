@@ -63,6 +63,7 @@ class Song < ApplicationRecord
   include ChartConcern
   include TimeAnalyticsConcern
   include SongSearchConcern
+  include SongSuggestionConcern
   include Sluggable
   include TitleNormalizable
   include ExternalEnrichmentConcern
