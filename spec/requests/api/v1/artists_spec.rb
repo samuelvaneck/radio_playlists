@@ -657,4 +657,49 @@ RSpec.describe 'Artists API', type: :request do
       end
     end
   end
+
+  path '/api/v1/artists/{id}/timeline' do
+    get 'Get the cached event timeline for an artist' do
+      tags 'Artists'
+      produces 'application/json'
+      description 'Returns the cached MusicBrainz + Wikidata (and optionally LLM-enriched) timeline for an artist. ' \
+                  'If no cached timeline exists yet, enqueues a generation job and returns 202 Accepted.'
+      parameter name: :id, in: :path, type: :integer, required: true, description: 'Artist ID'
+
+      response '200', 'Timeline retrieved successfully' do
+        let(:artist) { create(:artist, name: 'Daft Punk', id_on_musicbrainz: '056e4f3e-d505-4dad-8ec1-d04f521cbb56') }
+        let(:id) { artist.id }
+        let!(:_timeline) do
+          create(:artist_timeline, artist: artist, fetched_at: 1.day.ago,
+                                   musicbrainz_id: artist.id_on_musicbrainz, wikidata_id: 'Q185828',
+                                   events: [
+                                     { 'category' => 'formation', 'date' => '1993', 'title' => 'Daft Punk formed', 'source' => 'musicbrainz' }
+                                   ])
+        end
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data.dig('data', 'attributes', 'events').size).to eq(1)
+        end
+      end
+
+      response '202', 'No cached timeline yet, generation enqueued' do
+        let(:artist) { create(:artist, name: 'Daft Punk', id_on_musicbrainz: '056e4f3e-d505-4dad-8ec1-d04f521cbb56') }
+        let(:id) { artist.id }
+
+        before { allow(ArtistTimelineEnrichmentJob).to receive(:perform_async) } # rubocop:disable RSpec/ScatteredSetup
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['status']).to eq('pending')
+        end
+      end
+
+      response '404', 'Artist not found' do
+        let(:id) { 0 }
+
+        run_test!
+      end
+    end
+  end
 end

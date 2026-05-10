@@ -35,6 +35,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get :bio, on: :member
         get :similar_artists, on: :member
         get :widget, on: :member
+        get :timeline, on: :member
       end
       resources :songs, only: %i[index show] do
         get :autocomplete, on: :collection

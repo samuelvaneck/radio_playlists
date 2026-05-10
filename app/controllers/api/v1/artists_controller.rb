@@ -4,7 +4,8 @@ module Api
   module V1
     class ArtistsController < ApiController
       skip_before_action :authenticate_client!, only: :widget
-      before_action :artist, only: %i[show graph_data songs chart_positions time_analytics air_plays bio similar_artists widget]
+      before_action :artist,
+                    only: %i[show graph_data songs chart_positions time_analytics air_plays bio similar_artists widget timeline]
       def index
         render json: ArtistSerializer.new(artists)
                        .serializable_hash
@@ -186,6 +187,18 @@ module Api
         bio_data = Wikipedia::ArtistFinder.new(language: language_param).get_info(artist.name)
         artist.cache_wikipedia_url(bio_data['url']) if bio_data.is_a?(Hash)
         render json: { bio: bio_data }
+      end
+
+      def timeline
+        timeline_record = artist.timeline
+        if timeline_record.blank?
+          ArtistTimelineEnrichmentJob.perform_async(artist.id)
+          render json: { status: 'pending', events: [] }, status: :accepted
+          return
+        end
+
+        ArtistTimelineEnrichmentJob.perform_async(artist.id) if timeline_record.needs_refresh?
+        render json: ArtistTimelineSerializer.new(timeline_record).serializable_hash.to_json
       end
 
       private
