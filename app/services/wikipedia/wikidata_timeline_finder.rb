@@ -51,7 +51,7 @@ module Wikipedia
         response = entity_connection.get('/w/api.php') do |req|
           req.params = { action: 'wbgetentities', ids: wikibase_item, format: 'json', props: 'claims', languages: language }
         end
-        response.body&.dig('entities', wikibase_item)
+        parsed_json_body(response)&.dig('entities', wikibase_item)
       end
     rescue StandardError => e
       ExceptionNotifier.notify(e)
@@ -116,12 +116,20 @@ module Wikipedia
           req.params['query'] = query
           req.params['format'] = 'json'
         end
-        response.body&.dig('results', 'bindings') || []
+        parsed_json_body(response)&.dig('results', 'bindings') || []
       end
     rescue StandardError => e
       ExceptionNotifier.notify(e)
       Rails.logger.error("Wikidata timeline SPARQL error: #{e.message}")
       []
+    end
+
+    def parsed_json_body(response)
+      body = response.body
+      return body if body.is_a?(Hash)
+
+      Rails.logger.warn("Wikidata returned non-JSON response (status=#{response.status}, body_class=#{body.class})")
+      nil
     end
 
     def build_event(row)
