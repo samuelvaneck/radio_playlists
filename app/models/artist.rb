@@ -7,6 +7,7 @@
 #  id                           :bigint           not null, primary key
 #  aka_names                    :string           default([]), is an Array
 #  aka_names_checked_at         :datetime
+#  country_code                 :string
 #  country_of_origin            :string           default([]), is an Array
 #  country_of_origin_checked_at :datetime
 #  deezer_artist_url            :string
@@ -68,6 +69,7 @@ class Artist < ApplicationRecord
   has_many :songs, through: :artists_songs
   has_many :air_plays, through: :songs
   has_many :chart_positions, as: :positianable
+  has_one :timeline, class_name: 'ArtistTimeline', dependent: :destroy
 
   scope :matching, ->(search_term) { search_by_name(search_term).reorder(nil) if search_term.present? }
 

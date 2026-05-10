@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_06_082251) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_10_221045) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -82,6 +82,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_082251) do
     t.index ["song_id", "radio_station_id", "broadcasted_at"], name: "air_play_radio_song_time", unique: true
     t.index ["song_id"], name: "index_air_plays_on_song_id"
     t.index ["status"], name: "index_air_plays_on_status"
+  end
+
+  create_table "artist_timelines", force: :cascade do |t|
+    t.bigint "artist_id", null: false
+    t.datetime "created_at", null: false
+    t.jsonb "events", default: [], null: false
+    t.datetime "fetched_at"
+    t.boolean "llm_enriched", default: false, null: false
+    t.string "musicbrainz_id"
+    t.datetime "updated_at", null: false
+    t.string "wikidata_id"
+    t.index ["artist_id"], name: "index_artist_timelines_on_artist_id", unique: true
+    t.index ["fetched_at"], name: "index_artist_timelines_on_fetched_at"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -327,6 +340,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_082251) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "air_plays", "radio_stations"
   add_foreign_key "air_plays", "songs"
+  add_foreign_key "artist_timelines", "artists"
   add_foreign_key "chart_positions", "charts"
   add_foreign_key "lyrics", "songs"
   add_foreign_key "music_profiles", "songs"

@@ -5,6 +5,7 @@
 #  id                           :bigint           not null, primary key
 #  aka_names                    :string           default([]), is an Array
 #  aka_names_checked_at         :datetime
+#  country_code                 :string
 #  country_of_origin            :string           default([]), is an Array
 #  country_of_origin_checked_at :datetime
 #  deezer_artist_url            :string
