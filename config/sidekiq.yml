@@ -51,6 +51,10 @@
         cron: '0 5 * * 0' # weekly Sunday 5am
         queue: enrichment
         enabled: true
+      ArtistTimelineEnrichmentBatchJob:
+        cron: '0 6 * * 0' # weekly Sunday 6am
+        queue: enrichment
+        enabled: true
       AvgSongGapCalculationJob:
         cron: '0 5 * * *' # daily at 5am
         queue: compute
