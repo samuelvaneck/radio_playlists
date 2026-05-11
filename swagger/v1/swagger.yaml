@@ -71,6 +71,32 @@ paths:
                       type: string
                     instagram_url:
                       type: string
+  "/api/v1/admins/artists/{id}/refresh_timeline":
+    post:
+      summary: Force a refresh of an artist timeline
+      tags:
+      - Admin Artists
+      security:
+      - bearer_auth: []
+      description: Enqueues an ArtistTimelineEnrichmentJob to rebuild the cached MusicBrainz
+        + Wikidata timeline for an artist. Returns 422 if the artist has no MusicBrainz
+        ID.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Artist ID
+        schema:
+          type: integer
+      responses:
+        '202':
+          description: Timeline refresh enqueued
+        '422':
+          description: Artist has no MusicBrainz ID
+        '401':
+          description: Not authenticated
+        '404':
+          description: Artist not found
   "/api/v1/admins/sign_in":
     post:
       summary: Admin sign in

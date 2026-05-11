@@ -18,6 +18,17 @@ class Api::V1::Admins::ArtistsController < ApplicationController
     end
   end
 
+  def refresh_timeline
+    artist = Artist.find(params[:id])
+    if artist.id_on_musicbrainz.blank?
+      render json: { errors: ['Artist has no MusicBrainz ID; cannot build timeline'] }, status: :unprocessable_entity
+      return
+    end
+
+    ArtistTimelineEnrichmentJob.perform_async(artist.id)
+    render json: { status: 'enqueued', artist_id: artist.id }, status: :accepted
+  end
+
   private
 
   def artist_params
