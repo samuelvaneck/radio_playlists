@@ -50,6 +50,43 @@ RSpec.describe Wikipedia::WikidataTimelineFinder, type: :service do
       end
     end
 
+    context 'when SPARQL endpoint times out' do
+      let(:entity_body) do
+        {
+          'entities' => {
+            wikibase_item => {
+              'claims' => {
+                'P569' => [{ 'mainsnak' => { 'datavalue' => { 'value' => { 'time' => '+1989-12-13T00:00:00Z' } } } }]
+              }
+            }
+          }
+        }
+      end
+      let(:entity_response) { instance_double(Faraday::Response, body: entity_body, status: 200) }
+      let(:sparql_connection) { instance_double(Faraday::Connection) }
+      let(:entity_connection) { instance_double(Faraday::Connection) }
+
+      before do
+        allow(Faraday).to receive(:new).with(hash_including(url: described_class::SPARQL_URL)).and_return(sparql_connection)
+        allow(Faraday).to receive(:new).with(hash_including(url: described_class::ENTITY_API_URL)).and_return(entity_connection)
+        allow(sparql_connection).to receive(:get).and_raise(Faraday::TimeoutError.new('execution expired'))
+        allow(entity_connection).to receive(:get).and_return(entity_response)
+        allow(Rails.logger).to receive(:warn)
+        allow(ExceptionNotifier).to receive(:notify)
+      end
+
+      it 'falls back to the entity API result', :aggregate_failures do
+        result = finder.(wikibase_item)
+        expect(result).to eq([{ 'category' => 'birth', 'date' => '1989-12-13', 'title' => 'Birth', 'source' => 'wikidata' }])
+        expect(ExceptionNotifier).not_to have_received(:notify)
+      end
+
+      it 'logs a warning about the SPARQL failure' do
+        finder.(wikibase_item)
+        expect(Rails.logger).to have_received(:warn).with(/Wikidata timeline SPARQL error/).at_least(:once)
+      end
+    end
+
     context 'when SPARQL endpoint returns valid JSON' do
       let(:sparql_body) do
         {

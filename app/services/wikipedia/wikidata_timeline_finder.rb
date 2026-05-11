@@ -5,6 +5,8 @@ module Wikipedia
     SPARQL_URL = 'https://query.wikidata.org/sparql'
     ENTITY_API_URL = 'https://www.wikidata.org'
     DEFAULT_LANGUAGE = 'en'
+    SPARQL_OPEN_TIMEOUT = 5
+    SPARQL_TIMEOUT = 8
 
     DATE_CLAIM_PROPERTIES = {
       'P569' => { category: 'birth', title_template: 'Birth' },
@@ -119,8 +121,7 @@ module Wikipedia
         parsed_json_body(response)&.dig('results', 'bindings') || []
       end
     rescue StandardError => e
-      ExceptionNotifier.notify(e)
-      Rails.logger.error("Wikidata timeline SPARQL error: #{e.message}")
+      Rails.logger.warn("Wikidata timeline SPARQL error: #{e.message}")
       []
     end
 
@@ -159,7 +160,7 @@ module Wikipedia
     end
 
     def connection
-      @connection ||= Faraday.new(url: SPARQL_URL) do |conn|
+      @connection ||= Faraday.new(url: SPARQL_URL, request: { open_timeout: SPARQL_OPEN_TIMEOUT, timeout: SPARQL_TIMEOUT }) do |conn|
         conn.response :json
         conn.headers['Accept'] = 'application/sparql-results+json'
         conn.headers['User-Agent'] = 'Airplays/1.0 (https://airplays.nl)'
