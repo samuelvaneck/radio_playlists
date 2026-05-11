@@ -5,8 +5,11 @@ module Wikipedia
     SPARQL_URL = 'https://query.wikidata.org/sparql'
     ENTITY_API_URL = 'https://www.wikidata.org'
     DEFAULT_LANGUAGE = 'en'
-    SPARQL_OPEN_TIMEOUT = 5
-    SPARQL_TIMEOUT = 8
+    SPARQL_OPEN_TIMEOUT = 15
+    # No read timeout: this runs only from ArtistTimelineEnrichmentJob (background),
+    # and the expanded UNION (music + personal-life arms) can take longer than the
+    # previous 8s ceiling. Connection-establish is still bounded above.
+    SPARQL_TIMEOUT = nil
 
     DATE_CLAIM_PROPERTIES = {
       'P569' => { category: 'birth', title_template: 'Birth' },
