@@ -15,6 +15,17 @@ module Wikipedia
       'P576' => { category: 'dissolution', title_template: 'Dissolution' }
     }.freeze
 
+    TITLE_FORMATS = {
+      'marriage_start' => ['Married %s', 'Married'],
+      'marriage_end' => ['Marriage to %s ended', 'Marriage ended'],
+      'marriage' => ['Marriage to %s', 'Marriage'],
+      'relationship_start' => ['Relationship with %s began', 'Relationship began'],
+      'relationship_end' => ['Relationship with %s ended', 'Relationship ended'],
+      'relationship' => ['Relationship with %s', 'Relationship'],
+      'education_start' => ['Started at %s', 'Started education'],
+      'education_end' => ['Left %s', 'Education ended']
+    }.freeze
+
     def initialize(language: DEFAULT_LANGUAGE)
       @language = language
     end
@@ -105,6 +116,46 @@ module Wikipedia
             ?statement ps:P166 ?subject.
             OPTIONAL { ?statement pq:P585 ?date. }
             BIND("award" AS ?category)
+          } UNION {
+            wd:#{wikibase_item} p:P26 ?statement.
+            ?statement ps:P26 ?subject.
+            ?statement pq:P580 ?date.
+            BIND("marriage_start" AS ?category)
+          } UNION {
+            wd:#{wikibase_item} p:P26 ?statement.
+            ?statement ps:P26 ?subject.
+            ?statement pq:P582 ?date.
+            BIND("marriage_end" AS ?category)
+          } UNION {
+            wd:#{wikibase_item} p:P26 ?statement.
+            ?statement ps:P26 ?subject.
+            ?statement pq:P585 ?date.
+            BIND("marriage" AS ?category)
+          } UNION {
+            wd:#{wikibase_item} p:P451 ?statement.
+            ?statement ps:P451 ?subject.
+            ?statement pq:P580 ?date.
+            BIND("relationship_start" AS ?category)
+          } UNION {
+            wd:#{wikibase_item} p:P451 ?statement.
+            ?statement ps:P451 ?subject.
+            ?statement pq:P582 ?date.
+            BIND("relationship_end" AS ?category)
+          } UNION {
+            wd:#{wikibase_item} p:P451 ?statement.
+            ?statement ps:P451 ?subject.
+            ?statement pq:P585 ?date.
+            BIND("relationship" AS ?category)
+          } UNION {
+            wd:#{wikibase_item} p:P69 ?statement.
+            ?statement ps:P69 ?subject.
+            ?statement pq:P580 ?date.
+            BIND("education_start" AS ?category)
+          } UNION {
+            wd:#{wikibase_item} p:P69 ?statement.
+            ?statement ps:P69 ?subject.
+            ?statement pq:P582 ?date.
+            BIND("education_end" AS ?category)
           }
           SERVICE wikibase:label { bd:serviceParam wikibase:language "#{language}". }
         }
@@ -137,12 +188,20 @@ module Wikipedia
       category = row.dig('category', 'value')
       return nil if category.blank?
 
+      subject_label = row.dig('subjectLabel', 'value').presence
       {
         'category' => category,
         'date' => parse_date(row.dig('date', 'value').to_s),
-        'title' => row.dig('subjectLabel', 'value').presence || category.humanize,
+        'title' => event_title(category, subject_label),
         'source' => 'wikidata'
       }
+    end
+
+    def event_title(category, subject_label)
+      with_label, without_label = TITLE_FORMATS[category]
+      return subject_label || category.humanize if with_label.nil?
+
+      subject_label ? format(with_label, subject_label) : without_label
     end
 
     def parse_date(time_string)

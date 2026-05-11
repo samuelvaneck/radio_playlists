@@ -116,5 +116,49 @@ RSpec.describe Wikipedia::WikidataTimelineFinder, type: :service do
         expect(result.first).to include('category' => 'formation', 'source' => 'wikidata')
       end
     end
+
+    context 'when SPARQL returns personal-life events' do
+      let(:sparql_body) do
+        {
+          'results' => {
+            'bindings' => [
+              {
+                'category' => { 'value' => 'relationship_start' },
+                'date' => { 'value' => '+2016-01-01T00:00:00Z' },
+                'subjectLabel' => { 'value' => 'Joe Alwyn' }
+              },
+              {
+                'category' => { 'value' => 'relationship_end' },
+                'date' => { 'value' => '+2023-01-01T00:00:00Z' },
+                'subjectLabel' => { 'value' => 'Joe Alwyn' }
+              },
+              {
+                'category' => { 'value' => 'education_start' },
+                'date' => { 'value' => '+2003-01-01T00:00:00Z' },
+                'subjectLabel' => { 'value' => 'Berklee College of Music' }
+              }
+            ]
+          }
+        }
+      end
+      let(:sparql_response) { instance_double(Faraday::Response, body: sparql_body, status: 200) }
+      let(:sparql_connection) { instance_double(Faraday::Connection) }
+      let(:entity_connection) { instance_double(Faraday::Connection) }
+
+      before do
+        allow(Faraday).to receive(:new).with(hash_including(url: described_class::SPARQL_URL)).and_return(sparql_connection)
+        allow(Faraday).to receive(:new).with(hash_including(url: described_class::ENTITY_API_URL)).and_return(entity_connection)
+        allow(sparql_connection).to receive(:get).and_yield(double(params: {})).and_return(sparql_response)
+      end
+
+      it 'maps the new categories with readable titles', :aggregate_failures do
+        result = finder.(wikibase_item)
+        expect(result).to include(
+          a_hash_including('category' => 'relationship_start', 'title' => 'Relationship with Joe Alwyn began'),
+          a_hash_including('category' => 'relationship_end', 'title' => 'Relationship with Joe Alwyn ended'),
+          a_hash_including('category' => 'education_start', 'title' => 'Started at Berklee College of Music')
+        )
+      end
+    end
   end
 end
