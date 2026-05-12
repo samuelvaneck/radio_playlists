@@ -14,8 +14,6 @@ describe Api::V1::Admins::ArtistsController, type: :controller do
   describe 'GET #index' do
     subject(:get_index) { get :index, params: { format: :json } }
 
-    let(:ordered_artist_ids) { Artist.order(created_at: :desc).pluck(:id).map(&:to_s) }
-
     context 'when there are artists' do
       before { create_list(:artist, 3) }
 
@@ -28,10 +26,22 @@ describe Api::V1::Admins::ArtistsController, type: :controller do
         get_index
         expect(json[:data].count).to eq(3)
       end
+    end
 
-      it 'returns the artists in descending order of creation' do
+    context 'when artists have different song counts' do
+      let(:artist_with_two_songs) { create(:artist) }
+      let(:artist_with_one_song) { create(:artist) }
+      let(:artist_with_no_songs) { create(:artist) }
+
+      before do
+        create_list(:song, 2, artists: [artist_with_two_songs])
+        create(:song, artists: [artist_with_one_song])
+        artist_with_no_songs
+      end
+
+      it 'orders artists by descending song count' do
         get_index
-        expect(json[:data].map { |a| a[:id] }).to eq(ordered_artist_ids)
+        expect(json[:data].map { |a| a[:id] }).to eq([artist_with_two_songs, artist_with_one_song, artist_with_no_songs].map { |a| a.id.to_s })
       end
     end
 
