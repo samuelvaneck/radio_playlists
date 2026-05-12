@@ -72,6 +72,9 @@ class Artist < ApplicationRecord
   has_one :timeline, class_name: 'ArtistTimeline', dependent: :destroy
 
   scope :matching, ->(search_term) { search_by_name(search_term).reorder(nil) if search_term.present? }
+  scope :ordered_by_song_count, lambda {
+    order(Arel.sql('(SELECT COUNT(*) FROM artists_songs WHERE artists_songs.artist_id = artists.id) DESC, artists.created_at DESC'))
+  }
 
   before_create :set_slug
   after_commit :update_slug, on: [:update], if: :saved_change_to_name?
