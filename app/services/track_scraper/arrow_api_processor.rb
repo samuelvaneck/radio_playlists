@@ -6,12 +6,12 @@ class TrackScraper::ArrowApiProcessor < TrackScraper
     return false if response.blank?
 
     @raw_response = response
-    track = response['current']
-    return false if track.blank? || track['artist'].blank? || commercial?(track)
+    return false unless music?(response)
+    return false if response['artist'].blank? || response['title'].blank?
 
-    @artist_name = track['artist'].titleize
-    @title = TitleSanitizer.sanitize(track['title']).titleize
-    @broadcasted_at = Time.zone.at(track['startTime'] / 1000)
+    @artist_name = response['artist'].titleize
+    @title = TitleSanitizer.sanitize(response['title']).titleize
+    @broadcasted_at = Time.zone.at(response['timestamp'])
     true
   rescue StandardError => e
     Rails.logger.warn("ArrowApiProcessor: #{e.message}")
@@ -21,7 +21,10 @@ class TrackScraper::ArrowApiProcessor < TrackScraper
 
   private
 
-  def commercial?(track)
-    track['category'].to_s.downcase.include?('commercials')
+  def music?(response)
+    return false if response['hasCurrentTrack'] == false
+
+    state = response['state'].to_s.downcase
+    state.blank? || state == 'music'
   end
 end

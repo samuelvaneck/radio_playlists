@@ -141,7 +141,7 @@ RadioStation.seed(
   },
   {
     name: 'Arrow Classic Rock',
-    url: 'https://www.arrow.nl/wp-content/plugins/adeko-arrow-onair/playlistdata/Arrow_PLAYING_NOW.json',
+    url: 'https://www.arrow.nl/api/nowplaying',
     processor: 'arrow_api_processor',
     direct_stream_url: 'https://stream.player.arrow.nl/arrow',
     slug: 'arrow-classic-rock',
