@@ -12,14 +12,11 @@ describe TrackScraper::ArrowApiProcessor, type: :service do
     end
     let(:response) do
       {
-        'current' => {
-          'artist' => 'BLACK SABBATH',
-          'title' => 'FAIRIES WEAR BOOTS',
-          'startTime' => 1_772_788_567_023,
-          'length' => 368_369,
-          'type' => 'Standard',
-          'category' => 'ARROW - TOP 500 [ACTIEF]'
-        }
+        'title' => 'FAIRIES WEAR BOOTS',
+        'artist' => 'BLACK SABBATH',
+        'timestamp' => 1_772_788_567,
+        'hasCurrentTrack' => true,
+        'state' => 'music'
       }
     end
 
@@ -53,14 +50,11 @@ describe TrackScraper::ArrowApiProcessor, type: :service do
     context 'when the current track is a commercial' do
       let(:api_response) do
         {
-          'current' => {
-            'artist' => '',
-            'title' => 'ARROW C R - COMMERCIALS',
-            'startTime' => 1_772_788_355_684,
-            'length' => 207_606,
-            'type' => '',
-            'category' => 'Start commercials'
-          }
+          'title' => 'ARROW C R - COMMERCIALS',
+          'artist' => '',
+          'timestamp' => 1_772_788_355,
+          'hasCurrentTrack' => false,
+          'state' => 'commercial'
         }
       end
 
@@ -72,14 +66,11 @@ describe TrackScraper::ArrowApiProcessor, type: :service do
     context 'when the current track has no artist' do
       let(:api_response) do
         {
-          'current' => {
-            'artist' => '',
-            'title' => 'UNKNOWN TRACK',
-            'startTime' => 1_772_788_355_684,
-            'length' => 207_606,
-            'type' => 'Standard',
-            'category' => 'ARROW - TOP 500 [ACTIEF]'
-          }
+          'title' => 'UNKNOWN TRACK',
+          'artist' => '',
+          'timestamp' => 1_772_788_355,
+          'hasCurrentTrack' => true,
+          'state' => 'music'
         }
       end
 
