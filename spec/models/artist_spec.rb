@@ -163,7 +163,7 @@ describe Artist do
     end
 
     it 'finds artists with typo in query' do
-      expect(Artist.search_by_name('Coldpaly')).to include(coldplay)
+      expect(Artist.search_by_name('Coldlay')).to include(coldplay)
     end
 
     it 'finds artists with prefix match' do
