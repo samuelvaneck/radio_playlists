@@ -18,7 +18,7 @@ module Api
       private
 
       def air_plays
-        @air_plays ||= AirPlay.includes(:radio_station, song: :artists)
+        @air_plays ||= AirPlay.preload(:radio_station, song: :artists)
                          .last_played(params)
                          .paginate(page: params[:page], per_page: PER_PAGE, total_entries: cached_total_entries)
       end
