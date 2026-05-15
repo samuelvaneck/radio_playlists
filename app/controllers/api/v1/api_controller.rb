@@ -19,7 +19,8 @@ module Api
         render json: { error: 'Not found' }, status: :not_found
       end
 
-      def render_bad_request
+      def render_bad_request(exception = nil)
+        Rails.logger.error("[API BadRequest] #{exception&.class}: #{exception&.message}\n#{exception&.backtrace&.first(10)&.join("\n")}")
         render json: { error: 'Bad request' }, status: :bad_request
       end
 
